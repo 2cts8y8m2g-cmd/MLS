@@ -54,13 +54,13 @@ Every visual object has `type`, `props` (initial values) and optional `keys`:
 | `rbc` | `r`, `antigen` (`A`,`B`,`AB`,`O`=H only,`none`=Bombay), `antigens` (count), `face`, `mood` (`happy`/`neutral`/`worried`), *`highlight`*, `label`, `labelSize` |
 | `antibody` | `spec` (`A`,`B`,`H`,`AB`), `cls` (`IgM` pentamer / `IgG`), *`size`*, *`spin`* (rotates the molecule, not its label), `label` |
 | `cellField` | `w`, `h`, `count`, `cellR`, `antigen`, `spec`, `seed`, *`free`* (unbound antibodies), *`bound`* (bridging antibodies), *`clump`* (0 dispersed → 1 lattice), *`hemolysis`*, `label` |
-| `tube` | `label`, `fluid` (`saline`/`plasma`/CSS color), *`level`*, *`cells`*, *`settle`* (button forms), *`shake`* (resuspension), *`grade`* (0–4 clump pattern), *`hemolysis`*, *`highlight`*, `result` (chip text), `cap` (stopper colour as a CSS colour, e.g. `#8ec9ee` for citrate) |
+| `tube` | `label`, `fluid` (`saline`/`plasma`/CSS color), *`level`*, *`cells`*, *`settle`* (button forms), *`shake`* (resuspension), *`grade`* (0–4 clump pattern), *`hemolysis`*, *`clot`* (0–1 gel clot), *`highlight`*, `result` (chip text), `cap` (stopper colour as a CSS colour, e.g. `#8ec9ee` for citrate) |
 | `dropper` | `label`, `color`, *`drop`* (0→1 a drop falls), `dropDistance` |
 | `centrifuge` | *`spin`* (degrees), `label` |
 | `specimen` | `top` (`lavender`,`pink`,`red`,`gold`,`blue`,`green`,`gray`), *`separated`* (plasma layer), `label` |
 | `gradeScale` | *`reveal`* (0–5), *`highlight`* (index), `descriptions[]` |
 | `table` | `title`, `cols[]`, `rows[][]`, `cellW`, `cellH`, *`reveal`* (cells shown), *`highlightRow`* |
-| `card` | `w`, `h`, `title`, `lines[]`, *`reveal`*, `tone` (`a`,`b`,`neutral`,`warn`,`good`,`blood`), `size` |
+| `card` | `w`, `h`, `title`, `lines[]`, *`reveal`*, `tone` (`a`,`b`,`neutral`,`warn`,`good`,`bad`,`blood`), `size` |
 | `label` | `text` (`\n` for line breaks), `size`, `weight`, `color` token, `align`, `bg`, `wrap` |
 | `bubble` | `text`, `w`, `tail` (`left`/`right`/`down`), `tone`, `size` |
 | `arrow` | `dx`, `dy`, *`draw`* (0→1), `color`, `label`, `dashed` |
@@ -69,6 +69,7 @@ Every visual object has `type`, `props` (initial values) and optional `keys`:
 | `building` | `w`, `h`, `sign`, `label`, *`highlight`* |
 | `document` | `w`, `h`, `title`, `sub`, `tone`, `stampText`, *`stamp`* (0→1 stamp lands), *`highlight`* |
 | `smear` | `w`, `h`, *`count`* (cells in field ≈ RBC count), *`size`* (1 = normal MCV), *`pallor`* (central pallor, normal ≈ 0.33), *`aniso`* (size variation ≈ RDW), *`target`* (fraction of target cells), `seed`, `label` — a **schematic** smear field, not real morphology |
+| `cocci` | *`arrangement`* (`cluster`, `chain`, `pair`, `scatter`), *`gram`* (`pos` purple / `neg` pink), *`count`*, *`r`*, *`drop`* (reagent drop of size `w`×`h`), *`fizz`* (0–1 oxygen bubbles, catalase), *`clump`* (0–1 cells pulled into clumps, slide coagulase), `seed`, `label` — **schematic** bacteria, not real Gram-stain morphology |
 | `token` | `label`, `w`, `wrap` (default: about w ÷ 8.5 characters, min 16), `tone`, *`highlight`* — a chip that can be moved and sorted |
 | `bin` | `w`, `h`, `label`, `sub`, `tone`, *`highlight`* — a category bucket |
 | `prion` | *`fold`* (0 normal α-helical PrP^C → 1 misfolded β-sheet PrP^Sc), *`stack`* (copies in a fibril), *`size`*, *`highlight`*, `label` |

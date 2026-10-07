@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 29 flags: 15 verified issues and 14 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 31 flags: 16 verified issues and 15 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -44,6 +44,7 @@ Verified:
 - **Bibliography:** CLSI M100 2020; the current edition is Ed36 (2026). Ch. 58 breakpoints may be outdated.
 - **Ch. 26:** WHO 2010 semen values; the WHO 6th edition (2021) revised them, and the reviewer's 2–5 mL volume doesn't match WHO 2010 either.
 - **Ch. 35:** blast threshold ≥20% per WHO 2017; WHO-HAEM5 and the 2022 ICC differ.
+- **Ch. 57 Hit 3:** "tube coagulase positive = *S. aureus*"; ASM notes *S. schleiferi* and *S. intermedius* may also be tube-positive.
 - **Ch. 1 and 13:** US-only regulation with no PH equivalents (context gap for the MTLE track).
 
 Needs verification:
@@ -54,6 +55,7 @@ Needs verification:
 - Ch. 52: IUIS 2020 count.
 - Ch. 40 Hit 2: "two ABO determinations" wording.
 - Appendix A: the ASCP weights.
+- Ch. 57 Trap 2: tube coagulase "~100% sensitive" (no source read gives a figure).
 
 Automated scan: **23** dated-guideline statements and **134** High-Yield Hits with only/always/never wording. Each must be checked when its lesson is built.
 
@@ -64,4 +66,5 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 4 open flags: tube-grading method dependence, the age cutoff, specimen type, and the discrepancy Groups I–IV that the lesson doesn't fully teach.
+- **Gram-Positive Cocci: Catalase, Coagulase and MRSA:** 3 pending claims (enterococci catalase-negative not named in the sources read, PBP2a's low β-lactam affinity, tube coagulase sensitivity) and 2 open flags (the ~100% figure, Hit 3's missing exceptions).
 - **CLIA '88:** 3 pending claims (the accreditor list, the number of states licensing personnel, inspection of waived labs) and 3 open flags (US-only scope, generic test-complexity examples, breath tests).

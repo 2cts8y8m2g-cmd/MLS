@@ -3,15 +3,16 @@
 ## State at hand-off (2026-10-07)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 21, teaching 84 of 1,932 concepts (about 4.3%).** All 21 still require review: each has pending claims, and none has had human expert review.
+- **Lessons complete: 22, teaching 92 of 1,932 concepts (about 4.8%).** All 22 still require review: each has pending claims, and none has had human expert review.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-lab-safety-precautions-osha`, `ops-reimbursement-drg-payment-window`, `ops-lab-design-hazcom-numbers`.
   - Ch. 2 (23/23 concepts): `ops-workflow-before-technology`, `ops-six-sigma-vs-lean`, `ops-instrument-selection-uptime-batch`, `ops-consolidation-utilization-autoverification`.
   - Ch. 3 (24/24 concepts): `pre-order-of-draw-edta`, `pre-citrate-ratio-heparin`, `pre-tube-additives-fluoride-gel`, `pre-patient-id-wbit`, `pre-csf-tubes-synovial-crystals`, `pre-biotin-daratumumab-interference`, `pre-allen-test-urine-timing`, `pre-specimen-numbers-rcf-24h-urine`.
   - Ch. 17 (6/22 concepts): `chem-diabetes-diagnosis-hba1c`.
   - Ch. 33 (6/27 concepts): `heme-microcytic-anemia-ferritin-mentzer`.
   - Ch. 40 (2/36 concepts): `ih-abo-forward-reverse`.
-- **Reviewer accuracy register:** 29 flags (15 verified issues, 14 needing verification), plus scan results.
-- **Checks:** 192 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+  - Ch. 57 (8/57 concepts): `micro-gpc-catalase-coagulase-mrsa`.
+- **Reviewer accuracy register:** 31 flags (16 verified issues, 15 needing verification), plus scan results.
+- **Checks:** 198 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -36,6 +37,8 @@ Rotate through the four ≈20%-weight areas, one lesson at a time, starting each
 | 2 | Ch. 31 Blood & marrow basics | Ch. 15 Kidney, electrolytes, acid–base | Ch. 66 Micro specimens | Ch. 40 Blood groups (continue) |
 | 3 | Ch. 36 Coag cascade | Ch. 22 Liver | Ch. 64 Viruses | Ch. 42 Apheresis & collection |
 | 4 | Ch. 37 Platelets & VWD | Ch. 20 Proteins | Ch. 60 Fungi | Ch. 43 Stem cells & tissue |
+
+Round 1 progress: Ch. 33, 17 and 57 have their core lesson; **next is Ch. 41 (Transfusion)**.
 
 Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.
 

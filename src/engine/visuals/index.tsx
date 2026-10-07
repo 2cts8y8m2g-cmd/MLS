@@ -312,6 +312,8 @@ function Tube({ p, id }: { p: Props; id: string }) {
   const shake = clamp(num(p, 'shake', 0));
   const grade = clamp(num(p, 'grade', 0), 0, 4);
   const hemo = clamp(num(p, 'hemolysis', 0));
+  // 0–1: the fluid sets into a gel clot (e.g. tube coagulase).
+  const clot = clamp(num(p, 'clot', 0));
   const hl = num(p, 'highlight', 0);
   const fluid = color(str(p, 'fluid', 'saline'));
   const label = str(p, 'label', '');
@@ -334,6 +336,14 @@ function Tube({ p, id }: { p: Props; id: string }) {
       <g clipPath={`url(#${clipId})`}>
         <rect x={-TUBE_W / 2} y={top} width={TUBE_W} height={TUBE_H - top + 2} fill={fluid} />
         {hemo > 0 && <rect x={-TUBE_W / 2} y={top} width={TUBE_W} height={TUBE_H - top + 2} fill="var(--hemolysate)" opacity={hemo * 0.85} />}
+        {clot > 0 && (
+          <g opacity={clot}>
+            <rect x={-TUBE_W / 2} y={top} width={TUBE_W} height={TUBE_H - top + 2} fill="var(--ag-a)" opacity={0.45} />
+            {[0, 1, 2, 3, 4].map((i) => (
+              <path key={i} d={`M${-TUBE_W / 2} ${top + 14 + i * 22} q ${TUBE_W / 4} -10 ${TUBE_W / 2} 0 t ${TUBE_W / 2} 0`} fill="none" stroke="var(--ink)" strokeOpacity={0.45} strokeWidth={1.5} />
+            ))}
+          </g>
+        )}
         {/* evenly suspended cells */}
         {suspended > 0 && (
           <rect x={-TUBE_W / 2} y={top} width={TUBE_W} height={TUBE_H - top + 2} fill="var(--rbc)"
@@ -543,7 +553,7 @@ function Arrow({ p }: { p: Props }) {
 }
 
 const TONE_BG: Record<string, string> = {
-  a: 'var(--tone-a)', b: 'var(--tone-b)', neutral: 'var(--stage-card)', warn: 'var(--tone-warn)', good: 'var(--tone-good)', blood: 'var(--rbc)',
+  a: 'var(--tone-a)', b: 'var(--tone-b)', neutral: 'var(--stage-card)', warn: 'var(--tone-warn)', good: 'var(--tone-good)', bad: 'var(--tone-bad)', blood: 'var(--rbc)',
 };
 
 function Card({ p }: { p: Props }) {
@@ -924,6 +934,74 @@ function BellCurve({ p, id }: { p: Props; id: string }) {
   );
 }
 
+/**
+ * Schematic bacteria under the microscope: Gram-positive (purple) or Gram-negative (pink) cocci
+ * in clusters, chains or pairs. Optional drop of reagent: `fizz` (0–1) shows oxygen bubbles
+ * (catalase), `clump` (0–1) pulls cells into clumps (slide coagulase / clumping factor).
+ */
+function Cocci({ p }: { p: Props }) {
+  const { time, reducedMotion } = useContext(VisualContext);
+  const arrangement = str(p, 'arrangement', 'cluster');
+  const gram = str(p, 'gram', 'pos');
+  const n = Math.round(clamp(num(p, 'count', 14), 1, 40));
+  const r = num(p, 'r', 11);
+  const fizz = clamp(num(p, 'fizz', 0));
+  const clump = clamp(num(p, 'clump', 0));
+  const drop = bool(p, 'drop', false);
+  const dw = num(p, 'w', 240);
+  const dh = num(p, 'h', 150);
+  const label = str(p, 'label', '');
+  const rnd = rand(num(p, 'seed', 7));
+  const fill = gram === 'neg' ? 'var(--gram-neg)' : 'var(--gram-pos)';
+  let pts: [number, number][] = [];
+  if (arrangement === 'chain') {
+    for (let i = 0; i < n; i++) {
+      const x = (i - (n - 1) / 2) * r * 1.9;
+      pts.push([x, Math.sin(i * 0.7) * r * 1.4]);
+    }
+  } else if (arrangement === 'pair') {
+    const pairs = Math.max(1, Math.round(n / 2));
+    for (let i = 0; i < pairs; i++) {
+      const cx = (rnd() - 0.5) * dw * 0.7;
+      const cy = (rnd() - 0.5) * dh * 0.6;
+      pts.push([cx - r * 0.95, cy], [cx + r * 0.95, cy]);
+    }
+  } else if (arrangement === 'scatter') {
+    for (let i = 0; i < n; i++) pts.push([(rnd() - 0.5) * dw * 0.8, (rnd() - 0.5) * dh * 0.7]);
+  } else {
+    pts = hexCluster(n, r * 1.85).map(([x, y]) => [x + (rnd() - 0.5) * r * 0.5, y + (rnd() - 0.5) * r * 0.5]);
+  }
+  // Clumping pulls each cell toward one of three clump centres.
+  const centres: [number, number][] = [[-dw * 0.27, -dh * 0.06], [dw * 0.25, -dh * 0.1], [0, dh * 0.2]];
+  const cells = pts.map(([x, y], i) => {
+    const [cx, cy] = centres[i % 3];
+    const k = i / 3;
+    const tx = cx + Math.cos(k * 2.4) * r * 1.15 * Math.sqrt(k);
+    const ty = cy + Math.sin(k * 2.4) * r * 1.15 * Math.sqrt(k);
+    return [x + (tx - x) * clump, y + (ty - y) * clump] as [number, number];
+  });
+  const bubbles = Math.round(fizz * 18);
+  const bt = reducedMotion ? 0 : time;
+  return (
+    <g>
+      {drop && <ellipse rx={dw / 2} ry={dh / 2} fill="var(--peroxide)" stroke="var(--line)" strokeWidth={2} />}
+      {cells.map(([x, y], i) => (
+        <circle key={i} cx={x} cy={y} r={r} fill={fill} stroke="var(--ink)" strokeOpacity={0.35} strokeWidth={1.2} />
+      ))}
+      {Array.from({ length: bubbles }, (_, i) => {
+        const phase = ((bt * 0.5 + i * 0.37) % 1);
+        const br = 4 + (i % 4) * 2.5;
+        const by = dh * 0.3 - phase * dh * 0.6;
+        // Keep bubbles inside the drop: the ellipse narrows toward its top and bottom.
+        const half = (dw / 2) * Math.sqrt(Math.max(0, 1 - (by / (dh / 2)) ** 2)) - br - 4;
+        const bx = ((i * 0.618) % 1 - 0.5) * 2 * Math.max(0, half);
+        return <circle key={`b${i}`} cx={bx} cy={by} r={br} fill="none" stroke="var(--ink)" strokeWidth={1.6} opacity={0.75 * (1 - phase * 0.6)} />;
+      })}
+      {label && <g transform={`translate(0,${(drop ? dh / 2 : r * 4) + 24})`}><Text lines={wrap(label, Math.max(16, Math.floor(dw / 8)))} size={15} fill="var(--ink)" weight={700} /></g>}
+    </g>
+  );
+}
+
 type Renderer = (args: { p: Props; id: string }) => ReactNode;
 
 export const VISUALS: Record<VisualType, Renderer> = {
@@ -951,6 +1029,7 @@ export const VISUALS: Record<VisualType, Renderer> = {
   autoclave: Autoclave,
   bellCurve: BellCurve,
   smear: Smear,
+  cocci: Cocci,
 };
 
 /** Positions any visual using the shared transform props. */
