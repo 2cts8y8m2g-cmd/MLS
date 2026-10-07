@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-07)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 27, teaching 108 of 1,932 concepts (about 5.6%).** All 27 still require review: each has pending claims, and none has had human expert review.
+- **Lessons complete: 28, teaching 113 of 1,932 concepts (about 5.8%).** All 28 still require review: each has pending claims, and none has had human expert review.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-lab-safety-precautions-osha`, `ops-reimbursement-drg-payment-window`, `ops-lab-design-hazcom-numbers`.
   - Ch. 2 (23/23 concepts): `ops-workflow-before-technology`, `ops-six-sigma-vs-lean`, `ops-instrument-selection-uptime-batch`, `ops-consolidation-utilization-autoverification`.
   - Ch. 3 (24/24 concepts): `pre-order-of-draw-edta`, `pre-citrate-ratio-heparin`, `pre-tube-additives-fluoride-gel`, `pre-patient-id-wbit`, `pre-csf-tubes-synovial-crystals`, `pre-biotin-daratumumab-interference`, `pre-allen-test-urine-timing`, `pre-specimen-numbers-rcf-24h-urine`.
@@ -11,12 +11,13 @@
   - Ch. 17 (6/22 concepts): `chem-diabetes-diagnosis-hba1c`.
   - Ch. 31 (4/28 concepts): `heme-red-cell-indices-high-mchc`.
   - Ch. 33 (6/27 concepts): `heme-microcytic-anemia-ferritin-mentzer`.
+  - Ch. 36 (5/29 concepts): `heme-mixing-study-pt-aptt`.
   - Ch. 40 (4/36 concepts): `ih-abo-forward-reverse`, `ih-abo-discrepancy-types-workup`.
   - Ch. 41 (4/35 concepts): `bb-acute-hemolytic-reaction-abo-compatibility`.
   - Ch. 57 (8/57 concepts): `micro-gpc-catalase-coagulase-mrsa`.
   - Ch. 66 (3/54 concepts): `micro-blood-culture-volume-contamination`.
 - **Reviewer accuracy register:** 35 flags (19 verified issues, 16 needing verification), plus scan results.
-- **Checks:** 228 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 234 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -42,7 +43,7 @@ Rotate through the four ≈20%-weight areas, one lesson at a time, starting each
 | 3 | Ch. 36 Coag cascade | Ch. 22 Liver | Ch. 64 Viruses | Ch. 42 Apheresis & collection |
 | 4 | Ch. 37 Platelets & VWD | Ch. 20 Proteins | Ch. 60 Fungi | Ch. 43 Stem cells & tissue |
 
-Round 1 is done (Ch. 33, 17, 57, 41 each have their core lesson). Round 2 is done (Ch. 31, 15, 66, 40). **Next is round 3: Ch. 36 (Coag cascade)**, then Ch. 22, 64, 42. Ch. 41 Hit 4 (TRALI vs TACO; NHSN v3.0 has definitions) is a natural follow-up.
+Round 1 is done (Ch. 33, 17, 57, 41 each have their core lesson). Round 2 is done (Ch. 31, 15, 66, 40). Round 3: Ch. 36 done; **next is Ch. 22 (Liver)**, then Ch. 64, 42. Ch. 41 Hit 4 (TRALI vs TACO; NHSN v3.0 has definitions) is a natural follow-up.
 
 Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.
 

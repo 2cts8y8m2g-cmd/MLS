@@ -70,6 +70,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **PT, APTT and the Mixing Study:** 2 pending claims (factor XIII not measured by PT/APTT/TT, the prekallikrein incubation effect) and 1 open flag (Hit 2's thrombin-time and FXIII content not taught).
 - **ABO Discrepancies: Four Types and the Workup:** 2 pending claims (subgroups and myeloma as named causes, relative frequency of rare causes) and 1 open flag (the reviewer's workup order differs from the source's).
 - **Blood Cultures: Volume, Sets and Contamination:** 2 pending claims (low organism counts per mL, single-set S. aureus treated as real) and 2 open flags (yield figures, collection interval).
 - **FENa: Prerenal vs ATN:** 2 pending claims (the formula, normal FENa in healthy people) and 1 open flag (the reviewer's > 1% cut-off).
