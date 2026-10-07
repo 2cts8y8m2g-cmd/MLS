@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 33 flags: 18 verified issues and 15 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 35 flags: 19 verified issues and 16 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -45,6 +45,7 @@ Verified:
 - **Ch. 26:** WHO 2010 semen values; the WHO 6th edition (2021) revised them, and the reviewer's 2–5 mL volume doesn't match WHO 2010 either.
 - **Ch. 35:** blast threshold ≥20% per WHO 2017; WHO-HAEM5 and the 2022 ICC differ.
 - **Ch. 15 core:** "FENa > 1% suggests ATN"; a 2025 consensus treats 1–2% as indeterminate and > 2% as intrinsic.
+- **Ch. 66 core:** blood-culture yields "80 / 96 / 100%" for 2 / 3 / 4 sets; Lee 2007 found 90 / 98 / 99.8%.
 - **Ch. 31 core:** "MCHC increased **only** in spherocytosis"; xerocytosis also raises it, and cold agglutinins and interference raise it spuriously.
 - **Ch. 57 Hit 3:** "tube coagulase positive = *S. aureus*"; ASM notes *S. schleiferi* and *S. intermedius* may also be tube-positive.
 - **Ch. 1 and 13:** US-only regulation with no PH equivalents (context gap for the MTLE track).
@@ -57,17 +58,19 @@ Needs verification:
 - Ch. 40 Hit 2: "two ABO determinations" wording.
 - Appendix A: the ASCP weights.
 - Ch. 41 Hit 8: the ≥ 1 °C fever trigger and "never restart" (WHO 2001 allows a slow restart with a new unit).
+- Ch. 66 Hit 1: sets "30–60 minutes apart" (CDC: within a few hours, separate sites).
 - Ch. 57 Trap 2: tube coagulase "~100% sensitive" (no source read gives a figure).
 
 Automated scan: **23** dated-guideline statements and **134** High-Yield Hits with only/always/never wording. Each must be checked when its lesson is built.
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 12 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 13 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 4 open flags: tube-grading method dependence, the age cutoff, specimen type, and the discrepancy Groups I–IV that the lesson doesn't fully teach.
+- **Blood Cultures: Volume, Sets and Contamination:** 2 pending claims (low organism counts per mL, single-set S. aureus treated as real) and 2 open flags (yield figures, collection interval).
 - **FENa: Prerenal vs ATN:** 2 pending claims (the formula, normal FENa in healthy people) and 1 open flag (the reviewer's > 1% cut-off).
 - **Red-Cell Indices and the Too-High MCHC:** 3 pending claims (index formulas, the analyzer Hct/Hb mechanism, other causes of low MCHC) and 1 open flag (the reviewer's "only in spherocytosis").
 - **Acute Hemolytic Transfusion Reaction and ABO Compatibility:** 1 pending claim (the fever threshold, febrile-reaction course and restart rule) and 1 open flag (restart practice is guideline-dependent).

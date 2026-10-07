@@ -1,0 +1,1938 @@
+{
+  "schemaVersion": 1,
+  "id": "micro-blood-culture-volume-contamination",
+  "title": "Blood Cultures: Volume, Sets and Contamination",
+  "summary": "Fill two sets from two arms, watch detection climb with every set, and trace how skin flora sneaks into a bottle — and how labs tell a contaminant from a real bloodstream infection.",
+  "domain": "p7-micro",
+  "topic": "ch66",
+  "conceptIds": [
+    "ch66.hit1",
+    "ch66.hit24",
+    "ch66.figure"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 66,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          24
+        ]
+      },
+      {
+        "chapter": 66,
+        "section": "Figure 66"
+      }
+    ],
+    "note": "Teaches Ch. 66 Hit 1 (core: adult blood-culture volume and sets) with updated detection data, Hit 24 (single-bottle CoNS = likely contaminant) and the Figure 66 memory anchor. The reviewer’s 80/96/100% yields and 30–60-minute interval are logged as register flags rv-bc-yield and rv-bc-interval."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "State the adult blood-culture standard: bottles per set, volume per set, number of sets and collection sites.",
+    "Explain why blood volume and number of sets determine detection.",
+    "Identify typical contaminants, how contamination is defined and measured, and how to prevent it."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "One bottle, one bug",
+      "start": 0,
+      "end": 20,
+      "altText": "A feverish patient. A single blood-culture set (8 mL total) was drawn through the existing central line. One bottle turns positive: Gram-positive cocci in clusters, later identified as a coagulase-negative staphylococcus. Two tokens: “Real bloodstream infection?” and “Skin contaminant?”.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A patient has a fever. Someone draws one blood-culture set — just 8 millilitres — through the patient’s central line."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "One bottle turns positive: a coagulase-negative staphylococcus, a common skin organism."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Is this a real bloodstream infection, or skin that got into the bottle? With one small set from a line, it’s hard to tell."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 200,
+            "y": 150,
+            "w": 280,
+            "h": 110,
+            "tone": "a",
+            "title": "Patient",
+            "lines": [
+              "Fever",
+              "Central line in place"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b1",
+          "type": "tube",
+          "props": {
+            "x": 470,
+            "y": 90,
+            "level": 0.25,
+            "fluid": "blood",
+            "cells": 1,
+            "cap": "#7a8aa6",
+            "label": "Aerobic",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 2.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "type": "tube",
+          "props": {
+            "x": 580,
+            "y": 90,
+            "level": 0.25,
+            "fluid": "blood",
+            "cells": 1,
+            "cap": "#7a8aa6",
+            "label": "Anaerobic",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "opacity": 0
+            },
+            {
+              "t": 3.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "highlight": 0
+            },
+            {
+              "t": 10,
+              "highlight": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "vol",
+          "type": "token",
+          "props": {
+            "x": 525,
+            "y": 310,
+            "w": 280,
+            "label": "1 set · 8 mL · via the line",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 4.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pos",
+          "type": "token",
+          "props": {
+            "x": 800,
+            "y": 150,
+            "w": 260,
+            "label": "Positive: CoNS",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 10.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q1",
+          "type": "token",
+          "props": {
+            "x": 330,
+            "y": 420,
+            "w": 300,
+            "label": "Real infection?",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "type": "token",
+          "props": {
+            "x": 650,
+            "y": 420,
+            "w": 300,
+            "label": "Skin contaminant?",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 880,
+            "y": 330,
+            "expression": "curious",
+            "scale": 0.45,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: what a good draw looks like",
+      "start": 20,
+      "end": 60,
+      "altText": "A good collection is built step by step. A blood-culture set is an aerobic plus an anaerobic bottle. Each bottle gets about 10 mL, so a set holds about 20 mL (20–30 mL per venipuncture depending on the system). At least two sets (40–60 mL in total) are drawn by peripheral venipuncture, the second from a separate site, within a few hours of each other, and before antibiotics start.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "A blood-culture set is two bottles: one aerobic and one anaerobic."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "Each bottle gets about 10 millilitres, so one set is about 20 — or 20 to 30 per venipuncture, depending on the system."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 46,
+          "text": "Collect at least two sets, for 40 to 60 millilitres in total, by peripheral venipuncture. The second set comes from a separate site."
+        },
+        {
+          "id": "n4",
+          "start": 46,
+          "end": 54,
+          "text": "The sets are drawn within a few hours of each other — the CDC’s own worked example draws them five minutes apart."
+        },
+        {
+          "id": "n5",
+          "start": 54,
+          "end": 60,
+          "text": "And when blood cultures are indicated, draw them before antibiotics start."
+        }
+      ],
+      "objects": [
+        {
+          "id": "s10",
+          "type": "tube",
+          "props": {
+            "x": 180,
+            "y": 90,
+            "level": 0.1,
+            "fluid": "blood",
+            "cells": 1,
+            "cap": "#7a8aa6",
+            "label": "Aerobic",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8.5,
+              "level": 0.1
+            },
+            {
+              "t": 13.5,
+              "level": 0.6,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "s11",
+          "type": "tube",
+          "props": {
+            "x": 290,
+            "y": 90,
+            "level": 0.1,
+            "fluid": "blood",
+            "cells": 1,
+            "cap": "#7a8aa6",
+            "label": "Anaerobic",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.1,
+              "opacity": 0
+            },
+            {
+              "t": 1.7000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8.5,
+              "level": 0.1
+            },
+            {
+              "t": 13.5,
+              "level": 0.6,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "s1l",
+          "type": "token",
+          "props": {
+            "x": 235,
+            "y": 320,
+            "w": 230,
+            "label": "Set 1 · left arm · ~20 mL",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 9.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s20",
+          "type": "tube",
+          "props": {
+            "x": 560,
+            "y": 90,
+            "level": 0.1,
+            "fluid": "blood",
+            "cells": 1,
+            "cap": "#7a8aa6",
+            "label": "Aerobic",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "level": 0.1
+            },
+            {
+              "t": 17.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22,
+              "level": 0.6,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "s21",
+          "type": "tube",
+          "props": {
+            "x": 670,
+            "y": 90,
+            "level": 0.1,
+            "fluid": "blood",
+            "cells": 1,
+            "cap": "#7a8aa6",
+            "label": "Anaerobic",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17,
+              "level": 0.1
+            },
+            {
+              "t": 17.1,
+              "opacity": 0
+            },
+            {
+              "t": 17.700000000000003,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22,
+              "level": 0.6,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "s2l",
+          "type": "token",
+          "props": {
+            "x": 615,
+            "y": 320,
+            "w": 230,
+            "label": "Set 2 · right arm · ~20 mL",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17,
+              "opacity": 0
+            },
+            {
+              "t": 17.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tot",
+          "type": "token",
+          "props": {
+            "x": 425,
+            "y": 390,
+            "w": 420,
+            "label": "≥ 2 sets · 40–60 mL · peripheral",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "time",
+          "type": "token",
+          "props": {
+            "x": 425,
+            "y": 450,
+            "w": 520,
+            "label": "Within a few hours of each other",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 27.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "abx",
+          "type": "token",
+          "props": {
+            "x": 830,
+            "y": 230,
+            "w": 200,
+            "label": "Before antibiotics",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes with more blood",
+      "start": 60,
+      "end": 100,
+      "altText": "A bar chart grows set by set, using one large study of adults with three or more cultures in 24 hours: the first culture detected 73% of bloodstream infections, the first two 90%, the first three 98%, and the first four 99.8%. A second card explains why: bacteria are often present at very low numbers per millilitre, so more blood means more chances to catch them; a single set gives too little volume and risks a false-negative result.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 69,
+          "text": "Why so much blood? In bacteremia there may be very few organisms in each millilitre. More blood gives more chances to catch one."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 78,
+          "text": "In one large study of adults, the first culture caught 73 percent of bloodstream infections. Adding a second raised that to about 90 percent."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 87,
+          "text": "Three cultures caught 98 percent, and four caught 99.8 percent. More sets, more volume, more detected."
+        },
+        {
+          "id": "c4",
+          "start": 87,
+          "end": 94,
+          "text": "Other studies give different numbers — the classic figures of 80 and 96 percent come from an earlier study — but the trend is the same."
+        },
+        {
+          "id": "c5",
+          "start": 94,
+          "end": 100,
+          "text": "So a single set, with 20 millilitres or less, doesn’t give enough blood. It risks a false-negative result."
+        }
+      ],
+      "objects": [
+        {
+          "id": "why",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "w": 640,
+            "label": "Few organisms per mL → more blood = more chances",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "bar0",
+          "type": "token",
+          "props": {
+            "x": 220,
+            "y": 140,
+            "w": 120,
+            "wrap": 40,
+            "label": "1 culture: 73%",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "w": 120
+            },
+            {
+              "t": 9.5,
+              "x": 220
+            },
+            {
+              "t": 10.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12.5,
+              "w": 485.5,
+              "ease": "inOut"
+            },
+            {
+              "t": 12.5,
+              "x": 402.75,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "bar1",
+          "type": "token",
+          "props": {
+            "x": 220,
+            "y": 200,
+            "w": 120,
+            "wrap": 40,
+            "label": "2: 90%",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "w": 120
+            },
+            {
+              "t": 13,
+              "x": 220
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "w": 568.5,
+              "ease": "inOut"
+            },
+            {
+              "t": 16,
+              "x": 444.25,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "bar2",
+          "type": "token",
+          "props": {
+            "x": 220,
+            "y": 260,
+            "w": 120,
+            "wrap": 40,
+            "label": "3: 98%",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 18.5,
+              "w": 120
+            },
+            {
+              "t": 18.5,
+              "x": 220
+            },
+            {
+              "t": 19.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21.5,
+              "w": 611.0,
+              "ease": "inOut"
+            },
+            {
+              "t": 21.5,
+              "x": 465.5,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "bar3",
+          "type": "token",
+          "props": {
+            "x": 220,
+            "y": 320,
+            "w": 120,
+            "wrap": 40,
+            "label": "4: 99.8%",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22,
+              "opacity": 0
+            },
+            {
+              "t": 22,
+              "w": 120
+            },
+            {
+              "t": 22,
+              "x": 220
+            },
+            {
+              "t": 22.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "w": 619.0,
+              "ease": "inOut"
+            },
+            {
+              "t": 25,
+              "x": 469.5,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "src",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 390,
+            "text": "Adults with ≥ 3 cultures in 24 h (one study)",
+            "size": 14,
+            "weight": 700,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24,
+              "opacity": 0
+            },
+            {
+              "t": 24.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "old",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 640,
+            "label": "Earlier study: 2 sets ≈ 80% · 3 sets ≈ 96%",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 28.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "one",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 500,
+            "w": 640,
+            "label": "Single set (≤ 20 mL) → risk of false negative",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: contamination",
+      "start": 100,
+      "end": 140,
+      "altText": "A magnified skin surface shows commensal bacteria (coagulase-negative staphylococci, Corynebacterium, Bacillus other than B. anthracis, Micrococcus, Cutibacterium acnes). A needle passes through un-dried antiseptic and carries some into a bottle; an alternate route through a catheter hub does the same. A checklist reveals the fixes: alcohol-containing skin antiseptic allowed to dry, disinfect bottle tops, prefer peripheral venipuncture, trained phlebotomy teams, and diversion devices. Then a calculator: contamination rate = contaminated sets ÷ all sets; ASM and CLSI say it should not exceed 3%, and 1% is achievable.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 109,
+          "text": "Almost all blood-culture contamination happens during collection. The bacteria come from the patient’s skin, or from the hub of a catheter used for the draw."
+        },
+        {
+          "id": "l2",
+          "start": 109,
+          "end": 117,
+          "text": "Typical contaminants are skin organisms: coagulase-negative staphylococci, Corynebacterium, Bacillus other than anthracis, Micrococcus and Cutibacterium."
+        },
+        {
+          "id": "l3",
+          "start": 117,
+          "end": 126,
+          "text": "Prevention: clean the skin with an alcohol-containing antiseptic and let it dry, disinfect the bottle tops, and prefer a peripheral venipuncture to a catheter draw."
+        },
+        {
+          "id": "l4",
+          "start": 126,
+          "end": 133,
+          "text": "Trained phlebotomy teams and devices that divert the first bit of blood lower contamination further."
+        },
+        {
+          "id": "l5",
+          "start": 133,
+          "end": 140,
+          "text": "Labs track the contamination rate: contaminated sets divided by all sets. It should not exceed 3 percent, and 1 percent is achievable."
+        }
+      ],
+      "objects": [
+        {
+          "id": "skin",
+          "type": "card",
+          "props": {
+            "x": 200,
+            "y": 110,
+            "w": 320,
+            "h": 110,
+            "tone": "warn",
+            "title": "Skin / catheter hub",
+            "lines": [],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "bugs",
+          "type": "cocci",
+          "props": {
+            "x": 200,
+            "y": 140,
+            "arrangement": "cluster",
+            "count": 7,
+            "r": 7,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ar",
+          "type": "arrow",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "dx": 0,
+            "dy": 72,
+            "draw": 0,
+            "label": "Needle carries skin flora"
+          },
+          "keys": [
+            {
+              "t": 3,
+              "draw": 0
+            },
+            {
+              "t": 5,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "btl",
+          "type": "tube",
+          "props": {
+            "x": 200,
+            "y": 255,
+            "level": 0.6,
+            "fluid": "blood",
+            "cells": 1,
+            "cap": "#7a8aa6",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0
+            },
+            {
+              "t": 4.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "list",
+          "type": "card",
+          "props": {
+            "x": 680,
+            "y": 100,
+            "w": 480,
+            "h": 110,
+            "tone": "neutral",
+            "title": "Typical contaminants",
+            "lines": [
+              "CoNS · Corynebacterium · Bacillus (not anthracis)",
+              "Micrococcus · Cutibacterium acnes"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "reveal": 0
+            },
+            {
+              "t": 10.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "fix",
+          "type": "card",
+          "props": {
+            "x": 680,
+            "y": 270,
+            "w": 480,
+            "h": 170,
+            "tone": "good",
+            "title": "Prevent it",
+            "lines": [
+              "Alcohol antiseptic — let it dry",
+              "Disinfect bottle tops",
+              "Peripheral draw over catheter draw",
+              "Phlebotomy teams · diversion devices"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.5,
+              "opacity": 0
+            },
+            {
+              "t": 18,
+              "reveal": 0
+            },
+            {
+              "t": 18.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "rate",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 760,
+            "label": "Contamination rate = contaminated sets ÷ all sets · ≤ 3% (1% achievable)",
+            "tone": "b",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 34.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Two classic traps",
+      "start": 140,
+      "end": 170,
+      "altText": "Trap card: “CoNS in one of two sets = treat the bacteremia” is crossed out → “One set out of several positive for a skin commensal is the usual definition of contamination; correlate clinically.” Trap card: “One big set is enough” is crossed out → “At least two sets from separate venipunctures — one set can’t tell contaminant from infection and gives too little volume.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 140,
+          "end": 151,
+          "text": "Trap one: a coagulase-negative staph grows in one of two sets. That is the usual definition of a contaminated culture: one set out of several positive for a skin organism. Correlate with the patient before treating."
+        },
+        {
+          "id": "e2",
+          "start": 151,
+          "end": 161,
+          "text": "Trap two: one set is not enough. With a single set you can’t compare, and the volume is too low."
+        },
+        {
+          "id": "e3",
+          "start": 161,
+          "end": 170,
+          "text": "And a known pathogen, like Staphylococcus aureus, in even one set is treated as real until proven otherwise."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 100,
+            "w": 820,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “CoNS in 1 of 2 sets = treat bacteremia.”",
+            "lines": [
+              "✓ Usual definition of contamination → correlate clinically"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 0
+            },
+            {
+              "t": 6,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 250,
+            "w": 820,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “One big set is enough.”",
+            "lines": [
+              "✓ ≥ 2 sets, separate venipunctures — compare and get volume"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 0
+            },
+            {
+              "t": 16,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 640,
+            "label": "Known pathogen (e.g. S. aureus) in one set → treat as real",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 22.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Two arms, two sets, twenty each",
+      "start": 170,
+      "end": 192,
+      "altText": "Memory aid: two cartoon arms, each giving one set of two bottles labelled “20”. A skin icon with a “wait — let it dry” sign stands guard at the needle. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 170,
+          "end": 179,
+          "text": "Memory aid: two arms, two sets, twenty each — and let the skin dry before the needle goes in."
+        },
+        {
+          "id": "m2",
+          "start": 179,
+          "end": 192,
+          "text": "Where it breaks: some systems use 20 to 30 millilitres per draw or more bottles; children get much smaller volumes; suspected catheter infection needs a catheter draw plus a peripheral one; and a skin organism in several sets, or in a patient with a device, may be real."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Two arms · two sets · twenty each",
+            "size": 32,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "a1",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 170,
+            "w": 260,
+            "label": "Arm 1 → set (20 mL)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "a2",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 170,
+            "w": 260,
+            "label": "Arm 2 → set (20 mL)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "dry",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 250,
+            "w": 380,
+            "label": "Let the antiseptic dry",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 860,
+            "h": 136,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Systems differ: 20–30 mL per draw, sometimes more bottles · children: smaller volumes",
+              "Suspected catheter infection: catheter + peripheral draws",
+              "Skin organisms in several sets or with a device may be real"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 20.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 192,
+      "end": 202,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 192,
+          "end": 197,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 197,
+          "end": 202,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 202,
+      "end": 210,
+      "altText": "Three tokens: “≥ 2 sets · ~20 mL each · separate peripheral sites”, “More blood → more infections detected”, “Skin commensal in one set = likely contaminant · rate ≤ 3%”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 202,
+          "end": 210,
+          "text": "Draw at least two blood-culture sets of about 20 millilitres from separate peripheral sites, because volume drives detection and a skin organism in only one set usually means contamination."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 620,
+            "label": "≥ 2 sets · ~20 mL each · separate peripheral sites",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 240,
+            "w": 620,
+            "label": "More blood → more infections detected",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 310,
+            "w": 620,
+            "label": "Skin commensal in one set = likely contaminant · rate ≤ 3%",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.6,
+              "opacity": 0
+            },
+            {
+              "t": 2.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: to find bacteria in blood you need enough blood, from more than one place, without picking up skin germs on the way. Scientific terms: a set is one aerobic and one anaerobic bottle (about 10 mL each, 20–30 mL per venipuncture depending on the system); at least two sets (40–60 mL) are drawn by peripheral venipuncture from separate sites within a few hours, before antimicrobials.",
+    "why": "Bacteremia often involves very few organisms per millilitre, so detection rises with volume and number of sets (in one study, 73% with one culture, 90% with two, 98% with three, 99.8% with four). Almost all contamination occurs at collection from skin or catheter hubs; growth of a skin commensal in only one of several sets usually indicates contamination.",
+    "measure": "Monitor volume per bottle and the contamination rate (contaminated sets ÷ total sets); ASM and CLSI recommend ≤ 3%, and 1% is achievable. Prevent contamination with alcohol-containing antiseptic allowed to dry, disinfected bottle tops, peripheral draws, phlebotomy teams and diversion devices.",
+    "differs": "Contaminant (skin commensal in one of several sets) vs true bacteremia (pathogen, or the same organism in multiple sets); peripheral draw (lower contamination) vs catheter draw (only when catheter infection is suspected, paired with a peripheral draw).",
+    "examAngle": "Expect: volume and number of sets, separate sites, typical contaminants, interpretation of CoNS in one set, and contamination-rate benchmarks."
+  },
+  "comparisons": [
+    {
+      "id": "contam-vs-true",
+      "title": "Contaminant vs true bacteremia",
+      "left": {
+        "label": "Likely contaminant",
+        "points": [
+          "Skin commensal (e.g. CoNS, Cutibacterium)",
+          "Only one of several sets positive"
+        ]
+      },
+      "right": {
+        "label": "Likely true infection",
+        "points": [
+          "Known pathogen (e.g. S. aureus)",
+          "Same organism in multiple sets, fits the clinical picture"
+        ]
+      },
+      "distinguisher": "Which organism, and in how many independent sets."
+    },
+    {
+      "id": "periph-vs-cath",
+      "title": "Peripheral vs catheter draw",
+      "left": {
+        "label": "Peripheral venipuncture",
+        "points": [
+          "Lower contamination",
+          "Preferred default"
+        ]
+      },
+      "right": {
+        "label": "Catheter draw",
+        "points": [
+          "Higher contamination",
+          "Only for suspected catheter infection, paired with a peripheral draw"
+        ]
+      },
+      "distinguisher": "Whether catheter-associated infection is being investigated."
+    }
+  ],
+  "mnemonic": {
+    "text": "Two arms, two sets, twenty each — and let the skin dry.",
+    "explanation": "Two separate venipunctures, each filling a set of about 20 mL, after an alcohol-containing antiseptic has dried.",
+    "limitation": "Volumes per draw vary by system (20–30 mL, sometimes more bottles); children need much smaller, weight-based volumes; suspected catheter infection needs paired catheter and peripheral draws; a skin organism in several sets or with a device may be real."
+  },
+  "analogyLimitations": [
+    "Bar widths and bottle fill levels are schematic.",
+    "The patient case and the 8-mL draw are invented.",
+    "Detection percentages come from one study; other studies differ."
+  ],
+  "takeaway": "Draw at least two blood-culture sets of about 20 millilitres from separate peripheral sites, because volume drives detection and a skin organism in only one set usually means contamination.",
+  "questions": [
+    {
+      "id": "micro-bc-q1",
+      "stem": "Which collection plan best follows adult blood-culture practice for suspected bacteremia?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Two sets of about 20 mL each from two separate peripheral venipunctures, before antibiotics",
+          "rationale": "Correct. At least two sets (40–60 mL) from separate sites maximize detection and help interpret skin organisms."
+        },
+        {
+          "id": "b",
+          "text": "One set of 10 mL through the existing central line",
+          "rationale": "Incorrect. One low-volume set risks false negatives, and catheter draws have higher contamination."
+        },
+        {
+          "id": "c",
+          "text": "Four sets from the same venipuncture site",
+          "rationale": "Incorrect. Sets should come from separate sites so a skin contaminant can be recognized."
+        },
+        {
+          "id": "d",
+          "text": "Two sets drawn after the first antibiotic dose",
+          "rationale": "Incorrect. Cultures should be drawn before antimicrobials when indicated."
+        }
+      ],
+      "answer": "a",
+      "skill": "Blood culture collection",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-bc-q2",
+      "stem": "Two blood-culture sets are drawn from a stable patient without devices. One set grows Staphylococcus epidermidis; the other is negative. What is the most likely interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Likely contamination; correlate clinically",
+          "rationale": "Correct. A skin commensal in one of several sets is the usual definition of contamination."
+        },
+        {
+          "id": "b",
+          "text": "Definite bacteremia requiring vancomycin",
+          "rationale": "Incorrect. A single-set skin commensal more often reflects contamination; unnecessary vancomycin is a known harm."
+        },
+        {
+          "id": "c",
+          "text": "Endocarditis",
+          "rationale": "Incorrect. One positive set of a commensal does not suggest endocarditis, which typically gives continuous bacteremia."
+        },
+        {
+          "id": "d",
+          "text": "Laboratory error — repeat the identification",
+          "rationale": "Incorrect. The organism is real; the question is where it came from."
+        }
+      ],
+      "answer": "a",
+      "skill": "Interpreting CoNS",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-bc-q3",
+      "stem": "In one month a lab receives 400 blood-culture sets; 10 are classified as contaminated. What is the contamination rate, and does it meet the ASM/CLSI benchmark?",
+      "options": [
+        {
+          "id": "a",
+          "text": "2.5% — meets the ≤ 3% benchmark",
+          "rationale": "Correct. 10 ÷ 400 = 2.5%, under 3% (though 1% is achievable)."
+        },
+        {
+          "id": "b",
+          "text": "0.25% — far below the benchmark",
+          "rationale": "Incorrect. 10 ÷ 400 = 0.025 = 2.5%."
+        },
+        {
+          "id": "c",
+          "text": "25% — fails the benchmark",
+          "rationale": "Incorrect. A decimal slip; the rate is 2.5%."
+        },
+        {
+          "id": "d",
+          "text": "2.5% — fails, because the benchmark is ≤ 0.5%",
+          "rationale": "Incorrect. ASM and CLSI recommend not exceeding 3%."
+        }
+      ],
+      "answer": "a",
+      "skill": "Contamination rate",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch66",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 66, Collecting Microbiology Specimens (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 66,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            24
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "cdc-bc-collect",
+      "kind": "external",
+      "citation": "Centers for Disease Control and Prevention. Collect Adult Blood Culture Sets (Preventing Adult Blood Culture Contamination: A Quality Tool for Clinical Laboratory Professionals). Updated 2026 Mar 31.",
+      "url": "https://www.cdc.gov/labquality/blood-culture-contamination-prevention.html",
+      "consulted": true,
+      "usedFor": "10 mL per bottle, 20 mL per set (40 mL for two sets); standard of practice two to four sets; at least two sets (40–60 mL); within 24 h by peripheral venipuncture; separate venipuncture site for the second set; alcohol-containing skin disinfectant; 70% isopropyl alcohol for bottle septa."
+    },
+    {
+      "id": "cdc-bcc-fs",
+      "kind": "external",
+      "citation": "Centers for Disease Control and Prevention. Blood Culture Contamination: An Overview for Infection Control and Antibiotic Stewardship Programs Working with the Clinical Laboratory. 2022 (revised 2023).",
+      "url": "https://www.cdc.gov/antibiotic-use/core-elements/pdfs/fs-bloodculture-508.pdf",
+      "consulted": true,
+      "usedFor": "Set = aerobic + anaerobic bottle; 20–30 mL per venipuncture; at least two sets within a few hours via peripheral venipuncture (40–60 mL); before antimicrobials; contamination occurs during collection from skin or catheter hub; typical contaminants (CoNS, Corynebacterium, Bacillus other than B. anthracis, Micrococcus, Cutibacterium acnes); contamination defined as one set out of multiple positive for a commensal; rate = contaminated sets ÷ total sets (example with sets drawn within 5 minutes); ASM/CLSI ≤ 3%, 1% achievable; single sets (≤ 20 mL) insufficient; alcohol antiseptic allowed to dry, bottle-top disinfection, peripheral over catheter draws (both when catheter infection suspected), phlebotomy teams, diversion devices; unnecessary vancomycin use."
+    },
+    {
+      "id": "lee2007",
+      "kind": "external",
+      "citation": "Lee A, Mirrett S, Reller LB, Weinstein MP. Detection of bloodstream infections in adults: how many blood cultures are needed? J Clin Microbiol. 2007;45(11):3546-3548 (abstract read).",
+      "doi": "10.1128/JCM.01555-07",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17881544/",
+      "consulted": true,
+      "usedFor": "Cumulative detection with ≥ 3 cultures in 24 h: 73.1% (first), 89.7% (two), 98.2% (three), 99.8% (four); Cockerill 2004 had found 80% with two and 96% with three; S. aureus ~90% detected with the first culture."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-std",
+      "text": "Set = aerobic + anaerobic bottle, ~10 mL each (20–30 mL per draw); at least two sets (40–60 mL) by peripheral venipuncture from separate sites within a few hours, before antimicrobials.",
+      "status": "checked",
+      "refs": [
+        "cdc-bc-collect",
+        "cdc-bcc-fs"
+      ]
+    },
+    {
+      "id": "cl-yield",
+      "text": "Cumulative detection 73%, 90%, 98%, 99.8% with one to four cultures; earlier data 80% and 96%.",
+      "status": "checked",
+      "refs": [
+        "lee2007"
+      ]
+    },
+    {
+      "id": "cl-contam",
+      "text": "Contamination occurs at collection from skin or catheter hubs; typical contaminants; one set of several positive for a commensal defines contamination; rate ≤ 3%, 1% achievable; prevention measures.",
+      "status": "checked",
+      "refs": [
+        "cdc-bcc-fs"
+      ]
+    },
+    {
+      "id": "cl-single",
+      "text": "A single set (≤ 20 mL) gives insufficient volume and risks false negatives.",
+      "status": "checked",
+      "refs": [
+        "cdc-bcc-fs"
+      ]
+    },
+    {
+      "id": "cl-few",
+      "text": "Bacteremia often involves very few organisms per millilitre.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch66"
+      ],
+      "note": "Rationale implied by the volume–yield data; a source giving organism counts was not read."
+    },
+    {
+      "id": "cl-saureus",
+      "text": "A known pathogen such as S. aureus in one set is treated as real until proven otherwise.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch66"
+      ],
+      "note": "Common practice; not stated in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Two arms, bars and bottles.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Two arms, two sets, twenty each.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-yield",
+      "issue": "The reviewer’s 80/96/100% yields come from one 2004 study; Lee 2007 found 73/90/98/99.8%, and no study shows four sets catch 100%.",
+      "kind": "outdated",
+      "status": "open"
+    },
+    {
+      "id": "f-interval",
+      "issue": "The reviewer requires sets 30–60 minutes apart; CDC says within a few hours and uses an example of sets drawn 5 minutes apart.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Bottles, bacteria and bars are schematic; bottle cap colours are not manufacturer colours.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against two CDC documents (2026 page, 2022/2023 fact sheet) and Lee 2007 (abstract) read for this lesson; 2 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-07"
+}

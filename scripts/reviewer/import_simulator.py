@@ -54,6 +54,10 @@ FLAG_RULES = [
      'Spherocytosis is the classic true cause of a high MCHC, but not the only one: xerocytosis also raises it, and cold agglutinins or interference raise it spuriously. A high MCHC detects only a minority of spherocytosis cases.'),
     ('rv-fena-cutoff', r'>\s?1\s?%[^.]{0,40}(ATN|tubular)|(ATN|tubular necrosis)[^.]{0,40}>\s?1\s?%',
      'A 2025 consensus treats FENa 1–2% as indeterminate and > 2% as intrinsic (e.g. ATN); diuretics raise FENa even in prerenal states.'),
+    ('rv-bc-yield', r'(80|96) ?%[^.]{0,60}bacter|detect[^.]{0,30}(80|96) ?%',
+     'Lee 2007 found one to four blood cultures detected 73%, 90%, 98% and 99.8% of bloodstream infections; 80/96% comes from a 2004 study.'),
+    ('rv-bc-interval', r'30.{0,3}60 ?min',
+     'CDC guidance says at least two sets within a few hours from separate sites; no fixed 30–60-minute interval was found.'),
     ('rv-leukemia-blasts', r'blasts?[^.]{0,60}(20|30) ?%|(20|30) ?%[^.]{0,60}blasts?',
      'Blast thresholds differ between WHO-HAEM5 and ICC 2022 classifications; check which system the question assumes.'),
 ]
