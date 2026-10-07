@@ -34,7 +34,8 @@ if (reviewer.chapters.length) {
     const ks = t?.concepts ?? [];
     const taught = ks.filter((k) => conceptStatus(k.id, lessons).startsWith('complete')).length;
     const ls = lessons.filter((l) => l.validation.complete && l.lesson.conceptIds.some((id) => ks.some((k) => k.id === id))).map((l) => `\`${l.lesson.id}\``);
-    const state = taught === 0 ? '⬜ not started' : taught === ks.length ? '✅ complete' : '🟡 in progress';
+    const needsReview = ks.some((k) => conceptStatus(k.id, lessons) === 'complete-needs-review');
+    const state = taught === 0 ? '⬜ not started' : taught < ks.length ? '🟡 in progress' : needsReview ? '🟡 all concepts taught — lessons require review' : '✅ complete';
     p(`| ${c.n}. ${c.title} | ${c.counts.highYield} | ${c.counts.tables} (${c.counts.tableRows} rows) | ${c.counts.traps} | ${c.counts.simulatorQuestions} | ${taught}/${ks.length} | ${state}${ls.length ? ` — ${ls.join(', ')}` : ''} |`);
   });
 } else p('No reviewer chapters inventoried yet (reviewer not received).');

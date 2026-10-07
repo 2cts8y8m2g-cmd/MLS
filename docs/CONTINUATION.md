@@ -3,11 +3,12 @@
 ## State at hand-off (2026-10-07)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 2, teaching 9 concepts.** Both require review.
-  - `ops-clia-complexity-accreditation` covers Ch. 1 Hits 1–4 and Traps 1–3.
-  - `ih-abo-forward-reverse` covers Ch. 40 Hits 2 and 13.
-- **Reviewer accuracy register:** 14 flags (7 verified issues, 7 needing verification), plus scan results.
-- **Checks:** 68 unit tests and 85 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Lessons complete: 10, teaching 43 of 1,932 concepts (about 2%).** All 10 still require review: each has pending claims, and none has had human expert review.
+  - Ch. 1 (18/23 concepts): `ops-clia-complexity-accreditation`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-lab-safety-precautions-osha`, `ops-reimbursement-drg-payment-window`.
+  - Ch. 2 (23/23 concepts): `ops-workflow-before-technology`, `ops-six-sigma-vs-lean`, `ops-instrument-selection-uptime-batch`, `ops-consolidation-utilization-autoverification`.
+  - Ch. 40 (2/36 concepts): `ih-abo-forward-reverse`.
+- **Reviewer accuracy register:** 18 flags (10 verified issues, 8 needing verification), plus scan results.
+- **Checks:** 116 unit tests and 85 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -26,8 +27,8 @@ Prerequisite overrides and cross-chapter links are in `build_curriculum.py` (`OV
 
 Work chapter by chapter. Each chapter's **core concept (Hit 1)** comes first, then clusters of related Hits, Traps and table rows.
 
-1. **Ch. 1, remaining concepts:** record and specimen retention (Hits 5–6, Vault), prions (Hit 7, Trap 4; verify against CDC/WHO), Standard Precautions and OSHA (Hits 10, 14, Trap 6; check the reviewer's OSHA dates), lab design and RACE (Hits 13, 15), and reimbursement (Hits 8–9, Trap 5; US only).
-2. **Ch. 2 core:** reengineer workflow before buying technology, plus Lean and Six Sigma.
+1. **Ch. 1, remaining 5 concepts:** Hit 11 (sharps-injury statistics), Hit 12 (state licensure count), Hit 13 (lab design; the eyewash-distance flag `rv-eyewash-100ft` applies), Hit 14 (GHS/SDS threshold; unverified), and Table 1. Verify each before teaching, or teach them with pending claims.
+2. **Ch. 2:** all concepts taught. Still pending in its lessons: the reviewer's numeric examples (10 s per tube, 4 vs 10 tests per sample, rerun example), the uptime contract rule, standardization, stockpiling, and test-cost figures.
 3. **Ch. 3 core:** order of draw. The reviewer's Ch. 3 cites a 2017 FDA biotin communication; check it for updates.
 4. **Ch. 4 core:** Beer's law. A good fit for a new `pathway` or `spectro` visual.
 5. Continue through Ch. 5–14 (Part I), then Part II (Ch. 15–28), and so on. Ch. 40 still has 34 concepts; Hit 14 (discrepancy Groups I–IV) and Trap 6 are natural next ABO lessons.

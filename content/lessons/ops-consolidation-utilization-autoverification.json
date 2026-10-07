@@ -1,0 +1,2188 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-consolidation-utilization-autoverification",
+  "title": "Consolidation, Utilization and Autoverification: Right Test, Right Place",
+  "summary": "Spread fixed QC costs by consolidating routine work, race specimens through courier vs pneumatic tube, see why underuse harms as much as overuse, and watch LIS rules autoverify results.",
+  "domain": "p1-ops",
+  "topic": "ch2",
+  "conceptIds": [
+    "ch2.hit9",
+    "ch2.hit13",
+    "ch2.hit14",
+    "ch2.hit15",
+    "ch2.trap4",
+    "ch2.trap5",
+    "ch2.trap6",
+    "ch2.table1"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 2,
+        "section": "High-Yield Hits",
+        "items": [
+          9,
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "chapter": 2,
+        "section": "Exam Traps",
+        "items": [
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "chapter": 2,
+        "section": "Number Vault"
+      }
+    ],
+    "note": "Teaches Ch. 2 Hits 9, 13–15 and Traps 4–6, and completes the Number Vault table (its reference-test cost rows here; the Six Sigma, sorting, test-density, rerun and capacity rows are taught in the other three Ch. 2 lessons). Adds external figures for pneumatic transport, POCT vs central-lab TAT, over/underuse rates and autoverification."
+  },
+  "prerequisites": [
+    "ch2.hit1"
+  ],
+  "objectives": [
+    "Explain how consolidation lowers cost per test by spreading fixed QC and calibration costs and reducing duplicate analyzers.",
+    "Identify tests that should stay local despite consolidation.",
+    "Describe utilization management as reducing both overuse and underuse.",
+    "Describe LIS-based autoverification and its effect on turnaround time."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "“Send everything to the big lab!”",
+      "start": 0,
+      "end": 20,
+      "altText": "A manager points to a large central laboratory building: “Consolidate everything — it’s cheaper!” An emergency-department card replies: “My blood gas can’t wait an hour.” The cartoon scientist stands between them.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A health system manager has a plan: send every test to one big central lab. Bigger is cheaper."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The emergency department pushes back: a blood gas for a patient who can’t breathe can’t wait for a van or a long queue."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Who is right? Both — for different tests. Let’s see which tests belong where, and how labs decide what to run at all."
+        }
+      ],
+      "objects": [
+        {
+          "id": "core",
+          "type": "building",
+          "props": {
+            "x": 250,
+            "y": 430,
+            "w": 220,
+            "h": 160,
+            "label": "Central core lab",
+            "sign": "CORE",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mgr",
+          "type": "bubble",
+          "props": {
+            "x": 290,
+            "y": 150,
+            "w": 330,
+            "h": 70,
+            "text": "Consolidate everything — it’s cheaper!",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ed",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 300,
+            "w": 330,
+            "h": 130,
+            "tone": "warn",
+            "title": "Emergency dept.",
+            "lines": [
+              "“My blood gas can’t wait!”"
+            ],
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 500,
+            "y": 90,
+            "expression": "curious",
+            "scale": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 15,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Why consolidation can lower cost",
+      "start": 20,
+      "end": 62,
+      "altText": "A worked illustration of fixed costs. One QC and calibration cost per run (an illustrative $30) is shared by the samples in that run: with 15 samples each carries $2.00, with 150 samples each carries $0.20. Then three small analyzers, each with its own QC, merge into one larger analyzer with one QC load. A standardization card lists one vendor and method across sites: comparable results, volume discounts, easier cross-training — but contract lock-ins mean it takes years.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "Every run has fixed costs: quality-control samples and calibration. You pay them whether the run holds 15 patients or 150."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "Share an illustrative 30 dollars of QC over 15 samples, and each sample carries 2 dollars. Share it over 150, and each carries 20 cents."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 45,
+          "text": "Each separate analyzer also needs its own QC and maintenance. Putting more tests on fewer analyzers removes that repeated work."
+        },
+        {
+          "id": "n4",
+          "start": 45,
+          "end": 54,
+          "text": "Standardization goes further: the same vendor and methods at every site. Results are comparable between sites, staff can cover each other, and buying in volume earns discounts."
+        },
+        {
+          "id": "n5",
+          "start": 54,
+          "end": 62,
+          "text": "The catch, says the reviewer: existing contracts lock labs in, so full standardization can take years."
+        }
+      ],
+      "objects": [
+        {
+          "id": "fx",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "w": 420,
+            "label": "Fixed cost per run: QC + calibration ≈ $30",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r1",
+          "type": "card",
+          "props": {
+            "x": 255,
+            "y": 160,
+            "w": 400,
+            "h": 100,
+            "tone": "warn",
+            "title": "Small run · 15 samples",
+            "lines": [
+              "$30 ÷ 15"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "lines": [
+                "$30 ÷ 15 = $2.00 per sample"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "type": "card",
+          "props": {
+            "x": 705,
+            "y": 160,
+            "w": 400,
+            "h": 100,
+            "tone": "good",
+            "title": "Big run · 150 samples",
+            "lines": [
+              "$30 ÷ 150"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "lines": [
+                "$30 ÷ 150 = $0.20 per sample"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sa0",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 290,
+            "w": 130,
+            "label": "Analyzer 1 · own QC",
+            "wrap": 12,
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20.5,
+              "x": 150
+            },
+            {
+              "t": 22,
+              "opacity": 1
+            },
+            {
+              "t": 22.5,
+              "x": 360,
+              "ease": "out"
+            },
+            {
+              "t": 22.5,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "sa1",
+          "type": "token",
+          "props": {
+            "x": 290,
+            "y": 290,
+            "w": 130,
+            "label": "Analyzer 2 · own QC",
+            "wrap": 12,
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.9,
+              "opacity": 0
+            },
+            {
+              "t": 17.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20.5,
+              "x": 290
+            },
+            {
+              "t": 22,
+              "opacity": 1
+            },
+            {
+              "t": 22.5,
+              "x": 360,
+              "ease": "out"
+            },
+            {
+              "t": 22.5,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "sa2",
+          "type": "token",
+          "props": {
+            "x": 430,
+            "y": 290,
+            "w": 130,
+            "label": "Analyzer 3 · own QC",
+            "wrap": 12,
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.3,
+              "opacity": 0
+            },
+            {
+              "t": 17.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20.5,
+              "x": 430
+            },
+            {
+              "t": 22,
+              "opacity": 1
+            },
+            {
+              "t": 22.5,
+              "x": 360,
+              "ease": "out"
+            },
+            {
+              "t": 22.5,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "one",
+          "type": "token",
+          "props": {
+            "x": 360,
+            "y": 290,
+            "w": 300,
+            "label": "One analyzer · one QC load ✓",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.3,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "std",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 432,
+            "w": 760,
+            "h": 168,
+            "tone": "b",
+            "title": "Standardization (one vendor, same methods)",
+            "lines": [
+              "Comparable results across sites",
+              "Easier cross-training",
+              "Volume discounts",
+              "But: contract lock-ins → takes years"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25.5,
+              "opacity": 0
+            },
+            {
+              "t": 26,
+              "reveal": 0
+            },
+            {
+              "t": 26.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Some tests must stay close",
+      "start": 62,
+      "end": 100,
+      "altText": "A map with the emergency department near the core lab. Three transport options race: hand courier (about 28 minutes), a traditional pneumatic tube (about 2½ minutes) and a newer single-tube pneumatic system (about 1 minute), with a note that sample quality was unchanged in that study. A second panel compares bedside point-of-care testing (24 min) with tube transport to the central lab (70 min) in an emergency department trial. A warning token: “Watch for stockpiling — tubes saved up and sent in bunches.”",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 62,
+          "end": 70,
+          "text": "Consolidation has limits. Some results are needed within minutes, so transport time matters."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 78,
+          "text": "In one hospital study, walking a sample to the lab took about 28 minutes. A traditional pneumatic tube took about two and a half minutes, and a newer system about one minute — with no change in sample quality."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 86,
+          "text": "The reviewer adds a warning: watch for stockpiling, where a unit saves up tubes and sends them in bunches. That quietly adds back the delay."
+        },
+        {
+          "id": "c4",
+          "start": 86,
+          "end": 93,
+          "text": "Even with a fast tube system, bedside testing can be faster still. In an emergency department trial, point-of-care results took 24 minutes versus 70 for the central lab."
+        },
+        {
+          "id": "c5",
+          "start": 93,
+          "end": 100,
+          "text": "So blood gases and other point-of-care tests stay near the patient, and rapid-response labs keep urgent tests like CBCs. The routine work can travel."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "token",
+          "props": {
+            "x": 140,
+            "y": 110,
+            "w": 20,
+            "label": "",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "w": 20
+            },
+            {
+              "t": 9,
+              "x": 140
+            },
+            {
+              "t": 15,
+              "w": 600,
+              "ease": "inOut"
+            },
+            {
+              "t": 15,
+              "x": 430,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t1L",
+          "type": "label",
+          "props": {
+            "x": 820,
+            "y": 110,
+            "text": "Courier ≈ 28 min",
+            "size": 16,
+            "weight": 800,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 9.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "token",
+          "props": {
+            "x": 140,
+            "y": 165,
+            "w": 20,
+            "label": "",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.3,
+              "opacity": 0
+            },
+            {
+              "t": 1.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "w": 20
+            },
+            {
+              "t": 10,
+              "x": 140
+            },
+            {
+              "t": 12,
+              "w": 52,
+              "ease": "inOut"
+            },
+            {
+              "t": 12,
+              "x": 156,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2L",
+          "type": "label",
+          "props": {
+            "x": 820,
+            "y": 165,
+            "text": "Traditional tube ≈ 2.5 min",
+            "size": 16,
+            "weight": 800,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "token",
+          "props": {
+            "x": 143,
+            "y": 220,
+            "w": 20,
+            "label": "",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.6,
+              "opacity": 0
+            },
+            {
+              "t": 2.2,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "w": 20
+            },
+            {
+              "t": 12,
+              "w": 26,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3L",
+          "type": "label",
+          "props": {
+            "x": 820,
+            "y": 220,
+            "text": "Newer tube system ≈ 1 min",
+            "size": 16,
+            "weight": 800,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 262,
+            "text": "Same sample quality in that study (Yu 2024)",
+            "size": 14,
+            "weight": 700,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "stock",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 312,
+            "w": 560,
+            "label": "⚠ Watch for stockpiling: tubes saved up, sent in bunches",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30.6,
+              "opacity": 1
+            },
+            {
+              "t": 31.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "local",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 312,
+            "w": 560,
+            "label": "Blood gases & POCT stay local · routine work travels",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.2,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "poc",
+          "type": "card",
+          "props": {
+            "x": 255,
+            "y": 430,
+            "w": 400,
+            "h": 110,
+            "tone": "good",
+            "title": "Bedside (POCT)",
+            "lines": [
+              "≈ 24 min to result"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ccl",
+          "type": "card",
+          "props": {
+            "x": 705,
+            "y": 430,
+            "w": 400,
+            "h": 110,
+            "tone": "b",
+            "title": "Tube to central lab",
+            "lines": [
+              "≈ 70 min to result"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25.5,
+              "opacity": 0
+            },
+            {
+              "t": 26.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "src",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 505,
+            "text": "Emergency department trial (Nørgaard 2012)",
+            "size": 13,
+            "weight": 700,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27,
+              "opacity": 0
+            },
+            {
+              "t": 27.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: the right tests, released by rules",
+      "start": 100,
+      "end": 138,
+      "altText": "A scale balances “overuse” against “underuse”: in a large review, about 21% of tests were overused, while about 45% of needed tests were underused. A note shows a reference molecular test costing hundreds to over a thousand dollars versus cents for a routine CBC-class test. Then an LIS rule chain — QC passed, no analyzer flag, not critical, in range, delta check passed — sends a result straight to the chart with a check mark, while a failing result is held for a technologist. A card reports about 79% of coagulation results autoverified and receipt-to-release time falling from 126 to 101 minutes.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 108,
+          "text": "The reviewer quotes an old saying: the least expensive test is the test that is not done. Utilization management starts by asking whether a test is needed."
+        },
+        {
+          "id": "l2",
+          "start": 108,
+          "end": 116,
+          "text": "But it cuts both ways. A large review found about 21 percent of tests were overused — and about 45 percent of needed tests were underused. Missing tests delay diagnoses."
+        },
+        {
+          "id": "l3",
+          "start": 116,
+          "end": 122,
+          "text": "Cost matters most for send-out tests. In the reviewer’s example, a molecular reference test can cost hundreds to over a thousand dollars, while a routine CBC-class test costs cents."
+        },
+        {
+          "id": "l4",
+          "start": 122,
+          "end": 130,
+          "text": "Autoverification is another tool. The lab system checks each result against preset rules: QC passed, no instrument flag, not critical, within range, delta check passed."
+        },
+        {
+          "id": "l5",
+          "start": 130,
+          "end": 138,
+          "text": "Results that pass go straight to the chart; the rest wait for a technologist. One lab autoverified about 79 percent of coagulation results and cut receipt-to-release time from 126 to 101 minutes — with no automation line."
+        }
+      ],
+      "objects": [
+        {
+          "id": "quote",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 80,
+            "w": 620,
+            "label": "“The least expensive test is the test that is not done”",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7.6,
+              "opacity": 1
+            },
+            {
+              "t": 8.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "over",
+          "type": "token",
+          "props": {
+            "x": 270,
+            "y": 80,
+            "w": 300,
+            "label": "Overuse ≈ 21% of tests",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "under",
+          "type": "token",
+          "props": {
+            "x": 690,
+            "y": 80,
+            "w": 320,
+            "label": "Underuse ≈ 45% of needed tests",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0
+            },
+            {
+              "t": 10.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "zhi",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 125,
+            "text": "Meta-analysis, Zhi 2013 — both harm care",
+            "size": 14,
+            "weight": 700,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0
+            },
+            {
+              "t": 11.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cost",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 175,
+            "w": 640,
+            "label": "Reviewer’s example: molecular send-out $500–1,000+ vs routine test ≈ cents",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "rule0",
+          "type": "token",
+          "props": {
+            "x": 110,
+            "y": 260,
+            "w": 170,
+            "label": "QC passed",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rule1",
+          "type": "token",
+          "props": {
+            "x": 295,
+            "y": 260,
+            "w": 170,
+            "label": "No analyzer flag",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23.6,
+              "opacity": 0
+            },
+            {
+              "t": 24.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rule2",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 170,
+            "label": "Not critical",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.7,
+              "opacity": 0
+            },
+            {
+              "t": 25.2,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rule3",
+          "type": "token",
+          "props": {
+            "x": 665,
+            "y": 260,
+            "w": 170,
+            "label": "Within range",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25.8,
+              "opacity": 0
+            },
+            {
+              "t": 26.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rule4",
+          "type": "token",
+          "props": {
+            "x": 850,
+            "y": 260,
+            "w": 170,
+            "label": "Delta check OK",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.9,
+              "opacity": 0
+            },
+            {
+              "t": 27.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ok",
+          "type": "token",
+          "props": {
+            "x": 290,
+            "y": 345,
+            "w": 320,
+            "label": "All pass → released to chart ✓",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hold",
+          "type": "token",
+          "props": {
+            "x": 670,
+            "y": 345,
+            "w": 320,
+            "label": "Any fail → held for a technologist",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "wang",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 455,
+            "w": 780,
+            "h": 100,
+            "tone": "good",
+            "title": "LIS-based autoverification (Wang 2019, coagulation)",
+            "lines": [
+              "≈ 79% autoverified · receipt-to-release 126 → 101 min",
+              "No total laboratory automation needed"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33,
+              "opacity": 0
+            },
+            {
+              "t": 33.5,
+              "reveal": 0
+            },
+            {
+              "t": 34,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three traps in one chapter",
+      "start": 138,
+      "end": 166,
+      "altText": "Three trap cards are crossed out one at a time and replaced with corrections: “Consolidation always saves money and improves service” → keep blood gases and POCT local; “Utilization management is only cost-cutting” → underuse also harms; “Autoverification requires a total automation line” → it is LIS rules.",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 138,
+          "end": 147,
+          "text": "Trap one: “Consolidation always saves money and improves service.” No — urgent tests such as blood gases and point-of-care tests need fast local results."
+        },
+        {
+          "id": "e2",
+          "start": 147,
+          "end": 156,
+          "text": "Trap two: “Utilization management is purely about cutting costs.” No — underused tests harm patients too, so good utilization sometimes adds testing."
+        },
+        {
+          "id": "e3",
+          "start": 156,
+          "end": 166,
+          "text": "Trap three: “Autoverification needs a total laboratory automation line.” No — it is a set of LIS rules that can release results without a big reorganization."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tr0",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 100,
+            "w": 760,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Consolidation always saves money and improves service.”",
+            "lines": [
+              "✓ Keep blood gases and POCT local; CBCs at the rapid-response lab"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4.5,
+              "reveal": 0
+            },
+            {
+              "t": 5.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "tr1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 250,
+            "w": 760,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Utilization management is only cost-cutting.”",
+            "lines": [
+              "✓ Underuse harms too — the right test may mean MORE testing"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13.5,
+              "reveal": 0
+            },
+            {
+              "t": 14.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "tr2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 400,
+            "w": 760,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Autoverification needs total lab automation.”",
+            "lines": [
+              "✓ It is LIS rules — no major reorganization needed"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22.5,
+              "reveal": 0
+            },
+            {
+              "t": 23.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Routine travels, urgent stays",
+      "start": 166,
+      "end": 188,
+      "altText": "Memory aid: a delivery truck carries boxes labelled “routine” to the big core lab, while a red “urgent” box stays beside the patient’s bed. Below, a two-way arrow labelled “too many ↔ too few” reminds that utilization works in both directions. A card lists where the aid breaks down.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 166,
+          "end": 173,
+          "text": "Memory aid: Routine travels, urgent stays. Send routine work to the big lab; keep time-critical tests near the patient."
+        },
+        {
+          "id": "m2",
+          "start": 173,
+          "end": 179,
+          "text": "And for utilization, think two-way street: too many tests waste money, too few miss diagnoses."
+        },
+        {
+          "id": "m3",
+          "start": 179,
+          "end": 188,
+          "text": "Where it breaks: “urgent” depends on the setting, and a very fast tube system can bring some urgent tests to a central lab in time. Each hospital must measure its own turnaround."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 55,
+            "text": "Routine travels · Urgent stays",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "truck",
+          "type": "card",
+          "props": {
+            "x": 260,
+            "y": 190,
+            "w": 300,
+            "h": 100,
+            "tone": "b",
+            "title": "Routine → core lab",
+            "lines": [
+              "Lipids · vitamin D · allergy"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 2,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2,
+              "x": 260
+            },
+            {
+              "t": 6,
+              "x": 330,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "urgent",
+          "type": "card",
+          "props": {
+            "x": 730,
+            "y": 190,
+            "w": 280,
+            "h": 100,
+            "tone": "warn",
+            "title": "Urgent → stays local",
+            "lines": [
+              "Blood gas · POCT"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "two",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 330,
+            "w": 460,
+            "label": "Utilization: too many ↔ too few — both harm",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 840,
+            "h": 80,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "“Urgent” depends on the setting; fast tube systems can bring some urgent tests centrally in time"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.5,
+              "reveal": 0
+            },
+            {
+              "t": 16.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 188,
+      "end": 198,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 188,
+          "end": 193,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 193,
+          "end": 198,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 198,
+      "end": 210,
+      "altText": "Three tokens summarize the lesson: “Consolidate routine work”, “Keep urgent tests local”, “Right test, released by rules”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 198,
+          "end": 210,
+          "text": "Consolidate routine testing to spread fixed costs, keep time-critical tests like blood gases close to the patient, and manage utilization in both directions — with autoverification rules releasing normal results quickly."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 240,
+            "w": 260,
+            "label": "Consolidate routine work",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 240,
+            "w": 260,
+            "label": "Keep urgent tests local",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 240,
+            "w": 260,
+            "label": "Right test · rules release",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: putting routine tests in one big lab saves money, but urgent tests need to stay close; doing the right tests matters more than doing fewer; and computer rules can release normal results without a person checking each one. Scientific terms: consolidation moves testing onto fewer, larger analyzers or sites; utilization management aims for appropriate test ordering (reducing both over- and underutilization); autoverification is the automatic release of results that pass preset LIS rules (QC, instrument flags, critical values, range, delta and logic checks).",
+    "why": "Fixed run costs (QC, calibration) and each analyzer’s own QC and maintenance are shared by more samples when testing is consolidated, lowering cost per test. Transport and queueing add time, so time-critical tests lose value if sent far away. Underused tests delay or miss diagnoses, so cost-only thinking can harm patients. Rule-based release removes the wait for manual review of normal results.",
+    "measure": "Labs measure cost per test, turnaround time (e.g., courier ≈ 28 min vs pneumatic tube ≈ 1–2.5 min in one study; POCT 24 min vs central lab 70 min in one ED trial), over/underuse rates against guidelines, and autoverification passing rates and TAT before and after rules.",
+    "differs": "Consolidation (fewer analyzers/sites) vs standardization (same vendor and methods everywhere). Overuse vs underuse. Autoverification (LIS rules) vs total laboratory automation (tracks and robotics).",
+    "examAngle": "Expect the three traps: consolidation always helps (no — keep blood gases/POCT local), utilization is only cost-cutting (no — underuse harms), autoverification needs TLA (no — LIS rules); plus pneumatic tubes cut TAT and “the least expensive test is the test that is not done.”"
+  },
+  "comparisons": [
+    {
+      "id": "cons-vs-std",
+      "title": "Consolidation vs standardization",
+      "left": {
+        "label": "Consolidation",
+        "points": [
+          "Fewer, larger analyzers or sites",
+          "Spreads fixed QC/calibration costs",
+          "Not for time-critical tests"
+        ]
+      },
+      "right": {
+        "label": "Standardization",
+        "points": [
+          "Same vendor and methods at every site",
+          "Comparable results, cross-training, volume discounts",
+          "Slow: contract lock-ins"
+        ]
+      },
+      "distinguisher": "Consolidation changes where testing happens; standardization changes how alike it is."
+    },
+    {
+      "id": "av-vs-tla",
+      "title": "Autoverification vs total laboratory automation",
+      "left": {
+        "label": "Autoverification",
+        "points": [
+          "LIS rules release passing results",
+          "Software change; no track needed"
+        ]
+      },
+      "right": {
+        "label": "Total laboratory automation",
+        "points": [
+          "Tracks, robotics, connected analyzers",
+          "Major reorganization and cost"
+        ]
+      },
+      "distinguisher": "Software rules vs physical automation."
+    }
+  ],
+  "mnemonic": {
+    "text": "Routine travels, urgent stays — and utilization is a two-way street.",
+    "explanation": "Send routine work to the big lab to share fixed costs; keep time-critical tests near the patient; manage both too many and too few tests.",
+    "limitation": "“Urgent” depends on the setting, and a very fast tube system can bring some urgent tests to a central lab in time. The aid also says nothing about autoverification, and real consolidation decisions need each hospital’s measured turnaround times."
+  },
+  "analogyLimitations": [
+    "The $30 QC cost per run is an invented example to show the arithmetic.",
+    "Transport times come from single studies at single hospitals; local times differ.",
+    "The reference-test costs and reimbursement figures are the reviewer’s examples and change over time."
+  ],
+  "takeaway": "Consolidate routine testing to spread fixed costs, keep time-critical tests like blood gases close to the patient, and manage utilization in both directions — with autoverification rules releasing normal results quickly.",
+  "questions": [
+    {
+      "id": "ops-cons-q1",
+      "stem": "A health system is consolidating testing into a distant core laboratory. Which test should most clearly stay local?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Arterial blood gases for the emergency department",
+          "rationale": "Correct. Blood gases are time-critical and change quickly; they need fast local turnaround, so they stay near the patient."
+        },
+        {
+          "id": "b",
+          "text": "Routine outpatient lipid panels",
+          "rationale": "Incorrect. Routine, non-urgent tests are good candidates for consolidation."
+        },
+        {
+          "id": "c",
+          "text": "Vitamin D levels",
+          "rationale": "Incorrect. Vitamin D is not time-critical and is commonly batched at a central or reference lab."
+        },
+        {
+          "id": "d",
+          "text": "Allergy-specific IgE panels",
+          "rationale": "Incorrect. These are non-urgent and well suited to a consolidated lab."
+        }
+      ],
+      "answer": "a",
+      "skill": "Decide what to consolidate",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-cons-q2",
+      "stem": "QC and calibration cost a fixed $30 per run. What is the QC cost per sample when a run holds 150 patient samples?",
+      "options": [
+        {
+          "id": "a",
+          "text": "$0.20",
+          "rationale": "Correct. $30 ÷ 150 samples = $0.20 per sample — the larger the run, the smaller each sample’s share."
+        },
+        {
+          "id": "b",
+          "text": "$2.00",
+          "rationale": "Incorrect. That is the share for a 15-sample run ($30 ÷ 15)."
+        },
+        {
+          "id": "c",
+          "text": "$5.00",
+          "rationale": "Incorrect. This divides samples by cost (150 ÷ 30) instead of cost by samples."
+        },
+        {
+          "id": "d",
+          "text": "$4,500",
+          "rationale": "Incorrect. This multiplies cost by samples instead of dividing."
+        }
+      ],
+      "answer": "a",
+      "skill": "Calculate cost per test",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-cons-q3",
+      "stem": "Which statement about autoverification is correct?",
+      "options": [
+        {
+          "id": "a",
+          "text": "LIS rules can release results that pass preset checks without manual review, even without a total automation line",
+          "rationale": "Correct. Autoverification is rule-based software (QC, flags, critical values, range and delta checks) and can shorten turnaround without major reorganization."
+        },
+        {
+          "id": "b",
+          "text": "It requires a total laboratory automation track",
+          "rationale": "Incorrect. LIS-based autoverification has been implemented without total laboratory automation."
+        },
+        {
+          "id": "c",
+          "text": "It releases every result automatically, including critical values",
+          "rationale": "Incorrect. Results that fail any rule — such as critical values or failed delta checks — are held for a technologist."
+        },
+        {
+          "id": "d",
+          "text": "It replaces the need to run quality control",
+          "rationale": "Incorrect. Passing QC is one of the rules a result must meet before it can be autoverified."
+        }
+      ],
+      "answer": "a",
+      "skill": "Describe autoverification",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch2",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 2, Making the Lab Faster and Better (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 2,
+          "section": "High-Yield Hits",
+          "items": [
+            9,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "chapter": 2,
+          "section": "Exam Traps",
+          "items": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "chapter": 2,
+          "section": "Number Vault"
+        }
+      ],
+      "usedFor": "Curriculum source: scope, exam framing, standardization, stockpiling and reference-test cost examples. Not used as verification."
+    },
+    {
+      "id": "armbruster2014",
+      "kind": "external",
+      "citation": "Armbruster DA, Overcash DR, Reyes J. Clinical chemistry laboratory automation in the 21st century – Amat Victoria curam (Victory loves careful preparation). Clin Biochem Rev. 2014;35(3):143-153.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4204236/",
+      "consulted": true,
+      "usedFor": "Preferable to place as many assays on a single analyser as possible because each instrument requires separate QC and maintenance; expert-rules software allows automatic release of results and flags results needing human review."
+    },
+    {
+      "id": "zhi2013",
+      "kind": "external",
+      "citation": "Zhi M, Ding EL, Theisen-Toupal J, Whelan J, Arnaout R. The landscape of inappropriate laboratory testing: a 15-year meta-analysis. PLoS One. 2013;8(11):e78962.",
+      "doi": "10.1371/journal.pone.0078962",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3829815",
+      "consulted": true,
+      "usedFor": "Mean overutilization 20.6% and underutilization 44.8%; underutilization can cause morbidity through delayed or missed diagnoses; underuse is understudied."
+    },
+    {
+      "id": "wang2019",
+      "kind": "external",
+      "citation": "Wang Z, et al. Design and evaluation of a LIS-based autoverification system for coagulation assays in a core clinical laboratory. BMC Med Inform Decis Mak. 2019;19:123.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6609390/",
+      "consulted": true,
+      "usedFor": "Autoverification = rules that release normal results without manual verification; rules include QC, analytical error flags, critical values, limited range, delta and logical checks; LIS-based without TLA or middleware; passing rate ≈ 78.9%; receipt-to-release TAT 126 → 101 min."
+    },
+    {
+      "id": "yu2024",
+      "kind": "external",
+      "citation": "Yu J, Zhu G, Cui K, et al. Comparison of the speed and quality of innovative and traditional pneumatic tube system transport outside of an emergency laboratory. Heliyon. 2024;10(10):e31511.",
+      "doi": "10.1016/j.heliyon.2024.e31511",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11141344",
+      "consulted": true,
+      "usedFor": "Transport time: manual ≈ 1,711 s, traditional PTS ≈ 147 s, Tempus600 ≈ 58 s; sample quality and results did not differ by delivery method."
+    },
+    {
+      "id": "norgaard2012",
+      "kind": "external",
+      "citation": "Nørgaard B, Mogensen CB. Blood sample tube transporting system versus point of care technology in an emergency department; effect on time from collection to reporting? A randomised trial. Scand J Trauma Resusc Emerg Med. 2012;20:71.",
+      "doi": "10.1186/1757-7241-20-71",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3751946",
+      "consulted": true,
+      "usedFor": "Collection-to-reporting time: POCT ≈ 24 min vs tube transport to central lab ≈ 70 min."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-qc",
+      "text": "Placing more assays on fewer analyzers avoids repeated QC and maintenance, because each instrument needs its own.",
+      "status": "checked",
+      "refs": [
+        "armbruster2014"
+      ]
+    },
+    {
+      "id": "cl-pts",
+      "text": "Pneumatic tube transport is far faster than manual delivery (≈ 1–2.5 min vs ≈ 28 min in one study) without changing sample quality.",
+      "status": "checked",
+      "refs": [
+        "yu2024"
+      ]
+    },
+    {
+      "id": "cl-poct",
+      "text": "In an ED trial, point-of-care testing reported results in ≈ 24 min vs ≈ 70 min for tube transport to the central lab.",
+      "status": "checked",
+      "refs": [
+        "norgaard2012"
+      ]
+    },
+    {
+      "id": "cl-util",
+      "text": "Inappropriate testing includes both overuse (≈ 21%) and underuse (≈ 45%); underuse can delay or miss diagnoses.",
+      "status": "checked",
+      "refs": [
+        "zhi2013"
+      ]
+    },
+    {
+      "id": "cl-av",
+      "text": "Autoverification uses LIS rules (QC, flags, critical values, range, delta, logic) to release passing results without manual review; it can be implemented without total laboratory automation and shortens TAT.",
+      "status": "checked",
+      "refs": [
+        "wang2019",
+        "armbruster2014"
+      ]
+    },
+    {
+      "id": "cl-spread",
+      "text": "Consolidation lowers per-unit cost because larger batches spread fixed QC and calibration costs over more samples.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch2"
+      ],
+      "note": "Consistent with Armbruster 2014 on per-analyzer QC, but the batch-size cost argument itself was not found in the sources read. The $30 figure is invented for arithmetic."
+    },
+    {
+      "id": "cl-std",
+      "text": "Standardization enables volume discounts, comparable results across sites and easier cross-training, but takes years because of contract lock-ins.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch2"
+      ]
+    },
+    {
+      "id": "cl-stock",
+      "text": "Pneumatic tube users should be monitored for stockpiling (holding tubes and sending them in bunches).",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch2"
+      ]
+    },
+    {
+      "id": "cl-local",
+      "text": "Blood gases and POCT should stay local; CBCs belong at the rapid-response lab.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch2"
+      ],
+      "note": "Supported in principle by the ED trial (local POCT faster), but the specific placement rule is the reviewer’s."
+    },
+    {
+      "id": "cl-cost",
+      "text": "“The least expensive test is the test that is not done”; molecular reference tests cost $500–1,000+ versus cents for CBC-class tests; outpatient reimbursement covers 20–30 cents per dollar spent on expensive reference tests.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch2"
+      ],
+      "note": "Reviewer’s quotation and cost examples; not verified, and costs change over time."
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Routine travels, urgent stays.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-costs",
+      "issue": "The reviewer’s test-cost and reimbursement figures (e.g., 20–30 cents per dollar) are undated, US-specific examples and could not be verified.",
+      "kind": "uncertain",
+      "status": "open"
+    },
+    {
+      "id": "f-tat-local",
+      "issue": "Transport and POCT turnaround figures come from single-hospital studies; whether a test must stay local depends on local transport and staffing.",
+      "kind": "method-dependent",
+      "status": "resolved",
+      "resolution": "Lesson presents figures as single-study examples and notes the limitation in the memory aid."
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "An operations concept; buildings, tokens and timelines are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against five peer-reviewed open-access articles read for this lesson; 5 pending (cost spreading, standardization, stockpiling, local placement rule, reviewer’s cost examples). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-07"
+}
