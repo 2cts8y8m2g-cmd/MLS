@@ -717,6 +717,8 @@ const ICONS: Record<string, (c: string) => ReactNode> = {
   flask: (c) => (<g><path d="M-8,-32 L8,-32 L8,-10 L26,26 Q28,32 22,32 L-22,32 Q-28,32 -26,26 L-8,-10 Z" fill="none" stroke={c} strokeWidth={5} strokeLinejoin="round" /><path d="M-17,12 L17,12 L24,28 L-24,28 Z" fill={c} opacity={0.6} /></g>),
   book: (c) => (<g><rect x={-26} y={-30} width={52} height={60} rx={5} fill={c} /><rect x={-18} y={-22} width={36} height={8} rx={2} fill="var(--stage-card)" /><rect x={-18} y={-8} width={26} height={5} rx={2} fill="var(--stage-card)" /></g>),
   flame: (c) => (<g><path d="M0,-34 Q22,-8 16,12 Q12,30 0,32 Q-12,30 -16,12 Q-20,-6 -4,-18 Q-4,-2 4,2 Q8,-14 0,-34 Z" fill={c} /><path d="M0,4 Q10,14 6,24 Q0,30 -6,24 Q-8,14 0,4 Z" fill="var(--stage-card)" opacity={0.7} /></g>),
+  bell: (c) => (<g><path d="M-22,14 Q-22,-26 0,-28 Q22,-26 22,14 L28,22 L-28,22 Z" fill={c} /><circle cy={30} r={7} fill={c} /><rect x={-4} y={-36} width={8} height={9} rx={3} fill={c} /></g>),
+  door: (c) => (<g><rect x={-22} y={-34} width={44} height={68} rx={4} fill="none" stroke={c} strokeWidth={6} /><rect x={-16} y={-28} width={32} height={56} fill={c} opacity={0.35} /><circle cx={10} cy={2} r={4} fill={c} /></g>),
   person: (c) => (<g fill={c}><circle cy={-16} r={14} /><path d="M-26,32 Q-26,4 0,4 Q26,4 26,32 Z" /></g>),
 };
 
