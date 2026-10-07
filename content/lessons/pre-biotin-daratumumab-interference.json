@@ -1,0 +1,2261 @@
+{
+  "schemaVersion": 1,
+  "id": "pre-biotin-daratumumab-interference",
+  "title": "Interference: Biotin in Immunoassays and Daratumumab in the Blood Bank",
+  "summary": "See how supplement biotin jams streptavidin assays — falsely low TSH and troponin, falsely high free T4 — and how the myeloma drug daratumumab makes every antibody-screen cell react.",
+  "domain": "p1-ops",
+  "topic": "ch3",
+  "conceptIds": [
+    "ch3.hit13",
+    "ch3.hit14"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 3,
+        "section": "High-Yield Hits",
+        "items": [
+          13,
+          14
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 3 Hits 13–14. Updates the reviewer’s “FDA 2017” biotin item with the 2019 safety communication and the FDA’s ongoing troponin list, adds the direction of error by assay design, supplement doses and lab mitigations, and adds DTT’s limits and the Fab-fragment alternative for daratumumab."
+  },
+  "prerequisites": [
+    "ch3.hit1"
+  ],
+  "objectives": [
+    "Explain how biotin interferes with streptavidin-based immunoassays and predict falsely low (sandwich) vs falsely high (competitive) results.",
+    "List practical steps when biotin interference is suspected.",
+    "Explain why daratumumab causes pan-reactive antibody screens and the trade-off of DTT treatment."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Results that don’t fit the patient",
+      "start": 0,
+      "end": 20,
+      "altText": "Two puzzle cards. Left: a healthy woman taking a hair-and-nail supplement has very low TSH and high free T4 — a thyroid storm pattern — but feels fine. Right: a patient being treated for myeloma has an antibody screen in which every reagent red cell reacts. The cartoon scientist scratches their head.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Puzzle one: a healthy woman’s thyroid tests look like severe hyperthyroidism. She feels completely well and takes a hair-and-nail supplement."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Puzzle two: a patient on a new myeloma drug needs blood. Every red cell in the antibody screen reacts with their plasma."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Neither patient has the disease the tests suggest. Something in the blood is fooling the test itself."
+        }
+      ],
+      "objects": [
+        {
+          "id": "c1",
+          "type": "card",
+          "props": {
+            "x": 260,
+            "y": 220,
+            "w": 400,
+            "h": 180,
+            "tone": "a",
+            "title": "Feels well · takes supplement",
+            "lines": [
+              "TSH very low ↓",
+              "Free T4 high ↑",
+              "Looks like hyperthyroidism"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 1.5,
+              "reveal": 0
+            },
+            {
+              "t": 5.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "card",
+          "props": {
+            "x": 700,
+            "y": 220,
+            "w": 400,
+            "h": 180,
+            "tone": "b",
+            "title": "On a myeloma antibody drug",
+            "lines": [
+              "Antibody screen: all cells react",
+              "Panel: all cells react",
+              "Can’t find compatible blood?"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8.5,
+              "reveal": 0
+            },
+            {
+              "t": 12.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 400,
+            "text": "Something is fooling the test",
+            "size": 26,
+            "weight": 900,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.5,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 15,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Biotin and the streptavidin trick",
+      "start": 20,
+      "end": 62,
+      "altText": "An immunoassay cartoon. A streptavidin-coated bead grabs biotin “handles” on a reagent antibody. In a sandwich assay, the analyte is caught between the biotin-tagged antibody and a signal antibody, so more analyte means more signal. Then free biotin from a supplement floods in and fills the bead’s grips: fewer sandwiches are captured, the signal drops, and the result reads falsely low. In a competitive assay, a labeled analyte competes for the grips; biotin blocks it, signal drops, and the lab reads that as a falsely high result. A dose bar compares about 30 µg/day in the diet with 5–30 mg/day in supplements.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "Many immunoassays use a trick: a bead coated with streptavidin grabs anything carrying a biotin “handle” very tightly."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "In a sandwich assay — used for TSH and troponin — the analyte is caught between a biotin-tagged antibody and a signal antibody. More analyte, more signal."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 44,
+          "text": "Now add lots of free biotin from a supplement. It fills the bead’s grips first, so fewer sandwiches are caught. The signal drops and the result reads falsely low."
+        },
+        {
+          "id": "n4",
+          "start": 44,
+          "end": 53,
+          "text": "In a competitive assay — used for free T4 — less signal means MORE analyte. Biotin lowers the signal, so the result reads falsely high. Low TSH plus high free T4 mimics hyperthyroidism."
+        },
+        {
+          "id": "n5",
+          "start": 53,
+          "end": 62,
+          "text": "The dose matters. Food gives about 30 micrograms a day, but hair, skin and nail supplements can give 5 to 30 milligrams — hundreds of times more."
+        }
+      ],
+      "objects": [
+        {
+          "id": "bead",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 150,
+            "w": 140,
+            "label": "Streptavidin bead",
+            "wrap": 12,
+            "tone": "b",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "bt",
+          "type": "token",
+          "props": {
+            "x": 440,
+            "y": 150,
+            "w": 110,
+            "label": "Biotin handle",
+            "wrap": 10,
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "x": 440
+            },
+            {
+              "t": 5,
+              "x": 335,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "sw",
+          "type": "card",
+          "props": {
+            "x": 640,
+            "y": 150,
+            "w": 380,
+            "h": 120,
+            "tone": "a",
+            "title": "Sandwich (TSH, troponin)",
+            "lines": [
+              "Bead · biotin-antibody · analyte · signal",
+              "More analyte → more signal"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "fb0",
+          "type": "token",
+          "props": {
+            "x": 440,
+            "y": 215,
+            "w": 40,
+            "label": "B",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 16.5,
+              "x": 440
+            },
+            {
+              "t": 16.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18.0,
+              "x": 120,
+              "ease": "out"
+            },
+            {
+              "t": 19.0,
+              "opacity": 1
+            },
+            {
+              "t": 19.4,
+              "opacity": 0.6
+            }
+          ]
+        },
+        {
+          "id": "fb1",
+          "type": "token",
+          "props": {
+            "x": 440,
+            "y": 215,
+            "w": 40,
+            "label": "B",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.9,
+              "opacity": 0
+            },
+            {
+              "t": 16.9,
+              "x": 440
+            },
+            {
+              "t": 17.2,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18.4,
+              "x": 165,
+              "ease": "out"
+            },
+            {
+              "t": 19.4,
+              "opacity": 1
+            },
+            {
+              "t": 19.799999999999997,
+              "opacity": 0.6
+            }
+          ]
+        },
+        {
+          "id": "fb2",
+          "type": "token",
+          "props": {
+            "x": 440,
+            "y": 215,
+            "w": 40,
+            "label": "B",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.3,
+              "opacity": 0
+            },
+            {
+              "t": 17.3,
+              "x": 440
+            },
+            {
+              "t": 17.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18.8,
+              "x": 210,
+              "ease": "out"
+            },
+            {
+              "t": 19.8,
+              "opacity": 1
+            },
+            {
+              "t": 20.2,
+              "opacity": 0.6
+            }
+          ]
+        },
+        {
+          "id": "fb3",
+          "type": "token",
+          "props": {
+            "x": 440,
+            "y": 215,
+            "w": 40,
+            "label": "B",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.7,
+              "opacity": 0
+            },
+            {
+              "t": 17.7,
+              "x": 440
+            },
+            {
+              "t": 18.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19.2,
+              "x": 255,
+              "ease": "out"
+            },
+            {
+              "t": 20.2,
+              "opacity": 1
+            },
+            {
+              "t": 20.599999999999998,
+              "opacity": 0.6
+            }
+          ]
+        },
+        {
+          "id": "fb4",
+          "type": "token",
+          "props": {
+            "x": 440,
+            "y": 215,
+            "w": 40,
+            "label": "B",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.1,
+              "opacity": 0
+            },
+            {
+              "t": 18.1,
+              "x": 440
+            },
+            {
+              "t": 18.400000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19.6,
+              "x": 300,
+              "ease": "out"
+            },
+            {
+              "t": 20.6,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0.6
+            }
+          ]
+        },
+        {
+          "id": "low",
+          "type": "token",
+          "props": {
+            "x": 640,
+            "y": 260,
+            "w": 380,
+            "label": "Sandwich: signal ↓ → falsely LOW",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cp",
+          "type": "card",
+          "props": {
+            "x": 640,
+            "y": 360,
+            "w": 380,
+            "h": 110,
+            "tone": "a",
+            "title": "Competitive (free T4)",
+            "lines": [
+              "Less signal = more analyte",
+              "Biotin → falsely HIGH"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "thy",
+          "type": "token",
+          "props": {
+            "x": 240,
+            "y": 360,
+            "w": 340,
+            "label": "TSH ↓ + FT4 ↑ = mimics hyperthyroid",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 30.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d1",
+          "type": "token",
+          "props": {
+            "x": 240,
+            "y": 470,
+            "w": 320,
+            "label": "Diet ≈ 30 µg/day",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d2",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 470,
+            "w": 60,
+            "label": "Supplements 5–30 mg/day",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35,
+              "opacity": 0
+            },
+            {
+              "t": 35,
+              "w": 60
+            },
+            {
+              "t": 35,
+              "x": 560
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "w": 400,
+              "ease": "inOut"
+            },
+            {
+              "t": 38,
+              "x": 730,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Daratumumab: a drug that coats red cells",
+      "start": 62,
+      "end": 100,
+      "altText": "A red cell with a few CD38 flags on its surface. Daratumumab antibodies (a myeloma drug) latch onto the flags. In the indirect antiglobulin test, every reagent red cell is now coated and agglutinates — panreactivity — hiding any real alloantibody (a small anti-K token disappears behind the reactions). A timer notes the drug’s half-life can be up to about 587 hours, so interference lasts weeks after stopping.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 62,
+          "end": 70,
+          "text": "Daratumumab is an antibody drug for multiple myeloma. It targets CD38, a marker on myeloma cells."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 77,
+          "text": "Red cells carry a little CD38 too. So in the patient’s plasma, the drug sticks to every reagent red cell in the antibody screen."
+        },
+        {
+          "id": "c3",
+          "start": 77,
+          "end": 85,
+          "text": "The indirect antiglobulin test then makes every cell react. That pan-reactivity can hide a real, dangerous alloantibody underneath."
+        },
+        {
+          "id": "c4",
+          "start": 85,
+          "end": 93,
+          "text": "The interference does not stop when the drug stops. Its half-life can be up to about 587 hours, so it lasts for weeks."
+        },
+        {
+          "id": "c5",
+          "start": 93,
+          "end": 100,
+          "text": "So the blood bank needs to know, before testing, that the patient is on daratumumab."
+        }
+      ],
+      "objects": [
+        {
+          "id": "rbc",
+          "type": "rbc",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "r": 75,
+            "antigens": 0,
+            "face": false,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cd0",
+          "type": "token",
+          "props": {
+            "x": 175,
+            "y": 150,
+            "w": 56,
+            "label": "CD38",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cd1",
+          "type": "token",
+          "props": {
+            "x": 330,
+            "y": 160,
+            "w": 56,
+            "label": "CD38",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.8,
+              "opacity": 0
+            },
+            {
+              "t": 9.100000000000001,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cd2",
+          "type": "token",
+          "props": {
+            "x": 165,
+            "y": 290,
+            "w": 56,
+            "label": "CD38",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.1,
+              "opacity": 0
+            },
+            {
+              "t": 9.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cd3",
+          "type": "token",
+          "props": {
+            "x": 335,
+            "y": 285,
+            "w": 56,
+            "label": "CD38",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.4,
+              "opacity": 0
+            },
+            {
+              "t": 9.700000000000001,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "da0",
+          "type": "antibody",
+          "props": {
+            "x": 175,
+            "y": 105,
+            "cls": "IgG",
+            "spec": "CD38",
+            "size": 30,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.0,
+              "opacity": 0
+            },
+            {
+              "t": 10.0,
+              "x": 255
+            },
+            {
+              "t": 10.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11.5,
+              "x": 175,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "da1",
+          "type": "antibody",
+          "props": {
+            "x": 330,
+            "y": 115,
+            "cls": "IgG",
+            "spec": "CD38",
+            "size": 30,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.4,
+              "opacity": 0
+            },
+            {
+              "t": 10.4,
+              "x": 410
+            },
+            {
+              "t": 10.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11.9,
+              "x": 330,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "dlab",
+          "type": "label",
+          "props": {
+            "x": 250,
+            "y": 60,
+            "text": "Daratumumab (anti-CD38)",
+            "size": 18,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0
+            },
+            {
+              "t": 10.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p0",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 130,
+            "w": 100,
+            "label": "Cell 1: +",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0
+            },
+            {
+              "t": 15.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p1",
+          "type": "token",
+          "props": {
+            "x": 680,
+            "y": 130,
+            "w": 100,
+            "label": "Cell 2: +",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.9,
+              "opacity": 0
+            },
+            {
+              "t": 16.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "token",
+          "props": {
+            "x": 800,
+            "y": 130,
+            "w": 100,
+            "label": "Cell 3: +",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.3,
+              "opacity": 0
+            },
+            {
+              "t": 16.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 190,
+            "w": 100,
+            "label": "Cell 4: +",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.7,
+              "opacity": 0
+            },
+            {
+              "t": 17.099999999999998,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p4",
+          "type": "token",
+          "props": {
+            "x": 680,
+            "y": 190,
+            "w": 100,
+            "label": "Cell 5: +",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.1,
+              "opacity": 0
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p5",
+          "type": "token",
+          "props": {
+            "x": 800,
+            "y": 190,
+            "w": 100,
+            "label": "Cell 6: +",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.5,
+              "opacity": 0
+            },
+            {
+              "t": 17.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pan",
+          "type": "label",
+          "props": {
+            "x": 680,
+            "y": 260,
+            "text": "Every cell reacts: pan-reactivity",
+            "size": 17,
+            "weight": 900,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.5,
+              "opacity": 0
+            },
+            {
+              "t": 18.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ak",
+          "type": "token",
+          "props": {
+            "x": 680,
+            "y": 310,
+            "w": 240,
+            "label": "Hidden: real anti-K?",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 18.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20.5,
+              "opacity": 1
+            },
+            {
+              "t": 21.1,
+              "opacity": 0.2
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 410,
+            "w": 560,
+            "label": "Half-life up to ≈ 587 h → interference lasts weeks",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 24.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tell",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 560,
+            "label": "Tell the blood bank before testing",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: ask, remove, work around",
+      "start": 100,
+      "end": 138,
+      "altText": "Biotin panel: “Ask about supplements” → “Stop at least 1 day before testing (up to a week for high doses)” → “Use a different method, or pretreat the sample with streptavidin beads”. FDA badge: safety communications in 2017 and 2019; falsely low troponin reports. Daratumumab panel: reagent cells treated with DTT lose CD38 and stop reacting — but DTT also destroys Kell and other antigens (DO, JMH, LU, IN, YT), so anti-K could be missed. A newer approach adds daratumumab Fab fragments to block CD38 without damaging antigens.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 108,
+          "text": "For biotin, the first step is simple: ask patients about supplements before trusting a strange immunoassay result."
+        },
+        {
+          "id": "l2",
+          "start": 108,
+          "end": 116,
+          "text": "One review advises stopping biotin at least a day before a blood test, or up to a week after high doses. Labs can retest on a method that doesn’t use streptavidin, or strip biotin out with streptavidin beads."
+        },
+        {
+          "id": "l3",
+          "start": 116,
+          "end": 123,
+          "text": "The FDA issued safety communications in 2017 and 2019, including reports of falsely low troponin — a missed heart attack risk."
+        },
+        {
+          "id": "l4",
+          "start": 123,
+          "end": 131,
+          "text": "For daratumumab, blood banks can treat reagent red cells with DTT, which destroys CD38. But DTT also wrecks other antigens, including Kell, so an anti-K could be missed."
+        },
+        {
+          "id": "l5",
+          "start": 131,
+          "end": 138,
+          "text": "A newer method adds daratumumab Fab fragments to the plasma to block CD38 without damaging antigens."
+        }
+      ],
+      "objects": [
+        {
+          "id": "h1",
+          "type": "label",
+          "props": {
+            "x": 250,
+            "y": 50,
+            "text": "Biotin",
+            "size": 22,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b0",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 100,
+            "w": 400,
+            "label": "Ask about supplements",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b1",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 155,
+            "w": 400,
+            "label": "Stop ≥ 1 day (up to 1 week if high dose)",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 400,
+            "label": "Other method or streptavidin-bead pretreatment",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "fda",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 360,
+            "w": 400,
+            "h": 110,
+            "tone": "warn",
+            "title": "FDA safety communications",
+            "lines": [
+              "2017 and 2019",
+              "Falsely low troponin reported"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h2",
+          "type": "label",
+          "props": {
+            "x": 710,
+            "y": 50,
+            "text": "Daratumumab",
+            "size": 22,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23,
+              "opacity": 0
+            },
+            {
+              "t": 23.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "dtt",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 100,
+            "w": 380,
+            "label": "DTT-treated cells: CD38 destroyed ✓",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23.5,
+              "opacity": 0
+            },
+            {
+              "t": 24.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "kel",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 155,
+            "w": 380,
+            "label": "…but Kell, DO, JMH, LU, IN, YT also lost",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26,
+              "opacity": 0
+            },
+            {
+              "t": 26.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "miss",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 380,
+            "label": "Risk: anti-K missed",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 29.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "fab",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 330,
+            "w": 380,
+            "h": 110,
+            "tone": "good",
+            "title": "Newer: DARA-Fab blocking",
+            "lines": [
+              "Blocks CD38 in plasma",
+              "Antigens left intact"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Which way is the error?",
+      "start": 138,
+      "end": 166,
+      "altText": "Three cards: “Biotin + sandwich assay (TSH, troponin)” → falsely LOW; “Biotin + competitive assay (free T4)” → falsely HIGH; “Daratumumab + antibody screen” → all cells react (pan-reactive); DTT fixes it but can hide anti-K.",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 138,
+          "end": 147,
+          "text": "Exam direction rule: biotin in a sandwich assay gives falsely low results — TSH and troponin."
+        },
+        {
+          "id": "e2",
+          "start": 147,
+          "end": 156,
+          "text": "Biotin in a competitive assay gives falsely high results — free T4. Together they mimic hyperthyroidism."
+        },
+        {
+          "id": "e3",
+          "start": 156,
+          "end": 166,
+          "text": "Daratumumab makes the antibody screen react with every cell. DTT-treated cells remove the reaction but can hide anti-K."
+        }
+      ],
+      "objects": [
+        {
+          "id": "c0",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 100,
+            "w": 780,
+            "h": 110,
+            "tone": "b",
+            "title": "Biotin + sandwich assay (TSH, troponin)",
+            "lines": [
+              "→ falsely LOW"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4.5,
+              "reveal": 0
+            },
+            {
+              "t": 5.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "c1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 250,
+            "w": 780,
+            "h": 110,
+            "tone": "a",
+            "title": "Biotin + competitive assay (free T4)",
+            "lines": [
+              "→ falsely HIGH"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13.5,
+              "reveal": 0
+            },
+            {
+              "t": 14.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 400,
+            "w": 780,
+            "h": 110,
+            "tone": "warn",
+            "title": "Daratumumab + antibody screen",
+            "lines": [
+              "→ every cell reacts; DTT fixes it but can hide anti-K"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22.5,
+              "reveal": 0
+            },
+            {
+              "t": 23.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Sandwich Sinks, Competition Climbs",
+      "start": 166,
+      "end": 188,
+      "altText": "Memory aid: a sandwich sinking under water (“Sandwich Sinks” = falsely low) beside a climber on a ladder (“Competition Climbs” = falsely high), and a red cell wearing a “CD38” badge covered in sticky drug (“Dara sticks to every cell”). A card lists where the aid breaks down.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 166,
+          "end": 173,
+          "text": "Memory aid: Sandwich Sinks, Competition Climbs. Biotin pushes sandwich assays down and competitive assays up."
+        },
+        {
+          "id": "m2",
+          "start": 173,
+          "end": 179,
+          "text": "And: Dara sticks to every cell — because every red cell carries a little CD38."
+        },
+        {
+          "id": "m3",
+          "start": 179,
+          "end": 188,
+          "text": "Where it breaks: only assays that use biotin and streptavidin are affected, and many manufacturers have redesigned their tests. Check each method’s package insert."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Sandwich Sinks · Competition Climbs",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s",
+          "type": "card",
+          "props": {
+            "x": 270,
+            "y": 190,
+            "w": 340,
+            "h": 100,
+            "tone": "b",
+            "title": "Sandwich sinks ↓",
+            "lines": [
+              "TSH, troponin falsely low"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "card",
+          "props": {
+            "x": 690,
+            "y": 190,
+            "w": 340,
+            "h": 100,
+            "tone": "a",
+            "title": "Competition climbs ↑",
+            "lines": [
+              "Free T4 falsely high"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 320,
+            "w": 440,
+            "label": "Dara sticks to every cell (CD38)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 840,
+            "h": 80,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Only biotin–streptavidin assays · many have been redesigned · check the package insert"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.5,
+              "reveal": 0
+            },
+            {
+              "t": 16.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 188,
+      "end": 198,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 188,
+          "end": 193,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 193,
+          "end": 198,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 198,
+      "end": 210,
+      "altText": "Two tokens: “Biotin: sandwich ↓, competitive ↑ — ask about supplements” and “Daratumumab: pan-reactive screen — tell the blood bank; DTT can hide anti-K”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 198,
+          "end": 210,
+          "text": "Ask about biotin when immunoassay results don’t fit, because it makes streptavidin sandwich assays falsely low and competitive assays falsely high — and tell the blood bank about daratumumab, which makes every screening cell react and can hide real antibodies."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 200,
+            "w": 640,
+            "label": "Biotin: sandwich ↓ · competitive ↑ — ask about supplements",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 280,
+            "w": 640,
+            "label": "Daratumumab: pan-reactive screen — tell the blood bank",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a vitamin supplement can jam a common test design, and a cancer drug can make blood-bank tests react with everything. Scientific terms: excess biotin saturates streptavidin capture surfaces in biotin–streptavidin immunoassays, lowering signal; daratumumab (anti-CD38 IgG1) binds CD38 on reagent red cells, causing pan-agglutination in the indirect antiglobulin test.",
+    "why": "In sandwich assays the signal rises with analyte, so lost signal reads as falsely low (TSH, troponin). In competitive assays the signal falls as analyte rises, so lost signal reads as falsely high (free T4). Supplements can provide 5–30 mg/day versus about 30 µg/day from food. Red cells express a little CD38, so daratumumab in plasma coats every reagent cell; with a half-life up to about 587 hours, interference lasts weeks.",
+    "measure": "Biotin: suspect when results conflict with the clinical picture; ask about supplements, retest after stopping (≥ 1 day, up to a week for high doses), use a different method or pretreat with streptavidin beads. Daratumumab: DTT-treated reagent cells remove CD38 reactivity but destroy KEL, DO, JMH, LU, IN and YT antigens; daratumumab Fab fragments can block CD38 instead.",
+    "differs": "Sandwich vs competitive assays: opposite direction of error. Biotin interference (analytical, in the immunoassay) vs daratumumab interference (in red-cell serology). DTT (removes interference, loses Kell and others) vs Fab blocking (keeps antigens).",
+    "examAngle": "Expect: a patient on biotin with low TSH and high free T4, a falsely low troponin, the FDA biotin warning, a pan-reactive screen in a myeloma patient on daratumumab, and which antibody DTT treatment can miss (anti-K)."
+  },
+  "comparisons": [
+    {
+      "id": "sandwich-vs-comp",
+      "title": "Biotin effect: sandwich vs competitive assays",
+      "left": {
+        "label": "Sandwich (e.g., TSH, troponin)",
+        "points": [
+          "Signal ∝ analyte",
+          "Biotin lowers signal → falsely LOW"
+        ]
+      },
+      "right": {
+        "label": "Competitive (e.g., free T4)",
+        "points": [
+          "Signal falls as analyte rises",
+          "Biotin lowers signal → falsely HIGH"
+        ]
+      },
+      "distinguisher": "Whether more analyte means more or less signal."
+    },
+    {
+      "id": "dtt-vs-fab",
+      "title": "Daratumumab workarounds",
+      "left": {
+        "label": "DTT-treated cells",
+        "points": [
+          "Destroys CD38 — reactivity gone",
+          "Also destroys KEL, DO, JMH, LU, IN, YT"
+        ]
+      },
+      "right": {
+        "label": "DARA-Fab blocking",
+        "points": [
+          "Blocks CD38 in plasma",
+          "Leaves antigens intact"
+        ]
+      },
+      "distinguisher": "Whether other blood-group antigens survive."
+    }
+  ],
+  "mnemonic": {
+    "text": "Sandwich Sinks, Competition Climbs — and Dara sticks to every cell.",
+    "explanation": "Biotin pushes sandwich immunoassays falsely low and competitive ones falsely high; daratumumab binds CD38 on every red cell.",
+    "limitation": "Only assays built on biotin–streptavidin capture are affected, and many have been redesigned, so the method’s package insert decides. The aid does not tell you how long to stop biotin or that DTT also destroys Kell antigens."
+  },
+  "analogyLimitations": [
+    "Beads, handles and antibodies are drawn far larger than molecules.",
+    "The six reacting “cells” stand for a full antibody panel.",
+    "Dose bars are not to scale (supplement doses are 150–1,000× dietary intake)."
+  ],
+  "takeaway": "Ask about biotin when immunoassay results don’t fit, because it makes streptavidin sandwich assays falsely low and competitive assays falsely high — and tell the blood bank about daratumumab, which makes every screening cell react and can hide real antibodies.",
+  "questions": [
+    {
+      "id": "pre-int-q1",
+      "stem": "A healthy woman taking 10 mg/day of biotin has a very low TSH and a high free T4 on streptavidin-based immunoassays, but no symptoms. What is the most likely explanation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Biotin interference: falsely low TSH (sandwich) and falsely high free T4 (competitive)",
+          "rationale": "Correct. Excess biotin lowers signal in both designs, which reads low in sandwich and high in competitive assays — mimicking hyperthyroidism."
+        },
+        {
+          "id": "b",
+          "text": "True Graves disease",
+          "rationale": "Incorrect. The pattern fits, but a well patient on high-dose biotin points first to interference; retest after stopping biotin or on another method."
+        },
+        {
+          "id": "c",
+          "text": "EDTA contamination",
+          "rationale": "Incorrect. EDTA contamination raises potassium and lowers calcium; it does not create this thyroid pattern."
+        },
+        {
+          "id": "d",
+          "text": "Hemolysis",
+          "rationale": "Incorrect. Hemolysis would not produce opposite errors in TSH and free T4 like this."
+        }
+      ],
+      "answer": "a",
+      "skill": "Recognize biotin interference",
+      "difficulty": "application"
+    },
+    {
+      "id": "pre-int-q2",
+      "stem": "Why is biotin interference a particular safety concern for some troponin assays?",
+      "options": [
+        {
+          "id": "a",
+          "text": "In sandwich designs it can give falsely low troponin, risking a missed heart attack",
+          "rationale": "Correct. The FDA has received reports of falsely low troponin caused by biotin."
+        },
+        {
+          "id": "b",
+          "text": "It makes troponin falsely high, causing unnecessary treatment only",
+          "rationale": "Incorrect. Troponin assays are sandwich designs, so biotin pushes results down."
+        },
+        {
+          "id": "c",
+          "text": "It destroys troponin in the tube",
+          "rationale": "Incorrect. Biotin interferes with the assay’s capture step; it does not destroy troponin."
+        },
+        {
+          "id": "d",
+          "text": "It affects only point-of-care glucose meters",
+          "rationale": "Incorrect. The concern is biotin–streptavidin immunoassays, including some troponin tests."
+        }
+      ],
+      "answer": "a",
+      "skill": "Direction of biotin error",
+      "difficulty": "application"
+    },
+    {
+      "id": "pre-int-q3",
+      "stem": "A myeloma patient on daratumumab has a pan-reactive antibody screen. The blood bank tests DTT-treated reagent cells. Which alloantibody could be missed by this approach?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Anti-K",
+          "rationale": "Correct. DTT destroys Kell antigens (and others such as DO, JMH, LU, IN, YT), so anti-K cannot be detected on DTT-treated cells."
+        },
+        {
+          "id": "b",
+          "text": "Anti-D",
+          "rationale": "Incorrect. D is not among the antigens DTT destroys."
+        },
+        {
+          "id": "c",
+          "text": "Anti-A",
+          "rationale": "Incorrect. ABO antibodies are not detected by the antibody screen in this way, and A is not destroyed by DTT."
+        },
+        {
+          "id": "d",
+          "text": "None — DTT has no drawbacks",
+          "rationale": "Incorrect. DTT’s main drawback is destroying several blood-group antigens."
+        }
+      ],
+      "answer": "a",
+      "skill": "Daratumumab workarounds",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch3",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 3, Before the Test: Getting the Sample Right (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 3,
+          "section": "High-Yield Hits",
+          "items": [
+            13,
+            14
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "fan2019",
+      "kind": "external",
+      "citation": "Fan J, Pudek M, Mattman A, et al. When vitamin supplementation leads to harm: the growing popularity of biotin and its impact on laboratory testing. BCMJ. 2019;61(2):66-71.",
+      "url": "https://www.bcmj.org/articles/when-vitamin-supplementation-leads-harm-growing-popularity-biotin-and-its-impact-laboratory",
+      "consulted": true,
+      "usedFor": "Sandwich assays falsely low, competitive assays falsely high; thyroid pattern mimics hyperthyroidism; dietary intake 30 µg/day vs supplements 5–30 mg/day (up to 300 mg/day in MS); stop ≥ 1 day (up to a week for high doses); alternative methods or streptavidin-bead pretreatment."
+    },
+    {
+      "id": "fda-biotin",
+      "kind": "external",
+      "citation": "US Food and Drug Administration. Biotin interference with troponin lab tests — assays subject to biotin interference (web page; refers to safety communications of Nov 28, 2017 and Nov 5, 2019).",
+      "url": "https://www.fda.gov/medical-devices/in-vitro-diagnostics/biotin-interference-troponin-lab-tests-assays-subject-biotin-interference",
+      "consulted": true,
+      "usedFor": "Biotin can cause incorrect results that may go undetected; adverse events with falsely low troponin; FDA lists troponin assays that have not addressed the risk; discuss biotin with patients."
+    },
+    {
+      "id": "werle2019",
+      "kind": "external",
+      "citation": "Werle E, Ziebart J, Wasmund E, Eske-Pogodda K. Daratumumab interference in pretransfusion testing is overcome by addition of daratumumab Fab fragments to patients’ plasma. Transfus Med Hemother. 2019;46(6):423-430.",
+      "doi": "10.1159/000495773",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6944924",
+      "consulted": true,
+      "usedFor": "Daratumumab binds CD38 on RBCs → pan-agglutination in IAT masking alloantibodies; DTT destroys CD38 but also KEL, DO, JMH, LU, IN, YT; DARA-Fab blocks CD38 without affecting alloantibody detection; half-life up to 587 h, interference persists weeks."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-dir",
+      "text": "Biotin makes streptavidin sandwich immunoassays falsely low and competitive immunoassays falsely high; thyroid results can mimic hyperthyroidism.",
+      "status": "checked",
+      "refs": [
+        "fan2019"
+      ]
+    },
+    {
+      "id": "cl-dose",
+      "text": "Dietary biotin ≈ 30 µg/day; supplements 5–30 mg/day.",
+      "status": "checked",
+      "refs": [
+        "fan2019"
+      ]
+    },
+    {
+      "id": "cl-mit",
+      "text": "Stop biotin ≥ 1 day (up to a week after high doses) before testing; labs can use another method or streptavidin-bead pretreatment.",
+      "status": "checked",
+      "refs": [
+        "fan2019"
+      ]
+    },
+    {
+      "id": "cl-fda",
+      "text": "FDA safety communications in 2017 and 2019; reports of falsely low troponin; FDA lists troponin assays still subject to interference.",
+      "status": "checked",
+      "refs": [
+        "fda-biotin"
+      ]
+    },
+    {
+      "id": "cl-dara",
+      "text": "Daratumumab binds CD38 on red cells, causing pan-reactivity in the IAT that can mask alloantibodies; interference persists weeks (half-life up to ~587 h).",
+      "status": "checked",
+      "refs": [
+        "werle2019"
+      ]
+    },
+    {
+      "id": "cl-dtt",
+      "text": "DTT removes CD38 reactivity but destroys KEL, DO, JMH, LU, IN and YT antigens; DARA-Fab blocking avoids this.",
+      "status": "checked",
+      "refs": [
+        "werle2019"
+      ]
+    },
+    {
+      "id": "cl-vis",
+      "text": "Bead/handle cartoon and six-cell panel.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Sandwich Sinks, Competition Climbs.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-fda-date",
+      "issue": "The reviewer cites only the 2017 FDA biotin communication; FDA updated it in 2019 and maintains a list of troponin assays still subject to interference.",
+      "kind": "outdated",
+      "status": "resolved",
+      "resolution": "Lesson cites both communications and the ongoing FDA list (register flag rv-biotin-fda)."
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Beads, antibodies and red cells are schematic; no real morphology.",
+    "images": []
+  },
+  "verification": {
+    "status": "source-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "All 6 factual claims checked against a peer-reviewed review, an FDA web page and a peer-reviewed open-access study read for this lesson. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-07"
+}
