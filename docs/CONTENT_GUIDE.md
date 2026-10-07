@@ -72,6 +72,7 @@ Every visual object has `type`, `props` (initial values) and optional `keys`:
 | `bin` | `w`, `h`, `label`, `sub`, `tone`, *`highlight`* — a category bucket |
 | `prion` | *`fold`* (0 normal α-helical PrP^C → 1 misfolded β-sheet PrP^Sc), *`stack`* (copies in a fibril), *`size`*, *`highlight`*, `label` |
 | `autoclave` | `temp` (display text), *`heat`* (0→1 glow), `label` |
+| `bellCurve` | `w`, `h`, `range` (± SD on axis), *`limit`* (spec limits at ± SD), *`shift`* (mean shift in SD), `limits` (show), *`tailBoost`*, `label`, `caption` |
 | `icon` | `glyph` (`gavel`,`trophy`,`shield`,`magnifier`,`check`,`cross`,`flask`,`book`,`person`,`flame`,`bell`,`door`), `color`, `disc`, `label` |
 
 Color tokens: `ink`, `muted`, `accent`, `a`, `b`, `h`, `good`, `warn`, `bad`, `plasma`, `saline`, `blood`, `surface`. They follow light and dark mode automatically.

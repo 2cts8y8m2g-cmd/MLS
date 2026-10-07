@@ -1,0 +1,2402 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-six-sigma-vs-lean",
+  "title": "Six Sigma vs Lean: Defects or Waste?",
+  "summary": "Watch a bell curve squeeze until defects nearly vanish, cut wasted steps from a specimen’s path, and calculate a Sigma metric the way labs do.",
+  "domain": "p1-ops",
+  "topic": "ch2",
+  "conceptIds": [
+    "ch2.hit4",
+    "ch2.hit5",
+    "ch2.trap2"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 2,
+        "section": "High-Yield Hits",
+        "items": [
+          4,
+          5
+        ]
+      },
+      {
+        "chapter": 2,
+        "section": "Exam Traps",
+        "items": [
+          2
+        ]
+      },
+      {
+        "chapter": 2,
+        "section": "Number Vault",
+        "items": [
+          1
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 2 Hits 4–5 and Trap 2. Adds what the reviewer omits: the 3.4 DPMO figure assumes a 1.5 SD long-term shift, DMAIC, and the laboratory Sigma metric (TEa − bias)/CV. The reviewer’s specific dates (Motorola 1986, Toyota 1980s) are kept as pending claims."
+  },
+  "prerequisites": [
+    "ch2.hit1"
+  ],
+  "objectives": [
+    "Distinguish Six Sigma (defects and variation) from Lean (waste and flow).",
+    "Explain where the 3.4 defects-per-million figure comes from, including the 1.5 SD shift.",
+    "Calculate a laboratory Sigma metric from TEa, bias and CV, and relate it to QC needs."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two labs, two kinds of “better”",
+      "start": 0,
+      "end": 20,
+      "altText": "Two lab teams each claim to have improved. Team A shows a counter of mislabeled specimens per million falling. Team B shows a specimen path with fewer steps, less walking and less waiting. A question asks which project is Six Sigma and which is Lean.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Two lab teams both say they made the lab better."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 13.5,
+          "text": "Team A counted labeling errors per million specimens and drove the count down. Team B removed walking, waiting and extra handling from the specimen path."
+        },
+        {
+          "id": "h3",
+          "start": 13.5,
+          "end": 20,
+          "text": "One project is Six Sigma; the other is Lean. They sound alike, and exams love to swap them. What really separates them?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "card",
+          "props": {
+            "x": 255,
+            "y": 230,
+            "w": 400,
+            "h": 180,
+            "tone": "b",
+            "title": "Team A",
+            "lines": [
+              "Counts defects per million",
+              "Errors 900 → 40 per million"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "reveal": 0
+            },
+            {
+              "t": 10,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "card",
+          "props": {
+            "x": 705,
+            "y": 230,
+            "w": 400,
+            "h": 180,
+            "tone": "a",
+            "title": "Team B",
+            "lines": [
+              "Maps the specimen path",
+              "9 steps → 5 steps, less waiting"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 12.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "text": "Six Sigma? Lean?",
+            "size": 30,
+            "weight": 900,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 480,
+            "y": 110,
+            "expression": "curious",
+            "scale": 0.7,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Six Sigma: squeeze the spread",
+      "start": 20,
+      "end": 62,
+      "altText": "A bell curve shows a process’s results with two red specification limits. At first the limits are close (about 2 SD) and large red tails fall outside — defects. The spread shrinks relative to the limits until they sit 6 SD from the center and the tails almost vanish. The center then drifts by 1.5 SD, and a tiny tail appears: 3.4 defects per million opportunities. A DMAIC cycle (Define, Measure, Analyze, Improve, Control) circles the curve.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 27,
+          "text": "Picture any lab process — say, how close each result lands to its true value. Most results cluster in the middle; a few wander out. That spread is the bell curve."
+        },
+        {
+          "id": "n2",
+          "start": 27,
+          "end": 34,
+          "text": "The red lines are the limits the result must stay inside. Anything past them is a defect. Here the limits are only about 2 standard deviations away, so lots of results fall outside."
+        },
+        {
+          "id": "n3",
+          "start": 34,
+          "end": 41,
+          "text": "Six Sigma means making the process so consistent that the limits sit 6 standard deviations from the center. The red tails nearly disappear."
+        },
+        {
+          "id": "n4",
+          "start": 41,
+          "end": 48,
+          "text": "Real processes drift a little over time. Six Sigma allows for a drift of 1.5 standard deviations — and that leaves about 3.4 defects per million opportunities."
+        },
+        {
+          "id": "n5",
+          "start": 48,
+          "end": 55,
+          "text": "So “Six Sigma” is a defect target: 3.4 per million, using statistics to find and remove the causes of variation."
+        },
+        {
+          "id": "n6",
+          "start": 55,
+          "end": 62,
+          "text": "Projects follow a cycle called DMAIC: Define, Measure, Analyze, Improve, Control. The approach is credited to Motorola."
+        }
+      ],
+      "objects": [
+        {
+          "id": "curve",
+          "type": "bellCurve",
+          "props": {
+            "x": 480,
+            "y": 360,
+            "w": 640,
+            "h": 220,
+            "range": 7.5,
+            "limit": 2,
+            "shift": 0,
+            "limits": true,
+            "label": "Results of a process",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "limit": 2
+            },
+            {
+              "t": 20,
+              "limit": 6,
+              "ease": "inOut"
+            },
+            {
+              "t": 21.5,
+              "shift": 0
+            },
+            {
+              "t": 25.5,
+              "shift": 1.5,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "lim",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 452,
+            "text": "Red tails = defects (limits at ±2 SD)",
+            "size": 18,
+            "weight": 800,
+            "color": "bad",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "text": "Limits widen to ±6 SD → defects vanish"
+            },
+            {
+              "t": 21.5,
+              "text": "Mean drifts 1.5 SD → ~3.4 defects per million"
+            }
+          ]
+        },
+        {
+          "id": "target",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 40,
+            "w": 620,
+            "wrap": 70,
+            "label": "Six Sigma target: ≤ 3.4 defects per million opportunities",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 29.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "dm0",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 505,
+            "w": 150,
+            "label": "Define",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35.3,
+              "opacity": 0
+            },
+            {
+              "t": 35.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "dm1",
+          "type": "token",
+          "props": {
+            "x": 315,
+            "y": 505,
+            "w": 150,
+            "label": "Measure",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36.199999999999996,
+              "opacity": 0
+            },
+            {
+              "t": 36.699999999999996,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "dm2",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 505,
+            "w": 150,
+            "label": "Analyze",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 37.099999999999994,
+              "opacity": 0
+            },
+            {
+              "t": 37.599999999999994,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "dm3",
+          "type": "token",
+          "props": {
+            "x": 645,
+            "y": 505,
+            "w": 150,
+            "label": "Improve",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 38.0,
+              "opacity": 0
+            },
+            {
+              "t": 38.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "dm4",
+          "type": "token",
+          "props": {
+            "x": 810,
+            "y": 505,
+            "w": 150,
+            "label": "Control",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 38.9,
+              "opacity": 0
+            },
+            {
+              "t": 39.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Lean: cut the waste",
+      "start": 62,
+      "end": 100,
+      "altText": "A specimen’s path through the lab is drawn as a row of nine steps. Steps that add no value — waiting in a rack, an extra walk, re-sorting, a second label check, waiting for a batch — are highlighted and then removed. The path closes up to five value-adding steps and a stopwatch shows a shorter turnaround. A label notes that Lean comes from the Toyota Production System.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 62,
+          "end": 69,
+          "text": "Now Team B. Lean asks a different question: which steps actually add value for the patient?"
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 77,
+          "text": "Follow a tube: collect, wait in a rack, walk to the lab, wait again, sort, re-sort, check the label twice, wait for a batch, test."
+        },
+        {
+          "id": "c3",
+          "start": 77,
+          "end": 85,
+          "text": "Lean calls the non-value-adding steps waste — waiting, extra transport, re-handling — and removes them."
+        },
+        {
+          "id": "c4",
+          "start": 85,
+          "end": 93,
+          "text": "The path closes up: fewer steps, less waiting, a shorter turnaround — without counting defects per million at all."
+        },
+        {
+          "id": "c5",
+          "start": 93,
+          "end": 100,
+          "text": "Lean thinking comes from the Toyota Production System: put customer value first, and remove waste."
+        }
+      ],
+      "objects": [
+        {
+          "id": "s0",
+          "type": "token",
+          "props": {
+            "x": 72,
+            "y": 230,
+            "w": 96,
+            "wrap": 11,
+            "label": "Collect",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.0,
+              "opacity": 0
+            },
+            {
+              "t": 7.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "x": 72
+            },
+            {
+              "t": 26,
+              "x": 160,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "s1",
+          "type": "token",
+          "props": {
+            "x": 174,
+            "y": 230,
+            "w": 96,
+            "wrap": 11,
+            "label": "Wait in rack",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.6,
+              "opacity": 0
+            },
+            {
+              "t": 8.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.1,
+              "highlight": 1
+            },
+            {
+              "t": 22,
+              "opacity": 1
+            },
+            {
+              "t": 22.7,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "token",
+          "props": {
+            "x": 276,
+            "y": 230,
+            "w": 96,
+            "wrap": 11,
+            "label": "Transport",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.2,
+              "opacity": 0
+            },
+            {
+              "t": 8.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "x": 276
+            },
+            {
+              "t": 26,
+              "x": 320,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "token",
+          "props": {
+            "x": 378,
+            "y": 230,
+            "w": 96,
+            "wrap": 11,
+            "label": "Wait again",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.8,
+              "opacity": 0
+            },
+            {
+              "t": 9.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "highlight": 1
+            },
+            {
+              "t": 22,
+              "opacity": 1
+            },
+            {
+              "t": 22.7,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "s4",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 96,
+            "wrap": 11,
+            "label": "Sort",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.4,
+              "opacity": 0
+            },
+            {
+              "t": 9.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "x": 480
+            },
+            {
+              "t": 26,
+              "x": 480,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "s5",
+          "type": "token",
+          "props": {
+            "x": 582,
+            "y": 230,
+            "w": 96,
+            "wrap": 11,
+            "label": "Re-sort",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.0,
+              "opacity": 0
+            },
+            {
+              "t": 10.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.7,
+              "highlight": 1
+            },
+            {
+              "t": 22,
+              "opacity": 1
+            },
+            {
+              "t": 22.7,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "s6",
+          "type": "token",
+          "props": {
+            "x": 684,
+            "y": 230,
+            "w": 96,
+            "wrap": 11,
+            "label": "Label check ×2",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.6,
+              "opacity": 0
+            },
+            {
+              "t": 11.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "highlight": 1
+            },
+            {
+              "t": 22,
+              "opacity": 1
+            },
+            {
+              "t": 22.7,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "s7",
+          "type": "token",
+          "props": {
+            "x": 786,
+            "y": 230,
+            "w": 96,
+            "wrap": 11,
+            "label": "Wait for batch",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.2,
+              "opacity": 0
+            },
+            {
+              "t": 11.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.1,
+              "highlight": 1
+            },
+            {
+              "t": 22,
+              "opacity": 1
+            },
+            {
+              "t": 22.7,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "s8",
+          "type": "token",
+          "props": {
+            "x": 888,
+            "y": 230,
+            "w": 96,
+            "wrap": 11,
+            "label": "Test",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.8,
+              "opacity": 0
+            },
+            {
+              "t": 12.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "x": 888
+            },
+            {
+              "t": 26,
+              "x": 640,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "wasteT",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 340,
+            "text": "Non-value-adding = waste",
+            "size": 20,
+            "weight": 900,
+            "color": "warn",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0
+            },
+            {
+              "t": 16.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22.5,
+              "opacity": 1
+            },
+            {
+              "t": 23.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "clock",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 260,
+            "label": "Turnaround: …",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26,
+              "opacity": 0
+            },
+            {
+              "t": 27,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "label": "Turnaround: shorter ✓"
+            }
+          ]
+        },
+        {
+          "id": "tps",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 600,
+            "h": 110,
+            "tone": "a",
+            "title": "Lean = Toyota Production System thinking",
+            "lines": [
+              "Customer (patient) value first",
+              "Remove waste: waiting, transport, re-handling"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31,
+              "opacity": 0
+            },
+            {
+              "t": 31.5,
+              "reveal": 0
+            },
+            {
+              "t": 32,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: the Sigma metric",
+      "start": 100,
+      "end": 138,
+      "altText": "A worked calculation. An assay has an allowable total error (TEa) of 10%, a bias of 2% and an imprecision (CV) of 2%. The Sigma metric equation (TEa − bias) ÷ CV fills in step by step: (10 − 2) ÷ 2 = 4. A scale from 2 to 6 sigma shows that higher-sigma methods need fewer QC rules, and lower-sigma methods need much more QC.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 108,
+          "text": "Labs use Six Sigma thinking every day through the Sigma metric. It asks: how many of my method’s standard deviations fit inside the error I’m allowed?"
+        },
+        {
+          "id": "l2",
+          "start": 108,
+          "end": 116,
+          "text": "The formula: Sigma equals allowable total error minus bias, divided by the CV — all in percent."
+        },
+        {
+          "id": "l3",
+          "start": 116,
+          "end": 124,
+          "text": "Example: allowable error 10 percent, bias 2 percent, CV 2 percent. Ten minus two is eight; eight divided by two is a Sigma of 4."
+        },
+        {
+          "id": "l4",
+          "start": 124,
+          "end": 131,
+          "text": "The higher the Sigma, the fewer QC rules and control runs the method needs. Methods around 3 Sigma or lower need very tight QC."
+        },
+        {
+          "id": "l5",
+          "start": 131,
+          "end": 138,
+          "text": "Lean shows up at the bench too: removing manual steps like extra sorting saves real hours of labor every day."
+        }
+      ],
+      "objects": [
+        {
+          "id": "f",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 110,
+            "w": 620,
+            "h": 110,
+            "tone": "b",
+            "title": "Sigma metric",
+            "lines": [
+              "Sigma = (TEa% − bias%) ÷ CV%"
+            ],
+            "reveal": 0,
+            "size": 20,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "reveal": 0
+            },
+            {
+              "t": 12,
+              "reveal": 1,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "tea",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 250,
+            "w": 170,
+            "label": "TEa = 10%",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16,
+              "opacity": 0
+            },
+            {
+              "t": 16.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "bias",
+          "type": "token",
+          "props": {
+            "x": 400,
+            "y": 250,
+            "w": 170,
+            "label": "bias = 2%",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.8,
+              "opacity": 0
+            },
+            {
+              "t": 17.400000000000002,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cv",
+          "type": "token",
+          "props": {
+            "x": 600,
+            "y": 250,
+            "w": 170,
+            "label": "CV = 2%",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.6,
+              "opacity": 0
+            },
+            {
+              "t": 18.200000000000003,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "calc",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 330,
+            "text": "(10 − 2) ÷ 2",
+            "size": 26,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19,
+              "opacity": 0
+            },
+            {
+              "t": 20,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "text": "(10 − 2) ÷ 2 = 8 ÷ 2 = 4 Sigma"
+            }
+          ]
+        },
+        {
+          "id": "lv0",
+          "type": "token",
+          "props": {
+            "x": 170,
+            "y": 430,
+            "w": 130,
+            "label": "2 Sigma",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "lv1",
+          "type": "token",
+          "props": {
+            "x": 325,
+            "y": 430,
+            "w": 130,
+            "label": "3 Sigma",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25.1,
+              "opacity": 0
+            },
+            {
+              "t": 25.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "lv2",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 430,
+            "w": 130,
+            "label": "4 Sigma",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25.7,
+              "opacity": 0
+            },
+            {
+              "t": 26,
+              "highlight": 1
+            },
+            {
+              "t": 26.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "lv3",
+          "type": "token",
+          "props": {
+            "x": 635,
+            "y": 430,
+            "w": 130,
+            "label": "5 Sigma",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.3,
+              "opacity": 0
+            },
+            {
+              "t": 26.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "lv4",
+          "type": "token",
+          "props": {
+            "x": 790,
+            "y": 430,
+            "w": 130,
+            "label": "6 Sigma",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.9,
+              "opacity": 0
+            },
+            {
+              "t": 27.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "qc",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "text": "Higher Sigma → fewer QC rules · lower Sigma → much more QC",
+            "size": 16,
+            "weight": 800,
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27,
+              "opacity": 0
+            },
+            {
+              "t": 28,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "lean",
+          "type": "token",
+          "props": {
+            "x": 830,
+            "y": 250,
+            "w": 220,
+            "label": "Lean at the bench: fewer manual steps",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "The swap the exam is waiting for",
+      "start": 138,
+      "end": 166,
+      "altText": "Two comparison cards: Six Sigma (Motorola; defects; ≤3.4 defects per million opportunities; statistics; DMAIC) versus Lean (Toyota Production System; waste; flow and customer value; removing non-value-adding steps). Then short-term Sigma (assumes a 1.5 SD shift; 3.4 DPMO at 6 Sigma) versus long-term Sigma (no shift).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 138,
+          "end": 145,
+          "text": "Exam pair one: Six Sigma versus Lean."
+        },
+        {
+          "id": "e2",
+          "start": 145,
+          "end": 152,
+          "text": "Six Sigma: from Motorola, attacks defects and variation with statistics, aims for 3.4 per million, uses DMAIC. Lean: from Toyota, attacks waste and improves flow."
+        },
+        {
+          "id": "e3",
+          "start": 152,
+          "end": 159,
+          "text": "Exam pair two: where does 3.4 come from?"
+        },
+        {
+          "id": "e4",
+          "start": 159,
+          "end": 166,
+          "text": "The famous 3.4 defects per million assumes a 1.5 standard-deviation drift. Without that shift, 6 Sigma would mean far fewer defects."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ss",
+          "type": "card",
+          "props": {
+            "x": 255,
+            "y": 280,
+            "w": 410,
+            "h": 260,
+            "tone": "b",
+            "title": "Six Sigma",
+            "lines": [
+              "Credited to Motorola",
+              "Target: defects & variation",
+              "≤ 3.4 defects per million",
+              "Statistics + DMAIC"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "x": 215
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "x": 255
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 7,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 13.4,
+              "opacity": 1
+            },
+            {
+              "t": 14.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ln",
+          "type": "card",
+          "props": {
+            "x": 705,
+            "y": 280,
+            "w": 410,
+            "h": 260,
+            "tone": "a",
+            "title": "Lean",
+            "lines": [
+              "Toyota Production System",
+              "Target: waste",
+              "Flow & customer value",
+              "Remove non-value-adding steps"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.6,
+              "opacity": 0,
+              "x": 745
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out",
+              "x": 705
+            },
+            {
+              "t": 7,
+              "reveal": 0
+            },
+            {
+              "t": 13,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 13.4,
+              "opacity": 1
+            },
+            {
+              "t": 14.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "st",
+          "type": "bellCurve",
+          "props": {
+            "x": 255,
+            "y": 380,
+            "w": 360,
+            "h": 150,
+            "range": 8,
+            "limit": 6,
+            "shift": 1.5,
+            "label": "Short-term: allows 1.5 SD drift",
+            "caption": "6 Sigma ≈ 3.4 defects per million",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 15,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "lt",
+          "type": "bellCurve",
+          "props": {
+            "x": 705,
+            "y": 380,
+            "w": 360,
+            "h": 150,
+            "range": 8,
+            "limit": 6,
+            "shift": 0,
+            "label": "Long-term: no drift",
+            "caption": "6 Sigma ≈ far fewer defects",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.6,
+              "opacity": 0
+            },
+            {
+              "t": 15.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "key",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "text": "Defects → Six Sigma · Waste → Lean",
+            "size": 20,
+            "weight": 900,
+            "color": "accent",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Sigma Squeezes Spread · Lean Loses Loops",
+      "start": 166,
+      "end": 188,
+      "altText": "Memory aid: hands squeezing a bell curve narrower (“Sigma squeezes spread”) and scissors cutting loops out of a tangled specimen path (“Lean loses loops”). A card lists where the aid breaks down.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 166,
+          "end": 172,
+          "text": "Memory aid: Sigma Squeezes Spread — it narrows variation until defects nearly vanish."
+        },
+        {
+          "id": "m2",
+          "start": 172,
+          "end": 179,
+          "text": "Lean Loses Loops — it cuts the wasted loops, waits and walks out of the path."
+        },
+        {
+          "id": "m3",
+          "start": 179,
+          "end": 188,
+          "text": "Where it breaks: many labs combine the two as “Lean Six Sigma,” and both aim at quality and cost. The exam still wants you to know which tool targets defects and which targets waste."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 55,
+            "text": "Sigma Squeezes Spread · Lean Loses Loops",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "bellCurve",
+          "props": {
+            "x": 260,
+            "y": 320,
+            "w": 360,
+            "h": 160,
+            "range": 7,
+            "limit": 2.5,
+            "shift": 0,
+            "label": "Squeeze the spread",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 2,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2,
+              "limit": 2.5
+            },
+            {
+              "t": 5.5,
+              "limit": 5.5,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "p0",
+          "type": "token",
+          "props": {
+            "x": 600,
+            "y": 190,
+            "w": 100,
+            "label": "Step",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.5,
+              "opacity": 0
+            },
+            {
+              "t": 6.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p1",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 100,
+            "label": "Wait",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.9,
+              "opacity": 0
+            },
+            {
+              "t": 7.300000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.7,
+              "opacity": 1
+            },
+            {
+              "t": 10.299999999999999,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "token",
+          "props": {
+            "x": 820,
+            "y": 190,
+            "w": 100,
+            "label": "Step",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.3,
+              "opacity": 0
+            },
+            {
+              "t": 7.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "type": "token",
+          "props": {
+            "x": 600,
+            "y": 260,
+            "w": 100,
+            "label": "Walk",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.7,
+              "opacity": 0
+            },
+            {
+              "t": 8.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.1,
+              "opacity": 1
+            },
+            {
+              "t": 10.7,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "p4",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 260,
+            "w": 100,
+            "label": "Step",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.1,
+              "opacity": 0
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p5",
+          "type": "token",
+          "props": {
+            "x": 820,
+            "y": 260,
+            "w": 100,
+            "label": "Re-sort",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "opacity": 1
+            },
+            {
+              "t": 11.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "cut",
+          "type": "label",
+          "props": {
+            "x": 710,
+            "y": 360,
+            "text": "Loops cut ✂",
+            "size": 20,
+            "weight": 900,
+            "color": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 820,
+            "h": 80,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Often combined as Lean Six Sigma · both serve quality and cost · know which targets defects vs waste"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.5,
+              "reveal": 0
+            },
+            {
+              "t": 16.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 188,
+      "end": 198,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 188,
+          "end": 193,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 193,
+          "end": 198,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 198,
+      "end": 210,
+      "altText": "A narrowed bell curve labelled “defects → Six Sigma” beside a shortened specimen path labelled “waste → Lean”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 198,
+          "end": 210,
+          "text": "Six Sigma, credited to Motorola, cuts defects by reducing variation toward 3.4 per million opportunities, while Lean, from the Toyota Production System, cuts waste so work flows to the patient faster."
+        }
+      ],
+      "objects": [
+        {
+          "id": "c",
+          "type": "bellCurve",
+          "props": {
+            "x": 260,
+            "y": 300,
+            "w": 360,
+            "h": 150,
+            "range": 7,
+            "limit": 3,
+            "shift": 0,
+            "label": "Defects → Six Sigma",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 1,
+              "limit": 3
+            },
+            {
+              "t": 4,
+              "limit": 6,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "p0",
+          "type": "token",
+          "props": {
+            "x": 600,
+            "y": 260,
+            "w": 100,
+            "label": "Collect",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p1",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 260,
+            "w": 100,
+            "label": "Sort",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 3.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "token",
+          "props": {
+            "x": 820,
+            "y": 260,
+            "w": 100,
+            "label": "Test",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.0,
+              "opacity": 0
+            },
+            {
+              "t": 4.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "w",
+          "type": "label",
+          "props": {
+            "x": 710,
+            "y": 340,
+            "text": "Waste → Lean",
+            "size": 18,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5,
+              "opacity": 0
+            },
+            {
+              "t": 6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: Six Sigma makes a process so consistent that mistakes almost never happen; Lean removes the steps that waste time and effort. Scientific terms: Six Sigma targets a defect rate of about 3.4 defects per million opportunities (DPMO) using statistics and the DMAIC cycle; Lean identifies and removes non-value-adding activity (“waste”) to improve flow and value for the customer — in a lab, the patient.",
+    "why": "Defects happen when a process varies too much relative to its limits. If the limits sit 6 standard deviations from the center, even after a 1.5 SD long-term drift only about 3.4 defects per million remain — that is the Six Sigma benchmark. Waste happens when steps add time but no value; removing waiting, transport and re-handling shortens turnaround without needing defect statistics. Six Sigma is credited to Motorola; Lean comes from the Toyota Production System.",
+    "measure": "Labs apply Six Sigma through the Sigma metric: Sigma = (TEa% − bias%) ÷ CV%, where TEa is the allowable total error. A higher Sigma means a method needs fewer QC rules and control runs; methods at about 3 Sigma or below need very tight QC. Lean is applied by mapping specimen and task flow and removing non-value-adding steps.",
+    "differs": "Six Sigma = defects and variation, statistics, DMAIC, Motorola. Lean = waste and flow, value-stream thinking, Toyota. Short-term Sigma (the usual one) assumes a 1.5 SD shift; long-term Sigma does not, which is why 6 Sigma can be quoted as 3.4 DPMO or as a far smaller number.",
+    "examAngle": "Expect: “Six Sigma targets how many defects per million?” (3.4), “which methodology focuses on eliminating waste?” (Lean), the Motorola vs Toyota origin swap, and a Sigma-metric calculation from TEa, bias and CV."
+  },
+  "comparisons": [
+    {
+      "id": "ss-vs-lean",
+      "title": "Six Sigma vs Lean",
+      "left": {
+        "label": "Six Sigma",
+        "points": [
+          "Credited to Motorola",
+          "Reduces defects and variation",
+          "≈3.4 defects per million opportunities; DMAIC"
+        ]
+      },
+      "right": {
+        "label": "Lean",
+        "points": [
+          "Toyota Production System",
+          "Removes waste (non-value-adding steps)",
+          "Improves flow and customer value"
+        ]
+      },
+      "distinguisher": "What is being attacked: defects and variation (Six Sigma) or waste (Lean)."
+    },
+    {
+      "id": "short-vs-long",
+      "title": "Short-term vs long-term Sigma",
+      "left": {
+        "label": "Short-term Sigma (usual)",
+        "points": [
+          "Assumes a 1.5 SD long-term shift",
+          "6 Sigma ≈ 3.4 DPMO",
+          "The figure exams quote"
+        ]
+      },
+      "right": {
+        "label": "Long-term Sigma",
+        "points": [
+          "No shift assumed",
+          "6 Sigma ≈ a far smaller DPMO",
+          "Debated for lab processes"
+        ]
+      },
+      "distinguisher": "Whether the 1.5 SD shift is built in."
+    }
+  ],
+  "mnemonic": {
+    "text": "Sigma Squeezes Spread; Lean Loses Loops.",
+    "explanation": "Six Sigma squeezes the spread (variation) until defects nearly vanish; Lean cuts the loops — waits, walks and re-handling — out of the workflow.",
+    "limitation": "Many organizations combine the two as Lean Six Sigma, and both aim at quality and cost, so real projects often use both. The aid also hides the 1.5 SD-shift assumption behind 3.4 DPMO, and it says nothing about how Sigma metrics depend on the TEa you choose."
+  },
+  "analogyLimitations": [
+    "The bell curve is idealized (perfectly normal); real lab data may be skewed.",
+    "The nine-step specimen path is illustrative, not a real value-stream map.",
+    "The TEa, bias and CV values are an invented example; real TEa goals depend on the chosen quality specification."
+  ],
+  "takeaway": "Six Sigma, credited to Motorola, cuts defects by reducing variation toward 3.4 per million opportunities, while Lean, from the Toyota Production System, cuts waste so work flows to the patient faster.",
+  "questions": [
+    {
+      "id": "ops-sigma-q1",
+      "stem": "A laboratory project counts mislabeled specimens per million, studies their causes statistically, and follows Define–Measure–Analyze–Improve–Control. Which approach is this?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Six Sigma",
+          "rationale": "Correct. Six Sigma uses statistics and the DMAIC cycle to reduce defects toward about 3.4 per million opportunities."
+        },
+        {
+          "id": "b",
+          "text": "Lean",
+          "rationale": "Incorrect. Lean focuses on removing waste and improving flow, not on counting defects per million with DMAIC."
+        },
+        {
+          "id": "c",
+          "text": "Prospective payment",
+          "rationale": "Incorrect. That is a hospital reimbursement method, not a quality-improvement approach."
+        },
+        {
+          "id": "d",
+          "text": "Standard Precautions",
+          "rationale": "Incorrect. That is an infection-prevention practice."
+        }
+      ],
+      "answer": "a",
+      "skill": "Distinguish Six Sigma from Lean",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-sigma-q2",
+      "stem": "An assay has an allowable total error (TEa) of 12%, a bias of 2% and a CV of 2.5%. What is its Sigma metric?",
+      "options": [
+        {
+          "id": "a",
+          "text": "4.0",
+          "rationale": "Correct. Sigma = (TEa − bias) ÷ CV = (12 − 2) ÷ 2.5 = 10 ÷ 2.5 = 4.0."
+        },
+        {
+          "id": "b",
+          "text": "5.6",
+          "rationale": "Incorrect. This adds the bias instead of subtracting it: (12 + 2) ÷ 2.5 = 5.6."
+        },
+        {
+          "id": "c",
+          "text": "4.8",
+          "rationale": "Incorrect. This ignores the bias: 12 ÷ 2.5 = 4.8."
+        },
+        {
+          "id": "d",
+          "text": "0.25",
+          "rationale": "Incorrect. This inverts the ratio: 2.5 ÷ 10 = 0.25."
+        }
+      ],
+      "answer": "a",
+      "skill": "Calculate a Sigma metric",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-sigma-q3",
+      "stem": "A team maps the path of a specimen and removes waiting in racks, an extra walk and a repeated sorting step, shortening turnaround time. Which approach does this best represent?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Lean, which removes non-value-adding steps (waste)",
+          "rationale": "Correct. Lean identifies waste — waiting, transport, re-handling — and removes it to add value for the patient."
+        },
+        {
+          "id": "b",
+          "text": "Six Sigma, because any improvement is Six Sigma",
+          "rationale": "Incorrect. Six Sigma specifically reduces defects and variation using statistics; this project targets waste and flow."
+        },
+        {
+          "id": "c",
+          "text": "A Sigma metric calculation",
+          "rationale": "Incorrect. A Sigma metric measures analytical performance from TEa, bias and CV; no such calculation was done."
+        },
+        {
+          "id": "d",
+          "text": "A long-term Sigma analysis without the 1.5 SD shift",
+          "rationale": "Incorrect. That concerns how defect rates are calculated, not removing workflow steps."
+        }
+      ],
+      "answer": "a",
+      "skill": "Distinguish Six Sigma from Lean",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch2",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 2, Making the Lab Faster and Better (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 2,
+          "section": "High-Yield Hits",
+          "items": [
+            4,
+            5
+          ]
+        },
+        {
+          "chapter": 2,
+          "section": "Exam Traps",
+          "items": [
+            2
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "westgard2018",
+      "kind": "external",
+      "citation": "Westgard S, Bayat H, Westgard JO. Analytical Sigma metrics: A review of Six Sigma implementation tools for medical laboratories. Biochem Med (Zagreb). 2018;28(2):020502.",
+      "doi": "10.11613/bm.2018.020502",
+      "url": "https://europepmc.org/article/PMC/PMC6039161",
+      "consulted": true,
+      "usedFor": "3.4 defects per million (short-term Sigma) assumes a 1.5 SD shift; long-term Sigma assumes none; Sigma metric = (TEa% − bias%)/CV; world-class methods need fewer QC rules; methods below 3 Sigma need impractically frequent QC; Six Sigma began at Motorola and GE."
+    },
+    {
+      "id": "coskun2020",
+      "kind": "external",
+      "citation": "Coskun A, Ialongo C. Six Sigma revisited: We need evidence to include a 1.5 SD shift in the extraanalytical phase of the total testing process. Biochem Med (Zagreb). 2020;30(1):010901.",
+      "doi": "10.11613/bm.2020.010901",
+      "url": "https://europepmc.org/article/PMC/PMC6999184",
+      "consulted": true,
+      "usedFor": "6 Sigma = ≤3.4 DPMO with a 1.5 SD shift (≈0.002 DPMO without); DMAIC; quantitative statistical analysis."
+    },
+    {
+      "id": "vest2009",
+      "kind": "external",
+      "citation": "Vest JR, Gamm LD. A critical review of the research literature on Six Sigma, Lean and StuderGroup’s Hardwiring Excellence in the United States. Implement Sci. 2009;4:35.",
+      "doi": "10.1186/1748-5908-4-35",
+      "url": "https://europepmc.org/article/PMC/PMC2709888",
+      "consulted": true,
+      "usedFor": "Motorola receives credit for creating Six Sigma; Lean is the Toyota Production System adopted from manufacturing; Six Sigma relies on statistical methods to reduce defect rates."
+    },
+    {
+      "id": "moraros2016",
+      "kind": "external",
+      "citation": "Moraros J, Lemstra M, Nwankwo C. Lean interventions in healthcare: do they actually work? A systematic literature review. Int J Qual Health Care. 2016;28(2):150-165.",
+      "doi": "10.1093/intqhc/mzv123",
+      "url": "https://europepmc.org/article/PMC/PMC4833201",
+      "consulted": true,
+      "usedFor": "Lean thinking begins with identifying and removing waste to add value to the customer or patient; non-value-adding activities are waste."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-34",
+      "text": "Six Sigma corresponds to about 3.4 defects per million opportunities, assuming a 1.5 SD long-term shift; without the shift the figure is far smaller (≈0.002 DPMO).",
+      "status": "checked",
+      "refs": [
+        "westgard2018",
+        "coskun2020"
+      ]
+    },
+    {
+      "id": "cl-dmaic",
+      "text": "Six Sigma uses statistical analysis and the DMAIC cycle (define, measure, analyse, improve, control).",
+      "status": "checked",
+      "refs": [
+        "coskun2020",
+        "vest2009"
+      ]
+    },
+    {
+      "id": "cl-motorola",
+      "text": "Motorola is credited with creating Six Sigma.",
+      "status": "checked",
+      "refs": [
+        "vest2009",
+        "westgard2018"
+      ]
+    },
+    {
+      "id": "cl-lean",
+      "text": "Lean (Toyota Production System) removes waste — non-value-adding activity — to add value for the customer or patient.",
+      "status": "checked",
+      "refs": [
+        "moraros2016",
+        "vest2009"
+      ]
+    },
+    {
+      "id": "cl-sm",
+      "text": "Sigma metric = (TEa% − bias%) ÷ CV%; higher-Sigma methods need fewer QC rules; methods at or below about 3 Sigma need very frequent QC.",
+      "status": "checked",
+      "refs": [
+        "westgard2018"
+      ]
+    },
+    {
+      "id": "cl-calc",
+      "text": "(10 − 2) ÷ 2 = 4 and (12 − 2) ÷ 2.5 = 4.0.",
+      "status": "checked",
+      "refs": [
+        "westgard2018"
+      ],
+      "note": "Arithmetic using the cited formula."
+    },
+    {
+      "id": "cl-1986",
+      "text": "Six Sigma began at Motorola in 1986 (Bill Smith); Lean was popularized from Toyota in the 1980s.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch2"
+      ],
+      "note": "Reviewer’s dates; consulted sources credit Motorola and Toyota without these dates."
+    },
+    {
+      "id": "cl-curve",
+      "text": "Idealized bell curve and illustrative specimen path.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mnemonic",
+      "text": "“Sigma Squeezes Spread; Lean Loses Loops.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-shift",
+      "issue": "The reviewer gives “3.4 defects per million” without the 1.5 SD-shift assumption; whether that shift should be applied to laboratory processes is debated in the literature.",
+      "kind": "missing-context",
+      "status": "resolved",
+      "resolution": "Lesson explains the shift and short- vs long-term Sigma."
+    },
+    {
+      "id": "f-tea",
+      "issue": "Sigma metrics depend on the TEa source chosen (e.g. CLIA limits, biological variation); the example values are illustrative.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "A management concept; visuals are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 claims checked against four peer-reviewed open-access sources read for this lesson; 1 pending (dates). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-07"
+}

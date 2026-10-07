@@ -806,6 +806,57 @@ function Autoclave({ p }: { p: Props }) {
   );
 }
 
+/* ---------------- statistics ---------------- */
+
+/** Normal curve with optional spec limits at ±limit SD and a mean shift (in SD). Tails beyond limits are shaded. */
+function BellCurve({ p, id }: { p: Props; id: string }) {
+  const w = num(p, 'w', 520);
+  const h = num(p, 'h', 220);
+  const range = num(p, 'range', 7); // ± SD shown on the axis
+  const limit = num(p, 'limit', 3);
+  const shift = num(p, 'shift', 0);
+  const showLimits = bool(p, 'limits', true);
+  const sx = (z: number) => (z / range) * (w / 2);
+  const pdf = (z: number) => Math.exp(-0.5 * (z - shift) * (z - shift));
+  const pts: string[] = [];
+  for (let i = 0; i <= 200; i++) {
+    const z = -range + (i / 200) * 2 * range;
+    pts.push(`${sx(z)},${-pdf(z) * h}`);
+  }
+  const area = (from: number, to: number) => {
+    const a: string[] = [`M${sx(from)},0`];
+    for (let i = 0; i <= 60; i++) {
+      const z = from + (i / 60) * (to - from);
+      a.push(`L${sx(z)},${-pdf(z) * h}`);
+    }
+    a.push(`L${sx(to)},0 Z`);
+    return a.join(' ');
+  };
+  const tail = clamp(num(p, 'tailBoost', 0), 0, 1);
+  const clipId = `bell-${id}`;
+  return (
+    <g>
+      <defs><clipPath id={clipId}><rect x={-w / 2} y={-h - 10} width={w} height={h + 10} /></clipPath></defs>
+      <line x1={-w / 2} y1={0} x2={w / 2} y2={0} stroke="var(--line)" strokeWidth={2} />
+      <g clipPath={`url(#${clipId})`}>
+        <path d={area(-range, range)} fill="var(--tone-b)" />
+        {showLimits && <path d={area(limit, range)} fill="var(--bad)" opacity={0.55 + tail * 0.4} />}
+        {showLimits && <path d={area(-range, -limit)} fill="var(--bad)" opacity={0.55 + tail * 0.4} />}
+        <polyline points={pts.join(' ')} fill="none" stroke="var(--ag-b)" strokeWidth={3} />
+      </g>
+      <line x1={sx(shift)} y1={0} x2={sx(shift)} y2={-h - 6} stroke="var(--ag-b)" strokeWidth={1.5} strokeDasharray="5 5" />
+      {showLimits && [-limit, limit].map((z) => (
+        <g key={z}>
+          <line x1={sx(z)} y1={8} x2={sx(z)} y2={-h - 6} stroke="var(--bad)" strokeWidth={3} />
+          <g transform={`translate(${sx(z)},24)`}><Text lines={[`${z > 0 ? '+' : '−'}${Math.abs(Math.round(limit * 10) / 10)} SD`]} size={13} fill="var(--bad)" weight={800} /></g>
+        </g>
+      ))}
+      {str(p, 'label', '') && <g transform={`translate(0,${-h - 26})`}><Text lines={[str(p, 'label', '')]} size={16} fill="var(--ink)" weight={800} /></g>}
+      {str(p, 'caption', '') && <g transform="translate(0,50)"><Text lines={wrap(str(p, 'caption', ''), 60)} size={14} fill="var(--muted)" weight={700} /></g>}
+    </g>
+  );
+}
+
 type Renderer = (args: { p: Props; id: string }) => ReactNode;
 
 export const VISUALS: Record<VisualType, Renderer> = {
@@ -831,6 +882,7 @@ export const VISUALS: Record<VisualType, Renderer> = {
   icon: Icon,
   prion: Prion,
   autoclave: Autoclave,
+  bellCurve: BellCurve,
 };
 
 /** Positions any visual using the shared transform props. */

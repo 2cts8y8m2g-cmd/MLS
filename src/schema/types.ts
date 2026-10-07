@@ -68,6 +68,7 @@ export const VISUAL_TYPES = [
   'icon',
   'prion',
   'autoclave',
+  'bellCurve',
 ] as const;
 export type VisualType = (typeof VISUAL_TYPES)[number];
 

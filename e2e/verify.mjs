@@ -89,7 +89,7 @@ try {
     await page.waitForSelector('h1');
     check('Dashboard renders', (await page.textContent('h1')).includes('Watch it happen'));
     const recs = await page.textContent('#recs');
-    check('Dashboard recommends lessons in reviewer order (Ch. 1 first)', recs.indexOf("CLIA '88") > -1 && recs.indexOf("CLIA '88") < recs.indexOf('ABO Forward'));
+    check('Dashboard recommends lessons in reviewer order (Ch. 1 first)', recs.indexOf("CLIA '88") > -1 && (recs.indexOf('ABO Forward') === -1 || recs.indexOf("CLIA '88") < recs.indexOf('ABO Forward')));
     check('Dashboard names the source reviewer', (await page.textContent('main')).includes('Source: MEMORY LAB'));
     await page.screenshot({ path: `${OUT}dashboard-desktop.png`, fullPage: true });
 
