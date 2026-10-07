@@ -3,12 +3,12 @@
 ## State at hand-off (2026-10-07)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 10, teaching 43 of 1,932 concepts (about 2%).** All 10 still require review: each has pending claims, and none has had human expert review.
-  - Ch. 1 (18/23 concepts): `ops-clia-complexity-accreditation`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-lab-safety-precautions-osha`, `ops-reimbursement-drg-payment-window`.
+- **Lessons complete: 11, teaching 48 of 1,932 concepts (about 2.5%).** All 11 still require review: each has pending claims, and none has had human expert review.
+  - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-lab-safety-precautions-osha`, `ops-reimbursement-drg-payment-window`, `ops-lab-design-hazcom-numbers`.
   - Ch. 2 (23/23 concepts): `ops-workflow-before-technology`, `ops-six-sigma-vs-lean`, `ops-instrument-selection-uptime-batch`, `ops-consolidation-utilization-autoverification`.
   - Ch. 40 (2/36 concepts): `ih-abo-forward-reverse`.
-- **Reviewer accuracy register:** 18 flags (10 verified issues, 8 needing verification), plus scan results.
-- **Checks:** 116 unit tests and 85 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Reviewer accuracy register:** 21 flags (11 verified issues, 10 needing verification), plus scan results.
+- **Checks:** 122 unit tests and 85 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -27,7 +27,7 @@ Prerequisite overrides and cross-chapter links are in `build_curriculum.py` (`OV
 
 Work chapter by chapter. Each chapter's **core concept (Hit 1)** comes first, then clusters of related Hits, Traps and table rows.
 
-1. **Ch. 1, remaining 5 concepts:** Hit 11 (sharps-injury statistics), Hit 12 (state licensure count), Hit 13 (lab design; the eyewash-distance flag `rv-eyewash-100ft` applies), Hit 14 (GHS/SDS threshold; unverified), and Table 1. Verify each before teaching, or teach them with pending claims.
+1. **Ch. 1:** all concepts taught. Still pending in its lessons: design/HVAC/exit targets (`rv-two-exits`), sharps figures (`rv-sharps-2014`), the dated licensure count (`rv-licensure-count`), workforce figures, and the items listed in each lesson's claims.
 2. **Ch. 2:** all concepts taught. Still pending in its lessons: the reviewer's numeric examples (10 s per tube, 4 vs 10 tests per sample, rerun example), the uptime contract rule, standardization, stockpiling, and test-cost figures.
 3. **Ch. 3 core:** order of draw. The reviewer's Ch. 3 cites a 2017 FDA biotin communication; check it for updates.
 4. **Ch. 4 core:** Beer's law. A good fit for a new `pathway` or `spectro` visual.
