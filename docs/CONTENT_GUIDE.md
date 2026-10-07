@@ -1,0 +1,89 @@
+# Content guide: writing a MEMORY LAB lesson
+
+Lessons are JSON files in `content/lessons/`, named `<lesson id>.json`. The TypeScript schema is in `src/schema/types.ts`, and the rules are in `src/schema/validate.ts`. Use **Author** in the app to edit and preview. Then run:
+
+```bash
+npm run validate         # structural errors + completeness checklist + review needs
+npm run coverage:report  # refresh docs/COVERAGE.md
+npm test                 # includes content integrity tests
+```
+
+## 1. Teaching contract (every lesson)
+
+| # | Scene `kind` | Must show |
+|---|---|---|
+| 1 | `hook` | A visual question or short lab scenario |
+| 2 | `normal` | The normal mechanism, step by step |
+| 3 | `change` | The abnormal process, interference or diagnostic difference (or the principle or workflow, for topics with no disease link) |
+| 4 | `lab` | Specimen → method → observation → interpretation |
+| 5 | `exam` | Commonly confused concepts side by side, with the distinguishing feature |
+| 6 | `memory` | An original mnemonic or analogy **and where it stops matching the science** |
+| 7 | `check` | A prompt leading to the 3 questions (rendered below the player) |
+| 8 | `takeaway` | One sentence |
+
+Writing style: about a 5th-grade reading level, keeping correct terms and exam-level depth. Give the plain-language idea first, then name it ("We see clumps. That is *agglutination*."). Explain the mechanism; don't list facts. Write originally, and never copy textbook passages, question banks or figures.
+
+`explanation` answers the five questions: `what`, `why`, `measure`, `differs`, `examAngle`.
+
+## 2. Timing
+
+- `scene.start` / `scene.end` and `cue.start` / `cue.end` are **absolute lesson seconds**. Scenes must be contiguous from 0 to `duration`.
+- Keyframe `t` values are **seconds from the scene start**.
+- Each cue (caption) should have at least one keyframe inside it, so the visuals change with the words. A unit test enforces this for the reference lesson.
+- Plan for about 150 words per minute of caption text at 1×. When narration is on, the player waits at the end of a caption until speech finishes.
+
+## 3. Animation model
+
+Every visual object has `type`, `props` (initial values) and optional `keys`:
+
+```json
+{ "id": "cell", "type": "rbc", "props": { "x": 300, "y": 250, "antigen": "A", "opacity": 0 },
+  "keys": [ { "t": 0, "opacity": 0 }, { "t": 1.5, "opacity": 1, "ease": "out" } ] }
+```
+
+- Numbers interpolate between keyframes that mention them. Strings and booleans switch at the keyframe.
+- `ease` on the **destination** key: `linear`, `in`, `out`, `inOut` (default), or `step` (hold, then jump).
+- Before the first key, the `props` value is shown.
+- The stage is **960 × 540** (16:9). Shared props for all types: `x`, `y`, `scale`, `rotate`, `opacity`.
+- Reduced-motion mode shows the settled end state of each caption, so make sure the state at each caption's end makes sense on its own.
+
+## 4. Visual types
+
+| Type | Key props (animatable numbers in *italics*) |
+|---|---|
+| `rbc` | `r`, `antigen` (`A`,`B`,`AB`,`O`=H only,`none`=Bombay), `antigens` (count), `face`, `mood` (`happy`/`neutral`/`worried`), *`highlight`*, `label`, `labelSize` |
+| `antibody` | `spec` (`A`,`B`,`H`,`AB`), `cls` (`IgM` pentamer / `IgG`), *`size`*, *`spin`* (rotates the molecule, not its label), `label` |
+| `cellField` | `w`, `h`, `count`, `cellR`, `antigen`, `spec`, `seed`, *`free`* (unbound antibodies), *`bound`* (bridging antibodies), *`clump`* (0 dispersed → 1 lattice), *`hemolysis`*, `label` |
+| `tube` | `label`, `fluid` (`saline`/`plasma`/CSS color), *`level`*, *`cells`*, *`settle`* (button forms), *`shake`* (resuspension), *`grade`* (0–4 clump pattern), *`hemolysis`*, *`highlight`*, `result` (chip text) |
+| `dropper` | `label`, `color`, *`drop`* (0→1 a drop falls), `dropDistance` |
+| `centrifuge` | *`spin`* (degrees), `label` |
+| `specimen` | `top` (`lavender`,`pink`,`red`,`gold`,`blue`,`green`,`gray`), *`separated`* (plasma layer), `label` |
+| `gradeScale` | *`reveal`* (0–5), *`highlight`* (index), `descriptions[]` |
+| `table` | `title`, `cols[]`, `rows[][]`, `cellW`, `cellH`, *`reveal`* (cells shown), *`highlightRow`* |
+| `card` | `w`, `h`, `title`, `lines[]`, *`reveal`*, `tone` (`a`,`b`,`neutral`,`warn`,`good`), `size` |
+| `label` | `text` (`\n` for line breaks), `size`, `weight`, `color` token, `align`, `bg`, `wrap` |
+| `bubble` | `text`, `w`, `tail` (`left`/`right`/`down`), `tone`, `size` |
+| `arrow` | `dx`, `dy`, *`draw`* (0→1), `color`, `label`, `dashed` |
+| `highlight` | `w`, `h`, `color`, `dashed` (pulses unless reduced motion) |
+| `mascot` | `expression` (`happy`/`curious`/`thinking`/`alert`) |
+
+Color tokens: `ink`, `muted`, `accent`, `a`, `b`, `h`, `good`, `warn`, `bad`, `plasma`, `saline`, `blood`, `surface`. They follow light and dark mode automatically.
+
+To add a visual type, add a renderer to `VISUALS` in `src/engine/visuals/index.tsx` and its name to `VISUAL_TYPES` in `src/schema/types.ts`.
+
+**Schematic vs real morphology.** The player always shows a "Schematic · not to scale" badge. When real morphology matters (blood smears, parasites, crystals, casts), add properly licensed images to `morphology.images` with `credit` and `license`. Validation requires both, so never use images whose license you have not confirmed.
+
+## 5. Questions
+
+Three or more per lesson. Each has a `skill` tag, which weak-area review groups by. Give every option a `rationale`: say why the correct one is right and why each distractor is wrong. Write original items, and do not adapt proprietary question banks.
+
+## 6. Evidence and accuracy
+
+- `references[]`: only real sources. Set `consulted: true` **only** if you actually read the source for this lesson. Listing a standard textbook as `consulted: false` "for future verification" is fine.
+- `claims[]`: the lesson's key scientific statements.
+  - `checked`: must cite at least one consulted reference.
+  - `pending`: believed correct but not yet verified in a consulted source.
+  - `analogy`: a deliberate simplification such as cartoons or mnemonics.
+- `accuracyFlags[]`: outdated information, contradictions, missing context, uncertainty, or method-, guideline- or reference-range-dependent findings.
+- `verification.humanExpertReview` stays `false` unless a named, qualified person reviewed the lesson.
+- `reviewer`: once the source reviewer is available, set `status: "mapped"` with `chapter` and `pages`. Then fill `reviewerRef` on the matching concepts in `curriculum.json`.

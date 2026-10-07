@@ -1,0 +1,2886 @@
+{
+  "schemaVersion": 1,
+  "id": "ih-abo-forward-reverse",
+  "title": "ABO Forward and Reverse Typing",
+  "summary": "Watch anti-A and anti-B antibodies build agglutination lattices, see why the cell test and the plasma test must agree, and learn what it means when they don't.",
+  "domain": "ih",
+  "topic": "ih.abo",
+  "conceptIds": [
+    "ih.abo.abo-forward-reverse"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "unmapped-reviewer-unavailable",
+    "chapter": null,
+    "pages": null,
+    "note": "Reference lesson built to establish the format. Your reviewer was not available when it was written, so it is not yet mapped to a reviewer chapter or page."
+  },
+  "prerequisites": [
+    "immuno.ag-ab.agglutination",
+    "ih.abo.abo-antigens-genetics"
+  ],
+  "objectives": [
+    "Explain how IgM anti-A and anti-B build an agglutination lattice with red cells.",
+    "Interpret forward (cell) and reverse (serum/plasma) ABO typing results and state the ABO group.",
+    "Recognize an ABO discrepancy and explain why missing reverse reactions are expected in young infants.",
+    "Distinguish group O from the Bombay (Oh) phenotype using H antigen and plasma reactions with O cells."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Which blood is safe?",
+      "start": 0,
+      "end": 20,
+      "altText": "A cartoon lab scientist holds up a patient's blood sample. Four empty test tubes appear, labelled anti-A, anti-B, A1 cells and B cells, followed by a large question mark.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 6.5,
+          "text": "A patient needs a transfusion today. Before any blood is given, the lab must know their ABO group."
+        },
+        {
+          "id": "h2",
+          "start": 6.5,
+          "end": 13.5,
+          "text": "We have one blood sample and four test tubes. Two tubes test the cells. Two tubes test the plasma."
+        },
+        {
+          "id": "h3",
+          "start": 13.5,
+          "end": 20,
+          "text": "Why test both halves? And what would you do if the two answers disagreed? Let's watch."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 130,
+            "y": 300,
+            "opacity": 0,
+            "expression": "curious"
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 330
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "y": 300,
+              "ease": "out"
+            },
+            {
+              "t": 13.5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 330,
+            "y": 120,
+            "w": 330,
+            "text": "A patient needs blood today. Which ABO group is safe to give?",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "sample",
+          "type": "specimen",
+          "props": {
+            "x": 300,
+            "y": 300,
+            "top": "pink",
+            "label": "Patient sample",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "id": "t1",
+          "type": "tube",
+          "props": {
+            "x": 540,
+            "y": 230,
+            "label": "Anti-A",
+            "fluid": "saline",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7,
+              "opacity": 0,
+              "y": 260
+            },
+            {
+              "t": 7.8,
+              "opacity": 1,
+              "y": 230,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "tube",
+          "props": {
+            "x": 640,
+            "y": 230,
+            "label": "Anti-B",
+            "fluid": "saline",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.6,
+              "opacity": 0,
+              "y": 260
+            },
+            {
+              "t": 8.4,
+              "opacity": 1,
+              "y": 230,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "tube",
+          "props": {
+            "x": 760,
+            "y": 230,
+            "label": "A1 cells",
+            "fluid": "plasma",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0,
+              "y": 260
+            },
+            {
+              "t": 10.8,
+              "opacity": 1,
+              "y": 230,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t4",
+          "type": "tube",
+          "props": {
+            "x": 860,
+            "y": 230,
+            "label": "B cells",
+            "fluid": "plasma",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.6,
+              "opacity": 0,
+              "y": 260
+            },
+            {
+              "t": 11.4,
+              "opacity": 1,
+              "y": 230,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cellsTag",
+          "type": "label",
+          "props": {
+            "x": 590,
+            "y": 460,
+            "text": "Test the CELLS",
+            "size": 17,
+            "color": "a",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.4,
+              "opacity": 0
+            },
+            {
+              "t": 9.2,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "id": "plasmaTag",
+          "type": "label",
+          "props": {
+            "x": 810,
+            "y": 460,
+            "text": "Test the PLASMA",
+            "size": 17,
+            "color": "b",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.4,
+              "opacity": 0
+            },
+            {
+              "t": 12.2,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "label",
+          "props": {
+            "x": 700,
+            "y": 110,
+            "text": "?",
+            "size": 90,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0,
+              "scale": 0.4
+            },
+            {
+              "t": 15,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "scale": 1.15
+            },
+            {
+              "t": 18.5,
+              "scale": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "How antibodies make cells clump",
+      "start": 20,
+      "end": 62,
+      "altText": "Forward typing: a red cell covered with orange A antigens meets a five-armed IgM anti-A antibody. Many cells and antibodies join into a lattice — a clump. Reverse typing: the patient's plasma, containing anti-B, is added to A1 reagent cells (which stay separate) and B reagent cells (which clump).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 27,
+          "text": "Red cells carry sugar 'flags' called antigens. This patient's cells carry the A antigen."
+        },
+        {
+          "id": "n2",
+          "start": 27,
+          "end": 34,
+          "text": "Anti-A reagent contains IgM antibodies. Each IgM has five arms with ten binding tips, so one molecule can grab two cells at once."
+        },
+        {
+          "id": "n3",
+          "start": 34,
+          "end": 40,
+          "text": "When antibodies link many cells, they build a net called a lattice. We see the lattice as clumps: agglutination."
+        },
+        {
+          "id": "n4",
+          "start": 40,
+          "end": 47,
+          "text": "That was forward typing: known antibodies find the antigens on the patient's cells."
+        },
+        {
+          "id": "n5",
+          "start": 47,
+          "end": 55,
+          "text": "Reverse typing flips it. The patient's plasma is mixed with known A1 cells and B cells."
+        },
+        {
+          "id": "n6",
+          "start": 55,
+          "end": 62,
+          "text": "A group A person naturally makes anti-B. So the B cells clump and the A1 cells stay smooth. Both halves agree: group A."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cell",
+          "type": "rbc",
+          "props": {
+            "x": 300,
+            "y": 250,
+            "r": 70,
+            "antigen": "A",
+            "antigens": 12,
+            "label": "Patient red cell",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.6
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 0
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            },
+            {
+              "t": 6.5,
+              "highlight": 0
+            },
+            {
+              "t": 13,
+              "opacity": 1
+            },
+            {
+              "t": 14,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "agTag",
+          "type": "label",
+          "props": {
+            "x": 300,
+            "y": 90,
+            "text": "▲ A antigen",
+            "size": 20,
+            "color": "a",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1
+            },
+            {
+              "t": 13,
+              "opacity": 1
+            },
+            {
+              "t": 14,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "igm",
+          "type": "antibody",
+          "props": {
+            "x": 780,
+            "y": 250,
+            "size": 70,
+            "spec": "A",
+            "cls": "IgM",
+            "label": "anti-A (IgM)",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.5,
+              "opacity": 0,
+              "x": 780,
+              "spin": 0
+            },
+            {
+              "t": 7.5,
+              "opacity": 1
+            },
+            {
+              "t": 11,
+              "x": 480,
+              "ease": "out",
+              "spin": 36
+            },
+            {
+              "t": 13,
+              "opacity": 1
+            },
+            {
+              "t": 14,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "tips",
+          "type": "label",
+          "props": {
+            "x": 690,
+            "y": 430,
+            "text": "IgM = 5 units × 2 tips = 10 binding sites",
+            "size": 18,
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1
+            },
+            {
+              "t": 13,
+              "opacity": 1
+            },
+            {
+              "t": 14,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "lattice",
+          "type": "cellField",
+          "props": {
+            "x": 480,
+            "y": 240,
+            "w": 440,
+            "h": 250,
+            "antigen": "A",
+            "spec": "A",
+            "count": 9,
+            "cellR": 22,
+            "seed": 4,
+            "free": 1,
+            "bound": 0,
+            "clump": 0,
+            "label": "Patient cells + anti-A reagent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "opacity": 1
+            },
+            {
+              "t": 15.5,
+              "bound": 0,
+              "clump": 0
+            },
+            {
+              "t": 17.5,
+              "bound": 1,
+              "clump": 0.4,
+              "ease": "inOut"
+            },
+            {
+              "t": 19.5,
+              "clump": 1,
+              "ease": "inOut"
+            },
+            {
+              "t": 26,
+              "opacity": 1
+            },
+            {
+              "t": 27,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "fwd",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "text": "Forward type: clumps with anti-A → A antigen present",
+            "size": 19,
+            "bg": true,
+            "color": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "opacity": 1
+            },
+            {
+              "t": 26,
+              "opacity": 1
+            },
+            {
+              "t": 27,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "plasmaTag",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Patient plasma contains anti-B",
+            "size": 20,
+            "bg": true,
+            "color": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27,
+              "opacity": 0
+            },
+            {
+              "t": 28,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "id": "a1",
+          "type": "cellField",
+          "props": {
+            "x": 250,
+            "y": 250,
+            "w": 320,
+            "h": 230,
+            "antigen": "A",
+            "spec": "B",
+            "count": 7,
+            "cellR": 19,
+            "seed": 3,
+            "free": 1,
+            "label": "A1 reagent cells + plasma",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0
+            },
+            {
+              "t": 28.5,
+              "opacity": 1
+            },
+            {
+              "t": 35,
+              "highlight": 0
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "cellField",
+          "props": {
+            "x": 710,
+            "y": 250,
+            "w": 320,
+            "h": 230,
+            "antigen": "B",
+            "spec": "B",
+            "count": 7,
+            "cellR": 19,
+            "seed": 9,
+            "free": 1,
+            "bound": 0,
+            "clump": 0,
+            "label": "B reagent cells + plasma",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28,
+              "opacity": 0
+            },
+            {
+              "t": 29,
+              "opacity": 1
+            },
+            {
+              "t": 35,
+              "bound": 0,
+              "clump": 0
+            },
+            {
+              "t": 37.5,
+              "bound": 1,
+              "clump": 0.4
+            },
+            {
+              "t": 39.5,
+              "clump": 1
+            }
+          ]
+        },
+        {
+          "id": "smooth",
+          "type": "label",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "text": "No match → stays smooth (0)",
+            "size": 17,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36,
+              "opacity": 0
+            },
+            {
+              "t": 37,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "id": "clumped",
+          "type": "label",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "text": "anti-B meets B → clumps (+)",
+            "size": 17,
+            "color": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 38.5,
+              "opacity": 0
+            },
+            {
+              "t": 39.5,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "id": "verdict",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "text": "Forward A + Reverse A = Group A ✓",
+            "size": 22,
+            "weight": 800,
+            "color": "good",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 39.5,
+              "opacity": 0,
+              "scale": 0.8
+            },
+            {
+              "t": 40.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "When the two halves disagree",
+      "start": 62,
+      "end": 100,
+      "altText": "An infant's cells clump with anti-A, but the infant's plasma leaves B cells smooth because no anti-B has been made yet. Then a Bombay cell with no A, B or H antigens is shown; its plasma clumps A1 cells, B cells and even group O cells.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 62,
+          "end": 69,
+          "text": "Sometimes the two halves disagree. That is an ABO discrepancy, and the group should not be reported until it is resolved."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 76,
+          "text": "Example one: a two-month-old baby. The cells type as A, but the plasma does not clump the B cells."
+        },
+        {
+          "id": "c3",
+          "start": 76,
+          "end": 83,
+          "text": "Young infants have not yet made their own anti-A or anti-B. So a missing reverse reaction is expected, and the forward type is relied on."
+        },
+        {
+          "id": "c4",
+          "start": 83,
+          "end": 90,
+          "text": "Weak or missing antibodies can also be seen in some elderly patients and in people with low antibody levels."
+        },
+        {
+          "id": "c5",
+          "start": 90,
+          "end": 100,
+          "text": "Example two: cells with no A, no B, and no H antigen — the rare Bombay phenotype. The cells look like group O, but the plasma clumps A1, B, and even group O cells, because it contains anti-H."
+        }
+      ],
+      "objects": [
+        {
+          "id": "warn",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 50,
+            "text": "ABO discrepancy: forward ≠ reverse",
+            "size": 22,
+            "weight": 800,
+            "color": "warn",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.8
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "baby",
+          "type": "specimen",
+          "props": {
+            "x": 110,
+            "y": 180,
+            "top": "lavender",
+            "label": "Infant, 2 months",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.5,
+              "opacity": 0
+            },
+            {
+              "t": 7.5,
+              "opacity": 1
+            },
+            {
+              "t": 27,
+              "opacity": 1
+            },
+            {
+              "t": 28,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "fwd",
+          "type": "cellField",
+          "props": {
+            "x": 390,
+            "y": 250,
+            "w": 260,
+            "h": 200,
+            "antigen": "A",
+            "spec": "A",
+            "count": 7,
+            "cellR": 16,
+            "seed": 2,
+            "free": 1,
+            "bound": 0,
+            "clump": 0,
+            "label": "Cells + anti-A",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7,
+              "opacity": 0
+            },
+            {
+              "t": 8,
+              "opacity": 1
+            },
+            {
+              "t": 8.5,
+              "bound": 0,
+              "clump": 0
+            },
+            {
+              "t": 10,
+              "bound": 1,
+              "clump": 0.4
+            },
+            {
+              "t": 11.5,
+              "clump": 1
+            },
+            {
+              "t": 27,
+              "opacity": 1
+            },
+            {
+              "t": 28,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "rev",
+          "type": "cellField",
+          "props": {
+            "x": 740,
+            "y": 250,
+            "w": 260,
+            "h": 200,
+            "antigen": "B",
+            "spec": "B",
+            "count": 7,
+            "cellR": 16,
+            "seed": 6,
+            "free": 0,
+            "label": "Plasma + B cells",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "opacity": 1
+            },
+            {
+              "t": 27,
+              "opacity": 1
+            },
+            {
+              "t": 28,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "noAb",
+          "type": "label",
+          "props": {
+            "x": 740,
+            "y": 395,
+            "text": "No anti-B made yet → no clumping",
+            "size": 17,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0
+            },
+            {
+              "t": 12,
+              "opacity": 1
+            },
+            {
+              "t": 27,
+              "opacity": 1
+            },
+            {
+              "t": 28,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "highlight",
+          "props": {
+            "x": 740,
+            "y": 250,
+            "w": 290,
+            "h": 230,
+            "color": "warn",
+            "dashed": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0
+            },
+            {
+              "t": 12,
+              "opacity": 1
+            },
+            {
+              "t": 20,
+              "opacity": 1
+            },
+            {
+              "t": 21,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "causes",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "text": "Weak or missing antibodies: young infants • some elderly patients • low antibody levels",
+            "size": 17,
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21,
+              "opacity": 0
+            },
+            {
+              "t": 22,
+              "opacity": 1
+            },
+            {
+              "t": 27,
+              "opacity": 1
+            },
+            {
+              "t": 28,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "bombay",
+          "type": "rbc",
+          "props": {
+            "x": 130,
+            "y": 240,
+            "r": 48,
+            "antigen": "none",
+            "mood": "neutral",
+            "label": "Bombay (Oh) cell: no A, B or H",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 29,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "bA1",
+          "type": "cellField",
+          "props": {
+            "x": 380,
+            "y": 250,
+            "w": 190,
+            "h": 150,
+            "antigen": "A",
+            "spec": "A",
+            "count": 5,
+            "cellR": 14,
+            "seed": 8,
+            "free": 1,
+            "bound": 0,
+            "clump": 0,
+            "label": "A1 cells",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29,
+              "opacity": 0
+            },
+            {
+              "t": 30,
+              "opacity": 1
+            },
+            {
+              "t": 30.5,
+              "bound": 0,
+              "clump": 0
+            },
+            {
+              "t": 32.5,
+              "bound": 1,
+              "clump": 1
+            }
+          ]
+        },
+        {
+          "id": "bB",
+          "type": "cellField",
+          "props": {
+            "x": 610,
+            "y": 250,
+            "w": 190,
+            "h": 150,
+            "antigen": "B",
+            "spec": "B",
+            "count": 5,
+            "cellR": 14,
+            "seed": 12,
+            "free": 1,
+            "bound": 0,
+            "clump": 0,
+            "label": "B cells",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29.4,
+              "opacity": 0
+            },
+            {
+              "t": 30.4,
+              "opacity": 1
+            },
+            {
+              "t": 31,
+              "bound": 0,
+              "clump": 0
+            },
+            {
+              "t": 33,
+              "bound": 1,
+              "clump": 1
+            }
+          ]
+        },
+        {
+          "id": "bO",
+          "type": "cellField",
+          "props": {
+            "x": 840,
+            "y": 250,
+            "w": 190,
+            "h": 150,
+            "antigen": "O",
+            "spec": "H",
+            "count": 5,
+            "cellR": 14,
+            "seed": 5,
+            "free": 1,
+            "bound": 0,
+            "clump": 0,
+            "label": "O cells (H only)",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29.8,
+              "opacity": 0
+            },
+            {
+              "t": 30.8,
+              "opacity": 1
+            },
+            {
+              "t": 33.5,
+              "bound": 0,
+              "clump": 0
+            },
+            {
+              "t": 35.5,
+              "bound": 1,
+              "clump": 1
+            }
+          ]
+        },
+        {
+          "id": "hlO",
+          "type": "highlight",
+          "props": {
+            "x": 840,
+            "y": 250,
+            "w": 220,
+            "h": 200,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35,
+              "opacity": 0
+            },
+            {
+              "t": 36,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "id": "antiH",
+          "type": "label",
+          "props": {
+            "x": 610,
+            "y": 420,
+            "text": "Bombay plasma: anti-A + anti-B + anti-H",
+            "size": 19,
+            "color": "warn",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35.5,
+              "opacity": 0
+            },
+            {
+              "t": 36.5,
+              "opacity": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "At the bench: tubes, spin, read, grade",
+      "start": 100,
+      "end": 138,
+      "altText": "A blood sample is centrifuged so plasma separates from cells. A dropper adds a drop to each of four tubes. After a short spin, a grading scale from 0 to 4+ is shown, then each tube is gently resuspended: anti-A shows one solid clump (4+), anti-B is smooth (0), A1 cells are smooth (0), B cells show one solid clump (4+). A results table reports group A.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 108,
+          "text": "At the bench, the blood sample is spun. Cells sink and plasma rises, so each part can be tested on its own."
+        },
+        {
+          "id": "l2",
+          "start": 108,
+          "end": 116,
+          "text": "Each tube gets reagent plus the patient's cells or plasma. A short spin then pushes the cells together into a button."
+        },
+        {
+          "id": "l3",
+          "start": 116,
+          "end": 124,
+          "text": "The tech gently shakes the button loose and grades what remains: from 0, no clumps, up to 4+, one solid clump."
+        },
+        {
+          "id": "l4",
+          "start": 124,
+          "end": 131,
+          "text": "All four tubes are read and recorded. Here: anti-A 4+, anti-B 0, A1 cells 0, B cells 4+."
+        },
+        {
+          "id": "l5",
+          "start": 131,
+          "end": 138,
+          "text": "Forward and reverse agree, so the result is group A. In reverse typing, hemolysis also counts as a positive reaction."
+        }
+      ],
+      "objects": [
+        {
+          "id": "spec",
+          "type": "specimen",
+          "props": {
+            "x": 100,
+            "y": 170,
+            "top": "pink",
+            "label": "EDTA sample",
+            "separated": 0,
+            "opacity": 1
+          },
+          "keys": [
+            {
+              "t": 3,
+              "separated": 0
+            },
+            {
+              "t": 7,
+              "separated": 1
+            },
+            {
+              "t": 16,
+              "opacity": 1
+            },
+            {
+              "t": 16.5,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "cf",
+          "type": "centrifuge",
+          "props": {
+            "x": 300,
+            "y": 240,
+            "spin": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "spin": 0
+            },
+            {
+              "t": 7,
+              "spin": 1440
+            },
+            {
+              "t": 13.5,
+              "spin": 1440
+            },
+            {
+              "t": 16,
+              "spin": 2520
+            },
+            {
+              "t": 16,
+              "opacity": 1
+            },
+            {
+              "t": 16.5,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "drop",
+          "type": "dropper",
+          "props": {
+            "x": 560,
+            "y": 120,
+            "label": "Add drop",
+            "color": "saline",
+            "drop": 0,
+            "opacity": 0,
+            "dropDistance": 72
+          },
+          "keys": [
+            {
+              "t": 8,
+              "opacity": 0,
+              "x": 560,
+              "drop": 0
+            },
+            {
+              "t": 8.6,
+              "opacity": 1
+            },
+            {
+              "t": 9.6,
+              "drop": 1,
+              "ease": "linear"
+            },
+            {
+              "t": 9.9,
+              "x": 560,
+              "drop": 0,
+              "ease": "step"
+            },
+            {
+              "t": 10.4,
+              "x": 650
+            },
+            {
+              "t": 11.2,
+              "drop": 1,
+              "ease": "linear"
+            },
+            {
+              "t": 11.5,
+              "x": 650,
+              "drop": 0,
+              "ease": "step"
+            },
+            {
+              "t": 12,
+              "x": 740
+            },
+            {
+              "t": 12.8,
+              "drop": 1,
+              "ease": "linear"
+            },
+            {
+              "t": 13.1,
+              "x": 740,
+              "drop": 0,
+              "ease": "step"
+            },
+            {
+              "t": 13.6,
+              "x": 830
+            },
+            {
+              "t": 14.4,
+              "drop": 1,
+              "ease": "linear"
+            },
+            {
+              "t": 14.6,
+              "opacity": 1
+            },
+            {
+              "t": 15.2,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ta",
+          "type": "tube",
+          "props": {
+            "x": 560,
+            "y": 200,
+            "label": "Anti-A",
+            "fluid": "saline",
+            "cells": 0,
+            "grade": 4,
+            "result": ""
+          },
+          "keys": [
+            {
+              "t": 9.4,
+              "cells": 0
+            },
+            {
+              "t": 9.9,
+              "cells": 1
+            },
+            {
+              "t": 14,
+              "settle": 0
+            },
+            {
+              "t": 16,
+              "settle": 1
+            },
+            {
+              "t": 16.5,
+              "opacity": 1
+            },
+            {
+              "t": 17,
+              "opacity": 0.15
+            },
+            {
+              "t": 23,
+              "opacity": 0.15
+            },
+            {
+              "t": 23.6,
+              "opacity": 1,
+              "shake": 0
+            },
+            {
+              "t": 25,
+              "shake": 1
+            },
+            {
+              "t": 25.4,
+              "result": "4+"
+            }
+          ]
+        },
+        {
+          "id": "tb",
+          "type": "tube",
+          "props": {
+            "x": 650,
+            "y": 200,
+            "label": "Anti-B",
+            "fluid": "saline",
+            "cells": 0,
+            "grade": 0,
+            "result": ""
+          },
+          "keys": [
+            {
+              "t": 11,
+              "cells": 0
+            },
+            {
+              "t": 11.5,
+              "cells": 1
+            },
+            {
+              "t": 14,
+              "settle": 0
+            },
+            {
+              "t": 16,
+              "settle": 1
+            },
+            {
+              "t": 16.5,
+              "opacity": 1
+            },
+            {
+              "t": 17,
+              "opacity": 0.15
+            },
+            {
+              "t": 23,
+              "opacity": 0.15
+            },
+            {
+              "t": 23.6,
+              "opacity": 1,
+              "shake": 0
+            },
+            {
+              "t": 25,
+              "shake": 1
+            },
+            {
+              "t": 26.2,
+              "result": "0"
+            }
+          ]
+        },
+        {
+          "id": "tc",
+          "type": "tube",
+          "props": {
+            "x": 740,
+            "y": 200,
+            "label": "A1 cells",
+            "fluid": "plasma",
+            "cells": 0,
+            "grade": 0,
+            "result": ""
+          },
+          "keys": [
+            {
+              "t": 12.6,
+              "cells": 0
+            },
+            {
+              "t": 13.1,
+              "cells": 1
+            },
+            {
+              "t": 14,
+              "settle": 0
+            },
+            {
+              "t": 16,
+              "settle": 1
+            },
+            {
+              "t": 16.5,
+              "opacity": 1
+            },
+            {
+              "t": 17,
+              "opacity": 0.15
+            },
+            {
+              "t": 23,
+              "opacity": 0.15
+            },
+            {
+              "t": 23.6,
+              "opacity": 1,
+              "shake": 0
+            },
+            {
+              "t": 25,
+              "shake": 1
+            },
+            {
+              "t": 27,
+              "result": "0"
+            }
+          ]
+        },
+        {
+          "id": "td",
+          "type": "tube",
+          "props": {
+            "x": 830,
+            "y": 200,
+            "label": "B cells",
+            "fluid": "plasma",
+            "cells": 0,
+            "grade": 4,
+            "result": ""
+          },
+          "keys": [
+            {
+              "t": 14.2,
+              "cells": 0
+            },
+            {
+              "t": 14.6,
+              "cells": 1
+            },
+            {
+              "t": 14.6,
+              "settle": 0
+            },
+            {
+              "t": 16,
+              "settle": 1
+            },
+            {
+              "t": 16.5,
+              "opacity": 1
+            },
+            {
+              "t": 17,
+              "opacity": 0.15
+            },
+            {
+              "t": 23,
+              "opacity": 0.15
+            },
+            {
+              "t": 23.6,
+              "opacity": 1,
+              "shake": 0
+            },
+            {
+              "t": 25,
+              "shake": 1
+            },
+            {
+              "t": 27.8,
+              "result": "4+"
+            }
+          ]
+        },
+        {
+          "id": "scale",
+          "type": "gradeScale",
+          "props": {
+            "x": 180,
+            "y": 220,
+            "reveal": 0,
+            "highlight": -1,
+            "opacity": 0,
+            "descriptions": [
+              "no clumps, smooth red",
+              "many small clumps, cloudy",
+              "medium clumps, clear background",
+              "several large clumps",
+              "one solid clump"
+            ]
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "opacity": 1
+            },
+            {
+              "t": 17,
+              "reveal": 0
+            },
+            {
+              "t": 21,
+              "reveal": 5,
+              "ease": "linear"
+            },
+            {
+              "t": 21.2,
+              "highlight": 4
+            },
+            {
+              "t": 22.7,
+              "opacity": 1
+            },
+            {
+              "t": 23.3,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "table",
+          "type": "table",
+          "props": {
+            "x": 260,
+            "y": 120,
+            "title": "Results",
+            "cols": [
+              "Anti-A",
+              "Anti-B",
+              "A1 cells",
+              "B cells"
+            ],
+            "rows": [
+              [
+                "4+",
+                "0",
+                "0",
+                "4+"
+              ]
+            ],
+            "cellW": 90,
+            "cellH": 40,
+            "reveal": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0
+            },
+            {
+              "t": 28.3,
+              "opacity": 1
+            },
+            {
+              "t": 28.3,
+              "reveal": 0
+            },
+            {
+              "t": 30.5,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "group",
+          "type": "label",
+          "props": {
+            "x": 260,
+            "y": 280,
+            "text": "Forward A + Reverse A\n→ report group A",
+            "size": 22,
+            "weight": 800,
+            "color": "good",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31,
+              "opacity": 0,
+              "scale": 0.8
+            },
+            {
+              "t": 32,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hemo",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "text": "Reverse typing: hemolysis = positive reaction",
+            "size": 18,
+            "color": "warn",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34,
+              "opacity": 0
+            },
+            {
+              "t": 35,
+              "opacity": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Look-alikes the exam loves",
+      "start": 138,
+      "end": 166,
+      "altText": "Two comparison cards: forward (cell) typing versus reverse (serum or plasma) typing. Then group O versus Bombay phenotype: both are negative with anti-A and anti-B, but group O cells are rich in H antigen and its plasma leaves O cells alone, while Bombay cells lack H and the plasma strongly clumps O cells.",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 138,
+          "end": 145,
+          "text": "Exam tip one: forward typing tests the patient's cells with known antibodies. Reverse typing tests the patient's plasma with known cells."
+        },
+        {
+          "id": "e2",
+          "start": 145,
+          "end": 152,
+          "text": "They are a built-in double check: forward finds the antigens; reverse finds the matching antibodies."
+        },
+        {
+          "id": "e3",
+          "start": 152,
+          "end": 159,
+          "text": "Exam tip two: group O and Bombay both show no clumping with anti-A and anti-B. The difference is the H antigen and the plasma."
+        },
+        {
+          "id": "e4",
+          "start": 159,
+          "end": 166,
+          "text": "Group O cells are rich in H, and the plasma leaves O cells alone. Bombay cells lack H, and the plasma strongly clumps O cells."
+        }
+      ],
+      "objects": [
+        {
+          "id": "fwd",
+          "type": "card",
+          "props": {
+            "x": 255,
+            "y": 270,
+            "w": 410,
+            "h": 260,
+            "tone": "a",
+            "title": "Forward (cell) typing",
+            "lines": [
+              "Sample: patient's red cells",
+              "Reagents: anti-A and anti-B",
+              "Detects: A and B antigens on cells",
+              "Used on its own for young infants"
+            ],
+            "reveal": 0,
+            "opacity": 0,
+            "size": 17
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "x": 215
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "x": 255,
+              "ease": "out"
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 6.5,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 13.4,
+              "opacity": 1
+            },
+            {
+              "t": 14,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "rev",
+          "type": "card",
+          "props": {
+            "x": 705,
+            "y": 270,
+            "w": 410,
+            "h": 260,
+            "tone": "b",
+            "title": "Reverse (serum/plasma) typing",
+            "lines": [
+              "Sample: patient's plasma or serum",
+              "Reagents: A1 cells and B cells",
+              "Detects: anti-A and anti-B",
+              "Expected to be missing in young infants"
+            ],
+            "reveal": 0,
+            "opacity": 0,
+            "size": 17
+          },
+          "keys": [
+            {
+              "t": 0.6,
+              "opacity": 0,
+              "x": 745
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "x": 705,
+              "ease": "out"
+            },
+            {
+              "t": 1.6,
+              "reveal": 0
+            },
+            {
+              "t": 7.2,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 13.4,
+              "opacity": 1
+            },
+            {
+              "t": 14,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "check",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Antigens ⇄ antibodies: each half checks the other",
+            "size": 20,
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.5,
+              "opacity": 1
+            },
+            {
+              "t": 13.4,
+              "opacity": 1
+            },
+            {
+              "t": 14,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "o",
+          "type": "card",
+          "props": {
+            "x": 255,
+            "y": 270,
+            "w": 410,
+            "h": 260,
+            "tone": "neutral",
+            "title": "Group O",
+            "lines": [
+              "Anti-A 0, anti-B 0",
+              "Cells rich in H antigen (strong with anti-H lectin)",
+              "Plasma: anti-A, anti-B (and anti-A,B)",
+              "Plasma + O cells: no clumping"
+            ],
+            "reveal": 0,
+            "opacity": 0,
+            "size": 17
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 15,
+              "opacity": 1
+            },
+            {
+              "t": 15,
+              "reveal": 0
+            },
+            {
+              "t": 21,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "oh",
+          "type": "card",
+          "props": {
+            "x": 705,
+            "y": 270,
+            "w": 410,
+            "h": 260,
+            "tone": "warn",
+            "title": "Bombay (Oh)",
+            "lines": [
+              "Anti-A 0, anti-B 0 — looks like O",
+              "No H antigen (no reaction with anti-H lectin)",
+              "Plasma: anti-A, anti-B and anti-H",
+              "Plasma + O cells: strong clumping"
+            ],
+            "reveal": 0,
+            "opacity": 0,
+            "size": 17
+          },
+          "keys": [
+            {
+              "t": 14.6,
+              "opacity": 0
+            },
+            {
+              "t": 15.6,
+              "opacity": 1
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 27,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "key",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "text": "Key test: patient plasma vs group O cells + H antigen on patient cells",
+            "size": 18,
+            "weight": 800,
+            "color": "accent",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "opacity": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Flags Forward, Fighters Reverse",
+      "start": 166,
+      "end": 188,
+      "altText": "A memory aid: a red cell with orange A 'flags' is labelled 'Flags Forward', and a blue anti-B antibody is labelled 'Fighters Reverse'. A card lists where the analogy breaks down: infants, some elderly patients, and Bombay.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 166,
+          "end": 172,
+          "text": "Memory aid: Flags Forward, Fighters Reverse."
+        },
+        {
+          "id": "m2",
+          "start": 172,
+          "end": 179,
+          "text": "Forward typing looks for the flags on the cells. Reverse typing looks for the fighters in the plasma."
+        },
+        {
+          "id": "m3",
+          "start": 179,
+          "end": 188,
+          "text": "And you carry fighters against the flags you don't fly. Where the rule breaks: young infants, some elderly patients, and rare types like Bombay."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "FLAGS Forward · FIGHTERS Reverse",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.6
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "flagCell",
+          "type": "rbc",
+          "props": {
+            "x": 260,
+            "y": 190,
+            "r": 62,
+            "antigen": "A",
+            "antigens": 12,
+            "label": "Flags = antigens on cells",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.5,
+              "opacity": 0
+            },
+            {
+              "t": 6.5,
+              "opacity": 1
+            },
+            {
+              "t": 7,
+              "highlight": 0
+            },
+            {
+              "t": 8,
+              "highlight": 1
+            },
+            {
+              "t": 11,
+              "highlight": 0
+            }
+          ]
+        },
+        {
+          "id": "fighter",
+          "type": "antibody",
+          "props": {
+            "x": 700,
+            "y": 180,
+            "size": 62,
+            "spec": "B",
+            "cls": "IgM",
+            "label": "Fighters = antibodies in plasma",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0,
+              "spin": -20
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "spin": 0
+            },
+            {
+              "t": 11.5,
+              "spin": 15
+            },
+            {
+              "t": 13,
+              "spin": 0
+            }
+          ]
+        },
+        {
+          "id": "rule",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 375,
+            "text": "You fight the flags you don't fly: group A carries anti-B",
+            "size": 20,
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13,
+              "opacity": 0
+            },
+            {
+              "t": 14,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 700,
+            "h": 100,
+            "tone": "warn",
+            "title": "Where the rule breaks",
+            "lines": [
+              "Young infants (no antibodies yet) · some elderly patients (weak) · Bombay (extra anti-H)"
+            ],
+            "size": 15,
+            "reveal": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "opacity": 1
+            },
+            {
+              "t": 17,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 188,
+      "end": 198,
+      "altText": "The cartoon scientist points down toward three practice questions below the player; a speech bubble explains that every answer comes with reasons why it is right and why each other choice is wrong.",
+      "cues": [
+        {
+          "id": "k1",
+          "start": 188,
+          "end": 193,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "k2",
+          "start": 193,
+          "end": 198,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "y": 260,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.8
+            },
+            {
+              "t": 6.4,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 198,
+      "end": 210,
+      "altText": "A red cell (antigens) and an antibody (in plasma) each send an arrow to a central check mark reading 'Report only when both agree'.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 198,
+          "end": 210,
+          "text": "ABO typing is two tests that check each other: forward typing finds antigens on the cells, reverse typing finds the matching antibodies in the plasma, and a group is reported only when both agree."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cell",
+          "type": "rbc",
+          "props": {
+            "x": 170,
+            "y": 230,
+            "r": 55,
+            "antigen": "A",
+            "label": "Forward: antigens",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "id": "ab",
+          "type": "antibody",
+          "props": {
+            "x": 790,
+            "y": 220,
+            "size": 58,
+            "spec": "B",
+            "cls": "IgM",
+            "label": "Reverse: antibodies",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "id": "a1",
+          "type": "arrow",
+          "props": {
+            "x": 245,
+            "y": 230,
+            "dx": 90,
+            "dy": 0,
+            "draw": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "draw": 0
+            },
+            {
+              "t": 3.5,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "a2",
+          "type": "arrow",
+          "props": {
+            "x": 715,
+            "y": 230,
+            "dx": -90,
+            "dy": 0,
+            "draw": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ok",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "text": "✓ Report only\nwhen both agree",
+            "size": 24,
+            "weight": 900,
+            "color": "good",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0,
+              "scale": 0.6
+            },
+            {
+              "t": 5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "badge",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "text": "ABO forward + reverse typing",
+            "size": 18,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6,
+              "opacity": 0
+            },
+            {
+              "t": 7,
+              "opacity": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: we test the blood two ways. First, we drop known antibodies onto the patient's red cells to see which A or B 'flags' (antigens) the cells carry — forward typing. Second, we mix the patient's plasma with known A1 and B red cells to see which anti-A or anti-B antibodies the plasma carries — reverse typing. Scientific terms: forward (cell) grouping detects A and B antigens; reverse (serum/plasma) grouping detects the corresponding ABO antibodies (isohemagglutinins).",
+    "why": "Clumping happens because antibodies are sticky on both ends. An IgM antibody has ten binding tips, so one molecule can hold two red cells at once. When enough antibodies bridge enough cells, they build a net (a lattice) that we see as agglutination. People usually carry antibodies against the ABO antigens they lack — without ever having been transfused — so the two tests should mirror each other.",
+    "measure": "The laboratory observes agglutination (or hemolysis) in each tube after a short centrifugation and gentle resuspension, grading it from 0 (no clumps) to 4+ (one solid clump) in tube testing. Four core readings are recorded: anti-A, anti-B, A1 cells and B cells. The ABO group is reported only when the forward and reverse readings agree; otherwise it is an ABO discrepancy that must be investigated.",
+    "differs": "Forward typing looks at antigens on cells; reverse typing looks at antibodies in plasma. A discrepancy differs from a normal result in that the halves disagree — for example, missing antibodies in young infants, or extra reactions from an unexpected antibody. Group O and Bombay (Oh) both type as 'O' in forward testing, but Bombay cells lack H antigen and Bombay plasma contains anti-H that clumps even group O cells. Disease (for example some leukemias) can also weaken antigen expression and cause discrepancies.",
+    "examAngle": "Expect result tables to interpret (state the ABO group), discrepancy scenarios (an infant with no reverse reactions; an elderly patient with weak reverse reactions), and the O-versus-Bombay trap: a patient who types as O but whose plasma reacts with group O screening or reagent cells, with a negative autocontrol and no reaction with anti-H lectin."
+  },
+  "comparisons": [
+    {
+      "id": "fwd-vs-rev",
+      "title": "Forward vs reverse typing",
+      "left": {
+        "label": "Forward (cell) typing",
+        "points": [
+          "Patient red cells + known anti-A, anti-B",
+          "Detects antigens",
+          "Reliable in newborns (antigens present, though some are weaker than in adults)"
+        ]
+      },
+      "right": {
+        "label": "Reverse (serum/plasma) typing",
+        "points": [
+          "Patient plasma or serum + known A1 and B cells",
+          "Detects anti-A and anti-B",
+          "Antibodies absent in young infants; may be weak in some elderly patients"
+        ]
+      },
+      "distinguisher": "What is known and what is unknown: forward uses known antibodies to find unknown antigens; reverse uses known cells to find unknown antibodies."
+    },
+    {
+      "id": "o-vs-bombay",
+      "title": "Group O vs Bombay (Oh) phenotype",
+      "left": {
+        "label": "Group O",
+        "points": [
+          "Negative with anti-A and anti-B",
+          "Cells rich in H antigen",
+          "Plasma does not agglutinate group O cells"
+        ]
+      },
+      "right": {
+        "label": "Bombay (Oh)",
+        "points": [
+          "Negative with anti-A and anti-B",
+          "Cells lack H antigen",
+          "Plasma contains anti-H and agglutinates group O cells"
+        ]
+      },
+      "distinguisher": "H antigen on the cells and the plasma's reaction with group O cells."
+    }
+  ],
+  "mnemonic": {
+    "text": "Flags Forward, Fighters Reverse — and you fight the flags you don't fly.",
+    "explanation": "Forward typing finds the flags (antigens) on the cells; reverse typing finds the fighters (antibodies) in the plasma. A group A person flies A flags and carries anti-B fighters, so the two tests mirror each other.",
+    "limitation": "Real antigens are carbohydrate chains on cell-membrane molecules, not separate flags, and antibodies bind by shape fit, not by 'fighting'. The 'fight the flags you don't fly' rule fails in young infants (no antibodies yet), can fail in some elderly or immunodeficient patients (weak antibodies), and is incomplete for Bombay (who also make anti-H)."
+  },
+  "analogyLimitations": [
+    "Cells are drawn with faces, a handful of antigens and exaggerated sizes. Real red cells carry very many ABO antigen sites, and antibodies are far smaller than cells.",
+    "The animated lattice is a schematic. Real agglutination depends on antibody class, the ratio of antibody to antigen, temperature and the cells' surface charge.",
+    "The tube clumps are cartoons, not photographs. Real grading is read by gently tilting the tube against a light, following the laboratory's own procedure."
+  ],
+  "takeaway": "ABO typing is two tests that check each other: forward typing finds antigens on the cells, reverse typing finds the matching antibodies in the plasma, and a group is reported only when both agree.",
+  "questions": [
+    {
+      "id": "ih-abo-fr-q1",
+      "stem": "Forward typing: anti-A 4+, anti-B 0. Reverse typing: A1 cells 0, B cells 4+. What is the patient's ABO group?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Group A",
+          "rationale": "Correct. The cells react only with anti-A, so A antigen is present. The plasma reacts only with B cells, so anti-B is present — what a group A person is expected to make. Both halves agree."
+        },
+        {
+          "id": "b",
+          "text": "Group B",
+          "rationale": "Incorrect. Group B cells react with anti-B (not anti-A), and group B plasma reacts with A1 cells (not B cells). Both halves show the opposite pattern."
+        },
+        {
+          "id": "c",
+          "text": "Group AB",
+          "rationale": "Incorrect. Group AB cells react with both anti-A and anti-B, and AB plasma usually reacts with neither reagent cell. Here anti-B is 0 and B cells are 4+."
+        },
+        {
+          "id": "d",
+          "text": "Group O",
+          "rationale": "Incorrect. Group O cells react with neither anti-A nor anti-B, and O plasma usually reacts with both A1 and B cells. Here the cells react with anti-A and the A1 cells are 0."
+        }
+      ],
+      "answer": "a",
+      "skill": "Interpret ABO forward and reverse results",
+      "difficulty": "application"
+    },
+    {
+      "id": "ih-abo-fr-q2",
+      "stem": "A 2-month-old infant's red cells react 4+ with anti-A and 0 with anti-B. The infant's plasma does not react with A1 cells or B cells. What is the best explanation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The infant has not yet produced their own ABO antibodies, so missing reverse reactions are expected and the forward type is relied on.",
+          "rationale": "Correct. Young infants have not yet developed their own anti-A and anti-B, so missing reverse reactions are expected. Laboratories therefore group young infants by forward typing (the exact age cutoff follows local procedure and standards)."
+        },
+        {
+          "id": "b",
+          "text": "The infant has the Bombay phenotype.",
+          "rationale": "Incorrect. Bombay cells lack A antigen and would not react with anti-A, and Bombay plasma reacts strongly with A1, B and O cells. This infant's cells react 4+ with anti-A and the plasma reacts with nothing."
+        },
+        {
+          "id": "c",
+          "text": "The infant is group AB.",
+          "rationale": "Incorrect. Group AB cells would react with anti-B as well. Anti-B is 0, so B antigen is absent. A missing reverse reaction alone does not make someone AB."
+        },
+        {
+          "id": "d",
+          "text": "Rouleaux caused by abnormal plasma proteins.",
+          "rationale": "Incorrect. Rouleaux (stacking of cells caused by plasma proteins) tends to add false-positive reactions in reverse typing. It does not explain reactions that are missing."
+        }
+      ],
+      "answer": "a",
+      "skill": "Explain causes of ABO discrepancies",
+      "difficulty": "analysis"
+    },
+    {
+      "id": "ih-abo-fr-q3",
+      "stem": "A patient's red cells are 0 with anti-A and 0 with anti-B and do not react with anti-H lectin. The plasma reacts 4+ with A1 cells, B cells, and group O reagent cells at room temperature and 37 °C. The autocontrol is negative. What is the most likely explanation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Bombay (Oh) phenotype",
+          "rationale": "Correct. The cells lack A, B and H antigens (no reaction with anti-H lectin). The plasma contains anti-A, anti-B and anti-H; anti-H reacts with group O cells, which carry plenty of H. The negative autocontrol fits an alloantibody, not an autoantibody."
+        },
+        {
+          "id": "b",
+          "text": "Normal group O",
+          "rationale": "Incorrect. Group O plasma contains anti-A and anti-B but not anti-H, so it would not react with group O reagent cells. Group O cells also react strongly with anti-H lectin."
+        },
+        {
+          "id": "c",
+          "text": "A cold autoantibody",
+          "rationale": "Incorrect. An autoantibody reacts with the patient's own cells, so the autocontrol would be positive. Here the autocontrol is negative, and the reactions persist at 37 °C."
+        },
+        {
+          "id": "d",
+          "text": "Group A2 with anti-A1",
+          "rationale": "Incorrect. A2 cells react with anti-A in forward typing, but these cells are 0 with anti-A. Anti-A1 would also not explain reactions with B cells or group O cells."
+        }
+      ],
+      "answer": "a",
+      "skill": "Distinguish group O from Bombay phenotype",
+      "difficulty": "analysis"
+    }
+  ],
+  "references": [
+    {
+      "id": "parastatidou2025",
+      "citation": "Parastatidou S, Tsantes AG, Emmanouil CC, Konstantinidi A, Kapetanaki A, Sokou R. Neonatal Hemolytic Jaundice: Causes, Diagnostic Approach, and Management. Children (Basel). 2025;12(6):666.",
+      "doi": "10.3390/children12060666",
+      "url": "https://europepmc.org/article/PMC/PMC12190970",
+      "consulted": true,
+      "license": "CC BY",
+      "usedFor": "Anti-A/anti-B in group A and B individuals are IgM; in group O mothers, IgG anti-A/anti-B can cross the placenta."
+    },
+    {
+      "id": "shen2025",
+      "citation": "Shen C, Bengtsson J, Jöud M, Storry JR, Kjeldsen-Kragh J. When is ABO-incompatible plasma safe to transfuse? Defining an empirical estimation of anti-A/anti-B in ABO incompatible plasma-containing blood products. Blood Transfus. 2025;23(5):393-408.",
+      "doi": "10.2450/bloodtransfus.941",
+      "url": "https://europepmc.org/article/PMC/PMC12425645",
+      "consulted": true,
+      "license": "CC BY-NC-ND",
+      "usedFor": "Anti-A and anti-B are naturally occurring and can cause severe acute intravascular hemolysis in ABO-incompatible transfusion."
+    },
+    {
+      "id": "shastry2013",
+      "citation": "Shastry S, Lewis LE, Bhat SS. A rare case of haemolytic disease of newborn with Bombay phenotype mother. Asian J Transfus Sci. 2013;7(2):153-155.",
+      "doi": "10.4103/0973-6247.115583",
+      "url": "https://europepmc.org/article/PMC/PMC3757779",
+      "consulted": true,
+      "license": "CC BY-NC-SA",
+      "usedFor": "Bombay phenotype mistyped as O when serum grouping against O cells was not done; Bombay serum reacted 4+ with pooled O cells; anti-H reacted at 4 °C, room temperature and 37 °C; neonatal reverse grouping omitted by departmental SOP."
+    },
+    {
+      "id": "elzein2024",
+      "citation": "Elzein HO. Association of Leukemia With ABO Blood Group Distribution and Discrepancy: A Review Article. Cureus. 2024;16(3):e56812.",
+      "doi": "10.7759/cureus.56812",
+      "url": "https://europepmc.org/article/PMC/PMC11036791",
+      "consulted": true,
+      "license": "CC BY",
+      "usedFor": "Leukemia can be associated with ABO discrepancies, including weakened forward-typing reactions; discrepancies are resolved using both forward and reverse grouping."
+    },
+    {
+      "id": "aabb-tm",
+      "citation": "AABB. Technical Manual (current edition). Bethesda, MD: AABB.",
+      "consulted": false,
+      "usedFor": "Recommended for verifying pending claims (age of antibody development, infant testing requirements, tube grading criteria, hemolysis interpretation). NOT consulted for this lesson."
+    },
+    {
+      "id": "harmening",
+      "citation": "Harmening DM, ed. Modern Blood Banking & Transfusion Practices (current edition). Philadelphia: F.A. Davis.",
+      "consulted": false,
+      "usedFor": "Recommended for verifying ABO discrepancy classification and Bombay/subgroup serology. NOT consulted for this lesson."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-igm",
+      "text": "Anti-B in group A people and anti-A in group B people are predominantly IgM.",
+      "status": "checked",
+      "refs": [
+        "parastatidou2025"
+      ]
+    },
+    {
+      "id": "cl-igg-o",
+      "text": "Group O individuals can have IgG anti-A/anti-B, which can cross the placenta.",
+      "status": "checked",
+      "refs": [
+        "parastatidou2025"
+      ]
+    },
+    {
+      "id": "cl-natural",
+      "text": "Anti-A and anti-B are naturally occurring and can cause acute intravascular hemolysis after ABO-incompatible transfusion.",
+      "status": "checked",
+      "refs": [
+        "shen2025"
+      ]
+    },
+    {
+      "id": "cl-bombay-o",
+      "text": "A Bombay individual can be mistyped as group O if reverse typing against O cells is not performed; Bombay plasma reacts strongly with O cells.",
+      "status": "checked",
+      "refs": [
+        "shastry2013"
+      ]
+    },
+    {
+      "id": "cl-antiH-thermal",
+      "text": "Bombay anti-H can react at 4 °C, room temperature and 37 °C (shown in a case report).",
+      "status": "checked",
+      "refs": [
+        "shastry2013"
+      ],
+      "note": "Case-level evidence; thermal range is generalized in textbooks — confirm wording with a textbook."
+    },
+    {
+      "id": "cl-leukemia",
+      "text": "Leukemia can be associated with ABO discrepancies such as weakened forward reactions.",
+      "status": "checked",
+      "refs": [
+        "elzein2024"
+      ]
+    },
+    {
+      "id": "cl-neonate-sop",
+      "text": "Reverse grouping is omitted for neonates in at least some laboratories' procedures.",
+      "status": "checked",
+      "refs": [
+        "shastry2013"
+      ]
+    },
+    {
+      "id": "cl-age",
+      "text": "Infants begin making their own ABO antibodies at roughly 3–6 months, and reverse typing is not required below about 4 months of age.",
+      "status": "pending",
+      "note": "Seen only in secondary summaries during authoring. Verify against AABB Standards/Technical Manual. The lesson text avoids a specific age cutoff for this reason."
+    },
+    {
+      "id": "cl-elderly",
+      "text": "Weak or missing ABO antibodies can occur in some elderly patients and in hypogammaglobulinemia or immunosuppression.",
+      "status": "pending",
+      "note": "Standard textbook teaching; no consulted source in this build."
+    },
+    {
+      "id": "cl-igm-sites",
+      "text": "Pentameric IgM has ten antigen-binding sites.",
+      "status": "pending",
+      "note": "Standard immunology; add a consulted immunology reference."
+    },
+    {
+      "id": "cl-grading",
+      "text": "Tube agglutination is graded 0 to 4+ (0 = no agglutinates; 4+ = one solid agglutinate) with intermediate grades described by clump size and background.",
+      "status": "pending",
+      "note": "Method-dependent; verify descriptions against AABB Technical Manual. See accuracy flag f-method."
+    },
+    {
+      "id": "cl-hemolysis",
+      "text": "Hemolysis in ABO reverse typing is interpreted as a positive reaction.",
+      "status": "pending",
+      "note": "Standard teaching; verify wording against AABB Technical Manual."
+    },
+    {
+      "id": "cl-ulex",
+      "text": "Anti-H lectin (Ulex europaeus) reacts strongly with group O cells and does not react with Bombay cells.",
+      "status": "pending",
+      "note": "Standard teaching; consulted case report did not describe lectin testing."
+    },
+    {
+      "id": "cl-rouleaux",
+      "text": "Rouleaux can cause false-positive reactions in reverse typing.",
+      "status": "pending",
+      "note": "Standard teaching; no consulted source in this build."
+    },
+    {
+      "id": "cl-a2",
+      "text": "A2 cells react with anti-A reagent in forward typing; some A2 individuals make anti-A1.",
+      "status": "pending",
+      "note": "Standard teaching; no consulted source in this build."
+    },
+    {
+      "id": "cl-flags",
+      "text": "'Flags Forward, Fighters Reverse' — antigens as flags, antibodies as fighters.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-cartoon",
+      "text": "Cartoon cells, antigen counts, antibody sizes and tube clump drawings.",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-method",
+      "issue": "Grading descriptions shown apply to tube agglutination. Gel/column agglutination and solid-phase methods use different reading criteria, and automated platforms report differently.",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-age",
+      "issue": "The age below which reverse typing is omitted for infants is set by standards and local procedure (often cited as 4 months) and was not verified in this build; the lesson deliberately avoids a fixed cutoff.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-specimen",
+      "issue": "Specimen type (EDTA pink/lavender top vs clotted sample) and reagent cell preparation depend on laboratory procedure; the animation shows one common option.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-classification",
+      "issue": "ABO discrepancies are often taught in numbered groups (e.g. Groups I–IV). That classification is not presented here, pending verification against the user's reviewer and a textbook.",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "All visuals are schematic cartoons. No real microscopic morphology is needed for this concept; tube reactions should be learned from actual tubes under supervision.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "7 claims checked against open-access sources that were read; 8 claims pending verification against standard references (AABB Technical Manual, Harmening) that were not available in the build environment. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-07"
+}
