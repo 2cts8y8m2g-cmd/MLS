@@ -3,13 +3,13 @@
 ## State at hand-off (2026-10-07)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 17, teaching 69 of 1,932 concepts (about 3.6%).** All 17 still require review: each has pending claims, and none has had human expert review.
+- **Lessons complete: 18, teaching 71 of 1,932 concepts (about 3.7%).** All 18 still require review: each has pending claims, and none has had human expert review.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-lab-safety-precautions-osha`, `ops-reimbursement-drg-payment-window`, `ops-lab-design-hazcom-numbers`.
   - Ch. 2 (23/23 concepts): `ops-workflow-before-technology`, `ops-six-sigma-vs-lean`, `ops-instrument-selection-uptime-batch`, `ops-consolidation-utilization-autoverification`.
-  - Ch. 3 (21/24 concepts): `pre-order-of-draw-edta`, `pre-citrate-ratio-heparin`, `pre-tube-additives-fluoride-gel`, `pre-patient-id-wbit`, `pre-csf-tubes-synovial-crystals`, `pre-biotin-daratumumab-interference`.
+  - Ch. 3 (23/24 concepts): `pre-order-of-draw-edta`, `pre-citrate-ratio-heparin`, `pre-tube-additives-fluoride-gel`, `pre-patient-id-wbit`, `pre-csf-tubes-synovial-crystals`, `pre-biotin-daratumumab-interference`, `pre-allen-test-urine-timing`.
   - Ch. 40 (2/36 concepts): `ih-abo-forward-reverse`.
-- **Reviewer accuracy register:** 25 flags (13 verified issues, 12 needing verification), plus scan results.
-- **Checks:** 158 unit tests and 85 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Reviewer accuracy register:** 26 flags (14 verified issues, 12 needing verification), plus scan results.
+- **Checks:** 164 unit tests and 85 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -30,7 +30,7 @@ Work chapter by chapter. Each chapter's **core concept (Hit 1)** comes first, th
 
 1. **Ch. 1:** all concepts taught. Still pending in its lessons: design/HVAC/exit targets (`rv-two-exits`), sharps figures (`rv-sharps-2014`), the dated licensure count (`rv-licensure-count`), workforce figures, and the items listed in each lesson's claims.
 2. **Ch. 2:** all concepts taught. Still pending in its lessons: the reviewer's numeric examples (10 s per tube, 4 vs 10 tests per sample, rerun example), the uptime contract rule, standardization, stockpiling, and test-cost figures.
-3. **Ch. 3 (21/24 taught):** remaining: Allen test (Hit 11), urine timing (Hit 15), and the 28-row Number Vault table (several rows are already taught across the Ch. 3 lessons; the rest — ESR 4:1, draw volumes, skin-puncture warming and heel depth, arterial transport (Sood 2010 says do not cool, which conflicts with the table's "1–5 °C ice water"), CSF pressures, centrifugation and RCF, unseparated creatinine, trough timing, urine preservatives and 24-h collection, formaldehyde effect on SG — need a "Ch. 3 by the numbers" lesson). Then Ch. 4 (Beer's law).
+3. **Ch. 3 (23/24 taught):** remaining: the 28-row Number Vault table (several rows are already taught across the Ch. 3 lessons; the rest — ESR 4:1, draw volumes, skin-puncture warming and heel depth, arterial transport (Sood 2010 says do not cool, which conflicts with the table's "1–5 °C ice water"), CSF pressures, centrifugation and RCF, unseparated creatinine, trough timing, urine preservatives and 24-h collection, formaldehyde effect on SG — need a "Ch. 3 by the numbers" lesson). Then Ch. 4 (Beer's law).
 4. **Ch. 4 core:** Beer's law. A good fit for a new `pathway` or `spectro` visual.
 5. Continue through Ch. 5–14 (Part I), then Part II (Ch. 15–28), and so on. Ch. 40 still has 34 concepts; Hit 14 (discrepancy Groups I–IV) and Trap 6 are natural next ABO lessons.
 

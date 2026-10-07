@@ -1,0 +1,1820 @@
+{
+  "schemaVersion": 1,
+  "id": "pre-allen-test-urine-timing",
+  "title": "Arterial Safety and Urine Timing: The Modified Allen Test",
+  "summary": "Run a modified Allen test step by step, learn why “positive” means go, and see why urine must be tested within an hour — and why cytology avoids the first-morning sample.",
+  "domain": "p1-ops",
+  "topic": "ch3",
+  "conceptIds": [
+    "ch3.hit11",
+    "ch3.hit15"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 3,
+        "section": "High-Yield Hits",
+        "items": [
+          11,
+          15
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 3 Hits 11 and 15. Adds the 5–15 s criterion, arterial-sample errors and site-pressure times from WHO 2010. Corrects the reviewer’s “first-morning void is best for cytology” (register flag rv-urine-cytology). Urobilinogen afternoon timing stays pending."
+  },
+  "prerequisites": [
+    "ch3.hit1"
+  ],
+  "objectives": [
+    "Perform and interpret the modified Allen test, including why “positive” means proceed.",
+    "List common arterial blood-gas sampling errors.",
+    "State urine timing rules and choose the right void for chemistry versus cytology."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two collections, two clocks",
+      "start": 0,
+      "end": 20,
+      "altText": "Left: a wrist with two arteries, radial and ulnar, ready for an arterial blood gas. Right: a urine cup on a ward counter with a clock showing it has waited three hours. The cartoon scientist looks from one to the other.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Two special collections. First, an arterial blood gas from the wrist — taken from an artery, not a vein."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Second, a urine sample that has been sitting on a ward counter for three hours."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "One needs a safety check before the needle goes in. The other needed a clock. Let’s see both."
+        }
+      ],
+      "objects": [
+        {
+          "id": "wrist",
+          "type": "card",
+          "props": {
+            "x": 260,
+            "y": 220,
+            "w": 360,
+            "h": 200,
+            "tone": "neutral",
+            "title": "Wrist",
+            "lines": [
+              "Radial artery (thumb side)",
+              "Ulnar artery (little-finger side)"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cup",
+          "type": "card",
+          "props": {
+            "x": 700,
+            "y": 220,
+            "w": 300,
+            "h": 150,
+            "tone": "a",
+            "title": "Urine cup",
+            "lines": [
+              "Waiting on the counter"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "clk",
+          "type": "label",
+          "props": {
+            "x": 700,
+            "y": 340,
+            "text": "⏱ 0 h",
+            "size": 24,
+            "weight": 900,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "text": "⏱ 1 h"
+            },
+            {
+              "t": 10.5,
+              "text": "⏱ 2 h"
+            },
+            {
+              "t": 11.5,
+              "text": "⏱ 3 h ✗"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "expression": "curious",
+            "scale": 0.55,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 15,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The modified Allen test",
+      "start": 20,
+      "end": 62,
+      "altText": "A cartoon hand. Step 1: the patient clenches a fist. Step 2: two thumbs press on the radial and ulnar arteries. Step 3: the patient opens the hand — the palm is pale (blanched). Step 4: only the ulnar artery is released; colour flushes back into the palm within 5–15 seconds. A badge reads “Positive = ulnar flow is good → radial puncture may proceed”.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "The hand gets blood from two arteries: the radial on the thumb side and the ulnar on the little-finger side. They connect in the palm."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 35,
+          "text": "Before puncturing the radial artery, check that the ulnar artery alone can feed the hand. First, the patient makes a tight fist."
+        },
+        {
+          "id": "n3",
+          "start": 35,
+          "end": 42,
+          "text": "Press firmly on both the radial and ulnar arteries. Then the patient opens the hand. The palm should look pale — if not, you are not pressing hard enough."
+        },
+        {
+          "id": "n4",
+          "start": 42,
+          "end": 51,
+          "text": "Now release the ulnar artery only, keeping the radial pressed. Watch the palm."
+        },
+        {
+          "id": "n5",
+          "start": 51,
+          "end": 62,
+          "text": "If colour returns within 5 to 15 seconds, the ulnar artery has good flow. That is called a positive modified Allen test, and the radial artery may be used."
+        }
+      ],
+      "objects": [
+        {
+          "id": "hand",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 150,
+            "w": 340,
+            "h": 150,
+            "tone": "blood",
+            "title": "Palm",
+            "lines": [],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8.5,
+              "title": "Palm · fist clenched"
+            },
+            {
+              "t": 15.5,
+              "title": "Palm · both arteries pressed"
+            },
+            {
+              "t": 17.5,
+              "title": "Palm open: PALE",
+              "tone": "neutral"
+            },
+            {
+              "t": 23,
+              "title": "Ulnar released…"
+            },
+            {
+              "t": 26,
+              "title": "Palm pinks up ✓",
+              "tone": "blood"
+            }
+          ]
+        },
+        {
+          "id": "wr",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 255,
+            "text": "wrist",
+            "size": 14,
+            "weight": 800,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "rad",
+          "type": "token",
+          "props": {
+            "x": 360,
+            "y": 290,
+            "w": 200,
+            "label": "Radial (thumb side)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "uln",
+          "type": "token",
+          "props": {
+            "x": 610,
+            "y": 290,
+            "w": 220,
+            "label": "Ulnar (little finger)",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "highlight": 1
+            },
+            {
+              "t": 22.5,
+              "highlight": 0,
+              "label": "Ulnar: released"
+            }
+          ]
+        },
+        {
+          "id": "pr1",
+          "type": "label",
+          "props": {
+            "x": 360,
+            "y": 330,
+            "text": "● pressed",
+            "size": 14,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0
+            },
+            {
+              "t": 15.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "opacity": 1
+            },
+            {
+              "t": 30.5,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "pr2",
+          "type": "label",
+          "props": {
+            "x": 610,
+            "y": 330,
+            "text": "● pressed",
+            "size": 14,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0
+            },
+            {
+              "t": 15.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22.5,
+              "opacity": 1
+            },
+            {
+              "t": 22.9,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "t",
+          "type": "label",
+          "props": {
+            "x": 820,
+            "y": 150,
+            "text": "⏱ 0 s",
+            "size": 24,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23,
+              "opacity": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "text": "⏱ 5 s"
+            },
+            {
+              "t": 25,
+              "text": "⏱ 10 s"
+            },
+            {
+              "t": 26,
+              "text": "⏱ flush ✓"
+            }
+          ]
+        },
+        {
+          "id": "pos",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 410,
+            "w": 640,
+            "h": 110,
+            "tone": "good",
+            "title": "Flush within 5–15 s = POSITIVE",
+            "lines": [
+              "Ulnar flow is good",
+              "Radial puncture may proceed"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32,
+              "reveal": 0
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "No flush: don’t puncture that artery",
+      "start": 62,
+      "end": 100,
+      "altText": "The same hand, but after the ulnar artery is released the palm stays pale past 15 seconds. A red badge: “Negative — ulnar circulation inadequate; do not puncture this radial artery; test the other hand.” Below, a checklist of arterial-sample errors: air bubbles, venous instead of arterial blood, wrong amount of heparin or poor mixing, delayed transport; and pressure on the site for 2–3 minutes, 5 or more if the patient is anticoagulated.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 62,
+          "end": 70,
+          "text": "Now the warning case. The ulnar artery is released, but the palm stays pale."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 77,
+          "text": "No flush within 5 to 15 seconds is a negative test: the ulnar circulation is weak or missing."
+        },
+        {
+          "id": "c3",
+          "start": 77,
+          "end": 84,
+          "text": "Then that radial artery should not be punctured. If it were damaged, the hand would have no good backup supply. Test the other hand instead."
+        },
+        {
+          "id": "c4",
+          "start": 84,
+          "end": 92,
+          "text": "Arterial samples have their own errors: air bubbles, venous blood by mistake, the wrong amount of heparin or poor mixing, and slow transport."
+        },
+        {
+          "id": "c5",
+          "start": 92,
+          "end": 100,
+          "text": "Afterward, press on the site for 2 to 3 minutes — 5 minutes or more if the patient bleeds easily or takes anticoagulants."
+        }
+      ],
+      "objects": [
+        {
+          "id": "hand",
+          "type": "card",
+          "props": {
+            "x": 300,
+            "y": 95,
+            "w": 340,
+            "h": 110,
+            "tone": "neutral",
+            "title": "Palm open: pale",
+            "lines": [],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "opacity": 0
+            },
+            {
+              "t": 0.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 1,
+              "title": "Ulnar released…"
+            },
+            {
+              "t": 8,
+              "title": "Palm still PALE ✗"
+            }
+          ]
+        },
+        {
+          "id": "t",
+          "type": "label",
+          "props": {
+            "x": 700,
+            "y": 95,
+            "text": "⏱ 0 s",
+            "size": 22,
+            "weight": 900,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "text": "⏱ 5 s"
+            },
+            {
+              "t": 5,
+              "text": "⏱ 10 s"
+            },
+            {
+              "t": 7,
+              "text": "⏱ 15 s — no flush"
+            }
+          ]
+        },
+        {
+          "id": "neg",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 700,
+            "h": 140,
+            "tone": "warn",
+            "title": "NEGATIVE modified Allen test",
+            "lines": [
+              "Ulnar circulation inadequate",
+              "Do not puncture this radial artery",
+              "Test the other hand"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "e0",
+          "type": "token",
+          "props": {
+            "x": 140,
+            "y": 390,
+            "w": 210,
+            "label": "Air bubbles",
+            "wrap": 22,
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "e1",
+          "type": "token",
+          "props": {
+            "x": 367,
+            "y": 390,
+            "w": 210,
+            "label": "Venous, not arterial",
+            "wrap": 22,
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23.7,
+              "opacity": 0
+            },
+            {
+              "t": 24.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "e2",
+          "type": "token",
+          "props": {
+            "x": 594,
+            "y": 390,
+            "w": 210,
+            "label": "Wrong heparin / mixing",
+            "wrap": 22,
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.9,
+              "opacity": 0
+            },
+            {
+              "t": 25.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "e3",
+          "type": "token",
+          "props": {
+            "x": 821,
+            "y": 390,
+            "w": 210,
+            "label": "Delayed transport",
+            "wrap": 22,
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.1,
+              "opacity": 0
+            },
+            {
+              "t": 26.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pr",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "Press 2–3 min · ≥ 5 min if anticoagulated",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: urine has a clock",
+      "start": 100,
+      "end": 138,
+      "altText": "A urine cup with a stopwatch: “Analyse within 1 hour at room temperature — otherwise refrigerate at 4 °C.” Two collection cards: first-morning urine (concentrated; preferred for chemical analysis) vs second-morning urine (preferred for cytology — first-morning specimens are not suitable because cells have degenerated overnight). A grey tag: the reviewer’s “urobilinogen peaks 2–4 pm” is not yet verified.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 108,
+          "text": "Urine changes as it sits. Cells and casts break down, and bacteria keep growing."
+        },
+        {
+          "id": "l2",
+          "start": 108,
+          "end": 116,
+          "text": "The rule: analyse within one hour at room temperature. If that isn’t possible, refrigerate at about 4 degrees Celsius."
+        },
+        {
+          "id": "l3",
+          "start": 116,
+          "end": 124,
+          "text": "For chemistry, the first-morning urine is often preferred because it is the most concentrated."
+        },
+        {
+          "id": "l4",
+          "start": 124,
+          "end": 131,
+          "text": "But for cytology — looking for abnormal cells — the first-morning sample is NOT suitable. Cells that sat in the bladder overnight have started to degenerate. Use the second-morning sample."
+        },
+        {
+          "id": "l5",
+          "start": 131,
+          "end": 138,
+          "text": "The reviewer adds that urobilinogen peaks in the afternoon, so collect it around 2 to 4 pm. That timing still needs checking against a guideline."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cup",
+          "type": "card",
+          "props": {
+            "x": 220,
+            "y": 130,
+            "w": 300,
+            "h": 140,
+            "tone": "a",
+            "title": "Urine cup",
+            "lines": [
+              "Cells, casts break down",
+              "Bacteria grow"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "clk",
+          "type": "label",
+          "props": {
+            "x": 640,
+            "y": 110,
+            "text": "⏱",
+            "size": 24,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "text": "⏱ ≤ 1 h at room temp"
+            }
+          ]
+        },
+        {
+          "id": "fr",
+          "type": "token",
+          "props": {
+            "x": 640,
+            "y": 165,
+            "w": 380,
+            "label": "Otherwise refrigerate ≈ 4 °C",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0
+            },
+            {
+              "t": 12.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "fm",
+          "type": "card",
+          "props": {
+            "x": 255,
+            "y": 330,
+            "w": 400,
+            "h": 110,
+            "tone": "good",
+            "title": "First-morning urine",
+            "lines": [
+              "Concentrated",
+              "Preferred for chemistry"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "sm",
+          "type": "card",
+          "props": {
+            "x": 705,
+            "y": 330,
+            "w": 400,
+            "h": 110,
+            "tone": "good",
+            "title": "Second-morning urine",
+            "lines": [
+              "Preferred for CYTOLOGY",
+              "First-morning: not suitable"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "x",
+          "type": "token",
+          "props": {
+            "x": 705,
+            "y": 420,
+            "w": 340,
+            "label": "Overnight cells degenerate ✗",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 27.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "uro",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "text": "Reviewer: urobilinogen 2–4 pm (not yet verified)",
+            "size": 15,
+            "weight": 800,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Traps in the names and the timing",
+      "start": 138,
+      "end": 166,
+      "altText": "Trap card “A positive Allen test means stop” is crossed out → “Positive = flush in 5–15 s = safe to proceed.” Trap card “First-morning urine is best for cytology” is crossed out → “Second-morning urine for cytology.” A token: “Urinalysis: ≤ 1 h or refrigerate.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 138,
+          "end": 147,
+          "text": "Trap one: “positive” sounds bad, but a positive modified Allen test means the hand flushed in time — the radial artery may be used. Negative means stop."
+        },
+        {
+          "id": "e2",
+          "start": 147,
+          "end": 156,
+          "text": "Trap two: “first-morning urine is best for everything.” It’s preferred for chemistry, but for cytology the second-morning sample is used."
+        },
+        {
+          "id": "e3",
+          "start": 156,
+          "end": 166,
+          "text": "And the clock: analyse urine within one hour, or refrigerate it."
+        }
+      ],
+      "objects": [
+        {
+          "id": "c1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 100,
+            "w": 780,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Positive Allen test = don’t puncture.”",
+            "lines": [
+              "✓ Positive = flush in 5–15 s = may proceed"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4.5,
+              "reveal": 0
+            },
+            {
+              "t": 5.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 250,
+            "w": 780,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “First-morning urine is best for cytology.”",
+            "lines": [
+              "✓ Second-morning urine for cytology"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13.5,
+              "reveal": 0
+            },
+            {
+              "t": 14.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 390,
+            "w": 520,
+            "label": "Urinalysis: ≤ 1 h or refrigerate",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 19.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Squeeze both, free the ulnar, watch for pink",
+      "start": 166,
+      "end": 188,
+      "altText": "Memory aid: two thumbs on a wrist (“squeeze both”), one thumb lifting (“free the ulnar”), and a palm turning pink (“watch for pink — 5 to 15 s”). Beside it: a cup in a fridge (“one hour or the fridge”) and “Second for cells”. A card lists where the aid breaks down.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 166,
+          "end": 174,
+          "text": "Memory aid: Squeeze both, free the ulnar, watch for pink. Pink in 5 to 15 seconds means go."
+        },
+        {
+          "id": "m2",
+          "start": 174,
+          "end": 179,
+          "text": "For urine: one hour or the fridge — and second-morning for cells."
+        },
+        {
+          "id": "m3",
+          "start": 179,
+          "end": 188,
+          "text": "Where it breaks: the Allen test is a simple bedside screen, and local policy decides when and where arterial punctures are done. And refrigeration can make crystals form in urine."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Squeeze both · free the ulnar · watch for pink",
+            "size": 26,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 240,
+            "label": "1 · Squeeze both",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.0,
+              "opacity": 0
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 240,
+            "label": "2 · Free the ulnar",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "opacity": 0
+            },
+            {
+              "t": 3.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 240,
+            "label": "3 · Pink in 5–15 s",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.0,
+              "opacity": 0
+            },
+            {
+              "t": 4.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "u1",
+          "type": "token",
+          "props": {
+            "x": 320,
+            "y": 300,
+            "w": 320,
+            "label": "Urine: 1 hour or the fridge",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "u2",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 300,
+            "w": 300,
+            "label": "Second-morning for cells",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 840,
+            "h": 80,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "The Allen test is a bedside screen — follow local policy · refrigeration can form urine crystals"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.5,
+              "reveal": 0
+            },
+            {
+              "t": 16.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 188,
+      "end": 198,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 188,
+          "end": 193,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 193,
+          "end": 198,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 198,
+      "end": 210,
+      "altText": "Two tokens: “Allen: pink in 5–15 s = go; no flush = don’t puncture” and “Urine: ≤ 1 h or refrigerate; second-morning for cytology”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 198,
+          "end": 210,
+          "text": "Before a radial puncture, confirm the ulnar artery can feed the hand — a palm that pinks up within 5 to 15 seconds is a positive, go-ahead test — and analyse urine within an hour or refrigerate it, using second-morning urine for cytology."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 200,
+            "w": 640,
+            "label": "Allen: pink in 5–15 s = go · no flush = don’t puncture",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 280,
+            "w": 640,
+            "label": "Urine: ≤ 1 h or fridge · second-morning for cytology",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: before taking blood from the wrist artery, check that the hand’s other artery can supply it; and test urine quickly because it changes as it sits. Scientific terms: the modified Allen test assesses ulnar collateral circulation before radial arterial puncture; urine should be analysed within 1 hour at room temperature or refrigerated at about 4 °C.",
+    "why": "The radial and ulnar arteries connect through the palmar arches. If the radial artery is injured, the ulnar artery must supply the hand, so its flow is checked first. In standing urine, cells and casts degrade and bacteria multiply; cells that sat in the bladder overnight have already degenerated, so first-morning urine is unsuitable for cytology.",
+    "measure": "Allen test: occlude both arteries, open the blanched hand, release the ulnar artery only; colour return within 5–15 s is positive (adequate ulnar flow). Urine: time from collection to analysis; refrigerate if over 1 hour.",
+    "differs": "Positive Allen (flush in 5–15 s → may proceed) vs negative (no flush → do not puncture that radial artery). First-morning urine (concentrated; preferred for chemistry) vs second-morning urine (preferred for cytology).",
+    "examAngle": "Expect: the order of Allen-test steps, what a positive result means, what to do when it is negative, arterial-sample errors (air bubbles, venous blood, heparin), the 1-hour urine rule, and which void is used for cytology."
+  },
+  "comparisons": [
+    {
+      "id": "allen-pos-neg",
+      "title": "Positive vs negative modified Allen test",
+      "left": {
+        "label": "Positive",
+        "points": [
+          "Palm flushes within 5–15 s",
+          "Ulnar flow adequate",
+          "Radial puncture may proceed"
+        ]
+      },
+      "right": {
+        "label": "Negative",
+        "points": [
+          "No flush within 5–15 s",
+          "Ulnar flow inadequate",
+          "Do not puncture that radial artery"
+        ]
+      },
+      "distinguisher": "Whether colour returns after releasing only the ulnar artery."
+    },
+    {
+      "id": "first-vs-second",
+      "title": "First-morning vs second-morning urine",
+      "left": {
+        "label": "First-morning",
+        "points": [
+          "Most concentrated",
+          "Preferred for chemical analysis"
+        ]
+      },
+      "right": {
+        "label": "Second-morning",
+        "points": [
+          "Fresher cells",
+          "Preferred for cytology"
+        ]
+      },
+      "distinguisher": "How long the cells sat in the bladder."
+    }
+  ],
+  "mnemonic": {
+    "text": "Squeeze both, free the ulnar, watch for pink — and one hour or the fridge.",
+    "explanation": "Occlude both arteries, release the ulnar, and look for colour in 5–15 seconds; test urine within an hour or refrigerate it.",
+    "limitation": "The Allen test is a simple bedside screen and local policy governs arterial puncture. Refrigeration preserves urine but can cause crystals to precipitate. The aid does not cover which void to use for cytology."
+  },
+  "analogyLimitations": [
+    "The hand is drawn as a chip whose colour changes; real blanching is subtle.",
+    "The three-hour counter scenario is illustrative.",
+    "Urine timing rules vary slightly between guidelines (e.g., some allow 2 hours)."
+  ],
+  "takeaway": "Before a radial puncture, confirm the ulnar artery can feed the hand — a palm that pinks up within 5 to 15 seconds is a positive, go-ahead test — and analyse urine within an hour or refrigerate it, using second-morning urine for cytology.",
+  "questions": [
+    {
+      "id": "pre-al-q1",
+      "stem": "During a modified Allen test, the palm regains its colour 8 seconds after the ulnar artery is released. How is this interpreted?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Positive — ulnar flow is adequate, so the radial artery may be punctured",
+          "rationale": "Correct. Flushing within 5–15 seconds is a positive test indicating good collateral flow."
+        },
+        {
+          "id": "b",
+          "text": "Negative — do not puncture the radial artery",
+          "rationale": "Incorrect. A negative test is when the hand does NOT flush within 5–15 seconds."
+        },
+        {
+          "id": "c",
+          "text": "Invalid — the radial artery should be released first",
+          "rationale": "Incorrect. The modified test releases only the ulnar artery while the radial stays occluded."
+        },
+        {
+          "id": "d",
+          "text": "Positive — so choose the brachial artery instead",
+          "rationale": "Incorrect. A positive test supports using the radial artery."
+        }
+      ],
+      "answer": "a",
+      "skill": "Interpret the Allen test",
+      "difficulty": "application"
+    },
+    {
+      "id": "pre-al-q2",
+      "stem": "The hand stays pale 20 seconds after the ulnar artery is released. What should the collector do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Not puncture that radial artery; test the other hand",
+          "rationale": "Correct. A negative test means inadequate ulnar circulation; WHO advises not puncturing that radial artery and testing the other hand."
+        },
+        {
+          "id": "b",
+          "text": "Proceed, pressing longer afterwards",
+          "rationale": "Incorrect. Longer pressure does not fix inadequate collateral flow."
+        },
+        {
+          "id": "c",
+          "text": "Repeat the test on the same hand until it turns pink",
+          "rationale": "Incorrect. A clearly negative test should not be overridden by repeating it on the same hand."
+        },
+        {
+          "id": "d",
+          "text": "Collect venous blood instead and report it as arterial",
+          "rationale": "Incorrect. Venous blood labelled as arterial is a sampling error that gives wrong blood-gas results."
+        }
+      ],
+      "answer": "a",
+      "skill": "Negative Allen test",
+      "difficulty": "application"
+    },
+    {
+      "id": "pre-al-q3",
+      "stem": "Which urine specimen is preferred for urine cytology?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A second-morning voided specimen",
+          "rationale": "Correct. First-morning urine is unsuitable for cytology because cells degenerate in the bladder overnight."
+        },
+        {
+          "id": "b",
+          "text": "A first-morning voided specimen",
+          "rationale": "Incorrect. It is preferred for chemistry because it is concentrated, but not for cytology."
+        },
+        {
+          "id": "c",
+          "text": "A 24-hour collection kept at room temperature",
+          "rationale": "Incorrect. Cells degrade over a long room-temperature collection."
+        },
+        {
+          "id": "d",
+          "text": "Any sample left on the counter overnight",
+          "rationale": "Incorrect. Delay degrades cells; urine should be tested within 1 hour or preserved."
+        }
+      ],
+      "answer": "a",
+      "skill": "Urine specimen choice",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch3",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 3, Before the Test: Getting the Sample Right (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 3,
+          "section": "High-Yield Hits",
+          "items": [
+            11,
+            15
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope, exam framing and the urobilinogen timing. Not used as verification."
+    },
+    {
+      "id": "who2010",
+      "kind": "external",
+      "citation": "World Health Organization. WHO guidelines on drawing blood: best practices in phlebotomy. Geneva: WHO; 2010. Sections 5.1.3 and 5.2.2; Annex I (Modified Allen test).",
+      "url": "https://iris.who.int/handle/10665/44294",
+      "consulted": true,
+      "usedFor": "Allen-test steps; flush within 5–15 s = positive (good ulnar flow); no flush = negative, do not puncture that radial artery; repeat on the other hand; arterial-sample errors (air, venous blood, heparin quantity/mixing, delayed transport); pressure 2–3 min, ≥ 5 min for hypertension, bleeding disorders or anticoagulants."
+    },
+    {
+      "id": "caleffi2010",
+      "kind": "external",
+      "citation": "Caleffi A, Manoni F, Alessio MG, Ottomano C, Lippi G. Quality in the extra-analytical phases of urinalysis. Biochem Med (Zagreb). 2010;20(2):179-183.",
+      "doi": "10.11613/BM.2010.022",
+      "url": "https://www.biochemia-medica.com/en/journal/20/2/10.11613/BM.2010.022/fullArticle",
+      "consulted": true,
+      "usedFor": "Analyse within 1 hour at room temperature without preservatives; store at +4 °C if analysis cannot be done within 1 hour; first-morning urine may be preferred for chemical analysis."
+    },
+    {
+      "id": "labcorp-cyto",
+      "kind": "external",
+      "citation": "Labcorp. Urine cytology (test 009068) specimen information (web page, accessed 2026-10-07).",
+      "url": "https://labcorp.com/tests/009068/urine-cytology",
+      "consulted": true,
+      "usedFor": "A first-morning voided specimen is not suitable; second-morning specimen preferred; add fixative if transport is delayed."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-allen",
+      "text": "Modified Allen test: occlude radial and ulnar arteries, open the blanched hand, release the ulnar only; flush within 5–15 s is positive and the radial artery may be used; no flush is negative — do not puncture that radial artery; test the other hand.",
+      "status": "checked",
+      "refs": [
+        "who2010"
+      ]
+    },
+    {
+      "id": "cl-abg",
+      "text": "Arterial-sample errors include air in the sample, venous blood, improper heparin quantity or mixing and delayed transport; apply pressure 2–3 min, ≥ 5 min if anticoagulated or bleeding-prone.",
+      "status": "checked",
+      "refs": [
+        "who2010"
+      ]
+    },
+    {
+      "id": "cl-1h",
+      "text": "Analyse urine within 1 hour at room temperature or refrigerate at about 4 °C.",
+      "status": "checked",
+      "refs": [
+        "caleffi2010"
+      ]
+    },
+    {
+      "id": "cl-fm",
+      "text": "First-morning urine is preferred for chemistry but is not suitable for cytology; second-morning urine is preferred for cytology.",
+      "status": "checked",
+      "refs": [
+        "caleffi2010",
+        "labcorp-cyto"
+      ]
+    },
+    {
+      "id": "cl-uro",
+      "text": "Urobilinogen peaks in the afternoon; collect 2–4 pm.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch3"
+      ]
+    },
+    {
+      "id": "cl-hand",
+      "text": "Puncturing the radial artery after a negative test risks hand ischemia.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch3"
+      ],
+      "note": "Rationale is standard; WHO states only that the radial artery should not be punctured."
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Squeeze both, free the ulnar, watch for pink.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-cyto",
+      "issue": "The reviewer says first-morning void is best for cytology; a reference lab states first-morning specimens are not suitable for cytology (register flag rv-urine-cytology).",
+      "kind": "contradiction",
+      "status": "resolved",
+      "resolution": "Lesson teaches second-morning urine for cytology."
+    },
+    {
+      "id": "f-uro",
+      "issue": "Urobilinogen afternoon timing not verified.",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Hand, arteries and urine cup are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against the WHO 2010 guideline, a peer-reviewed review and a reference-laboratory specimen page read for this lesson; 2 pending (urobilinogen timing, ischemia rationale). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-07"
+}
