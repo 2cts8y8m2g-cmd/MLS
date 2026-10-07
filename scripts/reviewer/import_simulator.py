@@ -58,6 +58,8 @@ FLAG_RULES = [
      'Lee 2007 found one to four blood cultures detected 73%, 90%, 98% and 99.8% of bloodstream infections; 80/96% comes from a 2004 study.'),
     ('rv-bc-interval', r'30.{0,3}60 ?min',
      'CDC guidance says at least two sets within a few hours from separate sites; no fixed 30–60-minute interval was found.'),
+    ('rv-hbv-chronicity', r'(80|90) ?%[^.]{0,60}(neonat|infant)|(1.2|1–2|1-2) ?%[^.]{0,40}adult',
+     'CDC (2025): about 90% of infected infants, 30% of children infected at 1–5 years and about 5% of adults develop chronic hepatitis B.'),
     ('rv-leukemia-blasts', r'blasts?[^.]{0,60}(20|30) ?%|(20|30) ?%[^.]{0,60}blasts?',
      'Blast thresholds differ between WHO-HAEM5 and ICC 2022 classifications; check which system the question assumes.'),
 ]
