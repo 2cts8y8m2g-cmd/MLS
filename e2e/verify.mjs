@@ -84,8 +84,9 @@ try {
     await page.goto(BASE);
     await page.waitForSelector('h1');
     check('Dashboard renders', (await page.textContent('h1')).includes('Watch it happen'));
-    check('Dashboard recommends the completed lesson', (await page.textContent('#recs')).includes('ABO Forward and Reverse Typing'));
-    check('Dashboard shows reviewer-missing notice', (await page.textContent('main')).includes('Source reviewer not yet received'));
+    const recs = await page.textContent('#recs');
+    check('Dashboard recommends lessons in reviewer order (Ch. 1 first)', recs.indexOf("CLIA '88") > -1 && recs.indexOf("CLIA '88") < recs.indexOf('ABO Forward'));
+    check('Dashboard names the source reviewer', (await page.textContent('main')).includes('Source: MEMORY LAB'));
     await page.screenshot({ path: `${OUT}dashboard-desktop.png`, fullPage: true });
 
     // track selection persists
@@ -99,7 +100,9 @@ try {
     await page.goto(`${BASE}#/curriculum`);
     await page.fill('input[type=search]', 'Bombay');
     const found = await page.textContent('main');
-    check('Curriculum search finds concepts and lesson text', found.includes('Bombay phenotype and A subgroups') && found.includes('ABO forward and reverse typing'));
+    check('Curriculum search finds reviewer concepts with locators', found.includes('Bombay (Oh)') && found.includes('Ch. 40 · High-Yield Hits #13'));
+    await page.fill('input[type=search]', 'deemed status');
+    check('Curriculum search covers lesson captions', (await page.textContent('main')).includes('CLIA'));
     await page.fill('input[type=search]', 'zzzzqqq');
     check('Curriculum search handles no results', (await page.textContent('main')).includes('No concepts match'));
     check('No console errors on dashboard/curriculum', errors.length === 0, errors.join(' | '));
@@ -275,8 +278,10 @@ try {
     await page.goto(`${BASE}#/coverage`);
     await page.waitForSelector('h1');
     const cov = await page.textContent('main');
-    check('Coverage shows 1 complete lesson requiring review', /Complete lessons\s*1/.test(cov) && /requiring review\s*1/.test(cov));
+    check('Coverage counts 9 taught concepts, all requiring review', /Complete lessons\s*9/.test(cov) && /requiring review\s*9/.test(cov));
     check('Coverage flags unverified ASCP outline', cov.includes('unverified'));
+    check('Coverage lists all 79 reviewer chapters', (await page.$$('#chapters tbody tr')).length === 79);
+    check('Coverage shows the reviewer accuracy register', cov.includes('Reviewer accuracy register') && cov.includes('48 systems'));
     await page.screenshot({ path: `${OUT}coverage.png`, fullPage: true });
 
     // authoring
@@ -292,6 +297,24 @@ try {
     await wait(700);
     check('Author: JSON errors are reported', (await page.textContent('.author-status')).includes('JSON error'));
     check('No console errors during player/quiz/author flows', errors.length === 0, errors.join(' | '));
+    await ctx.close();
+  }
+
+  /* ---------------- second lesson (new visual types) ---------------- */
+  {
+    const { ctx, page, errors } = await newPage();
+    await page.goto(`${BASE}#/lesson/ops-clia-complexity-accreditation`);
+    await page.waitForSelector('.stage-svg');
+    await setSeek(page, 20 + 25);
+    await wait(100);
+    const types = await page.$$eval('.stage-svg [data-visual]', (els) => [...new Set(els.map((e) => e.getAttribute('data-visual')))]);
+    check('CLIA lesson renders the new visual types', ['bin', 'token'].every((t) => types.includes(t)), types.join(','));
+    await page.screenshot({ path: `${OUT}clia-bins.png` });
+    await setSeek(page, 62 + 25);
+    await wait(100);
+    check('CLIA lesson caption synchronized in “What changes”', (await caption(page)).startsWith('CMS approves an accreditor'));
+    check('Lesson shows its reviewer location', (await page.textContent('main')).includes('Ch. 1 · High-Yield Hits #1, #2, #3, #4'));
+    check('No console errors on the CLIA lesson', errors.length === 0, errors.join(' | '));
     await ctx.close();
   }
 

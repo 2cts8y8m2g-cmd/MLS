@@ -1,55 +1,57 @@
 # Continuation plan
 
-Precise next steps for continuing MEMORY LAB in a later session. The order matters.
-
 ## State at hand-off (2026-10-07)
 
-- The application is complete and working: player, engine, schema, validator, dashboard, curriculum browser, quiz, weak-area review, recommendations, bookmarks, saved progress, authoring and preview, and the coverage dashboard. It is verified by 53 unit tests and 78 browser checks (`npm test`, `npm run e2e`).
-- **1 of 133 provisional concepts** has a complete lesson (`ih.abo.abo-forward-reverse`). That lesson **requires review**: 8 pending claims, 4 open flags, no expert review, and no reviewer mapping.
-- **Reviewer: not received.** Nothing is mapped to chapters or pages.
+- **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
+- **Lessons complete: 2, teaching 9 concepts.** Both require review.
+  - `ops-clia-complexity-accreditation` covers Ch. 1 Hits 1–4 and Traps 1–3.
+  - `ih-abo-forward-reverse` covers Ch. 40 Hits 2 and 13.
+- **Reviewer accuracy register:** 14 flags (7 verified issues, 7 needing verification), plus scan results.
+- **Checks:** 68 unit tests and 85 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
-## Step 1: Get the reviewer (blocking for source-based work)
+## Regenerating the inventory
 
-1. Commit the reviewer to `source/` (for example `source/reviewer.pdf`). If it's large, give its location instead.
-2. Extract the table of contents with `pdftotext -layout` (or OCR if scanned). Record every chapter in `content/reviewer.json` → `chapters[]` (`id`, `title`, `pages`, `status: "inventoried"`), set `received: true`, and set `pagesAccessible` to the pages actually readable. Never list pages that couldn't be read.
-3. For each chapter, list its topics and concepts, **including those found only in tables, figures and explanatory notes**.
-4. Reconcile with `content/curriculum.json`:
-   - Concept in reviewer and inventory → set `reviewerRef: { chapter, pages }`.
-   - Concept in reviewer only → add it (`reviewerRef` set).
-   - Concept in inventory only → keep it, but note `"notes": "Not in reviewer"` so it isn't presented as reviewer content.
-   - Then change `provenance.status` to `"reviewer-derived"` and update the statement.
-   - Edit `scripts/build-provisional-curriculum.py` **or** stop using it. Once reviewer-derived, `curriculum.json` becomes the source of truth; don't regenerate over it.
-5. Map the ABO lesson: set `reviewer.status: "mapped"`, `chapter` and `pages`. Fix anything the reviewer covers that the lesson lacks, or log disagreements in `docs/ACCURACY.md`.
-6. Run `npm run validate && npm test && npm run coverage:report`.
+The EPUB and its full-text extraction live in `source/`, which is git-ignored because the book is copyrighted. To rebuild:
 
-## Step 2: Verify the exam outlines
+```bash
+mkdir -p source/epub && cd source/epub && unzip -o ../reviewer.epub && cd ../..
+python3 scripts/reviewer/extract_epub.py source/epub/OEBPS source/reviewer-extract.json
+python3 scripts/reviewer/build_curriculum.py source/reviewer-extract.json
+npm run validate && npm test && npm run coverage:report
+```
 
-- Download the current **MLS(ASCP)** and **MLS(ASCPi)** content guidelines from ascp.org. Update `content/tracks.json` areas and weights, and set `verified: true` with the date.
-- Get **Annex A** of PRB-MT Res. 13 s. 2023 (the enhanced TOS). Update MTLE areas, confirm the sixth subject's current scope, and adjust domain-to-subject mapping and track tags on concepts.
-- Then flag concepts that are track-specific (set `tracks` to one track) and subjects that are missing from the reviewer.
+Prerequisite overrides and cross-chapter links are in `build_curriculum.py` (`OVERRIDES`, `CROSS`). Edit them there, not in `curriculum.json`, which is generated.
 
-## Step 3: Close the ABO lesson's review items
+## Next lessons, in reviewer order
 
-Verify the 8 pending claims against the AABB Technical Manual or Harmening (record edition and pages, and set `consulted: true` only after reading). Resolve the 4 flags, and ask a qualified MLS educator to review. Record their name only with permission.
+Work chapter by chapter. Each chapter's **core concept (Hit 1)** comes first, then clusters of related Hits, Traps and table rows.
 
-## Step 4: Expand chapter by chapter
+1. **Ch. 1, remaining concepts:** record and specimen retention (Hits 5–6, Vault), prions (Hit 7, Trap 4; verify against CDC/WHO), Standard Precautions and OSHA (Hits 10, 14, Trap 6; check the reviewer's OSHA dates), lab design and RACE (Hits 13, 15), and reimbursement (Hits 8–9, Trap 5; US only).
+2. **Ch. 2 core:** reengineer workflow before buying technology, plus Lean and Six Sigma.
+3. **Ch. 3 core:** order of draw. The reviewer's Ch. 3 cites a 2017 FDA biotin communication; check it for updates.
+4. **Ch. 4 core:** Beer's law. A good fit for a new `pathway` or `spectro` visual.
+5. Continue through Ch. 5–14 (Part I), then Part II (Ch. 15–28), and so on. Ch. 40 still has 34 concepts; Hit 14 (discrepancy Groups I–IV) and Trap 6 are natural next ABO lessons.
 
-Recommended order (this is the curriculum `sequence`; replace it with the reviewer's chapter order once known):
-1. Immunology basics: `immuno.ag-ab.agglutination` and `immuno.basics.immunoglobulins` (prerequisites of the ABO lesson)
-2. The rest of immunohematology: `ih.abo.abo-antigens-genetics`, `abo-discrepancies`, `bombay-subgroups`, `rh-d`, `dat-iat`, `antibody-id`, `crossmatch`, `hdfn`, `transfusion-reactions`
-3. Hematology and hemostasis (high weight on both tracks)
-4. Clinical chemistry
-5. Microbiology (bacteriology, then mycology/virology, then parasitology)
-6. Urinalysis and body fluids
-7. QC, lab math and lab operations; molecular diagnostics
-8. MTLE-only: histopathologic and cytologic techniques; laws and ethics
+The ordering is at the user's discretion. The heaviest-weighted exam areas are Chemistry, Hematology, Blood Bank and Microbiology.
 
-Per lesson: copy the ABO JSON as a pattern → write the 8 beats → animate with existing visual types → write 3+ original questions with rationales for every option → fill claims, refs and flags → `npm run validate` → preview in **Author** → `npm test` → `npm run coverage:report`.
+**Per-lesson checklist**
+1. Read the chapter in `source/reviewer-extract.json`.
+2. Pick a concept cluster.
+3. Verify each claim against an external source, and record it in `claims` with `refs`.
+4. Check the cluster's absolute-wording and dated items, and log reviewer problems in `content/reviewer-review.json`.
+5. Write original text, questions and mnemonics. Never copy reviewer passages, its 828 simulator questions, or its mnemonics.
+6. Animate using the existing visual types, adding a type only when needed.
+7. Run `npm run validate`, preview in **Author**, run `npm test`, then `npm run coverage:report`.
+8. Capture frames to check the layout.
 
-Visual types likely needed next (add to `src/engine/visuals/index.tsx`): `cellLineage` (maturation stages for hematopoiesis), `pathway` (step-highlighted biochemical or coagulation cascade), `gel` (electrophoresis bands), `colony`/`plate` (culture media), `strip` (urine reagent pads), `smear` (schematic slide field), `chart` (Levey–Jennings). Real morphology (smears, parasites, crystals) needs licensed images with credit and license in `morphology.images`.
+## Needed from the user
 
-## Step 5: Optional improvements
+- The **22 flagged items and the 34-item human-review queue** named in the reviewer's release record.
+- Whether the user holds the rights to the reviewer and wants its **828-question Exam Simulator** imported. It's currently not imported (treated as a proprietary question bank; only per-chapter counts are recorded). If yes, an importer can add it as a separate, clearly labeled question source.
+- The three **mock-exam PDFs**, if wanted.
+- The official ASCP guideline PDF and PRC Annex A, if the user can download them, since both were blocked from this environment.
+- A qualified MLS educator for human review.
 
-- Recorded or cloud narration (add a per-cue `audio` URL; keep Web Speech as the fallback).
-- Spaced-repetition scheduling on top of the weak-area data.
-- Cloud sync of progress (currently browser-local with export and import).
+## Philippine MTLE gaps (not in the reviewer)
+
+The gap domains `gap-histo` and `gap-ph-law` need another source: histopathologic and cytologic techniques, R.A. 5527, R.A. 4688 and DOH rules, and the PH code of ethics. `gap-ascp-edu` (education principles) covers an ASCP-only gap.

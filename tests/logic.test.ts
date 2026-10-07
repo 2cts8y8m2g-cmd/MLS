@@ -11,7 +11,7 @@ const entry = lessons.find((l) => l.lesson.id === 'ih-abo-forward-reverse')!;
 const lesson = entry.lesson;
 const qs = lesson.questions;
 
-const att = (qid: string, correct: boolean, at: string, skill = 's1'): Attempt => ({ qid, lessonId: lesson.id, skill, domain: 'ih', topic: 'ih.abo', choice: correct ? 'a' : 'b', correct, at });
+const att = (qid: string, correct: boolean, at: string, skill = 's1'): Attempt => ({ qid, lessonId: lesson.id, skill, domain: 'p5-bb', topic: 'ch40', choice: correct ? 'a' : 'b', correct, at });
 
 describe('quiz scoring', () => {
   it('scores correct, incorrect and unanswered questions', () => {
@@ -28,7 +28,7 @@ describe('quiz scoring', () => {
   it('creates attempts only for answered questions, tagged with skill/domain/topic', () => {
     const a = toAttempts(lesson, qs, { [qs[2].id]: qs[2].answer }, '2026-01-01T00:00:00Z');
     expect(a).toHaveLength(1);
-    expect(a[0]).toMatchObject({ qid: qs[2].id, correct: true, skill: qs[2].skill, domain: 'ih', topic: 'ih.abo' });
+    expect(a[0]).toMatchObject({ qid: qs[2].id, correct: true, skill: qs[2].skill, domain: 'p5-bb', topic: 'ch40' });
   });
 });
 
@@ -86,9 +86,15 @@ describe('progress model', () => {
 });
 
 describe('recommendations', () => {
-  it('suggests the complete lesson to a new learner', () => {
+  it('suggests lessons in reviewer order to a new learner (Ch. 1 before Ch. 40)', () => {
     const r = recommend(curriculum, lessons, emptyState());
-    expect(r[0]).toMatchObject({ lessonId: lesson.id, kind: 'next' });
+    expect(r.map((x) => x.lessonId)).toEqual(['ops-clia-complexity-accreditation', lesson.id]);
+    expect(r.every((x) => x.kind === 'next')).toBe(true);
+  });
+  it('moves on once a lesson is watched and its quiz attempted', () => {
+    let s = markWatched(emptyState(), 'ops-clia-complexity-accreditation');
+    s = addAttempts(s, [{ ...att('ops-clia-q1', true, '1'), lessonId: 'ops-clia-complexity-accreditation' }]);
+    expect(recommend(curriculum, lessons, s)[0].lessonId).toBe(lesson.id);
   });
   it('prioritises weak-area review from real results', () => {
     const s = addAttempts(emptyState(), [att(qs[0].id, false, '1', qs[0].skill)]);
@@ -96,32 +102,35 @@ describe('recommendations', () => {
   });
   it('suggests the quiz after watching without answering', () => {
     const s = markWatched(emptyState(), lesson.id);
-    expect(recommend(curriculum, lessons, s)[0].kind).toBe('quiz');
+    expect(recommend(curriculum, lessons, s)[0]).toMatchObject({ kind: 'quiz', lessonId: lesson.id });
   });
   it('respects the track filter', () => {
     const s = emptyState();
     s.settings.track = 'mtle';
-    expect(recommend(curriculum, lessons, s).length).toBe(1); // lesson is tagged for both tracks
+    expect(recommend(curriculum, lessons, s).length).toBe(2); // both lessons are tagged for both tracks
   });
 });
 
 describe('coverage', () => {
   it('counts only complete lessons and separates review-needed', () => {
     const cov = coverage(curriculum, lessons);
-    const ih = cov.find((d) => d.domain.id === 'ih')!;
-    expect(ih.complete).toBe(1);
-    expect(ih.needsReview).toBe(1);
-    expect(cov.reduce((a, d) => a + d.complete, 0)).toBe(1);
-    expect(conceptStatus('ih.abo.abo-forward-reverse', lessons)).toBe('complete-needs-review');
-    expect(conceptStatus('hema.hematopoiesis.erythropoiesis', lessons)).toBe('pending');
+    const bb = cov.find((d) => d.domain.id === 'p5-bb')!;
+    expect(bb.complete).toBe(2); // ch40.hit2 + ch40.hit13
+    expect(bb.needsReview).toBe(2);
+    expect(cov.find((d) => d.domain.id === 'p1-ops')!.complete).toBe(7);
+    expect(cov.reduce((a, d) => a + d.complete, 0)).toBe(9);
+    expect(conceptStatus('ch40.hit2', lessons)).toBe('complete-needs-review');
+    expect(conceptStatus('ch40.hit14', lessons)).toBe('pending'); // only partly taught — not counted
+    expect(conceptStatus('ch31.hit1', lessons)).toBe('pending');
   });
   it('treats an incomplete lesson as a draft, not complete', () => {
     const draft = { ...entry, validation: { ...entry.validation, complete: false } };
-    expect(conceptStatus('ih.abo.abo-forward-reverse', [draft])).toBe('draft');
+    expect(conceptStatus('ch40.hit2', [draft])).toBe('draft');
   });
   it('filters MTLE-only domains out of the ASCP track', () => {
     const ids = coverage(curriculum, lessons, 'ascp').map((d) => d.domain.id);
-    expect(ids).not.toContain('histo');
-    expect(ids).not.toContain('law');
+    expect(ids).not.toContain('gap-histo');
+    expect(ids).not.toContain('gap-ph-law');
+    expect(coverage(curriculum, lessons, 'mtle').map((d) => d.domain.id)).not.toContain('gap-ascp-edu');
   });
 });

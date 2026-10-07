@@ -46,10 +46,9 @@ describe('resolveProps', () => {
   });
 });
 
-describe('timeline lookup (reference lesson)', () => {
-  const { lessons } = loadContent();
-  const lesson = lessons.find((l) => l.lesson.id === 'ih-abo-forward-reverse')!.lesson;
+const { lessons } = loadContent();
 
+describe.each(lessons.map((l) => [l.lesson.id, l.lesson] as const))('timeline: %s', (_id, lesson) => {
   it('finds the scene and cue for every caption time', () => {
     for (const c of allCues(lesson)) {
       const mid = (c.start + c.end) / 2;
@@ -69,7 +68,6 @@ describe('timeline lookup (reference lesson)', () => {
     const rt = reducedMotionTime(lesson, c.start + 0.1);
     expect(rt).toBeLessThan(c.end);
     expect(rt).toBeGreaterThan(c.end - 0.01);
-    // stays constant throughout the caption: no tweening
     expect(reducedMotionTime(lesson, c.end - 0.2)).toBe(rt);
   });
   it('every keyframe fits inside its scene and every scene animates something', () => {
@@ -87,5 +85,9 @@ describe('timeline lookup (reference lesson)', () => {
         const moving = s.objects.some((o) => (o.keys ?? []).some((k) => k.t > a - 0.01 && k.t <= b + 0.01));
         expect(moving, `${s.id}/${c.id}`).toBe(true);
       }
+  });
+  it('every visual object type is known to the renderer', async () => {
+    const { VISUAL_TYPES } = await import('../src/schema/types');
+    for (const s of lesson.scenes) for (const o of s.objects) expect(VISUAL_TYPES).toContain(o.type);
   });
 });

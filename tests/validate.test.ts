@@ -72,6 +72,18 @@ describe('validateLesson', () => {
     expect(validateLesson(l, known).errors.join()).toMatch(/not consulted/);
   });
 
+  it('refuses "checked" claims supported only by the reviewer', () => {
+    const l = clone();
+    l.claims[0].refs = ['reviewer-ch40'];
+    expect(validateLesson(l, known).errors.join()).toMatch(/reviewer alone cannot verify itself/);
+  });
+
+  it('requires a reviewer mapping for completeness', () => {
+    const l = clone();
+    l.reviewer.locations = [];
+    expect(validateLesson(l, known).checklist.find((c) => c.id === 'reviewer-map')?.ok).toBe(false);
+  });
+
   it('refuses a claimed expert review without a named reviewer', () => {
     const l = clone();
     l.verification.humanExpertReview = true;

@@ -1,7 +1,8 @@
 import curriculumJson from '../../content/curriculum.json';
 import reviewerJson from '../../content/reviewer.json';
 import tracksJson from '../../content/tracks.json';
-import type { Curriculum, Lesson, ReviewerStatus, Track } from '../schema/types';
+import reviewerReviewJson from '../../content/reviewer-review.json';
+import type { Curriculum, Lesson, ReviewerLocation, ReviewerStatus, Track } from '../schema/types';
 import { reviewNeeds, validateLesson } from '../schema/validate';
 import { flattenCurriculum, type LessonEntry } from '../logic/curriculum';
 
@@ -14,6 +15,17 @@ const lessonModules = import.meta.glob('../../content/lessons/*.json', { eager: 
 export const curriculum = curriculumJson as unknown as Curriculum;
 export const tracks = tracksJson as unknown as Track[];
 export const reviewer = reviewerJson as unknown as ReviewerStatus;
+
+export interface ReviewerFlag {
+  id: string;
+  location: ReviewerLocation;
+  issue: string;
+  kind: string;
+  status: 'verified-issue' | 'needs-verification' | 'resolved';
+  evidence: { citation: string; url?: string; checkedAt: string }[];
+  appAction: string;
+}
+export const reviewerReview = reviewerReviewJson as unknown as { statement: string; scan: { datedGuidelineStatements: number; absoluteWordingHighYieldHits: number; note: string }; flags: ReviewerFlag[] };
 
 export const conceptIndex = new Map(flattenCurriculum(curriculum).map((f) => [f.concept.id, f]));
 const knownIds = new Set(conceptIndex.keys());

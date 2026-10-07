@@ -2,7 +2,7 @@
 
 An animated Medical Laboratory Science reviewer. Each concept is taught as a short cartoon-style lesson: a hook, the normal mechanism, what changes, the bench connection, exam look-alikes, a memory aid with its limits, three explained questions, and a one-sentence takeaway. It has two study tracks: **MLS(ASCP)/ASCPi** and the **Philippine MTLE**.
 
-> **Status (2026-10-07):** The application is complete and working. **One** lesson is complete (ABO forward and reverse typing), and it still **requires review**. The source reviewer you referred to was **not received**, so no lesson is mapped to reviewer pages, and the 133-concept curriculum is a **provisional** inventory. See [`docs/COVERAGE.md`](docs/COVERAGE.md) and [`docs/CONTINUATION.md`](docs/CONTINUATION.md).
+> **Status (2026-10-07):** The application is complete and working. Your reviewer (*MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer*, EPUB) is **fully inventoried**: 79 chapters → 1,932 concepts, mapped by chapter/section/item, since the EPUB has no page numbers. **2 lessons are complete** (Ch. 1 CLIA '88; Ch. 40 ABO typing), teaching **9 of 1,932 concepts**. Both **require review**. A reviewer accuracy register lists 14 flags. See [`docs/COVERAGE.md`](docs/COVERAGE.md), [`docs/ACCURACY.md`](docs/ACCURACY.md) and [`docs/CONTINUATION.md`](docs/CONTINUATION.md).
 
 ## Screenshots
 
@@ -59,9 +59,10 @@ No accounts, API keys or paid services are needed.
 ```
 content/                   ← all teaching content (JSON, no code)
   lessons/*.json           ← one file per lesson; picked up automatically
-  curriculum.json          ← domains → topics → concepts (+ prerequisites, reviewer refs)
+  curriculum.json          ← GENERATED from the reviewer: Parts → chapters → concepts (+ prerequisites, locators)
   tracks.json              ← exam tracks, areas, weights, verification notes
-  reviewer.json            ← status of the source reviewer + chapter checklist
+  reviewer.json            ← GENERATED: reviewer details + 79-chapter inventory with counts
+  reviewer-review.json     ← accuracy register for the reviewer (flags + evidence)
 src/
   schema/                  ← lesson schema types, validator, completeness rules, template
   engine/                  ← timeline/keyframe interpolation + reusable cartoon visuals
@@ -69,7 +70,9 @@ src/
   logic/                   ← quiz scoring, weak areas, recommendations, coverage
   state/                   ← progress model + persistent store
   pages/, components/      ← UI
-scripts/                   ← validate-content, coverage-report, provisional curriculum generator
+scripts/                   ← validate-content, coverage-report
+scripts/reviewer/          ← EPUB extractor + curriculum builder (reads git-ignored source/)
+source/                    ← git-ignored: the reviewer EPUB and its full-text extraction
 tests/                     ← unit tests (vitest)
 e2e/verify.mjs             ← browser verification (playwright-core + axe)
 docs/                      ← coverage checklist, accuracy log, content guide, continuation plan

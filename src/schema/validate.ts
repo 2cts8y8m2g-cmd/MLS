@@ -69,8 +69,9 @@ export function validateLesson(input: unknown, knownConceptIds?: Set<string>): V
   }
   if (!l.reviewer || !['mapped', 'unmapped-reviewer-unavailable', 'not-in-reviewer'].includes(l.reviewer.status))
     errors.push('reviewer.status is required.');
-  else if (l.reviewer.status === 'mapped' && (!isStr(l.reviewer.chapter) || !isStr(l.reviewer.pages)))
-    errors.push('reviewer.chapter and reviewer.pages are required when status is "mapped".');
+  else if (!Array.isArray(l.reviewer.locations)) errors.push('reviewer.locations must be an array.');
+  else if (l.reviewer.locations.some((x) => !isNum(x?.chapter) || !isStr(x?.section)))
+    errors.push('reviewer.locations entries need a numeric chapter and a section.');
   if (!isStr(l.revisedAt) || !/^\d{4}-\d{2}-\d{2}$/.test(l.revisedAt)) errors.push('revisedAt must be YYYY-MM-DD.');
 
   // ---------- scenes & timing ----------
@@ -164,6 +165,8 @@ export function validateLesson(input: unknown, knownConceptIds?: Set<string>): V
   const ex = l.explanation;
   const exOk = !!ex && (['what', 'why', 'measure', 'differs', 'examAngle'] as const).every((k) => isStr(ex[k]) && ex[k].length >= 40);
   add('explanation', 'Five-question explanation (what, why, measure, differs, exam angle)', exOk);
+  add('reviewer-map', 'Mapped to reviewer chapter/section (or marked not-in-reviewer)',
+    !!l.reviewer && (l.reviewer.status === 'not-in-reviewer' ? isStr(l.reviewer.note) : l.reviewer.status === 'mapped' && Array.isArray(l.reviewer.locations) && l.reviewer.locations.length > 0));
   add('concepts', 'Mapped to at least one curriculum concept', Array.isArray(l.conceptIds) && l.conceptIds.length > 0);
   add('objectives', 'Learning objectives', Array.isArray(l.objectives) && l.objectives.length > 0 && l.objectives.every(isStr));
 
@@ -222,6 +225,8 @@ export function validateLesson(input: unknown, knownConceptIds?: Set<string>): V
           if (!r) errors.push(`claims[${i}] (${c.id}): unknown reference "${rid}".`);
           else if (!r.consulted) errors.push(`claims[${i}] (${c.id}): cites "${rid}", which was not consulted — mark the claim "pending".`);
         }
+      if (c.refs?.length && c.refs.every((rid) => refMap.get(rid)?.kind === 'reviewer'))
+        errors.push(`claims[${i}] (${c.id}): "checked" needs an external source — the reviewer alone cannot verify itself.`);
     }
   });
   add('claims', 'Accuracy ledger lists the lesson’s key claims', claims.length > 0);
@@ -262,7 +267,7 @@ export function reviewNeeds(lesson: Lesson): string[] {
   if (pending) needs.push(`${pending} claim(s) awaiting verification.`);
   const open = lesson.accuracyFlags.filter((f) => f.status === 'open').length;
   if (open) needs.push(`${open} open accuracy flag(s).`);
-  if (lesson.reviewer.status !== 'mapped') needs.push('Not mapped to a reviewer chapter/page.');
+  if (lesson.reviewer.status !== 'mapped') needs.push('Not mapped to a reviewer chapter/section.');
   return needs;
 }
 

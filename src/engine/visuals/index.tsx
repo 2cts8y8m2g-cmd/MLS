@@ -630,6 +630,110 @@ function Highlight({ p }: { p: Props }) {
   );
 }
 
+/* ---------------- workflow, regulation & QC graphics ---------------- */
+
+function Building({ p }: { p: Props }) {
+  const w = num(p, 'w', 200);
+  const h = num(p, 'h', 150);
+  const hl = num(p, 'highlight', 0);
+  const sign = str(p, 'sign', 'LAB');
+  return (
+    <g>
+      {hl > 0 && <rect x={-w / 2 - 14} y={-h - 52} width={w + 28} height={h + 66} rx={20} fill="none" stroke="var(--accent)" strokeWidth={4} opacity={hl} />}
+      <path d={`M${-w / 2 - 12},${-h + 8} L0,${-h - 40} L${w / 2 + 12},${-h + 8} Z`} fill="var(--device-dark)" stroke="var(--line)" strokeWidth={2} strokeLinejoin="round" />
+      <rect x={-w / 2} y={-h} width={w} height={h} rx={6} fill="var(--device)" stroke="var(--line)" strokeWidth={2} />
+      <rect x={-w / 2 + 18} y={-h + 24} width={w * 0.24} height={h * 0.26} rx={4} fill="var(--glass-fill)" stroke="var(--glass)" />
+      <rect x={w / 2 - 18 - w * 0.24} y={-h + 24} width={w * 0.24} height={h * 0.26} rx={4} fill="var(--glass-fill)" stroke="var(--glass)" />
+      <rect x={-w * 0.12} y={-h * 0.42} width={w * 0.24} height={h * 0.42} rx={4} fill="var(--stage-card)" stroke="var(--line)" />
+      <rect x={-w * 0.3} y={-h - 30} width={w * 0.6} height={24} rx={6} fill="var(--btn)" />
+      <g transform={`translate(0,${-h - 18})`}><Text lines={[sign]} size={14} fill="var(--btn-ink)" weight={800} /></g>
+      {str(p, 'label', '') && <g transform="translate(0,22)"><Text lines={wrap(str(p, 'label', ''), 26)} size={15} fill="var(--ink)" weight={700} /></g>}
+    </g>
+  );
+}
+
+function DocumentCard({ p }: { p: Props }) {
+  const w = num(p, 'w', 170);
+  const h = num(p, 'h', 120);
+  const stamp = clamp(num(p, 'stamp', 0));
+  const title = str(p, 'title', 'CERTIFICATE');
+  const sub = str(p, 'sub', '');
+  const stampText = str(p, 'stampText', '');
+  const hl = num(p, 'highlight', 0);
+  return (
+    <g>
+      {hl > 0 && <rect x={-w / 2 - 10} y={-h / 2 - 10} width={w + 20} height={h + 20} rx={14} fill="none" stroke="var(--accent)" strokeWidth={4} opacity={hl} />}
+      <rect x={-w / 2} y={-h / 2} width={w} height={h} rx={8} fill={TONE_BG[str(p, 'tone', 'neutral')] ?? 'var(--stage-card)'} stroke="var(--line)" strokeWidth={2} />
+      <rect x={-w / 2 + 8} y={-h / 2 + 8} width={w - 16} height={h - 16} rx={5} fill="none" stroke="var(--line)" strokeDasharray="4 4" />
+      <g transform={`translate(0,${-h / 2 + 26})`}><Text lines={wrap(title, Math.floor(w / 9))} size={14} fill="var(--ink)" weight={800} /></g>
+      {sub && <g transform={`translate(0,${-h / 2 + 52 + (wrap(title, Math.floor(w / 9)).length - 1) * 9})`}><Text lines={wrap(sub, Math.floor(w / 7.5))} size={12} fill="var(--muted)" weight={600} /></g>}
+      {stampText && stamp > 0 && (
+        <g transform={`translate(${w / 2 - 34},${h / 2 - 28}) rotate(-14) scale(${1.6 - stamp * 0.6})`} opacity={stamp}>
+          <circle r={24} fill="none" stroke="var(--good)" strokeWidth={3} />
+          <Text lines={wrap(stampText, 8)} size={10} fill="var(--good)" weight={900} />
+        </g>
+      )}
+    </g>
+  );
+}
+
+function Token({ p }: { p: Props }) {
+  const label = str(p, 'label', '');
+  const lines = wrap(label, num(p, 'wrap', 16));
+  const w = num(p, 'w', 150);
+  const h = Math.max(36, lines.length * 17 + 16);
+  const hl = num(p, 'highlight', 0);
+  return (
+    <g>
+      <rect x={-w / 2} y={-h / 2} width={w} height={h} rx={h / 2 > 22 ? 14 : h / 2} fill={TONE_BG[str(p, 'tone', 'neutral')] ?? 'var(--stage-card)'}
+        stroke={hl > 0.5 ? 'var(--accent)' : 'var(--line)'} strokeWidth={hl > 0.5 ? 3 : 1.5} />
+      <Text lines={lines} size={14} fill="var(--ink)" weight={700} />
+    </g>
+  );
+}
+
+function Bin({ p }: { p: Props }) {
+  const w = num(p, 'w', 180);
+  const h = num(p, 'h', 150);
+  const hl = num(p, 'highlight', 0);
+  return (
+    <g>
+      <path d={`M${-w / 2},${-h / 2} L${-w / 2 + 14},${h / 2} L${w / 2 - 14},${h / 2} L${w / 2},${-h / 2}`} fill={TONE_BG[str(p, 'tone', 'neutral')] ?? 'var(--stage-card)'}
+        stroke={hl > 0.5 ? 'var(--accent)' : 'var(--line)'} strokeWidth={hl > 0.5 ? 4 : 2} strokeLinejoin="round" />
+      <line x1={-w / 2 - 6} y1={-h / 2} x2={w / 2 + 6} y2={-h / 2} stroke="var(--line)" strokeWidth={4} strokeLinecap="round" />
+      <g transform={`translate(0,${h / 2 + 22})`}><Text lines={wrap(str(p, 'label', ''), Math.floor(w / 8))} size={16} fill="var(--ink)" weight={800} /></g>
+      {str(p, 'sub', '') && <g transform={`translate(0,${h / 2 + 46})`}><Text lines={wrap(str(p, 'sub', ''), Math.floor(w / 7))} size={12} fill="var(--muted)" weight={600} /></g>}
+    </g>
+  );
+}
+
+const ICONS: Record<string, (c: string) => ReactNode> = {
+  gavel: (c) => (<g><rect x={-26} y={-30} width={40} height={20} rx={5} transform="rotate(-35)" fill={c} /><rect x={-4} y={-6} width={8} height={46} rx={4} transform="rotate(-35)" fill={c} /><rect x={-30} y={30} width={56} height={10} rx={4} fill={c} opacity={0.6} /></g>),
+  trophy: (c) => (<g><path d="M-22,-30 L22,-30 L18,0 Q0,16 -18,0 Z" fill={c} /><path d="M-22,-24 Q-38,-22 -32,-6 Q-28,2 -18,0" fill="none" stroke={c} strokeWidth={5} /><path d="M22,-24 Q38,-22 32,-6 Q28,2 18,0" fill="none" stroke={c} strokeWidth={5} /><rect x={-5} y={8} width={10} height={16} fill={c} /><rect x={-18} y={24} width={36} height={9} rx={3} fill={c} /></g>),
+  shield: (c) => (<path d="M0,-34 L28,-24 Q28,16 0,34 Q-28,16 -28,-24 Z" fill={c} />),
+  magnifier: (c) => (<g><circle cx={-6} cy={-6} r={20} fill="none" stroke={c} strokeWidth={7} /><line x1={9} y1={9} x2={28} y2={28} stroke={c} strokeWidth={9} strokeLinecap="round" /></g>),
+  check: (c) => (<path d="M-24,0 L-8,16 L26,-20" fill="none" stroke={c} strokeWidth={9} strokeLinecap="round" strokeLinejoin="round" />),
+  cross: (c) => (<g stroke={c} strokeWidth={9} strokeLinecap="round"><line x1={-20} y1={-20} x2={20} y2={20} /><line x1={20} y1={-20} x2={-20} y2={20} /></g>),
+  flask: (c) => (<g><path d="M-8,-32 L8,-32 L8,-10 L26,26 Q28,32 22,32 L-22,32 Q-28,32 -26,26 L-8,-10 Z" fill="none" stroke={c} strokeWidth={5} strokeLinejoin="round" /><path d="M-17,12 L17,12 L24,28 L-24,28 Z" fill={c} opacity={0.6} /></g>),
+  book: (c) => (<g><rect x={-26} y={-30} width={52} height={60} rx={5} fill={c} /><rect x={-18} y={-22} width={36} height={8} rx={2} fill="var(--stage-card)" /><rect x={-18} y={-8} width={26} height={5} rx={2} fill="var(--stage-card)" /></g>),
+  person: (c) => (<g fill={c}><circle cy={-16} r={14} /><path d="M-26,32 Q-26,4 0,4 Q26,4 26,32 Z" /></g>),
+};
+
+function Icon({ p }: { p: Props }) {
+  const draw = ICONS[str(p, 'glyph', 'check')] ?? ICONS.check;
+  const label = str(p, 'label', '');
+  return (
+    <g>
+      {bool(p, 'disc', true) && <circle r={46} fill="var(--stage-card)" stroke="var(--line)" strokeWidth={2} />}
+      {draw(color(str(p, 'color', 'accent')))}
+      {label && (() => {
+        const lines = wrap(label, 18);
+        return <g transform={`translate(0,${64 + ((lines.length - 1) * 15 * 1.25) / 2})`}><Text lines={lines} size={15} fill="var(--ink)" weight={700} /></g>;
+      })()}
+    </g>
+  );
+}
+
 type Renderer = (args: { p: Props; id: string }) => ReactNode;
 
 export const VISUALS: Record<VisualType, Renderer> = {
@@ -648,6 +752,11 @@ export const VISUALS: Record<VisualType, Renderer> = {
   specimen: Specimen,
   highlight: Highlight,
   bubble: Bubble,
+  building: Building,
+  document: DocumentCard,
+  token: Token,
+  bin: Bin,
+  icon: Icon,
 };
 
 /** Positions any visual using the shared transform props. */

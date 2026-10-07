@@ -1,4 +1,4 @@
-import { curriculum, domainTitle, lessonById, lessonEntries, reviewer, tracks } from '../content';
+import { curriculum, domainTitle, lessonById, lessonEntries, reviewer, reviewerReview, tracks } from '../content';
 import { coverage, inTrack } from '../logic/curriculum';
 import { recommend } from '../logic/recommend';
 import { weakAreas } from '../logic/weak';
@@ -42,10 +42,14 @@ export function Dashboard() {
         </fieldset>
       </section>
 
-      {!reviewer.received && (
+      {reviewer.received ? (
+        <div className="notice" role="note">
+          <strong>Source: {reviewer.title}</strong> ({reviewer.chapters.length} chapters, inventoried). {completeConcepts} of {totalConcepts} reviewer concepts have a complete animated lesson so far
+          {' '}· {reviewerReview.flags.filter((f) => f.status !== 'resolved').length} reviewer accuracy flags open. <a href={href('/coverage')}>See coverage &amp; review status</a>.
+        </div>
+      ) : (
         <div className="notice notice-warn" role="note">
-          <strong>Source reviewer not yet received.</strong> No lesson is mapped to your reviewer's chapters or pages yet, and the curriculum is a provisional inventory.
-          {' '}<a href={href('/coverage')}>See coverage status</a>.
+          <strong>Source reviewer not yet received.</strong> No lesson is mapped to your reviewer yet. <a href={href('/coverage')}>See coverage status</a>.
         </div>
       )}
 

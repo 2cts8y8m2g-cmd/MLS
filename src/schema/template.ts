@@ -15,7 +15,7 @@ export function lessonTemplate(id = 'new-lesson'): Lesson {
     topic: 'TODO-topic-id',
     conceptIds: [],
     tracks: ['ascp', 'mtle'],
-    reviewer: { status: 'unmapped-reviewer-unavailable', chapter: null, pages: null, note: 'TODO: reviewer mapping' },
+    reviewer: { status: 'mapped', locations: [], note: 'TODO: reviewer mapping (chapter, section, items)' },
     prerequisites: [],
     objectives: ['TODO: objective'],
     duration: len * SCENE_KINDS.length,

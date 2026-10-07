@@ -8,6 +8,7 @@ import { isBookmarked, markWatched, recordPosition, toggleBookmark } from '../st
 import { Quiz } from './Quiz';
 import { TrackTags } from './bits';
 import { lessonForConcept } from '../logic/curriculum';
+import { formatLocations } from '../logic/locate';
 
 const CLAIM_LABEL = { checked: 'Checked against a cited source', pending: 'Awaiting verification', analogy: 'Simplified teaching analogy' } as const;
 
@@ -182,7 +183,7 @@ export function LessonView({ entry, sceneId, persist }: { entry: LessonEntry; sc
             </li>
           ))}
         </ol>
-        <p className="small muted">Source reviewer: {lesson.reviewer.status === 'mapped' ? `Chapter ${lesson.reviewer.chapter}, pages ${lesson.reviewer.pages}` : 'not mapped'}.</p>
+        <p className="small muted">Source reviewer: {lesson.reviewer.status === 'mapped' ? formatLocations(lesson.reviewer.locations) : 'not mapped'}. {lesson.reviewer.note}</p>
       </section>
     </article>
   );

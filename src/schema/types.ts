@@ -61,6 +61,11 @@ export const VISUAL_TYPES = [
   'specimen',
   'highlight',
   'bubble',
+  'building',
+  'document',
+  'token',
+  'bin',
+  'icon',
 ] as const;
 export type VisualType = (typeof VISUAL_TYPES)[number];
 
@@ -97,11 +102,22 @@ export interface Scene {
   altText: string;
 }
 
+/**
+ * A place in the source reviewer. The reviewer is a reflowable EPUB with no fixed
+ * page numbers, so locations are chapter + section (+ item number within the section).
+ */
+export interface ReviewerLocation {
+  chapter: number;
+  /** Section heading, e.g. "High-Yield Hits", "Number Vault", "Exam Traps", "Figure". */
+  section: string;
+  /** 1-based item numbers within the section (bullet, table row, trap), if specific. */
+  items?: number[];
+}
+
 /** Where a lesson came from in the user's reviewer. */
 export interface ReviewerMapping {
   status: 'mapped' | 'unmapped-reviewer-unavailable' | 'not-in-reviewer';
-  chapter: string | null;
-  pages: string | null;
+  locations: ReviewerLocation[];
   note: string;
 }
 
@@ -124,6 +140,13 @@ export interface Reference {
   doi?: string;
   /** True only if the content was actually read while writing the lesson. */
   consulted: boolean;
+  /**
+   * 'reviewer' = the user's source reviewer (the curriculum foundation, not an
+   * authority). A claim is 'checked' only when an external source supports it.
+   */
+  kind?: 'reviewer' | 'external';
+  /** For kind 'reviewer': where in the reviewer. */
+  locations?: ReviewerLocation[];
   pages?: string;
   license?: string;
   usedFor: string;
@@ -227,14 +250,22 @@ export interface Concept {
   title: string;
   tracks: TrackId[];
   prerequisites: string[];
-  /** Where in the user's reviewer this concept appears. null = not yet mapped. */
-  reviewerRef: { chapter: string; pages: string } | null;
+  /** Where in the user's reviewer this concept appears. null = not in the reviewer. */
+  reviewerRef: ReviewerLocation | null;
+  /** What kind of reviewer item the concept came from. */
+  kind: 'core' | 'hit' | 'table' | 'figure' | 'trap' | 'special' | 'gap';
+  /** Cognitive tags the reviewer attaches, e.g. interpret, calculate. */
+  skills?: string[];
   notes?: string;
 }
 
 export interface Topic {
   id: string;
   title: string;
+  /** Reviewer chapter number this topic corresponds to. */
+  reviewerChapter?: number;
+  /** Number of reviewer Exam Simulator questions tagged to this chapter (questions are not imported). */
+  simulatorQuestions?: number;
   concepts: Concept[];
 }
 
@@ -244,6 +275,8 @@ export interface Domain {
   tracks: TrackId[];
   /** Position in the recommended learning sequence (lower first). */
   sequence: number;
+  /** Reviewer Part (e.g. "V") or null for subjects the reviewer does not cover. */
+  reviewerPart?: string | null;
   topics: Topic[];
   notes?: string;
 }
@@ -251,6 +284,8 @@ export interface Domain {
 export interface Curriculum {
   provenance: {
     status: 'provisional' | 'reviewer-derived';
+    /** How concept labels were produced (e.g. auto-derived from reviewer bullets). */
+    labelNote?: string;
     statement: string;
     revisedAt: string;
   };
@@ -286,10 +321,29 @@ export interface Track {
 
 /* ---------- Reviewer (source document) ---------- */
 
+export interface ReviewerChapter {
+  id: string;
+  n: number;
+  title: string;
+  part: string;
+  partTitle: string;
+  sections: string[];
+  counts: { highYield: number; memoryHooks: number; tableRows: number; tables: number; figures: number; traps: number; recall: number; special: number; simulatorQuestions: number };
+  status: 'not-started' | 'inventoried' | 'in-progress' | 'complete';
+}
+
 export interface ReviewerStatus {
   received: boolean;
   fileName: string | null;
+  title?: string;
+  author?: string;
+  edition?: string;
+  format?: string;
   pagesAccessible: string | null;
+  /** False for reflowable EPUBs: lessons cite chapter/section/item instead of pages. */
+  hasPageNumbers?: boolean;
   statement: string;
-  chapters: { id: string; title: string; pages: string; status: 'not-started' | 'inventoried' | 'in-progress' | 'complete' }[];
+  backMatter?: { name: string; description: string; usedInApp: string }[];
+  selfReportedReview?: string;
+  chapters: ReviewerChapter[];
 }

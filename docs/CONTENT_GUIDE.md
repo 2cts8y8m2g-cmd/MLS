@@ -66,6 +66,11 @@ Every visual object has `type`, `props` (initial values) and optional `keys`:
 | `arrow` | `dx`, `dy`, *`draw`* (0→1), `color`, `label`, `dashed` |
 | `highlight` | `w`, `h`, `color`, `dashed` (pulses unless reduced motion) |
 | `mascot` | `expression` (`happy`/`curious`/`thinking`/`alert`) |
+| `building` | `w`, `h`, `sign`, `label`, *`highlight`* |
+| `document` | `w`, `h`, `title`, `sub`, `tone`, `stampText`, *`stamp`* (0→1 stamp lands), *`highlight`* |
+| `token` | `label`, `w`, `wrap`, `tone`, *`highlight`* — a chip that can be moved and sorted |
+| `bin` | `w`, `h`, `label`, `sub`, `tone`, *`highlight`* — a category bucket |
+| `icon` | `glyph` (`gavel`,`trophy`,`shield`,`magnifier`,`check`,`cross`,`flask`,`book`,`person`), `color`, `disc`, `label` |
 
 Color tokens: `ink`, `muted`, `accent`, `a`, `b`, `h`, `good`, `warn`, `bad`, `plasma`, `saline`, `blood`, `surface`. They follow light and dark mode automatically.
 
@@ -86,4 +91,7 @@ Three or more per lesson. Each has a `skill` tag, which weak-area review groups 
   - `analogy`: a deliberate simplification such as cartoons or mnemonics.
 - `accuracyFlags[]`: outdated information, contradictions, missing context, uncertainty, or method-, guideline- or reference-range-dependent findings.
 - `verification.humanExpertReview` stays `false` unless a named, qualified person reviewed the lesson.
-- `reviewer`: once the source reviewer is available, set `status: "mapped"` with `chapter` and `pages`. Then fill `reviewerRef` on the matching concepts in `curriculum.json`.
+- `reviewer`: `status: "mapped"` with `locations: [{ chapter, section, items? }]`. Sections are the reviewer's headings ("High-Yield Hits", "Number Vault", "Exam Traps", "Figure", …), and items are 1-based. The EPUB has no page numbers.
+- `conceptIds`: only the curriculum concepts the lesson **fully** teaches. Partly covered items are mentioned in `reviewer.note`, not counted.
+- Cite the reviewer as a reference with `"kind": "reviewer"` and its `locations`. It documents scope, but it can never be the only support for a `checked` claim.
+- Log problems you find in the reviewer in `content/reviewer-review.json` (`verified-issue` only with evidence).
