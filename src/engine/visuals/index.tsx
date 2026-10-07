@@ -316,6 +316,8 @@ function Tube({ p, id }: { p: Props; id: string }) {
   const fluid = color(str(p, 'fluid', 'saline'));
   const label = str(p, 'label', '');
   const result = str(p, 'result', '');
+  // Optional stopper colour (a real tube-cap colour such as '#8ec9ee'); identifies the additive.
+  const cap = str(p, 'cap', '');
   const clipId = `tube-clip-${id}`;
   const top = TUBE_H * (1 - level);
   const { n, r } = clumpPattern(grade);
@@ -351,7 +353,8 @@ function Tube({ p, id }: { p: Props; id: string }) {
       <path d={tubePath} fill="none" stroke="var(--glass)" strokeWidth={3} strokeLinejoin="round" />
       <line x1={-TUBE_W / 2 - 6} y1={0} x2={TUBE_W / 2 + 6} y2={0} stroke="var(--glass)" strokeWidth={4} strokeLinecap="round" />
       <rect x={-TUBE_W / 2 + 7} y={10} width={5} height={TUBE_H * 0.55} rx={2.5} fill="#fff" opacity={0.35} />
-      {label && <g transform="translate(0,-26)"><Text lines={wrap(label, 12)} size={15} fill="var(--ink)" weight={700} /></g>}
+      {cap && <rect x={-TUBE_W / 2 - 5} y={-30} width={TUBE_W + 10} height={30} rx={6} fill={color(cap)} stroke="var(--line)" strokeWidth={1.5} />}
+      {label && <g transform={`translate(0,${cap ? -50 : -26})`}><Text lines={wrap(label, 12)} size={15} fill="var(--ink)" weight={700} /></g>}
       {result && (
         <g transform={`translate(0,${TUBE_H + 26})`}>
           <rect x={-34} y={-15} width={68} height={30} rx={15} fill={result.trim().startsWith('0') ? 'var(--chip-neg)' : 'var(--chip-pos)'} />

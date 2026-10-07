@@ -2,7 +2,7 @@
 
 An animated Medical Laboratory Science reviewer. Each concept is taught as a short cartoon-style lesson: a hook, the normal mechanism, what changes, the bench connection, exam look-alikes, a memory aid with its limits, three explained questions, and a one-sentence takeaway. It has two study tracks: **MLS(ASCP)/ASCPi** and the **Philippine MTLE**.
 
-> **Status (2026-10-07):** The application is complete and working. Your reviewer (*MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer*, EPUB) is **fully inventoried**: 79 chapters → 1,932 concepts, mapped by chapter/section/item, since the EPUB has no page numbers. **11 lessons are complete** (6 covering all of Ch. 1, 4 covering all of Ch. 2, 1 in Ch. 40), teaching **48 of 1,932 concepts (about 2.5%)**. All 11 **require review**. A reviewer accuracy register lists 21 flags. See [`docs/COVERAGE.md`](docs/COVERAGE.md), [`docs/ACCURACY.md`](docs/ACCURACY.md) and [`docs/CONTINUATION.md`](docs/CONTINUATION.md).
+> **Status (2026-10-07):** The application is complete and working. Your reviewer (*MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer*, EPUB) is **fully inventoried**: 79 chapters → 1,932 concepts, mapped by chapter/section/item, since the EPUB has no page numbers. **12 lessons are complete** (6 covering all of Ch. 1, 4 covering all of Ch. 2, 1 in Ch. 3, 1 in Ch. 40), teaching **53 of 1,932 concepts (about 2.7%)**. All 12 **require review**. A reviewer accuracy register lists 22 flags. See [`docs/COVERAGE.md`](docs/COVERAGE.md), [`docs/ACCURACY.md`](docs/ACCURACY.md) and [`docs/CONTINUATION.md`](docs/CONTINUATION.md).
 
 ## Screenshots
 

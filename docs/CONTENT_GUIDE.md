@@ -54,7 +54,7 @@ Every visual object has `type`, `props` (initial values) and optional `keys`:
 | `rbc` | `r`, `antigen` (`A`,`B`,`AB`,`O`=H only,`none`=Bombay), `antigens` (count), `face`, `mood` (`happy`/`neutral`/`worried`), *`highlight`*, `label`, `labelSize` |
 | `antibody` | `spec` (`A`,`B`,`H`,`AB`), `cls` (`IgM` pentamer / `IgG`), *`size`*, *`spin`* (rotates the molecule, not its label), `label` |
 | `cellField` | `w`, `h`, `count`, `cellR`, `antigen`, `spec`, `seed`, *`free`* (unbound antibodies), *`bound`* (bridging antibodies), *`clump`* (0 dispersed → 1 lattice), *`hemolysis`*, `label` |
-| `tube` | `label`, `fluid` (`saline`/`plasma`/CSS color), *`level`*, *`cells`*, *`settle`* (button forms), *`shake`* (resuspension), *`grade`* (0–4 clump pattern), *`hemolysis`*, *`highlight`*, `result` (chip text) |
+| `tube` | `label`, `fluid` (`saline`/`plasma`/CSS color), *`level`*, *`cells`*, *`settle`* (button forms), *`shake`* (resuspension), *`grade`* (0–4 clump pattern), *`hemolysis`*, *`highlight`*, `result` (chip text), `cap` (stopper colour as a CSS colour, e.g. `#8ec9ee` for citrate) |
 | `dropper` | `label`, `color`, *`drop`* (0→1 a drop falls), `dropDistance` |
 | `centrifuge` | *`spin`* (degrees), `label` |
 | `specimen` | `top` (`lavender`,`pink`,`red`,`gold`,`blue`,`green`,`gray`), *`separated`* (plasma layer), `label` |
