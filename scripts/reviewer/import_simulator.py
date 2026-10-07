@@ -48,6 +48,8 @@ FLAG_RULES = [
      'CLSI M100 is revised every year; check the current edition.'),
     ('rv-semen-who', r'semen|sperm',
      'WHO semen-analysis reference values changed in the 6th edition (2021); check which edition the question assumes.'),
+    ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
+     'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-leukemia-blasts', r'blasts?[^.]{0,60}(20|30) ?%|(20|30) ?%[^.]{0,60}blasts?',
      'Blast thresholds differ between WHO-HAEM5 and ICC 2022 classifications; check which system the question assumes.'),
 ]

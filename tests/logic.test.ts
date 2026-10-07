@@ -125,7 +125,8 @@ describe('coverage', () => {
     const cov = coverage(curriculum, lessons);
     const taught = new Set(lessons.filter((l) => l.validation.complete).flatMap((l) => l.lesson.conceptIds));
     expect(cov.reduce((a, d) => a + d.complete, 0)).toBe(taught.size);
-    expect(cov.find((d) => d.domain.id === 'p5-bb')!.complete).toBe([...taught].filter((c) => c.startsWith('ch40.')).length);
+    const bb = new Set(curriculum.domains.find((d) => d.id === 'p5-bb')!.topics.flatMap((t) => t.concepts.map((c) => c.id)));
+    expect(cov.find((d) => d.domain.id === 'p5-bb')!.complete).toBe([...taught].filter((c) => bb.has(c)).length);
     expect(conceptStatus('ch40.hit2', lessons)).toBe('complete-needs-review');
     expect(conceptStatus('ch40.hit14', lessons)).toBe('pending'); // only partly taught — not counted
   });

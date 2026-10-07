@@ -1,0 +1,2084 @@
+{
+  "schemaVersion": 1,
+  "id": "bb-acute-hemolytic-reaction-abo-compatibility",
+  "title": "Acute Hemolytic Transfusion Reaction and ABO Compatibility",
+  "summary": "Swap two sample labels, watch anti-A destroy group A donor cells inside a group O patient, then work the bedside and blood-bank response — and learn why O gives red cells but AB gives plasma.",
+  "domain": "p5-bb",
+  "topic": "ch41",
+  "conceptIds": [
+    "ch41.hit1",
+    "ch41.hit2",
+    "ch41.hit8",
+    "ch41.figure"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 41,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          2,
+          8
+        ]
+      },
+      {
+        "chapter": 41,
+        "section": "Figure 41"
+      }
+    ],
+    "note": "Teaches Ch. 41 Hit 1 (core: identification errors cause most AHTRs), Hit 2 (universal red cells and plasma), Hit 8 (fever: stop and rule out hemolysis and bacteria) and the Figure 41 memory anchor. Checked against the WHO Clinical Use of Blood handbook, the WHO 2010 aide-mémoire on the clinical transfusion process, the CDC NHSN Hemovigilance Module protocol v3.0 (2026) and Linden 2000."
+  },
+  "prerequisites": [
+    "ch40.hit1"
+  ],
+  "objectives": [
+    "Explain why identification errors are the leading cause of acute hemolytic transfusion reactions.",
+    "Apply ABO compatibility rules for red cells and for plasma.",
+    "List the immediate bedside steps and the blood-bank investigation of a suspected acute reaction."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two patients, one swapped label",
+      "start": 0,
+      "end": 20,
+      "altText": "Two hospital beds: patient 1 is group O, patient 2 is group A. Their sample labels swap places, so the blood bank types patient 1 as group A and issues a group A red-cell unit. Minutes into the transfusion, warning tokens pop up beside patient 1: fever, back pain, red urine, low blood pressure.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Two patients in the same ward. Patient one is group O. Patient two is group A."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Their sample labels get swapped. The blood bank types patient one as group A and sends group A red cells."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "A few minutes into the transfusion, patient one has fever, back pain, red urine and falling blood pressure. What happened, and what do you do?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "p1",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 130,
+            "w": 280,
+            "h": 100,
+            "tone": "a",
+            "title": "Patient 1",
+            "lines": [
+              "Truly group O"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 130,
+            "w": 280,
+            "h": 100,
+            "tone": "b",
+            "title": "Patient 2",
+            "lines": [
+              "Truly group A"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "l1",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 230,
+            "w": 200,
+            "label": "Sample label: Pt 1",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "opacity": 0
+            },
+            {
+              "t": 3.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "x": 250
+            },
+            {
+              "t": 11,
+              "x": 710,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "l2",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 200,
+            "label": "Sample label: Pt 2",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "x": 710
+            },
+            {
+              "t": 11,
+              "x": 250,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "sw",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 280,
+            "text": "Labels swapped ⇄",
+            "size": 18,
+            "weight": 900,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 9.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "unit",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 330,
+            "w": 340,
+            "label": "Issued: group A red cells → Pt 1",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s0",
+          "type": "token",
+          "props": {
+            "x": 160,
+            "y": 440,
+            "w": 180,
+            "label": "Fever",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s1",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 440,
+            "w": 180,
+            "label": "Back pain",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.4,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.4,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "token",
+          "props": {
+            "x": 580,
+            "y": 440,
+            "w": 180,
+            "label": "Red urine",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.3,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "token",
+          "props": {
+            "x": 790,
+            "y": 440,
+            "w": 180,
+            "label": "BP falling",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.2,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 18.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 900,
+            "y": 330,
+            "expression": "curious",
+            "scale": 0.45,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: who can receive what",
+      "start": 20,
+      "end": 56,
+      "altText": "A compatibility chart. Red cells: the donor cells must carry no antigen the patient’s plasma antibodies attack — group O cells (no A or B antigen) can go to any ABO group. Plasma: the donor plasma must carry no antibody against the patient’s cells — group AB plasma (no anti-A or anti-B) can go to any ABO group, while group O plasma (anti-A and anti-B) goes only to group O patients.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "Everyone except group AB has antibodies against the A or B antigens they lack. Group O people have both anti-A and anti-B."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "For red cells, think: does the patient’s plasma attack the donor’s cells? Group O red cells carry no A or B antigen, so they can go to any ABO group."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 46,
+          "text": "For plasma, flip it: does the donor’s plasma attack the patient’s cells? Group AB plasma has no anti-A or anti-B, so it can go to anyone."
+        },
+        {
+          "id": "n4",
+          "start": 46,
+          "end": 56,
+          "text": "And group O plasma, full of anti-A and anti-B, can go only to group O patients. Red cells must also be RhD compatible."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ab",
+          "type": "card",
+          "props": {
+            "x": 200,
+            "y": 190,
+            "w": 300,
+            "h": 200,
+            "tone": "neutral",
+            "title": "Plasma antibodies",
+            "lines": [
+              "Group A: anti-B",
+              "Group B: anti-A",
+              "Group O: anti-A + anti-B",
+              "Group AB: none"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "rbc",
+          "type": "rbc",
+          "props": {
+            "x": 540,
+            "y": 150,
+            "r": 46,
+            "antigen": "none",
+            "face": false,
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 0
+            },
+            {
+              "t": 14,
+              "highlight": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "rl",
+          "type": "token",
+          "props": {
+            "x": 540,
+            "y": 250,
+            "w": 300,
+            "label": "Red cells: group O → anyone",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pl",
+          "type": "tube",
+          "props": {
+            "x": 800,
+            "y": 70,
+            "level": 0.6,
+            "fluid": "plasma",
+            "highlight": 0,
+            "label": "AB plasma",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "highlight": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "highlight": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "pll",
+          "type": "token",
+          "props": {
+            "x": 790,
+            "y": 280,
+            "w": 260,
+            "label": "Plasma: group AB → anyone",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 22.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "opl",
+          "type": "token",
+          "props": {
+            "x": 680,
+            "y": 360,
+            "w": 420,
+            "label": "Group O plasma (anti-A + anti-B) → group O only",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 27.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "rh",
+          "type": "token",
+          "props": {
+            "x": 680,
+            "y": 440,
+            "w": 420,
+            "label": "Red cells: ABO and RhD compatible",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: antibodies meet the wrong cells",
+      "start": 56,
+      "end": 96,
+      "altText": "A group A donor red cell (with A antigens) enters the bloodstream of the group O patient. Patient anti-A IgM pentamers bind the A antigens; a burst animation shows the cell breaking open in the circulation. A plasma tube turns pink-red as free hemoglobin appears; a urine token turns red. A card notes that as little as 10–50 mL can cause a severe reaction, that symptoms can start within minutes, and that under anaesthesia hypotension and uncontrolled bleeding (DIC) may be the only signs.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 56,
+          "end": 64,
+          "text": "The group O patient’s plasma has anti-A. It meets group A donor cells covered in A antigen."
+        },
+        {
+          "id": "c2",
+          "start": 64,
+          "end": 72,
+          "text": "Anti-A binds right away. The incompatible cells are destroyed inside the blood vessels: acute intravascular hemolysis."
+        },
+        {
+          "id": "c3",
+          "start": 72,
+          "end": 80,
+          "text": "Free hemoglobin turns the plasma pink or red, and spills into the urine. That is the red urine."
+        },
+        {
+          "id": "c4",
+          "start": 80,
+          "end": 88,
+          "text": "Even 10 to 50 millilitres of incompatible blood can cause a severe reaction, and in a conscious patient signs can start within minutes."
+        },
+        {
+          "id": "c5",
+          "start": 88,
+          "end": 96,
+          "text": "In an unconscious or anaesthetized patient, low blood pressure and uncontrolled bleeding from DIC may be the only signs. That is why the first minutes of every unit are watched closely."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cell",
+          "type": "rbc",
+          "props": {
+            "x": 120,
+            "y": 200,
+            "r": 58,
+            "antigen": "A",
+            "antigens": 12,
+            "face": true,
+            "mood": "neutral",
+            "label": "Group A donor cell",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "x": 120
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "x": 300,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "mood": "worried"
+            },
+            {
+              "t": 15,
+              "opacity": 1
+            },
+            {
+              "t": 17,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ab0",
+          "type": "antibody",
+          "props": {
+            "x": 520,
+            "y": 130,
+            "size": 34,
+            "spec": "A",
+            "cls": "IgM",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "x": 520
+            },
+            {
+              "t": 8,
+              "y": 130
+            },
+            {
+              "t": 12,
+              "x": 240,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "y": 150,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "opacity": 1
+            },
+            {
+              "t": 17.5,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ab1",
+          "type": "antibody",
+          "props": {
+            "x": 590,
+            "y": 200,
+            "size": 34,
+            "spec": "A",
+            "cls": "IgM",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "x": 590
+            },
+            {
+              "t": 8,
+              "y": 200
+            },
+            {
+              "t": 12,
+              "x": 365,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "y": 165,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "opacity": 1
+            },
+            {
+              "t": 17.5,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ab2",
+          "type": "antibody",
+          "props": {
+            "x": 660,
+            "y": 270,
+            "size": 34,
+            "spec": "A",
+            "cls": "IgM",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0
+            },
+            {
+              "t": 4.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "x": 660
+            },
+            {
+              "t": 8,
+              "y": 270
+            },
+            {
+              "t": 12,
+              "x": 300,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "y": 120,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "opacity": 1
+            },
+            {
+              "t": 17.5,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "abl",
+          "type": "label",
+          "props": {
+            "x": 640,
+            "y": 400,
+            "text": "Patient anti-A (IgM)",
+            "size": 15,
+            "weight": 800,
+            "color": "ink",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 2.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "opacity": 1
+            },
+            {
+              "t": 8.8,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ivh",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 370,
+            "w": 330,
+            "label": "Intravascular hemolysis",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pt",
+          "type": "tube",
+          "props": {
+            "x": 780,
+            "y": 60,
+            "level": 0.6,
+            "fluid": "plasma",
+            "hemolysis": 0,
+            "label": "Plasma",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "hemolysis": 0
+            },
+            {
+              "t": 17.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22,
+              "hemolysis": 1,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ur",
+          "type": "token",
+          "props": {
+            "x": 780,
+            "y": 290,
+            "w": 220,
+            "label": "Red urine (hemoglobinuria)",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 22.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "vol",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 455,
+            "w": 860,
+            "h": 110,
+            "tone": "warn",
+            "title": "10–50 mL can be enough · signs within minutes",
+            "lines": [
+              "Under anaesthesia: hypotension and uncontrolled bleeding (DIC) may be the only signs",
+              "Watch the start of every unit"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 40,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: stop, check, send",
+      "start": 96,
+      "end": 136,
+      "altText": "A response checklist reveals step by step: stop the transfusion; keep the IV line open with saline through a new set; check the bag label against the patient’s identity at the bedside; notify the doctor and the blood bank. Then a sample kit flies to the blood bank: the bag with its tubing, new clotted and EDTA samples from the opposite arm, and the first urine. The blood bank repeats ABO/RhD on the new sample, repeats the antibody screen and crossmatch, and runs a DAT; other tests include CBC, coagulation screen, creatinine/electrolytes and a blood culture. Finally a warning: patient 2 may have patient 1’s sample — check every other patient being transfused.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 96,
+          "end": 104,
+          "text": "First: stop the transfusion. Keep the vein open with normal saline through a new infusion set."
+        },
+        {
+          "id": "l2",
+          "start": 104,
+          "end": 111,
+          "text": "Check the bag label against the patient’s identity at the bedside, and notify the doctor and the blood bank at once."
+        },
+        {
+          "id": "l3",
+          "start": 111,
+          "end": 120,
+          "text": "Send the bag and its tubing, new clotted and EDTA samples taken from the opposite arm, and the first urine."
+        },
+        {
+          "id": "l4",
+          "start": 120,
+          "end": 128,
+          "text": "The blood bank repeats ABO and RhD typing on the new sample, repeats the antibody screen and crossmatch, and does a direct antiglobulin test. Blood count, coagulation tests, kidney tests and a blood culture are added."
+        },
+        {
+          "id": "l5",
+          "start": 128,
+          "end": 136,
+          "text": "And remember patient two. If the labels were swapped, the other patient may be next. Check every patient being transfused, and hold issuing until the error is found."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ck",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 420,
+            "h": 230,
+            "tone": "warn",
+            "title": "At the bedside",
+            "lines": [
+              "1 Stop the transfusion",
+              "2 Keep IV open: saline, new set",
+              "3 Check bag label vs patient ID",
+              "4 Notify doctor + blood bank"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "k0",
+          "type": "token",
+          "props": {
+            "x": 520,
+            "y": 110,
+            "w": 270,
+            "label": "Bag + tubing",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0
+            },
+            {
+              "t": 15.5,
+              "x": 520
+            },
+            {
+              "t": 16.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18.0,
+              "x": 640,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "k1",
+          "type": "token",
+          "props": {
+            "x": 520,
+            "y": 170,
+            "w": 270,
+            "label": "New clotted + EDTA (other arm)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.1,
+              "opacity": 0
+            },
+            {
+              "t": 17.1,
+              "x": 520
+            },
+            {
+              "t": 17.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19.6,
+              "x": 640,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "k2",
+          "type": "token",
+          "props": {
+            "x": 520,
+            "y": 230,
+            "w": 270,
+            "label": "First urine",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.7,
+              "opacity": 0
+            },
+            {
+              "t": 18.7,
+              "x": 520
+            },
+            {
+              "t": 19.2,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21.2,
+              "x": 640,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "bb",
+          "type": "building",
+          "props": {
+            "x": 870,
+            "y": 320,
+            "w": 150,
+            "h": 110,
+            "sign": "BLOOD BANK",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15,
+              "opacity": 0
+            },
+            {
+              "t": 15.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tests",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 860,
+            "h": 100,
+            "tone": "b",
+            "title": "Repeat ABO/RhD · repeat screen + crossmatch · DAT",
+            "lines": [
+              "Plus: CBC, coagulation, creatinine/electrolytes, blood culture"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 480,
+            "w": 660,
+            "label": "Patient 2 may be next: check all transfusing patients",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Two classic traps",
+      "start": 136,
+      "end": 166,
+      "altText": "Trap card: “Fever during transfusion = febrile reaction; give an antipyretic and keep going” is crossed out → “Stop: fever can be the first sign of hemolysis or bacterial contamination.” Trap card: “Group O plasma is universal” is crossed out → “Group O plasma has anti-A and anti-B; AB plasma is the universal plasma.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 136,
+          "end": 146,
+          "text": "Trap one: a fever during transfusion is not automatically a harmless febrile reaction. Stop the transfusion. Fever can be the first sign of hemolysis or of bacterial contamination."
+        },
+        {
+          "id": "e2",
+          "start": 146,
+          "end": 154,
+          "text": "Bacterial contamination matters most for platelets, which are stored warm, at 20 to 24 degrees, where skin staphylococci can grow."
+        },
+        {
+          "id": "e3",
+          "start": 154,
+          "end": 166,
+          "text": "Trap two: group O is the universal donor for red cells, not plasma. Group O plasma carries anti-A and anti-B. The universal plasma is group AB."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 100,
+            "w": 820,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Fever = febrile reaction; give antipyretic, keep going.”",
+            "lines": [
+              "✓ Stop: rule out hemolysis and bacterial contamination"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 0
+            },
+            {
+              "t": 6,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "plt",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 600,
+            "label": "Platelets stored at 20–24 °C → highest bacterial risk",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 330,
+            "w": 820,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Group O plasma is universal.”",
+            "lines": [
+              "✓ O = universal red cells · AB = universal plasma"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22.5,
+              "reveal": 0
+            },
+            {
+              "t": 23.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Cells meet plasma",
+      "start": 166,
+      "end": 188,
+      "altText": "Memory aid: “Cells go to plasma, plasma goes to cells.” For red cells, ask whether the patient’s plasma attacks the donor’s cells (O cells are safe for all). For plasma, ask whether the donor’s plasma attacks the patient’s cells (AB plasma is safe for all). Second line: “Reaction? Stop · Check · Send.” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 166,
+          "end": 174,
+          "text": "Memory aid: cells meet plasma. For red cells, check the patient’s plasma against the donor’s cells. For plasma, check the donor’s plasma against the patient’s cells."
+        },
+        {
+          "id": "m2",
+          "start": 174,
+          "end": 179,
+          "text": "And for any reaction: stop, check, send."
+        },
+        {
+          "id": "m3",
+          "start": 179,
+          "end": 188,
+          "text": "Where it breaks: ABO is not the whole story. RhD and other antibodies, such as Kidd, Kell or Duffy, can also cause hemolysis, and platelets and whole blood carry plasma too."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Cells meet plasma",
+            "size": 38,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 160,
+            "w": 380,
+            "label": "Red cells: patient plasma vs donor cells → O for all",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 160,
+            "w": 380,
+            "label": "Plasma: donor plasma vs patient cells → AB for all",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0
+            },
+            {
+              "t": 4.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 420,
+            "label": "Reaction? Stop · Check · Send",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 860,
+            "h": 110,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "RhD and other antibodies (Kidd, Kell, Duffy) can also cause hemolysis",
+              "Platelets and whole blood contain plasma too"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.5,
+              "reveal": 0
+            },
+            {
+              "t": 20.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 188,
+      "end": 198,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 188,
+          "end": 193,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 193,
+          "end": 198,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 198,
+      "end": 210,
+      "altText": "Three tokens: “Most AHTRs: ABO-incompatible blood from an ID error”, “O red cells and AB plasma go to anyone”, “Reaction? Stop · check ID · send bag, samples, urine”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 198,
+          "end": 210,
+          "text": "Acute hemolytic reactions most often come from ABO-incompatible blood given after an identification error, so match cells to plasma, and if a reaction starts, stop the transfusion, check identities and send the bag and new samples to the blood bank."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 620,
+            "label": "Most AHTRs: ABO-incompatible blood after an ID error",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 240,
+            "w": 620,
+            "label": "O red cells and AB plasma go to anyone",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 310,
+            "w": 620,
+            "label": "Reaction? Stop · check ID · send bag, samples, urine",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.6,
+              "opacity": 0
+            },
+            {
+              "t": 2.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: if a patient gets red cells their own antibodies attack, those cells burst inside the blood vessels within minutes. Scientific terms: an acute hemolytic transfusion reaction (AHTR) occurs during or within 24 hours of transfusion; the most common cause is ABO-incompatible transfusion, which almost always arises from errors in requests, sample collection and labelling, or the bedside check.",
+    "why": "Group A, B and O people have anti-A and/or anti-B (IgM and IgG) that can rapidly hemolyse incompatible red cells; complement-mediated intravascular hemolysis releases free hemoglobin (hemoglobinemia, hemoglobinuria) and can cause hypotension, DIC and renal failure. Red cells must be compatible with the recipient’s plasma; plasma must be compatible with the recipient’s red cells.",
+    "measure": "Stop the transfusion, keep the IV open with saline, recheck labels and identity, notify the doctor and blood bank; send the bag and set, new clotted and EDTA samples from the opposite arm and the first urine. The blood bank repeats ABO/RhD, antibody screen and crossmatch and performs a DAT; CBC, coagulation screen, urea/creatinine, electrolytes and blood culture are added.",
+    "differs": "Universal red-cell donor (group O) vs universal plasma donor (group AB); a febrile reaction vs fever as the first sign of hemolysis or bacterial contamination.",
+    "examAngle": "Expect: the leading cause of AHTR (identification error), signs (fever, back/flank pain, red urine, hypotension, DIC), the first action (stop the transfusion), the workup (clerical check, repeat ABO, DAT), and compatible plasma and red cells by ABO group."
+  },
+  "comparisons": [
+    {
+      "id": "cells-vs-plasma",
+      "title": "Red-cell vs plasma compatibility",
+      "left": {
+        "label": "Red cells",
+        "points": [
+          "Donor cells vs recipient plasma antibodies",
+          "Group O cells → any ABO group",
+          "Must also be RhD compatible"
+        ]
+      },
+      "right": {
+        "label": "Plasma",
+        "points": [
+          "Donor plasma antibodies vs recipient cells",
+          "Group AB plasma → any ABO group",
+          "Group O plasma → group O only"
+        ]
+      },
+      "distinguisher": "Whose antibodies meet whose cells."
+    },
+    {
+      "id": "fever",
+      "title": "Fever during transfusion",
+      "left": {
+        "label": "Wrong reflex",
+        "points": [
+          "Assume febrile reaction",
+          "Give antipyretic and continue"
+        ]
+      },
+      "right": {
+        "label": "Right action",
+        "points": [
+          "Stop the transfusion",
+          "Rule out hemolysis and bacterial contamination"
+        ]
+      },
+      "distinguisher": "Fever can be the first sign of a life-threatening reaction."
+    }
+  ],
+  "mnemonic": {
+    "text": "Cells meet plasma — and for any reaction: Stop · Check · Send.",
+    "explanation": "For red cells, the patient’s plasma meets the donor’s cells (O cells are safe for all); for plasma, the donor’s plasma meets the patient’s cells (AB plasma is safe for all). A reaction means stop the transfusion, check identities and labels, and send bag, samples and urine.",
+    "limitation": "ABO is not the whole story: RhD and other red-cell antibodies (e.g. Kidd, Kell, Duffy) can cause hemolysis, and platelets and whole blood also contain plasma. Local protocols set the exact samples and steps."
+  },
+  "analogyLimitations": [
+    "The two-patient swap is an invented example.",
+    "Drawn cells, antibodies and the bursting animation are schematic; real hemolysis is not visible as single bursting cells.",
+    "The response checklist is a summary of WHO guidance; follow local transfusion policy."
+  ],
+  "takeaway": "Acute hemolytic reactions most often come from ABO-incompatible blood given after an identification error, so match cells to plasma, and if a reaction starts, stop the transfusion, check identities and send the bag and new samples to the blood bank.",
+  "questions": [
+    {
+      "id": "bb-ahtr-q1",
+      "stem": "Ten minutes into a red-cell transfusion, a patient develops fever, flank pain and red urine. What is the FIRST action?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Stop the transfusion and keep the IV line open with saline",
+          "rationale": "Correct. These are signs of acute hemolysis; stopping limits the volume of incompatible blood, and the open line allows treatment."
+        },
+        {
+          "id": "b",
+          "text": "Slow the transfusion and give an antipyretic",
+          "rationale": "Incorrect. Slowing is for mild urticarial reactions; fever with flank pain and red urine suggests hemolysis."
+        },
+        {
+          "id": "c",
+          "text": "Finish the unit, then send a sample",
+          "rationale": "Incorrect. Every extra millilitre of incompatible blood worsens the reaction."
+        },
+        {
+          "id": "d",
+          "text": "Remove the IV line entirely",
+          "rationale": "Incorrect. Venous access is needed for saline and drugs; replace the set but keep the line open."
+        }
+      ],
+      "answer": "a",
+      "skill": "Immediate response to AHTR",
+      "difficulty": "application"
+    },
+    {
+      "id": "bb-ahtr-q2",
+      "stem": "A group A patient needs plasma. Which plasma groups are ABO compatible?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Group A or group AB",
+          "rationale": "Correct. Group A plasma has anti-B and AB plasma has no anti-A or anti-B; neither attacks group A cells."
+        },
+        {
+          "id": "b",
+          "text": "Group O only",
+          "rationale": "Incorrect. Group O plasma contains anti-A, which would attack the patient’s group A cells."
+        },
+        {
+          "id": "c",
+          "text": "Group A or group O",
+          "rationale": "Incorrect. Group O plasma contains anti-A; that rule (A or O) applies to red cells, not plasma."
+        },
+        {
+          "id": "d",
+          "text": "Group B or group AB",
+          "rationale": "Incorrect. Group B plasma contains anti-A."
+        }
+      ],
+      "answer": "a",
+      "skill": "Plasma compatibility",
+      "difficulty": "application"
+    },
+    {
+      "id": "bb-ahtr-q3",
+      "stem": "According to WHO, what is the most common cause of acute intravascular hemolytic transfusion reactions?",
+      "options": [
+        {
+          "id": "a",
+          "text": "ABO-incompatible transfusion, almost always from identification or labelling errors",
+          "rationale": "Correct. Request-form, sample-collection, labelling and bedside-check errors cause most ABO-incompatible transfusions."
+        },
+        {
+          "id": "b",
+          "text": "Bacterial contamination of red cells",
+          "rationale": "Incorrect. Contamination causes septic reactions, not antibody-mediated hemolysis."
+        },
+        {
+          "id": "c",
+          "text": "Antibodies to donor white cells",
+          "rationale": "Incorrect. White-cell antibodies are linked to febrile non-hemolytic reactions."
+        },
+        {
+          "id": "d",
+          "text": "Anti-IgA in an IgA-deficient patient",
+          "rationale": "Incorrect. That causes anaphylaxis, not hemolysis."
+        }
+      ],
+      "answer": "a",
+      "skill": "Cause of AHTR",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch41",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 41, Transfusion: Giving Blood Safely (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 41,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            2,
+            8
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "who-cub2001",
+      "kind": "external",
+      "citation": "World Health Organization, Blood Transfusion Safety. The Clinical Use of Blood: Handbook. Geneva: WHO; 2001. ISBN 9241545399.",
+      "url": "https://iris.who.int/items/41b7dfd0-1fe8-43b6-bfbc-add30625693a",
+      "consulted": true,
+      "usedFor": "ABO antibodies by group; red-cell and plasma compatibility (O cells to all groups, AB plasma to all, O plasma to O only; ABO and RhD for red cells); acute reactions within 24 h; signs within minutes, 5–10 mL; 10–50 mL can cause a severe reaction; hypotension and uncontrolled bleeding (DIC) may be the only signs under anaesthesia; most common cause is ABO-incompatible transfusion almost always from request, sampling, labelling or bedside-check errors; Kidd, Kell, Duffy antibodies can also cause intravascular hemolysis; management (stop, new set, saline, notify, send unit/set, clotted + EDTA samples from opposite vein, first urine); investigation (repeat ABO/RhD, antibody screen and crossmatch, FBC, coagulation, DAT, urea/creatinine, electrolytes, blood culture); check other patients and halt issue; fever and rigors among signs of hemolysis and bacterial contamination; staphylococci proliferate in platelets at 20–24 °C."
+    },
+    {
+      "id": "who-ctp2010",
+      "kind": "external",
+      "citation": "World Health Organization. Aide-mémoire for national health authorities and hospital management: clinical transfusion process and patient safety. Geneva: WHO; 2010.",
+      "url": "https://iris.who.int/items/f9b96d6a-01be-417e-9ebe-75decf6dd252",
+      "consulted": true,
+      "usedFor": "The most important cause of serious transfusion reactions and death is wrong blood transfusion from errors in identification of patients, samples or units, sampling and labelling, laboratory and clerical errors; final bedside identity check."
+    },
+    {
+      "id": "nhsn-hv2026",
+      "kind": "external",
+      "citation": "Centers for Disease Control and Prevention. The National Healthcare Safety Network (NHSN) Manual: Biovigilance Component Hemovigilance Module Protocol v3.0. January 2026.",
+      "url": "https://www.cdc.gov/nhsn/pdfs/biovigilance/bv-hv-protocol-current.pdf",
+      "consulted": true,
+      "usedFor": "AHTR case definition: onset during or within 24 h; signs include back/flank pain, chills/rigors, DIC, fever, hematuria, hypotension, oliguria, renal failure, IV-site pain; laboratory evidence (decreased haptoglobin and fibrinogen, raised bilirubin and LDH, hemoglobinemia, hemoglobinuria, plasma discoloration, spherocytes); positive DAT and eluate for immune-mediated cases."
+    },
+    {
+      "id": "ning2016",
+      "kind": "external",
+      "citation": "Ning HC, Lin CN, Chiu DT, et al. Reduction in hospital-wide clinical laboratory specimen identification errors following process interventions: a 10-year retrospective observational study. PLoS One. 2016;11(8):e0160821.",
+      "doi": "10.1371/journal.pone.0160821",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4975414",
+      "consulted": true,
+      "usedFor": "At least two patient identifiers; labels attached at the time of collection."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-cause",
+      "text": "The most common cause of AHTR is ABO-incompatible transfusion, almost always from identification, sampling, labelling or bedside-check errors.",
+      "status": "checked",
+      "refs": [
+        "who-cub2001",
+        "who-ctp2010"
+      ]
+    },
+    {
+      "id": "cl-compat",
+      "text": "Red cells must be ABO/RhD compatible with recipient plasma (O cells to all); plasma must be compatible with recipient cells (AB plasma to all; O plasma to O only).",
+      "status": "checked",
+      "refs": [
+        "who-cub2001"
+      ]
+    },
+    {
+      "id": "cl-signs",
+      "text": "AHTR occurs within 24 h with fever, back/flank pain, hemoglobinuria, hypotension or DIC; 10–50 mL can cause a severe reaction; under anaesthesia hypotension and bleeding may be the only signs.",
+      "status": "checked",
+      "refs": [
+        "who-cub2001",
+        "nhsn-hv2026"
+      ]
+    },
+    {
+      "id": "cl-resp",
+      "text": "Stop, keep IV open with saline via a new set, check identities, notify; send bag, new clotted and EDTA samples from the opposite vein, first urine; repeat ABO/RhD, screen and crossmatch, DAT, plus CBC, coagulation, renal tests, culture; check other patients.",
+      "status": "checked",
+      "refs": [
+        "who-cub2001"
+      ]
+    },
+    {
+      "id": "cl-fever",
+      "text": "Fever during transfusion can signal hemolysis or bacterial contamination; platelets stored at 20–24 °C support staphylococcal growth.",
+      "status": "checked",
+      "refs": [
+        "who-cub2001"
+      ]
+    },
+    {
+      "id": "cl-ids",
+      "text": "Labels need at least two unique identifiers applied at collection.",
+      "status": "checked",
+      "refs": [
+        "ning2016"
+      ]
+    },
+    {
+      "id": "cl-1c",
+      "text": "A temperature rise of ≥ 1 °C is the trigger to stop; febrile non-hemolytic reactions resolve in 2–3 h; never restart until evaluated.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch41"
+      ],
+      "note": "Not taught. The NHSN v3.0 protocol no longer defines febrile non-hemolytic reactions, and WHO 2001 allows restarting slowly with a new unit if the patient improves."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Swapped labels, bursting cell and “cells meet plasma”.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Stop · Check · Send.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-restart",
+      "issue": "The reviewer says never to restart after a febrile reaction until evaluated; WHO 2001 allows a slow restart with a new unit if the patient improves. Practice is protocol-dependent; the lesson teaches only “stop and rule out hemolysis and bacteria”.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Cells, antibodies and the hemolysis animation are schematic drawings.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 claims checked against WHO (2001, 2010), the CDC NHSN Hemovigilance protocol v3.0 (2026) and Ning 2016 read for this lesson; 1 pending (fever threshold and restart rule). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-07"
+}

@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 31 flags: 16 verified issues and 15 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 32 flags: 16 verified issues and 16 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -55,16 +55,18 @@ Needs verification:
 - Ch. 52: IUIS 2020 count.
 - Ch. 40 Hit 2: "two ABO determinations" wording.
 - Appendix A: the ASCP weights.
+- Ch. 41 Hit 8: the ≥ 1 °C fever trigger and "never restart" (WHO 2001 allows a slow restart with a new unit).
 - Ch. 57 Trap 2: tube coagulase "~100% sensitive" (no source read gives a figure).
 
 Automated scan: **23** dated-guideline statements and **134** High-Yield Hits with only/always/never wording. Each must be checked when its lesson is built.
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 8 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 9 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 4 open flags: tube-grading method dependence, the age cutoff, specimen type, and the discrepancy Groups I–IV that the lesson doesn't fully teach.
+- **Acute Hemolytic Transfusion Reaction and ABO Compatibility:** 1 pending claim (the fever threshold, febrile-reaction course and restart rule) and 1 open flag (restart practice is guideline-dependent).
 - **Gram-Positive Cocci: Catalase, Coagulase and MRSA:** 3 pending claims (enterococci catalase-negative not named in the sources read, PBP2a's low β-lactam affinity, tube coagulase sensitivity) and 2 open flags (the ~100% figure, Hit 3's missing exceptions).
 - **CLIA '88:** 3 pending claims (the accreditor list, the number of states licensing personnel, inspection of waived labs) and 3 open flags (US-only scope, generic test-complexity examples, breath tests).
