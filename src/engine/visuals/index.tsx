@@ -679,8 +679,8 @@ function DocumentCard({ p }: { p: Props }) {
 
 function Token({ p }: { p: Props }) {
   const label = str(p, 'label', '');
-  const lines = wrap(label, num(p, 'wrap', 16));
   const w = num(p, 'w', 150);
+  const lines = wrap(label, num(p, 'wrap', Math.max(16, Math.floor(w / 8.5))));
   const h = Math.max(36, lines.length * 17 + 16);
   const hl = num(p, 'highlight', 0);
   return (

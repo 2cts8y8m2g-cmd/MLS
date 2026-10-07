@@ -68,7 +68,7 @@ Every visual object has `type`, `props` (initial values) and optional `keys`:
 | `mascot` | `expression` (`happy`/`curious`/`thinking`/`alert`) |
 | `building` | `w`, `h`, `sign`, `label`, *`highlight`* |
 | `document` | `w`, `h`, `title`, `sub`, `tone`, `stampText`, *`stamp`* (0→1 stamp lands), *`highlight`* |
-| `token` | `label`, `w`, `wrap`, `tone`, *`highlight`* — a chip that can be moved and sorted |
+| `token` | `label`, `w`, `wrap` (default: about w ÷ 8.5 characters, min 16), `tone`, *`highlight`* — a chip that can be moved and sorted |
 | `bin` | `w`, `h`, `label`, `sub`, `tone`, *`highlight`* — a category bucket |
 | `prion` | *`fold`* (0 normal α-helical PrP^C → 1 misfolded β-sheet PrP^Sc), *`stack`* (copies in a fibril), *`size`*, *`highlight`*, `label` |
 | `autoclave` | `temp` (display text), *`heat`* (0→1 glow), `label` |
