@@ -543,7 +543,7 @@ function Arrow({ p }: { p: Props }) {
 }
 
 const TONE_BG: Record<string, string> = {
-  a: 'var(--tone-a)', b: 'var(--tone-b)', neutral: 'var(--stage-card)', warn: 'var(--tone-warn)', good: 'var(--tone-good)',
+  a: 'var(--tone-a)', b: 'var(--tone-b)', neutral: 'var(--stage-card)', warn: 'var(--tone-warn)', good: 'var(--tone-good)', blood: 'var(--rbc)',
 };
 
 function Card({ p }: { p: Props }) {

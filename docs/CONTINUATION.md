@@ -3,13 +3,13 @@
 ## State at hand-off (2026-10-07)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 12, teaching 53 of 1,932 concepts (about 2.7%).** All 12 still require review: each has pending claims, and none has had human expert review.
+- **Lessons complete: 13, teaching 56 of 1,932 concepts (about 2.9%).** All 13 still require review: each has pending claims, and none has had human expert review.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-lab-safety-precautions-osha`, `ops-reimbursement-drg-payment-window`, `ops-lab-design-hazcom-numbers`.
   - Ch. 2 (23/23 concepts): `ops-workflow-before-technology`, `ops-six-sigma-vs-lean`, `ops-instrument-selection-uptime-batch`, `ops-consolidation-utilization-autoverification`.
-  - Ch. 3 (5/24 concepts): `pre-order-of-draw-edta`.
+  - Ch. 3 (8/24 concepts): `pre-order-of-draw-edta`, `pre-citrate-ratio-heparin`.
   - Ch. 40 (2/36 concepts): `ih-abo-forward-reverse`.
 - **Reviewer accuracy register:** 22 flags (12 verified issues, 10 needing verification), plus scan results.
-- **Checks:** 128 unit tests and 85 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 134 unit tests and 85 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -30,7 +30,7 @@ Work chapter by chapter. Each chapter's **core concept (Hit 1)** comes first, th
 
 1. **Ch. 1:** all concepts taught. Still pending in its lessons: design/HVAC/exit targets (`rv-two-exits`), sharps figures (`rv-sharps-2014`), the dated licensure count (`rv-licensure-count`), workforce figures, and the items listed in each lesson's claims.
 2. **Ch. 2:** all concepts taught. Still pending in its lessons: the reviewer's numeric examples (10 s per tube, 4 vs 10 tests per sample, rerun example), the uptime contract rule, standardization, stockpiling, and test-cost figures.
-3. **Ch. 3 (5/24 taught):** order of draw done. Next clusters: citrate fill ratio and heparin carry-over (Hits 4, 6, 16); tube chemistry — fluoride timing, clotting times, gel and TDM (Hits 7–9, Traps 3–4; WHO 2010 says fluoride preserves glucose up to five days vs the reviewer's three); patient ID and ordering errors (Hits 2–3); special specimens — CSF tubes, synovial crystals, Allen test, urine timing (Hits 10–12, 15, Traps 5–6); interferences — biotin (check the 2017 FDA communication for updates) and daratumumab (Hits 13–14); and the large Number Vault table.
+3. **Ch. 3 (8/24 taught):** order of draw, citrate ratio and heparin done. Next clusters: tube chemistry — fluoride timing, clotting times, gel and TDM (Hits 7–9, Traps 3–4; WHO 2010 says fluoride preserves glucose up to five days vs the reviewer's three); patient ID and ordering errors (Hits 2–3); special specimens — CSF tubes, synovial crystals, Allen test, urine timing (Hits 10–12, 15, Traps 5–6); interferences — biotin (check the 2017 FDA communication for updates) and daratumumab (Hits 13–14); and the large Number Vault table (note: Sood 2010 says do not cool arterial blood-gas samples and analyze within 30 min, which conflicts with the table's "1–5 °C ice water" row).
 4. **Ch. 4 core:** Beer's law. A good fit for a new `pathway` or `spectro` visual.
 5. Continue through Ch. 5–14 (Part I), then Part II (Ch. 15–28), and so on. Ch. 40 still has 34 concepts; Hit 14 (discrepancy Groups I–IV) and Trap 6 are natural next ABO lessons.
 

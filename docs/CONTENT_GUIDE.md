@@ -60,7 +60,7 @@ Every visual object has `type`, `props` (initial values) and optional `keys`:
 | `specimen` | `top` (`lavender`,`pink`,`red`,`gold`,`blue`,`green`,`gray`), *`separated`* (plasma layer), `label` |
 | `gradeScale` | *`reveal`* (0–5), *`highlight`* (index), `descriptions[]` |
 | `table` | `title`, `cols[]`, `rows[][]`, `cellW`, `cellH`, *`reveal`* (cells shown), *`highlightRow`* |
-| `card` | `w`, `h`, `title`, `lines[]`, *`reveal`*, `tone` (`a`,`b`,`neutral`,`warn`,`good`), `size` |
+| `card` | `w`, `h`, `title`, `lines[]`, *`reveal`*, `tone` (`a`,`b`,`neutral`,`warn`,`good`,`blood`), `size` |
 | `label` | `text` (`\n` for line breaks), `size`, `weight`, `color` token, `align`, `bg`, `wrap` |
 | `bubble` | `text`, `w`, `tail` (`left`/`right`/`down`), `tone`, `size` |
 | `arrow` | `dx`, `dy`, *`draw`* (0→1), `color`, `label`, `dashed` |

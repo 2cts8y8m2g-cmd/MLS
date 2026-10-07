@@ -1,0 +1,2640 @@
+{
+  "schemaVersion": 1,
+  "id": "pre-citrate-ratio-heparin",
+  "title": "Citrate Ratio and Heparin: Why Clotting Times Go Falsely Long",
+  "summary": "Watch extra citrate soak up the analyzer’s calcium in an underfilled blue tube, clear heparin from a catheter line, and keep blood-gas syringes from being diluted.",
+  "domain": "p1-ops",
+  "topic": "ch3",
+  "conceptIds": [
+    "ch3.hit4",
+    "ch3.hit6",
+    "ch3.hit16"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 3,
+        "section": "High-Yield Hits",
+        "items": [
+          4,
+          6,
+          16
+        ]
+      },
+      {
+        "chapter": 3,
+        "section": "Number Vault"
+      }
+    ],
+    "note": "Teaches Ch. 3 Hits 4, 6 and 16. Adds how citrate and recalcification work, study data on underfill with 3.2% vs 3.8% citrate, the butterfly discard tube, the hematocrit > 55% adjustment, a reference lab’s line-draw rule (5 mL or 6× dead space) and evidence that heparin-locked lines stay unreliable."
+  },
+  "prerequisites": [
+    "ch3.hit1"
+  ],
+  "objectives": [
+    "Explain why a light blue tube must be filled to a 9 : 1 blood-to-citrate ratio.",
+    "Predict the direction of error from underfilling, high hematocrit and heparin contamination.",
+    "Describe how to collect coag samples from lines (flush, discard, draw) and when to prefer venipuncture.",
+    "State the blood-gas heparin amount and the effect of excess liquid heparin."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Same patient, two clotting times",
+      "start": 0,
+      "end": 20,
+      "altText": "Two light blue citrate tubes from the same patient. The left tube is only half full and its APTT result reads 58 seconds (flagged long). The right tube, filled to the line, reads 31 seconds (normal). The cartoon scientist compares the fill lines.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Two light blue tubes from the same patient, drawn minutes apart."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The half-full tube says the blood clots slowly — 58 seconds. The full tube says 31 seconds, which is normal."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "The patient’s blood didn’t change. The tube did. What went wrong?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "tube",
+          "props": {
+            "x": 300,
+            "y": 150,
+            "scale": 0.8,
+            "cap": "#8ec9ee",
+            "fluid": "blood",
+            "level": 0.32,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "tube",
+          "props": {
+            "x": 660,
+            "y": 150,
+            "scale": 0.8,
+            "cap": "#8ec9ee",
+            "fluid": "blood",
+            "level": 0.9,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.2,
+              "opacity": 0
+            },
+            {
+              "t": 1.7999999999999998,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "l1",
+          "type": "label",
+          "props": {
+            "x": 300,
+            "y": 310,
+            "text": "Half full",
+            "size": 17,
+            "weight": 800,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "l2",
+          "type": "label",
+          "props": {
+            "x": 660,
+            "y": 310,
+            "text": "Filled to the line",
+            "size": 17,
+            "weight": 800,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.2,
+              "opacity": 0
+            },
+            {
+              "t": 1.7999999999999998,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r1",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 360,
+            "w": 220,
+            "label": "APTT 58 s ↑ (long)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 360,
+            "w": 220,
+            "label": "APTT 31 s (normal)",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "expression": "curious",
+            "scale": 0.55,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 15,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Nine parts blood, one part citrate",
+      "start": 20,
+      "end": 62,
+      "altText": "A row of ten blocks fills in: nine red blocks for blood and one blue block for citrate. Citrate grabs calcium ions, so the blood cannot clot in the tube. In the analyzer, a fixed dose of calcium is added back to restart clotting, and a stopwatch measures the clotting time. The fixed dose is matched to one part citrate for every nine parts blood. A label: 3.2% buffered sodium citrate.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "A light blue tube holds a small, fixed amount of sodium citrate — usually 3.2 percent buffered citrate."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "Filled to the line, it holds nine parts blood to one part citrate. That 9-to-1 ratio is the whole point of the fill line."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 44,
+          "text": "Citrate grabs calcium. Without free calcium, the clotting factors can’t finish their job, so the blood stays liquid in the tube."
+        },
+        {
+          "id": "n4",
+          "start": 44,
+          "end": 53,
+          "text": "In the lab, the analyzer adds calcium back and times how long the plasma takes to clot. That is the PT or APTT."
+        },
+        {
+          "id": "n5",
+          "start": 53,
+          "end": 62,
+          "text": "The calcium the analyzer adds is sized for a 9-to-1 tube. Change the ratio, and the clock changes too."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cit",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 70,
+            "w": 380,
+            "label": "3.2% buffered sodium citrate",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b0",
+          "type": "token",
+          "props": {
+            "x": 290,
+            "y": 150,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b1",
+          "type": "token",
+          "props": {
+            "x": 330,
+            "y": 150,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.75,
+              "opacity": 0
+            },
+            {
+              "t": 9.05,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 150,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.0,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "type": "token",
+          "props": {
+            "x": 410,
+            "y": 150,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.25,
+              "opacity": 0
+            },
+            {
+              "t": 9.55,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b4",
+          "type": "token",
+          "props": {
+            "x": 450,
+            "y": 150,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b5",
+          "type": "token",
+          "props": {
+            "x": 490,
+            "y": 150,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.75,
+              "opacity": 0
+            },
+            {
+              "t": 10.05,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b6",
+          "type": "token",
+          "props": {
+            "x": 530,
+            "y": 150,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.0,
+              "opacity": 0
+            },
+            {
+              "t": 10.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b7",
+          "type": "token",
+          "props": {
+            "x": 570,
+            "y": 150,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.25,
+              "opacity": 0
+            },
+            {
+              "t": 10.55,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b8",
+          "type": "token",
+          "props": {
+            "x": 610,
+            "y": 150,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b9",
+          "type": "token",
+          "props": {
+            "x": 650,
+            "y": 150,
+            "w": 34,
+            "label": "",
+            "tone": "b",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.75,
+              "opacity": 0
+            },
+            {
+              "t": 11.05,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "rat",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 200,
+            "text": "9 parts blood : 1 part citrate",
+            "size": 22,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0
+            },
+            {
+              "t": 12.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ca0",
+          "type": "token",
+          "props": {
+            "x": 180,
+            "y": 280,
+            "w": 46,
+            "label": "Ca²⁺",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 16.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "x": 180
+            },
+            {
+              "t": 20,
+              "x": 420,
+              "ease": "out"
+            },
+            {
+              "t": 20.5,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ca1",
+          "type": "token",
+          "props": {
+            "x": 230,
+            "y": 280,
+            "w": 46,
+            "label": "Ca²⁺",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.8,
+              "opacity": 0
+            },
+            {
+              "t": 17.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "x": 230
+            },
+            {
+              "t": 20,
+              "x": 430,
+              "ease": "out"
+            },
+            {
+              "t": 20.5,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ca2",
+          "type": "token",
+          "props": {
+            "x": 280,
+            "y": 280,
+            "w": 46,
+            "label": "Ca²⁺",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.1,
+              "opacity": 0
+            },
+            {
+              "t": 17.400000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "x": 280
+            },
+            {
+              "t": 20,
+              "x": 440,
+              "ease": "out"
+            },
+            {
+              "t": 20.5,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ca3",
+          "type": "token",
+          "props": {
+            "x": 330,
+            "y": 280,
+            "w": 46,
+            "label": "Ca²⁺",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.4,
+              "opacity": 0
+            },
+            {
+              "t": 17.7,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "x": 330
+            },
+            {
+              "t": 20,
+              "x": 450,
+              "ease": "out"
+            },
+            {
+              "t": 20.5,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "bound",
+          "type": "token",
+          "props": {
+            "x": 470,
+            "y": 280,
+            "w": 260,
+            "label": "Citrate holds the Ca²⁺ → no clot",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "add",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 380,
+            "w": 300,
+            "label": "Analyzer adds a fixed Ca²⁺ dose",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "clock",
+          "type": "label",
+          "props": {
+            "x": 680,
+            "y": 380,
+            "text": "⏱ 0 s",
+            "size": 24,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27,
+              "opacity": 0
+            },
+            {
+              "t": 27.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27.8,
+              "text": "⏱ 10 s"
+            },
+            {
+              "t": 28.6,
+              "text": "⏱ 20 s"
+            },
+            {
+              "t": 29.4,
+              "text": "⏱ 31 s → clot ✓"
+            }
+          ]
+        },
+        {
+          "id": "match",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "text": "The Ca²⁺ dose is sized for a 9 : 1 tube",
+            "size": 18,
+            "weight": 900,
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Underfill: too much citrate",
+      "start": 62,
+      "end": 100,
+      "altText": "The ten-block row loses half its red blocks: 4.5 parts blood to 1 part citrate. The extra citrate soaks up the analyzer’s calcium, the stopwatch runs on to a long time and the result is flagged falsely prolonged. A study card compares 3.8% citrate (distorted below about 80–90% fill) with 3.2% citrate (acceptable to about 60% for PT and 70% for APTT). Two extra tokens: “Butterfly? Use a discard tube first” and “Hematocrit > 55%: reduce the citrate”.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 62,
+          "end": 70,
+          "text": "Now fill the tube only halfway. The citrate is the same, but the blood is half: 4.5 parts blood to 1 part citrate."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 78,
+          "text": "That extra citrate soaks up some of the calcium the analyzer adds. Clotting starts late, so PT and APTT come out falsely long."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 86,
+          "text": "How much underfill matters? In one study, 3.8 percent citrate went wrong below about 80 to 90 percent full. 3.2 percent citrate stayed acceptable down to about 60 percent for PT and 70 percent for APTT."
+        },
+        {
+          "id": "c4",
+          "start": 86,
+          "end": 93,
+          "text": "With a butterfly set, the tubing is full of air at first, so the first tube would underfill. That is why a discard tube goes first."
+        },
+        {
+          "id": "c5",
+          "start": 93,
+          "end": 100,
+          "text": "Very high hematocrit does the same thing in a full tube: less plasma per citrate. Above 55 percent, labs reduce the citrate."
+        }
+      ],
+      "objects": [
+        {
+          "id": "u0",
+          "type": "token",
+          "props": {
+            "x": 290,
+            "y": 120,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "u1",
+          "type": "token",
+          "props": {
+            "x": 330,
+            "y": 120,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 0.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "u2",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 120,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 0.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "u3",
+          "type": "token",
+          "props": {
+            "x": 410,
+            "y": 120,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.6000000000000001,
+              "opacity": 0
+            },
+            {
+              "t": 0.9000000000000001,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "u4",
+          "type": "token",
+          "props": {
+            "x": 450,
+            "y": 120,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.7,
+              "opacity": 0
+            },
+            {
+              "t": 1.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3.7,
+              "opacity": 1
+            },
+            {
+              "t": 4.1000000000000005,
+              "opacity": 0.5
+            }
+          ]
+        },
+        {
+          "id": "u5",
+          "type": "token",
+          "props": {
+            "x": 490,
+            "y": 120,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3.4,
+              "opacity": 1
+            },
+            {
+              "t": 3.8,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "u6",
+          "type": "token",
+          "props": {
+            "x": 530,
+            "y": 120,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.9000000000000001,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3.1,
+              "opacity": 1
+            },
+            {
+              "t": 3.5,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "u7",
+          "type": "token",
+          "props": {
+            "x": 570,
+            "y": 120,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.0,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2.8,
+              "opacity": 1
+            },
+            {
+              "t": 3.1999999999999997,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "u8",
+          "type": "token",
+          "props": {
+            "x": 610,
+            "y": 120,
+            "w": 34,
+            "label": "",
+            "tone": "blood",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.1,
+              "opacity": 0
+            },
+            {
+              "t": 1.4000000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2.5,
+              "opacity": 1
+            },
+            {
+              "t": 2.9,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "u9",
+          "type": "token",
+          "props": {
+            "x": 650,
+            "y": 120,
+            "w": 34,
+            "label": "",
+            "tone": "b",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.2,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "rat2",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "text": "4.5 parts blood : 1 part citrate",
+            "size": 22,
+            "weight": 900,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "soak",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 230,
+            "w": 320,
+            "label": "Extra citrate soaks up the Ca²⁺",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "clk",
+          "type": "label",
+          "props": {
+            "x": 700,
+            "y": 230,
+            "text": "⏱ 0 s",
+            "size": 22,
+            "weight": 900,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "text": "⏱ 31 s…"
+            },
+            {
+              "t": 11.5,
+              "text": "⏱ 45 s…"
+            },
+            {
+              "t": 12.5,
+              "text": "⏱ 58 s ↑ falsely long"
+            }
+          ]
+        },
+        {
+          "id": "st",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 330,
+            "w": 780,
+            "h": 100,
+            "tone": "a",
+            "title": "Underfill study (MohammadiTorbati 2024)",
+            "lines": [
+              "3.8% citrate: distorted below ≈ 80% (PT) / 90% (APTT) fill",
+              "3.2% citrate: acceptable to ≈ 60% (PT) / 70% (APTT) fill"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "reveal": 0
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "bf",
+          "type": "token",
+          "props": {
+            "x": 290,
+            "y": 440,
+            "w": 380,
+            "label": "Butterfly → discard tube first",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hct",
+          "type": "token",
+          "props": {
+            "x": 690,
+            "y": 440,
+            "w": 380,
+            "label": "Hematocrit > 55% → reduce citrate",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "lc",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 500,
+            "text": "Fill to the line: “filled to completion” (Labcorp)",
+            "size": 14,
+            "weight": 800,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32,
+              "opacity": 0
+            },
+            {
+              "t": 32.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: heparin from lines and gas syringes",
+      "start": 100,
+      "end": 138,
+      "altText": "A catheter line flushed with heparin feeds a light blue tube; heparin tokens ride along and the APTT clock runs long. A three-step strip shows: flush 5 mL saline → discard 5 mL or 6× the line’s dead space → then draw the coag tube. A study card: heparin-locked dialysis catheters gave inaccurate APTT even after 25 mL draw-and-return; venipuncture preferred. Then a blood-gas syringe: “0.05 mL liquid heparin per mL blood”; too much heparin dilutes the plasma, lowering pCO2 and electrolytes while pH and pO2 change less.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 108,
+          "text": "Catheters are often kept open with heparin. Draw a coag tube through that line, and heparin rides along — it boosts the body’s own clot blockers, so the APTT runs falsely long."
+        },
+        {
+          "id": "l2",
+          "start": 108,
+          "end": 116,
+          "text": "So clear the line first. One reference lab’s rule: flush with 5 mL of saline, then discard 5 mL of blood or six times the line’s dead space before the coag tube. The reviewer gives 3 to 5 mL."
+        },
+        {
+          "id": "l3",
+          "start": 116,
+          "end": 124,
+          "text": "Even that may not be enough. In dialysis patients with heparin-locked catheters, APTT stayed inaccurate even after drawing back 25 mL, so a fresh venipuncture is preferred."
+        },
+        {
+          "id": "l4",
+          "start": 124,
+          "end": 131,
+          "text": "Blood gases use heparin on purpose, but only a little: about 0.05 mL of liquid heparin per mL of blood."
+        },
+        {
+          "id": "l5",
+          "start": 131,
+          "end": 138,
+          "text": "Too much liquid heparin dilutes the plasma. pCO2 and electrolytes fall, while pH and pO2 change less. The reviewer calls excess heparin the most common blood-gas error."
+        }
+      ],
+      "objects": [
+        {
+          "id": "line",
+          "type": "token",
+          "props": {
+            "x": 160,
+            "y": 100,
+            "w": 220,
+            "label": "Heparin-locked line",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h0",
+          "type": "token",
+          "props": {
+            "x": 270,
+            "y": 100,
+            "w": 60,
+            "label": "Hep",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "x": 270
+            },
+            {
+              "t": 1.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3.5,
+              "x": 420,
+              "ease": "out"
+            },
+            {
+              "t": 4.0,
+              "opacity": 1
+            },
+            {
+              "t": 4.4,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "h1",
+          "type": "token",
+          "props": {
+            "x": 270,
+            "y": 100,
+            "w": 60,
+            "label": "Hep",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.1,
+              "opacity": 0
+            },
+            {
+              "t": 2.1,
+              "x": 270
+            },
+            {
+              "t": 2.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4.1,
+              "x": 420,
+              "ease": "out"
+            },
+            {
+              "t": 4.6,
+              "opacity": 1
+            },
+            {
+              "t": 5.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "h2",
+          "type": "token",
+          "props": {
+            "x": 270,
+            "y": 100,
+            "w": 60,
+            "label": "Hep",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 2.7,
+              "x": 270
+            },
+            {
+              "t": 3.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4.7,
+              "x": 420,
+              "ease": "out"
+            },
+            {
+              "t": 5.2,
+              "opacity": 1
+            },
+            {
+              "t": 5.6000000000000005,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "bt",
+          "type": "tube",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "scale": 0.45,
+            "cap": "#8ec9ee",
+            "fluid": "blood",
+            "level": 0.85,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ap",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 100,
+            "w": 260,
+            "label": "APTT falsely long ↑",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s1",
+          "type": "token",
+          "props": {
+            "x": 180,
+            "y": 210,
+            "w": 260,
+            "label": "1. Flush 5 mL saline",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 300,
+            "label": "2. Discard 5 mL or 6× dead space",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "token",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 260,
+            "label": "3. Then draw the coag tube",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "rv",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 250,
+            "text": "Reviewer: discard 3–5 mL",
+            "size": 14,
+            "weight": 800,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "th",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 322,
+            "w": 780,
+            "h": 104,
+            "tone": "a",
+            "title": "Heparin-locked dialysis catheters (Thongdee 2024)",
+            "lines": [
+              "APTT still inaccurate after 25 mL draw-and-return",
+              "Prefer a fresh venipuncture"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "reveal": 0
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "abg",
+          "type": "token",
+          "props": {
+            "x": 270,
+            "y": 420,
+            "w": 380,
+            "label": "Blood gas: 0.05 mL heparin per mL blood",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "dil",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 420,
+            "w": 360,
+            "label": "Too much → pCO₂ ↓, electrolytes ↓",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ph",
+          "type": "label",
+          "props": {
+            "x": 700,
+            "y": 465,
+            "text": "pH and pO₂ change less",
+            "size": 15,
+            "weight": 800,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33,
+              "opacity": 0
+            },
+            {
+              "t": 33.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Which way does the error go?",
+      "start": 138,
+      "end": 166,
+      "altText": "Three cause → effect cards flip over: “Underfilled light blue tube” → “PT/APTT falsely prolonged”; “Coag tube drawn through a heparin line” → “APTT falsely prolonged”; “Blood-gas syringe with too much liquid heparin” → “pCO2 and electrolytes falsely low”.",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 138,
+          "end": 147,
+          "text": "Exams test direction. An underfilled light blue tube makes PT and APTT falsely long — never short."
+        },
+        {
+          "id": "e2",
+          "start": 147,
+          "end": 156,
+          "text": "Heparin carried in from a line makes the APTT falsely long. Clear the line correctly, or better, use a fresh venipuncture."
+        },
+        {
+          "id": "e3",
+          "start": 156,
+          "end": 166,
+          "text": "A blood-gas syringe with too much liquid heparin dilutes the plasma, so pCO2 and electrolytes read falsely low."
+        }
+      ],
+      "objects": [
+        {
+          "id": "c0",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 100,
+            "w": 760,
+            "h": 110,
+            "tone": "b",
+            "title": "Underfilled light blue tube",
+            "lines": [
+              "→ PT / APTT falsely prolonged"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4.5,
+              "reveal": 0
+            },
+            {
+              "t": 5.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "c1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 250,
+            "w": 760,
+            "h": 110,
+            "tone": "a",
+            "title": "Coag tube drawn through a heparin line",
+            "lines": [
+              "→ APTT falsely prolonged"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13.5,
+              "reveal": 0
+            },
+            {
+              "t": 14.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 400,
+            "w": 760,
+            "h": 110,
+            "tone": "warn",
+            "title": "Blood-gas syringe with too much liquid heparin",
+            "lines": [
+              "→ pCO₂ and electrolytes falsely low"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22.5,
+              "reveal": 0
+            },
+            {
+              "t": 23.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Fill the blue, or the clock runs long",
+      "start": 166,
+      "end": 188,
+      "altText": "Memory aid: a light blue tube with a bold fill line and a stopwatch, captioned “Fill the blue, or the clock runs long”, beside a three-step strip “Flush · Discard · Draw”. A card lists where the aid breaks down.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 166,
+          "end": 173,
+          "text": "Memory aid: Fill the blue, or the clock runs long. Extra citrate always pushes clotting times up."
+        },
+        {
+          "id": "m2",
+          "start": 173,
+          "end": 179,
+          "text": "For lines: Flush, Discard, Draw — in that order — and prefer a fresh stick when heparin is in the line."
+        },
+        {
+          "id": "m3",
+          "start": 179,
+          "end": 188,
+          "text": "Where it breaks: 3.2 percent citrate tolerates some underfill, high hematocrit causes the same error in a full tube, and discard volumes depend on the device and the lab’s policy."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Fill the blue, or the clock runs long",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tb",
+          "type": "tube",
+          "props": {
+            "x": 250,
+            "y": 120,
+            "scale": 0.6,
+            "cap": "#8ec9ee",
+            "fluid": "blood",
+            "level": 0.9,
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ck",
+          "type": "label",
+          "props": {
+            "x": 250,
+            "y": 260,
+            "text": "⏱",
+            "size": 24,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 2.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "text": "⏱ short = right"
+            }
+          ]
+        },
+        {
+          "id": "fdd",
+          "type": "token",
+          "props": {
+            "x": 640,
+            "y": 180,
+            "w": 380,
+            "label": "Flush · Discard · Draw",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 840,
+            "h": 80,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "3.2% citrate tolerates some underfill · high hematocrit mimics it · discard rules vary"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.5,
+              "reveal": 0
+            },
+            {
+              "t": 16.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 188,
+      "end": 198,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 188,
+          "end": 193,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 193,
+          "end": 198,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 198,
+      "end": 210,
+      "altText": "A full light blue tube (9 : 1), a cleared line (flush, discard, draw) and a blood-gas syringe labelled 0.05 mL/mL.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 198,
+          "end": 210,
+          "text": "Keep citrate tubes at 9 parts blood to 1 part citrate and keep heparin out of coag samples, because extra citrate or stray heparin both make clotting times falsely long — and use only about 0.05 mL of liquid heparin per mL in blood-gas syringes."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 240,
+            "w": 260,
+            "label": "Blue tube: 9 : 1",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 240,
+            "w": 260,
+            "label": "Lines: flush · discard · draw",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 240,
+            "w": 260,
+            "label": "Gas: 0.05 mL heparin/mL",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: the blue tube has just enough chemical for a full tube of blood; too little blood leaves extra chemical, and the clotting test reads slow. Heparin from IV lines also makes clotting look slow. Scientific terms: 3.2% buffered sodium citrate chelates calcium; tubes are filled to a 9 : 1 blood-to-anticoagulant ratio. PT and APTT are measured after the analyzer recalcifies citrated plasma. Heparin potentiates antithrombin and prolongs the APTT.",
+    "why": "The analyzer adds a fixed calcium dose matched to a 9 : 1 tube. Underfilling (or a hematocrit above 55%, which leaves less plasma) leaves excess citrate that binds part of that calcium, delaying clotting. Heparin from a catheter line keeps inhibiting thrombin in the tube. In blood-gas syringes, liquid heparin dilutes plasma and lowers pCO2 and electrolytes.",
+    "measure": "Labs reject underfilled light blue tubes, check for heparin contamination when APTT is unexpectedly long, and in blood gases use about 0.05 mL liquid heparin per mL of blood. In one study, 3.8% citrate tubes distorted results below about 80–90% fill, while 3.2% tubes were acceptable to about 60% (PT) and 70% (APTT).",
+    "differs": "Underfill vs overfill: underfill (excess citrate) prolongs times. Citrate vs heparin: citrate binds calcium reversibly so tests can recalcify; heparin works through antithrombin and cannot be “added back”. Coag tube heparin (contaminant) vs blood-gas heparin (intended, in a small dose).",
+    "examAngle": "Expect: “an underfilled blue top gives…” (falsely prolonged PT/APTT), the 9 : 1 ratio, why a discard tube is used with a butterfly, the hematocrit > 55% adjustment, the line-draw discard rule, and the effect of excess heparin in a blood gas."
+  },
+  "comparisons": [
+    {
+      "id": "under-vs-full",
+      "title": "Underfilled vs correctly filled citrate tube",
+      "left": {
+        "label": "Underfilled",
+        "points": [
+          "Excess citrate for the plasma",
+          "Binds the analyzer’s calcium",
+          "PT/APTT falsely prolonged"
+        ]
+      },
+      "right": {
+        "label": "Filled to the line",
+        "points": [
+          "9 : 1 blood to citrate",
+          "Calcium dose matches",
+          "Valid PT/APTT"
+        ]
+      },
+      "distinguisher": "The amount of plasma per unit of citrate."
+    },
+    {
+      "id": "hep-coag-vs-gas",
+      "title": "Heparin in a coag tube vs in a blood-gas syringe",
+      "left": {
+        "label": "Coag tube (contaminant)",
+        "points": [
+          "From heparin-locked lines",
+          "APTT falsely long",
+          "Flush, discard, draw — or venipuncture"
+        ]
+      },
+      "right": {
+        "label": "Blood-gas syringe (intended)",
+        "points": [
+          "≈ 0.05 mL liquid heparin per mL blood",
+          "Excess dilutes plasma: pCO₂ and electrolytes ↓"
+        ]
+      },
+      "distinguisher": "Whether heparin belongs in the sample at all."
+    }
+  ],
+  "mnemonic": {
+    "text": "Fill the blue, or the clock runs long — and for lines: Flush, Discard, Draw.",
+    "explanation": "An underfilled citrate tube (extra citrate) or heparin from a line makes clotting times run long. For line draws, flush the line, discard the first blood, then draw the coag tube.",
+    "limitation": "3.2% citrate tolerates moderate underfill; a very high hematocrit causes the same error even in a full tube; and discard volumes depend on the catheter and the laboratory’s policy. Heparin-locked lines may stay unreliable even after discard."
+  },
+  "analogyLimitations": [
+    "The ten blocks show proportions, not exact volumes.",
+    "The 58 s and 31 s APTT values are illustrative.",
+    "The stopwatch simplifies how analyzers detect clot formation."
+  ],
+  "takeaway": "Keep citrate tubes at 9 parts blood to 1 part citrate and keep heparin out of coag samples, because extra citrate or stray heparin both make clotting times falsely long — and use only about 0.05 mL of liquid heparin per mL in blood-gas syringes.",
+  "questions": [
+    {
+      "id": "pre-cit-q1",
+      "stem": "A light blue citrate tube arrives only half full. What effect is expected on the PT and APTT if it is tested?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Falsely prolonged, because excess citrate binds the calcium added by the analyzer",
+          "rationale": "Correct. Less blood for the same citrate raises the citrate-to-plasma ratio, delaying clotting after recalcification."
+        },
+        {
+          "id": "b",
+          "text": "Falsely shortened, because there is less anticoagulant per tube",
+          "rationale": "Incorrect. The citrate amount is fixed; underfilling means relatively MORE citrate per mL of blood."
+        },
+        {
+          "id": "c",
+          "text": "No effect, because the analyzer adds calcium anyway",
+          "rationale": "Incorrect. The calcium dose is sized for a 9 : 1 tube; extra citrate binds part of it."
+        },
+        {
+          "id": "d",
+          "text": "Only the platelet count is affected",
+          "rationale": "Incorrect. Platelet counts use EDTA tubes; the underfilled citrate tube affects clotting times."
+        }
+      ],
+      "answer": "a",
+      "skill": "Effect of underfilled citrate tube",
+      "difficulty": "application"
+    },
+    {
+      "id": "pre-cit-q2",
+      "stem": "A coagulation sample must be drawn through a catheter that is kept open with heparin. Which practice best reduces heparin contamination?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Flush with saline, discard about 5 mL of blood or six times the line’s dead space, then draw the coag tube — or use a fresh venipuncture",
+          "rationale": "Correct. Clearing the line removes most heparin; for heparin-locked lines, venipuncture is preferred when possible."
+        },
+        {
+          "id": "b",
+          "text": "Draw the coag tube first, before any discard",
+          "rationale": "Incorrect. The first blood from the line carries the most heparin."
+        },
+        {
+          "id": "c",
+          "text": "Use an EDTA tube instead of citrate",
+          "rationale": "Incorrect. PT and APTT require citrated plasma; EDTA is not acceptable."
+        },
+        {
+          "id": "d",
+          "text": "Add extra citrate to neutralize the heparin",
+          "rationale": "Incorrect. Citrate does not neutralize heparin, and extra citrate would further prolong the results."
+        }
+      ],
+      "answer": "a",
+      "skill": "Line draws for coagulation",
+      "difficulty": "application"
+    },
+    {
+      "id": "pre-cit-q3",
+      "stem": "An arterial blood-gas syringe was filled with far more liquid heparin than needed. Which change is most expected?",
+      "options": [
+        {
+          "id": "a",
+          "text": "pCO₂ and electrolytes falsely low from dilution",
+          "rationale": "Correct. Excess liquid heparin dilutes the plasma; pCO₂ and electrolytes fall, while pH and pO₂ change less."
+        },
+        {
+          "id": "b",
+          "text": "pO₂ doubles",
+          "rationale": "Incorrect. pO₂ is relatively less affected by heparin dilution (air bubbles are the bigger pO₂ risk)."
+        },
+        {
+          "id": "c",
+          "text": "Potassium rises sharply, as with EDTA",
+          "rationale": "Incorrect. Dilution lowers electrolytes; the potassium rise pattern belongs to K-EDTA contamination."
+        },
+        {
+          "id": "d",
+          "text": "No effect, since heparin is the correct anticoagulant",
+          "rationale": "Incorrect. Heparin is correct, but only in a small amount (≈ 0.05 mL per mL blood)."
+        }
+      ],
+      "answer": "a",
+      "skill": "Blood-gas heparin errors",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch3",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 3, Before the Test: Getting the Sample Right (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 3,
+          "section": "High-Yield Hits",
+          "items": [
+            4,
+            6,
+            16
+          ]
+        },
+        {
+          "chapter": 3,
+          "section": "Number Vault"
+        }
+      ],
+      "usedFor": "Curriculum source: scope, exam framing, the 3–5 mL discard figure and the “most common blood-gas error” statement. Not used as verification."
+    },
+    {
+      "id": "labcorp-coag",
+      "kind": "external",
+      "citation": "Labcorp. Blood specimens: coagulation (test menu resource; undated web page, accessed 2026-10-07).",
+      "url": "https://www.labcorp.com/test-menu/resources/blood-specimens-coagulation",
+      "consulted": true,
+      "usedFor": "Fill evacuated tubes to completion for a 9 : 1 ratio; 3.2% buffered citrate; from heparin lines flush 5 mL saline and discard 5 mL or 6× dead space; butterfly sets need a discard tube; reduce citrate when hematocrit > 55%."
+    },
+    {
+      "id": "torbati2024",
+      "kind": "external",
+      "citation": "MohammadiTorbati P. Assessment of mutual impact of different sodium citrate concentrations and minimum specimen volume on the result of routine coagulation tests. J Inflamm Dis. 2024;8(2):e155032.",
+      "url": "https://brieflands.com/articles/jid-155032",
+      "consulted": true,
+      "usedFor": "Underfilled 3.8% citrate tubes distorted PT below ≈ 80% and APTT below ≈ 90% fill; 3.2% citrate acceptable to ≈ 60% (PT) and 70% (APTT)."
+    },
+    {
+      "id": "thongdee2024",
+      "kind": "external",
+      "citation": "Thongdee C, et al. Optimal volume for the draw-and-return methods to enhance activated partial thromboplastin time ratio accuracy in hemodialysis patients with central venous catheters. Heliyon. 2024;10(7):e28651.",
+      "doi": "10.1016/j.heliyon.2024.e28651",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11000023",
+      "consulted": true,
+      "usedFor": "Heparin-locked catheters gave poor APTT-ratio accuracy even with 25 mL draw-and-return; citrate-locked catheters performed well; peripheral venipuncture recommended for heparin-locked catheters."
+    },
+    {
+      "id": "sood2010",
+      "kind": "external",
+      "citation": "Sood P, Paul G, Puri S. Interpretation of arterial blood gas. Indian J Crit Care Med. 2010;14(2):57-64.",
+      "doi": "10.4103/0972-5229.68215",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2936733",
+      "consulted": true,
+      "usedFor": "Only 0.05 mL heparin is required to anticoagulate 1 mL of blood; liquid heparin dilutes plasma — pCO₂ and electrolytes affected, pH and pO₂ relatively unaffected."
+    },
+    {
+      "id": "who2010",
+      "kind": "external",
+      "citation": "World Health Organization. WHO guidelines on drawing blood: best practices in phlebotomy. Geneva: WHO; 2010.",
+      "url": "https://iris.who.int/handle/10665/44294",
+      "consulted": true,
+      "usedFor": "Underfilling so that the anticoagulant-to-blood ratio exceeds 1 : 9 is a listed collection error; coagulation tubes require a full draw; improper heparin quantity is a blood-gas sampling error."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-91",
+      "text": "Citrate tubes must be filled to completion for a 9 : 1 blood-to-anticoagulant ratio; 3.2% buffered citrate is used.",
+      "status": "checked",
+      "refs": [
+        "labcorp-coag",
+        "who2010"
+      ]
+    },
+    {
+      "id": "cl-under",
+      "text": "Underfilling prolongs PT/APTT; 3.8% citrate is more sensitive to underfill than 3.2% (≈ 60–70% fill acceptable for 3.2% in one study).",
+      "status": "checked",
+      "refs": [
+        "torbati2024"
+      ]
+    },
+    {
+      "id": "cl-butterfly-hct",
+      "text": "Butterfly collections need a discard tube before the coag tube; citrate is reduced when hematocrit exceeds 55%.",
+      "status": "checked",
+      "refs": [
+        "labcorp-coag"
+      ]
+    },
+    {
+      "id": "cl-line",
+      "text": "From heparin lines: flush 5 mL saline, discard 5 mL or 6× dead space before the coag tube; heparin-locked catheters may still give inaccurate APTT, so venipuncture is preferred.",
+      "status": "checked",
+      "refs": [
+        "labcorp-coag",
+        "thongdee2024"
+      ]
+    },
+    {
+      "id": "cl-abg",
+      "text": "About 0.05 mL heparin anticoagulates 1 mL of blood; excess liquid heparin dilutes plasma, lowering pCO₂ and electrolytes, with pH and pO₂ less affected.",
+      "status": "checked",
+      "refs": [
+        "sood2010"
+      ]
+    },
+    {
+      "id": "cl-mech",
+      "text": "Excess citrate binds the fixed calcium dose added by the analyzer, delaying clot formation; heparin prolongs the APTT through antithrombin.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch3"
+      ],
+      "note": "Standard mechanism, but not stated in the sources read for this lesson."
+    },
+    {
+      "id": "cl-35",
+      "text": "Discard 3–5 mL (minimum 2–5 mL) from catheter draws before coag tubes; excess heparin is the most common preanalytical error in blood-gas measurement; 0.05 mL of 1000 IU/mL heparin.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch3"
+      ],
+      "note": "Reviewer’s figures; the 0.05 mL amount is checked, the ranking and IU strength are not."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Ten-block ratio picture, stopwatch and illustrative APTT values.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Fill the blue, or the clock runs long — Flush, Discard, Draw.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-discard",
+      "issue": "The reviewer’s discard volume (3–5 mL) is smaller than one reference lab’s rule (5 mL or 6× dead space), and evidence suggests heparin-locked lines may stay unreliable after discard.",
+      "kind": "guideline-dependent",
+      "status": "resolved",
+      "resolution": "Lesson teaches the reference-lab rule and the venipuncture preference alongside the reviewer’s figure."
+    },
+    {
+      "id": "f-abg-rank",
+      "issue": "“Most common preanalytical error in blood gas measurement” could not be confirmed.",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Tubes, blocks, ions and lines are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against a reference-laboratory specimen guide, the WHO 2010 guideline and three peer-reviewed open-access articles read for this lesson; 2 pending (mechanism wording, reviewer’s figures). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-07"
+}
