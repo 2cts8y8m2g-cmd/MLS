@@ -1,0 +1,2241 @@
+{
+  "schemaVersion": 1,
+  "id": "heme-microcytic-anemia-ferritin-mentzer",
+  "title": "Small Red Cells: Iron Deficiency, Thalassemia Trait and Inflammation",
+  "summary": "Watch a smear turn small, pale and unequal as iron runs out, then crowd with small even cells in thalassemia trait — and sort them with ferritin, the Mentzer index and HbA2.",
+  "domain": "p4-heme",
+  "topic": "ch33",
+  "conceptIds": [
+    "ch33.hit1",
+    "ch33.hit7",
+    "ch33.hit10",
+    "ch33.hit18",
+    "ch33.trap1",
+    "ch33.table1"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 33,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          7,
+          10,
+          18
+        ]
+      },
+      {
+        "chapter": 33,
+        "section": "Exam Traps",
+        "items": [
+          1
+        ]
+      },
+      {
+        "chapter": 33,
+        "section": "Number Vault"
+      }
+    ],
+    "note": "Teaches Ch. 33 Hit 1 (core: iron deficiency by ferritin), Hits 7, 10 and 18, Trap 1 and the iron-deficiency / inflammation / thalassemia-trait comparison table. Uses WHO 2020 ferritin cut-offs (< 15 µg/L; < 70 µg/L in inflamed adults) alongside the reviewer’s < 12 and < 50–60 figures (register flag rv-ferritin-cutoffs)."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Use ferritin to diagnose iron deficiency, including the higher cut-off when inflammation is present.",
+    "Distinguish iron deficiency, anemia of inflammation and thalassemia trait from the iron panel, RBC count and MCV.",
+    "Calculate and interpret the Mentzer index, and confirm β-thalassemia trait with HbA2."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two small-cell anemias, one wrong pill",
+      "start": 0,
+      "end": 20,
+      "altText": "Two patients with the same low MCV (small red cells). A bottle of iron pills hovers over both. One smear shows few, pale, unequal cells; the other shows many small, even cells. The cartoon scientist asks: should both get iron?",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Two patients both have small red cells — a low MCV."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The easy move is to give both of them iron. For one patient, that is exactly right. For the other, it does nothing — and extra iron can even build up."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "The lab can tell them apart before anyone swallows a pill. Here’s how."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "smear",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 320,
+            "h": 200,
+            "count": 20,
+            "size": 0.72,
+            "pallor": 0.6,
+            "aniso": 0.8,
+            "label": "Patient A",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "smear",
+          "props": {
+            "x": 710,
+            "y": 220,
+            "w": 320,
+            "h": 200,
+            "count": 46,
+            "size": 0.7,
+            "pallor": 0.42,
+            "aniso": 0.1,
+            "target": 0.12,
+            "label": "Patient B",
+            "seed": 4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mcv",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 70,
+            "w": 360,
+            "label": "Both: MCV low (small cells)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pill",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 410,
+            "w": 360,
+            "label": "Iron for both?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "label": "Iron for both? ✗ not so fast"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 480,
+            "y": 480,
+            "expression": "curious",
+            "scale": 0.5,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 15,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Ferritin: the iron savings account",
+      "start": 20,
+      "end": 62,
+      "altText": "A bank-vault cartoon labelled “ferritin = stored iron”. Normal stores show a full vault. In iron deficiency the vault empties first; a WHO cut-off line reads “< 15 µg/L = iron deficiency (apparently healthy adults)”. A second line, for adults with infection or inflammation, sits higher at “< 70 µg/L”. Then the smear shifts from normal (even, normal-sized cells) to iron-deficient: fewer cells, smaller, paler, more unequal.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "The body banks iron in a protein called ferritin. A little ferritin leaks into the blood, and the amount tracks the size of the savings."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "When iron runs short, the savings empty first. WHO uses a ferritin below 15 micrograms per litre to diagnose iron deficiency in otherwise healthy adults."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 44,
+          "text": "But ferritin also rises with inflammation, like a vault guard who exaggerates. So in adults with infection or inflammation, WHO allows a higher cut-off: below 70."
+        },
+        {
+          "id": "n4",
+          "start": 44,
+          "end": 53,
+          "text": "Without iron, the marrow builds hemoglobin slowly. Red cells come out smaller and paler, and their sizes vary a lot — a wide RDW."
+        },
+        {
+          "id": "n5",
+          "start": 53,
+          "end": 62,
+          "text": "Fewer cells, small, pale and unequal: the classic iron-deficiency smear. Low ferritin is the test that clinches it."
+        }
+      ],
+      "objects": [
+        {
+          "id": "vault",
+          "type": "card",
+          "props": {
+            "x": 210,
+            "y": 150,
+            "w": 300,
+            "h": 150,
+            "tone": "good",
+            "title": "Ferritin = stored iron",
+            "lines": [
+              "A little leaks into blood"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "title": "Ferritin: savings low"
+            },
+            {
+              "t": 10,
+              "tone": "warn"
+            }
+          ]
+        },
+        {
+          "id": "c15",
+          "type": "token",
+          "props": {
+            "x": 210,
+            "y": 270,
+            "w": 330,
+            "label": "WHO: < 15 µg/L = iron deficiency",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0
+            },
+            {
+              "t": 10.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c70",
+          "type": "token",
+          "props": {
+            "x": 210,
+            "y": 325,
+            "w": 330,
+            "label": "With inflammation (adults): < 70 µg/L",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17,
+              "opacity": 0
+            },
+            {
+              "t": 17.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "sm",
+          "type": "smear",
+          "props": {
+            "x": 680,
+            "y": 200,
+            "w": 340,
+            "h": 230,
+            "count": 34,
+            "size": 1,
+            "pallor": 0.33,
+            "aniso": 0,
+            "label": "Schematic smear",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 2,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "size": 1
+            },
+            {
+              "t": 25,
+              "pallor": 0.33
+            },
+            {
+              "t": 25,
+              "aniso": 0
+            },
+            {
+              "t": 25,
+              "count": 34
+            },
+            {
+              "t": 32,
+              "size": 0.72,
+              "ease": "inOut"
+            },
+            {
+              "t": 32,
+              "pallor": 0.62,
+              "ease": "inOut"
+            },
+            {
+              "t": 32,
+              "aniso": 0.85,
+              "ease": "inOut"
+            },
+            {
+              "t": 32,
+              "count": 22,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "lbl",
+          "type": "label",
+          "props": {
+            "x": 680,
+            "y": 355,
+            "text": "Normal",
+            "size": 18,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "text": "→ small, pale, unequal"
+            },
+            {
+              "t": 33,
+              "text": "Iron deficiency"
+            }
+          ]
+        },
+        {
+          "id": "rdw",
+          "type": "token",
+          "props": {
+            "x": 680,
+            "y": 410,
+            "w": 320,
+            "label": "MCV ↓ · MCH ↓ · RDW ↑",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29,
+              "opacity": 0
+            },
+            {
+              "t": 29.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "The look-alike: thalassemia trait",
+      "start": 62,
+      "end": 100,
+      "altText": "The smear morphs into thalassemia trait: cells stay small but become many and uniform, with a few target cells. A counter shows the RBC count high (about 5–7 million/µL). A Mentzer-index calculator appears: MCV ÷ RBC. Iron deficiency example: 72 ÷ 3.8 ≈ 18.9 (> 13). Thalassemia-trait example: 64 ÷ 5.9 ≈ 10.8 (< 13).",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 62,
+          "end": 70,
+          "text": "Thalassemia trait also makes small cells — but for a different reason. The genes for one hemoglobin chain work at reduced output; iron is fine."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 78,
+          "text": "The marrow compensates by making MORE cells. So the RBC count is high, often 5 to 7 million, and the cells are small but even."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 86,
+          "text": "A quick screen is the Mentzer index: divide the MCV by the RBC count. Below 13 points to thalassemia trait; above 13 points to iron deficiency."
+        },
+        {
+          "id": "c4",
+          "start": 86,
+          "end": 93,
+          "text": "Iron deficiency example: MCV 72, RBC 3.8. 72 divided by 3.8 is about 18.9 — above 13."
+        },
+        {
+          "id": "c5",
+          "start": 93,
+          "end": 100,
+          "text": "Thalassemia trait example: MCV 64, RBC 5.9. 64 divided by 5.9 is about 10.8 — below 13. Next step: hemoglobin studies."
+        }
+      ],
+      "objects": [
+        {
+          "id": "sm",
+          "type": "smear",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 340,
+            "h": 230,
+            "count": 22,
+            "size": 0.72,
+            "pallor": 0.62,
+            "aniso": 0.85,
+            "seed": 4,
+            "label": "Schematic: thalassemia trait",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 1,
+              "count": 22
+            },
+            {
+              "t": 1,
+              "aniso": 0.85
+            },
+            {
+              "t": 1,
+              "pallor": 0.62
+            },
+            {
+              "t": 1,
+              "size": 0.72
+            },
+            {
+              "t": 5,
+              "target": 0
+            },
+            {
+              "t": 8,
+              "count": 46,
+              "ease": "inOut"
+            },
+            {
+              "t": 8,
+              "aniso": 0.1,
+              "ease": "inOut"
+            },
+            {
+              "t": 8,
+              "pallor": 0.42,
+              "ease": "inOut"
+            },
+            {
+              "t": 8,
+              "size": 0.68,
+              "ease": "inOut"
+            },
+            {
+              "t": 8,
+              "target": 0.12,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "rbcN",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 380,
+            "w": 340,
+            "label": "RBC count high (≈ 5–7 M/µL)",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "f",
+          "type": "card",
+          "props": {
+            "x": 700,
+            "y": 110,
+            "w": 380,
+            "h": 100,
+            "tone": "b",
+            "title": "Mentzer index = MCV ÷ RBC",
+            "lines": [
+              "< 13 → thal trait · > 13 → iron deficiency"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ida",
+          "type": "label",
+          "props": {
+            "x": 700,
+            "y": 240,
+            "text": "IDA: 72 ÷ 3.8",
+            "size": 22,
+            "weight": 900,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26.5,
+              "text": "IDA: 72 ÷ 3.8 ≈ 18.9 → > 13"
+            }
+          ]
+        },
+        {
+          "id": "thal",
+          "type": "label",
+          "props": {
+            "x": 700,
+            "y": 300,
+            "text": "Thal trait: 64 ÷ 5.9",
+            "size": 22,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33.5,
+              "text": "Thal trait: 64 ÷ 5.9 ≈ 10.8 → < 13"
+            }
+          ]
+        },
+        {
+          "id": "scr",
+          "type": "label",
+          "props": {
+            "x": 700,
+            "y": 360,
+            "text": "A screen only — confirm with lab tests",
+            "size": 15,
+            "weight": 800,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34,
+              "opacity": 0
+            },
+            {
+              "t": 34.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: the iron panel and HbA2",
+      "start": 100,
+      "end": 138,
+      "altText": "A three-column comparison board fills in row by row for iron deficiency, anemia of inflammation and thalassemia trait: ferritin (low / normal-high / normal), TIBC-transferrin (high / low / normal), serum iron (low / low / normal), RBC count (low-normal / normal / high), MCV (low / normal or mildly low / low), and finally HbA2 > 3.5% marking β-thalassemia trait.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 108,
+          "text": "The lab sorts small-cell anemias with an iron panel. Iron deficiency: ferritin low, serum iron low, and transferrin — the iron taxi — high, because the body makes more taxis to hunt for iron."
+        },
+        {
+          "id": "l2",
+          "start": 108,
+          "end": 116,
+          "text": "Anemia of inflammation: a hormone called hepcidin locks iron inside storage cells. Serum iron is low, but ferritin is normal or high, and transferrin is low."
+        },
+        {
+          "id": "l3",
+          "start": 116,
+          "end": 123,
+          "text": "It is usually a mild to moderate, normocytic anemia — small cells only if it lasts a long time."
+        },
+        {
+          "id": "l4",
+          "start": 123,
+          "end": 131,
+          "text": "Thalassemia trait: the iron panel is normal, the RBC count is high and the cells are small."
+        },
+        {
+          "id": "l5",
+          "start": 131,
+          "end": 138,
+          "text": "Hemoglobin studies confirm it. An HbA2 above 3.5 percent points to β-thalassemia trait."
+        }
+      ],
+      "objects": [
+        {
+          "id": "h0",
+          "type": "token",
+          "props": {
+            "x": 420,
+            "y": 60,
+            "w": 190,
+            "label": "Iron deficiency",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "opacity": 0
+            },
+            {
+              "t": 0.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h1",
+          "type": "token",
+          "props": {
+            "x": 620,
+            "y": 60,
+            "w": 190,
+            "label": "Inflammation",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.3,
+              "opacity": 0
+            },
+            {
+              "t": 8.700000000000001,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h2",
+          "type": "token",
+          "props": {
+            "x": 820,
+            "y": 60,
+            "w": 190,
+            "label": "Thal trait",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23.3,
+              "opacity": 0
+            },
+            {
+              "t": 23.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r0",
+          "type": "label",
+          "props": {
+            "x": 150,
+            "y": 120,
+            "text": "Ferritin",
+            "size": 16,
+            "weight": 900,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 0.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r1",
+          "type": "label",
+          "props": {
+            "x": 150,
+            "y": 175,
+            "text": "Transferrin / TIBC",
+            "size": 16,
+            "weight": 900,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.9,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "type": "label",
+          "props": {
+            "x": 150,
+            "y": 230,
+            "text": "Serum iron",
+            "size": 16,
+            "weight": 900,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.3,
+              "opacity": 0
+            },
+            {
+              "t": 1.7000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r3",
+          "type": "label",
+          "props": {
+            "x": 150,
+            "y": 285,
+            "text": "RBC count",
+            "size": 16,
+            "weight": 900,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.7000000000000002,
+              "opacity": 0
+            },
+            {
+              "t": 2.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r4",
+          "type": "label",
+          "props": {
+            "x": 150,
+            "y": 340,
+            "text": "MCV",
+            "size": 16,
+            "weight": 900,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.1,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r5",
+          "type": "label",
+          "props": {
+            "x": 150,
+            "y": 395,
+            "text": "HbA2",
+            "size": 16,
+            "weight": 900,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v00",
+          "type": "label",
+          "props": {
+            "x": 420,
+            "y": 120,
+            "text": "Low ↓",
+            "size": 16,
+            "weight": 800,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.0,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v01",
+          "type": "label",
+          "props": {
+            "x": 420,
+            "y": 175,
+            "text": "High ↑",
+            "size": 16,
+            "weight": 800,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v02",
+          "type": "label",
+          "props": {
+            "x": 420,
+            "y": 230,
+            "text": "Low ↓",
+            "size": 16,
+            "weight": 800,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.0,
+              "opacity": 0
+            },
+            {
+              "t": 2.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v03",
+          "type": "label",
+          "props": {
+            "x": 420,
+            "y": 285,
+            "text": "Low–normal",
+            "size": 16,
+            "weight": 800,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v04",
+          "type": "label",
+          "props": {
+            "x": 420,
+            "y": 340,
+            "text": "Low ↓",
+            "size": 16,
+            "weight": 800,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v05",
+          "type": "label",
+          "props": {
+            "x": 420,
+            "y": 395,
+            "text": "Normal",
+            "size": 16,
+            "weight": 800,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 3.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v10",
+          "type": "label",
+          "props": {
+            "x": 620,
+            "y": 120,
+            "text": "Normal–high",
+            "size": 16,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.0,
+              "opacity": 0
+            },
+            {
+              "t": 9.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v11",
+          "type": "label",
+          "props": {
+            "x": 620,
+            "y": 175,
+            "text": "Low ↓",
+            "size": 16,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v12",
+          "type": "label",
+          "props": {
+            "x": 620,
+            "y": 230,
+            "text": "Low ↓",
+            "size": 16,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.0,
+              "opacity": 0
+            },
+            {
+              "t": 10.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v13",
+          "type": "label",
+          "props": {
+            "x": 620,
+            "y": 285,
+            "text": "Normal",
+            "size": 16,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v14",
+          "type": "label",
+          "props": {
+            "x": 620,
+            "y": 340,
+            "text": "Normal (↓ if long)",
+            "size": 16,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.0,
+              "opacity": 0
+            },
+            {
+              "t": 11.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v15",
+          "type": "label",
+          "props": {
+            "x": 620,
+            "y": 395,
+            "text": "Normal",
+            "size": 16,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v20",
+          "type": "label",
+          "props": {
+            "x": 820,
+            "y": 120,
+            "text": "Normal",
+            "size": 16,
+            "weight": 800,
+            "color": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.0,
+              "opacity": 0
+            },
+            {
+              "t": 24.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v21",
+          "type": "label",
+          "props": {
+            "x": 820,
+            "y": 175,
+            "text": "Normal",
+            "size": 16,
+            "weight": 800,
+            "color": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 24.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v22",
+          "type": "label",
+          "props": {
+            "x": 820,
+            "y": 230,
+            "text": "Normal",
+            "size": 16,
+            "weight": 800,
+            "color": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25.0,
+              "opacity": 0
+            },
+            {
+              "t": 25.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v23",
+          "type": "label",
+          "props": {
+            "x": 820,
+            "y": 285,
+            "text": "High ↑",
+            "size": 16,
+            "weight": 800,
+            "color": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25.5,
+              "opacity": 0
+            },
+            {
+              "t": 25.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v24",
+          "type": "label",
+          "props": {
+            "x": 820,
+            "y": 340,
+            "text": "Low ↓",
+            "size": 16,
+            "weight": 800,
+            "color": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.0,
+              "opacity": 0
+            },
+            {
+              "t": 26.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v25",
+          "type": "label",
+          "props": {
+            "x": 820,
+            "y": 395,
+            "text": "> 3.5% ✓",
+            "size": 16,
+            "weight": 800,
+            "color": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0
+            },
+            {
+              "t": 26.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hep",
+          "type": "token",
+          "props": {
+            "x": 500,
+            "y": 470,
+            "w": 360,
+            "label": "Hepcidin locks iron away",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "label": "Hepcidin traps iron · usually normocytic"
+            }
+          ]
+        },
+        {
+          "id": "hb",
+          "type": "token",
+          "props": {
+            "x": 830,
+            "y": 470,
+            "w": 200,
+            "label": "HbA2 > 3.5%",
+            "tone": "b",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Trap: low MCV is not always iron deficiency",
+      "start": 138,
+      "end": 166,
+      "altText": "Trap card: “MCV is low, so it’s iron deficiency” is crossed out → “High RBC count + low MCV in a well patient → think thalassemia trait; check Mentzer index and HbA2.” A second card: “Ferritin is normal in a patient with arthritis, so iron deficiency is excluded” is crossed out → “Inflammation raises ferritin; WHO uses < 70 µg/L in adults with inflammation.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 138,
+          "end": 147,
+          "text": "Trap: “The MCV is low, so it must be iron deficiency.” Not if the RBC count is high and the patient is well. Run the Mentzer index and check HbA2."
+        },
+        {
+          "id": "e2",
+          "start": 147,
+          "end": 156,
+          "text": "Trap two: “Ferritin is 45 in a patient with arthritis — normal, so iron deficiency is ruled out.” Inflammation pushes ferritin up, so WHO uses a higher cut-off, below 70, in adults with inflammation."
+        },
+        {
+          "id": "e3",
+          "start": 156,
+          "end": 166,
+          "text": "And the clincher pair: low ferritin means iron deficiency; HbA2 above 3.5 percent means β-thalassemia trait."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 100,
+            "w": 800,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Low MCV = iron deficiency.”",
+            "lines": [
+              "✓ High RBC + low MCV → Mentzer < 13 → check HbA2 (thal trait)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4.5,
+              "reveal": 0
+            },
+            {
+              "t": 5.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 250,
+            "w": 800,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Ferritin 45 with arthritis = iron is fine.”",
+            "lines": [
+              "✓ Inflammation raises ferritin; WHO: < 70 µg/L in inflamed adults"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13.5,
+              "reveal": 0
+            },
+            {
+              "t": 14.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 390,
+            "w": 640,
+            "label": "Ferritin ↓ = iron deficiency · HbA2 > 3.5% = β-thal trait",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 19.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Many small soldiers vs few starving ones",
+      "start": 166,
+      "end": 188,
+      "altText": "Memory aid: two armies. Left, a few thin, pale, mismatched soldiers with an empty pantry (“few starving soldiers — iron deficiency”). Right, a crowd of small, identical soldiers with a full pantry (“many small soldiers — thalassemia trait”). A card lists where the aid breaks down.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 166,
+          "end": 173,
+          "text": "Memory aid: iron deficiency is a few starving soldiers — small, pale, mismatched, and the pantry, ferritin, is empty."
+        },
+        {
+          "id": "m2",
+          "start": 173,
+          "end": 179,
+          "text": "Thalassemia trait is many small soldiers — small but identical, more of them, and the pantry is full."
+        },
+        {
+          "id": "m3",
+          "start": 179,
+          "end": 188,
+          "text": "Where it breaks: the Mentzer index is only a screen and misclassifies some patients; both conditions can occur together; and inflammation can hide low iron behind a normal ferritin."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 55,
+            "text": "Few starving soldiers vs many small soldiers",
+            "size": 26,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "a",
+          "type": "smear",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 320,
+            "h": 200,
+            "count": 18,
+            "size": 0.72,
+            "pallor": 0.62,
+            "aniso": 0.85,
+            "label": "Few, pale, mismatched · pantry empty",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "smear",
+          "props": {
+            "x": 710,
+            "y": 220,
+            "w": 320,
+            "h": 200,
+            "count": 48,
+            "size": 0.68,
+            "pallor": 0.42,
+            "aniso": 0.08,
+            "seed": 4,
+            "target": 0.1,
+            "label": "Many, small, even · pantry full",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 840,
+            "h": 80,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Mentzer is only a screen · both can coexist · inflammation can mask low iron"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.5,
+              "reveal": 0
+            },
+            {
+              "t": 16.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 188,
+      "end": 198,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 188,
+          "end": 193,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 193,
+          "end": 198,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 198,
+      "end": 210,
+      "altText": "Three tokens: “Ferritin < 15 µg/L (WHO) = iron deficiency”, “Mentzer < 13 + high RBC → thal trait”, “HbA2 > 3.5% confirms β-thal trait”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 198,
+          "end": 210,
+          "text": "In a small-cell anemia, a low ferritin proves iron deficiency, while a high RBC count with a Mentzer index below 13 and an HbA2 above 3.5 percent points to β-thalassemia trait — so check before you prescribe iron."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 560,
+            "label": "Ferritin < 15 µg/L (WHO) = iron deficiency",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 240,
+            "w": 560,
+            "label": "Mentzer < 13 + high RBC → think thal trait",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.6,
+              "opacity": 0
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 310,
+            "w": 560,
+            "label": "HbA2 > 3.5% → β-thalassemia trait",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.2,
+              "opacity": 0
+            },
+            {
+              "t": 1.7999999999999998,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: small red cells can come from running out of iron or from an inherited, harmless gene change; the lab tells them apart with iron tests and a simple ratio. Scientific terms: microcytic anemia is most often iron deficiency (low ferritin) or thalassemia trait (normal iron studies, high RBC count, HbA2 > 3.5% in β-thalassemia trait); anemia of inflammation shows low serum iron with normal or high ferritin.",
+    "why": "Without iron, hemoglobin synthesis slows, so cells are small, pale and variable in size, and stores (ferritin) empty first. In thalassemia trait, globin-chain output is reduced but iron is normal; the marrow makes more, smaller cells. In inflammation, hepcidin blocks iron absorption and traps iron in macrophages, and ferritin rises as an acute-phase protein.",
+    "measure": "Ferritin (WHO: < 15 µg/L in apparently healthy adults; < 70 µg/L in adults with infection or inflammation), serum iron, transferrin/TIBC, RBC count, MCV, RDW and the Mentzer index (MCV ÷ RBC; < 13 suggests thalassemia trait, > 13 iron deficiency); HbA2 by HPLC or electrophoresis (> 3.5% in β-thalassemia trait).",
+    "differs": "Iron deficiency (ferritin ↓, TIBC ↑, RBC ↓/normal, RDW ↑) vs thalassemia trait (iron normal, RBC ↑, Mentzer < 13, HbA2 ↑) vs anemia of inflammation (iron ↓, ferritin normal/↑, TIBC ↓, usually normocytic and mild-to-moderate).",
+    "examAngle": "Expect: the single best test for iron deficiency (ferritin), a Mentzer calculation, the trap of calling every low MCV iron deficiency, HbA2 > 3.5% for β-thal trait, and an inflamed patient whose “normal” ferritin hides iron deficiency."
+  },
+  "comparisons": [
+    {
+      "id": "ida-vs-thal",
+      "title": "Iron deficiency vs thalassemia trait",
+      "left": {
+        "label": "Iron deficiency",
+        "points": [
+          "Ferritin low",
+          "RBC count low/normal; RDW high",
+          "Mentzer > 13"
+        ]
+      },
+      "right": {
+        "label": "β-thalassemia trait",
+        "points": [
+          "Iron studies normal",
+          "RBC count high; cells uniform",
+          "Mentzer < 13; HbA2 > 3.5%"
+        ]
+      },
+      "distinguisher": "Ferritin and the RBC count (Mentzer index), then HbA2."
+    },
+    {
+      "id": "ida-vs-ai",
+      "title": "Iron deficiency vs anemia of inflammation",
+      "left": {
+        "label": "Iron deficiency",
+        "points": [
+          "Ferritin low",
+          "Transferrin/TIBC high"
+        ]
+      },
+      "right": {
+        "label": "Anemia of inflammation",
+        "points": [
+          "Ferritin normal or high",
+          "Transferrin/TIBC low; hepcidin traps iron"
+        ]
+      },
+      "distinguisher": "Ferritin and transferrin move in opposite directions."
+    }
+  ],
+  "mnemonic": {
+    "text": "Few starving soldiers vs many small soldiers.",
+    "explanation": "Iron deficiency: few, small, pale, mismatched cells and empty iron stores. Thalassemia trait: many small, uniform cells with full stores.",
+    "limitation": "The Mentzer index is only a screen and misclassifies some patients; iron deficiency and thalassemia trait can coexist; and inflammation can hide iron deficiency behind a normal ferritin. The aid does not cover HbA2 or anemia of inflammation."
+  },
+  "analogyLimitations": [
+    "The smear is schematic — real cells, target cells and pallor differ in appearance.",
+    "The worked MCV and RBC values are invented examples.",
+    "The “vault” and “taxi” images simplify iron storage and transport."
+  ],
+  "takeaway": "In a small-cell anemia, a low ferritin proves iron deficiency, while a high RBC count with a Mentzer index below 13 and an HbA2 above 3.5 percent points to β-thalassemia trait — so check before you prescribe iron.",
+  "questions": [
+    {
+      "id": "heme-mic-q1",
+      "stem": "An otherwise healthy woman has Hb 9.6 g/dL, MCV 70 fL, RDW high and serum ferritin 8 µg/L. What is the most likely diagnosis?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Iron deficiency anemia",
+          "rationale": "Correct. A ferritin below the WHO cut-off of 15 µg/L in an apparently healthy adult diagnoses iron deficiency."
+        },
+        {
+          "id": "b",
+          "text": "β-thalassemia trait",
+          "rationale": "Incorrect. Thalassemia trait has normal ferritin and usually a high RBC count with uniform cells (normal RDW)."
+        },
+        {
+          "id": "c",
+          "text": "Anemia of inflammation",
+          "rationale": "Incorrect. Inflammation gives normal or high ferritin."
+        },
+        {
+          "id": "d",
+          "text": "Vitamin B12 deficiency",
+          "rationale": "Incorrect. B12 deficiency causes large (macrocytic) cells, not an MCV of 70."
+        }
+      ],
+      "answer": "a",
+      "skill": "Diagnose iron deficiency",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-mic-q2",
+      "stem": "A well man has MCV 66 fL and RBC 6.0 × 10¹²/L (6.0 million/µL). What does the Mentzer index suggest, and what is the next test?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Index 11 → thalassemia trait likely; measure HbA2 (and check iron studies)",
+          "rationale": "Correct. 66 ÷ 6.0 = 11, below 13; HbA2 > 3.5% would support β-thalassemia trait."
+        },
+        {
+          "id": "b",
+          "text": "Index 11 → iron deficiency likely; start iron",
+          "rationale": "Incorrect. An index below 13 points toward thalassemia trait, not iron deficiency."
+        },
+        {
+          "id": "c",
+          "text": "Index 396 → iron deficiency",
+          "rationale": "Incorrect. This multiplies instead of dividing (66 × 6.0)."
+        },
+        {
+          "id": "d",
+          "text": "Index 0.09 → normal",
+          "rationale": "Incorrect. This divides RBC by MCV; the index is MCV ÷ RBC."
+        }
+      ],
+      "answer": "a",
+      "skill": "Mentzer index",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-mic-q3",
+      "stem": "A woman with active rheumatoid arthritis has a low serum iron, low transferrin saturation and a ferritin of 45 µg/L. How should the ferritin be interpreted?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Iron deficiency may still be present: inflammation raises ferritin, and WHO uses < 70 µg/L in adults with inflammation",
+          "rationale": "Correct. Ferritin is an acute-phase protein; a value of 45 is below WHO’s inflammation cut-off."
+        },
+        {
+          "id": "b",
+          "text": "Iron deficiency is excluded because 45 is above 15",
+          "rationale": "Incorrect. The 15 µg/L cut-off applies to apparently healthy individuals, not to people with inflammation."
+        },
+        {
+          "id": "c",
+          "text": "The patient has iron overload",
+          "rationale": "Incorrect. Iron overload is suggested by much higher ferritin values, not 45 µg/L."
+        },
+        {
+          "id": "d",
+          "text": "Ferritin cannot be used at all in inflammation",
+          "rationale": "Incorrect. It can be used with a higher cut-off or with inflammation-marker adjustment."
+        }
+      ],
+      "answer": "a",
+      "skill": "Ferritin in inflammation",
+      "difficulty": "analysis"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch33",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 33, Red Cell Disorders and Anemias (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 33,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            7,
+            10,
+            18
+          ]
+        },
+        {
+          "chapter": 33,
+          "section": "Exam Traps",
+          "items": [
+            1
+          ]
+        },
+        {
+          "chapter": 33,
+          "section": "Number Vault"
+        }
+      ],
+      "usedFor": "Curriculum source: scope, exam framing and the reviewer’s figures. Not used as verification."
+    },
+    {
+      "id": "who2020-ferritin",
+      "kind": "external",
+      "citation": "World Health Organization. WHO guideline on use of ferritin concentrations to assess iron status in individuals and populations. Geneva: WHO; 2020.",
+      "url": "https://iris.who.int/items/47948946-8d86-461c-9f31-aa49155337f2",
+      "consulted": true,
+      "usedFor": "Ferritin is a good marker of iron stores; cut-off < 15 µg/L for iron deficiency in apparently healthy adults; in adults with infection or inflammation < 70 µg/L may indicate iron deficiency (conditional recommendation)."
+    },
+    {
+      "id": "tabassum2022",
+      "kind": "external",
+      "citation": "Tabassum S, Khakwani M, Fayyaz A, Taj N. Role of Mentzer index for differentiating iron deficiency anemia and beta thalassemia trait in pregnant women. Pak J Med Sci. 2022;38(4 Part-II):878-882.",
+      "doi": "10.12669/pjms.38.4.4635",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9121960",
+      "consulted": true,
+      "usedFor": "Mentzer index = MCV ÷ RBC; > 13 suggests IDA, < 13 βTT; sensitivity/specificity 91%/83% (IDA) and 83%/91% (βTT) in one population; HbA2 > 3.5% used to confirm β-thalassemia trait."
+    },
+    {
+      "id": "weiss2019",
+      "kind": "external",
+      "citation": "Weiss G, Ganz T, Goodnough LT. Anemia of inflammation. Blood. 2019;133(1):40-50.",
+      "doi": "10.1182/blood-2018-06-856500",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6536698/",
+      "consulted": true,
+      "usedFor": "AI is mild-to-moderate, normochromic and normocytic; hepcidin degrades ferroportin, trapping iron in macrophages and blocking absorption; low serum iron, reduced transferrin, normal or increased ferritin; ferritin < 30 µg/L associated with true iron deficiency."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-who",
+      "text": "WHO: ferritin < 15 µg/L indicates iron deficiency in apparently healthy adults; < 70 µg/L may be used in adults with infection or inflammation.",
+      "status": "checked",
+      "refs": [
+        "who2020-ferritin"
+      ]
+    },
+    {
+      "id": "cl-mentzer",
+      "text": "Mentzer index = MCV ÷ RBC; < 13 suggests thalassemia trait, > 13 iron deficiency; it is a screen, not a diagnosis.",
+      "status": "checked",
+      "refs": [
+        "tabassum2022"
+      ]
+    },
+    {
+      "id": "cl-hba2",
+      "text": "HbA2 > 3.5% supports β-thalassemia trait.",
+      "status": "checked",
+      "refs": [
+        "tabassum2022"
+      ]
+    },
+    {
+      "id": "cl-ai",
+      "text": "Anemia of inflammation: mild-to-moderate, usually normocytic; hepcidin traps iron; low serum iron and transferrin with normal or high ferritin.",
+      "status": "checked",
+      "refs": [
+        "weiss2019"
+      ]
+    },
+    {
+      "id": "cl-calc",
+      "text": "72 ÷ 3.8 ≈ 18.9; 64 ÷ 5.9 ≈ 10.8; 66 ÷ 6.0 = 11.",
+      "status": "checked",
+      "refs": [
+        "tabassum2022"
+      ],
+      "note": "Arithmetic with the cited formula; values invented."
+    },
+    {
+      "id": "cl-rev",
+      "text": "Reviewer figures: ferritin < 12 µg/L diagnostic; < 50–60 in inflammation predicts iron response; transferrin saturation < 15%; transferrin/TIBC high and RDW high in IDA; thal-trait RBC 5–7 M/µL; iron deficiency lowers HbA2; AI hemoglobin rarely < 8 g/dL.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch33"
+      ],
+      "note": "Not matched to the sources read; the ferritin cut-offs differ from WHO 2020 (register flag rv-ferritin-cutoffs)."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Schematic smear, vault, taxi and soldier images.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Few starving soldiers vs many small soldiers.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-ferritin",
+      "issue": "Reviewer: ferritin < 12 µg/L diagnostic and < 50–60 in inflammation; WHO 2020: < 15 µg/L and < 70 µg/L in inflamed adults (register flag rv-ferritin-cutoffs).",
+      "kind": "guideline-dependent",
+      "status": "resolved",
+      "resolution": "Lesson teaches WHO 2020 cut-offs and notes the reviewer’s figures as pending."
+    },
+    {
+      "id": "f-pending",
+      "issue": "RDW, TSAT < 15%, HbA2 lowering by iron deficiency and the “rarely < 8 g/dL” rule are unverified.",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Smears are schematic cartoons generated from size, pallor and variation settings — not real blood-film images.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against a WHO guideline and two peer-reviewed open-access articles read for this lesson; the reviewer’s additional figures are pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-07"
+}

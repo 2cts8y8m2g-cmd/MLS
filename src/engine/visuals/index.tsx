@@ -812,6 +812,70 @@ function Autoclave({ p }: { p: Props }) {
 /* ---------------- statistics ---------------- */
 
 /** Normal curve with optional spec limits at ±limit SD and a mean shift (in SD). Tails beyond limits are shaded. */
+/**
+ * Schematic peripheral-smear field (not real morphology). Every property animates:
+ * count = cells in the field (RBC count), size = relative cell size (MCV, 1 = normal),
+ * pallor = central-pallor fraction of the radius (hypochromia, normal ≈ 0.33),
+ * aniso = size variation (RDW, 0 = uniform), target = fraction of target cells.
+ */
+function Smear({ p, id }: { p: Props; id: string }) {
+  const w = num(p, 'w', 320);
+  const h = num(p, 'h', 220);
+  const count = Math.round(clamp(num(p, 'count', 24), 0, 80));
+  const size = num(p, 'size', 1);
+  const pallor = clamp(num(p, 'pallor', 0.33), 0, 0.85);
+  const aniso = clamp(num(p, 'aniso', 0));
+  const target = clamp(num(p, 'target', 0));
+  const label = str(p, 'label', '');
+  const base = 15;
+  const rnd = rand(num(p, 'seed', 11));
+  // Jittered grid so cells rarely overlap and positions stay stable while props animate.
+  const cols = 10;
+  const rows = 8;
+  const slots = Array.from({ length: cols * rows }, (_, i) => ({
+    x: -w / 2 + (w / cols) * ((i % cols) + 0.5) + (rnd() - 0.5) * (w / cols) * 0.35,
+    y: -h / 2 + (h / rows) * (Math.floor(i / cols) + 0.5) + (rnd() - 0.5) * (h / rows) * 0.35,
+    k: rnd(),
+    t: rnd(),
+  }));
+  const order = shuffleStable(slots.length, 5);
+  const clipId = `smear-${id}`;
+  return (
+    <g>
+      <defs><clipPath id={clipId}><rect x={-w / 2} y={-h / 2} width={w} height={h} rx={16} /></clipPath></defs>
+      <rect x={-w / 2} y={-h / 2} width={w} height={h} rx={16} fill="var(--smear-bg)" stroke="var(--line)" strokeWidth={2} />
+      <g clipPath={`url(#${clipId})`}>
+        {order.slice(0, count).map((si) => {
+          const s = slots[si];
+          const r = base * size * (1 + aniso * (s.k - 0.5) * 1.1);
+          const isTarget = s.t < target;
+          // Keep every cell fully inside the field.
+          const x = clamp(s.x, -w / 2 + r + 3, w / 2 - r - 3);
+          const y = clamp(s.y, -h / 2 + r + 3, h / 2 - r - 3);
+          return (
+            <g key={si} transform={`translate(${x},${y})`}>
+              <circle r={r} fill="var(--rbc)" stroke="var(--rbc-edge)" strokeWidth={1.2} />
+              <circle r={r * (isTarget ? Math.max(pallor, 0.55) : pallor)} fill="var(--rbc-pallor)" opacity={0.9} />
+              {isTarget && <circle r={r * 0.22} fill="var(--rbc)" />}
+            </g>
+          );
+        })}
+      </g>
+      {label && <g transform={`translate(0,${h / 2 + 22})`}><Text lines={wrap(label, Math.floor(w / 8))} size={15} fill="var(--ink)" weight={700} /></g>}
+    </g>
+  );
+}
+
+function shuffleStable(n: number, seed: number) {
+  const rnd = rand(seed);
+  const a = Array.from({ length: n }, (_, i) => i);
+  for (let i = n - 1; i > 0; i--) {
+    const j = Math.floor(rnd() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 function BellCurve({ p, id }: { p: Props; id: string }) {
   const w = num(p, 'w', 520);
   const h = num(p, 'h', 220);
@@ -886,6 +950,7 @@ export const VISUALS: Record<VisualType, Renderer> = {
   prion: Prion,
   autoclave: Autoclave,
   bellCurve: BellCurve,
+  smear: Smear,
 };
 
 /** Positions any visual using the shared transform props. */
