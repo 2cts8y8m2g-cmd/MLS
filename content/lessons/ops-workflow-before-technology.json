@@ -1,0 +1,2921 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-workflow-before-technology",
+  "title": "Workflow Before Hardware: The Three Phases of Testing",
+  "summary": "Watch a faster analyzer fail to speed up a lab, find the real bottleneck across the three testing phases, and calculate what hand-sorting tubes really costs.",
+  "domain": "p1-ops",
+  "topic": "ch2",
+  "conceptIds": [
+    "ch2.hit1",
+    "ch2.hit2",
+    "ch2.hit3",
+    "ch2.hit6",
+    "ch2.hit7",
+    "ch2.trap1",
+    "ch2.figure"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 2,
+        "section": "The Big Picture"
+      },
+      {
+        "chapter": 2,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          2,
+          3,
+          6,
+          7
+        ]
+      },
+      {
+        "chapter": 2,
+        "section": "Exam Traps",
+        "items": [
+          1
+        ]
+      },
+      {
+        "chapter": 2,
+        "section": "Figure 2"
+      }
+    ],
+    "note": "Teaches the chapter’s core idea (workflow before technology), Hits 1–3, 6–7, Trap 1 and the Figure 2 memory anchor. Adds the error distribution across phases from an external review. The reviewer’s numeric examples (10 s per tube; 4 vs 10 tests per sample) are taught as the reviewer’s examples and kept as pending claims."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Name the three phases of the testing process and place an error in the right phase.",
+    "Explain why workflow analysis must come before buying technology.",
+    "Distinguish sample mapping (staffing) from test mapping (instrument capacity).",
+    "Calculate the daily labor cost of a manual step from time per tube and tube volume."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "A faster analyzer — and nothing changed",
+      "start": 0,
+      "end": 20,
+      "altText": "A lab installs a shiny new analyzer labelled “2× faster”. Specimen tubes keep piling up at a sorting bench before the analyzer, and a turnaround-time badge stays red: “still slow”. The cartoon scientist looks puzzled.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "This lab bought a new analyzer that runs twice as fast. Everyone expected results to come out sooner."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "But tubes still pile up at the sorting bench, long before they reach the analyzer."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Turnaround time barely moved. How can a faster machine not make the lab faster?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "an",
+          "type": "card",
+          "props": {
+            "x": 700,
+            "y": 230,
+            "w": 300,
+            "h": 150,
+            "tone": "b",
+            "title": "New analyzer",
+            "lines": [
+              "Runs 2× faster",
+              "Idle: waiting for tubes"
+            ],
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "bench",
+          "type": "token",
+          "props": {
+            "x": 182,
+            "y": 410,
+            "w": 220,
+            "label": "Sorting bench",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.5,
+              "opacity": 0
+            },
+            {
+              "t": 7.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t0",
+          "type": "tube",
+          "props": {
+            "x": 110,
+            "y": 340,
+            "scale": 0.38,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.2,
+              "opacity": 0
+            },
+            {
+              "t": 7.6000000000000005,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t1",
+          "type": "tube",
+          "props": {
+            "x": 146,
+            "y": 340,
+            "scale": 0.38,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.65,
+              "opacity": 0
+            },
+            {
+              "t": 8.05,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "tube",
+          "props": {
+            "x": 182,
+            "y": 340,
+            "scale": 0.38,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.1,
+              "opacity": 0
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "tube",
+          "props": {
+            "x": 218,
+            "y": 340,
+            "scale": 0.38,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.55,
+              "opacity": 0
+            },
+            {
+              "t": 8.950000000000001,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t4",
+          "type": "tube",
+          "props": {
+            "x": 254,
+            "y": 340,
+            "scale": 0.38,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.0,
+              "opacity": 0
+            },
+            {
+              "t": 9.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t5",
+          "type": "tube",
+          "props": {
+            "x": 128,
+            "y": 268,
+            "scale": 0.38,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.45,
+              "opacity": 0
+            },
+            {
+              "t": 9.85,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t6",
+          "type": "tube",
+          "props": {
+            "x": 164,
+            "y": 268,
+            "scale": 0.38,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.9,
+              "opacity": 0
+            },
+            {
+              "t": 10.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t7",
+          "type": "tube",
+          "props": {
+            "x": 200,
+            "y": 268,
+            "scale": 0.38,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.35,
+              "opacity": 0
+            },
+            {
+              "t": 10.75,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t8",
+          "type": "tube",
+          "props": {
+            "x": 236,
+            "y": 268,
+            "scale": 0.38,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.8,
+              "opacity": 0
+            },
+            {
+              "t": 11.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "arr",
+          "type": "arrow",
+          "props": {
+            "x": 300,
+            "y": 300,
+            "dx": 230,
+            "dy": -50,
+            "draw": 0,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "draw": 0
+            },
+            {
+              "t": 9.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "draw": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "tat",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 320,
+            "label": "Turnaround time: still slow ✗",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 480,
+            "y": 110,
+            "expression": "curious",
+            "scale": 0.7,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 15,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Every test has three phases",
+      "start": 20,
+      "end": 62,
+      "altText": "Three panels in a row: Preanalytical (order, collect, label, transport, sort), Analytical (measure on the instrument) and Postanalytical (verify, report, interpret). A tube slides from the first panel to the last. A bar of error shares then appears under the panels from one large study: about 62% preanalytical, 15% analytical, 23% postanalytical. Finally a token reads “Value = Quality ÷ Cost”.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "Every lab test travels through three phases. Think of them as before, during and after the measurement."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "Preanalytical is everything before the analyzer: the order, the draw, the label, the trip to the lab, and sorting."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 43,
+          "text": "Analytical is the measurement itself. Postanalytical is checking the result, reporting it, and the clinician using it."
+        },
+        {
+          "id": "n4",
+          "start": 43,
+          "end": 52,
+          "text": "Where do errors happen? In one large study, about 62 percent were preanalytical, 23 percent postanalytical, and only 15 percent analytical. The analyzer is usually the strongest link."
+        },
+        {
+          "id": "n5",
+          "start": 52,
+          "end": 62,
+          "text": "The reviewer sums up the goal as Value equals Quality divided by Cost. You raise value by improving quality, lowering cost, or both. In health care, “quality” usually means patient outcomes."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pre",
+          "type": "card",
+          "props": {
+            "x": 175,
+            "y": 170,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "Preanalytical",
+            "lines": [
+              "Order & collect",
+              "Label & transport",
+              "Sort & process"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8.5,
+              "reveal": 0
+            },
+            {
+              "t": 12.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ana",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "Analytical",
+            "lines": [
+              "Measure on the instrument"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.3,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "reveal": 0
+            },
+            {
+              "t": 18,
+              "reveal": 1,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "post",
+          "type": "card",
+          "props": {
+            "x": 785,
+            "y": 170,
+            "w": 290,
+            "h": 170,
+            "tone": "good",
+            "title": "Postanalytical",
+            "lines": [
+              "Verify & report",
+              "Clinician interprets"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.1,
+              "opacity": 0
+            },
+            {
+              "t": 3.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 22,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "tube",
+          "type": "tube",
+          "props": {
+            "x": 120,
+            "y": 305,
+            "scale": 0.32,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0
+            },
+            {
+              "t": 4.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "x": 120
+            },
+            {
+              "t": 15,
+              "x": 175,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "x": 175
+            },
+            {
+              "t": 18.5,
+              "x": 480,
+              "ease": "out"
+            },
+            {
+              "t": 19.5,
+              "x": 480
+            },
+            {
+              "t": 22.0,
+              "x": 785,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "opacity": 1
+            },
+            {
+              "t": 23.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "e1",
+          "type": "token",
+          "props": {
+            "x": 175,
+            "y": 370,
+            "w": 200,
+            "label": "≈62% of errors",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24,
+              "opacity": 0
+            },
+            {
+              "t": 24.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "e2",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 200,
+            "label": "≈15% of errors",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25,
+              "opacity": 0
+            },
+            {
+              "t": 25.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "e3",
+          "type": "token",
+          "props": {
+            "x": 785,
+            "y": 370,
+            "w": 200,
+            "label": "≈23% of errors",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26,
+              "opacity": 0
+            },
+            {
+              "t": 26.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "src",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 410,
+            "text": "One large study (Hawkins 2012 review)",
+            "size": 13,
+            "weight": 700,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27,
+              "opacity": 0
+            },
+            {
+              "t": 27.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "val",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 420,
+            "wrap": 60,
+            "label": "Value = Quality ÷ Cost",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "val2",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 510,
+            "text": "↑ quality, ↓ cost, or both",
+            "size": 16,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 37,
+              "opacity": 0
+            },
+            {
+              "t": 38,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Buying hardware first moves nothing",
+      "start": 62,
+      "end": 100,
+      "altText": "The same three panels shrink to a strip. The analytical panel is upgraded (“2× faster”) but tubes stay piled in the preanalytical panel at sorting. Then a workflow-mapping toolbox appears with four tools: sample mapping (tubes arriving per hour → staffing), test mapping (tests per hour → instrument capacity), tube analysis and task mapping. Two bars compare a morning inpatient peak of about 4 tests per sample with an evening outpatient peak of about 10.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 62,
+          "end": 70,
+          "text": "Here is what went wrong. The new analyzer only sped up the analytical phase — the part that was already fast."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 78,
+          "text": "The tubes are still waiting at sorting, in the preanalytical phase. The bottleneck never moved."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 86,
+          "text": "So first, map the workflow. Sample mapping counts how many tubes arrive each hour. That tells you how many people you need, and when."
+        },
+        {
+          "id": "c4",
+          "start": 86,
+          "end": 93,
+          "text": "Test mapping counts how many tests are ordered each hour. That tells you how much instrument capacity you need. Tube analysis and task mapping follow each tube and each job."
+        },
+        {
+          "id": "c5",
+          "start": 93,
+          "end": 100,
+          "text": "The reviewer’s example: the morning inpatient peak has about 4 tests per tube, the evening outpatient peak about 10. Similar tubes, very different instrument load."
+        }
+      ],
+      "objects": [
+        {
+          "id": "p1",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 80,
+            "w": 220,
+            "label": "Preanalytical",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 80,
+            "w": 260,
+            "wrap": 30,
+            "label": "Analytical",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "opacity": 0
+            },
+            {
+              "t": 0.8999999999999999,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 1.5,
+              "label": "Analytical · 2× faster"
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 80,
+            "w": 220,
+            "label": "Postanalytical",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.6,
+              "opacity": 0
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "w0",
+          "type": "tube",
+          "props": {
+            "x": 150,
+            "y": 160,
+            "scale": 0.26,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.0,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "opacity": 1
+            },
+            {
+              "t": 16.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "w1",
+          "type": "tube",
+          "props": {
+            "x": 184,
+            "y": 160,
+            "scale": 0.26,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.3,
+              "opacity": 0
+            },
+            {
+              "t": 1.7000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "opacity": 1
+            },
+            {
+              "t": 16.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "w2",
+          "type": "tube",
+          "props": {
+            "x": 218,
+            "y": 160,
+            "scale": 0.26,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.6,
+              "opacity": 0
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "opacity": 1
+            },
+            {
+              "t": 16.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "w3",
+          "type": "tube",
+          "props": {
+            "x": 252,
+            "y": 160,
+            "scale": 0.26,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.9,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "opacity": 1
+            },
+            {
+              "t": 16.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "w4",
+          "type": "tube",
+          "props": {
+            "x": 150,
+            "y": 134,
+            "scale": 0.26,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.2,
+              "opacity": 0
+            },
+            {
+              "t": 2.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "opacity": 1
+            },
+            {
+              "t": 16.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "w5",
+          "type": "tube",
+          "props": {
+            "x": 184,
+            "y": 134,
+            "scale": 0.26,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "opacity": 1
+            },
+            {
+              "t": 16.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "w6",
+          "type": "tube",
+          "props": {
+            "x": 218,
+            "y": 134,
+            "scale": 0.26,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.8,
+              "opacity": 0
+            },
+            {
+              "t": 3.1999999999999997,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "opacity": 1
+            },
+            {
+              "t": 16.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "w7",
+          "type": "tube",
+          "props": {
+            "x": 252,
+            "y": 134,
+            "scale": 0.26,
+            "fluid": "blood",
+            "level": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.1,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "opacity": 1
+            },
+            {
+              "t": 16.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "jam",
+          "type": "label",
+          "props": {
+            "x": 200,
+            "y": 225,
+            "text": "Still waiting ✗",
+            "size": 18,
+            "weight": 900,
+            "color": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 9.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "opacity": 1
+            },
+            {
+              "t": 16.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "card",
+          "props": {
+            "x": 255,
+            "y": 245,
+            "w": 400,
+            "h": 90,
+            "tone": "a",
+            "title": "Sample mapping",
+            "lines": [
+              "Tubes per hour → staffing"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "card",
+          "props": {
+            "x": 705,
+            "y": 245,
+            "w": 400,
+            "h": 90,
+            "tone": "b",
+            "title": "Test mapping",
+            "lines": [
+              "Tests per hour → instruments"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 340,
+            "y": 325,
+            "w": 220,
+            "label": "Tube analysis",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28,
+              "opacity": 0
+            },
+            {
+              "t": 28.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "token",
+          "props": {
+            "x": 620,
+            "y": 325,
+            "w": 220,
+            "label": "Task mapping",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28.6,
+              "opacity": 0
+            },
+            {
+              "t": 29.400000000000002,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "amL",
+          "type": "label",
+          "props": {
+            "x": 270,
+            "y": 405,
+            "text": "AM inpatient peak ≈ 4 tests/tube",
+            "size": 16,
+            "weight": 800,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "am",
+          "type": "token",
+          "props": {
+            "x": 475,
+            "y": 405,
+            "w": 10,
+            "label": "",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.5,
+              "w": 10
+            },
+            {
+              "t": 31.5,
+              "x": 475
+            },
+            {
+              "t": 31.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33.5,
+              "w": 120,
+              "ease": "inOut"
+            },
+            {
+              "t": 33.5,
+              "x": 530,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "pmL",
+          "type": "label",
+          "props": {
+            "x": 270,
+            "y": 455,
+            "text": "PM outpatient peak ≈ 10 tests/tube",
+            "size": 16,
+            "weight": 800,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33,
+              "opacity": 0
+            },
+            {
+              "t": 33.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pm",
+          "type": "token",
+          "props": {
+            "x": 475,
+            "y": 455,
+            "w": 10,
+            "label": "",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "w": 10
+            },
+            {
+              "t": 33,
+              "x": 475
+            },
+            {
+              "t": 33.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "w": 300,
+              "ease": "inOut"
+            },
+            {
+              "t": 36,
+              "x": 620,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "ex",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 515,
+            "text": "Reviewer’s example (not independently verified)",
+            "size": 13,
+            "weight": 700,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35,
+              "opacity": 0
+            },
+            {
+              "t": 35.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: what hand-sorting really costs",
+      "start": 100,
+      "end": 138,
+      "altText": "A worked calculation. A stopwatch shows 10 seconds to sort one tube. The calculation 1,200 tubes × 10 s = 12,000 s; 12,000 ÷ 3,600 = 3.3 hours per day fills in step by step. Then tubes that went to three benches are routed to one consolidated workcell and the hours shrink. A final card reports a real microbiology laboratory that automated and applied Lean: samples per staff member per day rose from 49 to 110.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 108,
+          "text": "Put a number on hands-on work. In the reviewer’s example, sorting one tube by hand takes about 10 seconds."
+        },
+        {
+          "id": "l2",
+          "start": 108,
+          "end": 117,
+          "text": "A lab sorts 1,200 tubes a day. 1,200 times 10 seconds is 12,000 seconds. Divide by 3,600 seconds in an hour: about 3.3 hours of labor, every single day."
+        },
+        {
+          "id": "l3",
+          "start": 117,
+          "end": 125,
+          "text": "If one tube’s tests can run on one consolidated workcell, the tube is sorted once instead of being split among benches. Those hours shrink."
+        },
+        {
+          "id": "l4",
+          "start": 125,
+          "end": 138,
+          "text": "A real example: one microbiology lab automated and then applied Lean. Samples per staff member per day rose from 49 to 110, and Lean added turnaround gains that automation alone did not deliver."
+        }
+      ],
+      "objects": [
+        {
+          "id": "sw",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 120,
+            "w": 220,
+            "h": 110,
+            "tone": "a",
+            "title": "10 seconds",
+            "lines": [
+              "to hand-sort 1 tube"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c1",
+          "type": "label",
+          "props": {
+            "x": 560,
+            "y": 90,
+            "text": "1,200 × 10 s",
+            "size": 26,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "text": "1,200 × 10 s = 12,000 s"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "label",
+          "props": {
+            "x": 560,
+            "y": 150,
+            "text": "12,000 s ÷ 3,600",
+            "size": 26,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.5,
+              "text": "12,000 s ÷ 3,600 s/h ≈ 3.3 h per day"
+            }
+          ]
+        },
+        {
+          "id": "b1",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 250,
+            "w": 190,
+            "wrap": 24,
+            "label": "Chemistry bench",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.5,
+              "opacity": 0
+            },
+            {
+              "t": 18.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21.5,
+              "opacity": 1
+            },
+            {
+              "t": 22.1,
+              "opacity": 0.25
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 300,
+            "w": 190,
+            "wrap": 24,
+            "label": "Immunoassay bench",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.8,
+              "opacity": 0
+            },
+            {
+              "t": 18.400000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21.5,
+              "opacity": 1
+            },
+            {
+              "t": 22.1,
+              "opacity": 0.25
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 350,
+            "w": 190,
+            "wrap": 24,
+            "label": "Special chem bench",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.1,
+              "opacity": 0
+            },
+            {
+              "t": 18.700000000000003,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21.5,
+              "opacity": 1
+            },
+            {
+              "t": 22.1,
+              "opacity": 0.25
+            }
+          ]
+        },
+        {
+          "id": "ar",
+          "type": "arrow",
+          "props": {
+            "x": 300,
+            "y": 300,
+            "dx": 200,
+            "dy": 0,
+            "draw": 0,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "draw": 0
+            },
+            {
+              "t": 21.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22.4,
+              "draw": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "wc",
+          "type": "card",
+          "props": {
+            "x": 670,
+            "y": 300,
+            "w": 300,
+            "h": 110,
+            "tone": "good",
+            "title": "One workcell",
+            "lines": [
+              "Sorted once ✓",
+              "Fewer labor hours"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "real",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 465,
+            "w": 760,
+            "h": 100,
+            "tone": "b",
+            "title": "Real lab: automation + Lean (Trigueiro 2024)",
+            "lines": [
+              "Samples per staff member per day: 49 → 110",
+              "Lean added gains automation alone did not"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25.5,
+              "opacity": 0
+            },
+            {
+              "t": 26,
+              "reveal": 0
+            },
+            {
+              "t": 26.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "The trap: “just buy a new analyzer”",
+      "start": 138,
+      "end": 166,
+      "altText": "A trap card “Old analyzers are the problem — buy new ones first” is stamped with a red cross and replaced by “Map the workflow first”. Two tokens pair sample mapping with staffing and test mapping with instruments. Then three error tokens drop into the right phase: mislabeled tube → preanalytical, calibration drift → analytical, late critical-value call → postanalytical.",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 138,
+          "end": 145,
+          "text": "Classic trap: “Our analyzers are old, so step one is buying new ones.” That is wrong."
+        },
+        {
+          "id": "e2",
+          "start": 145,
+          "end": 152,
+          "text": "Step one is always workflow analysis: map samples, tests, tubes and tasks before spending money."
+        },
+        {
+          "id": "e3",
+          "start": 152,
+          "end": 159,
+          "text": "Don’t swap the maps: sample mapping guides staffing; test mapping guides instruments."
+        },
+        {
+          "id": "e4",
+          "start": 159,
+          "end": 166,
+          "text": "And place each error in its phase: a mislabeled tube is preanalytical, calibration drift is analytical, a critical value called late is postanalytical."
+        }
+      ],
+      "objects": [
+        {
+          "id": "trap",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 110,
+            "w": 640,
+            "h": 90,
+            "tone": "warn",
+            "title": "Trap",
+            "lines": [
+              "“Old analyzers are the problem — buy new ones first.”"
+            ],
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6.6,
+              "opacity": 1
+            },
+            {
+              "t": 7.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "x",
+          "type": "icon",
+          "props": {
+            "x": 850,
+            "y": 110,
+            "glyph": "cross",
+            "label": "",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 5.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6.6,
+              "opacity": 1
+            },
+            {
+              "t": 7.1,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "fix",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 110,
+            "w": 640,
+            "h": 90,
+            "tone": "good",
+            "title": "Correct first step",
+            "lines": [
+              "Map the workflow: samples, tests, tubes, tasks"
+            ],
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.2,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "sm",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 230,
+            "w": 340,
+            "label": "Sample mapping → staffing",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0
+            },
+            {
+              "t": 15.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tm",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 230,
+            "w": 340,
+            "label": "Test mapping → instruments",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0
+            },
+            {
+              "t": 16.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h1",
+          "type": "token",
+          "props": {
+            "x": 175,
+            "y": 330,
+            "w": 200,
+            "label": "Preanalytical",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21,
+              "opacity": 0
+            },
+            {
+              "t": 21.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h2",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 330,
+            "w": 200,
+            "label": "Analytical",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.2,
+              "opacity": 0
+            },
+            {
+              "t": 21.599999999999998,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h3",
+          "type": "token",
+          "props": {
+            "x": 785,
+            "y": 330,
+            "w": 200,
+            "label": "Postanalytical",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.4,
+              "opacity": 0
+            },
+            {
+              "t": 21.799999999999997,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d1",
+          "type": "token",
+          "props": {
+            "x": 175,
+            "y": 520,
+            "w": 200,
+            "label": "Mislabeled tube",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22,
+              "opacity": 0
+            },
+            {
+              "t": 22,
+              "y": 520
+            },
+            {
+              "t": 22.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23.2,
+              "y": 400,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d2",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 520,
+            "w": 200,
+            "label": "Calibration drift",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.5,
+              "y": 520
+            },
+            {
+              "t": 23.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24.7,
+              "y": 400,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d3",
+          "type": "token",
+          "props": {
+            "x": 785,
+            "y": 520,
+            "w": 220,
+            "label": "Critical value called late",
+            "wrap": 20,
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "y": 520
+            },
+            {
+              "t": 25.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26.2,
+              "y": 400,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Map before you shop",
+      "start": 166,
+      "end": 188,
+      "altText": "Memory aid: a road map unrolls first, then a shopping cart with an analyzer rolls in — “MAP before you SHOP”. A toll-booth picture shows a sports car stuck in the same queue as everyone else. A card lists where the aid breaks down.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 166,
+          "end": 173,
+          "text": "Memory aid: MAP before you SHOP. Workflow first, hardware last."
+        },
+        {
+          "id": "m2",
+          "start": 173,
+          "end": 179,
+          "text": "Picture a traffic jam at a toll booth. A faster car still waits in the same line. Fix the booth, not the car."
+        },
+        {
+          "id": "m3",
+          "start": 179,
+          "end": 188,
+          "text": "Where it breaks: sometimes the instrument really is the bottleneck — it is broken, outdated, or too small for the volume. Mapping is how you find that out, too."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "MAP before you SHOP",
+            "size": 34,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "map",
+          "type": "document",
+          "props": {
+            "x": 300,
+            "y": 210,
+            "w": 200,
+            "h": 150,
+            "title": "WORKFLOW MAP",
+            "sub": "Samples · Tests · Tubes · Tasks",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "then",
+          "type": "arrow",
+          "props": {
+            "x": 420,
+            "y": 210,
+            "dx": 120,
+            "dy": 0,
+            "draw": 0,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0
+            },
+            {
+              "t": 4,
+              "draw": 0
+            },
+            {
+              "t": 4.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "draw": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "shop",
+          "type": "card",
+          "props": {
+            "x": 680,
+            "y": 210,
+            "w": 240,
+            "h": 110,
+            "tone": "b",
+            "title": "Then shop",
+            "lines": [
+              "Right-size the analyzer"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5,
+              "opacity": 0
+            },
+            {
+              "t": 6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "booth",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 350,
+            "w": 220,
+            "label": "Toll booth = sorting bench",
+            "wrap": 30,
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "car",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 350,
+            "w": 240,
+            "label": "Faster car = faster analyzer",
+            "wrap": 30,
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.5,
+              "x": 760
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "x": 560,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 820,
+            "h": 80,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Sometimes the instrument IS the bottleneck (broken, obsolete, undersized) — mapping reveals that too"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.5,
+              "reveal": 0
+            },
+            {
+              "t": 16.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 188,
+      "end": 198,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 188,
+          "end": 193,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 193,
+          "end": 198,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 198,
+      "end": 210,
+      "altText": "A workflow map spans the three phases, with the analyzer drawn small in the middle and a check mark over the map.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 198,
+          "end": 210,
+          "text": "Map the whole workflow — preanalytical, analytical and postanalytical — before buying technology, because a faster analyzer cannot fix a bottleneck in sorting, transport or reporting."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 250,
+            "w": 220,
+            "label": "Preanalytical",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 250,
+            "w": 220,
+            "label": "Analytical",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 250,
+            "w": 220,
+            "label": "Postanalytical",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "k",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 340,
+            "text": "Map all three → then buy",
+            "size": 24,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a lab test is a trip with three parts — before the machine, the machine, and after the machine. Making only the machine faster does not help if tubes are stuck somewhere else. Scientific terms: the total testing process has preanalytical (ordering, collection, labeling, transport, sorting and processing), analytical (measurement) and postanalytical (verification, reporting, interpretation) phases. Workflow analysis — sample mapping, test mapping, tube analysis and task mapping — finds where time, labor and errors actually build up.",
+    "why": "Turnaround time is set by the slowest step, and in most labs that is not the analyzer. Published studies find most errors outside the analytical phase (one large study: about 62% preanalytical, 15% analytical, 23% postanalytical). A faster analyzer therefore only speeds up the step that was already strong. Value is often summarized as quality relative to cost, so spending money where it does not raise quality lowers value.",
+    "measure": "Labs count tubes arriving per hour (sample mapping) to set staffing, count tests ordered per hour (test mapping) to size instruments, and time manual steps. Example: 1,200 tubes × 10 s = 12,000 s ≈ 3.3 hours of labor per day. Turnaround time and error rates per phase show whether a change helped.",
+    "differs": "Preanalytical vs analytical vs postanalytical: before, during or after measurement. Sample mapping vs test mapping: tubes per hour (people) vs tests per hour (instruments). Workflow analysis vs technology purchase: analysis comes first; technology is a tool, not the fix.",
+    "examAngle": "Expect: “What should the lab do before buying a new analyzer?” (analyze and reengineer workflow), “Which phase has the most errors?” (preanalytical), sorting an error into its phase, a labor-time calculation, and Value = Quality ÷ Cost."
+  },
+  "comparisons": [
+    {
+      "id": "phases",
+      "title": "Preanalytical vs analytical vs postanalytical",
+      "left": {
+        "label": "Preanalytical (before)",
+        "points": [
+          "Order, collection, labeling",
+          "Transport, sorting, processing",
+          "Most errors in published studies"
+        ]
+      },
+      "right": {
+        "label": "Analytical / postanalytical",
+        "points": [
+          "Analytical: the measurement (fewest errors)",
+          "Postanalytical: verify, report, interpret",
+          "Late critical-value call = postanalytical"
+        ]
+      },
+      "distinguisher": "Ask when the step happens: before, during, or after the measurement."
+    },
+    {
+      "id": "maps",
+      "title": "Sample mapping vs test mapping",
+      "left": {
+        "label": "Sample mapping",
+        "points": [
+          "Tubes arriving per hour",
+          "Guides staffing"
+        ]
+      },
+      "right": {
+        "label": "Test mapping",
+        "points": [
+          "Tests ordered per hour",
+          "Guides instrument capacity"
+        ]
+      },
+      "distinguisher": "Tubes need hands; tests need instrument time."
+    }
+  ],
+  "mnemonic": {
+    "text": "MAP before you SHOP.",
+    "explanation": "Map samples, tests, tubes and tasks first; buy technology only after you know where the bottleneck is. Like a toll-booth jam, a faster car (analyzer) still waits in the same line.",
+    "limitation": "Sometimes the instrument really is the bottleneck — broken, obsolete or undersized — and must be replaced; mapping is how you prove that. The toll-booth picture also hides that errors, not just delays, concentrate outside the analytical phase."
+  },
+  "analogyLimitations": [
+    "The toll-booth comparison only covers delay, not errors or cost.",
+    "The piled-up tubes and three-bench layout are illustrative, not a real laboratory floor plan.",
+    "The 10-seconds-per-tube and 4-vs-10 tests-per-sample figures are the reviewer’s examples; real labs must measure their own."
+  ],
+  "takeaway": "Map the whole workflow — preanalytical, analytical and postanalytical — before buying technology, because a faster analyzer cannot fix a bottleneck in sorting, transport or reporting.",
+  "questions": [
+    {
+      "id": "ops-wf-q1",
+      "stem": "A hospital laboratory has long turnaround times, and managers propose buying a faster chemistry analyzer. What should the laboratory do first?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Map the workflow — samples, tests, tubes and tasks — to find where delays occur",
+          "rationale": "Correct. Technology alone does not improve performance; workflow analysis shows whether the analyzer is even the bottleneck."
+        },
+        {
+          "id": "b",
+          "text": "Buy the fastest analyzer available",
+          "rationale": "Incorrect. If the delay is in sorting, transport or reporting, a faster analyzer only speeds up a step that was already fast."
+        },
+        {
+          "id": "c",
+          "text": "Add staff only at the analyzer bench",
+          "rationale": "Incorrect. Without mapping, the lab does not know where staff are needed; sample mapping guides staffing by hour."
+        },
+        {
+          "id": "d",
+          "text": "Remove tests from the menu to lower volume",
+          "rationale": "Incorrect. Cutting the menu does not identify the bottleneck and may harm patient care."
+        }
+      ],
+      "answer": "a",
+      "skill": "Workflow analysis before technology",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-wf-q2",
+      "stem": "A processing area hand-sorts 900 tubes a day, and each tube takes 12 seconds. About how many hours of labor does sorting use per day?",
+      "options": [
+        {
+          "id": "a",
+          "text": "3.0 hours",
+          "rationale": "Correct. 900 × 12 s = 10,800 s; 10,800 ÷ 3,600 s per hour = 3.0 hours."
+        },
+        {
+          "id": "b",
+          "text": "180 hours",
+          "rationale": "Incorrect. 10,800 ÷ 60 = 180 gives minutes, not hours; divide by 3,600 to get hours."
+        },
+        {
+          "id": "c",
+          "text": "0.3 hours",
+          "rationale": "Incorrect. This is off by a factor of ten — dividing by 36,000 instead of 3,600."
+        },
+        {
+          "id": "d",
+          "text": "10.8 hours",
+          "rationale": "Incorrect. This treats an hour as 1,000 seconds; an hour is 3,600 seconds."
+        }
+      ],
+      "answer": "a",
+      "skill": "Calculate labor time",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-wf-q3",
+      "stem": "Which of these is a preanalytical error?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A tube labeled with the wrong patient’s name at the bedside",
+          "rationale": "Correct. Labeling happens before measurement, so it is preanalytical — the phase with the most errors in published studies."
+        },
+        {
+          "id": "b",
+          "text": "A calibration drift on the analyzer",
+          "rationale": "Incorrect. Calibration problems occur during measurement, so they are analytical."
+        },
+        {
+          "id": "c",
+          "text": "A critical potassium result phoned to the nurse two hours late",
+          "rationale": "Incorrect. Reporting happens after measurement, so it is postanalytical."
+        },
+        {
+          "id": "d",
+          "text": "A clinician misreading a correct result",
+          "rationale": "Incorrect. Interpretation of a reported result is postanalytical."
+        }
+      ],
+      "answer": "a",
+      "skill": "Classify errors by testing phase",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch2",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 2, Making the Lab Faster and Better (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 2,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            2,
+            3,
+            6,
+            7
+          ]
+        },
+        {
+          "chapter": 2,
+          "section": "Exam Traps",
+          "items": [
+            1
+          ]
+        },
+        {
+          "chapter": 2,
+          "section": "Number Vault"
+        }
+      ],
+      "usedFor": "Curriculum source: scope, exam framing and the numeric examples. Not used as verification."
+    },
+    {
+      "id": "hawkins2012",
+      "kind": "external",
+      "citation": "Hawkins R. Managing the pre- and post-analytical phases of the total testing process. Ann Lab Med. 2012;32(1):5-16.",
+      "doi": "10.3343/alm.2012.32.1.5",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3255486",
+      "consulted": true,
+      "usedFor": "Total testing process has pre-analytical, analytical and post-analytical phases (what each includes); pre-analytical phase accounts for over half of errors; one study found 62% pre-, 15% analytical, 23% post-analytical errors; extra-analytical errors are 4–5 times analytical."
+    },
+    {
+      "id": "stjohn2020",
+      "kind": "external",
+      "citation": "St John A. The pursuit of value in laboratory medicine – progress and challenges. Clin Biochem Rev. 2020;41(1):3-11.",
+      "doi": "10.33176/AACB-19-00035",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7043402",
+      "consulted": true,
+      "usedFor": "Value in laboratory medicine is defined in several ways depending on stakeholder; health-care value relates benefits/outcomes to costs and harms; overuse and underuse of tests both matter."
+    },
+    {
+      "id": "trigueiro2024",
+      "kind": "external",
+      "citation": "Trigueiro G, Oliveira C, Rodrigues A, et al. Conversion of a classical microbiology laboratory to a total automation laboratory enhanced by the application of lean principles. Microbiol Spectr. 2024;12(2):e02153-23.",
+      "doi": "10.1128/spectrum.02153-23",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10846136/",
+      "consulted": true,
+      "usedFor": "Productivity rose from 49 to 110 samples/FTE/day; lean management after automation “further unlocked” its potential, contributing part of the TAT reduction that automation alone did not."
+    },
+    {
+      "id": "captoday2021",
+      "kind": "external",
+      "citation": "Caruthers R. Pointers to ponder when planning a lab automation project. CAP Today (Newsbytes), January 2021 (interview with J. Genzen).",
+      "url": "https://www.captodayonline.com/newsbytes-0121/",
+      "consulted": true,
+      "usedFor": "“Don’t automate until you analyze” the efficiency of current processes; workflow mapping before automation; get the lab Lean before automating; charting specimen counts by hour."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-phases",
+      "text": "The total testing process has preanalytical, analytical and postanalytical phases; preanalytical covers ordering through specimen processing, postanalytical covers reporting and interpretation.",
+      "status": "checked",
+      "refs": [
+        "hawkins2012"
+      ]
+    },
+    {
+      "id": "cl-errors",
+      "text": "Most laboratory errors occur outside the analytical phase; one large study found about 62% preanalytical, 15% analytical and 23% postanalytical.",
+      "status": "checked",
+      "refs": [
+        "hawkins2012"
+      ]
+    },
+    {
+      "id": "cl-analyze-first",
+      "text": "Laboratories should analyze and redesign current workflow before (or alongside) automation; automation alone does not deliver the full improvement.",
+      "status": "checked",
+      "refs": [
+        "captoday2021",
+        "trigueiro2024"
+      ]
+    },
+    {
+      "id": "cl-trig",
+      "text": "In one microbiology laboratory, automation plus Lean raised productivity from 49 to 110 samples per FTE per day.",
+      "status": "checked",
+      "refs": [
+        "trigueiro2024"
+      ]
+    },
+    {
+      "id": "cl-value",
+      "text": "Value relates quality (outcomes) to cost; raising quality or lowering cost raises value.",
+      "status": "checked",
+      "refs": [
+        "stjohn2020"
+      ],
+      "note": "The reviewer’s formula Value = Quality ÷ Cost is a simplification; definitions of value in laboratory medicine vary by stakeholder."
+    },
+    {
+      "id": "cl-calc",
+      "text": "1,200 × 10 s = 12,000 s ≈ 3.3 h; 900 × 12 s = 10,800 s = 3.0 h.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch2"
+      ],
+      "note": "Arithmetic is correct; the 10-seconds-per-tube input is the reviewer’s example and was not independently verified."
+    },
+    {
+      "id": "cl-density",
+      "text": "Morning inpatient peak ≈ 4 tests per sample; evening outpatient peak ≈ 10 tests per sample.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch2"
+      ],
+      "note": "Reviewer’s example; the original figure it cites could not be consulted."
+    },
+    {
+      "id": "cl-maps",
+      "text": "Sample mapping guides staffing; test mapping guides instrument capacity.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch2"
+      ],
+      "note": "CAP Today supports charting specimen counts by hour, but the staffing/instrument split is from the reviewer."
+    },
+    {
+      "id": "cl-booth",
+      "text": "Toll-booth analogy and illustrative bench layout.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mnemonic",
+      "text": "“MAP before you SHOP.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-value",
+      "issue": "The reviewer states Value = Quality ÷ Cost as a formula; the literature defines value in several ways (e.g. outcomes per cost, benefits minus harms and missed opportunities).",
+      "kind": "missing-context",
+      "status": "resolved",
+      "resolution": "Lesson presents the formula as the reviewer’s summary and notes that quality usually means outcomes."
+    },
+    {
+      "id": "f-numbers",
+      "issue": "The 10 s per tube and 4 vs 10 tests per sample figures come from the reviewer’s source and could not be verified; real values vary by laboratory.",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "A workflow concept; tubes and benches are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against two peer-reviewed open-access articles, one peer-reviewed review and one trade-press interview read for this lesson; 3 pending (reviewer’s numeric examples and the mapping split). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-07"
+}
