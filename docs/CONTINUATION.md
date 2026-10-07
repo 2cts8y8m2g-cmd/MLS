@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-07)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 26, teaching 106 of 1,932 concepts (about 5.5%).** All 26 still require review: each has pending claims, and none has had human expert review.
+- **Lessons complete: 27, teaching 108 of 1,932 concepts (about 5.6%).** All 27 still require review: each has pending claims, and none has had human expert review.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-lab-safety-precautions-osha`, `ops-reimbursement-drg-payment-window`, `ops-lab-design-hazcom-numbers`.
   - Ch. 2 (23/23 concepts): `ops-workflow-before-technology`, `ops-six-sigma-vs-lean`, `ops-instrument-selection-uptime-batch`, `ops-consolidation-utilization-autoverification`.
   - Ch. 3 (24/24 concepts): `pre-order-of-draw-edta`, `pre-citrate-ratio-heparin`, `pre-tube-additives-fluoride-gel`, `pre-patient-id-wbit`, `pre-csf-tubes-synovial-crystals`, `pre-biotin-daratumumab-interference`, `pre-allen-test-urine-timing`, `pre-specimen-numbers-rcf-24h-urine`.
@@ -11,12 +11,12 @@
   - Ch. 17 (6/22 concepts): `chem-diabetes-diagnosis-hba1c`.
   - Ch. 31 (4/28 concepts): `heme-red-cell-indices-high-mchc`.
   - Ch. 33 (6/27 concepts): `heme-microcytic-anemia-ferritin-mentzer`.
-  - Ch. 40 (2/36 concepts): `ih-abo-forward-reverse`.
+  - Ch. 40 (4/36 concepts): `ih-abo-forward-reverse`, `ih-abo-discrepancy-types-workup`.
   - Ch. 41 (4/35 concepts): `bb-acute-hemolytic-reaction-abo-compatibility`.
   - Ch. 57 (8/57 concepts): `micro-gpc-catalase-coagulase-mrsa`.
   - Ch. 66 (3/54 concepts): `micro-blood-culture-volume-contamination`.
 - **Reviewer accuracy register:** 35 flags (19 verified issues, 16 needing verification), plus scan results.
-- **Checks:** 222 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 228 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -42,7 +42,7 @@ Rotate through the four ≈20%-weight areas, one lesson at a time, starting each
 | 3 | Ch. 36 Coag cascade | Ch. 22 Liver | Ch. 64 Viruses | Ch. 42 Apheresis & collection |
 | 4 | Ch. 37 Platelets & VWD | Ch. 20 Proteins | Ch. 60 Fungi | Ch. 43 Stem cells & tissue |
 
-Round 1 is done (Ch. 33, 17, 57, 41 each have their core lesson). Round 2: Ch. 31, 15 and 66 done; **next is Ch. 40 (ABO discrepancies, Hit 14 / Trap 6)**, then round 3 (Ch. 36, 22, 64, 42). Ch. 41 Hit 4 (TRALI vs TACO; NHSN v3.0 has definitions) is a natural follow-up.
+Round 1 is done (Ch. 33, 17, 57, 41 each have their core lesson). Round 2 is done (Ch. 31, 15, 66, 40). **Next is round 3: Ch. 36 (Coag cascade)**, then Ch. 22, 64, 42. Ch. 41 Hit 4 (TRALI vs TACO; NHSN v3.0 has definitions) is a natural follow-up.
 
 Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.
 
@@ -54,7 +54,7 @@ Work chapter by chapter. Each chapter's **core concept (Hit 1)** comes first, th
 2. **Ch. 2:** all concepts taught. Still pending in its lessons: the reviewer's numeric examples (10 s per tube, 4 vs 10 tests per sample, rerun example), the uptime contract rule, standardization, stockpiling, and test-cost figures.
 3. **Ch. 3:** all concepts taught. Many Number Vault rows remain pending (see `pre-specimen-numbers-rcf-24h-urine` claims and flags `rv-heel-depth`, `rv-abg-cooling`).
 4. **Ch. 4 core:** Beer's law. A good fit for a new `spectro` visual (light path, cuvette, absorbance vs concentration).
-5. Continue through Ch. 5–14 (Part I), then Part II (Ch. 15–28), and so on. Ch. 40 still has 34 concepts; Hit 14 (discrepancy Groups I–IV) and Trap 6 are natural next ABO lessons.
+5. Continue through Ch. 5–14 (Part I), then Part II (Ch. 15–28), and so on. Ch. 40 still has 32 concepts (Hit 14 and Trap 6 are now taught).
 
 The ordering is at the user's discretion. The heaviest-weighted exam areas are Chemistry, Hematology, Blood Bank and Microbiology.
 

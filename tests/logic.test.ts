@@ -128,7 +128,8 @@ describe('coverage', () => {
     const bb = new Set(curriculum.domains.find((d) => d.id === 'p5-bb')!.topics.flatMap((t) => t.concepts.map((c) => c.id)));
     expect(cov.find((d) => d.domain.id === 'p5-bb')!.complete).toBe([...taught].filter((c) => bb.has(c)).length);
     expect(conceptStatus('ch40.hit2', lessons)).toBe('complete-needs-review');
-    expect(conceptStatus('ch40.hit14', lessons)).toBe('pending'); // only partly taught — not counted
+    const untaught = curriculum.domains.find((d) => d.id === 'p5-bb')!.topics.flatMap((t) => t.concepts.map((c) => c.id)).find((c) => !taught.has(c))!;
+    expect(conceptStatus(untaught, lessons)).toBe('pending');
   });
   it('treats an incomplete lesson as a draft, not complete', () => {
     const draft = { ...entry, validation: { ...entry.validation, complete: false } };
