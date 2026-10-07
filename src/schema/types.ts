@@ -66,6 +66,8 @@ export const VISUAL_TYPES = [
   'token',
   'bin',
   'icon',
+  'prion',
+  'autoclave',
 ] as const;
 export type VisualType = (typeof VISUAL_TYPES)[number];
 

@@ -1,0 +1,2681 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-prion-decontamination",
+  "title": "Prions: The Germ That Isn’t Alive",
+  "summary": "See a misfolded protein copy its shape into normal protein, watch ordinary disinfection fail, and learn the soak-then-autoclave protocols that actually work.",
+  "domain": "p1-ops",
+  "topic": "ch1",
+  "conceptIds": [
+    "ch1.hit7",
+    "ch1.trap4"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 1,
+        "section": "High-Yield Hits",
+        "items": [
+          7
+        ]
+      },
+      {
+        "chapter": 1,
+        "section": "Exam Traps",
+        "items": [
+          4
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 1 Hit 7 and Trap 4 (prion inactivation). Corrects the reviewer’s surface protocol: WHO and CDC give 2N NaOH or undiluted hypochlorite for 1 hour (reviewer: ≥5,000 ppm hypochlorite or 1N NaOH). Adds WHO nuance that glutaraldehyde and 121 °C/15 min autoclaving are partially effective, and that fixation stabilizes infectivity (formic acid for fixed blocks)."
+  },
+  "prerequisites": [
+    "ch1.hit1"
+  ],
+  "objectives": [
+    "Explain what a prion is and how it propagates by templating.",
+    "Explain why routine sterilization and fixatives do not make prion-contaminated material safe.",
+    "State the WHO/CDC soak-then-autoclave protocol for heat-resistant instruments and the separate surface protocol.",
+    "Recognize which common disinfectants and processes are ineffective or only partially effective."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "A tray that looks sterile",
+      "start": 0,
+      "end": 20,
+      "altText": "An autoclave finishes a routine cycle and a tray of neurosurgery instruments comes out with a 'sterile' tag. A worried scientist learns the patient may have Creutzfeldt-Jakob disease. A question mark appears over the tray, then the culprit is revealed: a misfolded protein called a prion.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 6.5,
+          "text": "A tray of brain-surgery instruments comes out of a routine autoclave cycle. Days later, the patient is suspected of having Creutzfeldt-Jakob disease, or CJD."
+        },
+        {
+          "id": "h2",
+          "start": 6.5,
+          "end": 13.5,
+          "text": "A routine cycle kills bacteria, spores and viruses. So are these instruments safe now?"
+        },
+        {
+          "id": "h3",
+          "start": 13.5,
+          "end": 20,
+          "text": "Not necessarily. CJD isn't caused by a living germ. It's caused by a misfolded protein called a prion."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ac",
+          "type": "autoclave",
+          "props": {
+            "x": 200,
+            "y": 250,
+            "temp": "121 °C",
+            "label": "Routine cycle",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 1,
+              "heat": 0
+            },
+            {
+              "t": 4,
+              "heat": 1,
+              "ease": "inOut"
+            },
+            {
+              "t": 4,
+              "heat": 1
+            },
+            {
+              "t": 5.5,
+              "heat": 0,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "tray",
+          "type": "token",
+          "props": {
+            "x": 470,
+            "y": 250,
+            "w": 210,
+            "label": "Neurosurgery tray — “sterile”",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5,
+              "opacity": 0,
+              "x": 260
+            },
+            {
+              "t": 6,
+              "opacity": 1,
+              "ease": "out",
+              "x": 470
+            },
+            {
+              "t": 9,
+              "highlight": 0
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 760,
+            "y": 300,
+            "expression": "curious",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.5,
+              "opacity": 0
+            },
+            {
+              "t": 7.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7.5,
+              "expression": "alert"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "label",
+          "props": {
+            "x": 470,
+            "y": 150,
+            "text": "?",
+            "size": 80,
+            "weight": 900,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "prion",
+          "type": "prion",
+          "props": {
+            "x": 470,
+            "y": 420,
+            "size": 36,
+            "fold": 0,
+            "label": "The culprit: a misfolded protein (prion)",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 15,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "fold": 0
+            },
+            {
+              "t": 17,
+              "fold": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "A shape that copies itself",
+      "start": 20,
+      "end": 62,
+      "altText": "A normal curly prion protein (PrP-C) sits beside a flat, misfolded one (PrP-Sc). The misfolded protein touches the normal one and bends it into the flat shape. New misfolded copies convert more normal proteins, and the flat shapes stack into a long, tight clump. Heat, radiation and chemical arrows bounce off the clump.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 27,
+          "text": "Our nerve cells make a normal protein called PrP-C. It folds into a curly, springy shape."
+        },
+        {
+          "id": "n2",
+          "start": 27,
+          "end": 34,
+          "text": "Sometimes a copy folds the wrong way — flat and sheet-like. That bad copy is PrP-Sc, the prion."
+        },
+        {
+          "id": "n3",
+          "start": 34,
+          "end": 40,
+          "text": "Here is the trick: when the bad copy touches a normal one, it bends the normal one into the bad shape. Scientists call this templating."
+        },
+        {
+          "id": "n4",
+          "start": 40,
+          "end": 47,
+          "text": "Each new bad copy does the same thing. The bad shapes stack into long, tightly packed clumps."
+        },
+        {
+          "id": "n5",
+          "start": 47,
+          "end": 55,
+          "text": "Those tight clumps shrug off the heat, radiation and chemicals that destroy ordinary germs."
+        },
+        {
+          "id": "n6",
+          "start": 55,
+          "end": 62,
+          "text": "There's no cell to kill and no germ to grow — just a shape that keeps copying itself. That is why prions need special decontamination."
+        }
+      ],
+      "objects": [
+        {
+          "id": "normal",
+          "type": "prion",
+          "props": {
+            "x": 300,
+            "y": 230,
+            "size": 56,
+            "fold": 0,
+            "label": "PrP-C (normal, curly)",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 0
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            },
+            {
+              "t": 6.5,
+              "highlight": 0
+            },
+            {
+              "t": 14,
+              "label": ""
+            },
+            {
+              "t": 16.5,
+              "fold": 0
+            },
+            {
+              "t": 19.0,
+              "fold": 1,
+              "ease": "inOut"
+            },
+            {
+              "t": 19.4,
+              "opacity": 1
+            },
+            {
+              "t": 20.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "bad",
+          "type": "prion",
+          "props": {
+            "x": 660,
+            "y": 230,
+            "size": 56,
+            "fold": 0,
+            "label": "PrP-Sc (misfolded, flat)",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7,
+              "opacity": 0
+            },
+            {
+              "t": 8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "fold": 0
+            },
+            {
+              "t": 10.5,
+              "fold": 1,
+              "ease": "inOut"
+            },
+            {
+              "t": 14,
+              "label": ""
+            },
+            {
+              "t": 14,
+              "x": 660
+            },
+            {
+              "t": 16.5,
+              "x": 410,
+              "ease": "out"
+            },
+            {
+              "t": 19.4,
+              "opacity": 1
+            },
+            {
+              "t": 20.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "tmpl",
+          "type": "label",
+          "props": {
+            "x": 360,
+            "y": 420,
+            "text": "Bad shape bends the good one → templating",
+            "size": 19,
+            "bg": true,
+            "color": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19.4,
+              "opacity": 1
+            },
+            {
+              "t": 20.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "fibril",
+          "type": "prion",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "size": 34,
+            "fold": 1,
+            "stack": 2,
+            "label": "Stacked PrP-Sc: a tight, protease-resistant clump",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20,
+              "opacity": 0
+            },
+            {
+              "t": 20.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20.8,
+              "stack": 2
+            },
+            {
+              "t": 25.8,
+              "stack": 7,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "heat",
+          "type": "arrow",
+          "props": {
+            "x": 120,
+            "y": 120,
+            "dx": 200,
+            "dy": 70,
+            "draw": 0,
+            "color": "warn",
+            "label": "Heat"
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "draw": 0
+            },
+            {
+              "t": 28.7,
+              "draw": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34.3,
+              "opacity": 1
+            },
+            {
+              "t": 34.9,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "uv",
+          "type": "arrow",
+          "props": {
+            "x": 850,
+            "y": 120,
+            "dx": -200,
+            "dy": 70,
+            "draw": 0,
+            "color": "warn",
+            "label": "UV / radiation"
+          },
+          "keys": [
+            {
+              "t": 28.3,
+              "draw": 0
+            },
+            {
+              "t": 29.5,
+              "draw": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34.3,
+              "opacity": 1
+            },
+            {
+              "t": 34.9,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "chem",
+          "type": "arrow",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "dx": 0,
+            "dy": -140,
+            "draw": 0,
+            "color": "warn",
+            "label": "Ordinary disinfectants"
+          },
+          "keys": [
+            {
+              "t": 29.1,
+              "draw": 0
+            },
+            {
+              "t": 30.3,
+              "draw": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34.3,
+              "opacity": 1
+            },
+            {
+              "t": 34.9,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "shield",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "text": "Survives!",
+            "size": 24,
+            "weight": 900,
+            "color": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34.4,
+              "opacity": 1
+            },
+            {
+              "t": 35.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "why",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 720,
+            "h": 130,
+            "tone": "warn",
+            "title": "Why prions are different",
+            "lines": [
+              "No cell to kill and nothing that grows",
+              "Shape copies itself by templating",
+              "Tightly packed clumps resist routine methods"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35,
+              "opacity": 0
+            },
+            {
+              "t": 35.5,
+              "reveal": 0
+            },
+            {
+              "t": 36,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 40.0,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Our usual weapons fail",
+      "start": 62,
+      "end": 100,
+      "altText": "Common decontamination methods line up as chips — alcohol, formalin, boiling, dry heat below 300 °C, UV and radiation — and each bounces off a prion clump with a red cross. Glutaraldehyde and a 15-minute 121 °C autoclave cycle get a yellow 'partial' tag. A formalin jar locks the prion in place: fixed tissue stays infectious until treated with formic acid.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 62,
+          "end": 68,
+          "text": "Let's try our usual weapons on a prion clump."
+        },
+        {
+          "id": "c2",
+          "start": 68,
+          "end": 76,
+          "text": "Alcohol, formalin, boiling, dry heat below 300 °C, UV light and radiation: the prion survives all of them."
+        },
+        {
+          "id": "c3",
+          "start": 76,
+          "end": 83,
+          "text": "Glutaraldehyde, and a routine autoclave cycle at 121 °C for 15 minutes, only partly reduce it."
+        },
+        {
+          "id": "c4",
+          "start": 83,
+          "end": 91,
+          "text": "Worse: drying, or fixing tissue in formalin or glutaraldehyde, locks the infectivity in. Fixed brain tissue stays infectious."
+        },
+        {
+          "id": "c5",
+          "start": 91,
+          "end": 100,
+          "text": "So prion-contaminated items are kept wet until they are decontaminated, and fixed tissue blocks get a special treatment with formic acid before routine handling."
+        }
+      ],
+      "objects": [
+        {
+          "id": "clump",
+          "type": "prion",
+          "props": {
+            "x": 480,
+            "y": 280,
+            "size": 30,
+            "fold": 1,
+            "stack": 5,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20.4,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "f0",
+          "type": "token",
+          "props": {
+            "x": 110,
+            "y": 120,
+            "w": 150,
+            "label": "Alcohol",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.0,
+              "opacity": 0,
+              "y": 80
+            },
+            {
+              "t": 6.6,
+              "opacity": 1,
+              "ease": "out",
+              "y": 120
+            },
+            {
+              "t": 6.6,
+              "highlight": 1
+            },
+            {
+              "t": 20.4,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "f1",
+          "type": "token",
+          "props": {
+            "x": 270,
+            "y": 120,
+            "w": 150,
+            "label": "Formalin",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.0,
+              "opacity": 0,
+              "y": 80
+            },
+            {
+              "t": 7.6,
+              "opacity": 1,
+              "ease": "out",
+              "y": 120
+            },
+            {
+              "t": 7.6,
+              "highlight": 1
+            },
+            {
+              "t": 20.4,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "f2",
+          "type": "token",
+          "props": {
+            "x": 430,
+            "y": 120,
+            "w": 150,
+            "label": "Boiling",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.0,
+              "opacity": 0,
+              "y": 80
+            },
+            {
+              "t": 8.6,
+              "opacity": 1,
+              "ease": "out",
+              "y": 120
+            },
+            {
+              "t": 8.6,
+              "highlight": 1
+            },
+            {
+              "t": 20.4,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "f3",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 120,
+            "w": 150,
+            "label": "Dry heat <300 °C",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.0,
+              "opacity": 0,
+              "y": 80
+            },
+            {
+              "t": 9.6,
+              "opacity": 1,
+              "ease": "out",
+              "y": 120
+            },
+            {
+              "t": 9.6,
+              "highlight": 1
+            },
+            {
+              "t": 20.4,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "f4",
+          "type": "token",
+          "props": {
+            "x": 750,
+            "y": 120,
+            "w": 150,
+            "label": "UV / radiation",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.0,
+              "opacity": 0,
+              "y": 80
+            },
+            {
+              "t": 10.6,
+              "opacity": 1,
+              "ease": "out",
+              "y": 120
+            },
+            {
+              "t": 10.6,
+              "highlight": 1
+            },
+            {
+              "t": 20.4,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "x0",
+          "type": "icon",
+          "props": {
+            "x": 110,
+            "y": 190,
+            "glyph": "cross",
+            "color": "bad",
+            "disc": false,
+            "scale": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 7.1,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20.4,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "x1",
+          "type": "icon",
+          "props": {
+            "x": 270,
+            "y": 190,
+            "glyph": "cross",
+            "color": "bad",
+            "disc": false,
+            "scale": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.1,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20.4,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "x2",
+          "type": "icon",
+          "props": {
+            "x": 430,
+            "y": 190,
+            "glyph": "cross",
+            "color": "bad",
+            "disc": false,
+            "scale": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 9.1,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20.4,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "x3",
+          "type": "icon",
+          "props": {
+            "x": 590,
+            "y": 190,
+            "glyph": "cross",
+            "color": "bad",
+            "disc": false,
+            "scale": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 10.1,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20.4,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "x4",
+          "type": "icon",
+          "props": {
+            "x": 750,
+            "y": 190,
+            "glyph": "cross",
+            "color": "bad",
+            "disc": false,
+            "scale": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.1,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20.4,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "p1",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 430,
+            "w": 200,
+            "label": "Glutaraldehyde",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0,
+              "x": 120
+            },
+            {
+              "t": 14.8,
+              "opacity": 1,
+              "ease": "out",
+              "x": 200
+            },
+            {
+              "t": 20.4,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 430,
+            "w": 220,
+            "label": "Autoclave 121 °C, 15 min",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15,
+              "opacity": 0,
+              "x": 840
+            },
+            {
+              "t": 15.8,
+              "opacity": 1,
+              "ease": "out",
+              "x": 760
+            },
+            {
+              "t": 20.4,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "partial",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 430,
+            "text": "only PARTLY effective",
+            "size": 20,
+            "weight": 900,
+            "color": "warn",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20.4,
+              "opacity": 1
+            },
+            {
+              "t": 21.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "jar",
+          "type": "icon",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "glyph": "flask",
+            "color": "b",
+            "label": "Formalin / glutaraldehyde fixation",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 22.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37.4,
+              "opacity": 1
+            },
+            {
+              "t": 37.9,
+              "opacity": 0.15
+            }
+          ]
+        },
+        {
+          "id": "locked",
+          "type": "prion",
+          "props": {
+            "x": 620,
+            "y": 250,
+            "size": 34,
+            "fold": 1,
+            "stack": 3,
+            "label": "Infectivity locked in",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "highlight": 0
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lock",
+          "type": "arrow",
+          "props": {
+            "x": 380,
+            "y": 250,
+            "dx": 150,
+            "dy": 0,
+            "draw": 0,
+            "color": "bad",
+            "label": "stabilizes"
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "draw": 0
+            },
+            {
+              "t": 24.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "wet",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 455,
+            "w": 740,
+            "h": 120,
+            "tone": "good",
+            "title": "So:",
+            "lines": [
+              "Keep contaminated items wet until decontaminated",
+              "Treat fixed tissue blocks with formic acid before routine handling"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29,
+              "opacity": 0
+            },
+            {
+              "t": 29.5,
+              "reveal": 0
+            },
+            {
+              "t": 30,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "What does work",
+      "start": 100,
+      "end": 138,
+      "altText": "A decision path: disposable items go to an incinerator. Heat-resistant instruments soak for one hour in 1N sodium hydroxide or bleach at 20,000 ppm available chlorine, then go into an autoclave at 121 °C for one hour (or 134 °C in a porous-load autoclave). Surfaces are flooded with 2N sodium hydroxide or undiluted bleach for one hour, then rinsed. A suspected-CJD specimen gets a warning tag.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 107,
+          "text": "What does work? For anything disposable, the first choice is to incinerate it."
+        },
+        {
+          "id": "l2",
+          "start": 107,
+          "end": 115,
+          "text": "For heat-resistant instruments: soak for one hour in 1N sodium hydroxide, or in bleach with 20,000 ppm available chlorine..."
+        },
+        {
+          "id": "l3",
+          "start": 115,
+          "end": 123,
+          "text": "...then autoclave. For example, 121 °C for one hour in a gravity-displacement autoclave, or 134 °C in a porous-load autoclave."
+        },
+        {
+          "id": "l4",
+          "start": 123,
+          "end": 130,
+          "text": "Surfaces can’t go into an autoclave. Flood them with 2N sodium hydroxide or undiluted bleach, leave it for one hour, then rinse."
+        },
+        {
+          "id": "l5",
+          "start": 130,
+          "end": 138,
+          "text": "In the lab, specimens such as CSF or tissue from a suspected CJD patient are flagged, so everyone who handles them uses these methods."
+        }
+      ],
+      "objects": [
+        {
+          "id": "fire",
+          "type": "icon",
+          "props": {
+            "x": 130,
+            "y": 180,
+            "glyph": "flame",
+            "color": "bad",
+            "label": "Disposables → incinerate",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6.6,
+              "opacity": 1
+            },
+            {
+              "t": 7.1,
+              "opacity": 0.25
+            }
+          ]
+        },
+        {
+          "id": "inc",
+          "type": "label",
+          "props": {
+            "x": 130,
+            "y": 70,
+            "text": "Incineration",
+            "size": 20,
+            "weight": 800,
+            "color": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6.6,
+              "opacity": 1
+            },
+            {
+              "t": 7.1,
+              "opacity": 0.25
+            }
+          ]
+        },
+        {
+          "id": "inst",
+          "type": "token",
+          "props": {
+            "x": 360,
+            "y": 150,
+            "w": 200,
+            "label": "Heat-resistant instruments",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7,
+              "opacity": 0
+            },
+            {
+              "t": 7.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "soak",
+          "type": "card",
+          "props": {
+            "x": 360,
+            "y": 300,
+            "w": 290,
+            "h": 150,
+            "tone": "b",
+            "title": "Soak 1 hour",
+            "lines": [
+              "1N NaOH",
+              "or bleach, 20,000 ppm available chlorine"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 13,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "a1",
+          "type": "arrow",
+          "props": {
+            "x": 510,
+            "y": 300,
+            "dx": 60,
+            "dy": 0,
+            "draw": 0
+          },
+          "keys": [
+            {
+              "t": 15,
+              "draw": 0
+            },
+            {
+              "t": 16.2,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ac",
+          "type": "autoclave",
+          "props": {
+            "x": 680,
+            "y": 280,
+            "temp": "121 °C",
+            "label": "Then autoclave ~1 hour",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0
+            },
+            {
+              "t": 16.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "heat": 0
+            },
+            {
+              "t": 19,
+              "temp": "134 °C"
+            },
+            {
+              "t": 19.5,
+              "heat": 1,
+              "ease": "inOut"
+            },
+            {
+              "t": 21,
+              "heat": 1
+            },
+            {
+              "t": 22.5,
+              "heat": 0.4,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "surf",
+          "type": "card",
+          "props": {
+            "x": 360,
+            "y": 470,
+            "w": 520,
+            "h": 100,
+            "tone": "warn",
+            "title": "Surfaces: flood, 1 hour, rinse",
+            "lines": [
+              "2N NaOH or undiluted bleach"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23,
+              "opacity": 0
+            },
+            {
+              "t": 23.5,
+              "reveal": 0
+            },
+            {
+              "t": 24,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "spec",
+          "type": "specimen",
+          "props": {
+            "x": 875,
+            "y": 330,
+            "top": "red",
+            "label": "CSF — suspected CJD",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "flag",
+          "type": "label",
+          "props": {
+            "x": 875,
+            "y": 285,
+            "text": "⚠ prion precautions",
+            "size": 15,
+            "weight": 800,
+            "color": "warn",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Pairs the exam likes to swap",
+      "start": 138,
+      "end": 166,
+      "altText": "Two comparison cards: ordinary germs (killed by routine autoclaving; fixatives inactivate them) versus prions (only partly reduced by routine autoclaving; fixatives preserve infectivity). Then instruments (1N NaOH or 20,000 ppm bleach for one hour, then autoclave) versus surfaces (2N NaOH or undiluted bleach for one hour).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 138,
+          "end": 145,
+          "text": "Exam pair one: ordinary germs versus prions."
+        },
+        {
+          "id": "e2",
+          "start": 145,
+          "end": 152,
+          "text": "A routine autoclave cycle kills ordinary germs, and fixatives inactivate them. Prions are only partly reduced by a routine cycle — and fixatives preserve them."
+        },
+        {
+          "id": "e3",
+          "start": 152,
+          "end": 159,
+          "text": "Exam pair two: instruments versus surfaces. The numbers are different on purpose."
+        },
+        {
+          "id": "e4",
+          "start": 159,
+          "end": 166,
+          "text": "Instruments: 1N sodium hydroxide or 20,000 ppm bleach for one hour, then autoclave. Surfaces: 2N sodium hydroxide or undiluted bleach for one hour."
+        }
+      ],
+      "objects": [
+        {
+          "id": "germ",
+          "type": "card",
+          "props": {
+            "x": 255,
+            "y": 280,
+            "w": 410,
+            "h": 240,
+            "tone": "good",
+            "title": "Ordinary germs",
+            "lines": [
+              "Bacteria, spores, viruses",
+              "Routine autoclave cycle kills them",
+              "Fixatives inactivate them"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "x": 215
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "x": 255
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 7,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 13.4,
+              "opacity": 1
+            },
+            {
+              "t": 14.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "pri",
+          "type": "card",
+          "props": {
+            "x": 705,
+            "y": 280,
+            "w": 410,
+            "h": 240,
+            "tone": "warn",
+            "title": "Prions",
+            "lines": [
+              "Misfolded protein, no cell",
+              "Routine cycle: only partial",
+              "Fixatives PRESERVE infectivity"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.6,
+              "opacity": 0,
+              "x": 745
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out",
+              "x": 705
+            },
+            {
+              "t": 7,
+              "reveal": 0
+            },
+            {
+              "t": 13,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 13.4,
+              "opacity": 1
+            },
+            {
+              "t": 14.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ins",
+          "type": "card",
+          "props": {
+            "x": 255,
+            "y": 280,
+            "w": 410,
+            "h": 240,
+            "tone": "b",
+            "title": "Instruments",
+            "lines": [
+              "1N NaOH or 20,000 ppm bleach",
+              "Soak 1 hour",
+              "Then autoclave (e.g. 121 °C, 1 h)"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 15,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 0
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "srf",
+          "type": "card",
+          "props": {
+            "x": 705,
+            "y": 280,
+            "w": 410,
+            "h": 240,
+            "tone": "a",
+            "title": "Surfaces",
+            "lines": [
+              "2N NaOH or undiluted bleach",
+              "Flood, leave 1 hour",
+              "Mop up and rinse"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.6,
+              "opacity": 0
+            },
+            {
+              "t": 15.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 27,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "key",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "text": "Stronger soak where you cannot autoclave",
+            "size": 19,
+            "weight": 800,
+            "color": "accent",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25,
+              "opacity": 0
+            },
+            {
+              "t": 26,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "SOAK + COOK, and Fix = Fortify",
+      "start": 166,
+      "end": 188,
+      "altText": "Memory aid: a misfolded prion with two badges, 'SOAK' (an hour in lye or strong bleach) and 'COOK' (the autoclave). A formalin flask is labelled 'Fix = Fortify'. A card lists where the aid breaks down.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 166,
+          "end": 172,
+          "text": "Memory aid: a misfolded prion needs SOAK plus COOK."
+        },
+        {
+          "id": "m2",
+          "start": 172,
+          "end": 179,
+          "text": "Soak for an hour in lye or strong bleach, then cook it in the autoclave. And remember: Fix equals Fortify — fixatives make prions tougher, not weaker."
+        },
+        {
+          "id": "m3",
+          "start": 179,
+          "end": 188,
+          "text": "Where it breaks: surfaces can't be cooked, so they get a stronger soak instead. 'Cook' means a steam autoclave, not dry heat. And disposables are simply burned."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "SOAK + COOK · Fix = Fortify",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pr",
+          "type": "prion",
+          "props": {
+            "x": 480,
+            "y": 220,
+            "size": 40,
+            "fold": 1,
+            "stack": 2,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "soak",
+          "type": "token",
+          "props": {
+            "x": 230,
+            "y": 220,
+            "w": 200,
+            "label": "SOAK: 1 h lye or strong bleach",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 7.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cook",
+          "type": "token",
+          "props": {
+            "x": 730,
+            "y": 220,
+            "w": 200,
+            "label": "COOK: steam autoclave",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 9.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "fix",
+          "type": "icon",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "glyph": "flask",
+            "color": "bad",
+            "label": "Fix = Fortify",
+            "scale": 0.8,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 780,
+            "h": 80,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Surfaces: stronger soak (2N NaOH / undiluted bleach), no cook · Cook ≠ dry heat · Disposables: incinerate"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.5,
+              "reveal": 0
+            },
+            {
+              "t": 16.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 188,
+      "end": 198,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 188,
+          "end": 193,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 193,
+          "end": 198,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 198,
+      "end": 210,
+      "altText": "A misfolded prion clump sits between a one-hour chemical soak and an autoclave, with a check mark; a formalin flask beside it carries a red cross.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 198,
+          "end": 210,
+          "text": "Prions are misfolded proteins that copy their shape and survive routine disinfection, so heat-resistant instruments need a one-hour soak in 1N sodium hydroxide or 20,000 ppm bleach followed by autoclaving, and fixatives never make prion-contaminated tissue safe."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pr",
+          "type": "prion",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "size": 34,
+            "fold": 1,
+            "stack": 3,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "soak",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 210,
+            "w": 200,
+            "label": "1 h: 1N NaOH or 20,000 ppm bleach",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ac",
+          "type": "autoclave",
+          "props": {
+            "x": 760,
+            "y": 220,
+            "temp": "121 °C",
+            "label": "Autoclave",
+            "scale": 0.8,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "heat": 0
+            },
+            {
+              "t": 7,
+              "heat": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "ok",
+          "type": "icon",
+          "props": {
+            "x": 480,
+            "y": 390,
+            "glyph": "check",
+            "color": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 7.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nofix",
+          "type": "icon",
+          "props": {
+            "x": 640,
+            "y": 420,
+            "glyph": "cross",
+            "color": "bad",
+            "label": "Fixatives ≠ safe",
+            "disc": false,
+            "scale": 0.6,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 9.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a prion is a normal brain protein that has folded into the wrong shape. The wrong shape is contagious in a strange way — it bends normal copies of the same protein into the wrong shape too. Scientific terms: the normal cellular prion protein is PrP-C; the misfolded, disease-associated form is PrP-Sc. Prion diseases in people include Creutzfeldt-Jakob disease (CJD) and variant CJD.",
+    "why": "PrP-Sc self-replicates by templating: it converts PrP-C into more PrP-Sc and the copies polymerize into β-sheet-rich, protease-resistant assemblies. Because the infectious agent is a tightly packed protein assembly rather than a living cell, the methods built to kill microbes — boiling, dry heat, UV and ionizing radiation, alcohol, formalin, routine short autoclave cycles — are ineffective or only partly effective. Fixation with formalin or glutaraldehyde and drying actually stabilize infectivity.",
+    "measure": "The laboratory does not culture or stain prions; what matters at the bench is recognizing a suspected prion specimen (for example CSF or brain tissue from a suspected CJD patient) and choosing the right decontamination. Disposable items are incinerated. Heat-resistant instruments are soaked in 1N NaOH or sodium hypochlorite at 20,000 ppm available chlorine for 1 hour and then autoclaved (for example 121 °C for 1 hour in a gravity-displacement autoclave, or 134 °C in a porous-load autoclave). Surfaces are flooded with 2N NaOH or undiluted hypochlorite for 1 hour, then rinsed. Formalin-fixed tissue is treated with formic acid before routine processing.",
+    "differs": "Unlike bacteria, spores and viruses, prions survive a routine autoclave cycle (121 °C for 15 minutes is only partially effective) and are preserved, not killed, by fixatives. The instrument protocol and the surface protocol use different strengths: 1N NaOH or 20,000 ppm hypochlorite plus autoclaving for instruments; 2N NaOH or undiluted hypochlorite for surfaces, which cannot be autoclaved.",
+    "examAngle": "Expect 'which disinfectant inactivates prions?' (sodium hydroxide or high-concentration hypochlorite, combined with autoclaving for instruments), distractors such as formalin, glutaraldehyde, alcohol, dry heat or UV, and the trap that formalin-fixed tissue is safe. Watch for questions that mix up the instrument and surface concentrations."
+  },
+  "comparisons": [
+    {
+      "id": "germs-vs-prions",
+      "title": "Ordinary microbes vs prions",
+      "left": {
+        "label": "Bacteria, spores, viruses",
+        "points": [
+          "Killed by a routine steam autoclave cycle",
+          "Inactivated by fixatives such as formalin",
+          "Destroyed by UV/ionizing radiation at standard doses"
+        ]
+      },
+      "right": {
+        "label": "Prions (PrP-Sc)",
+        "points": [
+          "Routine 121 °C / 15 min autoclaving only partly effective",
+          "Fixation stabilizes infectivity",
+          "UV and ionizing radiation ineffective"
+        ]
+      },
+      "distinguisher": "Prions are self-templating misfolded proteins, not living cells — methods built to kill organisms do not reliably destroy them."
+    },
+    {
+      "id": "instruments-vs-surfaces",
+      "title": "Prion decontamination: instruments vs surfaces (WHO/CDC)",
+      "left": {
+        "label": "Heat-resistant instruments",
+        "points": [
+          "Soak 1 hour: 1N NaOH or hypochlorite 20,000 ppm available chlorine",
+          "Then autoclave (e.g. 121 °C 1 h gravity, or 134 °C porous load)",
+          "Disposables: incinerate"
+        ]
+      },
+      "right": {
+        "label": "Surfaces & heat-sensitive items",
+        "points": [
+          "Flood with 2N NaOH or undiluted hypochlorite",
+          "Leave 1 hour, mop up, rinse",
+          "If they cannot tolerate these: thorough cleaning (dilution) plus partial methods"
+        ]
+      },
+      "distinguisher": "Where you cannot autoclave, you use a stronger chemical (2N NaOH or undiluted bleach)."
+    }
+  ],
+  "mnemonic": {
+    "text": "Misfolded? SOAK + COOK — and Fix = Fortify.",
+    "explanation": "SOAK for an hour in lye (NaOH) or strong bleach, then COOK in a steam autoclave. Fix = Fortify reminds you that fixatives make prions tougher, so fixed tissue is never safe by default.",
+    "limitation": "Surfaces can't be cooked, so they get a stronger soak (2N NaOH or undiluted bleach) instead; disposables are incinerated rather than soaked and cooked. 'Cook' means steam autoclaving — dry heat below 300 °C is ineffective. The exact cycle (121 °C gravity vs 134 °C porous load) depends on the protocol chosen."
+  },
+  "analogyLimitations": [
+    "Proteins are drawn as cartoon blobs with curls (α-helix) or flat strokes (β-sheet). Real PrP structures and prion assemblies are far more complex and vary between strains.",
+    "The stacking animation suggests a neat chain; real assemblies are polydisperse — many sizes and forms.",
+    "Arrows 'bouncing off' are a metaphor for ineffective inactivation, not a physical mechanism."
+  ],
+  "takeaway": "Prions are misfolded proteins that copy their shape and survive routine disinfection, so heat-resistant instruments need a one-hour soak in 1N sodium hydroxide or 20,000 ppm bleach followed by autoclaving, and fixatives never make prion-contaminated tissue safe.",
+  "questions": [
+    {
+      "id": "ops-prion-q1",
+      "stem": "A heat-resistant surgical instrument was used on brain tissue from a patient with suspected Creutzfeldt-Jakob disease. Which reprocessing method is appropriate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Immerse in 1N sodium hydroxide for 1 hour, rinse, then autoclave at 121 °C for 1 hour",
+          "rationale": "Correct. This is one of the WHO/CDC soak-then-autoclave methods for heat-resistant instruments: 1N NaOH (or 20,000 ppm hypochlorite) for 1 hour followed by autoclaving."
+        },
+        {
+          "id": "b",
+          "text": "Soak in glutaraldehyde, then rinse with sterile water",
+          "rationale": "Incorrect. WHO lists glutaraldehyde as only variably or partially effective, and fixation by aldehydes stabilizes prion infectivity."
+        },
+        {
+          "id": "c",
+          "text": "A routine steam autoclave cycle at 121 °C for 15 minutes",
+          "rationale": "Incorrect. A routine 121 °C/15-minute cycle is only partially effective against prions. Prion protocols use a chemical soak plus a longer (about 1 hour) cycle."
+        },
+        {
+          "id": "d",
+          "text": "Dry-heat sterilization at 160 °C",
+          "rationale": "Incorrect. Dry heat below 300 °C is ineffective against prions (WHO)."
+        }
+      ],
+      "answer": "a",
+      "skill": "Choose prion decontamination methods",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-prion-q2",
+      "stem": "A histology lab receives formalin-fixed brain tissue from a patient with suspected CJD. Which statement is correct?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The tissue remains infectious; handle it with full precautions, and formic acid treatment can reduce infectivity before routine processing",
+          "rationale": "Correct. WHO states that formalin- and glutaraldehyde-fixed TSE tissue retains infectivity for long periods and should be treated as infectious until treated with formic acid."
+        },
+        {
+          "id": "b",
+          "text": "Formalin fixation has inactivated the prions, so routine precautions are enough",
+          "rationale": "Incorrect. Fixation stabilizes prion infectivity rather than destroying it."
+        },
+        {
+          "id": "c",
+          "text": "An overnight UV exposure in a biosafety cabinet will make the blocks safe",
+          "rationale": "Incorrect. WHO lists UV and ionizing radiation as ineffective against TSE agents."
+        },
+        {
+          "id": "d",
+          "text": "Soaking the blocks in 70% alcohol inactivates prions",
+          "rationale": "Incorrect. Alcohol is ineffective against prions and, like other fixatives, can stabilize infectivity."
+        }
+      ],
+      "answer": "a",
+      "skill": "Explain why fixatives do not inactivate prions",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-prion-q3",
+      "stem": "A bench surface is contaminated with brain homogenate from a suspected prion case. Which treatment matches WHO guidance for surfaces?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Flood with 2N sodium hydroxide or undiluted sodium hypochlorite, leave for 1 hour, then mop up and rinse",
+          "rationale": "Correct. Because surfaces cannot be autoclaved, WHO recommends the stronger chemical treatment: 2N NaOH or undiluted hypochlorite for 1 hour."
+        },
+        {
+          "id": "b",
+          "text": "Wipe with 70% alcohol and let it air-dry",
+          "rationale": "Incorrect. Alcohol is ineffective, and drying stabilizes prion infectivity."
+        },
+        {
+          "id": "c",
+          "text": "Wipe with a 1:100 dilution of household bleach",
+          "rationale": "Incorrect. Dilute bleach is far below the hypochlorite strength recommended for prions (undiluted for surfaces; 20,000 ppm available chlorine for instrument soaks)."
+        },
+        {
+          "id": "d",
+          "text": "Spray with a phenolic disinfectant",
+          "rationale": "Incorrect. Phenolics are listed by WHO as ineffective against TSE agents."
+        }
+      ],
+      "answer": "a",
+      "skill": "Choose prion decontamination methods",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch1",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 1, How the Lab Runs: Core Concepts (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 1,
+          "section": "High-Yield Hits",
+          "items": [
+            7
+          ]
+        },
+        {
+          "chapter": 1,
+          "section": "Exam Traps",
+          "items": [
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing of prion inactivation. Not used as verification."
+    },
+    {
+      "id": "who-tse-1999",
+      "kind": "external",
+      "citation": "World Health Organization. WHO Infection Control Guidelines for Transmissible Spongiform Encephalopathies. Report of a WHO Consultation, Geneva, 23–26 March 1999. WHO/CDS/CSR/APH/2000.3.",
+      "url": "https://szu.gov.cz/wp-content/uploads/2023/04/WHO_CDS_CSR_APH_2000.3.pdf",
+      "consulted": true,
+      "pages": "Section 6.1 (Table 8); fixed-tissue section; Annex III",
+      "usedFor": "Ineffective and partially effective disinfectants (Table 8); fixation stabilizes infectivity; formic acid for fixed tissue; instrument methods (1N NaOH, 20,000 ppm hypochlorite, autoclave times/temperatures); surface method (2N NaOH or undiluted hypochlorite, 1 h); incineration of disposables."
+    },
+    {
+      "id": "cdc-cjd-ic",
+      "kind": "external",
+      "citation": "Centers for Disease Control and Prevention. Infection Control for CJD (Classic CJD). Last reviewed January 21, 2026.",
+      "url": "https://www.cdc.gov/creutzfeldt-jakob/hcp/infection-control/index.html",
+      "consulted": true,
+      "usedFor": "Same instrument and surface methods as WHO; incinerate disposables."
+    },
+    {
+      "id": "igel2022",
+      "kind": "external",
+      "citation": "Igel A, Fornara B, Rezaei H, Béringue V. Prion assemblies: structural heterogeneity, mechanisms of formation, and role in species barrier. Cell Tissue Res. 2023;392:149–166.",
+      "doi": "10.1007/s00441-022-03700-2",
+      "url": "https://europepmc.org/article/PMC/PMC10113350",
+      "consulted": true,
+      "usedFor": "PrP-C vs PrP-Sc; PrP-Sc self-replicates by templating PrP-C conversion and polymerization; β-sheet-rich, protease-resistant, polydisperse assemblies."
+    },
+    {
+      "id": "altuna2022",
+      "kind": "external",
+      "citation": "Altuna M, Ruiz I, Zelaya MV, Mendioroz M. Role of Biomarkers for the Diagnosis of Prion Diseases: A Narrative Review. Medicina (Kaunas). 2022;58(4):473.",
+      "doi": "10.3390/medicina58040473",
+      "url": "https://europepmc.org/article/PMC/PMC9030755",
+      "consulted": true,
+      "usedFor": "CSF biomarkers in CJD (14-3-3, RT-QuIC) and nasal-brushing RT-QuIC."
+    },
+    {
+      "id": "cdc-prion-about",
+      "kind": "external",
+      "citation": "Centers for Disease Control and Prevention. About Prion Diseases. Last reviewed February 20, 2026.",
+      "url": "https://www.cdc.gov/prions/about/index.html",
+      "consulted": true,
+      "usedFor": "Prion diseases occur when normal body proteins misfold; human prion diseases include CJD and vCJD."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-templating",
+      "text": "PrP-Sc self-replicates by templating the conversion of normal PrP-C, forming β-sheet-rich, protease-resistant assemblies.",
+      "status": "checked",
+      "refs": [
+        "igel2022"
+      ]
+    },
+    {
+      "id": "cl-misfold",
+      "text": "Prion diseases (including CJD and vCJD) occur when normal body proteins misfold.",
+      "status": "checked",
+      "refs": [
+        "cdc-prion-about"
+      ]
+    },
+    {
+      "id": "cl-ineffective",
+      "text": "Alcohol, formalin, boiling, dry heat below 300 °C, UV and ionizing radiation, phenolics, hydrogen peroxide and ethylene oxide are ineffective against TSE agents.",
+      "status": "checked",
+      "refs": [
+        "who-tse-1999"
+      ]
+    },
+    {
+      "id": "cl-partial",
+      "text": "Glutaraldehyde and autoclaving at 121 °C for 15 minutes are only variably or partially effective.",
+      "status": "checked",
+      "refs": [
+        "who-tse-1999"
+      ]
+    },
+    {
+      "id": "cl-fixation",
+      "text": "Drying or fixation with alcohol, formalin or glutaraldehyde stabilizes infectivity; fixed TSE tissue stays infectious until treated with formic acid.",
+      "status": "checked",
+      "refs": [
+        "who-tse-1999"
+      ]
+    },
+    {
+      "id": "cl-instruments",
+      "text": "Heat-resistant instruments: immerse in 1N NaOH or 20,000 ppm available-chlorine hypochlorite for 1 hour, then autoclave (e.g. 121 °C gravity displacement 1 h, or 134 °C porous load 1 h).",
+      "status": "checked",
+      "refs": [
+        "who-tse-1999",
+        "cdc-cjd-ic"
+      ]
+    },
+    {
+      "id": "cl-surfaces",
+      "text": "Surfaces and heat-sensitive items: flood with 2N NaOH or undiluted hypochlorite for 1 hour, then mop up and rinse.",
+      "status": "checked",
+      "refs": [
+        "who-tse-1999",
+        "cdc-cjd-ic"
+      ]
+    },
+    {
+      "id": "cl-incinerate",
+      "text": "Disposable instruments, materials and wastes exposed to potentially prion-infected tissue are incinerated.",
+      "status": "checked",
+      "refs": [
+        "who-tse-1999",
+        "cdc-cjd-ic"
+      ]
+    },
+    {
+      "id": "cl-csf",
+      "text": "CSF biomarkers such as 14-3-3 and RT-QuIC are used in the diagnosis of CJD.",
+      "status": "checked",
+      "refs": [
+        "altuna2022"
+      ]
+    },
+    {
+      "id": "cl-no-nucleic",
+      "text": "Prions contain no nucleic acid of their own, which is part of why radiation and other methods that damage microbial genomes are ineffective.",
+      "status": "pending",
+      "note": "Standard teaching; the consulted sources did not state it directly. The lesson says “no cell to kill and nothing that grows” instead."
+    },
+    {
+      "id": "cl-tight-packing",
+      "text": "The tight packing of PrP-Sc assemblies contributes to their resistance to heat and chemicals.",
+      "status": "pending",
+      "note": "Mechanistic simplification consistent with protease resistance (igel2022) but not stated as the cause of disinfection resistance in a consulted source."
+    },
+    {
+      "id": "cl-flagging",
+      "text": "Laboratories flag specimens from suspected CJD patients so prion precautions are used.",
+      "status": "pending",
+      "note": "General practice; check local biosafety policy."
+    },
+    {
+      "id": "cl-cartoon",
+      "text": "Curly vs flat protein cartoons, stacking chain, bouncing arrows.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-soakcook",
+      "text": "'SOAK + COOK, Fix = Fortify'.",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-reviewer-surfaces",
+      "issue": "Reviewer Ch. 1 Hit 7 gives surfaces as ≥5,000 ppm hypochlorite (≈1:5–1:10 household bleach) or 1N NaOH. WHO (1999, Annex III) and CDC give 2N NaOH or undiluted hypochlorite for 1 hour for surfaces and heat-sensitive instruments.",
+      "kind": "contradiction",
+      "status": "resolved",
+      "resolution": "Lesson teaches the WHO/CDC surface method. Logged as reviewer flag rv-prion-surfaces."
+    },
+    {
+      "id": "f-glut",
+      "issue": "Reviewer says glutaraldehyde does 'not work'; WHO classes it as variably or partially effective (and aldehyde fixation stabilizes infectivity). The exam-level message is the same (do not rely on it).",
+      "kind": "missing-context",
+      "status": "resolved",
+      "resolution": "Lesson states WHO wording."
+    },
+    {
+      "id": "f-who-age",
+      "issue": "The WHO guideline dates from 1999; CDC (reviewed 2026) still uses the same methods. Local biosafety policies may specify their own protocols.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Protein shapes are schematic cartoons; no microscopic morphology is taught here.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "9 claims checked against WHO (1999), CDC (2026) and two peer-reviewed open-access reviews, all read for this lesson; 3 claims pending. The reviewer’s surface protocol was corrected. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-07"
+}

@@ -70,7 +70,9 @@ Every visual object has `type`, `props` (initial values) and optional `keys`:
 | `document` | `w`, `h`, `title`, `sub`, `tone`, `stampText`, *`stamp`* (0→1 stamp lands), *`highlight`* |
 | `token` | `label`, `w`, `wrap`, `tone`, *`highlight`* — a chip that can be moved and sorted |
 | `bin` | `w`, `h`, `label`, `sub`, `tone`, *`highlight`* — a category bucket |
-| `icon` | `glyph` (`gavel`,`trophy`,`shield`,`magnifier`,`check`,`cross`,`flask`,`book`,`person`), `color`, `disc`, `label` |
+| `prion` | *`fold`* (0 normal α-helical PrP^C → 1 misfolded β-sheet PrP^Sc), *`stack`* (copies in a fibril), *`size`*, *`highlight`*, `label` |
+| `autoclave` | `temp` (display text), *`heat`* (0→1 glow), `label` |
+| `icon` | `glyph` (`gavel`,`trophy`,`shield`,`magnifier`,`check`,`cross`,`flask`,`book`,`person`,`flame`), `color`, `disc`, `label` |
 
 Color tokens: `ink`, `muted`, `accent`, `a`, `b`, `h`, `good`, `warn`, `bad`, `plasma`, `saline`, `blood`, `surface`. They follow light and dark mode automatically.
 

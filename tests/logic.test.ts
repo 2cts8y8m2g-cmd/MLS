@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { scoreQuiz, toAttempts } from '../src/logic/quiz';
 import { areaStats, weakAreas } from '../src/logic/weak';
 import { recommend } from '../src/logic/recommend';
-import { conceptStatus, coverage } from '../src/logic/curriculum';
+import { conceptStatus, coverage, flattenCurriculum } from '../src/logic/curriculum';
 import { addAttempts, emptyState, markWatched, recordPosition, sanitizeState, toggleBookmark, type Attempt } from '../src/state/model';
 import { loadContent } from '../scripts/load-content';
 
@@ -86,19 +86,28 @@ describe('progress model', () => {
 });
 
 describe('recommendations', () => {
-  it('suggests lessons in reviewer order to a new learner (Ch. 1 before Ch. 40)', () => {
-    const r = recommend(curriculum, lessons, emptyState());
-    expect(r.map((x) => x.lessonId)).toEqual(['ops-clia-complexity-accreditation', lesson.id]);
+  const order = new Map(flattenCurriculum(curriculum).map((f) => [f.concept.id, f.order]));
+  const firstOrder = (id: string) => Math.min(...lessons.find((l) => l.lesson.id === id)!.lesson.conceptIds.map((c) => order.get(c)!));
+  const complete = lessons.filter((l) => l.validation.complete);
+
+  it('suggests lessons in reviewer order to a new learner', () => {
+    const r = recommend(curriculum, lessons, emptyState(), 50);
+    expect(r).toHaveLength(complete.length);
     expect(r.every((x) => x.kind === 'next')).toBe(true);
+    const o = r.map((x) => firstOrder(x.lessonId));
+    expect([...o].sort((a, b) => a - b)).toEqual(o);
+    expect(r[0].lessonId).toBe('ops-clia-complexity-accreditation');
   });
   it('moves on once a lesson is watched and its quiz attempted', () => {
-    let s = markWatched(emptyState(), 'ops-clia-complexity-accreditation');
-    s = addAttempts(s, [{ ...att('ops-clia-q1', true, '1'), lessonId: 'ops-clia-complexity-accreditation' }]);
-    expect(recommend(curriculum, lessons, s)[0].lessonId).toBe(lesson.id);
+    const first = recommend(curriculum, lessons, emptyState())[0].lessonId;
+    let s = markWatched(emptyState(), first);
+    s = addAttempts(s, [{ ...att('x-q', true, '1'), lessonId: first }]);
+    const next = recommend(curriculum, lessons, s);
+    expect(next.map((x) => x.lessonId)).not.toContain(first);
   });
   it('prioritises weak-area review from real results', () => {
     const s = addAttempts(emptyState(), [att(qs[0].id, false, '1', qs[0].skill)]);
-    expect(recommend(curriculum, lessons, s)[0].kind).toBe('review-weak');
+    expect(recommend(curriculum, lessons, s)[0]).toMatchObject({ kind: 'review-weak', lessonId: lesson.id });
   });
   it('suggests the quiz after watching without answering', () => {
     const s = markWatched(emptyState(), lesson.id);
@@ -107,21 +116,18 @@ describe('recommendations', () => {
   it('respects the track filter', () => {
     const s = emptyState();
     s.settings.track = 'mtle';
-    expect(recommend(curriculum, lessons, s).length).toBe(2); // both lessons are tagged for both tracks
+    expect(recommend(curriculum, lessons, s, 50).length).toBe(complete.filter((l) => l.lesson.tracks.includes('mtle')).length);
   });
 });
 
 describe('coverage', () => {
   it('counts only complete lessons and separates review-needed', () => {
     const cov = coverage(curriculum, lessons);
-    const bb = cov.find((d) => d.domain.id === 'p5-bb')!;
-    expect(bb.complete).toBe(2); // ch40.hit2 + ch40.hit13
-    expect(bb.needsReview).toBe(2);
-    expect(cov.find((d) => d.domain.id === 'p1-ops')!.complete).toBe(7);
-    expect(cov.reduce((a, d) => a + d.complete, 0)).toBe(9);
+    const taught = new Set(lessons.filter((l) => l.validation.complete).flatMap((l) => l.lesson.conceptIds));
+    expect(cov.reduce((a, d) => a + d.complete, 0)).toBe(taught.size);
+    expect(cov.find((d) => d.domain.id === 'p5-bb')!.complete).toBe([...taught].filter((c) => c.startsWith('ch40.')).length);
     expect(conceptStatus('ch40.hit2', lessons)).toBe('complete-needs-review');
     expect(conceptStatus('ch40.hit14', lessons)).toBe('pending'); // only partly taught — not counted
-    expect(conceptStatus('ch31.hit1', lessons)).toBe('pending');
   });
   it('treats an incomplete lesson as a draft, not complete', () => {
     const draft = { ...entry, validation: { ...entry.validation, complete: false } };

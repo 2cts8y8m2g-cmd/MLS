@@ -11,6 +11,10 @@ import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync } from 'node:fs';
 import { chromium } from 'playwright-core';
 import AxeBuilder from '@axe-core/playwright';
+import { readdirSync, readFileSync } from 'node:fs';
+
+const LESSON_DIR = new URL('../content/lessons/', import.meta.url).pathname;
+const LESSON_FILES = readdirSync(LESSON_DIR).filter((f) => f.endsWith('.json')).map((f) => JSON.parse(readFileSync(LESSON_DIR + f, 'utf8')));
 
 const PORT = 4179;
 const BASE = `http://localhost:${PORT}/`;
@@ -278,7 +282,8 @@ try {
     await page.goto(`${BASE}#/coverage`);
     await page.waitForSelector('h1');
     const cov = await page.textContent('main');
-    check('Coverage counts 9 taught concepts, all requiring review', /Complete lessons\s*9/.test(cov) && /requiring review\s*9/.test(cov));
+    const taughtN = new Set(LESSON_FILES.flatMap((l) => l.conceptIds)).size;
+    check(`Coverage counts ${taughtN} taught concepts, all requiring review`, new RegExp(`Complete lessons\\s*${taughtN}(?!\\d)`).test(cov) && new RegExp(`requiring review\\s*${taughtN}(?!\\d)`).test(cov));
     check('Coverage flags unverified ASCP outline', cov.includes('unverified'));
     check('Coverage lists all 79 reviewer chapters', (await page.$$('#chapters tbody tr')).length === 79);
     check('Coverage shows the reviewer accuracy register', cov.includes('Reviewer accuracy register') && cov.includes('48 systems'));

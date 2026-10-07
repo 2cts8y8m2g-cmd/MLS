@@ -716,6 +716,7 @@ const ICONS: Record<string, (c: string) => ReactNode> = {
   cross: (c) => (<g stroke={c} strokeWidth={9} strokeLinecap="round"><line x1={-20} y1={-20} x2={20} y2={20} /><line x1={20} y1={-20} x2={-20} y2={20} /></g>),
   flask: (c) => (<g><path d="M-8,-32 L8,-32 L8,-10 L26,26 Q28,32 22,32 L-22,32 Q-28,32 -26,26 L-8,-10 Z" fill="none" stroke={c} strokeWidth={5} strokeLinejoin="round" /><path d="M-17,12 L17,12 L24,28 L-24,28 Z" fill={c} opacity={0.6} /></g>),
   book: (c) => (<g><rect x={-26} y={-30} width={52} height={60} rx={5} fill={c} /><rect x={-18} y={-22} width={36} height={8} rx={2} fill="var(--stage-card)" /><rect x={-18} y={-8} width={26} height={5} rx={2} fill="var(--stage-card)" /></g>),
+  flame: (c) => (<g><path d="M0,-34 Q22,-8 16,12 Q12,30 0,32 Q-12,30 -16,12 Q-20,-6 -4,-18 Q-4,-2 4,2 Q8,-14 0,-34 Z" fill={c} /><path d="M0,4 Q10,14 6,24 Q0,30 -6,24 Q-8,14 0,4 Z" fill="var(--stage-card)" opacity={0.7} /></g>),
   person: (c) => (<g fill={c}><circle cy={-16} r={14} /><path d="M-26,32 Q-26,4 0,4 Q26,4 26,32 Z" /></g>),
 };
 
@@ -730,6 +731,75 @@ function Icon({ p }: { p: Props }) {
         const lines = wrap(label, 18);
         return <g transform={`translate(0,${64 + ((lines.length - 1) * 15 * 1.25) / 2})`}><Text lines={lines} size={15} fill="var(--ink)" weight={700} /></g>;
       })()}
+    </g>
+  );
+}
+
+/* ---------------- proteins & devices ---------------- */
+
+/** One protein: fold 0 = normal curly (α-helix rich), 1 = flat misfolded sheet (β-sheet rich). */
+function ProteinShape({ fold, size }: { fold: number; size: number }) {
+  const f = clamp(fold);
+  const coil = (dy: number) => {
+    let d = `M${-size * 0.6},${dy}`;
+    for (let i = 0; i <= 12; i++) {
+      const x = -size * 0.6 + (i / 12) * size * 1.2;
+      const y = dy + Math.sin(i * 1.4) * size * 0.16 * (1 - f);
+      d += ` L${x},${y}`;
+    }
+    return d;
+  };
+  const good = 'var(--good)';
+  const bad = 'var(--bad)';
+  return (
+    <g>
+      <ellipse rx={size * (0.85 + f * 0.25)} ry={size * (0.6 - f * 0.22)} fill="var(--stage-card)" stroke={f > 0.5 ? bad : good} strokeWidth={2.5} />
+      {[-0.25, 0, 0.25].map((k, i) => (
+        <path key={i} d={coil(k * size * (1 - f * 0.3))} fill="none" stroke={f > 0.5 ? bad : good} strokeWidth={size * 0.09} strokeLinecap="round" strokeLinejoin="round" />
+      ))}
+      {f > 0.5 && [-0.25, 0, 0.25].map((k, i) => (
+        <path key={`a${i}`} d={`M${size * 0.5},${k * size * 0.7 - size * 0.08} L${size * 0.66},${k * size * 0.7} L${size * 0.5},${k * size * 0.7 + size * 0.08}`} fill="none" stroke={bad} strokeWidth={size * 0.07} opacity={(f - 0.5) * 2} />
+      ))}
+      <circle cx={-size * 0.25} cy={-size * 0.42 + f * size * 0.12} r={size * 0.06} fill="var(--face)" />
+      <circle cx={size * 0.1} cy={-size * 0.42 + f * size * 0.12} r={size * 0.06} fill="var(--face)" />
+    </g>
+  );
+}
+
+function Prion({ p }: { p: Props }) {
+  const size = num(p, 'size', 40);
+  const fold = num(p, 'fold', 0);
+  const stack = Math.round(num(p, 'stack', 1));
+  const hl = num(p, 'highlight', 0);
+  const label = str(p, 'label', '');
+  const lines = wrap(label, 18);
+  return (
+    <g>
+      {hl > 0 && <circle r={size * 1.5} fill="none" stroke="var(--accent)" strokeWidth={4} opacity={hl} />}
+      {Array.from({ length: stack }, (_, i) => (
+        <g key={i} transform={`translate(${(i - (stack - 1) / 2) * size * 0.95},${i % 2 ? size * 0.12 : -size * 0.12})`}>
+          <ProteinShape fold={fold} size={size} />
+        </g>
+      ))}
+      {label && <g transform={`translate(0,${size + 22 + ((lines.length - 1) * 15 * 1.25) / 2})`}><Text lines={lines} size={15} fill="var(--ink)" weight={700} /></g>}
+    </g>
+  );
+}
+
+function Autoclave({ p }: { p: Props }) {
+  const heat = clamp(num(p, 'heat', 0));
+  const temp = str(p, 'temp', '');
+  const label = str(p, 'label', 'Autoclave');
+  return (
+    <g>
+      <rect x={-100} y={-80} width={200} height={160} rx={18} fill="var(--device)" stroke={heat > 0.05 ? 'var(--bad)' : 'var(--line)'} strokeWidth={2 + heat * 4} />
+      <circle cx={-20} cy={0} r={52} fill="var(--device-dark)" stroke="var(--line)" strokeWidth={3} />
+      <circle cx={-20} cy={0} r={40} fill="var(--bad)" opacity={heat * 0.35} />
+      <rect x={44} y={-50} width={44} height={26} rx={5} fill="var(--stage-card)" stroke="var(--line)" />
+      <g transform="translate(66,-37)"><Text lines={[temp]} size={11} fill="var(--ink)" weight={800} /></g>
+      <rect x={52} y={0} width={28} height={8} rx={4} fill="var(--line)" />
+      <rect x={52} y={16} width={28} height={8} rx={4} fill="var(--line)" />
+      <g transform="translate(0,104)"><Text lines={[label]} size={15} fill="var(--ink)" weight={700} /></g>
     </g>
   );
 }
@@ -757,6 +827,8 @@ export const VISUALS: Record<VisualType, Renderer> = {
   token: Token,
   bin: Bin,
   icon: Icon,
+  prion: Prion,
+  autoclave: Autoclave,
 };
 
 /** Positions any visual using the shared transform props. */

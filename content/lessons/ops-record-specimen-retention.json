@@ -1,0 +1,2260 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-record-specimen-retention",
+  "title": "How Long Do We Keep It? Specimens and Records",
+  "summary": "Sort specimens and records onto a timeline, see which retention periods come from CLIA law and which from CAP recommendations, and answer the add-on and inspector questions.",
+  "domain": "p1-ops",
+  "topic": "ch1",
+  "conceptIds": [
+    "ch1.hit5",
+    "ch1.hit6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 1,
+        "section": "High-Yield Hits",
+        "items": [
+          5,
+          6
+        ]
+      },
+      {
+        "chapter": 1,
+        "section": "Number Vault",
+        "items": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 1 Hits 5–6 and Number Vault rows 8–16 (retention). Separates CLIA legal minimums from CAP recommendations, which the reviewer presents together. The Number Vault concept (21 rows, incl. lab design and workforce figures) is not fully covered here, so it is not counted."
+  },
+  "prerequisites": [
+    "ch1.hit1"
+  ],
+  "objectives": [
+    "Give common retention periods for urine, serum/plasma/CSF, smears and surgical wet tissue.",
+    "Give retention periods for QC records, requisitions, blood bank QC, blood bank donor/patient records and cytogenetics reports.",
+    "Distinguish CLIA legal minimums from CAP recommendations and FDA blood-product rules.",
+    "Decide whether an add-on test request can be met, considering both retention and analyte stability."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Can we still test that tube?",
+      "start": 0,
+      "end": 20,
+      "altText": "A doctor calls the lab two days after a blood draw asking to add a test to yesterday’s serum. The scientist looks at a storage rack and a calendar. A second request asks for a five-year-old blood bank quality-control record. Two question marks appear: how long must specimens and records be kept?",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Two days after a blood draw, a doctor phones: “Can you add one more test to that serum?”"
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 13.5,
+          "text": "The same week, an inspector asks to see blood bank quality-control records from five years ago."
+        },
+        {
+          "id": "h3",
+          "start": 13.5,
+          "end": 20,
+          "text": "Whether the lab can say yes depends on two kinds of retention rules: how long we keep specimens, and how long we keep records."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 150,
+            "y": 300,
+            "expression": "curious",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "phone",
+          "type": "bubble",
+          "props": {
+            "x": 420,
+            "y": 110,
+            "w": 330,
+            "text": "“Add one more test to Monday’s serum?”",
+            "tail": "left",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tube",
+          "type": "specimen",
+          "props": {
+            "x": 640,
+            "y": 170,
+            "top": "red",
+            "separated": 1,
+            "label": "Serum, drawn 2 days ago",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cal",
+          "type": "token",
+          "props": {
+            "x": 820,
+            "y": 200,
+            "w": 150,
+            "label": "Day 2",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "insp",
+          "type": "icon",
+          "props": {
+            "x": 420,
+            "y": 400,
+            "glyph": "magnifier",
+            "color": "b",
+            "label": "Inspector",
+            "scale": 0.8,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "rec",
+          "type": "document",
+          "props": {
+            "x": 640,
+            "y": 440,
+            "w": 200,
+            "h": 90,
+            "title": "Blood bank QC record",
+            "sub": "5 years old",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q1",
+          "type": "label",
+          "props": {
+            "x": 820,
+            "y": 150,
+            "text": "?",
+            "size": 60,
+            "weight": 900,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "type": "label",
+          "props": {
+            "x": 820,
+            "y": 430,
+            "text": "?",
+            "size": 60,
+            "weight": 900,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "two",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 515,
+            "text": "Specimen retention  ·  Record retention",
+            "size": 19,
+            "weight": 800,
+            "color": "accent",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Why things are kept — and for how long",
+      "start": 20,
+      "end": 62,
+      "altText": "A timeline bar runs from hours to decades. Specimen chips drop onto the short end: urine 24 hours, serum, plasma, CSF and body fluids 48 hours, smears 7 days, surgical wet tissue 2 weeks after the final report. Record chips drop further along: quality-control records and requisitions 2 years, blood bank QC 5 years, blood bank donor and patient records 10 years, cytogenetics reports 20 years. A note says the farther a result’s consequences reach, the longer it is kept.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 27,
+          "text": "Specimens are kept so the lab can re-test or add a test while the sample is still usable. Records are kept so anyone can later trace what was done, by whom, and with what quality control."
+        },
+        {
+          "id": "n2",
+          "start": 27,
+          "end": 34,
+          "text": "Specimens don’t last long. A common recommendation: urine for 24 hours; serum, plasma, CSF and other body fluids for 48 hours."
+        },
+        {
+          "id": "n3",
+          "start": 34,
+          "end": 40,
+          "text": "Blood and body-fluid smears for 7 days. Surgical wet tissue for 2 weeks after the final report."
+        },
+        {
+          "id": "n4",
+          "start": 40,
+          "end": 47,
+          "text": "Records last much longer. Quality-control records, requisitions and test reports: at least 2 years."
+        },
+        {
+          "id": "n5",
+          "start": 47,
+          "end": 55,
+          "text": "Blood bank quality-control records: 5 years. Blood bank donor and patient records: 10 years. Cytogenetics reports: 20 years."
+        },
+        {
+          "id": "n6",
+          "start": 55,
+          "end": 62,
+          "text": "The pattern: the longer a result can still matter to a patient or their family, the longer the lab keeps it."
+        }
+      ],
+      "objects": [
+        {
+          "id": "why1",
+          "type": "token",
+          "props": {
+            "x": 290,
+            "y": 200,
+            "w": 280,
+            "label": "Specimens → re-test or add a test",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6.6,
+              "opacity": 1
+            },
+            {
+              "t": 7.199999999999999,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "why2",
+          "type": "token",
+          "props": {
+            "x": 670,
+            "y": 200,
+            "w": 280,
+            "label": "Records → trace who, what, when, QC",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6.6,
+              "opacity": 1
+            },
+            {
+              "t": 7.199999999999999,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "bar",
+          "type": "arrow",
+          "props": {
+            "x": 60,
+            "y": 300,
+            "dx": 840,
+            "dy": 0,
+            "draw": 0,
+            "color": "muted"
+          },
+          "keys": [
+            {
+              "t": 7,
+              "draw": 0
+            },
+            {
+              "t": 9,
+              "draw": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "tShort",
+          "type": "label",
+          "props": {
+            "x": 90,
+            "y": 330,
+            "text": "hours",
+            "size": 14,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tLong",
+          "type": "label",
+          "props": {
+            "x": 880,
+            "y": 330,
+            "text": "decades",
+            "size": 14,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s1",
+          "type": "token",
+          "props": {
+            "x": 90,
+            "y": 255,
+            "w": 130,
+            "label": "Urine 24 h",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0,
+              "y": 140
+            },
+            {
+              "t": 9.8,
+              "opacity": 1,
+              "ease": "out",
+              "y": 250
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "token",
+          "props": {
+            "x": 170,
+            "y": 185,
+            "w": 250,
+            "wrap": 30,
+            "label": "Serum · plasma · CSF · fluids 48 h",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "y": 140
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out",
+              "y": 200
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 255,
+            "w": 130,
+            "label": "Smears 7 days",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "y": 140
+            },
+            {
+              "t": 15.3,
+              "opacity": 1,
+              "ease": "out",
+              "y": 250
+            }
+          ]
+        },
+        {
+          "id": "s4",
+          "type": "token",
+          "props": {
+            "x": 400,
+            "y": 110,
+            "w": 240,
+            "wrap": 26,
+            "label": "Surgical wet tissue 2 wk after report",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16,
+              "opacity": 0,
+              "y": 140
+            },
+            {
+              "t": 16.8,
+              "opacity": 1,
+              "ease": "out",
+              "y": 150
+            }
+          ]
+        },
+        {
+          "id": "r1",
+          "type": "document",
+          "props": {
+            "x": 420,
+            "y": 380,
+            "w": 170,
+            "h": 80,
+            "title": "QC · requisitions · reports",
+            "sub": "≥ 2 years",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "y": 460
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out",
+              "y": 380
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "type": "document",
+          "props": {
+            "x": 605,
+            "y": 380,
+            "w": 160,
+            "h": 80,
+            "title": "Blood bank QC",
+            "sub": "5 years",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0,
+              "y": 460
+            },
+            {
+              "t": 28.3,
+              "opacity": 1,
+              "ease": "out",
+              "y": 380
+            }
+          ]
+        },
+        {
+          "id": "r3",
+          "type": "document",
+          "props": {
+            "x": 790,
+            "y": 380,
+            "w": 170,
+            "h": 80,
+            "title": "Blood bank donor & patient",
+            "sub": "10 years",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29.5,
+              "opacity": 0,
+              "y": 460
+            },
+            {
+              "t": 30.3,
+              "opacity": 1,
+              "ease": "out",
+              "y": 380
+            }
+          ]
+        },
+        {
+          "id": "r4",
+          "type": "document",
+          "props": {
+            "x": 860,
+            "y": 210,
+            "w": 150,
+            "h": 80,
+            "title": "Cytogenetics reports",
+            "sub": "20 years",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0,
+              "y": 460
+            },
+            {
+              "t": 32.3,
+              "opacity": 1,
+              "ease": "out",
+              "y": 210
+            }
+          ]
+        },
+        {
+          "id": "pattern",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 495,
+            "text": "Longer-lasting consequences → longer retention",
+            "size": 20,
+            "weight": 800,
+            "color": "accent",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35,
+              "opacity": 0
+            },
+            {
+              "t": 36,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Law minimum vs recommendation",
+      "start": 62,
+      "end": 100,
+      "altText": "Two stacked layers: the bottom layer, labelled CLIA (federal law), shows minimums such as 2 years for most records, 5 years for cytology slides, 10 years for pathology reports and histopathology slides, and 2 years for paraffin blocks. The top layer, CAP recommendations, raises some of them — for example, paraffin blocks to 10 years. A third layer for state law and the laboratory director sits on top. A blood-product record chip is labelled 10 years by FDA rule.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 62,
+          "end": 69,
+          "text": "Where do these numbers come from? The bottom layer is the law. Under CLIA, most lab records — requisitions, QC and patient test records, proficiency testing, reports — must be kept at least 2 years."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 77,
+          "text": "CLIA sets longer floors for some items: cytology slides 5 years, pathology reports and histopathology slides 10 years, and pathology blocks 2 years."
+        },
+        {
+          "id": "c3",
+          "start": 77,
+          "end": 85,
+          "text": "On top of the law, accreditors such as CAP recommend periods that meet or exceed CLIA. For example, CAP recommends keeping surgical paraffin blocks 10 years, not 2."
+        },
+        {
+          "id": "c4",
+          "start": 85,
+          "end": 92,
+          "text": "Blood bank records follow FDA rules too: individual blood-product records are kept at least 10 years."
+        },
+        {
+          "id": "c5",
+          "start": 92,
+          "end": 100,
+          "text": "And state laws or the laboratory director can require longer still. So the exam question is usually: which is the minimum, and who sets it?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "law",
+          "type": "card",
+          "props": {
+            "x": 300,
+            "y": 330,
+            "w": 520,
+            "h": 290,
+            "tone": "b",
+            "title": "CLIA (federal law) — minimums",
+            "lines": [
+              "Requisitions, QC & patient test records, PT, reports: ≥ 2 years",
+              "Test procedures: 2 years after discontinued",
+              "Cytology slides: 5 years",
+              "Pathology reports & histopathology slides: 10 years",
+              "Pathology blocks: 2 years · tissue until diagnosis"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 6,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 7,
+              "reveal": 2
+            },
+            {
+              "t": 7.5,
+              "reveal": 2
+            },
+            {
+              "t": 13.5,
+              "reveal": 5,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "cap",
+          "type": "card",
+          "props": {
+            "x": 760,
+            "y": 200,
+            "w": 360,
+            "h": 170,
+            "tone": "a",
+            "title": "CAP recommendations (≥ CLIA)",
+            "lines": [
+              "Surgical paraffin blocks: 10 years",
+              "Cytogenetics reports & images: 20 years"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15,
+              "opacity": 0,
+              "x": 820
+            },
+            {
+              "t": 16,
+              "opacity": 1,
+              "ease": "out",
+              "x": 760
+            },
+            {
+              "t": 16,
+              "reveal": 0
+            },
+            {
+              "t": 21,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "fda",
+          "type": "document",
+          "props": {
+            "x": 760,
+            "y": 380,
+            "w": 300,
+            "h": 80,
+            "title": "Blood-product records (FDA)",
+            "sub": "≥ 10 years",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23,
+              "opacity": 0
+            },
+            {
+              "t": 24,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "state",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 480,
+            "w": 330,
+            "label": "State law · laboratory director: may require longer",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30,
+              "opacity": 0,
+              "y": 60
+            },
+            {
+              "t": 31,
+              "opacity": 1,
+              "ease": "out",
+              "y": 90
+            }
+          ]
+        },
+        {
+          "id": "up",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 480,
+            "dx": 0,
+            "dy": -150,
+            "draw": 0,
+            "color": "accent",
+            "label": "longer"
+          },
+          "keys": [
+            {
+              "t": 31,
+              "draw": 0
+            },
+            {
+              "t": 32.5,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "At the bench: answering the two calls",
+      "start": 100,
+      "end": 138,
+      "altText": "Back to the opening calls. The 2-day-old serum is still within the 48-hour window only if it was drawn less than 48 hours ago and stored properly — and the new test must be valid on stored serum. The blood bank QC record from five years ago is still within the 5-year retention period. A checklist reminds that stability of the analyte, not just the retention rule, decides whether an add-on is valid.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 108,
+          "text": "Back to the phone call. Serum is typically kept 48 hours. A sample drawn just under two days ago may still be on the rack."
+        },
+        {
+          "id": "l2",
+          "start": 108,
+          "end": 116,
+          "text": "But being on the rack isn’t enough. The analyte must be stable in stored serum for that long, or the add-on result can’t be trusted."
+        },
+        {
+          "id": "l3",
+          "start": 116,
+          "end": 123,
+          "text": "Now the inspector. Blood bank QC records are kept 5 years, so a five-year-old record should still be available — just."
+        },
+        {
+          "id": "l4",
+          "start": 123,
+          "end": 131,
+          "text": "Most labs keep a written retention policy that lists every specimen and record type, based on the strictest rule that applies to them."
+        },
+        {
+          "id": "l5",
+          "start": 131,
+          "end": 138,
+          "text": "If a lab closes, it must still arrange for its records, slides and blocks to stay available for the required time."
+        }
+      ],
+      "objects": [
+        {
+          "id": "rack",
+          "type": "tube",
+          "props": {
+            "x": 150,
+            "y": 180,
+            "label": "Serum",
+            "fluid": "plasma",
+            "cells": 1,
+            "settle": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "clock",
+          "type": "token",
+          "props": {
+            "x": 330,
+            "y": 230,
+            "w": 180,
+            "label": "Drawn 44 h ago",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "win",
+          "type": "token",
+          "props": {
+            "x": 330,
+            "y": 300,
+            "w": 180,
+            "label": "Kept 48 h ✓",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "stab",
+          "type": "card",
+          "props": {
+            "x": 650,
+            "y": 240,
+            "w": 440,
+            "h": 150,
+            "tone": "warn",
+            "title": "Add-on check",
+            "lines": [
+              "Is it still within retention?",
+              "Is the analyte stable that long in stored serum?"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "qcrec",
+          "type": "document",
+          "props": {
+            "x": 200,
+            "y": 440,
+            "w": 220,
+            "h": 90,
+            "title": "Blood bank QC record",
+            "sub": "5 years old",
+            "stampText": "KEPT",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "stamp": 0
+            },
+            {
+              "t": 18,
+              "stamp": 0
+            },
+            {
+              "t": 19,
+              "stamp": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "pol",
+          "type": "document",
+          "props": {
+            "x": 520,
+            "y": 440,
+            "w": 240,
+            "h": 100,
+            "title": "Retention policy",
+            "sub": "every specimen & record type · strictest rule wins",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23,
+              "opacity": 0
+            },
+            {
+              "t": 24,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "close",
+          "type": "token",
+          "props": {
+            "x": 820,
+            "y": 440,
+            "w": 220,
+            "label": "Lab closing? Records must stay available",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31,
+              "opacity": 0
+            },
+            {
+              "t": 32,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Numbers the exam swaps",
+      "start": 138,
+      "end": 166,
+      "altText": "Two comparison cards: specimens (hours to weeks — urine 24 h, serum/plasma/CSF 48 h, smears 7 days, wet tissue 2 weeks) versus records (years — 2, 5, 10, 20). Then CLIA minimums versus CAP recommendations, with paraffin blocks as the classic difference (2 vs 10 years).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 138,
+          "end": 145,
+          "text": "Exam pair one: specimens versus records. Specimens are kept for hours to weeks; records for years."
+        },
+        {
+          "id": "e2",
+          "start": 145,
+          "end": 152,
+          "text": "Urine 24 hours, serum 48, smears 7 days, wet tissue 2 weeks — versus records at 2, 5, 10 and 20 years."
+        },
+        {
+          "id": "e3",
+          "start": 152,
+          "end": 159,
+          "text": "Exam pair two: the law’s minimum versus an accreditor’s recommendation."
+        },
+        {
+          "id": "e4",
+          "start": 159,
+          "end": 166,
+          "text": "CLIA keeps pathology blocks at least 2 years; CAP recommends 10. When asked for the legal minimum, answer CLIA."
+        }
+      ],
+      "objects": [
+        {
+          "id": "spc",
+          "type": "card",
+          "props": {
+            "x": 255,
+            "y": 280,
+            "w": 410,
+            "h": 260,
+            "tone": "good",
+            "title": "Specimens: hours → weeks",
+            "lines": [
+              "Urine: 24 h",
+              "Serum / plasma / CSF / fluids: 48 h",
+              "Smears: 7 days",
+              "Surgical wet tissue: 2 weeks after report"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "x": 215
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "x": 255
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 7,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 13.4,
+              "opacity": 1
+            },
+            {
+              "t": 14.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "rcd",
+          "type": "card",
+          "props": {
+            "x": 705,
+            "y": 280,
+            "w": 410,
+            "h": 260,
+            "tone": "b",
+            "title": "Records: years",
+            "lines": [
+              "QC, requisitions, reports: 2",
+              "Blood bank QC: 5",
+              "Blood bank donor/patient: 10",
+              "Cytogenetics reports: 20"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.6,
+              "opacity": 0,
+              "x": 745
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out",
+              "x": 705
+            },
+            {
+              "t": 7,
+              "reveal": 0
+            },
+            {
+              "t": 13,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 13.4,
+              "opacity": 1
+            },
+            {
+              "t": 14.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "clia",
+          "type": "card",
+          "props": {
+            "x": 255,
+            "y": 280,
+            "w": 410,
+            "h": 260,
+            "tone": "b",
+            "title": "CLIA (law: minimum)",
+            "lines": [
+              "Most records ≥ 2 years",
+              "Pathology blocks ≥ 2 years",
+              "Histopath slides & path reports ≥ 10 years"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 15,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 0
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "capc",
+          "type": "card",
+          "props": {
+            "x": 705,
+            "y": 280,
+            "w": 410,
+            "h": 260,
+            "tone": "a",
+            "title": "CAP (recommendation: ≥ CLIA)",
+            "lines": [
+              "Surgical paraffin blocks 10 years",
+              "Cytogenetics reports 20 years",
+              "Labs may keep longer"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.6,
+              "opacity": 0
+            },
+            {
+              "t": 15.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 27,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "key",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "text": "“Minimum required by law?” → CLIA",
+            "size": 19,
+            "weight": 800,
+            "color": "accent",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Hours climb to days; years climb a ladder",
+      "start": 166,
+      "end": 188,
+      "altText": "Memory aid: a short staircase labelled 24 h → 48 h → 7 days → 2 weeks for specimens, and a tall ladder labelled 2 → 5 → 10 → 20 years for records, each rung tagged: QC, blood bank QC, blood bank patients, cytogenetics. A card lists where the aid breaks down.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 166,
+          "end": 172,
+          "text": "Memory aid: specimens climb a short staircase — 24 hours, 48 hours, 7 days, 2 weeks."
+        },
+        {
+          "id": "m2",
+          "start": 172,
+          "end": 179,
+          "text": "Records climb a tall ladder — 2, 5, 10, 20 years: QC, blood bank QC, blood bank patients, cytogenetics. The higher the stakes, the higher the rung."
+        },
+        {
+          "id": "m3",
+          "start": 179,
+          "end": 188,
+          "text": "Where it breaks: these are common minimums from CLIA and CAP. Some items differ — pathology slides and reports sit at 10 years — and state law or your lab director can raise any of them."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 55,
+            "text": "Short staircase · Tall ladder",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "st0",
+          "type": "token",
+          "props": {
+            "x": 120,
+            "y": 330,
+            "w": 120,
+            "label": "24 h",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.0,
+              "opacity": 0
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "st1",
+          "type": "token",
+          "props": {
+            "x": 190,
+            "y": 280,
+            "w": 120,
+            "label": "48 h",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.1,
+              "opacity": 0
+            },
+            {
+              "t": 2.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "st2",
+          "type": "token",
+          "props": {
+            "x": 260,
+            "y": 230,
+            "w": 120,
+            "label": "7 days",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.2,
+              "opacity": 0
+            },
+            {
+              "t": 3.8000000000000003,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "st3",
+          "type": "token",
+          "props": {
+            "x": 330,
+            "y": 180,
+            "w": 120,
+            "label": "2 weeks",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.300000000000001,
+              "opacity": 0
+            },
+            {
+              "t": 4.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ld0",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 400,
+            "w": 260,
+            "label": "2 y · QC & requisitions",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.5,
+              "opacity": 0
+            },
+            {
+              "t": 7.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ld1",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 315,
+            "w": 260,
+            "label": "5 y · blood bank QC",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.8,
+              "opacity": 0
+            },
+            {
+              "t": 8.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ld2",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 230,
+            "w": 260,
+            "label": "10 y · blood bank patients",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.1,
+              "opacity": 0
+            },
+            {
+              "t": 9.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ld3",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 145,
+            "w": 260,
+            "label": "20 y · cytogenetics",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.4,
+              "opacity": 0
+            },
+            {
+              "t": 11.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 820,
+            "h": 80,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Common minimums only · pathology slides & reports 10 y · state law / director may require longer"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.5,
+              "reveal": 0
+            },
+            {
+              "t": 16.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 188,
+      "end": 198,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 188,
+          "end": 193,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 193,
+          "end": 198,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 198,
+      "end": 210,
+      "altText": "A short staircase of specimen times and a tall ladder of record times sit side by side, with the CLIA floor beneath both.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 198,
+          "end": 210,
+          "text": "Labs keep specimens for hours to weeks so they can re-test, and records for years — at least the CLIA minimum, often longer by CAP, FDA, state or director rules — so that results can always be traced."
+        }
+      ],
+      "objects": [
+        {
+          "id": "spec",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 260,
+            "label": "Specimens: hours → weeks (re-test)",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "recs",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 200,
+            "w": 260,
+            "label": "Records: years (trace)",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "floor",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 520,
+            "label": "Floor: CLIA minimum · above it: CAP, FDA, state, director",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0,
+              "y": 420
+            },
+            {
+              "t": 4.5,
+              "opacity": 1,
+              "ease": "out",
+              "y": 380
+            }
+          ]
+        },
+        {
+          "id": "ok",
+          "type": "icon",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "glyph": "check",
+            "color": "good",
+            "scale": 0.8,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 7.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a lab keeps two kinds of things after testing — the leftover specimens, for a short time, and the paperwork (records), for years. Scientific terms: specimen retention and record retention. Common minimums: urine 24 hours; serum, plasma, CSF and body fluids 48 hours; blood and body-fluid smears 7 days; surgical wet tissue 2 weeks after the final report; QC records, requisitions, patient test records and reports at least 2 years; blood bank QC 5 years; blood bank donor and patient records 10 years; cytogenetics reports 20 years.",
+    "why": "Specimens are kept so a test can be repeated or added while the sample is still usable; most analytes do not stay stable for long, so retention is short. Records are kept so that anyone — an inspector, a clinician, an investigator after a transfusion reaction — can trace what was done, when, by whom and under what quality control. The longer a result can matter (a transfusion history, a cancer diagnosis, a heritable chromosome finding), the longer the record is kept.",
+    "measure": "This is an operations concept: the lab follows a written retention policy that lists every specimen and record type and uses the strictest rule that applies. When an add-on request arrives, the lab checks both that the specimen is still within its retention period and that the requested analyte is stable in that stored specimen. If a lab ceases operation, it must still arrange for its records, slides, blocks and tissue to remain available for the required time.",
+    "differs": "CLIA (42 CFR 493.1105) sets federal minimums: most records 2 years, cytology slides 5 years, pathology reports and histopathology slides 10 years, pathology blocks 2 years, and tissue until diagnosis. CAP recommends periods that meet or exceed CLIA — for example, surgical paraffin blocks 10 years and cytogenetics reports 20 years. FDA rules (21 CFR 606.160) require individual blood-product records for at least 10 years. State law or the laboratory director may require longer.",
+    "examAngle": "Expect direct recall (how long are QC records kept? how long is urine kept?), the 2-5-10-20 record sequence, and questions that test whether you know a value is a legal minimum (CLIA) or an accreditor recommendation (CAP). Pathology blocks (CLIA 2 years vs CAP 10 years) are a common way to test that distinction."
+  },
+  "comparisons": [
+    {
+      "id": "specimens-vs-records",
+      "title": "Specimen retention vs record retention",
+      "left": {
+        "label": "Specimens",
+        "points": [
+          "Hours to weeks",
+          "Purpose: re-test or add a test",
+          "Limited by stability of the sample"
+        ]
+      },
+      "right": {
+        "label": "Records",
+        "points": [
+          "Years (2, 5, 10, 20)",
+          "Purpose: trace who, what, when and QC",
+          "Longer where consequences last longer"
+        ]
+      },
+      "distinguisher": "Specimens are kept to repeat a measurement; records are kept to reconstruct what happened."
+    },
+    {
+      "id": "clia-vs-cap",
+      "title": "CLIA minimum vs CAP recommendation",
+      "left": {
+        "label": "CLIA (federal law)",
+        "points": [
+          "Legal minimum for every certified lab",
+          "Most records ≥ 2 years",
+          "Pathology blocks ≥ 2 years"
+        ]
+      },
+      "right": {
+        "label": "CAP (accreditor)",
+        "points": [
+          "Recommendations that meet or exceed CLIA",
+          "Surgical paraffin blocks 10 years",
+          "Cytogenetics reports 20 years"
+        ]
+      },
+      "distinguisher": "If the question asks what the law requires, use CLIA; if it asks what an accredited lab keeps, CAP’s longer periods may apply."
+    }
+  ],
+  "mnemonic": {
+    "text": "Specimens climb a short staircase (24 h → 48 h → 7 d → 2 wk); records climb a tall ladder (2 → 5 → 10 → 20 years).",
+    "explanation": "The staircase is urine, serum/plasma/CSF, smears and wet tissue; the ladder is QC and requisitions, blood bank QC, blood bank donor and patient records, and cytogenetics reports. Higher stakes, higher rung.",
+    "limitation": "These are common minimums blending CLIA and CAP. Some items sit elsewhere (pathology reports and histopathology slides are 10 years; cytology slides 5; CLIA keeps blocks 2 years while CAP recommends 10), and state law or the laboratory director can extend any period. The staircase also says nothing about analyte stability, which decides whether an add-on is valid."
+  },
+  "analogyLimitations": [
+    "The timeline is not to scale: hours and decades are squeezed onto one bar.",
+    "Chips and documents stand for categories; real retention policies list many more item types (e.g. instrument maintenance, flow cytometry plots, autopsy material).",
+    "Numbers shown are the minimums named in the cited sources; local policy may be longer."
+  ],
+  "takeaway": "Labs keep specimens for hours to weeks so they can re-test, and records for years — at least the CLIA minimum, often longer by CAP, FDA, state or director rules — so that results can always be traced.",
+  "questions": [
+    {
+      "id": "ops-ret-q1",
+      "stem": "Under CLIA, what is the minimum retention period for quality control records and test requisitions?",
+      "options": [
+        {
+          "id": "a",
+          "text": "2 years",
+          "rationale": "Correct. CLIA (42 CFR 493.1105) requires test requisitions, QC and patient test records, proficiency testing records and test reports to be kept for at least 2 years."
+        },
+        {
+          "id": "b",
+          "text": "5 years",
+          "rationale": "Incorrect. Five years is the period for cytology slides (CLIA) and for blood bank QC records (CAP recommendation), not general QC records."
+        },
+        {
+          "id": "c",
+          "text": "10 years",
+          "rationale": "Incorrect. Ten years applies to pathology reports and histopathology slides (CLIA) and to blood bank donor/patient records — not general QC records."
+        },
+        {
+          "id": "d",
+          "text": "20 years",
+          "rationale": "Incorrect. Twenty years is CAP’s recommendation for cytogenetics reports and images."
+        }
+      ],
+      "answer": "a",
+      "skill": "Recall record retention periods",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ops-ret-q2",
+      "stem": "A physician asks to add a test to a urine specimen collected 30 hours ago. The lab follows the common CAP recommendations. What is the most likely answer?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The specimen has probably been discarded; urine is commonly kept for 24 hours, so a new specimen is needed",
+          "rationale": "Correct. CAP recommends keeping urine 24 hours (exceptions at the laboratory director’s discretion). At 30 hours the specimen is likely gone — and even if present, analyte stability would need checking."
+        },
+        {
+          "id": "b",
+          "text": "Yes — urine is kept for 7 days",
+          "rationale": "Incorrect. Seven days is the recommendation for blood and body-fluid smears, not urine."
+        },
+        {
+          "id": "c",
+          "text": "Yes — all clinical pathology specimens are kept for 2 years",
+          "rationale": "Incorrect. Two years is the retention for records such as patient test records, not for the specimens themselves."
+        },
+        {
+          "id": "d",
+          "text": "Yes — urine is kept for 48 hours like serum",
+          "rationale": "Incorrect. Serum, plasma, CSF and other body fluids are kept 48 hours, but urine is the exception at 24 hours."
+        }
+      ],
+      "answer": "a",
+      "skill": "Apply specimen retention to add-on requests",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-ret-q3",
+      "stem": "An accredited lab keeps surgical pathology paraffin blocks for 10 years. An inspector asks what the federal CLIA minimum is. Which answer is correct?",
+      "options": [
+        {
+          "id": "a",
+          "text": "2 years — the 10-year period is a CAP recommendation that exceeds CLIA",
+          "rationale": "Correct. CLIA requires pathology specimen blocks to be kept at least 2 years; CAP recommends 10 years, which meets or exceeds the federal minimum."
+        },
+        {
+          "id": "b",
+          "text": "10 years — CLIA and CAP are identical",
+          "rationale": "Incorrect. For blocks they differ: CLIA 2 years, CAP 10 years. (CLIA does require 10 years for histopathology slides and pathology reports.)"
+        },
+        {
+          "id": "c",
+          "text": "5 years",
+          "rationale": "Incorrect. Five years is the CLIA period for cytology slides, not paraffin blocks."
+        },
+        {
+          "id": "d",
+          "text": "Until a diagnosis is made",
+          "rationale": "Incorrect. \"Until diagnosis\" is the CLIA rule for remnants of tissue, not for blocks."
+        }
+      ],
+      "answer": "a",
+      "skill": "Distinguish CLIA minimums from CAP recommendations",
+      "difficulty": "analysis"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch1",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 1, How the Lab Runs: Core Concepts (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 1,
+          "section": "High-Yield Hits",
+          "items": [
+            5,
+            6
+          ]
+        },
+        {
+          "chapter": 1,
+          "section": "Number Vault",
+          "items": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: the retention values taught and their exam emphasis. Not used as verification."
+    },
+    {
+      "id": "cfr493-1105",
+      "kind": "external",
+      "citation": "42 CFR 493.1105 Standard: Retention requirements. Electronic Code of Federal Regulations, retrieved 2026-10-07.",
+      "url": "https://www.ecfr.gov/current/title-42/section-493.1105",
+      "consulted": true,
+      "usedFor": "CLIA minimums: requisitions, QC/patient test records, PT, reports 2 years; procedures 2 years after discontinuation; cytology slides 5 years; histopathology slides and pathology reports 10 years; blocks 2 years; tissue until diagnosis; obligations if the lab closes."
+    },
+    {
+      "id": "cfr606-160",
+      "kind": "external",
+      "citation": "21 CFR 606.160(d) Records (blood and blood components). Electronic Code of Federal Regulations, retrieved 2026-10-07.",
+      "url": "https://www.ecfr.gov/current/title-21/section-606.160",
+      "consulted": true,
+      "usedFor": "Individual blood-product records retained ≥10 years after processing records are completed, or 6 months after the latest expiration date, whichever is later."
+    },
+    {
+      "id": "cap-retention",
+      "kind": "external",
+      "citation": "College of American Pathologists. Retention of Laboratory Records and Materials (revision of March 2010), as reproduced in a document hosted by the North Carolina General Assembly.",
+      "url": "https://webservices.ncleg.gov/ViewDocSiteFile/33038",
+      "consulted": true,
+      "usedFor": "CAP recommendations: urine 24 h; serum/plasma/CSF/body fluids 48 h; smears 7 days; surgical wet tissue 2 weeks after final report; paraffin blocks 10 years; blood bank QC 5 years; donor/patient records 10 years; cytogenetics reports and images 20 years. A dated copy (2010); the current CAP table was not accessible."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-clia-2y",
+      "text": "CLIA requires requisitions, QC and patient test records, PT records and test reports to be kept at least 2 years.",
+      "status": "checked",
+      "refs": [
+        "cfr493-1105"
+      ]
+    },
+    {
+      "id": "cl-clia-path",
+      "text": "CLIA: cytology slides 5 years; histopathology slides and pathology reports 10 years; pathology blocks 2 years; tissue remnants until diagnosis.",
+      "status": "checked",
+      "refs": [
+        "cfr493-1105"
+      ]
+    },
+    {
+      "id": "cl-clia-close",
+      "text": "A laboratory that ceases operation must ensure records, slides, blocks and tissue remain available for the required periods.",
+      "status": "checked",
+      "refs": [
+        "cfr493-1105"
+      ]
+    },
+    {
+      "id": "cl-fda-blood",
+      "text": "Individual blood-product records are kept at least 10 years (or 6 months after latest expiration, whichever is later).",
+      "status": "checked",
+      "refs": [
+        "cfr606-160"
+      ]
+    },
+    {
+      "id": "cl-cap-specimens",
+      "text": "CAP recommends: urine 24 hours; serum, plasma, CSF and body fluids 48 hours; blood/body-fluid smears 7 days; surgical wet tissue 2 weeks after the final report.",
+      "status": "checked",
+      "refs": [
+        "cap-retention"
+      ],
+      "note": "From a 2010 revision; confirm against the current CAP table."
+    },
+    {
+      "id": "cl-cap-records",
+      "text": "CAP recommends: blood bank QC 5 years; blood bank donor and patient records 10 years; cytogenetics reports and images 20 years; surgical paraffin blocks 10 years.",
+      "status": "checked",
+      "refs": [
+        "cap-retention"
+      ],
+      "note": "From a 2010 revision; confirm against the current CAP table."
+    },
+    {
+      "id": "cl-cap-exceeds",
+      "text": "CAP recommendations meet or exceed CLIA; state or federal rules may require longer.",
+      "status": "checked",
+      "refs": [
+        "cap-retention"
+      ]
+    },
+    {
+      "id": "cl-stability",
+      "text": "An add-on test is valid only if the analyte is stable in the stored specimen for that time.",
+      "status": "pending",
+      "note": "General principle; analyte-specific stability data were not consulted."
+    },
+    {
+      "id": "cl-policy",
+      "text": "Labs maintain a written retention policy based on the strictest applicable rule.",
+      "status": "pending",
+      "note": "Common practice; not stated in this form in a consulted source."
+    },
+    {
+      "id": "cl-ladder",
+      "text": "Staircase and ladder memory aid; timeline not to scale.",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-cap-dated",
+      "issue": "The CAP table consulted is a March 2010 revision reproduced by a third party; the current CAP table could not be accessed. The reviewer also cites CAP 2009.",
+      "kind": "outdated",
+      "status": "open"
+    },
+    {
+      "id": "f-mixed-sources",
+      "issue": "The reviewer presents CLIA and CAP values together as one list (e.g. \"2 years = QC records\"; \"cytology slides = 5 years\") without saying which are legal minimums and which are recommendations. The lesson separates them.",
+      "kind": "missing-context",
+      "status": "resolved",
+      "resolution": "Lesson teaches CLIA vs CAP explicitly."
+    },
+    {
+      "id": "f-ph",
+      "issue": "Philippine retention rules (DOH) are not covered; MTLE learners should check DOH requirements.",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "An operations concept; visuals are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "7 claims checked against CLIA (42 CFR 493.1105), FDA (21 CFR 606.160) and a 2010 copy of the CAP retention table, all read for this lesson; 2 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-07"
+}
