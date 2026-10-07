@@ -1,0 +1,2266 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-reimbursement-drg-payment-window",
+  "title": "Who Pays for the Lab? DRGs and the 3-Day Window",
+  "summary": "See why a fixed per-stay payment turned the inpatient lab into a cost center, and watch pre-admission lab tests fold into the inpatient claim under Medicare’s payment window.",
+  "domain": "p1-ops",
+  "topic": "ch1",
+  "conceptIds": [
+    "ch1.hit8",
+    "ch1.hit9",
+    "ch1.trap5"
+  ],
+  "tracks": [
+    "ascp"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 1,
+        "section": "High-Yield Hits",
+        "items": [
+          8,
+          9
+        ]
+      },
+      {
+        "chapter": 1,
+        "section": "Exam Traps",
+        "items": [
+          5
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 1 Hits 8–9 and Trap 5. Adds CMS detail the reviewer omits: the window includes the admission day, and non-IPPS hospitals (psychiatric, rehabilitation, long-term care, children’s, cancer) use 1 day. US Medicare-specific, so tagged to the ASCP track only."
+  },
+  "prerequisites": [
+    "ch1.hit1"
+  ],
+  "objectives": [
+    "Explain how Medicare’s Inpatient Prospective Payment System pays hospitals (one predetermined amount per stay, by DRG).",
+    "Explain why prospective payment makes the inpatient laboratory a cost center.",
+    "Apply the 3-day (and 1-day) payment window to outpatient lab tests done before an admission."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Who pays for Monday’s blood test?",
+      "start": 0,
+      "end": 20,
+      "altText": "A calendar shows Monday, Tuesday, Wednesday. On Monday a patient has outpatient blood tests at a hospital clinic; on Wednesday the same patient is admitted to that hospital. A billing clerk holds two claim forms — outpatient and inpatient — and a question mark hovers over Monday’s tests.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "On Monday, a Medicare patient has outpatient blood tests at the hospital’s clinic."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 13.5,
+          "text": "On Wednesday, the same patient is admitted to that hospital."
+        },
+        {
+          "id": "h3",
+          "start": 13.5,
+          "end": 20,
+          "text": "Billing asks: do Monday’s lab tests go on a separate outpatient bill — or inside the inpatient claim? And how does the hospital get paid for the stay at all?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "d0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 110,
+            "w": 150,
+            "label": "Monday",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d1",
+          "type": "token",
+          "props": {
+            "x": 380,
+            "y": 110,
+            "w": 150,
+            "label": "Tuesday",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.0,
+              "opacity": 0
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d2",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 110,
+            "w": 150,
+            "label": "Wednesday",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "labs",
+          "type": "tube",
+          "props": {
+            "x": 200,
+            "y": 200,
+            "label": "Outpatient labs",
+            "fluid": "plasma",
+            "cells": 1,
+            "settle": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0,
+              "y": 240
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out",
+              "y": 200
+            }
+          ]
+        },
+        {
+          "id": "adm",
+          "type": "building",
+          "props": {
+            "x": 560,
+            "y": 360,
+            "w": 170,
+            "h": 120,
+            "sign": "ADMITTED",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7,
+              "opacity": 0
+            },
+            {
+              "t": 8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "clerk",
+          "type": "mascot",
+          "props": {
+            "x": 820,
+            "y": 300,
+            "expression": "curious",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "out",
+          "type": "document",
+          "props": {
+            "x": 320,
+            "y": 475,
+            "w": 170,
+            "h": 60,
+            "title": "Outpatient claim",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 14.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "inp",
+          "type": "document",
+          "props": {
+            "x": 560,
+            "y": 475,
+            "w": 170,
+            "h": 60,
+            "title": "Inpatient claim",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.6,
+              "opacity": 0
+            },
+            {
+              "t": 15.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "label",
+          "props": {
+            "x": 200,
+            "y": 330,
+            "text": "?",
+            "size": 60,
+            "weight": 900,
+            "color": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "One fixed payment per stay: the DRG",
+      "start": 20,
+      "end": 62,
+      "altText": "A patient is sorted into a diagnosis-related group (DRG) box with a fixed payment tag. Test tubes, medicines and bed-days drop into the box one by one, but the payment tag never changes. An arrow labelled “each extra test” points to rising cost, while payment stays flat. The lab is relabelled from “revenue” to “cost center”.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 27,
+          "text": "Since 1983, Medicare has paid hospitals for an inpatient stay with one fixed amount, decided in advance. This is the Inpatient Prospective Payment System."
+        },
+        {
+          "id": "n2",
+          "start": 27,
+          "end": 34,
+          "text": "Each stay is sorted into a diagnosis-related group, or DRG. Each DRG has a weight, and the payment is set by that weight — not by the bill."
+        },
+        {
+          "id": "n3",
+          "start": 34,
+          "end": 41,
+          "text": "Now watch what goes into the box: lab tests, medicines, days in bed. The payment tag doesn’t move."
+        },
+        {
+          "id": "n4",
+          "start": 41,
+          "end": 48,
+          "text": "So for an inpatient stay, every extra test adds cost to the hospital but adds nothing to that stay’s payment."
+        },
+        {
+          "id": "n5",
+          "start": 48,
+          "end": 55,
+          "text": "That is why, under prospective payment, the lab is seen as a cost center rather than a source of revenue for inpatient care."
+        },
+        {
+          "id": "n6",
+          "start": 55,
+          "end": 62,
+          "text": "It rewards labs that avoid unnecessary or duplicate tests — while still running every test the patient truly needs."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pt",
+          "type": "icon",
+          "props": {
+            "x": 150,
+            "y": 230,
+            "glyph": "person",
+            "color": "b",
+            "label": "Inpatient stay",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "a1",
+          "type": "arrow",
+          "props": {
+            "x": 210,
+            "y": 230,
+            "dx": 130,
+            "dy": 0,
+            "draw": 0,
+            "label": "sorted into"
+          },
+          "keys": [
+            {
+              "t": 7,
+              "draw": 0
+            },
+            {
+              "t": 8.2,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "box",
+          "type": "bin",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 230,
+            "h": 170,
+            "label": "DRG",
+            "sub": "weight sets the payment",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pay",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 110,
+            "w": 200,
+            "label": "Fixed payment: $ (set in advance)",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "c0",
+          "type": "token",
+          "props": {
+            "x": 425,
+            "y": 150,
+            "w": 105,
+            "label": "Lab test",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.9,
+              "y": 150
+            },
+            {
+              "t": 15.8,
+              "y": 250,
+              "ease": "in"
+            }
+          ]
+        },
+        {
+          "id": "c1",
+          "type": "token",
+          "props": {
+            "x": 535,
+            "y": 150,
+            "w": 105,
+            "label": "Medicine",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.1,
+              "opacity": 0
+            },
+            {
+              "t": 16.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "y": 150
+            },
+            {
+              "t": 17.4,
+              "y": 250,
+              "ease": "in"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "token",
+          "props": {
+            "x": 425,
+            "y": 150,
+            "w": 105,
+            "label": "Bed-day",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.7,
+              "opacity": 0
+            },
+            {
+              "t": 18.099999999999998,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18.1,
+              "y": 150
+            },
+            {
+              "t": 19.0,
+              "y": 298,
+              "ease": "in"
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "type": "token",
+          "props": {
+            "x": 535,
+            "y": 150,
+            "w": 105,
+            "label": "Lab test",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19.3,
+              "opacity": 0
+            },
+            {
+              "t": 19.7,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19.700000000000003,
+              "y": 150
+            },
+            {
+              "t": 20.6,
+              "y": 298,
+              "ease": "in"
+            }
+          ]
+        },
+        {
+          "id": "cost",
+          "type": "arrow",
+          "props": {
+            "x": 720,
+            "y": 400,
+            "dx": 0,
+            "dy": -220,
+            "draw": 0,
+            "color": "bad",
+            "label": "cost rises"
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "draw": 0
+            },
+            {
+              "t": 23.5,
+              "draw": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "flat",
+          "type": "arrow",
+          "props": {
+            "x": 800,
+            "y": 180,
+            "dx": 120,
+            "dy": 0,
+            "draw": 0,
+            "color": "good",
+            "label": "payment flat"
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "draw": 0
+            },
+            {
+              "t": 24.5,
+              "draw": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "lab",
+          "type": "token",
+          "props": {
+            "x": 180,
+            "y": 440,
+            "w": 260,
+            "label": "Lab = revenue?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28,
+              "opacity": 0
+            },
+            {
+              "t": 29,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "label": "Lab = cost center (inpatient)"
+            }
+          ]
+        },
+        {
+          "id": "wise",
+          "type": "label",
+          "props": {
+            "x": 520,
+            "y": 500,
+            "text": "Right test, once — not more tests",
+            "size": 20,
+            "weight": 800,
+            "color": "accent",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35,
+              "opacity": 0
+            },
+            {
+              "t": 36,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "The 3-day payment window",
+      "start": 62,
+      "end": 100,
+      "altText": "A timeline counts back from the admission day: day of admission, 1, 2 and 3 calendar days before. Outpatient diagnostic tests on those days — including lab tests — slide into the inpatient claim. A test 4 days before stays on the outpatient bill. A second, shorter window of 1 day is shown for psychiatric, rehabilitation, long-term care, children’s and cancer hospitals.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 62,
+          "end": 69,
+          "text": "Back to Monday’s tests. Medicare has a rule called the payment window."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 77,
+          "text": "For hospitals paid under the inpatient prospective payment system, outpatient diagnostic services in the 3 calendar days before admission — plus the admission day — go on the inpatient claim."
+        },
+        {
+          "id": "c3",
+          "start": 77,
+          "end": 84,
+          "text": "Clinical lab tests are diagnostic services, so Monday’s labs are folded into Wednesday’s admission. They are not billed separately."
+        },
+        {
+          "id": "c4",
+          "start": 84,
+          "end": 92,
+          "text": "A test 4 days before admission is outside the window, so it stays on its own outpatient bill."
+        },
+        {
+          "id": "c5",
+          "start": 92,
+          "end": 100,
+          "text": "Some hospitals that aren’t paid under that system — psychiatric, rehabilitation, long-term care, children’s and cancer hospitals — use a 1-day window instead."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tl0",
+          "type": "token",
+          "props": {
+            "x": 130,
+            "y": 230,
+            "w": 140,
+            "label": "Day −4",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.0,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tl1",
+          "type": "token",
+          "props": {
+            "x": 305,
+            "y": 230,
+            "w": 140,
+            "label": "Day −3",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.6,
+              "opacity": 0
+            },
+            {
+              "t": 2.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tl2",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 140,
+            "label": "Day −2 (Mon)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.2,
+              "opacity": 0
+            },
+            {
+              "t": 2.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tl3",
+          "type": "token",
+          "props": {
+            "x": 655,
+            "y": 230,
+            "w": 140,
+            "label": "Day −1",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.8,
+              "opacity": 0
+            },
+            {
+              "t": 3.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tl4",
+          "type": "token",
+          "props": {
+            "x": 830,
+            "y": 230,
+            "w": 140,
+            "label": "Admission day",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.4,
+              "opacity": 0
+            },
+            {
+              "t": 3.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "win",
+          "type": "highlight",
+          "props": {
+            "x": 567,
+            "y": 230,
+            "w": 690,
+            "h": 80,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "winT",
+          "type": "label",
+          "props": {
+            "x": 567,
+            "y": 160,
+            "text": "3-day window + admission day (IPPS hospitals)",
+            "size": 17,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mon",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 300,
+            "w": 150,
+            "label": "Mon lab tests",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15,
+              "opacity": 0
+            },
+            {
+              "t": 15.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "y": 300
+            },
+            {
+              "t": 16,
+              "x": 480
+            },
+            {
+              "t": 18,
+              "y": 400,
+              "ease": "inOut"
+            },
+            {
+              "t": 18,
+              "x": 760,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "inp",
+          "type": "document",
+          "props": {
+            "x": 760,
+            "y": 470,
+            "w": 220,
+            "h": 80,
+            "title": "Inpatient claim",
+            "sub": "includes window diagnostics",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15,
+              "opacity": 0
+            },
+            {
+              "t": 16,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "early",
+          "type": "token",
+          "props": {
+            "x": 130,
+            "y": 300,
+            "w": 150,
+            "label": "Day −4 test",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23.5,
+              "y": 300
+            },
+            {
+              "t": 23.5,
+              "x": 130
+            },
+            {
+              "t": 25.0,
+              "y": 405,
+              "ease": "inOut"
+            },
+            {
+              "t": 25.0,
+              "x": 180,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "outc",
+          "type": "document",
+          "props": {
+            "x": 180,
+            "y": 480,
+            "w": 200,
+            "h": 70,
+            "title": "Outpatient claim",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23,
+              "opacity": 0
+            },
+            {
+              "t": 24,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "one",
+          "type": "card",
+          "props": {
+            "x": 455,
+            "y": 468,
+            "w": 330,
+            "h": 128,
+            "tone": "warn",
+            "title": "1-day window",
+            "lines": [
+              "Psychiatric, rehabilitation, long-term care, children’s, cancer hospitals",
+              "1 day before + admission day"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30,
+              "opacity": 0
+            },
+            {
+              "t": 30.5,
+              "reveal": 0
+            },
+            {
+              "t": 31,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "What the lab does with this",
+      "start": 100,
+      "end": 138,
+      "altText": "A lab manager’s checklist: correct date of service on every test, link outpatient tests to an admission when the window applies, avoid duplicate tests, and use the clinical lab fee schedule only for tests truly outside the window. A note marks the whole topic as US Medicare-specific.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 108,
+          "text": "For the lab, two things matter. First, every test needs the correct date of service, because billing uses it to decide whether the window applies."
+        },
+        {
+          "id": "l2",
+          "start": 108,
+          "end": 116,
+          "text": "Second, duplicate testing costs the hospital money without adding payment. A test repeated a day after admission adds cost but no extra DRG payment."
+        },
+        {
+          "id": "l3",
+          "start": 116,
+          "end": 124,
+          "text": "So labs and clinicians watch for unnecessary repeats — while never delaying a test the patient needs."
+        },
+        {
+          "id": "l4",
+          "start": 124,
+          "end": 131,
+          "text": "This is US Medicare policy. Other payers, and other countries, use different rules."
+        },
+        {
+          "id": "l5",
+          "start": 131,
+          "end": 138,
+          "text": "For Philippine learners: the exam idea to know is the difference between paying per service and paying a fixed amount per case."
+        }
+      ],
+      "objects": [
+        {
+          "id": "chk",
+          "type": "card",
+          "props": {
+            "x": 320,
+            "y": 250,
+            "w": 520,
+            "h": 230,
+            "tone": "b",
+            "title": "Lab checklist",
+            "lines": [
+              "Correct date of service on every test",
+              "Avoid duplicate or unnecessary repeats",
+              "Never delay a needed test"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "dup",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 200,
+            "w": 240,
+            "label": "Repeat test on day 1 → cost, no extra pay",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "us",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "text": "US Medicare-specific",
+            "size": 20,
+            "weight": 900,
+            "color": "warn",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ph",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 510,
+            "w": 520,
+            "label": "Core idea: pay per service vs pay a fixed amount per case",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31,
+              "opacity": 0
+            },
+            {
+              "t": 32,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Pairs the exam likes to swap",
+      "start": 138,
+      "end": 166,
+      "altText": "Two comparison cards: payment per service (each test billed; more tests, more revenue) versus prospective payment per DRG (fixed per stay; more tests, more cost). Then the 3-day window for IPPS hospitals versus the 1-day window for psychiatric, rehabilitation, long-term care, children’s and cancer hospitals.",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 138,
+          "end": 145,
+          "text": "Exam pair one: paying per service versus paying a fixed amount per stay."
+        },
+        {
+          "id": "e2",
+          "start": 145,
+          "end": 152,
+          "text": "Per service: each test is billed, so more tests mean more revenue. Prospective payment: one fixed DRG payment, so more tests mean more cost."
+        },
+        {
+          "id": "e3",
+          "start": 152,
+          "end": 159,
+          "text": "Exam pair two: 3 days versus 1 day."
+        },
+        {
+          "id": "e4",
+          "start": 159,
+          "end": 166,
+          "text": "IPPS hospitals look back 3 calendar days plus the admission day. Psychiatric, rehab, long-term care, children’s and cancer hospitals look back 1 day."
+        }
+      ],
+      "objects": [
+        {
+          "id": "fee",
+          "type": "card",
+          "props": {
+            "x": 255,
+            "y": 280,
+            "w": 410,
+            "h": 250,
+            "tone": "b",
+            "title": "Paid per service",
+            "lines": [
+              "Each test billed",
+              "More tests → more revenue",
+              "Lab can look like a profit center"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "x": 215
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "x": 255
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 7,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 13.4,
+              "opacity": 1
+            },
+            {
+              "t": 14.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "pps",
+          "type": "card",
+          "props": {
+            "x": 705,
+            "y": 280,
+            "w": 410,
+            "h": 250,
+            "tone": "a",
+            "title": "Prospective payment (DRG)",
+            "lines": [
+              "One fixed amount per stay",
+              "More tests → more cost",
+              "Lab = cost center (inpatient)"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.6,
+              "opacity": 0,
+              "x": 745
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out",
+              "x": 705
+            },
+            {
+              "t": 7,
+              "reveal": 0
+            },
+            {
+              "t": 13,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 13.4,
+              "opacity": 1
+            },
+            {
+              "t": 14.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "w3",
+          "type": "card",
+          "props": {
+            "x": 255,
+            "y": 280,
+            "w": 410,
+            "h": 250,
+            "tone": "a",
+            "title": "3-day window",
+            "lines": [
+              "IPPS (“subsection (d)”) hospitals",
+              "3 calendar days before + admission day",
+              "Includes clinical lab tests"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 15,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 0
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "w1",
+          "type": "card",
+          "props": {
+            "x": 705,
+            "y": 280,
+            "w": 410,
+            "h": 250,
+            "tone": "warn",
+            "title": "1-day window",
+            "lines": [
+              "Psychiatric, rehab, long-term care",
+              "Children’s and cancer hospitals",
+              "1 day before + admission day"
+            ],
+            "reveal": 0,
+            "size": 17,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.6,
+              "opacity": 0
+            },
+            {
+              "t": 15.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 27,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "key",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "text": "Inside the window → on the inpatient claim",
+            "size": 19,
+            "weight": 800,
+            "color": "accent",
+            "bg": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "The price tag comes before the first tube",
+      "start": 166,
+      "end": 188,
+      "altText": "Memory aid: a price tag is stapled to the DRG box before any tube drops in. A three-step staircase leads up to an admission door, with tubes on each step falling through into the box. A card lists where the aid breaks down.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 166,
+          "end": 172,
+          "text": "Memory aid: under a DRG, the price tag is stapled on before the first tube is drawn."
+        },
+        {
+          "id": "m2",
+          "start": 172,
+          "end": 179,
+          "text": "And the window is three steps up to the door: tests on the three days before admission, and on admission day, fall into the same box."
+        },
+        {
+          "id": "m3",
+          "start": 179,
+          "end": 188,
+          "text": "Where it breaks: the window applies to diagnostic services like labs, and to other services only when they’re related to the admission. Some hospitals use 1 day, and none of this applies outside Medicare."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 55,
+            "text": "Price tag first · Three steps to the door",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "box",
+          "type": "bin",
+          "props": {
+            "x": 720,
+            "y": 280,
+            "w": 200,
+            "h": 150,
+            "label": "DRG stay",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tag",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 150,
+            "w": 180,
+            "label": "Price set first",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 3.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "st0",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 380,
+            "w": 120,
+            "label": "Day −3",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.5,
+              "opacity": 0
+            },
+            {
+              "t": 7.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "st1",
+          "type": "token",
+          "props": {
+            "x": 270,
+            "y": 320,
+            "w": 120,
+            "label": "Day −2",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.7,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "st2",
+          "type": "token",
+          "props": {
+            "x": 390,
+            "y": 260,
+            "w": 120,
+            "label": "Day −1",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.9,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "door",
+          "type": "icon",
+          "props": {
+            "x": 520,
+            "y": 200,
+            "glyph": "door",
+            "color": "a",
+            "label": "Admission",
+            "scale": 0.8,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 820,
+            "h": 80,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Diagnostic services always; others only if related · some hospitals 1 day · Medicare only"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.5,
+              "reveal": 0
+            },
+            {
+              "t": 16.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 188,
+      "end": 198,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 188,
+          "end": 193,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 193,
+          "end": 198,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 198,
+      "end": 210,
+      "altText": "A DRG box with a fixed price tag and a three-day staircase leading into it.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 198,
+          "end": 210,
+          "text": "Since 1983, Medicare pays hospitals one fixed DRG amount per inpatient stay, so extra tests are costs, and outpatient diagnostic tests — including labs — done in the 3 days before admission are billed inside that stay."
+        }
+      ],
+      "objects": [
+        {
+          "id": "box",
+          "type": "bin",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 220,
+            "h": 150,
+            "label": "One DRG payment",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tag",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 120,
+            "w": 200,
+            "label": "Fixed, set in advance",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "st0",
+          "type": "token",
+          "props": {
+            "x": 140,
+            "y": 420,
+            "w": 90,
+            "label": "−3",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "st1",
+          "type": "token",
+          "props": {
+            "x": 230,
+            "y": 370,
+            "w": 90,
+            "label": "−2",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.8,
+              "opacity": 0
+            },
+            {
+              "t": 4.3999999999999995,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "st2",
+          "type": "token",
+          "props": {
+            "x": 320,
+            "y": 320,
+            "w": 90,
+            "label": "−1",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.6,
+              "opacity": 0
+            },
+            {
+              "t": 5.199999999999999,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "arr",
+          "type": "arrow",
+          "props": {
+            "x": 370,
+            "y": 320,
+            "dx": 110,
+            "dy": -30,
+            "draw": 0,
+            "label": "folded in"
+          },
+          "keys": [
+            {
+              "t": 6,
+              "draw": 0
+            },
+            {
+              "t": 7.2,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: Medicare pays a hospital one set amount for an inpatient stay, decided in advance from the patient’s diagnosis group. It doesn’t pay more because more tests were done. And lab tests done as an outpatient shortly before admission count as part of that stay. Scientific (billing) terms: Inpatient Prospective Payment System (IPPS), diagnosis-related group (DRG), and the 3-day payment window.",
+    "why": "Prospective payment was created to control hospital costs: the 1983 Social Security Amendments (Public Law 98-21) introduced payment per discharge by DRG, effective October 1, 1983. Each DRG has a relative weight based on average resources used, multiplied by a base rate. Because the payment is fixed, any extra resource — including a lab test — is a cost to the hospital for that stay. The payment window stops care for an admission from being split into separately billed outpatient visits just before it.",
+    "measure": "The lab records an accurate date of service for every test, because billing uses it to apply the payment window. Outpatient diagnostic services (including clinical lab tests) in the 3 calendar days before an IPPS admission, and on the admission day, are included on the inpatient claim. Labs also monitor duplicate and unnecessary testing, since repeats add inpatient cost without adding payment.",
+    "differs": "Paying per service (each test billed) rewards volume; prospective payment per DRG rewards efficiency. The 3-day window applies to IPPS (“subsection (d)”) hospitals; psychiatric, rehabilitation, long-term care, children’s and cancer hospitals use a 1-day window. Diagnostic services are always included; non-diagnostic services only when related to the admission.",
+    "examAngle": "Expect: “under PPS, the lab is a ___” (cost center), “what determines payment for an inpatient stay?” (the DRG, not the itemized charges), and a scenario with outpatient labs drawn 1–3 days before admission (included in the inpatient claim, not billed separately)."
+  },
+  "comparisons": [
+    {
+      "id": "fee-vs-pps",
+      "title": "Paid per service vs prospective payment",
+      "left": {
+        "label": "Paid per service",
+        "points": [
+          "Each test billed",
+          "More tests → more revenue",
+          "Rewards volume"
+        ]
+      },
+      "right": {
+        "label": "Prospective payment (DRG)",
+        "points": [
+          "One predetermined amount per stay",
+          "More tests → more cost",
+          "Rewards efficiency"
+        ]
+      },
+      "distinguisher": "Whether the payment is set before care (prospective, per case) or added up from the services provided."
+    },
+    {
+      "id": "window-3-vs-1",
+      "title": "3-day vs 1-day payment window",
+      "left": {
+        "label": "IPPS hospitals",
+        "points": [
+          "3 calendar days before admission",
+          "Plus the admission day",
+          "Diagnostic services incl. clinical lab tests"
+        ]
+      },
+      "right": {
+        "label": "Non-IPPS hospitals",
+        "points": [
+          "Psychiatric, rehab, long-term care",
+          "Children’s and cancer hospitals",
+          "1 calendar day before + admission day"
+        ]
+      },
+      "distinguisher": "Whether the hospital is paid under the inpatient prospective payment system."
+    }
+  ],
+  "mnemonic": {
+    "text": "The price tag comes before the first tube — and three steps lead up to the door.",
+    "explanation": "Under a DRG, the payment is fixed before any test is run. The three steps are the three calendar days before admission; tests on those steps (and on admission day) fall into the same inpatient box.",
+    "limitation": "Only diagnostic services (like lab tests) always fall in; non-diagnostic services count only if related to the admission. Some hospitals use one step, not three. And all of this is US Medicare policy — other payers and other countries differ. The DRG payment also varies by DRG weight and hospital factors; “fixed” means fixed for that stay, not the same for every patient."
+  },
+  "analogyLimitations": [
+    "Dollar tags, boxes and arrows are cartoons; real DRG payments combine a relative weight with base rates and hospital-specific adjustments.",
+    "The timeline shows calendar days as blocks; billing rules depend on exact dates of service.",
+    "The “cost rises / payment flat” arrows illustrate the incentive, not actual hospital accounting."
+  ],
+  "takeaway": "Since 1983, Medicare pays hospitals one fixed DRG amount per inpatient stay, so extra tests are costs, and outpatient diagnostic tests — including labs — done in the 3 days before admission are billed inside that stay.",
+  "questions": [
+    {
+      "id": "ops-pay-q1",
+      "stem": "Under Medicare’s Inpatient Prospective Payment System, how is a hospital paid for a patient’s inpatient stay?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A predetermined amount based on the patient’s diagnosis-related group (DRG)",
+          "rationale": "Correct. Each case is categorized into a DRG; the DRG’s weight multiplied by the base rate determines a payment set in advance."
+        },
+        {
+          "id": "b",
+          "text": "The total of the itemized charges for every test and service",
+          "rationale": "Incorrect. That describes payment per service. Under IPPS the payment does not rise with the number of tests."
+        },
+        {
+          "id": "c",
+          "text": "A daily rate multiplied by the length of stay",
+          "rationale": "Incorrect. IPPS payment is per discharge by DRG, not a per-day rate."
+        },
+        {
+          "id": "d",
+          "text": "Whatever the hospital’s reported costs turn out to be after discharge",
+          "rationale": "Incorrect. Prospective payment replaced paying hospitals after the fact based on costs; the amount is set before care."
+        }
+      ],
+      "answer": "a",
+      "skill": "Explain prospective payment (DRG)",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ops-pay-q2",
+      "stem": "A Medicare patient has outpatient lab tests at an IPPS hospital on Monday and is admitted to the same hospital on Wednesday. How are Monday’s lab tests handled?",
+      "options": [
+        {
+          "id": "a",
+          "text": "They are included on the inpatient claim and not billed separately",
+          "rationale": "Correct. Diagnostic services, including clinical lab tests, in the 3 calendar days before an IPPS admission (and on admission day) go on the inpatient claim."
+        },
+        {
+          "id": "b",
+          "text": "They are billed separately as outpatient services",
+          "rationale": "Incorrect. Two days before admission is inside the 3-day window, so separate outpatient billing is not allowed."
+        },
+        {
+          "id": "c",
+          "text": "They are billed to the patient instead of Medicare",
+          "rationale": "Incorrect. The payment window moves the services onto the inpatient claim; it does not shift them to the patient."
+        },
+        {
+          "id": "d",
+          "text": "They are bundled only if they were drawn more than 72 hours before admission",
+          "rationale": "Incorrect. The window covers the days immediately before admission; tests outside it (e.g. 4 days before) are the ones billed separately."
+        }
+      ],
+      "answer": "a",
+      "skill": "Apply the payment window",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-pay-q3",
+      "stem": "Why did prospective payment change how hospitals view the inpatient laboratory?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Because payment is fixed per stay, each additional inpatient test adds cost without adding payment, so the lab became a cost center",
+          "rationale": "Correct. With one predetermined DRG payment, extra tests raise the hospital’s cost for the stay but not its payment."
+        },
+        {
+          "id": "b",
+          "text": "Because each inpatient test earns extra DRG payment, so labs earn more by testing more",
+          "rationale": "Incorrect. DRG payment does not increase with the number of tests."
+        },
+        {
+          "id": "c",
+          "text": "Because Medicare stopped covering inpatient lab tests",
+          "rationale": "Incorrect. Inpatient lab tests are covered — as part of the DRG payment rather than separately."
+        },
+        {
+          "id": "d",
+          "text": "Because inpatient lab tests are paid individually from a separate lab fee schedule",
+          "rationale": "Incorrect. Inpatient tests are paid within the DRG, not test by test."
+        }
+      ],
+      "answer": "a",
+      "skill": "Explain prospective payment (DRG)",
+      "difficulty": "analysis"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch1",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 1, How the Lab Runs: Core Concepts (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 1,
+          "section": "High-Yield Hits",
+          "items": [
+            8,
+            9
+          ]
+        },
+        {
+          "chapter": 1,
+          "section": "Exam Traps",
+          "items": [
+            5
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "cms-window",
+      "kind": "external",
+      "citation": "Centers for Medicare & Medicaid Services. Three Day Payment Window. Last modified February 26, 2026.",
+      "url": "https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/three-day-payment-window",
+      "consulted": true,
+      "usedFor": "IPPS (subsection (d)) hospitals: 3 calendar days before admission plus admission day; non-subsection (d) hospitals (psychiatric, rehabilitation, long-term care, children’s, cancer): 1 day; diagnostic services including clinical diagnostic lab tests, and related non-diagnostic services, are included on the inpatient claim."
+    },
+    {
+      "id": "cms-ipps",
+      "kind": "external",
+      "citation": "Centers for Medicare & Medicaid Services. Acute Inpatient PPS.",
+      "url": "https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps",
+      "consulted": true,
+      "usedFor": "Each case categorized into a DRG; DRG payment weight based on average resources used; base rate multiplied by DRG relative weight."
+    },
+    {
+      "id": "latta1991",
+      "kind": "external",
+      "citation": "Latta VB, Helbing C. Medicare short-stay hospital services by diagnosis-related groups. Health Care Financing Review. Summer 1991. CMS archive.",
+      "url": "https://www.cms.gov/research-statistics-data-and-systems/research/healthcarefinancingreview/list-of-past-articles-items/cms1191173",
+      "consulted": true,
+      "usedFor": "The 1983 amendments (Public Law 98-21) provided for a prospective payment system effective October 1, 1983, with payment based on DRG assignment."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-pps-1983",
+      "text": "Public Law 98-21 (1983) provided for Medicare prospective payment, effective October 1, 1983, based on DRGs.",
+      "status": "checked",
+      "refs": [
+        "latta1991"
+      ]
+    },
+    {
+      "id": "cl-drg",
+      "text": "Under IPPS, each case is categorized into a DRG whose relative weight, multiplied by a base rate, sets the payment.",
+      "status": "checked",
+      "refs": [
+        "cms-ipps"
+      ]
+    },
+    {
+      "id": "cl-window",
+      "text": "Outpatient diagnostic services, including clinical lab tests, in the 3 calendar days before an IPPS admission and on the admission day go on the inpatient claim; non-IPPS hospitals use 1 day.",
+      "status": "checked",
+      "refs": [
+        "cms-window"
+      ]
+    },
+    {
+      "id": "cl-related",
+      "text": "Non-diagnostic services in the window are included when related to the admission.",
+      "status": "checked",
+      "refs": [
+        "cms-window"
+      ]
+    },
+    {
+      "id": "cl-cost-center",
+      "text": "Under prospective payment, the inpatient lab is viewed as a cost center rather than a revenue center.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch1"
+      ],
+      "note": "A standard management inference from fixed per-case payment; not stated in a consulted external source."
+    },
+    {
+      "id": "cl-before-1983",
+      "text": "Before PPS, hospitals were paid after the fact based on costs or charges.",
+      "status": "pending",
+      "note": "Historical context; not quoted from a consulted source."
+    },
+    {
+      "id": "cl-72h",
+      "text": "The payment window has been called the “72-hour rule.”",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch1"
+      ],
+      "note": "Reviewer’s term; the current CMS page does not use it."
+    },
+    {
+      "id": "cl-tag",
+      "text": "Price-tag and staircase memory aid; box/arrow cartoons.",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-us-only",
+      "issue": "US Medicare policy only; not relevant to PH MTLE as stated (tagged ASCP only). PhilHealth payment models were not reviewed.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-window-detail",
+      "issue": "Reviewer gives only the 3-day rule; CMS adds the admission day and a 1-day window for non-IPPS hospitals, and distinguishes diagnostic from related non-diagnostic services.",
+      "kind": "missing-context",
+      "status": "resolved",
+      "resolution": "Lesson teaches the CMS detail."
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "A billing concept; visuals are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against CMS pages and a CMS Health Care Financing Review article, all read for this lesson; 3 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-07"
+}
