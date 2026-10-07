@@ -1,0 +1,1836 @@
+{
+  "schemaVersion": 1,
+  "id": "heme-red-cell-indices-high-mchc",
+  "title": "Red-Cell Indices and the Too-High MCHC",
+  "summary": "Build MCV, MCH and MCHC from three numbers, watch normal cells turn into hypochromic cells or spherocytes, and catch the cold-agglutinin artifact that fakes a sky-high MCHC.",
+  "domain": "p4-heme",
+  "topic": "ch31",
+  "conceptIds": [
+    "ch31.hit1",
+    "ch31.hit4",
+    "ch31.trap3",
+    "ch31.figure"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 31,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          4
+        ]
+      },
+      {
+        "chapter": 31,
+        "section": "Exam Traps",
+        "items": [
+          3
+        ]
+      },
+      {
+        "chapter": 31,
+        "section": "Figure 31"
+      }
+    ],
+    "note": "Teaches Ch. 31 Hit 1 (core: high MCHC and spherocytosis) with corrections, Hit 4 (index formulas), Trap 3 and the Figure 31 memory anchor. The reviewer’s “increased only in spherocytosis” is corrected: xerocytosis also raises MCHC, and cold agglutinins and other interferences raise it spuriously (see register flag rv-mchc-only)."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Calculate MCV, MCH and MCHC and state what each describes.",
+    "Explain why spherocytes and dehydrated cells have a high MCHC, and why a normal MCHC does not exclude spherocytosis.",
+    "Recognize a spuriously high MCHC from cold agglutinins and correct it by warming and rerunning."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "An MCHC of 41",
+      "start": 0,
+      "end": 20,
+      "altText": "An analyzer printout shows MCHC 41 g/dL, flagged high. Two explanation tokens appear: “Spherocytes?” and “Something wrong with the sample?”. A tube sits on a cold bench, beside a snowflake label: the sample has cooled.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "The analyzer reports an MCHC of 41 grams per decilitre. That is very high."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Is this patient full of spherocytes? Or is something wrong with the sample itself?"
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "To decide, you need to know what MCHC really measures — and how the analyzer calculates it."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pr",
+          "type": "card",
+          "props": {
+            "x": 260,
+            "y": 190,
+            "w": 330,
+            "h": 150,
+            "tone": "neutral",
+            "title": "CBC printout",
+            "lines": [
+              "Hb 13.0 g/dL",
+              "RBC 3.1 ×10¹²/L (low?)",
+              "MCHC 41 g/dL  ▲ HIGH"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "highlight",
+          "props": {
+            "x": 260,
+            "y": 242,
+            "w": 300,
+            "h": 28,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5,
+              "opacity": 0
+            },
+            {
+              "t": 5.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q1",
+          "type": "token",
+          "props": {
+            "x": 680,
+            "y": 150,
+            "w": 280,
+            "label": "Spherocytes?",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "type": "token",
+          "props": {
+            "x": 680,
+            "y": 220,
+            "w": 280,
+            "label": "Something wrong with the sample?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tube",
+          "type": "tube",
+          "props": {
+            "x": 660,
+            "y": 300,
+            "level": 0.7,
+            "fluid": "blood",
+            "cells": 1,
+            "cap": "#b07cd6",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0
+            },
+            {
+              "t": 11.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cold",
+          "type": "token",
+          "props": {
+            "x": 800,
+            "y": 380,
+            "w": 200,
+            "label": "Sample sat on a cold bench",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 880,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.45,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 15,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: three indices, three questions",
+      "start": 20,
+      "end": 60,
+      "altText": "Three cards build the red-cell indices from a worked example (Hb 15 g/dL, Hct 45%, RBC 5.0 ×10¹²/L). MCV = Hct ÷ RBC: how big is each cell? (45% × 10 ÷ 5.0 = 90 fL). MCH = Hb ÷ RBC: how much hemoglobin per cell? (15 × 10 ÷ 5.0 = 30 pg). MCHC = Hb ÷ Hct: how tightly is hemoglobin packed in the cells? (15 ÷ 45 × 100 = 33 g/dL). A note: on many analyzers the Hct is itself calculated from RBC count × MCV.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "Start with three measured numbers: hemoglobin 15 grams per decilitre, hematocrit 45 percent, and a red-cell count of 5 million per microlitre."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "MCV asks how big each cell is: hematocrit divided by red-cell count. 45 times 10, divided by 5, is 90 femtolitres."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 44,
+          "text": "MCH asks how much hemoglobin each cell carries: hemoglobin divided by red-cell count. 15 times 10, divided by 5, is 30 picograms."
+        },
+        {
+          "id": "n4",
+          "start": 44,
+          "end": 52,
+          "text": "MCHC asks how tightly hemoglobin is packed: hemoglobin divided by hematocrit. 15 divided by 45, times 100, is about 33 grams per decilitre."
+        },
+        {
+          "id": "n5",
+          "start": 52,
+          "end": 60,
+          "text": "One detail matters later. Many analyzers don’t measure the hematocrit directly; they calculate it from the red-cell count and MCV."
+        }
+      ],
+      "objects": [
+        {
+          "id": "in",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 70,
+            "w": 560,
+            "label": "Hb 15 g/dL · Hct 45% · RBC 5.0 ×10¹²/L",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mcv",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 170,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "MCV · cell size",
+            "lines": [
+              "Hct (%) × 10 ÷ RBC",
+              "45 × 10 ÷ 5.0 = 90 fL"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "mch",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "MCH · Hb per cell",
+            "lines": [
+              "Hb (g/dL) × 10 ÷ RBC",
+              "15 × 10 ÷ 5.0 = 30 pg"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "reveal": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "mchc",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 170,
+            "w": 290,
+            "h": 170,
+            "tone": "good",
+            "title": "MCHC · Hb packing",
+            "lines": [
+              "Hb ÷ Hct (%) × 100",
+              "15 ÷ 45 × 100 ≈ 33 g/dL"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "calc",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 640,
+            "label": "Many analyzers calculate Hct = RBC × MCV",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: thin, normal and over-packed cells",
+      "start": 60,
+      "end": 100,
+      "altText": "Three schematic smear fields. Left: pale hypochromic cells with wide central pallor — low MCHC. Middle: normal cells with central pallor about a third of the diameter. Right: small round spherocytes with no central pallor — the cells have lost membrane and water, so hemoglobin is more concentrated and MCHC rises. A card adds that dehydrated hereditary stomatocytosis (xerocytosis) also raises MCHC, and that in one study an MCHC above 35.5 g/dL detected only about 41% of hereditary spherocytosis cases.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 68,
+          "text": "MCHC is a concentration. Low MCHC means cells are thinly filled with hemoglobin: hypochromia, with wide pale centres."
+        },
+        {
+          "id": "c2",
+          "start": 68,
+          "end": 75,
+          "text": "Normal cells have a pale centre about a third of the cell’s width."
+        },
+        {
+          "id": "c3",
+          "start": 75,
+          "end": 84,
+          "text": "Spherocytes have lost membrane and water. They are smaller and rounder, with no pale centre, and their hemoglobin is more concentrated. MCHC goes up."
+        },
+        {
+          "id": "c4",
+          "start": 84,
+          "end": 92,
+          "text": "Spherocytosis is the classic cause, but not the only true one. Dehydrated hereditary stomatocytosis, also called xerocytosis, raises MCHC too."
+        },
+        {
+          "id": "c5",
+          "start": 92,
+          "end": 100,
+          "text": "And a high MCHC is a clue, not a test. In one study, an MCHC above 35.5 picked up only about 41 percent of hereditary spherocytosis cases."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lo",
+          "type": "smear",
+          "props": {
+            "x": 170,
+            "y": 190,
+            "w": 260,
+            "h": 180,
+            "count": 20,
+            "size": 0.95,
+            "pallor": 0.33,
+            "seed": 3,
+            "label": "Hypochromic: MCHC low",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "pallor": 0.33
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "pallor": 0.62,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "no",
+          "type": "smear",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 260,
+            "h": 180,
+            "count": 20,
+            "size": 1,
+            "pallor": 0.33,
+            "seed": 5,
+            "label": "Normal",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "sp",
+          "type": "smear",
+          "props": {
+            "x": 790,
+            "y": 190,
+            "w": 260,
+            "h": 180,
+            "count": 20,
+            "size": 1,
+            "pallor": 0.33,
+            "seed": 7,
+            "label": "Spherocytes: MCHC high",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0
+            },
+            {
+              "t": 16,
+              "pallor": 0.33
+            },
+            {
+              "t": 16,
+              "size": 1
+            },
+            {
+              "t": 16.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22,
+              "pallor": 0,
+              "ease": "inOut"
+            },
+            {
+              "t": 22,
+              "size": 0.8,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "xe",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 620,
+            "label": "Also raised in xerocytosis (dehydrated stomatocytosis)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 25.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "sens",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 620,
+            "label": "MCHC > 35.5: only ~41% of HS cases detected (one study)",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: when MCHC is too high to be true",
+      "start": 100,
+      "end": 140,
+      "altText": "A schematic field shows red cells drifting together into clumps as a thermometer token drops — cold agglutinins. A chain of arrows: clumps counted as fewer cells → RBC count falsely low → calculated Hct falsely low → Hb (measured after lysis) unchanged → MCHC = Hb ÷ Hct falsely high. Then the fix: warm the sample to 37 °C and rerun; the cells separate and MCHC returns to normal. A card notes that labs treat an MCHC of about 37–38.5 g/dL or more as a reason to look for an artifact, and that MCHC is one of the most useful signals that some CBC result is spurious.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 108,
+          "text": "Now the cold sample. Some patients have cold agglutinins: antibodies that clump red cells when blood cools."
+        },
+        {
+          "id": "l2",
+          "start": 108,
+          "end": 117,
+          "text": "The analyzer counts a clump as one cell, or not at all. The red-cell count falls, so the calculated hematocrit falls too."
+        },
+        {
+          "id": "l3",
+          "start": 117,
+          "end": 125,
+          "text": "Hemoglobin is measured after the cells are lysed, so it barely changes. Hemoglobin divided by a falsely low hematocrit gives a falsely high MCHC."
+        },
+        {
+          "id": "l4",
+          "start": 125,
+          "end": 133,
+          "text": "The fix: warm the sample to 37 degrees and run it again. The clumps break up and the indices come back to normal."
+        },
+        {
+          "id": "l5",
+          "start": 133,
+          "end": 140,
+          "text": "That is why an MCHC above about 37 makes a lab look for an artifact first. MCHC is one of the best alarms that some CBC result is spurious."
+        }
+      ],
+      "objects": [
+        {
+          "id": "f",
+          "type": "cellField",
+          "props": {
+            "x": 210,
+            "y": 200,
+            "w": 300,
+            "h": 200,
+            "antigen": "none",
+            "count": 12,
+            "cellR": 18,
+            "seed": 4,
+            "free": 0,
+            "bound": 0,
+            "clump": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2,
+              "clump": 0
+            },
+            {
+              "t": 8,
+              "clump": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "clump": 1
+            },
+            {
+              "t": 31,
+              "clump": 0,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "th",
+          "type": "token",
+          "props": {
+            "x": 210,
+            "y": 330,
+            "w": 230,
+            "label": "Sample cooled",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25.5,
+              "label": "Warmed to 37 °C"
+            }
+          ]
+        },
+        {
+          "id": "c0",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 90,
+            "w": 380,
+            "label": "Clumps → RBC count falsely low",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c1",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 152,
+            "w": 380,
+            "label": "Hct = RBC × MCV → falsely low",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 214,
+            "w": 380,
+            "label": "Hb (after lysis) ≈ unchanged",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.5,
+              "opacity": 0
+            },
+            {
+              "t": 18.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 276,
+            "w": 380,
+            "label": "MCHC = Hb ÷ Hct → falsely HIGH",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "fix",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 350,
+            "w": 380,
+            "label": "Warm + rerun → indices normal",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 30.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rule",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 455,
+            "w": 860,
+            "h": 90,
+            "tone": "warn",
+            "title": "MCHC ≳ 37 g/dL → look for an artifact first",
+            "lines": [
+              "Other causes include high bilirubin; check the sample and the smear"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34,
+              "reveal": 0
+            },
+            {
+              "t": 34.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Two classic traps",
+      "start": 140,
+      "end": 170,
+      "altText": "Trap card: “MCHC 41 = spherocytosis” is crossed out → “First rule out an artifact (cold agglutinins): warm, rerun, review the smear.” Trap card: “Low MCHC = iron deficiency” is crossed out → “Low MCHC means hypochromia; iron deficiency is one cause, not the only one.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 140,
+          "end": 152,
+          "text": "Trap one: an MCHC of 41 does not mean spherocytosis. Values that high are more often an artifact, such as cold agglutinins. Warm the sample, rerun it, and look at the smear."
+        },
+        {
+          "id": "e2",
+          "start": 152,
+          "end": 162,
+          "text": "Trap two: a low MCHC does not prove iron deficiency. It means hypochromia, and iron deficiency is only one cause."
+        },
+        {
+          "id": "e3",
+          "start": 162,
+          "end": 170,
+          "text": "The direction to remember: low MCHC is common; a truly high MCHC is rare and points to spherocytes or dehydrated cells."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 100,
+            "w": 820,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “MCHC 41 = spherocytosis.”",
+            "lines": [
+              "✓ Rule out artifact first: warm, rerun, review the smear"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 0
+            },
+            {
+              "t": 6,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 250,
+            "w": 820,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Low MCHC = iron deficiency.”",
+            "lines": [
+              "✓ Low MCHC = hypochromia — iron deficiency is one cause"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "reveal": 0
+            },
+            {
+              "t": 17,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "dir",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 700,
+            "label": "Low MCHC: common · truly high MCHC: rare (spherocytes, dehydrated cells)",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "MCHC is the paint density",
+      "start": 170,
+      "end": 192,
+      "altText": "Memory aid: three paint cans. A thin coat (hypochromic, low MCHC), a normal coat, and a thick coat in a small round can (spherocyte, high MCHC). A fourth can overflows past a “37” line, labelled “Too thick to be true → check the sample”. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 170,
+          "end": 179,
+          "text": "Memory aid: MCHC is paint density. Thin paint is hypochromia. Thick paint in a small round can is a spherocyte. Paint so thick it overflows the can — past about 37 — check the sample."
+        },
+        {
+          "id": "m2",
+          "start": 179,
+          "end": 192,
+          "text": "Where it breaks: MCHC is calculated, not seen, so any error in hemoglobin or hematocrit moves it. A normal MCHC doesn’t rule out spherocytosis, and cut-offs depend on the analyzer and the lab."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "MCHC = paint density",
+            "size": 36,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p0",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 190,
+            "w": 190,
+            "label": "Thin coat: low (hypochromic)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.0,
+              "opacity": 0
+            },
+            {
+              "t": 1.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p1",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 190,
+            "w": 190,
+            "label": "Normal coat",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.6,
+              "opacity": 0
+            },
+            {
+              "t": 3.4000000000000004,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 190,
+            "w": 190,
+            "label": "Thick, small can: spherocyte",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.2,
+              "opacity": 0
+            },
+            {
+              "t": 5.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "type": "token",
+          "props": {
+            "x": 810,
+            "y": 190,
+            "w": 190,
+            "label": "Overflow > 37: check sample",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.800000000000001,
+              "opacity": 0
+            },
+            {
+              "t": 6.6000000000000005,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "highlight",
+          "props": {
+            "x": 810,
+            "y": 190,
+            "w": 200,
+            "h": 50,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6,
+              "opacity": 0
+            },
+            {
+              "t": 6.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 400,
+            "w": 860,
+            "h": 110,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "MCHC is calculated: errors in Hb or Hct move it",
+              "Normal MCHC doesn’t rule out spherocytosis · cut-offs vary by analyzer"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 19.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 192,
+      "end": 202,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 192,
+          "end": 197,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 197,
+          "end": 202,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 202,
+      "end": 210,
+      "altText": "Three tokens: “MCHC = Hb ÷ Hct: how tightly cells are packed”, “Truly high MCHC: spherocytes or dehydrated cells”, “MCHC ≳ 37: rule out artifact (cold agglutinins) first”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 202,
+          "end": 210,
+          "text": "MCHC is hemoglobin divided by hematocrit; a truly high value means spherocytes or dehydrated cells, but a very high one is first a reason to look for an artifact such as cold agglutinins."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 620,
+            "label": "MCHC = Hb ÷ Hct: how tightly cells are packed",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 240,
+            "w": 620,
+            "label": "Truly high MCHC: spherocytes or dehydrated cells",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 310,
+            "w": 620,
+            "label": "MCHC ≳ 37: rule out artifact (cold agglutinins) first",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.6,
+              "opacity": 0
+            },
+            {
+              "t": 2.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: the indices describe the average red cell — its size, how much hemoglobin it carries, and how tightly that hemoglobin is packed. Scientific terms: MCV = Hct (%) × 10 ÷ RBC (×10¹²/L) in fL; MCH = Hb (g/dL) × 10 ÷ RBC in pg; MCHC = Hb (g/dL) ÷ Hct (%) × 100 in g/dL.",
+    "why": "MCHC is a concentration. Hypochromic cells have a low MCHC. Spherocytes lose membrane and become dehydrated through abnormal cation leak, concentrating hemoglobin; dehydrated hereditary stomatocytosis (xerocytosis) also raises MCHC. Because MCHC is calculated, an error in Hb or Hct moves it: cold agglutinins clump cells, lowering the RBC count and calculated Hct while Hb (measured after lysis) is unchanged, so MCHC rises falsely.",
+    "measure": "Analyzers measure Hb and RBC count (and MCV) and derive the others; many calculate Hct = RBC × MCV. An MCHC above about 37–38.5 g/dL is used as a trigger to look for artifacts; warming the sample (37 °C for about 2 h, or short heating at 41 °C) and rerunning corrects cold-agglutinin effects. High bilirubin can also falsely raise MCHC.",
+    "differs": "True high MCHC (spherocytes, xerocytosis) vs spurious high MCHC (cold agglutinins, interference); low MCHC (hypochromia from any cause) vs iron deficiency specifically.",
+    "examAngle": "Expect: index calculations, which index rises in spherocytosis, recognition of a cold-agglutinin pattern (low RBC, high MCV and MCHC) and its fix (warm to 37 °C and rerun), and the trap that low MCHC is not specific to iron deficiency."
+  },
+  "comparisons": [
+    {
+      "id": "true-vs-spurious",
+      "title": "True vs spurious high MCHC",
+      "left": {
+        "label": "True",
+        "points": [
+          "Spherocytes (lost membrane, dehydrated)",
+          "Xerocytosis (dehydrated stomatocytosis)",
+          "Smear shows the abnormal cells"
+        ]
+      },
+      "right": {
+        "label": "Spurious",
+        "points": [
+          "Cold agglutinins: RBC count and Hct falsely low",
+          "Interference, e.g. high bilirubin",
+          "Corrects after warming and rerunning"
+        ]
+      },
+      "distinguisher": "Does the value hold after the sample is warmed and rerun, and do the cells on the smear match?"
+    },
+    {
+      "id": "mcv-mch-mchc",
+      "title": "MCH vs MCHC",
+      "left": {
+        "label": "MCH",
+        "points": [
+          "Hb per cell (pg)",
+          "Falls with small cells even if packing is normal"
+        ]
+      },
+      "right": {
+        "label": "MCHC",
+        "points": [
+          "Hb per volume of cells (g/dL)",
+          "Independent of cell size; reflects packing"
+        ]
+      },
+      "distinguisher": "Amount per cell vs concentration inside the cell."
+    }
+  ],
+  "mnemonic": {
+    "text": "MCHC is paint density — overflow past 37 means check the sample.",
+    "explanation": "Thin paint is hypochromia, thick paint in a small round can is a spherocyte, and paint so thick it overflows the can (above about 37 g/dL) usually means a measurement artifact.",
+    "limitation": "MCHC is calculated, so any Hb or Hct error moves it; a normal MCHC does not exclude spherocytosis; artifact cut-offs (about 37–38.5 g/dL) depend on the analyzer and laboratory."
+  },
+  "analogyLimitations": [
+    "Paint cans are a memory device; hemoglobin is not a surface coat.",
+    "Smear fields and clumps are schematic, not real morphology.",
+    "The CBC values in the example are invented."
+  ],
+  "takeaway": "MCHC is hemoglobin divided by hematocrit; a truly high value means spherocytes or dehydrated cells, but a very high one is first a reason to look for an artifact such as cold agglutinins.",
+  "questions": [
+    {
+      "id": "heme-mchc-q1",
+      "stem": "Hb 12 g/dL, Hct 36%, RBC 4.0 ×10¹²/L. What are the MCV and MCHC?",
+      "options": [
+        {
+          "id": "a",
+          "text": "MCV 90 fL, MCHC 33 g/dL",
+          "rationale": "Correct. MCV = 36 × 10 ÷ 4.0 = 90 fL; MCHC = 12 ÷ 36 × 100 ≈ 33 g/dL."
+        },
+        {
+          "id": "b",
+          "text": "MCV 30 fL, MCHC 33 g/dL",
+          "rationale": "Incorrect. 30 is the MCH (12 × 10 ÷ 4.0 = 30 pg), not the MCV."
+        },
+        {
+          "id": "c",
+          "text": "MCV 90 fL, MCHC 300 g/dL",
+          "rationale": "Incorrect. MCHC uses Hct in percent: 12 ÷ 36 × 100 ≈ 33."
+        },
+        {
+          "id": "d",
+          "text": "MCV 9 fL, MCHC 3.3 g/dL",
+          "rationale": "Incorrect. The factor of 10 (MCV) and 100 (MCHC) were left out."
+        }
+      ],
+      "answer": "a",
+      "skill": "Calculate red-cell indices",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-mchc-q2",
+      "stem": "A sample left on a cold bench gives RBC 2.1 ×10¹²/L, MCV 118 fL and MCHC 42 g/dL, with grainy clumps on the smear. What is the best next step?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Warm the sample to 37 °C and rerun",
+          "rationale": "Correct. This pattern suggests cold agglutinins; warming disperses the clumps and corrects the RBC count and indices."
+        },
+        {
+          "id": "b",
+          "text": "Report hereditary spherocytosis",
+          "rationale": "Incorrect. An MCHC this high with clumps points to an artifact; spherocytosis is not diagnosed from MCHC alone."
+        },
+        {
+          "id": "c",
+          "text": "Report macrocytic anemia",
+          "rationale": "Incorrect. The high MCV and low RBC count are likely caused by clumps counted as large cells or not counted at all."
+        },
+        {
+          "id": "d",
+          "text": "Refrigerate and rerun tomorrow",
+          "rationale": "Incorrect. Cooling makes cold agglutination worse."
+        }
+      ],
+      "answer": "a",
+      "skill": "Spurious MCHC",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-mchc-q3",
+      "stem": "Why is the MCHC raised in hereditary spherocytosis?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The cells lose membrane and water, concentrating their hemoglobin",
+          "rationale": "Correct. Membrane loss and cation leak dehydrate the cells, so hemoglobin per volume rises."
+        },
+        {
+          "id": "b",
+          "text": "The cells contain more hemoglobin molecules than normal",
+          "rationale": "Incorrect. Hemoglobin per cell (MCH) is not increased; the cell volume falls."
+        },
+        {
+          "id": "c",
+          "text": "Spherocytes are larger than normal cells",
+          "rationale": "Incorrect. Spherocytes are smaller and denser, not larger."
+        },
+        {
+          "id": "d",
+          "text": "Iron overload from hemolysis",
+          "rationale": "Incorrect. Iron stores do not change the hemoglobin concentration inside a cell."
+        }
+      ],
+      "answer": "a",
+      "skill": "MCHC in spherocytosis",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch31",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 31, Blood and Bone Marrow Basics (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 31,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            4
+          ]
+        },
+        {
+          "chapter": 31,
+          "section": "Exam Traps",
+          "items": [
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope, exam framing and index formulas. Not used as verification."
+    },
+    {
+      "id": "zandecki2007",
+      "kind": "external",
+      "citation": "Zandecki M, Genevieve F, Gerard J, Godon A. Spurious counts and spurious results on haematology analysers: a review. Part II: white blood cells, red blood cells, haemoglobin, red cell indices and reticulocytes. Int J Lab Hematol. 2007;29(1):21-41 (abstract read).",
+      "doi": "10.1111/j.1365-2257.2006.00871.x",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17224005/",
+      "consulted": true,
+      "usedFor": "Lipids, agglutinins and cryoglobulins cause abnormal Hb or RBC results; an error in one measured parameter alters calculated indices; MCHC is the most important index for alerting the user to a spurious result."
+    },
+    {
+      "id": "falvella2021",
+      "kind": "external",
+      "citation": "Falvella FS, Chibireva M, Panteghini M. Prospective validation of an automatic reflex test for identifying spurious elevations of mean corpuscular haemoglobin concentration due to the presence of cold agglutinins. Scand J Clin Lab Invest. 2021;81(7):598-600 (abstract read).",
+      "doi": "10.1080/00365513.2021.1959051",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34346820/",
+      "consulted": true,
+      "usedFor": "Cold agglutinins cause false reduction of RBC count and false increases of indices such as MCHC; preheating at 37 °C for 2 h; reflex at MCHC > 385 g/L; antiretroviral therapy and severe electrolyte disorders associated with increased MCHC."
+    },
+    {
+      "id": "lagioia2018",
+      "kind": "external",
+      "citation": "La Gioia A, Fumi M, Fiorini F, et al. Short preheating at 41°C leads to a red blood cells count comparable to that in RET channel of Sysmex analysers in samples showing cold agglutination. J Clin Pathol. 2018;71(8):729-734 (abstract read).",
+      "doi": "10.1136/jclinpath-2017-204954",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29535214/",
+      "consulted": true,
+      "usedFor": "Cold agglutination at low temperature spuriously lowers the RBC count, detected by incongruous MCHC (≥ 370 g/L); preheating at 37 °C or 41 °C for 1 min reverses it, though not completely in every case."
+    },
+    {
+      "id": "wu2021",
+      "kind": "external",
+      "citation": "Wu Y, Liao L, Lin F. The diagnostic protocol for hereditary spherocytosis—2021 update. J Clin Lab Anal. 2021;35(12):e24034.",
+      "doi": "10.1002/jcla.24034",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8649336/",
+      "consulted": true,
+      "usedFor": "MCHC > 355 g/L for HS: sensitivity 41.07%, specificity 94.47%; raised bilirubin may falsely increase MCHC."
+    },
+    {
+      "id": "vives2026",
+      "kind": "external",
+      "citation": "Vives-Corrons JL, Krishnevskaya E. Hereditary spherocytosis: linking ion transport defects to osmotic gradient ektacytometry profiles—a review. Int J Mol Sci. 2026;27(2):721 (abstract read).",
+      "doi": "10.3390/ijms27020721",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12841313/",
+      "consulted": true,
+      "usedFor": "HS red cells show increased cation permeability with Na⁺ influx and K⁺ loss, leading to dehydration, elevated MCHC and reduced deformability."
+    },
+    {
+      "id": "zama2020",
+      "kind": "external",
+      "citation": "Zama D, Giulietti G, Muratore E, et al. A novel PIEZO1 mutation in a patient with dehydrated hereditary stomatocytosis: a case report and a brief review of literature. Ital J Pediatr. 2020;46(1):102 (abstract read).",
+      "doi": "10.1186/s13052-020-00864-x",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32703298/",
+      "consulted": true,
+      "usedFor": "Dehydrated hereditary stomatocytosis (hereditary xerocytosis) features increased MCHC, macrocytosis, stomatocytes and red-cell dehydration."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-true",
+      "text": "Spherocytes (dehydration from cation leak) and xerocytosis raise MCHC.",
+      "status": "checked",
+      "refs": [
+        "vives2026",
+        "zama2020"
+      ]
+    },
+    {
+      "id": "cl-sens",
+      "text": "MCHC > 35.5 g/dL detected about 41% of HS cases (specificity ~94%) in one study; raised bilirubin can falsely increase MCHC.",
+      "status": "checked",
+      "refs": [
+        "wu2021"
+      ]
+    },
+    {
+      "id": "cl-ca",
+      "text": "Cold agglutinins lower the RBC count and falsely raise MCHC; warming (37 °C ~2 h, or 41 °C briefly) and rerunning corrects it; labs use MCHC ≥ 370–385 g/L as a trigger.",
+      "status": "checked",
+      "refs": [
+        "falvella2021",
+        "lagioia2018"
+      ]
+    },
+    {
+      "id": "cl-alarm",
+      "text": "An error in one measured parameter alters calculated indices; MCHC is a key alarm for spurious results.",
+      "status": "checked",
+      "refs": [
+        "zandecki2007"
+      ]
+    },
+    {
+      "id": "cl-formula",
+      "text": "MCV = Hct (%) × 10 ÷ RBC; MCH = Hb × 10 ÷ RBC; MCHC = Hb ÷ Hct (%) × 100.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch31"
+      ],
+      "note": "The formulas follow from the definitions (units check: 0.45 L/L ÷ 5.0 × 10¹²/L = 90 fL), but no external reference stating them was read; NCBI Bookshelf was blocked."
+    },
+    {
+      "id": "cl-hct",
+      "text": "Many analyzers calculate Hct from RBC × MCV, and Hb is measured after lysis so clumping barely changes it.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch31"
+      ],
+      "note": "Mechanism consistent with the sources read but not stated in them."
+    },
+    {
+      "id": "cl-low",
+      "text": "Low MCHC means hypochromia, of which iron deficiency is one cause.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch31"
+      ],
+      "note": "Other causes (e.g. thalassemia, sideroblastic anemia) were not checked for this lesson."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Paint cans, smear fields and clumps.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“MCHC is paint density.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-only",
+      "issue": "The reviewer says MCHC is increased only in spherocytosis; xerocytosis also raises it and several artifacts raise it spuriously. The lesson teaches the corrected statement.",
+      "kind": "contradiction",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Smear fields, spherocytes and clumps are schematic drawings, not real morphology; review real smears for spherocytes and agglutination.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against Wu 2021 (full text), Zandecki 2007, Falvella 2021, La Gioia 2018, Vives-Corrons 2026 and Zama 2020 (abstracts) read for this lesson; 3 pending (index formulas, the Hct/Hb mechanism, causes of low MCHC). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-07"
+}

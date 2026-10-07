@@ -50,6 +50,8 @@ FLAG_RULES = [
      'WHO semen-analysis reference values changed in the 6th edition (2021); check which edition the question assumes.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
+    ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
+     'Spherocytosis is the classic true cause of a high MCHC, but not the only one: xerocytosis also raises it, and cold agglutinins or interference raise it spuriously. A high MCHC detects only a minority of spherocytosis cases.'),
     ('rv-leukemia-blasts', r'blasts?[^.]{0,60}(20|30) ?%|(20|30) ?%[^.]{0,60}blasts?',
      'Blast thresholds differ between WHO-HAEM5 and ICC 2022 classifications; check which system the question assumes.'),
 ]
