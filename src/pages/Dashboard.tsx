@@ -83,7 +83,8 @@ export function Dashboard() {
           ) : (
             <p className="muted small">{answered ? 'No weak areas right now — nice work.' : 'Answer lesson questions to see your weak areas here.'}</p>
           )}
-          <a className="btn btn-ghost" href={href('/review')}>Open weak-area review</a>
+          <a className="btn btn-ghost" href={href('/review')}>Open weak-area review</a>{' '}
+          <a className="btn btn-ghost" href={href('/practice')}>Practice reviewer questions</a>
         </Panel>
       </div>
 

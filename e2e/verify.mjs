@@ -342,10 +342,54 @@ try {
     await ctx.close();
   }
 
+  /* ---------------- practice (imported reviewer question bank) ---------------- */
+  {
+    const { ctx, page, errors } = await newPage();
+    await page.goto(BASE + '#/practice');
+    await page.waitForSelector('[data-testid="bank-provenance"]');
+    const prov = await page.textContent('[data-testid="bank-provenance"]');
+    check('Practice: provenance states permission and unverified status', prov.includes('hold the rights') && prov.includes('not been verified'), prov.slice(0, 120));
+    check('Practice: whole bank available by default', (await page.textContent('[data-testid="bank-available"]')).startsWith('828 '));
+    await page.selectOption('[data-testid="bank-domain"]', 'p5-bb');
+    const bbCount = parseInt(await page.textContent('[data-testid="bank-available"]'), 10);
+    check('Practice: filtering by area narrows the pool', bbCount > 0 && bbCount < 828, String(bbCount));
+    await page.click('[data-testid="bank-start"]');
+    await page.waitForSelector('[data-testid^="bank-question-"]');
+    await page.click('[data-testid^="bank-question-"] label.option >> nth=0');
+    await page.click('[data-testid="bank-check"]');
+    await page.waitForSelector('.bank-feedback');
+    check('Practice: feedback shows the reviewer’s explanation and source', (await page.textContent('.bank-feedback')).includes('Reviewer’s explanation') && (await page.textContent('.bank-feedback')).includes('not verified by this app'));
+    await page.click('button:has-text("End set")');
+    await page.waitForSelector('[data-testid="bank-score"]');
+    check('Practice: results count the answered question', /of 1\b/.test(await page.textContent('[data-testid="bank-score"]')));
+    await page.click('[data-testid="bank-again"]');
+    await page.waitForSelector('#bank-progress');
+    check('Practice: progress table records the answer', (await page.textContent('#bank-progress')).includes('1 / '));
+    await page.selectOption('[data-testid="bank-domain"]', 'p2-chem');
+    await page.click('input[name="mode"] >> nth=1');
+    await page.selectOption('select >> nth=4', '10');
+    await page.click('[data-testid="bank-start"]');
+    await page.waitForSelector('[data-testid="bank-timer"]');
+    check('Practice (exam): pacing timer shown', (await page.textContent('[data-testid="bank-timer"]')).includes('of 15 min pace'));
+    check('Practice (exam): no feedback before the end', (await page.$('.bank-feedback')) === null);
+    await page.click('[data-testid^="bank-question-"] label.option >> nth=1');
+    for (let i = 0; i < 10; i++) await page.click('[data-testid="bank-next"]');
+    await page.waitForSelector('[data-testid="bank-score"]');
+    check('Practice (exam): results review all 10 answers', (await page.$$('.bank-feedback')).length === 10 && /of 10\b/.test(await page.textContent('[data-testid="bank-score"]')));
+    await page.goto(BASE);
+    await page.waitForSelector('h1');
+    check('Practice: dashboard counts bank answers', (await page.textContent('#progress')).includes('Questions answered2'));
+    await page.goto(BASE + '#/practice');
+    await page.waitForSelector('[data-testid="bank-provenance"]');
+    await page.screenshot({ path: `${OUT}practice.png`, fullPage: true });
+    check('No console errors on practice', errors.length === 0, errors.join(' | '));
+    await ctx.close();
+  }
+
   /* ---------------- mobile ---------------- */
   {
     const { ctx, page, errors } = await newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
-    for (const route of ['', '#/curriculum', '#/lesson/ih-abo-forward-reverse', '#/review', '#/coverage', '#/settings', '#/author']) {
+    for (const route of ['', '#/curriculum', '#/lesson/ih-abo-forward-reverse', '#/practice', '#/review', '#/coverage', '#/settings', '#/author']) {
       await page.goto(BASE + route);
       await page.waitForSelector('h1');
       await wait(300);
@@ -375,7 +419,7 @@ try {
   /* ---------------- dark theme + accessibility ---------------- */
   for (const scheme of ['light', 'dark']) {
     const { ctx, page } = await newPage({ colorScheme: scheme });
-    for (const route of ['', '#/curriculum', '#/lesson/ih-abo-forward-reverse', '#/review', '#/coverage', '#/settings', '#/author']) {
+    for (const route of ['', '#/curriculum', '#/lesson/ih-abo-forward-reverse', '#/practice', '#/review', '#/coverage', '#/settings', '#/author']) {
       await page.goto(BASE + route);
       await page.waitForSelector('h1');
       await wait(500);

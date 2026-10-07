@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { domainTitle, lessonEntries, questionById, topicTitle } from '../content';
 import { areaStats, weakAreas } from '../logic/weak';
+import { isBankAttempt } from '../logic/bank';
 import { inTrack } from '../logic/curriculum';
 import { href } from '../router';
 import { useAppState } from '../state/store';
@@ -36,6 +37,7 @@ export function ReviewPage() {
   }, [mode, session]);
 
   const missedCount = new Set(weakSkills.flatMap((w) => w.missedQuestionIds)).size;
+  const bankTopics = areaStats(state.attempts.filter(isBankAttempt), 'topic', topicTitle).sort((a, b) => a.accuracy - b.accuracy);
 
   return (
     <div className="page">
@@ -73,6 +75,21 @@ export function ReviewPage() {
           </Panel>
         </div>
       )}
+
+      <Panel title="Reviewer question bank" id="bank-review">
+        {bankTopics.length ? (
+          <ul className="weak-list" data-testid="bank-weak">
+            {bankTopics.slice(0, 12).map((w) => (
+              <li key={w.key}>
+                <span>{w.label}<span className="small muted"> · {w.correct}/{w.attempts} correct</span></span>
+                <Meter value={w.accuracy} label={w.label} />
+                <span className="small">{Math.round(w.accuracy * 100)}%</span>
+                {w.missedQuestionIds.length > 0 && <a className="small" href={href(`/practice?pool=missed&chapter=${w.key.replace(/^ch/, '')}`)}>Retry {w.missedQuestionIds.length} missed</a>}
+              </li>
+            ))}
+          </ul>
+        ) : <p className="muted">No question-bank answers yet. <a href={href('/practice')}>Practice reviewer questions</a>.</p>}
+      </Panel>
 
       <Panel title="Practice" id="practice">
         <div className="btn-row-wrap">

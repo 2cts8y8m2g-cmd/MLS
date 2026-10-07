@@ -30,8 +30,17 @@ export function recommend(c: Curriculum, entries: LessonEntry[], state: AppState
   };
 
   for (const w of weakAreas(state.attempts, 'skill'))
-    for (const id of w.lessonIds)
+    for (const id of w.lessonIds) {
+      if (id.startsWith('bank:')) {
+        // Question-bank misses point to lessons that teach the same reviewer chapter.
+        const topic = state.attempts.find((a) => a.lessonId === id && a.skill === w.key)?.topic;
+        for (const e of byId.values())
+          if (e.lesson.topic === topic)
+            push({ lessonId: e.lesson.id, title: e.lesson.title, kind: 'review-weak', reason: `Practice: ${Math.round(w.accuracy * 100)}% on “${w.label}”` });
+        continue;
+      }
       push({ lessonId: id, title: byId.get(id)?.lesson.title ?? id, kind: 'review-weak', reason: `Review: ${Math.round(w.accuracy * 100)}% on “${w.label}”` });
+    }
 
   for (const [id, p] of Object.entries(state.lessons))
     if (!p.watched && p.lastT > 5) push({ lessonId: id, title: byId.get(id)?.lesson.title ?? id, kind: 'resume', reason: 'Continue where you left off' });

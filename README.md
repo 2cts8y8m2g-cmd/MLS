@@ -39,6 +39,7 @@ No accounts, API keys or paid services are needed.
 | `npm run coverage:report` | Regenerate `docs/COVERAGE.md` from the content |
 | `npm run e2e` | Browser verification in headless Chromium (run `npm run build` first). Set `CHROMIUM_PATH` if Chromium is not in `/opt/pw-browsers`. |
 | `npm run check` | validate + test + build |
+| `python3 scripts/reviewer/import_simulator.py source/epub/OEBPS content/question-bank/reviewer-simulator.json` | Re-import the reviewer's Exam Simulator from the unzipped EPUB |
 
 ## Features
 
@@ -48,6 +49,7 @@ No accounts, API keys or paid services are needed.
 - **Dashboard:** track selection, recommended next lessons, progress stats, weak areas, bookmarks, and a per-track blueprint showing weights and coverage.
 - **Curriculum browser:** domain → topic → concept in learning order, prerequisites, status per concept, track filter, and full-text search that includes lesson captions.
 - **Quiz:** immediate feedback, with a rationale on every option (why the answer is right *and* why each distractor is wrong), plus scoring.
+- **Practice questions:** the reviewer's own 828-question Exam Simulator, imported at the rights holder's request as a separate, clearly labelled question source. Filter by area, chapter, new or missed; practice mode (feedback after each question, with the reviewer's explanation) or timed exam mode (90 s per question pace, review at the end). Questions are marked as not verified by this app, and questions touching open accuracy-register flags carry a visible note. Answers feed weak-area review and lesson recommendations. The bank loads on demand.
 - **Weak-area review:** built only from real answers, recency-weighted, grouped by skill, topic and domain, with "retry missed questions".
 - **Saved progress:** position, scenes seen, watched state, answers and bookmarks are kept in `localStorage`, with export, import and reset in Settings.
 - **Authoring & preview:** edit lesson JSON in the app with live validation, a completeness checklist, a timeline table and a full player preview. Download the JSON when done.

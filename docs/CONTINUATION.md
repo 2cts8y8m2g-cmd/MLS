@@ -41,15 +41,19 @@ The ordering is at the user's discretion. The heaviest-weighted exam areas are C
 2. Pick a concept cluster.
 3. Verify each claim against an external source, and record it in `claims` with `refs`.
 4. Check the cluster's absolute-wording and dated items, and log reviewer problems in `content/reviewer-review.json`.
-5. Write original text, questions and mnemonics. Never copy reviewer passages, its 828 simulator questions, or its mnemonics.
+5. Write original text, questions and mnemonics. Never copy reviewer passages or mnemonics into lessons. (The 828 simulator questions are imported separately into the Practice question bank, at the rights holder's request.)
 6. Animate using the existing visual types, adding a type only when needed.
 7. Run `npm run validate`, preview in **Author**, run `npm test`, then `npm run coverage:report`.
 8. Capture frames to check the layout.
 
+## User decisions (2026-10-07)
+
+- The user holds the rights to the reviewer and asked for the **828-question Exam Simulator** to be imported. Done: `content/question-bank/reviewer-simulator.json`, shown on the Practice page as unverified reviewer content.
+- Lesson order: **heaviest-weighted exam areas first** (Clinical Chemistry, Hematology, Blood Bank, Microbiology), core concepts (each chapter's Hit 1) before detail.
+
 ## Needed from the user
 
-- The **22 flagged items and the 34-item human-review queue** named in the reviewer's release record.
-- Whether the user holds the rights to the reviewer and wants its **828-question Exam Simulator** imported. It's currently not imported (treated as a proprietary question bank; only per-chapter counts are recorded). If yes, an importer can add it as a separate, clearly labeled question source.
+- ~~The 22 flagged items and 34-item review queue~~ — the user answered (2026-10-07) that these are not available.
 - The three **mock-exam PDFs**, if wanted.
 - The official ASCP guideline PDF and PRC Annex A, if the user can download them, since both were blocked from this environment.
 - A qualified MLS educator for human review.

@@ -6,6 +6,7 @@ import { Dashboard } from './pages/Dashboard';
 import { CurriculumPage } from './pages/Curriculum';
 import { LessonPage } from './pages/Lesson';
 import { ReviewPage } from './pages/Review';
+import { PracticePage } from './pages/Practice';
 import { CoveragePage } from './pages/Coverage';
 import { AuthorPage } from './pages/Author';
 import { SettingsPage } from './pages/Settings';
@@ -14,6 +15,7 @@ import { NotFound } from './pages/NotFound';
 const NAV = [
   { path: '/', key: '', label: 'Home', icon: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' },
   { path: '/curriculum', key: 'curriculum', label: 'Curriculum', icon: 'M4 6H2v14a2 2 0 0 0 2 2h14v-2H4V6zm16-4H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z' },
+  { path: '/practice', key: 'practice', label: 'Practice', icon: 'M11 18h2v-2h-2v2zm1-16a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-14a4 4 0 0 0-4 4h2a2 2 0 1 1 4 0c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5a4 4 0 0 0-4-4z' },
   { path: '/review', key: 'review', label: 'Review', icon: 'M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z' },
   { path: '/coverage', key: 'coverage', label: 'Coverage', icon: 'M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' },
   { path: '/author', key: 'author', label: 'Author', icon: 'M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z' },
@@ -43,6 +45,9 @@ export function App() {
       break;
     case 'lesson':
       page = <LessonPage id={path[1] ?? ''} sceneId={query.get('scene') ?? undefined} />;
+      break;
+    case 'practice':
+      page = <PracticePage />;
       break;
     case 'review':
       page = <ReviewPage />;

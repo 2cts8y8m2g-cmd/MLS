@@ -350,3 +350,40 @@ export interface ReviewerStatus {
   selfReportedReview?: string;
   chapters: ReviewerChapter[];
 }
+
+/* ---------- Question banks (imported question sources, separate from lessons) ---------- */
+
+export interface BankNote {
+  /** Id of a flag in content/reviewer-review.json. */
+  flagId: string;
+  note: string;
+}
+
+export interface BankQuestion {
+  id: string;
+  number: number;
+  /** Reviewer chapter the question is tagged with. */
+  chapter: number;
+  domain: string;
+  topic: string;
+  stem: string;
+  options: { id: string; text: string }[];
+  answer: string;
+  /** The source's own answer explanation (one explanation, not per-option rationales). */
+  explanation: string;
+  /** Known problems linked to the reviewer accuracy register. */
+  notes: BankNote[];
+}
+
+export interface QuestionBank {
+  id: string;
+  title: string;
+  source: string;
+  /** Why the bank may be included (e.g. the rights holder asked for it). */
+  permission: string;
+  /** What has and has not been checked. */
+  verification: string;
+  importedAt: string;
+  count: number;
+  questions: BankQuestion[];
+}
