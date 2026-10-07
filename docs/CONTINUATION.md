@@ -3,14 +3,15 @@
 ## State at hand-off (2026-10-07)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 20, teaching 78 of 1,932 concepts (about 4.0%).** All 20 still require review: each has pending claims, and none has had human expert review.
+- **Lessons complete: 21, teaching 84 of 1,932 concepts (about 4.3%).** All 21 still require review: each has pending claims, and none has had human expert review.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-lab-safety-precautions-osha`, `ops-reimbursement-drg-payment-window`, `ops-lab-design-hazcom-numbers`.
   - Ch. 2 (23/23 concepts): `ops-workflow-before-technology`, `ops-six-sigma-vs-lean`, `ops-instrument-selection-uptime-batch`, `ops-consolidation-utilization-autoverification`.
   - Ch. 3 (24/24 concepts): `pre-order-of-draw-edta`, `pre-citrate-ratio-heparin`, `pre-tube-additives-fluoride-gel`, `pre-patient-id-wbit`, `pre-csf-tubes-synovial-crystals`, `pre-biotin-daratumumab-interference`, `pre-allen-test-urine-timing`, `pre-specimen-numbers-rcf-24h-urine`.
+  - Ch. 17 (6/22 concepts): `chem-diabetes-diagnosis-hba1c`.
   - Ch. 33 (6/27 concepts): `heme-microcytic-anemia-ferritin-mentzer`.
   - Ch. 40 (2/36 concepts): `ih-abo-forward-reverse`.
 - **Reviewer accuracy register:** 29 flags (15 verified issues, 14 needing verification), plus scan results.
-- **Checks:** 186 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 192 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
