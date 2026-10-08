@@ -1,0 +1,1702 @@
+{
+  "schemaVersion": 1,
+  "id": "ih-dhtr-lookback-windows",
+  "title": "After the Bag Is Empty: Delayed Hemolysis, Lookback and Window Periods",
+  "summary": "Recognize a delayed hemolytic transfusion reaction from an evanescent antibody, know why early tests can be negative, and follow a donor lookback with HBV window periods and Babesia screening in mind.",
+  "domain": "p5-bb",
+  "topic": "ch41",
+  "conceptIds": [
+    "ch41.hit9",
+    "ch41.hit14",
+    "ch41.hit23",
+    "ch41.hit25",
+    "ch41.trap6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 41,
+        "section": "High-Yield Hits",
+        "items": [
+          9,
+          14,
+          23,
+          25
+        ]
+      },
+      {
+        "chapter": 41,
+        "section": "Exam Traps",
+        "items": [
+          6
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 41 Hit 9 (anamnestic DHTR), Hit 14 (HBV windows), Hit 23 (lookback), Hit 25 (transfusion-transmitted Babesia) and Trap 6. Checked against Furqan 2026, Glover & Maitta 2026, Vellanki 2025, 21 CFR 610.46, Badawi 2025, Bloch 2026 and CDC DPDx. Hit 14 says HBV NAT catches the core window; Badawi 2025 shows anti-HBc may be the only marker there, while NAT shortens the early window (register flag rv-hbv-core-window). US lookback rules only; Philippine rules not checked. Not taught: the 1–6-week Babesia timing, per-unit infection-risk figures (Hit 13) and ISBT 128 (Hit 15) — sources not read."
+  },
+  "prerequisites": [
+    "ch41.hit1"
+  ],
+  "objectives": [
+    "Explain how an evanescent alloantibody causes a delayed hemolytic transfusion reaction.",
+    "Recognize DHTR laboratory findings and why early DAT and antibody screens can be negative.",
+    "Outline the steps of a US HIV lookback after a reactive donor test.",
+    "Distinguish the HBV early window (NAT) from the core window (anti-HBc) and recognize transfusion-transmitted Babesia."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two trails that start after the bag is empty",
+      "start": 0,
+      "end": 20,
+      "altText": "Left: a recipient card — transfused 2 red-cell units on day 0 with a negative antibody screen; on day 7 hemoglobin is lower than before the transfusion and the patient is jaundiced. Right: a donor card — a regular donor’s new donation is HIV NAT reactive; earlier donations went to other hospitals. Two arrows point back in time: “back to the recipient’s antibodies” and “back to the donor’s earlier units”.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A patient received two red-cell units with a negative antibody screen. A week later, the hemoglobin is lower than before the transfusion, and the patient is jaundiced."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Meanwhile, a regular blood donor’s newest donation tests reactive for HIV. Earlier donations from that donor have already been shipped."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Both problems start after the bag is empty. The lab must follow two trails back in time."
+        }
+      ],
+      "objects": [
+        {
+          "id": "rc",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 400,
+            "h": 170,
+            "tone": "a",
+            "title": "Recipient",
+            "lines": [
+              "Day 0: 2 RBC units · screen negative",
+              "Day 7: Hb below pre-transfusion",
+              "Jaundice"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "dc",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 400,
+            "h": 140,
+            "tone": "bad",
+            "title": "Donor",
+            "lines": [
+              "New donation: HIV NAT reactive",
+              "Earlier units already shipped"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8,
+              "reveal": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "a1",
+          "type": "token",
+          "props": {
+            "x": 330,
+            "y": 360,
+            "w": 320,
+            "label": "← back to the antibodies",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.5,
+              "x": 330
+            },
+            {
+              "t": 15.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17.5,
+              "x": 250,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "a2",
+          "type": "token",
+          "props": {
+            "x": 790,
+            "y": 360,
+            "w": 320,
+            "label": "← back to earlier units",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0
+            },
+            {
+              "t": 15.5,
+              "x": 790
+            },
+            {
+              "t": 16.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18.5,
+              "x": 710,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 480,
+            "y": 460,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The antibody that hid",
+      "start": 20,
+      "end": 60,
+      "altText": "A timeline with an antibody-level line. Years ago: pregnancy or transfusion → an alloantibody (for example anti-Jkᵃ) rises, then falls below the detection line of the antibody screen (“evanescent”). Day 0: the screen is negative, antigen-positive red cells are transfused. Days 3–21: anamnestic (memory) response — the antibody shoots back up and coats the transfused cells, which are cleared. A list token: usual systems — Rh, Kidd, Duffy, Kell, MNS.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "Years ago, a pregnancy or transfusion made this patient form an alloantibody, for example anti-Jk-a."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "Over time the antibody fell below the level an antibody screen can detect. It did not vanish; it was hiding. These are called evanescent antibodies."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 44,
+          "text": "On day 0 the screen was negative, so antigen-positive cells were given. That re-exposure triggered a memory response."
+        },
+        {
+          "id": "n4",
+          "start": 44,
+          "end": 52,
+          "text": "Between about 3 and 21 days later, the antibody shot back up and coated the transfused cells, which were destroyed. That is a delayed hemolytic transfusion reaction."
+        },
+        {
+          "id": "n5",
+          "start": 52,
+          "end": 60,
+          "text": "The antibodies usually belong to the Rh, Kidd, Duffy, Kell or MNS systems, not ABO."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ab",
+          "type": "bin",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 120,
+            "h": 10,
+            "label": "Antibody level",
+            "sub": "",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "h": 10
+            },
+            {
+              "t": 1,
+              "y": 420
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "h": 200,
+              "ease": "inOut"
+            },
+            {
+              "t": 7,
+              "y": 320,
+              "ease": "inOut"
+            },
+            {
+              "t": 9,
+              "h": 200
+            },
+            {
+              "t": 9,
+              "y": 320
+            },
+            {
+              "t": 15,
+              "h": 30,
+              "ease": "inOut"
+            },
+            {
+              "t": 15,
+              "y": 405,
+              "ease": "inOut"
+            },
+            {
+              "t": 25,
+              "h": 30
+            },
+            {
+              "t": 25,
+              "y": 405
+            },
+            {
+              "t": 30,
+              "h": 260,
+              "ease": "inOut"
+            },
+            {
+              "t": 30,
+              "y": 290,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "det",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 350,
+            "w": 360,
+            "label": "— screen detection limit —",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t0",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 90,
+            "w": 280,
+            "label": "Years ago: sensitized",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ev",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 150,
+            "w": 320,
+            "label": "Evanescent",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 10,
+              "label": "Below detection: evanescent"
+            },
+            {
+              "t": 11.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d0",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 220,
+            "w": 320,
+            "label": "Day 0: screen negative · cells given",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d3",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 290,
+            "w": 320,
+            "label": "Days 3–21: anamnestic rise",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 25.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sys",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 480,
+            "w": 520,
+            "label": "Usual systems: Rh · Kidd · Duffy · Kell · MNS",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What the lab sees — and when it sees it",
+      "start": 60,
+      "end": 104,
+      "altText": "A results card fills in for day 7: hemoglobin below pre-transfusion level, LDH high, bilirubin up, haptoglobin undetectable; DAT positive for IgG; new antibody identified (anti-Jkᵃ). A caution card: early in a DHTR, the antibody screen and DAT may still be negative despite hemolysis; positives can lag several days behind the hemoglobin nadir — repeat testing. A records card: check the patient’s transfusion-service history; missing records hide earlier antibodies.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 69,
+          "text": "By day 7, the lab sees hemolysis: hemoglobin below the pre-transfusion value, high LDH and bilirubin, and an undetectable haptoglobin."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 78,
+          "text": "The direct antiglobulin test is positive for IgG, and the antibody screen now finds a new antibody, here anti-Jk-a."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 87,
+          "text": "But timing matters. Early in a delayed reaction, the screen and the DAT can still be negative despite brisk hemolysis."
+        },
+        {
+          "id": "c4",
+          "start": 87,
+          "end": 95,
+          "text": "Positives may lag several days behind the lowest hemoglobin. So a negative DAT does not rule out a delayed reaction; repeat the tests."
+        },
+        {
+          "id": "c5",
+          "start": 95,
+          "end": 104,
+          "text": "And check the records. An antibody found at another time or another hospital may now be below detection. Missing records hide it."
+        }
+      ],
+      "objects": [
+        {
+          "id": "res",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 420,
+            "h": 210,
+            "tone": "bad",
+            "title": "Day 7 results",
+            "lines": [
+              "Hb below pre-transfusion",
+              "LDH ↑ · bilirubin ↑ · haptoglobin ↓",
+              "DAT: IgG positive",
+              "New antibody: anti-Jkᵃ"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "cau",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 400,
+            "h": 150,
+            "tone": "warn",
+            "title": "Early on, tests can be negative",
+            "lines": [
+              "Screen and DAT may lag",
+              "Repeat — negative DAT ≠ no DHTR"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "highlight",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 410,
+            "h": 160,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28,
+              "opacity": 0
+            },
+            {
+              "t": 28.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34.5,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "rec",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 400,
+            "h": 130,
+            "tone": "b",
+            "title": "Check antibody records",
+            "lines": [
+              "Past antibody may be undetectable now",
+              "Missing records hide it"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35.5,
+              "opacity": 0
+            },
+            {
+              "t": 36,
+              "reveal": 0
+            },
+            {
+              "t": 36.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 40,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "The donor trail: lookback, and why windows matter",
+      "start": 104,
+      "end": 144,
+      "altText": "A lookback card (US, 21 CFR 610.46, HIV): within 3 calendar days of a reactive donor test, the collecting establishment reviews records for earlier donations (those collected within 12 months before the donor’s last nonreactive screening test); quarantines in-date units and notifies consignees; performs further testing; reports results to consignees within 45 days. The transfusion service then notifies recipients or their physicians, making reasonable attempts within 12 weeks. Lookback is not a recall. A window card for HBV: NAT detects HBV DNA first (on average 6–15 days before HBsAg) — the early window; after HBsAg clears and before anti-HBs appears, anti-HBc may be the only positive marker — the core window. A Babesia card: RBC-containing products transmit B. microti; FDA-approved NAT screening in endemic states since 2019; tetrads on a Giemsa smear.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 112,
+          "text": "Now the donor trail. In the US, within 3 calendar days of a reactive HIV test, the blood center reviews records to find the donor’s earlier donations."
+        },
+        {
+          "id": "l2",
+          "start": 112,
+          "end": 120,
+          "text": "In-date units from those earlier donations are quarantined, the hospitals that received them are notified, and further testing results follow within 45 days."
+        },
+        {
+          "id": "l3",
+          "start": 120,
+          "end": 128,
+          "text": "If confirmed, the transfusion service notifies earlier recipients or their physicians, within 12 weeks. This is a lookback, not a recall."
+        },
+        {
+          "id": "l4",
+          "start": 128,
+          "end": 136,
+          "text": "Why do earlier donations matter? Windows. For hepatitis B, NAT finds viral DNA days to weeks before HBsAg: the early window. In the later core window, anti-HBc may be the only positive marker."
+        },
+        {
+          "id": "l5",
+          "start": 136,
+          "end": 144,
+          "text": "Babesia, a red-cell parasite, travels in any red-cell product. Donors in endemic US states are screened by NAT. On a smear, look for tetrads."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lb",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 430,
+            "h": 230,
+            "tone": "bad",
+            "title": "HIV lookback (21 CFR 610.46)",
+            "lines": [
+              "≤ 3 days: review earlier donations",
+              "Quarantine in-date units · notify consignees",
+              "Further testing → consignees ≤ 45 days",
+              "Recipients notified ≤ 12 weeks · not a recall"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "lbh",
+          "type": "highlight",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 240,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "hbv",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 150,
+            "w": 420,
+            "h": 140,
+            "tone": "b",
+            "title": "HBV windows",
+            "lines": [
+              "Early: NAT before HBsAg (≈ 6–15 d)",
+              "Core: anti-HBc may be the only marker"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "bab",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 350,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Babesia microti",
+            "lines": [
+              "Any RBC-containing product",
+              "NAT screening in endemic US states",
+              "Smear: tetrads"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards appear in turn: “A negative DAT rules out a delayed hemolytic reaction” (✓ early on, DAT and screen can be negative — repeat); “HBV NAT closes the core window” (✓ NAT shortens the early window; anti-HBc covers the core window); “Lookback is a product recall” (✓ federal rules say lookback actions are not a recall).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a negative DAT rules out a delayed hemolytic reaction. No. Early on, the DAT and the screen can still be negative. Repeat them."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: HBV NAT closes the core window. No. NAT shortens the early window before HBsAg; in the core window, anti-HBc may be the only marker."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: a lookback is a recall. No. US rules state that lookback actions are not a recall."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Negative DAT rules out a delayed reaction.”",
+            "lines": [
+              "✓ Early tests may be negative — repeat"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “HBV NAT closes the core window.”",
+            "lines": [
+              "✓ NAT: early window · anti-HBc: core window"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “A lookback is a recall.”",
+            "lines": [
+              "✓ 21 CFR 610.46(c): not a recall"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Hidden antibody, hidden virus — look back both ways",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Hidden antibody, hidden virus — look back both ways.” Two tokens: recipient side — evanescent antibody returns in 3–21 days, check records, repeat DAT; donor side — window periods, lookback quarantine and notify. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: hidden antibody, hidden virus, look back both ways. On the recipient side, a hidden antibody returns within weeks. On the donor side, a hidden infection is found later, and earlier units are traced."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: some delayed reactions are serologic only, without hemolysis; lookback rules differ by country and by infection; and window lengths depend on the assay and pooling."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Look back both ways",
+            "size": 34,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 280,
+            "y": 170,
+            "w": 380,
+            "label": "Recipient: hidden antibody · 3–21 d",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 690,
+            "y": 170,
+            "w": 380,
+            "label": "Donor: hidden virus · lookback",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Some delayed reactions are serologic only",
+              "Lookback rules differ by country and infection",
+              "Window lengths depend on assay and pooling"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “DHTR: evanescent antibody returns in 3–21 days · DAT/screen may lag · check records”, “Lookback: quarantine and notify (not a recall) · HBV NAT = early window, anti-HBc = core window”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "A delayed hemolytic reaction comes from a hidden antibody that returns days to weeks later, so repeat negative tests and check records; a reactive donor triggers a lookback of earlier units because infections hide in window periods."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "DHTR: hidden antibody returns in 3–21 d · DAT/screen may lag · check records",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Lookback: quarantine + notify (not a recall) · HBV NAT = early window · anti-HBc = core window",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: some reactions happen days after a transfusion because an old antibody, too weak to detect, wakes up; and some infections are found in a donor only later, so earlier blood from that donor is traced. Scientific terms: delayed hemolytic transfusion reaction (DHTR), anamnestic response, evanescent antibody, DAT, lookback, consignee, window period, HBV NAT, anti-HBc, Babesia microti.",
+    "why": "Alloantibodies from pregnancy or transfusion can fall below detection thresholds and rise rapidly on re-exposure. Window periods exist because each marker appears at a different time after infection: HBV DNA first, then HBsAg; after HBsAg clears, anti-HBc may be the only marker before anti-HBs.",
+    "measure": "DHTR typically 3–21 days after RBC transfusion; Hb falls, LDH and bilirubin rise, haptoglobin falls; DAT IgG positive with a new non-ABO antibody — but screens and DAT may be negative early. US HIV lookback (21 CFR 610.46): record review within 3 calendar days; quarantine in-date units collected ≤ 12 months before the last nonreactive screen; notify consignees; further testing; consignee notification of results within 45 days; recipient notification attempts within 12 weeks. HBV NAT detects DNA on average 6–15 days before HBsAg.",
+    "differs": "Delayed hemolytic reactions (non-ABO antibodies, days to weeks) vs reactions at the time of transfusion; lookback vs recall; early window vs core window.",
+    "examAngle": "Expect: DHTR timing and mechanism, negative DAT not excluding DHTR, lookback steps, which marker covers which HBV window, and Babesia on a post-transfusion smear."
+  },
+  "comparisons": [
+    {
+      "id": "hbv-windows",
+      "title": "HBV early window vs core window",
+      "left": {
+        "label": "Early window",
+        "points": [
+          "Before HBsAg appears",
+          "HBV NAT detects DNA first"
+        ]
+      },
+      "right": {
+        "label": "Core window",
+        "points": [
+          "HBsAg gone, no anti-HBs yet",
+          "Anti-HBc may be the only marker"
+        ]
+      },
+      "distinguisher": "Which marker is positive."
+    },
+    {
+      "id": "collector-vs-consignee",
+      "title": "HIV lookback roles (21 CFR 610.46)",
+      "left": {
+        "label": "Collecting establishment",
+        "points": [
+          "Reviews records ≤ 3 days",
+          "Quarantines, notifies, tests further"
+        ]
+      },
+      "right": {
+        "label": "Consignee (transfusion service)",
+        "points": [
+          "Quarantines when notified",
+          "Notifies recipients ≤ 12 weeks"
+        ]
+      },
+      "distinguisher": "Who holds the donor vs the recipient records."
+    }
+  ],
+  "mnemonic": {
+    "text": "Hidden antibody, hidden virus — look back both ways.",
+    "explanation": "Recipient side: an evanescent antibody returns in days to weeks. Donor side: a later-detected infection triggers a lookback of earlier units.",
+    "limitation": "Some delayed reactions are serologic only; lookback rules differ by country and infection; window lengths depend on the assay and pooling."
+  },
+  "analogyLimitations": [
+    "The antibody curve and timelines are schematic.",
+    "The recipient and donor are invented.",
+    "Lookback rules shown are US federal rules for HIV; HCV (21 CFR 610.47) is similar but was not covered in detail."
+  ],
+  "takeaway": "A delayed hemolytic reaction comes from a hidden antibody that returns days to weeks later, so repeat negative tests and check records; a reactive donor triggers a lookback of earlier units because infections hide in window periods.",
+  "questions": [
+    {
+      "id": "ih-dhtr-q1",
+      "stem": "Ten days after a red-cell transfusion, a patient’s hemoglobin falls below the pre-transfusion value, with high LDH and undetectable haptoglobin. The pre-transfusion antibody screen was negative. What is the most likely explanation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "An anamnestic rise of a previously formed, undetectable alloantibody",
+          "rationale": "Correct. Evanescent antibodies can fall below detection and return within about 3–21 days after re-exposure."
+        },
+        {
+          "id": "b",
+          "text": "An ABO-incompatible transfusion",
+          "rationale": "Incorrect. Delayed reactions are caused by non-ABO alloantibodies; nothing here points to an ABO error."
+        },
+        {
+          "id": "c",
+          "text": "Febrile non-hemolytic reaction",
+          "rationale": "Incorrect. That causes fever, not delayed hemolysis."
+        },
+        {
+          "id": "d",
+          "text": "A negative screen proves no antibody is involved",
+          "rationale": "Incorrect. A negative screen can miss an antibody below the detection threshold."
+        }
+      ],
+      "answer": "a",
+      "skill": "DHTR mechanism",
+      "difficulty": "application"
+    },
+    {
+      "id": "ih-dhtr-q2",
+      "stem": "A donor’s new donation is confirmed HIV positive. Under 21 CFR 610.46, what must the hospital transfusion service (consignee) do with in-date units from that donor’s earlier donations?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Quarantine them when notified, and notify earlier recipients or their physicians if further testing is positive",
+          "rationale": "Correct. Consignees quarantine on notification and make reasonable attempts to notify recipients within 12 weeks."
+        },
+        {
+          "id": "b",
+          "text": "Keep issuing them; earlier donations tested negative",
+          "rationale": "Incorrect. Earlier donations may have been collected in a window period."
+        },
+        {
+          "id": "c",
+          "text": "Treat it as a product recall and wait for the FDA",
+          "rationale": "Incorrect. Lookback actions are not a recall under the regulation."
+        },
+        {
+          "id": "d",
+          "text": "Discard them without any record",
+          "rationale": "Incorrect. Release, destruction or relabelling follows the further-testing results and is documented."
+        }
+      ],
+      "answer": "a",
+      "skill": "Lookback",
+      "difficulty": "application"
+    },
+    {
+      "id": "ih-dhtr-q3",
+      "stem": "A donor is HBsAg negative and anti-HBs negative but anti-HBc positive. Which phase of HBV infection is most likely, and which marker reveals it?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Core window — anti-HBc may be the only positive marker",
+          "rationale": "Correct. After HBsAg clears and before anti-HBs appears, anti-HBc may be the only marker."
+        },
+        {
+          "id": "b",
+          "text": "Early window — detected only by NAT",
+          "rationale": "Incorrect. The early window comes before HBsAg and before anti-HBc; NAT detects DNA first."
+        },
+        {
+          "id": "c",
+          "text": "Vaccinated immunity",
+          "rationale": "Incorrect. Vaccination gives anti-HBs without anti-HBc."
+        },
+        {
+          "id": "d",
+          "text": "Chronic infection",
+          "rationale": "Incorrect. Chronic infection is HBsAg positive."
+        }
+      ],
+      "answer": "a",
+      "skill": "HBV window periods",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch41",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 41, Transfusion Practice, Reactions and Lookback (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 41,
+          "section": "High-Yield Hits",
+          "items": [
+            9,
+            14,
+            23,
+            25
+          ]
+        },
+        {
+          "chapter": 41,
+          "section": "Exam Traps",
+          "items": [
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "furqan2026",
+      "kind": "external",
+      "citation": "Furqan M, Rana MA, Iloke CV, et al. Anti-Jka-mediated delayed hemolytic transfusion reaction mimicking warm autoimmune hemolytic anemia in a multiparous woman: a case report. Ann Med Surg (Lond). 2026;88(6):3729-3733.",
+      "doi": "10.1097/ms9.0000000000005060",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13236336/",
+      "consulted": true,
+      "usedFor": "DHTR typically 3–21 days after RBC transfusion; recipient alloantibodies against non-ABO antigens (Rh, Kidd, Duffy, Kell, MNS); usually anamnestic after prior transfusion or pregnancy; hemolysis labs (LDH, bilirubin, undetectable haptoglobin), DAT IgG positive, anti-Jka; missing antibody records limited assessment."
+    },
+    {
+      "id": "glover2026",
+      "kind": "external",
+      "citation": "Glover RT, Maitta RW. Antibody-dependent and antibody-independent hemolysis in sickle cell disease. Antibodies (Basel). 2026;15(4):70.",
+      "doi": "10.3390/antib15040070",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13509730/",
+      "consulted": true,
+      "usedFor": "Evanescent antibodies are present below detection thresholds and increase rapidly on re-exposure; DHTR symptoms days to weeks after transfusion; DAT may be falsely negative with severe intravascular hemolysis."
+    },
+    {
+      "id": "vellanki2025",
+      "kind": "external",
+      "citation": "Vellanki S, Thalambedu N, Kumar AKTA, et al. Navigating hyperhemolysis in sickle cell disease: insights from literature. Diagnostics (Basel). 2025;15(14):1835.",
+      "doi": "10.3390/diagnostics15141835",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12293273/",
+      "consulted": true,
+      "usedFor": "During a DHTR, initial antibody screens and DATs may be negative despite significant hemolysis; about four days from the lowest hemoglobin to the first positive DAT or screen."
+    },
+    {
+      "id": "cfr610-46",
+      "kind": "external",
+      "citation": "21 CFR 610.46, Human immunodeficiency virus (HIV) “lookback” requirements (eCFR, version 2026-01-01, accessed 2026-10-08).",
+      "url": "https://www.ecfr.gov/current/title-21/part-610/section-610.46",
+      "consulted": true,
+      "usedFor": "Collecting establishment: within 3 calendar days review records for donations collected ≤ 12 months before the last nonreactive screen (or reactive NAT with nonreactive antibody); quarantine in-date units and notify consignees; further testing; notify consignees of results within 45 days; release/destroy/relabel. Consignee: quarantine when notified; notify recipients or physician of record, reasonable attempts within 12 weeks. (c) Not a recall."
+    },
+    {
+      "id": "badawi2025",
+      "kind": "external",
+      "citation": "Badawi MA, Eldakhakhny S, Ali M, et al. Key challenges in screening blood donors for hepatitis B virus. Viruses. 2025;18(1):23.",
+      "doi": "10.3390/v18010023",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12846598/",
+      "consulted": true,
+      "usedFor": "NAT has the shortest window (10–20 days after infection); HBV DNA detected up to 40 days (mean 6–15 days) before HBsAg; after HBsAg resolution and before anti-HBs, anti-HBc may be the only positive marker; residual risk from window-period donations and occult HBV."
+    },
+    {
+      "id": "bloch2026",
+      "kind": "external",
+      "citation": "Bloch EM, Jacobs JW, Vannier E, et al. Guidance on the management of asymptomatic blood donors who test positive for Babesia. Clin Infect Dis. 2026;83(1):e206-e213.",
+      "doi": "10.1093/cid/ciaf721",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12831819/",
+      "consulted": true,
+      "usedFor": "B. microti predominant in North America, endemic in the Northeast and upper Midwest; transmissible via any RBC-containing product; TTB mortality up to 19%; since 2019 FDA-approved NAT donor screening in 14 states and DC; TTB now rare."
+    },
+    {
+      "id": "cdc-dpdx-babesia",
+      "kind": "external",
+      "citation": "Centers for Disease Control and Prevention, DPDx. Babesiosis.",
+      "url": "https://www.cdc.gov/dpdx/babesiosis/index.html",
+      "consulted": true,
+      "usedFor": "Tetrads in Giemsa-stained thin blood smears are a dividing form characteristic of Babesia."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-dhtr",
+      "text": "DHTR: anamnestic rise of a non-ABO alloantibody (Rh, Kidd, Duffy, Kell, MNS) 3–21 days after transfusion; evanescent antibodies below detection.",
+      "status": "checked",
+      "refs": [
+        "furqan2026",
+        "glover2026"
+      ]
+    },
+    {
+      "id": "cl-lab",
+      "text": "Hemolysis labs and IgG-positive DAT with new antibody; early screen and DAT may be negative; check records.",
+      "status": "checked",
+      "refs": [
+        "furqan2026",
+        "vellanki2025",
+        "glover2026"
+      ]
+    },
+    {
+      "id": "cl-lookback",
+      "text": "US HIV lookback steps and timelines (3 days, 12 months, 45 days, 12 weeks); not a recall.",
+      "status": "checked",
+      "refs": [
+        "cfr610-46"
+      ]
+    },
+    {
+      "id": "cl-hbv",
+      "text": "HBV NAT detects DNA on average 6–15 days before HBsAg; anti-HBc may be the only marker in the core window.",
+      "status": "checked",
+      "refs": [
+        "badawi2025"
+      ]
+    },
+    {
+      "id": "cl-bab",
+      "text": "Babesia microti transmitted by RBC-containing products; NAT donor screening in endemic US states since 2019; tetrads on smear.",
+      "status": "checked",
+      "refs": [
+        "bloch2026",
+        "cdc-dpdx-babesia"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Most DHTRs present within 2 weeks; Babesia tetrads appear 1–6 weeks after transfusion; Philippine lookback requirements.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch41"
+      ],
+      "note": "Not taught; not in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Antibody curves, timelines and cards are schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Hidden antibody, hidden virus — look back both ways.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-core-window",
+      "issue": "Hit 14 says the HBV core window is “caught by HBV NAT”; Badawi 2025 shows anti-HBc may be the only marker in the core window, while NAT shortens the early (pre-HBsAg) window. The lesson teaches both windows.",
+      "kind": "contradiction",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No smear images are shown; Babesia tetrads are named, not drawn.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Furqan 2026, Glover & Maitta 2026, Vellanki 2025, 21 CFR 610.46, Badawi 2025, Bloch 2026 and CDC DPDx read for this lesson; 1 pending (DHTR 2-week presentation, Babesia timing, PH rules). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
