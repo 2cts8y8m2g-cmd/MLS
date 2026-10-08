@@ -80,6 +80,8 @@ FLAG_RULES = [
      'Enterococcus is its own genus, and most isolates are not β-hemolytic (about 20% were in one 2026 study). The answer stands, but confirm Enterococcus by growth in 6.5% NaCl and a positive bile esculin test.'),
     ('rv-hpc-abo', r'HPCs lack ABO antigens',
      'One 2024 review states that ABO antigens are present on hematopoietic stem cells, so the reason given here is uncertain. The practical point stands: ABO mismatch is not a contraindication, and incompatible red cells (major) or plasma (minor) in the product are reduced.'),
+    ('rv-vwd-ratio', r'below 0\.6 = qualitative|RCo/vWF:Ag[^.]{0,30}0\.6',
+     'The 2021 ASH ISTH NHF WFH guideline suggests an activity/antigen ratio below 0.7 (not 0.6) to confirm type 2 VWD, with low certainty. A ratio of 0.51 is type 2 under either rule.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
