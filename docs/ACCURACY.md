@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 39 flags: 22 verified issues and 17 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 40 flags: 22 verified issues and 18 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -60,6 +60,7 @@ Needs verification:
 - Ch. 40 Hit 2: "two ABO determinations" wording.
 - Appendix A: the ASCP weights.
 - Ch. 41 Hit 8: the ≥ 1 °C fever trigger and "never restart" (WHO 2001 allows a slow restart with a new unit).
+- Ch. 43 core: minimum CD34⁺ dose 2.5 × 10⁶/kg (source read: ≥ 2 × 10⁶/kg).
 - Ch. 64 core: multiplex NAATs as "the standard of care" (IDSA 2018 recommends multiplex panels for hospitalized immunocompromised patients).
 - Ch. 66 Hit 1: sets "30–60 minutes apart" (CDC: within a few hours, separate sites).
 - Ch. 57 Trap 2: tube coagulase "~100% sensitive" (no source read gives a figure).
@@ -73,6 +74,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **Stem-Cell Products: CD34⁺ Dose and Cryopreservation:** 2 pending claims (CFU timing; reviewer's freezing ramp, storage temperature and DMSO reinfusion toxicity) and 1 open flag (minimum dose).
 - **Dimorphic Fungi:** 2 pending claims (Histoplasma size and narrow-based budding; no lab conversion of Coccidioides) and 1 open flag (spherule size varies by source).
 - **Serum Protein Electrophoresis:** 1 pending claim (background γ suppression beside an M-spike); no open flags.
 - **Glanzmann vs Bernard-Soulier:** 2 pending claims (ristocetin works on fixed platelets; receptor roles stated as physiology) and 1 open flag (ristocetin may show a reduced second wave in GT).
