@@ -1,0 +1,1620 @@
+{
+  "schemaVersion": 1,
+  "id": "cm-serous-fluids-transudate-exudate",
+  "title": "Serous Fluids: Pressure or Inflammation? Light’s Criteria, SAAG and Special Tests",
+  "summary": "Classify pleural effusions with Light’s criteria and the albumin gradient, classify ascites with the SAAG, and use the ascitic neutrophil count, pleural pH, triglycerides and ADA to detect peritonitis, complicated effusions, chylothorax and tuberculous pleuritis.",
+  "domain": "p3-cm",
+  "topic": "ch30",
+  "conceptIds": [
+    "ch30.hit2",
+    "ch30.hit3",
+    "ch30.hit4",
+    "ch30.hit8",
+    "ch30.hit9",
+    "ch30.hit10"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 30,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          3,
+          4,
+          8,
+          9,
+          10
+        ]
+      }
+    ],
+    "note": "Core lesson for Ch. 30: teaches Hit 2 (Light’s criteria), Hit 3 (SAAG), Hit 4 (SBP), Hit 8 (pleural pH), Hit 9 (chylothorax) and Hit 10 (ADA). Checked against Harding 2025, Afram 2026, Tiwari 2026, Pradana 2026, Zhou 2026 and Inchingolo 2026. The reviewer writes Light’s cut-offs as “≥”; the source uses “>”. Not taught: “SAAG is 98% accurate; protein/LD rules 52–80%”, IFN-γ ≥ 3.7 IU/L, and “> 7.30 resolves medically” (not in the sources read). CSF and synovial fluids are left for a later lesson."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Apply Light’s criteria and recognize their tendency to misclassify transudates.",
+    "Calculate and interpret the serum-ascites albumin gradient.",
+    "Diagnose spontaneous bacterial peritonitis from the ascitic neutrophil count.",
+    "Use pleural pH, triglycerides, cholesterol, chylomicrons and ADA to identify complicated parapneumonic effusion, chylothorax, pseudochylothorax and tuberculous pleuritis."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two fluids, one question: leak or inflammation?",
+      "start": 0,
+      "end": 20,
+      "altText": "Two specimen tubes arrive with paired serum: pleural fluid (straw-colored) and ascitic fluid (cloudy). A question token: “Pushed out by pressure — or leaking from inflamed membranes?” Below: “Infected? Chylous? Tuberculous?” The cartoon scientist lines up serum and fluid tubes side by side.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Pleural fluid from the chest and ascitic fluid from the abdomen arrive in the lab, each with a matching serum sample."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The first question for every serous fluid: was it pushed out by pressure, or did it leak from an inflamed or diseased membrane?"
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Then: is it infected, is it chyle, is it tuberculosis? A few ratios and cut-offs answer most of this."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pf",
+          "type": "tube",
+          "props": {
+            "x": 180,
+            "y": 170,
+            "level": 0.7,
+            "fluid": "#f1e3a8",
+            "cells": 0.1,
+            "cap": "#7a8aa6",
+            "label": "Pleural fluid",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "af",
+          "type": "tube",
+          "props": {
+            "x": 340,
+            "y": 170,
+            "level": 0.7,
+            "fluid": "#e8dcc0",
+            "cells": 0.4,
+            "cap": "#7a8aa6",
+            "label": "Ascitic fluid",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "se",
+          "type": "tube",
+          "props": {
+            "x": 500,
+            "y": 170,
+            "level": 0.6,
+            "fluid": "#f3d27a",
+            "cells": 0,
+            "cap": "#c9a227",
+            "label": "Serum",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 400,
+            "w": 520,
+            "label": "Pressure (transudate) or inflammation (exudate)?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 420,
+            "label": "Infected? Chylous? Tuberculous?",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 800,
+            "y": 200,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Pleural fluid: Light’s criteria",
+      "start": 20,
+      "end": 60,
+      "altText": "A Light’s criteria card fills in with three tests, any one positive = exudate: pleural/serum protein > 0.5; pleural/serum LDH > 0.6; pleural LDH > 2/3 of the upper limit of normal serum LDH. A gauge token shows sensitivity ≈ 98% for exudates. A caution card: Light’s criteria misclassify about a quarter of transudates — about 30% of heart-failure effusions and 18% of cirrhotic ones; if clinical suspicion of a transudate is high, a serum–pleural albumin gradient > 1.2 g/dL supports a transudate.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "For pleural fluid, Light’s criteria compare the fluid with serum. Any one of three tests makes it an exudate."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "Fluid protein divided by serum protein above 0.5. Fluid LDH divided by serum LDH above 0.6. Or fluid LDH above two-thirds of the serum upper limit of normal."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 44,
+          "text": "The rule is very sensitive for exudates, about 98 percent. That is its strength."
+        },
+        {
+          "id": "n4",
+          "start": 44,
+          "end": 52,
+          "text": "Its weakness: it calls about a quarter of transudates exudates, including about 30 percent of heart-failure effusions and 18 percent of cirrhotic ones."
+        },
+        {
+          "id": "n5",
+          "start": 52,
+          "end": 60,
+          "text": "When a transudate is likely but Light’s says exudate, an albumin gradient, serum minus pleural albumin, above 1.2 grams per deciliter supports a transudate."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lc",
+          "type": "card",
+          "props": {
+            "x": 270,
+            "y": 180,
+            "w": 480,
+            "h": 190,
+            "tone": "a",
+            "title": "Light’s criteria (any one = exudate)",
+            "lines": [
+              "Protein F/S > 0.5",
+              "LDH F/S > 0.6",
+              "Fluid LDH > 2/3 serum ULN"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "sn",
+          "type": "token",
+          "props": {
+            "x": 270,
+            "y": 330,
+            "w": 360,
+            "label": "Sensitivity for exudates ≈ 98%",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mis",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 180,
+            "w": 400,
+            "h": 150,
+            "tone": "warn",
+            "title": "Misclassifies ≈ 25% of transudates",
+            "lines": [
+              "Heart failure ≈ 30%",
+              "Cirrhosis ≈ 18%"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ag",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 400,
+            "w": 420,
+            "label": "Albumin gradient > 1.2 g/dL → transudate",
+            "tone": "b",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Ascitic fluid: SAAG and the neutrophil count",
+      "start": 60,
+      "end": 104,
+      "altText": "A SAAG card: serum albumin − ascitic albumin, both measured the same day. ≥ 1.1 g/dL = portal hypertension (cirrhosis; in a non-cirrhotic patient, look for other causes such as portal vein thrombosis). < 1.1 g/dL = low-gradient ascites, pointing away from cirrhosis and heart failure toward peritoneal infection or malignancy. Example tokens: 3.0 − 1.5 = 1.5 → portal hypertension; 0.8 → low gradient. A neutrophil card: ascitic PMN ≥ 250 cells/µL = spontaneous bacterial peritonitis (culture-negative cases exist).",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 69,
+          "text": "For ascites, the key number is the serum-ascites albumin gradient, SAAG: serum albumin minus ascitic albumin, measured the same day."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 78,
+          "text": "A gradient of 1.1 grams per deciliter or more means portal hypertension, usually cirrhosis. In a patient without cirrhosis, look for other causes, such as portal vein thrombosis."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 86,
+          "text": "A gradient below 1.1 is low-gradient ascites. It points away from cirrhosis and heart failure, toward peritoneal infection or cancer."
+        },
+        {
+          "id": "c4",
+          "start": 86,
+          "end": 95,
+          "text": "For infection, count neutrophils. An ascitic neutrophil count of 250 per microliter or more means spontaneous bacterial peritonitis."
+        },
+        {
+          "id": "c5",
+          "start": 95,
+          "end": 104,
+          "text": "Cultures can be negative even with a high count. That pattern is called culture-negative neutrocytic ascites, and the count still counts."
+        }
+      ],
+      "objects": [
+        {
+          "id": "sg",
+          "type": "card",
+          "props": {
+            "x": 270,
+            "y": 180,
+            "w": 480,
+            "h": 190,
+            "tone": "a",
+            "title": "SAAG = serum alb − ascitic alb",
+            "lines": [
+              "Same-day samples",
+              "≥ 1.1 g/dL → portal hypertension",
+              "< 1.1 g/dL → low gradient"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "e1",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 140,
+            "w": 380,
+            "label": "3.0 − 1.5 = 1.5 → portal hypertension",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nc",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 210,
+            "w": 380,
+            "label": "No cirrhosis? Think portal vein thrombosis",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "e2",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 290,
+            "w": 380,
+            "label": "0.8 → low gradient: infection, cancer",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 20.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pmn",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 600,
+            "h": 120,
+            "tone": "bad",
+            "title": "Ascitic PMN ≥ 250 cells/µL = SBP",
+            "lines": [
+              "Culture can be negative (neutrocytic ascites)"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0
+            },
+            {
+              "t": 27,
+              "reveal": 0
+            },
+            {
+              "t": 27.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Special pleural tests: pH, chyle and ADA",
+      "start": 104,
+      "end": 144,
+      "altText": "Three cards. Parapneumonic effusion: uncomplicated — clear, pH > 7.20, glucose > 3.3 mmol/L (≈ 60 mg/dL), LDH < 900 IU/L, culture negative; complicated — turbid, pH < 7.20, glucose < 3.3 mmol/L, LDH > 900 IU/L; pH < 7.20 indicates drainage. Chylothorax: triglycerides > 110 mg/dL, cholesterol < 200 mg/dL, chylomicrons present (50–110 → order chylomicrons); pseudochylothorax: triglycerides < 50, cholesterol > 200, no chylomicrons. Tuberculous pleuritis: lymphocyte-predominant exudate with ADA above ≈ 40 U/L (ADA is released by activated T lymphocytes).",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 112,
+          "text": "In an effusion next to pneumonia, pH decides the next step. A pleural pH below 7.20 means a complicated effusion that needs drainage."
+        },
+        {
+          "id": "l2",
+          "start": 112,
+          "end": 120,
+          "text": "Complicated effusions are also turbid, with glucose below about 60 milligrams per deciliter and LDH above 900. Uncomplicated ones are clear with pH above 7.20."
+        },
+        {
+          "id": "l3",
+          "start": 120,
+          "end": 128,
+          "text": "Milky fluid? A true chylothorax has triglycerides above 110 milligrams per deciliter and chylomicrons. Between 50 and 110, order chylomicron testing."
+        },
+        {
+          "id": "l4",
+          "start": 128,
+          "end": 136,
+          "text": "A pseudochylothorax is the opposite: triglycerides below 50, cholesterol above 200, and no chylomicrons."
+        },
+        {
+          "id": "l5",
+          "start": 136,
+          "end": 144,
+          "text": "A lymphocyte-rich exudate with adenosine deaminase above about 40 units per liter points to tuberculous pleuritis. ADA comes from activated T cells."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pp",
+          "type": "card",
+          "props": {
+            "x": 200,
+            "y": 190,
+            "w": 340,
+            "h": 200,
+            "tone": "bad",
+            "title": "Parapneumonic",
+            "lines": [
+              "pH < 7.20 → drain",
+              "Glucose < 3.3 mmol/L",
+              "LDH > 900 IU/L · turbid"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ch",
+          "type": "card",
+          "props": {
+            "x": 530,
+            "y": 190,
+            "w": 300,
+            "h": 200,
+            "tone": "b",
+            "title": "Chylous?",
+            "lines": [
+              "TG > 110 + chylomicrons",
+              "TG 50–110: test chylomicrons",
+              "Pseudo: TG < 50, chol > 200"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "reveal": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ada",
+          "type": "card",
+          "props": {
+            "x": 820,
+            "y": 190,
+            "w": 260,
+            "h": 200,
+            "tone": "good",
+            "title": "Tuberculous",
+            "lines": [
+              "Lymphocytic exudate",
+              "ADA > ≈ 40 U/L"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "highlight",
+          "props": {
+            "x": 200,
+            "y": 190,
+            "w": 350,
+            "h": 210,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15.5,
+              "opacity": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards appear in turn: “Light’s says exudate, so it can’t be heart failure” (✓ about 30% of heart-failure effusions are misclassified — check the albumin gradient); “SAAG ≥ 1.1 always means cirrhosis” (✓ it means portal hypertension — consider portal vein thrombosis and other causes); “Milky pleural fluid is always chyle” (✓ check triglycerides, cholesterol and chylomicrons — pseudochylothorax).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: Light’s criteria say exudate, so it cannot be heart failure. Wrong. About 30 percent of heart-failure effusions are misclassified; check the albumin gradient."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a high SAAG always means cirrhosis. No. It means portal hypertension, which has other causes, such as portal vein thrombosis."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: milky pleural fluid is always chyle. No. Check triglycerides, cholesterol and chylomicrons; a pseudochylothorax is cholesterol-rich."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Light’s says exudate — not heart failure.”",
+            "lines": [
+              "✓ ≈ 30% of HF misclassified · albumin gradient > 1.2"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “SAAG ≥ 1.1 always means cirrhosis.”",
+            "lines": [
+              "✓ Portal hypertension — consider other causes"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Milky pleural fluid is always chyle.”",
+            "lines": [
+              "✓ TG, cholesterol, chylomicrons — pseudochylothorax"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Half, more-than-half, two-thirds; one-point-one; two-fifty",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: a ladder of numbers. Pleura: “half, more-than-half, two-thirds” (0.5, 0.6, 2/3). Ascites: “one-point-one for pressure, two-fifty for infection.” Special pleura: “seven-twenty to drain, one-ten for chyle, forty for TB.” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: for pleura, half, more than half, two-thirds. For ascites, one point one for pressure and two-fifty for infection. Then seven-twenty to drain, one-ten for chyle and forty for TB."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: Light’s criteria misclassify some transudates; cut-offs come from specific populations; and borderline triglycerides need chylomicron testing."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "0.5 · 0.6 · ⅔ · 1.1 · 250",
+            "size": 32,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 135,
+            "y": 170,
+            "w": 210,
+            "label": "Light’s: 0.5/0.6/⅔",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 365,
+            "y": 170,
+            "w": 210,
+            "label": "SAAG ≥ 1.1",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 595,
+            "y": 170,
+            "w": 210,
+            "label": "PMN ≥ 250",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 825,
+            "y": 170,
+            "w": 210,
+            "label": "pH 7.20 · TG 110 · ADA 40",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.1,
+              "opacity": 0
+            },
+            {
+              "t": 5.8999999999999995,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Light’s misclassifies some transudates",
+              "Cut-offs come from specific populations",
+              "Borderline TG needs chylomicron testing"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Pleura: Light’s (0.5 / 0.6 / ⅔) sensitive for exudate, misclassifies HF · albumin gradient > 1.2 = transudate”, “Ascites: SAAG ≥ 1.1 = portal hypertension · PMN ≥ 250 = SBP · pleural pH < 7.20 drain · TG > 110 chyle · ADA > 40 TB”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Classify pleural fluid with Light’s criteria and rescue misclassified transudates with the albumin gradient, classify ascites with the SAAG, and use the neutrophil count, pH, triglycerides and ADA to find infection, chyle and tuberculosis."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Light’s 0.5/0.6/⅔ (sensitive; misclassifies HF) · albumin gradient > 1.2 = transudate",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "SAAG ≥ 1.1 · PMN ≥ 250 = SBP · pH < 7.20 drain · TG > 110 chyle · ADA > 40 TB",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: fluid builds up in the chest or abdomen either because pressure pushes it out of vessels (transudate) or because inflamed or diseased membranes leak protein-rich fluid (exudate). Scientific terms: Light’s criteria, LDH, albumin gradient, serum-ascites albumin gradient (SAAG), polymorphonuclear (PMN) count, spontaneous bacterial peritonitis (SBP), parapneumonic effusion, chylothorax, pseudochylothorax, adenosine deaminase (ADA).",
+    "why": "Exudates contain more protein and LDH because of capillary leak and local inflammation. In portal hypertension, high hydrostatic pressure drives low-protein fluid into the peritoneum, so the serum–ascites albumin difference is large. Bacterial metabolism in a complicated effusion lowers pH and glucose. Chyle carries chylomicron triglycerides. Activated T lymphocytes release ADA.",
+    "measure": "Light’s: protein F/S > 0.5, LDH F/S > 0.6, fluid LDH > 2/3 serum ULN (any one). Pleural albumin gradient > 1.2 g/dL → transudate. SAAG ≥ 1.1 g/dL → portal hypertension. Ascitic PMN ≥ 250/µL → SBP. Pleural pH < 7.20, glucose < 3.3 mmol/L, LDH > 900 IU/L → complicated. Chylothorax TG > 110 mg/dL, cholesterol < 200, chylomicrons; pseudochylothorax TG < 50, cholesterol > 200. ADA > ≈ 40 U/L → TB pleuritis.",
+    "differs": "Transudate vs exudate; high- vs low-gradient ascites; uncomplicated vs complicated parapneumonic effusion; chylothorax vs pseudochylothorax.",
+    "examAngle": "Expect: apply Light’s to numbers, compute a SAAG, PMN ≥ 250, pH < 7.20 for drainage, TG > 110 chyle, ADA for TB, and heart-failure effusions misclassified by Light’s."
+  },
+  "comparisons": [
+    {
+      "id": "chyle-vs-pseudo",
+      "title": "Chylothorax vs pseudochylothorax",
+      "left": {
+        "label": "Chylothorax",
+        "points": [
+          "TG > 110 mg/dL, cholesterol < 200",
+          "Chylomicrons present"
+        ]
+      },
+      "right": {
+        "label": "Pseudochylothorax",
+        "points": [
+          "TG < 50, cholesterol > 200",
+          "No chylomicrons"
+        ]
+      },
+      "distinguisher": "Triglycerides vs cholesterol, and chylomicrons."
+    },
+    {
+      "id": "saag-hi-lo",
+      "title": "High vs low SAAG ascites",
+      "left": {
+        "label": "SAAG ≥ 1.1 g/dL",
+        "points": [
+          "Portal hypertension",
+          "Cirrhosis, portal vein thrombosis"
+        ]
+      },
+      "right": {
+        "label": "SAAG < 1.1 g/dL",
+        "points": [
+          "Low-gradient ascites",
+          "Peritoneal infection, malignancy"
+        ]
+      },
+      "distinguisher": "Serum minus ascitic albumin."
+    }
+  ],
+  "mnemonic": {
+    "text": "Half, more-than-half, two-thirds; one-point-one for pressure, two-fifty for infection.",
+    "explanation": "Light’s 0.5, 0.6 and 2/3; SAAG 1.1 g/dL; ascitic PMN 250/µL — plus pH 7.20, triglycerides 110 and ADA 40.",
+    "limitation": "Light’s criteria misclassify some transudates; cut-offs come from specific populations; borderline triglycerides need chylomicron testing."
+  },
+  "analogyLimitations": [
+    "Tubes and cards are schematic.",
+    "The fluids are invented examples.",
+    "CSF, synovial and pericardial fluid analysis are not covered here."
+  ],
+  "takeaway": "Classify pleural fluid with Light’s criteria and rescue misclassified transudates with the albumin gradient, classify ascites with the SAAG, and use the neutrophil count, pH, triglycerides and ADA to find infection, chyle and tuberculosis.",
+  "questions": [
+    {
+      "id": "cm-ser-q1",
+      "stem": "Pleural protein 3.2 g/dL, serum protein 6.0 g/dL; pleural LDH 120 U/L, serum LDH 200 U/L (ULN 220). Is the effusion an exudate by Light’s criteria?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes — protein ratio 0.53 (> 0.5) and LDH ratio 0.6 is not above 0.6, but one criterion is enough",
+          "rationale": "Correct. Any one criterion makes it an exudate; the protein ratio exceeds 0.5."
+        },
+        {
+          "id": "b",
+          "text": "No — all three criteria must be met",
+          "rationale": "Incorrect. Only one is needed."
+        },
+        {
+          "id": "c",
+          "text": "No — fluid LDH is below 2/3 of the ULN",
+          "rationale": "Incorrect. The protein ratio alone already classifies it as an exudate."
+        },
+        {
+          "id": "d",
+          "text": "Cannot be decided without a SAAG",
+          "rationale": "Incorrect. SAAG is used for ascites."
+        }
+      ],
+      "answer": "a",
+      "skill": "Light’s criteria",
+      "difficulty": "application"
+    },
+    {
+      "id": "cm-ser-q2",
+      "stem": "Serum albumin 3.1 g/dL, ascitic albumin 1.2 g/dL; ascitic neutrophils 410/µL; culture pending. What is the interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Portal-hypertensive ascites (SAAG 1.9) with spontaneous bacterial peritonitis",
+          "rationale": "Correct. SAAG ≥ 1.1 indicates portal hypertension; PMN ≥ 250/µL indicates SBP."
+        },
+        {
+          "id": "b",
+          "text": "Low-gradient ascites from malignancy",
+          "rationale": "Incorrect. The gradient is 1.9, well above 1.1."
+        },
+        {
+          "id": "c",
+          "text": "SBP excluded until the culture is positive",
+          "rationale": "Incorrect. The neutrophil count is diagnostic; cultures can be negative."
+        },
+        {
+          "id": "d",
+          "text": "Normal ascitic fluid",
+          "rationale": "Incorrect. The neutrophil count is markedly raised."
+        }
+      ],
+      "answer": "a",
+      "skill": "SAAG and SBP",
+      "difficulty": "application"
+    },
+    {
+      "id": "cm-ser-q3",
+      "stem": "A parapneumonic pleural effusion is turbid with pH 7.05, glucose 2.1 mmol/L and LDH 1,500 IU/L. What does this indicate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A complicated parapneumonic effusion that needs drainage",
+          "rationale": "Correct. pH < 7.20, glucose < 3.3 mmol/L and LDH > 900 IU/L indicate a complicated effusion."
+        },
+        {
+          "id": "b",
+          "text": "An uncomplicated effusion that will resolve with antibiotics alone",
+          "rationale": "Incorrect. Uncomplicated effusions have pH > 7.20."
+        },
+        {
+          "id": "c",
+          "text": "A transudate from heart failure",
+          "rationale": "Incorrect. These are features of infection, not pressure."
+        },
+        {
+          "id": "d",
+          "text": "A chylothorax",
+          "rationale": "Incorrect. Chyle is identified by triglycerides and chylomicrons."
+        }
+      ],
+      "answer": "a",
+      "skill": "Parapneumonic effusion",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch30",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 30, Body Fluids Beyond Blood (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 30,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            3,
+            4,
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "harding2025",
+      "kind": "external",
+      "citation": "Harding WC, Halawa AR, Aiche MM, et al. Pleural effusion: shedding light on pleural disease beyond infection and malignancy. Medicina (Kaunas). 2025;61(3):443.",
+      "doi": "10.3390/medicina61030443",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11943497/",
+      "consulted": true,
+      "usedFor": "Light’s criteria (PF/S protein > 0.5, PF/S LDH > 0.6, PF LDH > 2/3 normal serum LDH; one of three = exudate; SN 98.3%, SP 76%); misclassifies ≈ 25% of transudates (≈ 30% heart failure, 18% cirrhosis); albumin gradient > 1.2 g/dL → transudate; chylothorax TG > 110 mg/dL, cholesterol < 200 mg/dL, chylomicrons (50–110 does not exclude; order chylomicrons); pseudochylothorax TG < 50, cholesterol > 200, no chylomicrons."
+    },
+    {
+      "id": "afram2026",
+      "kind": "external",
+      "citation": "Afram R, Bajouka J, Ahmadi F, Mude PJ, Yousif E. Spontaneous bacterial peritonitis as a rare complication of a pancreatic duct leak in a patient without cirrhosis: a case report. Cureus. 2026;18(9):e115739.",
+      "doi": "10.7759/cureus.115739",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13633855/",
+      "consulted": true,
+      "usedFor": "Elevated SAAG ≥ 1.1 g/dL indicates portal hypertension; in non-cirrhotic patients prompts evaluation for extrahepatic causes such as portal vein thrombosis; PMN diagnostic threshold ≥ 250 cells/mm³; culture-negative neutrocytic ascites."
+    },
+    {
+      "id": "tiwari2026",
+      "kind": "external",
+      "citation": "Tiwari A, Sharma A, Lewkowicz M, et al. Non-small cell lung carcinoma presenting as isolated malignant ascites in the absence of a detectable primary tumor. Clin Case Rep. 2026;14(7):e73158.",
+      "doi": "10.1002/ccr3.73158",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13365798/",
+      "consulted": true,
+      "usedFor": "SAAG 0.8 g/dL = low-gradient, non-portal-hypertensive ascites, arguing against cardiac and cirrhotic causes and toward peritoneal infection and malignancy."
+    },
+    {
+      "id": "pradana2026",
+      "kind": "external",
+      "citation": "Pradana FR, Nuramalia LS, Maimunah U. Spontaneous bacterial peritonitis in non-cirrhotic portal hypertension secondary to primary myelofibrosis: a rare case report. ILIVER. 2026;5(2).",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13196353/",
+      "consulted": true,
+      "usedFor": "SBP diagnosed by ascitic PMN count > 250 cells/µL, the gold-standard criterion."
+    },
+    {
+      "id": "zhou2026p",
+      "kind": "external",
+      "citation": "Zhou L, Yao M, Li J, et al. Local management of pleural infection: a narrative review. Eur J Med Res. 2026;31(1):181.",
+      "doi": "10.1186/s40001-025-03786-8",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12866398/",
+      "consulted": true,
+      "usedFor": "Pleural fluid pH below 7.2 indicates the need for drainage; uncomplicated parapneumonic effusion clear, pH > 7.20, glucose > 3.3 mmol/L, LDH < 900 IU/L, culture negative; complicated: turbid, pH < 7.20, glucose < 3.3 mmol/L, LDH > 900 IU/L, culture positive."
+    },
+    {
+      "id": "inchingolo2026",
+      "kind": "external",
+      "citation": "Inchingolo R, Carriera L, Ielo S, et al. Tuberculous pleural effusion: integrating thoracic ultrasound and medical thoracoscopy in the diagnostic pathway. J Ultrasound. 2026;29(1):1-11.",
+      "doi": "10.1007/s40477-025-01094-9",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13000056/",
+      "consulted": true,
+      "usedFor": "ADA is produced by activated T lymphocytes; pleural ADA highly sensitive and specific for tuberculous effusion above a threshold of 40 U/L, with a lymphocyte-predominant exudate."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-light",
+      "text": "Light’s criteria, sensitivity ≈ 98%, misclassification of ≈ 25% of transudates (HF 30%, cirrhosis 18%), albumin gradient > 1.2 g/dL.",
+      "status": "checked",
+      "refs": [
+        "harding2025"
+      ]
+    },
+    {
+      "id": "cl-saag",
+      "text": "SAAG ≥ 1.1 = portal hypertension (consider portal vein thrombosis if no cirrhosis); low SAAG points to infection/malignancy.",
+      "status": "checked",
+      "refs": [
+        "afram2026",
+        "tiwari2026"
+      ]
+    },
+    {
+      "id": "cl-sbp",
+      "text": "Ascitic PMN ≥ 250/µL = SBP; culture-negative neutrocytic ascites exists.",
+      "status": "checked",
+      "refs": [
+        "pradana2026",
+        "afram2026"
+      ]
+    },
+    {
+      "id": "cl-ph",
+      "text": "Parapneumonic: pH < 7.20 → drainage; glucose < 3.3 mmol/L, LDH > 900 IU/L, turbid = complicated.",
+      "status": "checked",
+      "refs": [
+        "zhou2026p"
+      ]
+    },
+    {
+      "id": "cl-chyle",
+      "text": "Chylothorax TG > 110 + chylomicrons, cholesterol < 200; 50–110 → chylomicrons; pseudochylothorax TG < 50, cholesterol > 200.",
+      "status": "checked",
+      "refs": [
+        "harding2025"
+      ]
+    },
+    {
+      "id": "cl-ada",
+      "text": "ADA from activated T cells; > 40 U/L with lymphocytic exudate → TB pleuritis.",
+      "status": "checked",
+      "refs": [
+        "inchingolo2026"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "SAAG 98% accurate vs protein/LD rules 52–80%; IFN-γ ≥ 3.7 IU/L; pH > 7.30 resolves medically.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch30"
+      ],
+      "note": "Not taught; not in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Tubes and cards are schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Half, more-than-half, two-thirds; one-point-one; two-fifty.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No fluid or cell images; tubes are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 claims checked against Harding 2025, Afram 2026, Tiwari 2026, Pradana 2026, Zhou 2026 and Inchingolo 2026 read for this lesson; 1 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
