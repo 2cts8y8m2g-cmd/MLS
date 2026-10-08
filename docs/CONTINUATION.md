@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 38, teaching 157 of 1,932 concepts (about 8.1%).** All 38 still require review: each has pending claims, and none has had human expert review.
+- **Lessons complete: 39, teaching 158 of 1,932 concepts (about 8.2%).** All 39 still require review: each has pending claims, and none has had human expert review.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-lab-safety-precautions-osha`, `ops-reimbursement-drg-payment-window`, `ops-lab-design-hazcom-numbers`.
   - Ch. 2 (23/23 concepts): `ops-workflow-before-technology`, `ops-six-sigma-vs-lean`, `ops-instrument-selection-uptime-batch`, `ops-consolidation-utilization-autoverification`.
   - Ch. 3 (24/24 concepts): `pre-order-of-draw-edta`, `pre-citrate-ratio-heparin`, `pre-tube-additives-fluoride-gel`, `pre-patient-id-wbit`, `pre-csf-tubes-synovial-crystals`, `pre-biotin-daratumumab-interference`, `pre-allen-test-urine-timing`, `pre-specimen-numbers-rcf-24h-urine`.
@@ -18,7 +18,7 @@
   - Ch. 37 (4/24 concepts): `heme-glanzmann-bernard-soulier`.
   - Ch. 38 (5/22 concepts): `heme-lupus-anticoagulant-aps`.
   - Ch. 40 (4/36 concepts): `ih-abo-forward-reverse`, `ih-abo-discrepancy-types-workup`.
-  - Ch. 41 (4/35 concepts): `bb-acute-hemolytic-reaction-abo-compatibility`.
+  - Ch. 41 (5/35 concepts): `bb-acute-hemolytic-reaction-abo-compatibility`, `bb-trali-vs-taco`.
   - Ch. 42 (9/29 concepts): `ih-plasma-exchange-tpe`.
   - Ch. 43 (3/22 concepts): `ih-hpc-cd34-dose-cryopreservation`.
   - Ch. 57 (8/57 concepts): `micro-gpc-catalase-coagulase-mrsa`.
@@ -26,8 +26,8 @@
   - Ch. 60 (4/25 concepts): `micro-dimorphic-fungi`.
   - Ch. 64 (2/24 concepts): `micro-respiratory-virus-naat-antigen-culture`.
   - Ch. 66 (3/54 concepts): `micro-blood-culture-volume-contamination`.
-- **Reviewer accuracy register:** 42 flags (24 verified issues, 18 needing verification), plus scan results.
-- **Checks:** 294 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Reviewer accuracy register:** 43 flags (25 verified issues, 18 needing verification), plus scan results.
+- **Checks:** 300 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -59,7 +59,7 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 
 | Round | Hematology | Chemistry | Microbiology | Blood Bank |
 |---|---|---|---|---|
-| 5 | ✅ Ch. 38 Clot risk (15 Qs) | ✅ Ch. 24 Drugs & poisons (11) | ✅ Ch. 59 Mycobacteria (13) | Ch. 41 TRALI vs TACO (Hit 4) |
+| 5 | ✅ Ch. 38 Clot risk (15 Qs) | ✅ Ch. 24 Drugs & poisons (11) | ✅ Ch. 59 Mycobacteria (13) | ✅ Ch. 41 TRALI vs TACO (Hit 4) |
 | 6 | Ch. 39 Anticoagulant monitoring (14) | Ch. 21 Enzymes (10) | Ch. 65 Parasites (12) | Ch. 40 Rh / weak D (Hit 16) |
 | 7 | Ch. 34 White cell disorders (14) | Ch. 18 Lipids (10) | Ch. 61 Spirochetes (12) | Ch. 40 antibody ID / Kidd (Hits 3, 5) |
 

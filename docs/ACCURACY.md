@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 42 flags: 24 verified issues and 18 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 43 flags: 25 verified issues and 18 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -46,6 +46,7 @@ Verified:
 - **Ch. 35:** blast threshold ≥20% per WHO 2017; WHO-HAEM5 and the 2022 ICC differ.
 - **Ch. 42 Hit 2:** TPE removal percentages (30% / 10% left) contradict its own e⁻ˣ formula (≈37% / 14%).
 - **Ch. 22:** HBV chronicity "80% neonates, 1–2% adults" (CDC: ~90% infants, ~5% adults); IgM anti-HBc called the "sole" window marker (total anti-HBc and HBV DNA too).
+- **Ch. 41 Hit 4:** BNP said to “NOT rise” in TRALI and TRALI treated with “oxygen only” (Vlaar 2019: natriuretic peptides are always raised in severe TRALI and critical illness; care is supportive, including ventilation).
 - **Ch. 24 Trap 3:** dilute urine given as creatinine ≤ 20 mg/dL and SG ≤ 1.0030 (DOT 40.88: creatinine ≥ 2 and < 20, SG > 1.0010 and < 1.0030 — the reviewer's numbers match clinical tampering flags); out-of-range temperature listed as a substitution criterion (DOT 40.65: a collection check that triggers an observed recollection).
 - **Ch. 15 core:** "FENa > 1% suggests ATN"; a 2025 consensus treats 1–2% as indeterminate and > 2% as intrinsic.
 - **Ch. 66 core:** blood-culture yields "80 / 96 / 100%" for 2 / 3 / 4 sets; Lee 2007 found 90 / 98 / 99.8%.
@@ -75,6 +76,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **TRALI vs TACO:** 1 pending claim (48–96 h resolution and ~10% mortality; source read: 48–72 h, 5–25%); 1 register flag on Hit 4.
 - **AFB Smears:** 2 pending claims (centrifugation force/volume; heat vs phenol mordant and NALC mucolytic role); no flags.
 - **Drug Screens:** 2 pending claims (TLC as a confirmation method; GC-MS vs LC-MS/MS by volatility/derivatization); 2 register flags on Trap 3.
 - **Lupus Anticoagulant:** 1 pending claim (immediate-acting; strongest lab risk factor; 99th-percentile cut-off); no open flags.
