@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 77 flags: 54 verified issues and 23 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 79 flags: 55 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -71,6 +71,7 @@ Verified:
 - **Ch. 20 Trap 2:** bisalbuminemia called a benign variant needing no work-up; Kapatia 2021 also describes a transient acquired form (high-dose β-lactams, pancreatic pseudocyst).
 - **Ch. 60 Hit 9 / Trap 4:** piperacillin-tazobactam presented as a current cause of false-positive galactomannan (Vergidis 2014, abstract: 0 of 32 current US lots contained GM; now a rare cause).
 - **Ch. 60 simulator Q786:** *A. niger* described as uniseriate (Samson 2007: biseriate).
+- **Ch. 40 simulator Q372:** RhIG for a 60 mL bleed given as 2 vials; technical guidance (Hajjaj 2025) rounds and adds one vial (3).
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -99,12 +100,13 @@ Needs verification:
 - Ch. 58 Hit 5: nitrocefin as the safeguard for hidden staphylococcal β-lactamase (Ferreira 2017, S. saprophyticus: nitrocefin least sensitive, zone-edge most sensitive; S. aureus not checked).
 - Ch. 41 Hit 10: end-of-storage platelet pH “≥ 6.0” (Cancelas 2022 used ≥ 6.2 as the acceptance endpoint; the current AABB/FDA criterion was not read).
 - Ch. 20 Hit 4: “myoglobin doesn’t bind haptoglobin” (Petejova 2014 and Gupta 2021 say circulating myoglobin is bound mainly by haptoglobin; no primary binding study read).
+- Ch. 40 Hits 10 and 15, Trap 5: anti-K titers “underestimate” risk, Doppler “regardless of titer” (Jacobs 2025 meta-analysis: 98.6% of severe cases at titer ≥ 8; guidelines differ).
 
 Automated scan: **23** dated-guideline statements and **134** High-Yield Hits with only/always/never wording. Each must be checked when its lesson is built.
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 35 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 37 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
@@ -126,6 +128,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Inherited Thrombophilia (Ch. 38):** 1 pending claim (FVL fold-risks, free protein S falling from the 10th week, factor II assays “blind” to G20210A, ACMG/ACOG on MTHFR; not taught); 1 register flag (rv-fvl-risk).
 - **Plasma Protein Patterns (Ch. 20):** 1 pending claim (α2-macroglobulin size and 10-fold rise, δ-bilirubin, CRP bacterial vs viral, haptoglobin rebound/hemopexin, ZZ prevalence, myoglobin binding; not taught); 2 register flags (rv-myoglobin-hp, rv-bisalbumin).
 - **Invasive Moulds (Ch. 60):** 1 pending claim (Aspergillus width, “lid lifter” timing, cycloheximide, calcofluor chemistry, BDG NPV for PCP, DKA as most common risk; not taught); 1 register flag (rv-gm-piptazo).
+- **HDFN Surveillance (Ch. 40):** 1 pending claim (anti-G titer-ratio rule, severe ABO HDFN 0.04%, exchange thresholds; not taught); 2 register flags (rv-antik-titer, rv-rhig-vials).
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.

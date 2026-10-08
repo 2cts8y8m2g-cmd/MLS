@@ -1,0 +1,1711 @@
+{
+  "schemaVersion": 1,
+  "id": "ih-hdfn-titers-rhig",
+  "title": "HDFN Surveillance: Titers, Anti-K, Anti-G and RhIG Dosing",
+  "summary": "Follow maternal antibody titers correctly, know why anti-K is judged at lower titers, recognise mild ABO disease and the anti-G impostor, and dose Rh immune globulin from a rosette screen and fetomaternal bleed quantitation.",
+  "domain": "p5-bb",
+  "topic": "ch40",
+  "conceptIds": [
+    "ch40.hit4",
+    "ch40.hit10",
+    "ch40.hit15",
+    "ch40.hit18",
+    "ch40.hit22",
+    "ch40.hit27",
+    "ch40.trap5"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 40,
+        "section": "High-Yield Hits",
+        "items": [
+          4,
+          10,
+          15,
+          18,
+          22,
+          27
+        ]
+      },
+      {
+        "chapter": 40,
+        "section": "Exam Traps",
+        "items": [
+          5
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 40 Hits 4, 10, 15, 18, 22 and 27 and Trap 5. Checked against Hajjaj 2025, Visser 2021 (FIGO/ICM), Valentini 2025, Basu 2011, Jacobs 2025 (anti-K meta-analysis) and Makroo 2015. Hit 10 and Trap 5 say anti-K titers underestimate risk and call for Doppler “regardless of titer”; Jacobs 2025 found 98.6% of severe anti-K HDFN at titers ≥ 8 (register flag rv-antik-titer). Simulator question 372 omits the extra vial added by technical guidance (register flag rv-rhig-vials). Not taught: “anti-C titer ≥ 4× anti-D suggests anti-G,” severe ABO HDFN “~0.04%” (Valentini gives 0.3–0.8% for ABO HDFN overall in Caucasian neonates), and exchange-transfusion bilirubin thresholds."
+  },
+  "prerequisites": [
+    "ch40.hit16"
+  ],
+  "objectives": [
+    "Calculate RhIG coverage and state the timing of antenatal and postpartum doses.",
+    "Run the HDFN monitoring chain: screen, identify, titer in parallel, critical titer, MCA Doppler.",
+    "Explain why anti-K is managed at lower titers and why ABO HDFN is usually mild.",
+    "Recognise anti-G and passive anti-D, and quantify fetomaternal hemorrhage after a positive rosette screen."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two antibodies, two pregnancies",
+      "start": 0,
+      "end": 20,
+      "altText": "Two prenatal cards at 16 weeks. Woman A: D-negative, anti-D titer 8, partner D-positive. Woman B: D-positive, transfused after a car crash years ago, anti-K titer 4, partner K-positive. A question token: “Which titer can you trust — and what comes next?” The cartoon scientist holds two titer tubes.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Two pregnant women at 16 weeks. Woman A is D-negative with an anti-D titer of 8."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Woman B is D-positive but was transfused after a car crash. She has anti-K with a titer of only 4, and her partner is K-positive."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "A titer of 4 sounds reassuring. Is it? The answer depends on what the antibody does to the fetus."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 420,
+            "h": 190,
+            "tone": "a",
+            "title": "Woman A · 16 weeks",
+            "lines": [
+              "D-negative",
+              "Anti-D titer 8",
+              "Partner D-positive"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 190,
+            "tone": "b",
+            "title": "Woman B · 16 weeks",
+            "lines": [
+              "Transfused years ago",
+              "Anti-K titer 4",
+              "Partner K-positive"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.3,
+              "opacity": 0
+            },
+            {
+              "t": 8,
+              "reveal": 0
+            },
+            {
+              "t": 8.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "highlight",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 34,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 520,
+            "y": 420,
+            "w": 460,
+            "label": "Which titer can you trust — and what next?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 150,
+            "y": 420,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "How HDFN starts, and how RhIG prevents it",
+      "start": 20,
+      "end": 60,
+      "altText": "A placenta schematic: maternal IgG crosses to the fetus and coats fetal red cells carrying the antigen. A prevention panel for D-negative mothers: one 300 µg (1500 IU) RhIG vial covers 30 mL of fetal whole blood or 15 mL of fetal red cells; antenatal dose (often at 28 weeks) and a postpartum dose within 72 hours of delivering a D-positive baby (if missed, give as soon as recognised, up to 28 days). A note: passive anti-D from RhIG can be detected by IAT for up to about 8 weeks — not the same as immunisation.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "Hemolytic disease of the fetus and newborn starts when maternal IgG crosses the placenta and coats fetal red cells that carry the matching antigen."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "For anti-D, prevention works. One 300 microgram vial of Rh immune globulin covers 30 millilitres of fetal whole blood, or 15 of fetal red cells."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 44,
+          "text": "It is given antenatally, often at 28 weeks, and again within 72 hours of delivering a D-positive baby. If that window is missed, give it as soon as the need is recognised, up to 28 days."
+        },
+        {
+          "id": "n4",
+          "start": 44,
+          "end": 52,
+          "text": "Passive anti-D from the injection shows up in the antibody screen for up to about eight weeks."
+        },
+        {
+          "id": "n5",
+          "start": 52,
+          "end": 60,
+          "text": "That passive antibody is not immunisation. History and a falling titer tell them apart."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 150,
+            "w": 420,
+            "h": 150,
+            "tone": "neutral",
+            "title": "Placenta (schematic)",
+            "lines": [
+              "Maternal IgG crosses",
+              "Coats antigen-positive fetal RBCs"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "vial",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 150,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "RhIG 300 µg (1500 IU)",
+            "lines": [
+              "30 mL fetal whole blood",
+              "= 15 mL fetal RBCs"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            },
+            {
+              "t": 14,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "time",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 370,
+            "w": 420,
+            "h": 170,
+            "tone": "b",
+            "title": "When",
+            "lines": [
+              "Antenatal (often 28 weeks)",
+              "Postpartum within 72 h",
+              "Missed? up to 28 days"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "reveal": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pass",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 370,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Passive anti-D",
+            "lines": [
+              "IAT-detectable up to ~8 weeks",
+              "Not immunisation — check history"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Not every antibody behaves like anti-D",
+      "start": 60,
+      "end": 104,
+      "altText": "Three antibody cards. Anti-K: destroys red cells and also suppresses fetal erythroid progenitors → earlier, more severe anemia at lower titers; critical titers for anti-K are set lower (a 2025 review table: > 4; a 2025 meta-analysis: ≥ 8 had 97% sensitivity, and 98.6% of severe cases had titers ≥ 8). ABO: almost exclusively group O mothers (IgG anti-A, anti-B) with A or B babies; usually mild because fetal A and B antigens are weakly expressed; DAT may be weak or negative. Anti-G: a D-negative woman who seems to have anti-D + anti-C may have anti-G; differential adsorption and elution separate them; if there is no true anti-D, she still needs RhIG.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 69,
+          "text": "Anti-K is different. It destroys red cells, but it also attacks the fetal red-cell factory, the erythroid progenitors."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 78,
+          "text": "So anemia comes earlier and at lower titers. Critical titers for anti-K are set lower. In a 2025 meta-analysis, 98.6 percent of severe cases had titers of 8 or more."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 87,
+          "text": "ABO disease affects almost only babies of group O mothers, who make IgG anti-A and anti-B. It is usually mild, because fetal A and B antigens are weakly expressed. The DAT may even be weak or negative."
+        },
+        {
+          "id": "c4",
+          "start": 87,
+          "end": 96,
+          "text": "Anti-G is the impostor. It reacts with both D and C cells, so it looks like anti-D plus anti-C."
+        },
+        {
+          "id": "c5",
+          "start": 96,
+          "end": 104,
+          "text": "Differential adsorption and elution separate them. If there is no true anti-D, the woman can still be immunised to D and still needs Rh immune globulin."
+        }
+      ],
+      "objects": [
+        {
+          "id": "k",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 420,
+            "h": 230,
+            "tone": "bad",
+            "title": "Anti-K",
+            "lines": [
+              "Hemolysis + progenitor suppression",
+              "Earlier anemia, lower titers",
+              "Lower critical titer",
+              "2025: 98.6% of severe cases titer ≥ 8"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            },
+            {
+              "t": 17,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "abo",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 140,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "ABO HDFN",
+            "lines": [
+              "Group O mother (IgG anti-A, anti-B)",
+              "Usually mild: weak fetal A/B",
+              "DAT may be weak or negative"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "g",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 380,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Anti-G (looks like D + C)",
+            "lines": [
+              "Reacts with D+ and C+ cells",
+              "Adsorption/elution separates",
+              "No true anti-D → still give RhIG"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0
+            },
+            {
+              "t": 28,
+              "reveal": 0
+            },
+            {
+              "t": 28.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 40,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "highlight",
+          "props": {
+            "x": 710,
+            "y": 412,
+            "w": 420,
+            "h": 32,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 40,
+              "opacity": 0
+            },
+            {
+              "t": 40.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "The monitoring chain, from screen to rosette",
+      "start": 104,
+      "end": 144,
+      "altText": "A chain of steps. 1: antibody screen at the first visit; D-negative women rescreened at 24–28 weeks. 2: identify the antibody, type the partner or fetus. 3: titer every 4 weeks to ~24 weeks, then every 2 weeks; test the previous frozen sample in parallel; a rise of ≥ 2 dilutions (e.g., 8 → 32) is significant. 4: at the critical titer → MCA peak systolic velocity Doppler; > 1.5 MoM → cordocentesis and possible intrauterine transfusion. 5: after delivery, rosette screen detects ≥ 10 mL fetal whole blood; positive → quantify by Kleihauer–Betke or flow cytometry (most accurate; KB overestimates with high maternal F cells) and add vials. Back to the hook: A keeps titering; B gets close anti-K surveillance, often Doppler-led.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 112,
+          "text": "Screen every pregnant woman at the first visit, and rescreen D-negative women at 24 to 28 weeks. Identify any antibody and check whether the fetus carries the antigen."
+        },
+        {
+          "id": "l2",
+          "start": 112,
+          "end": 120,
+          "text": "Titer every four weeks until about 24 weeks, then every two. Run the previous frozen sample alongside, because a rise of two or more dilutions, say 8 to 32, is significant."
+        },
+        {
+          "id": "l3",
+          "start": 120,
+          "end": 128,
+          "text": "At the critical titer, switch to middle cerebral artery Doppler. A peak velocity above 1.5 multiples of the median suggests fetal anemia and leads to cordocentesis."
+        },
+        {
+          "id": "l4",
+          "start": 128,
+          "end": 136,
+          "text": "After delivery, the rosette screen detects about 10 millilitres of fetal whole blood. A positive screen is quantified by Kleihauer–Betke or flow cytometry. Divide the bleed by 30, round, and technical guidance adds one more vial."
+        },
+        {
+          "id": "l5",
+          "start": 136,
+          "end": 144,
+          "text": "So woman A keeps titering. Woman B, with anti-K, gets close surveillance, often led by Doppler, because her low titer cannot simply be trusted."
+        }
+      ],
+      "objects": [
+        {
+          "id": "c1",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 110,
+            "w": 420,
+            "h": 130,
+            "tone": "b",
+            "title": "1–2 · Screen and identify",
+            "lines": [
+              "First visit; D-neg again 24–28 wk",
+              "Fetal or partner antigen"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 110,
+            "w": 420,
+            "h": 130,
+            "tone": "a",
+            "title": "3 · Titer",
+            "lines": [
+              "q4 wk → q2 wk after ~24 wk",
+              "Old sample in parallel",
+              "≥ 2 dilutions (8 → 32) = significant"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "highlight": 1
+            },
+            {
+              "t": 15,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 300,
+            "w": 420,
+            "h": 130,
+            "tone": "warn",
+            "title": "4 · Critical titer → Doppler",
+            "lines": [
+              "MCA-PSV > 1.5 MoM",
+              "→ cordocentesis, IUT"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "reveal": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "c4",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 300,
+            "w": 420,
+            "h": 130,
+            "tone": "good",
+            "title": "5 · Postpartum FMH",
+            "lines": [
+              "Rosette: detects ≥ 10 mL WB",
+              "Positive → KB or flow",
+              "Vials = mL WB ÷ 30, round, +1"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "res",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 480,
+            "w": 780,
+            "label": "A: keep titering · B (anti-K): close, often Doppler-led surveillance",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "highlight",
+          "props": {
+            "x": 480,
+            "y": 480,
+            "w": 800,
+            "h": 50,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36,
+              "opacity": 0
+            },
+            {
+              "t": 36.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards appear in turn: “Anti-K titer 4 — reassure the obstetrician” (✓ anti-K suppresses erythropoiesis; follow anti-K protocols with low critical titers or Doppler); “Anti-D 8 → 16 is a significant rise” (✓ one dilution is within test variation; significant = ≥ 2 dilutions, tested in parallel); “Anti-D after a 28-week RhIG dose = immunised, no postpartum RhIG” (✓ passive anti-D lasts up to ~8 weeks; give the postpartum dose).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: an anti-K titer of 4, so reassure the obstetrician. Anti-K suppresses fetal erythropoiesis; follow the anti-K protocol with a low critical titer or Doppler."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: anti-D going from 8 to 16 is a significant rise. A single dilution step is within test variation. Significant means two or more dilutions, tested in parallel."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: anti-D after the 28-week injection means she is immunised and needs no postpartum dose. Passive anti-D lasts up to about eight weeks. Give the postpartum dose."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Anti-K titer 4 — reassure.”",
+            "lines": [
+              "✓ Progenitor suppression: low critical titer or Doppler"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Anti-D 8 → 16 is significant.”",
+            "lines": [
+              "✓ Significant = ≥ 2 dilutions, run in parallel"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Anti-D after 28-week RhIG = immunised.”",
+            "lines": [
+              "✓ Passive up to ~8 weeks — give postpartum dose"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "30-15-72, and Kell kills the factory",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “30-15-72: one vial, 30 mL blood or 15 mL cells, within 72 hours. Kell kills the factory.” A vial token, a clock token and a factory token with a K stamp. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: 30, 15, 72. One vial covers 30 millilitres of fetal blood or 15 of cells, given within 72 hours. And Kell kills the factory."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: a missed 72-hour window is not a reason to skip the dose; large bleeds need more than one vial; and anti-K critical titers differ between guidelines."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "30 · 15 · 72 — Kell kills the factory",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "v",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "1 vial = 30 mL WB / 15 mL RBC",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 240,
+            "label": "Within 72 h",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "opacity": 0
+            },
+            {
+              "t": 3.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "f",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Anti-K: factory down",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Missed 72 h? Still give it (up to 28 days)",
+              "Large FMH needs extra vials",
+              "Anti-K critical titers differ between guidelines"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Titer q4 → q2 wk · ≥ 2-dilution rise significant · critical titer → MCA Doppler · anti-K: lower threshold”, “RhIG 300 µg = 30 mL WB / 15 mL RBC within 72 h · rosette ≥ 10 mL → KB or flow”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Follow titers in parallel and act on a two-dilution rise or a critical titer, treat anti-K with a lower threshold, and dose Rh immune globulin from a measured fetomaternal bleed."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Titers q4 → q2 wk · ≥ 2 dilutions = significant · critical → Doppler · anti-K lower",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "RhIG 300 µg = 30 mL WB / 15 mL RBC, ≤ 72 h · rosette + → KB or flow",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a mother’s IgG antibodies can cross the placenta and destroy her baby’s red cells; the lab measures the antibody, watches its strength and helps prevent anti-D with an injection. Scientific terms: HDFN, antibody titer, critical titer, middle cerebral artery peak systolic velocity (MCA-PSV, MoM), Rh immune globulin (RhIG), fetomaternal hemorrhage (FMH), rosette test, Kleihauer–Betke test, flow cytometry for fetal cells, anti-G.",
+    "why": "Maternal IgG crosses the placenta; IgM does not. Anti-K also targets erythroid progenitors, so anemia is earlier and occurs at lower titers. ABO HDFN needs IgG anti-A/B (typical of group O mothers) and is mild because fetal A/B antigens are weakly expressed. Anti-G recognises an epitope shared by D and C antigens.",
+    "measure": "RhIG 300 µg (1500 IU) covers 30 mL fetal whole blood or 15 mL fetal RBCs (20 µg per mL fetal RBCs); postpartum within 72 h (up to 28 days if missed). Titers every 4 weeks to ~24 weeks, then every 2; test the previous sample in parallel; a ≥ 2-dilution change is significant. Critical titers are lab- and guideline-dependent (Valentini 2025 table: D/c > 32, Kell > 4; Jacobs 2025: anti-K ≥ 8). MCA-PSV > 1.5 MoM suggests fetal anemia. Rosette screen detects ~10 mL fetal whole blood; KB or flow cytometry (most accurate) quantify. Vials = FMH (mL whole blood) ÷ 30, rounded (up if ≥ 0.5), plus one extra vial per technical guidance (practice varies).",
+    "differs": "Passive anti-D (after RhIG; up to ~8 weeks; falling) vs immune anti-D (stable or rising). Anti-G vs anti-D + anti-C (differential adsorption/elution). ABO HDFN (mild, weak DAT) vs Rh HDFN (strong DAT, can be severe).",
+    "examAngle": "Expect: RhIG vial calculations, 72-hour window, significant titer change, anti-K erythropoietic suppression, rosette → KB/flow, anti-G and RhIG eligibility, and why ABO HDFN is mild."
+  },
+  "comparisons": [
+    {
+      "id": "antid-vs-antik",
+      "title": "Anti-D vs anti-K in pregnancy",
+      "left": {
+        "label": "Anti-D",
+        "points": [
+          "Hemolysis",
+          "Higher critical titer"
+        ]
+      },
+      "right": {
+        "label": "Anti-K",
+        "points": [
+          "Hemolysis + progenitor suppression",
+          "Lower critical titer; anemia earlier"
+        ]
+      },
+      "distinguisher": "Anti-K suppresses fetal erythropoiesis, so titers are interpreted at lower thresholds."
+    },
+    {
+      "id": "passive-vs-immune",
+      "title": "Passive vs immune anti-D",
+      "left": {
+        "label": "Passive (RhIG)",
+        "points": [
+          "Detectable up to ~8 weeks",
+          "Titer falls"
+        ]
+      },
+      "right": {
+        "label": "Immune",
+        "points": [
+          "Appears ~4 weeks after exposure",
+          "Titer stable or rising"
+        ]
+      },
+      "distinguisher": "RhIG history and serial titers."
+    }
+  ],
+  "mnemonic": {
+    "text": "30-15-72 — Kell kills the factory.",
+    "explanation": "One RhIG vial covers 30 mL fetal whole blood or 15 mL red cells, given within 72 hours; anti-K suppresses fetal red-cell production.",
+    "limitation": "A missed 72-hour window is not a reason to skip the dose (up to 28 days); large FMH needs extra vials; anti-K critical titers differ between guidelines."
+  },
+  "analogyLimitations": [
+    "The placenta and antibody drawings are schematic.",
+    "The patients and titers are invented.",
+    "Fetal therapy (IUT, IVIG) and neonatal exchange thresholds are not covered here."
+  ],
+  "takeaway": "Follow titers in parallel and act on a two-dilution rise or a critical titer, treat anti-K with a lower threshold, and dose Rh immune globulin from a measured fetomaternal bleed.",
+  "questions": [
+    {
+      "id": "ih-hdfn-q1",
+      "stem": "After delivery of a D-positive baby, a D-negative mother’s rosette screen is positive. What is the next step?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Quantify the fetomaternal hemorrhage by Kleihauer–Betke or flow cytometry and calculate the RhIG dose",
+          "rationale": "Correct. A positive rosette screen means FMH above ~10 mL; quantitation determines how many vials are needed."
+        },
+        {
+          "id": "b",
+          "text": "Give one standard vial; the rosette result does not change the dose",
+          "rationale": "Incorrect. One vial covers only 30 mL fetal whole blood; larger bleeds need more."
+        },
+        {
+          "id": "c",
+          "text": "Withhold RhIG because the mother is already immunised",
+          "rationale": "Incorrect. The rosette detects fetal D-positive cells, not maternal anti-D."
+        },
+        {
+          "id": "d",
+          "text": "Repeat the rosette screen in 72 hours",
+          "rationale": "Incorrect. Waiting risks missing the 72-hour window; quantify now."
+        }
+      ],
+      "answer": "a",
+      "skill": "FMH and RhIG dosing",
+      "difficulty": "application"
+    },
+    {
+      "id": "ih-hdfn-q2",
+      "stem": "A D-negative woman’s anti-D titer was 8 at 20 weeks. At 24 weeks it is 32, tested in parallel with the stored 20-week sample. How should this be interpreted?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Significant rise (two dilutions); intensify surveillance and notify the obstetric team",
+          "rationale": "Correct. A change of two or more dilutions tested in parallel is significant; at a critical titer, MCA Doppler follows."
+        },
+        {
+          "id": "b",
+          "text": "Within test variation; repeat in four weeks",
+          "rationale": "Incorrect. Variation is about one dilution; this is two."
+        },
+        {
+          "id": "c",
+          "text": "Passive anti-D from RhIG; no action",
+          "rationale": "Incorrect. Passive anti-D falls over time; this titer is rising."
+        },
+        {
+          "id": "d",
+          "text": "Proceed directly to exchange transfusion",
+          "rationale": "Incorrect. Exchange transfusion is a neonatal treatment; antenatal surveillance comes first."
+        }
+      ],
+      "answer": "a",
+      "skill": "Titer interpretation",
+      "difficulty": "application"
+    },
+    {
+      "id": "ih-hdfn-q3",
+      "stem": "Why can anti-K cause severe fetal anemia at lower titers than anti-D?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Anti-K also suppresses fetal erythroid progenitors, not only mature red cells",
+          "rationale": "Correct. Erythropoietic suppression adds to hemolysis, so anemia comes earlier and at lower titers."
+        },
+        {
+          "id": "b",
+          "text": "Anti-K is IgM and crosses the placenta more easily",
+          "rationale": "Incorrect. Clinically significant anti-K is IgG; IgM does not cross the placenta."
+        },
+        {
+          "id": "c",
+          "text": "K antigen is expressed only on fetal red cells",
+          "rationale": "Incorrect. K is expressed on adult red cells too; the difference is expression on early progenitors."
+        },
+        {
+          "id": "d",
+          "text": "Anti-K titers cannot be measured",
+          "rationale": "Incorrect. Anti-K titers are measured; they are interpreted at lower thresholds."
+        }
+      ],
+      "answer": "a",
+      "skill": "Anti-K mechanism",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch40",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 40, Blood Groups and Compatibility (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 40,
+          "section": "High-Yield Hits",
+          "items": [
+            4,
+            10,
+            15,
+            18,
+            22,
+            27
+          ]
+        },
+        {
+          "chapter": 40,
+          "section": "Exam Traps",
+          "items": [
+            5
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "hajjaj2025",
+      "kind": "external",
+      "citation": "Hajjaj OI, Callum J, Shehata N, Farrell A, Clarke G, Lieberman L. Laboratory assessment of fetomaternal haemorrhage and Rh immune globulin management: Canadian practice and scoping review. Br J Haematol. 2025;207(3):723-736.",
+      "doi": "10.1111/bjh.20246",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12436229/",
+      "consulted": true,
+      "usedFor": "20 µg RhIG per mL fetal RBCs; 300 µg (1500 IU) vial covers 30 mL fetal whole blood or 15 mL fetal RBCs; SOGC: within 72 h, up to 28 days if missed; rosette test detects 5 mL fetal RBCs (10 mL whole blood), positive → quantitative testing; vials = mL WB/30, round up if ≥ 0.5, then add a vial (technical guidance; Canadian practice varies); KB labour-intensive and overestimates with high maternal F cells; flow cytometry most accurate."
+    },
+    {
+      "id": "visser2021",
+      "kind": "external",
+      "citation": "Visser GHA, Thommesen T, Di Renzo GC, et al. FIGO/ICM guidelines for preventing Rhesus disease: a call to action. Int J Gynaecol Obstet. 2021;152(2):144-147.",
+      "doi": "10.1002/ijgo.13459",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7898700/",
+      "consulted": true,
+      "usedFor": "1500 IU (300 µg) within 72 h after delivery neutralizes 30 mL D-positive fetal whole blood; KB to estimate FMH volume."
+    },
+    {
+      "id": "valentini2025",
+      "kind": "external",
+      "citation": "Valentini B, Ramirez Zegarra R, Ghi T, Dall’Asta A. Red blood cell alloimmunization and pregnancy: diagnosis and management. Pregnancy (Hoboken). 2025;1(5):e70085.",
+      "doi": "10.1002/pmf2.70085",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13344805/",
+      "consulted": true,
+      "usedFor": "Screen all women at first visit, D-negative retest 24–28 weeks; titers every 4 weeks until 24 (28) weeks then every 2 weeks; critical titer table (D/c > 1:32, C/E > 1:16, Kell > 1:4); MCA-PSV > 1.5 MoM → cordocentesis; anti-K suppresses fetal erythropoiesis via progenitors, earlier and more severe anemia, IUT at lower antibody levels; ABO HDFN rare and usually mild (0.3–0.8% Caucasian neonates), group O mothers, IgG anti-A/B, low fetal A/B expression; antenatal 300 µg at 28 weeks."
+    },
+    {
+      "id": "basu2011",
+      "kind": "external",
+      "citation": "Basu S, Kaur R, Kaur G. Hemolytic disease of the fetus and newborn: current trends and perspectives. Asian J Transfus Sci. 2011;5(1):3-7.",
+      "doi": "10.4103/0973-6247.75963",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3082712/",
+      "consulted": true,
+      "usedFor": "Change of ≥ 2 dilutions significant; previous frozen sample tested in parallel; passive anti-D detectable by IAT up to ~8 weeks, immune anti-D detectable ~4 weeks after exposure and stable or rising; ABO HDFN almost exclusively in group A/B infants of group O mothers (IgG anti-A, anti-B); DAT weak or negative in ABO HDFN."
+    },
+    {
+      "id": "jacobs2025",
+      "kind": "external",
+      "citation": "Jacobs JW, Sugrue RP, Federspiel JJ, et al. The utility of a critical antibody titer in anti-K alloimmunized pregnancies: a systematic review and meta-analysis of diagnostic test accuracy. Transfus Med Rev. 2025;39(2):150895.",
+      "doi": "10.1016/j.tmrv.2025.150895",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13180262/",
+      "consulted": true,
+      "usedFor": "Anti-K causes hemolysis and erythropoietic suppression; second most common cause of severe HDFN; titer ≥ 8 pooled sensitivity 97.0%, specificity 33.1%; 98.6% of severe cases at titers ≥ 8; guidelines historically avoided anti-K titers; practice varies."
+    },
+    {
+      "id": "makroo2015",
+      "kind": "external",
+      "citation": "Makroo RN, Kaul A, Bhatia A, Agrawal S, Singh C, Karna P. Anti-G antibody in alloimmunized pregnant women: report of two cases. Asian J Transfus Sci. 2015;9(2):210-212.",
+      "doi": "10.4103/0973-6247.162724",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4562149/",
+      "consulted": true,
+      "usedFor": "Apparent anti-D + anti-C may be anti-G or anti-G + C; can be mistaken for RhIG failure; a woman with anti-G alone can still be immunised to D and should receive RhIG; double/differential adsorption and elution with r′r′ and R0r cells."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-rhig",
+      "text": "RhIG 300 µg covers 30 mL fetal WB / 15 mL RBCs; antenatal (often 28 weeks) and within 72 h postpartum (up to 28 days); passive anti-D up to ~8 weeks.",
+      "status": "checked",
+      "refs": [
+        "hajjaj2025",
+        "visser2021",
+        "valentini2025",
+        "basu2011"
+      ]
+    },
+    {
+      "id": "cl-chain",
+      "text": "Screen first visit, D-negative 24–28 weeks; titers q4 → q2 weeks; parallel testing; ≥ 2-dilution change significant; critical titer → MCA-PSV; > 1.5 MoM → cordocentesis.",
+      "status": "checked",
+      "refs": [
+        "valentini2025",
+        "basu2011"
+      ]
+    },
+    {
+      "id": "cl-k",
+      "text": "Anti-K suppresses erythroid progenitors; earlier anemia at lower titers; lower critical titers; 98.6% of severe cases at titer ≥ 8.",
+      "status": "checked",
+      "refs": [
+        "valentini2025",
+        "jacobs2025"
+      ]
+    },
+    {
+      "id": "cl-abo",
+      "text": "ABO HDFN almost only with group O mothers (IgG anti-A/B); usually mild from weak fetal A/B expression; DAT may be weak or negative.",
+      "status": "checked",
+      "refs": [
+        "valentini2025",
+        "basu2011"
+      ]
+    },
+    {
+      "id": "cl-g",
+      "text": "Anti-G mimics anti-D + anti-C; adsorption/elution separates; anti-G alone still warrants RhIG.",
+      "status": "checked",
+      "refs": [
+        "makroo2015"
+      ]
+    },
+    {
+      "id": "cl-fmh",
+      "text": "Rosette detects ~10 mL fetal WB; positive → KB or flow; flow most accurate; KB overestimates with high maternal F cells; vials = mL WB ÷ 30, round, add one vial (technical guidance; practice varies).",
+      "status": "checked",
+      "refs": [
+        "hajjaj2025"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Anti-C titer ≥ 4× anti-D suggests anti-G; severe ABO HDFN ~0.04%; exchange-transfusion bilirubin thresholds.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch40"
+      ],
+      "note": "Not taught; not in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Placenta, vial, clock and factory tokens are schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“30-15-72 — Kell kills the factory.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-antik",
+      "issue": "Hit 10, Hit 15 and Trap 5 say anti-K titers underestimate risk and call for Doppler “regardless of titer.” Jacobs 2025 (meta-analysis) found 98.6% of severe anti-K HDFN at titers ≥ 8 and supports a critical titer; guidelines differ. The lesson teaches a lower anti-K threshold with close surveillance.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Placenta, antibody and FMH drawings are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 claims checked against Hajjaj 2025, Visser 2021, Valentini 2025, Basu 2011, Jacobs 2025 and Makroo 2015 read for this lesson; 1 pending. No human expert has reviewed this lesson. US/Canadian/European practice; Philippine prenatal protocols were not checked."
+  },
+  "revisedAt": "2026-10-08"
+}
