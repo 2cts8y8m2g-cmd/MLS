@@ -76,6 +76,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **CML vs Leukemoid Reaction:** 1 pending claim (WBC often > 30 × 10⁹/L); no flags. Adds context that the LAP/NAP score is rarely used now.
 - **Weak D, Partial D and DEL:** 1 pending claim (D-site numbers); no flags. Adds context on Asian-type DEL recipients and other weak D types that make anti-D.
 - **Malaria Films:** 1 pending claim (15–30× blood per thick-film field; Wright pH < 6.8); no flags.
 - **Enzyme Kinetics:** 1 pending claim (Km rate-constant expression); no flags.

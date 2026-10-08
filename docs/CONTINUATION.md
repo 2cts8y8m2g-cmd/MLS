@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 43, teaching 180 of 1,932 concepts (about 9.3%).** All 43 still require review: each has pending claims, and none has had human expert review.
+- **Lessons complete: 44, teaching 183 of 1,932 concepts (about 9.5%).** All 44 still require review: each has pending claims, and none has had human expert review.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-lab-safety-precautions-osha`, `ops-reimbursement-drg-payment-window`, `ops-lab-design-hazcom-numbers`.
   - Ch. 2 (23/23 concepts): `ops-workflow-before-technology`, `ops-six-sigma-vs-lean`, `ops-instrument-selection-uptime-batch`, `ops-consolidation-utilization-autoverification`.
   - Ch. 3 (24/24 concepts): `pre-order-of-draw-edta`, `pre-citrate-ratio-heparin`, `pre-tube-additives-fluoride-gel`, `pre-patient-id-wbit`, `pre-csf-tubes-synovial-crystals`, `pre-biotin-daratumumab-interference`, `pre-allen-test-urine-timing`, `pre-specimen-numbers-rcf-24h-urine`.
@@ -15,6 +15,7 @@
   - Ch. 24 (5/26 concepts): `chem-drug-screen-confirmation-validity`.
   - Ch. 31 (4/28 concepts): `heme-red-cell-indices-high-mchc`.
   - Ch. 33 (6/27 concepts): `heme-microcytic-anemia-ferritin-mentzer`.
+  - Ch. 34 (3/25 concepts): `heme-cml-vs-leukemoid-reaction`.
   - Ch. 36 (5/29 concepts): `heme-mixing-study-pt-aptt`.
   - Ch. 37 (4/24 concepts): `heme-glanzmann-bernard-soulier`.
   - Ch. 38 (5/22 concepts): `heme-lupus-anticoagulant-aps`.
@@ -30,7 +31,7 @@
   - Ch. 65 (7/24 concepts): `micro-malaria-thick-thin-films`.
   - Ch. 66 (3/54 concepts): `micro-blood-culture-volume-contamination`.
 - **Reviewer accuracy register:** 43 flags (25 verified issues, 18 needing verification), plus scan results.
-- **Checks:** 324 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 330 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -64,7 +65,7 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 |---|---|---|---|---|
 | 5 | ✅ Ch. 38 Clot risk (15 Qs) | ✅ Ch. 24 Drugs & poisons (11) | ✅ Ch. 59 Mycobacteria (13) | ✅ Ch. 41 TRALI vs TACO (Hit 4) |
 | 6 | ✅ Ch. 39 Anticoagulant monitoring (14) | ✅ Ch. 21 Enzymes (10) | ✅ Ch. 65 Parasites (12) | ✅ Ch. 40 Rh / weak D (Hit 16) |
-| 7 | Ch. 34 White cell disorders (14) | Ch. 18 Lipids (10) | Ch. 61 Spirochetes (12) | Ch. 40 antibody ID / Kidd (Hits 3, 5) |
+| 7 | ✅ Ch. 34 White cell disorders (14) | Ch. 18 Lipids (10) | Ch. 61 Spirochetes (12) | Ch. 40 antibody ID / Kidd (Hits 3, 5) |
 
 Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.
 
