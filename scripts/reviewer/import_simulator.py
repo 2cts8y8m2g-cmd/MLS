@@ -84,6 +84,8 @@ FLAG_RULES = [
      'The 2021 ASH ISTH NHF WFH guideline suggests an activity/antigen ratio below 0.7 (not 0.6) to confirm type 2 VWD, with low certainty. A ratio of 0.51 is type 2 under either rule.'),
     ('rv-sputum-criteria', r'<\s?25 epithelial cells|fewer than 25 epithelial cells',
      'These two cut-offs conflict: a sputum with 11–24 squamous cells would be both acceptable and rejected. One published rule accepts < 10 squamous cells with > 25 leukocytes per LPF; each laboratory sets its own criteria.'),
+    ('rv-rbc-casts', r'RBC casts and dysmorphic RBCs prove',
+     'RBC casts are usually glomerular, but they also occur in some acute interstitial nephritis (29% in one biopsy series). Here, with dysmorphic RBCs after a strep infection, the answer stands.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
