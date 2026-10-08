@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 45 flags: 26 verified issues and 19 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 47 flags: 28 verified issues and 19 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -46,6 +46,7 @@ Verified:
 - **Ch. 35:** blast threshold ≥20% per WHO 2017; WHO-HAEM5 and the 2022 ICC differ.
 - **Ch. 42 Hit 2:** TPE removal percentages (30% / 10% left) contradict its own e⁻ˣ formula (≈37% / 14%).
 - **Ch. 22:** HBV chronicity "80% neonates, 1–2% adults" (CDC: ~90% infants, ~5% adults); IgM anti-HBc called the "sole" window marker (total anti-HBc and HBV DNA too).
+- **Ch. 26 Hits 1–2:** fixed hCG discriminatory zone presented as diagnostic context (Bobdiwala 2017: varies, never diagnoses ectopic alone); “< 53% rise in 48 h = abnormal” (newer data: 35% minimum for a viable IUP).
 - **Ch. 18 Trap 2:** direct LDL assay said to “stay valid even at TG 600” (HEART UK/ACB 2025: method-dependent, marked bias vs the reference method, not recommended in hypertriglyceridaemia).
 - **Ch. 41 Hit 4:** BNP said to “NOT rise” in TRALI and TRALI treated with “oxygen only” (Vlaar 2019: natriuretic peptides are always raised in severe TRALI and critical illness; care is supportive, including ventilation).
 - **Ch. 24 Trap 3:** dilute urine given as creatinine ≤ 20 mg/dL and SG ≤ 1.0030 (DOT 40.88: creatinine ≥ 2 and < 20, SG > 1.0010 and < 1.0030 — the reviewer's numbers match clinical tampering flags); out-of-range temperature listed as a substitution criterion (DOT 40.65: a collection check that triggers an observed recollection).
@@ -78,6 +79,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **hCG and PUL:** 1 pending claim (progesterone ng/mL cut-offs); 2 register flags on Hits 1–2.
 - **Flow Cytometry Gating:** 1 pending claim (hemodilution/lysis explanation); no flags. Adds the genetic AML exceptions to the 20% blast threshold.
 - **Antibody ID — Dosage and Kidd:** 1 pending claim (DHTR 5–10 days); 1 register flag (S/s enzyme effect, needs verification). Adds Rh (non-D) to the dosage list.
 - **Syphilis Serology:** no pending claims; no flags. Notes CDC’s 15–25% treponemal seroreversion after primary-stage treatment (reviewer: “up to 20%”) and the “lipoidal antigen” terminology.

@@ -1,0 +1,1833 @@
+{
+  "schemaVersion": 1,
+  "id": "chem-hcg-pregnancy-unknown-location",
+  "title": "hCG in Early Pregnancy: A Question, Not an Answer",
+  "summary": "Follow serial hCG in a pregnancy of unknown location, see why the 48-hour rise threshold has changed, and why a “discriminatory zone” never diagnoses ectopic pregnancy on its own.",
+  "domain": "p2-chem",
+  "topic": "ch26",
+  "conceptIds": [
+    "ch26.hit1",
+    "ch26.hit2",
+    "ch26.figure"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 26,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          2
+        ]
+      },
+      {
+        "chapter": 26,
+        "section": "Figure 26"
+      }
+    ],
+    "note": "Teaches Ch. 26 Hit 1 (core: hCG discriminatory zone) and Hit 2 (hCG rise; progesterone) and the Figure 26 anchor. Checked against Farren 2026, Bobdiwala 2017, Pereira 2019 and Nwabuobi 2017. The reviewer’s fixed zone and 53% rule are corrected — register flags rv-hcg-zone and rv-hcg-rise. Pending: progesterone cut-offs in ng/mL (< 5, > 20)."
+  },
+  "prerequisites": [
+    "ch25.hit1"
+  ],
+  "objectives": [
+    "Describe how hCG behaves in an early viable intrauterine pregnancy.",
+    "Define a pregnancy of unknown location and interpret serial 48-hour hCG changes.",
+    "Explain the limits of the discriminatory zone and of progesterone."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Positive test, bleeding — and an empty uterus on scan",
+      "start": 0,
+      "end": 20,
+      "altText": "A patient with a positive pregnancy test and light bleeding. Transvaginal ultrasound shows no pregnancy in the uterus and none elsewhere. Serum hCG is 2,500 mIU/mL. A tempting conclusion: “above the discriminatory zone, so it must be ectopic.”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A woman has a positive pregnancy test and light bleeding."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The transvaginal scan shows no pregnancy — not in the uterus, not anywhere else. Her serum h-C-G is 2,500."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "It’s tempting to call it ectopic straight away. Should the lab number make that decision?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 140,
+            "w": 360,
+            "h": 110,
+            "tone": "a",
+            "title": "Patient",
+            "lines": [
+              "Positive pregnancy test",
+              "Light bleeding"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "us",
+          "type": "card",
+          "props": {
+            "x": 700,
+            "y": 140,
+            "w": 340,
+            "h": 110,
+            "tone": "neutral",
+            "title": "Transvaginal scan",
+            "lines": [
+              "No pregnancy seen"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hcg",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 250,
+            "w": 240,
+            "label": "Serum hCG 2,500 mIU/mL",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 350,
+            "w": 500,
+            "label": "“Above the zone, so ectopic”?",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 900,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: hCG in a growing pregnancy",
+      "start": 20,
+      "end": 60,
+      "altText": "hCG is made by trophoblast cells and keeps the corpus luteum making progesterone in early pregnancy. In an early viable intrauterine pregnancy, serum hCG rises roughly exponentially — doubling about every 1.5–2 days — until it plateaus later in the first trimester. A log-scale graph shows the rising line.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "h-C-G is made by the trophoblast — the cells that become the placenta. Early on, it keeps the corpus luteum producing progesterone."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 42,
+          "text": "In an early, viable pregnancy in the uterus, serum h-C-G climbs roughly exponentially, often doubling every day and a half to two days."
+        },
+        {
+          "id": "n3",
+          "start": 42,
+          "end": 52,
+          "text": "On a log scale, that looks like a straight rising line."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "Serum h-C-G is measured quantitatively, so two values 48 hours apart can show how fast it is changing."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tro",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 110,
+            "w": 380,
+            "h": 100,
+            "tone": "a",
+            "title": "Trophoblast → hCG",
+            "lines": [
+              "Keeps corpus luteum making progesterone"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ax",
+          "type": "arrow",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "dx": 420,
+            "dy": 0,
+            "draw": 0,
+            "label": "Days"
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "draw": 0
+            },
+            {
+              "t": 11.5,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ay",
+          "type": "arrow",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "dx": 0,
+            "dy": -370,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "draw": 0
+            },
+            {
+              "t": 11.5,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ayl",
+          "type": "label",
+          "props": {
+            "x": 540,
+            "y": 60,
+            "text": "hCG (log scale)",
+            "size": 14,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p0",
+          "type": "token",
+          "props": {
+            "x": 520,
+            "y": 376,
+            "w": 70,
+            "label": "250",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p1",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 335,
+            "w": 70,
+            "label": "500",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.2,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 14.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 294,
+            "w": 70,
+            "label": "1,000",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.4,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.4,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "type": "token",
+          "props": {
+            "x": 730,
+            "y": 253,
+            "w": 70,
+            "label": "2,000",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.6,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p4",
+          "type": "token",
+          "props": {
+            "x": 800,
+            "y": 212,
+            "w": 70,
+            "label": "4,000",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.8,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.8,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "line",
+          "type": "arrow",
+          "props": {
+            "x": 520,
+            "y": 396,
+            "dx": 280,
+            "dy": -164,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "draw": 0
+            },
+            {
+              "t": 25.5,
+              "draw": 1,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "dbl",
+          "type": "token",
+          "props": {
+            "x": 260,
+            "y": 280,
+            "w": 360,
+            "label": "Doubling about every 1.5–2 days",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 20.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q48",
+          "type": "card",
+          "props": {
+            "x": 260,
+            "y": 400,
+            "w": 380,
+            "h": 90,
+            "tone": "neutral",
+            "title": "Two values, 48 h apart",
+            "lines": [
+              "Quantitative serum hCG"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: a pregnancy of unknown location",
+      "start": 60,
+      "end": 104,
+      "altText": "PUL: a positive test with no pregnancy seen on transvaginal scan — a classification, not a diagnosis. Three possible outcomes appear: an early intrauterine pregnancy not yet visible, a failing pregnancy, or an ectopic pregnancy. Serial hCG lines: rising ≥ 35% in 48 h (consistent with a viable intrauterine pregnancy in a large study); a slow rise (seen in both ectopic pregnancy and miscarriage); a fall (failing pregnancy). Caveat: 10–20% of ectopic pregnancies show hCG changes that mimic a normal pregnancy.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "When the test is positive but the scan shows nothing, the label is pregnancy of unknown location. It’s a classification, not a diagnosis."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "There are three possibilities: a normal pregnancy that is still too early to see, a pregnancy that is failing, or an ectopic pregnancy."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "Serial h-C-G helps sort them. In a large study, viable intrauterine pregnancies rose at least 35 percent in 48 hours. A falling level suggests a failing pregnancy. A slow rise can mean ectopic — or miscarriage."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "But no pattern is perfect. In ten to twenty percent of ectopic pregnancies, the h-C-G rise looks normal."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pul",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 70,
+            "w": 560,
+            "h": 80,
+            "tone": "warn",
+            "title": "PUL: positive test, nothing seen on scan",
+            "lines": [],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "o0",
+          "type": "token",
+          "props": {
+            "x": 170,
+            "y": 160,
+            "w": 280,
+            "label": "Early intrauterine pregnancy",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "o1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 160,
+            "w": 280,
+            "label": "Failing pregnancy",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 14.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "token",
+          "props": {
+            "x": 790,
+            "y": 160,
+            "w": 280,
+            "label": "Ectopic pregnancy",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ax",
+          "type": "arrow",
+          "props": {
+            "x": 120,
+            "y": 460,
+            "dx": 440,
+            "dy": 0,
+            "draw": 0,
+            "label": "48 h"
+          },
+          "keys": [
+            {
+              "t": 22,
+              "draw": 0
+            },
+            {
+              "t": 23,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r1",
+          "type": "arrow",
+          "props": {
+            "x": 140,
+            "y": 400,
+            "dx": 380,
+            "dy": -160,
+            "draw": 0,
+            "label": "≥ 35% rise"
+          },
+          "keys": [
+            {
+              "t": 23,
+              "draw": 0
+            },
+            {
+              "t": 25,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "type": "arrow",
+          "props": {
+            "x": 140,
+            "y": 400,
+            "dx": 380,
+            "dy": -40,
+            "draw": 0,
+            "label": "Slow rise"
+          },
+          "keys": [
+            {
+              "t": 26,
+              "draw": 0
+            },
+            {
+              "t": 28,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r3",
+          "type": "arrow",
+          "props": {
+            "x": 140,
+            "y": 400,
+            "dx": 380,
+            "dy": 50,
+            "draw": 0,
+            "label": "Falling"
+          },
+          "keys": [
+            {
+              "t": 29,
+              "draw": 0
+            },
+            {
+              "t": 31,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "card",
+          "props": {
+            "x": 770,
+            "y": 330,
+            "w": 330,
+            "h": 150,
+            "tone": "neutral",
+            "title": "What it suggests",
+            "lines": [
+              "≥ 35%: viable IUP likely",
+              "Slow: ectopic or miscarriage",
+              "Falling: failing pregnancy"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30,
+              "opacity": 0
+            },
+            {
+              "t": 30.5,
+              "reveal": 0
+            },
+            {
+              "t": 30.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "mim",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 505,
+            "w": 600,
+            "label": "10–20% of ectopics mimic a normal rise",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 34.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35.5,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: the “discriminatory zone” is a guide, not a verdict",
+      "start": 104,
+      "end": 144,
+      "altText": "Discriminatory zone card: the classic idea is an hCG level (often quoted 1,500–2,000 mIU/mL) above which an intrauterine sac should be visible on transvaginal scan. Cautions: the value varies between centres and ultrasound equipment (some protocols use 3,500); most ectopic pregnancies are visualised at hCG < 1,000; a single hCG above the zone with no sac must not be used to diagnose ectopic pregnancy or justify methotrexate, which could harm a viable pregnancy. Progesterone predicts viability, not location. Management uses serial hCG plus repeat ultrasound and clinical review.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "The discriminatory zone is the h-C-G level above which a pregnancy in the uterus should be visible on a vaginal scan. It’s often quoted as 1,500 to 2,000."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "But it varies with centre and equipment — some protocols use 3,500 — and most ectopic pregnancies are actually seen at levels below 1,000."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 135,
+          "text": "So a single value above the zone, with no sac, must never be used alone to diagnose ectopic pregnancy or to give methotrexate. That could end a healthy pregnancy."
+        },
+        {
+          "id": "l4",
+          "start": 135,
+          "end": 144,
+          "text": "Progesterone helps judge whether a pregnancy is viable, but not where it is. The answer comes from serial h-C-G, repeat scans and the clinical picture together."
+        }
+      ],
+      "objects": [
+        {
+          "id": "dz",
+          "type": "card",
+          "props": {
+            "x": 260,
+            "y": 120,
+            "w": 440,
+            "h": 110,
+            "tone": "a",
+            "title": "Discriminatory zone",
+            "lines": [
+              "Classic: ~1,500–2,000 mIU/mL (TVS)",
+              "Sac “should” be visible above it"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "var",
+          "type": "token",
+          "props": {
+            "x": 260,
+            "y": 230,
+            "w": 440,
+            "label": "Varies by centre & equipment (some: 3,500)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ep",
+          "type": "token",
+          "props": {
+            "x": 260,
+            "y": 290,
+            "w": 440,
+            "label": "Most ectopics seen at hCG < 1,000",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mtx",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 150,
+            "w": 400,
+            "h": 120,
+            "tone": "neutral",
+            "title": "Never alone",
+            "lines": [
+              "One hCG + no sac ≠ ectopic",
+              "Don’t base methotrexate on it"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22,
+              "tone": "bad"
+            }
+          ]
+        },
+        {
+          "id": "prog",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 310,
+            "w": 400,
+            "label": "Progesterone: viability, not location",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mg",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 620,
+            "h": 90,
+            "tone": "good",
+            "title": "Serial hCG + repeat scan + clinical review",
+            "lines": [],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34,
+              "opacity": 0
+            },
+            {
+              "t": 34.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Trap card: “hCG above the zone with no sac = ectopic, give methotrexate” is crossed out → “Repeat hCG and scan; a viable IUP may still be too early.” Trap card: “A 48-h rise under 53% means abnormal” is crossed out → “Newer data: viable IUPs rise ≥ 35%; 53% misclassifies some.” Trap card: “A normal doubling rules out ectopic” is crossed out → “10–20% of ectopics mimic normal.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 155,
+          "text": "Trap one: an h-C-G above the zone with no sac on scan is not proof of ectopic pregnancy. Repeat the h-C-G and the scan before treating."
+        },
+        {
+          "id": "e2",
+          "start": 155,
+          "end": 165,
+          "text": "Trap two: older teaching said a rise under 53 percent is abnormal. Newer data put the minimum rise for a viable pregnancy at about 35 percent."
+        },
+        {
+          "id": "e3",
+          "start": 165,
+          "end": 174,
+          "text": "Trap three: a normal-looking rise doesn’t rule out ectopic. Some ectopics mimic it."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Above the zone, no sac = ectopic → methotrexate.”",
+            "lines": [
+              "✓ Repeat hCG and scan — a viable IUP may be too early to see"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 0
+            },
+            {
+              "t": 6,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “A 48-h rise under 53% is abnormal.”",
+            "lines": [
+              "✓ Viable IUPs rise ≥ 35% (newer data)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 0
+            },
+            {
+              "t": 16,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “A normal rise rules out ectopic.”",
+            "lines": [
+              "✓ 10–20% of ectopics mimic a normal rise"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 22.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "PUL is a question, not an answer",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “PUL is a question, not an answer — ask it twice (48 h) and look again (scan).” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: a pregnancy of unknown location is a question, not an answer. Ask it twice — 48 hours apart — and look again with the scan."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: thresholds depend on the starting level, the population and the assay; twins and heterotopic pregnancies don’t follow the rules; and protocols differ between hospitals."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "PUL: a question, not an answer",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 180,
+            "w": 260,
+            "label": "Ask twice: 48 h hCG",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 260,
+            "label": "Look again: scan",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 180,
+            "w": 260,
+            "label": "Never treat one number",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 110,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Thresholds vary with starting hCG, population and assay",
+              "Twins and heterotopic pregnancy break the rules · protocols differ"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “PUL: serial hCG (≥ 35% rise fits viable IUP) + repeat scan”, “The discriminatory zone guides scanning — it never diagnoses ectopic on its own”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "In a pregnancy of unknown location, follow serial h-C-G and repeat the scan — a rise of at least 35 percent fits a viable pregnancy, and no single value above a discriminatory zone diagnoses ectopic pregnancy."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 760,
+            "label": "PUL → serial hCG (≥ 35% rise fits viable IUP) + repeat scan",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 760,
+            "label": "Discriminatory zone guides — never diagnoses ectopic alone",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: hCG is the pregnancy hormone; in a healthy early pregnancy it rises quickly, and a positive test with nothing visible on scan needs repeat testing rather than a snap diagnosis. Scientific terms: trophoblast-derived hCG supports the corpus luteum; a pregnancy of unknown location (PUL) is a classification when a positive test is not matched by a visualised pregnancy on transvaginal ultrasound.",
+    "why": "hCG production increases with trophoblast mass, so viable pregnancies show a characteristic minimum rise; failing pregnancies fall; ectopic pregnancies are variable and can mimic normal rises. Ultrasound visibility depends on equipment and operator, so any single hCG “discriminatory” level is approximate.",
+    "measure": "Serial serum hCG 48 h apart: minimal rise for a viable IUP ≈ 35% (older 53% figure misclassifies some viable pregnancies); falling values suggest failure; 10–20% of ectopics mimic normal. Discriminatory zone classically ~1,500–2,000 mIU/mL (TVS), varies (some use 3,500); most ectopics are seen at hCG < 1,000; never diagnose ectopic or give methotrexate on a single value. Progesterone predicts viability, not location.",
+    "differs": "Viable IUP (adequate rise, later visible sac) vs failing pregnancy (falling hCG) vs ectopic (variable); single hCG vs serial trend; classification (PUL) vs diagnosis.",
+    "examAngle": "Expect: discriminatory-zone scenarios, interpreting a 48-hour hCG change, and what progesterone can and cannot tell you."
+  },
+  "comparisons": [
+    {
+      "id": "single-vs-serial",
+      "title": "Single hCG vs serial hCG",
+      "left": {
+        "label": "Single value",
+        "points": [
+          "Compared with a discriminatory zone",
+          "Cannot locate the pregnancy"
+        ]
+      },
+      "right": {
+        "label": "Serial (48 h)",
+        "points": [
+          "≥ 35% rise fits viable IUP",
+          "Falling = failing; ectopics variable"
+        ]
+      },
+      "distinguisher": "Trend over time vs one snapshot."
+    },
+    {
+      "id": "hcg-vs-progesterone",
+      "title": "hCG vs progesterone",
+      "left": {
+        "label": "hCG",
+        "points": [
+          "Trend helps judge viability and location risk",
+          "Guides timing of repeat scan"
+        ]
+      },
+      "right": {
+        "label": "Progesterone",
+        "points": [
+          "Predicts viability",
+          "Does not predict location"
+        ]
+      },
+      "distinguisher": "Neither alone diagnoses ectopic pregnancy."
+    }
+  ],
+  "mnemonic": {
+    "text": "PUL is a question, not an answer — ask it twice (48-h hCG) and look again (scan).",
+    "explanation": "A pregnancy of unknown location requires serial testing and repeat ultrasound.",
+    "limitation": "Thresholds vary with starting hCG, population and assay; twins and heterotopic pregnancies break the rules; protocols differ."
+  },
+  "analogyLimitations": [
+    "The hCG graph is illustrative, not patient data.",
+    "The case is invented.",
+    "Clinical management decisions belong to the clinical team."
+  ],
+  "takeaway": "In a pregnancy of unknown location, follow serial hCG and repeat the scan — a rise of at least 35% fits a viable pregnancy, and no single value above a discriminatory zone diagnoses ectopic pregnancy.",
+  "questions": [
+    {
+      "id": "chem-hcg-q1",
+      "stem": "A patient has a positive pregnancy test, hCG 2,500 mIU/mL and no intrauterine or adnexal pregnancy on transvaginal scan. She is stable. What is the best next step?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Repeat serum hCG in 48 hours with follow-up ultrasound",
+          "rationale": "Correct. This is a pregnancy of unknown location; a single value above a discriminatory zone does not diagnose ectopic pregnancy."
+        },
+        {
+          "id": "b",
+          "text": "Give methotrexate for ectopic pregnancy",
+          "rationale": "Incorrect. Treating on one value risks harming a viable intrauterine pregnancy."
+        },
+        {
+          "id": "c",
+          "text": "Reassure that the pregnancy is normal",
+          "rationale": "Incorrect. Location and viability are unknown."
+        },
+        {
+          "id": "d",
+          "text": "Measure urine hCG instead",
+          "rationale": "Incorrect. Quantitative serum hCG is needed for trends."
+        }
+      ],
+      "answer": "a",
+      "skill": "PUL management",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-hcg-q2",
+      "stem": "Serum hCG rises from 1,200 to 1,700 mIU/mL in 48 hours (about 42%). How should this be interpreted?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Consistent with a viable intrauterine pregnancy, though not diagnostic",
+          "rationale": "Correct. Newer data put the minimal 48-h rise for a viable IUP at about 35%."
+        },
+        {
+          "id": "b",
+          "text": "Definitely abnormal because it is below 53%",
+          "rationale": "Incorrect. The older 53% threshold misclassifies some viable pregnancies."
+        },
+        {
+          "id": "c",
+          "text": "Diagnostic of ectopic pregnancy",
+          "rationale": "Incorrect. A rise in this range fits a viable IUP; ectopics are variable."
+        },
+        {
+          "id": "d",
+          "text": "Diagnostic of a failing pregnancy",
+          "rationale": "Incorrect. Failing pregnancies usually show falling hCG."
+        }
+      ],
+      "answer": "a",
+      "skill": "hCG rise",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-hcg-q3",
+      "stem": "What can a single serum progesterone value tell you in a pregnancy of unknown location?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Whether the pregnancy is likely viable, but not where it is",
+          "rationale": "Correct. Progesterone predicts viability but not location."
+        },
+        {
+          "id": "b",
+          "text": "Whether the pregnancy is ectopic",
+          "rationale": "Incorrect. Progesterone cannot locate the pregnancy."
+        },
+        {
+          "id": "c",
+          "text": "The exact gestational age",
+          "rationale": "Incorrect. Progesterone does not date a pregnancy."
+        },
+        {
+          "id": "d",
+          "text": "Nothing useful",
+          "rationale": "Incorrect. It is a useful marker of viability."
+        }
+      ],
+      "answer": "a",
+      "skill": "Progesterone",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch26",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 26, Fertility, Pregnancy, and Newborn Testing (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 26,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            2
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "farren2026",
+      "kind": "external",
+      "citation": "Farren J, Al Wattar BH, Jurkovic D. The diagnosis and management of extrauterine and uterine ectopic pregnancy. Hum Reprod Update. 2026;32(1):2-32.",
+      "doi": "10.1093/humupd/dmaf024",
+      "url": "https://europepmc.org/article/PMC/PMC12922837",
+      "consulted": true,
+      "usedFor": "Discriminatory zone concept (TVS > 1,500 IU/l) historically assumed; PUL defined after a competent scan; slow hCG rise in both ectopic and miscarriage; 10–20% of ectopics mimic normal hCG changes; serial hCG cannot reliably discriminate location (meta-analysis); progesterone reflects hCG changes."
+    },
+    {
+      "id": "bobdiwala2017",
+      "kind": "external",
+      "citation": "Bobdiwala S, Al-Memar M, Farren J, Bourne T. Factors to consider in pregnancy of unknown location. Womens Health (Lond). 2017;13(2):27-33.",
+      "doi": "10.1177/1745505717709677",
+      "url": "https://europepmc.org/article/PMC/PMC5557179",
+      "consulted": true,
+      "usedFor": "PUL is a classification not a diagnosis; single hCG not helpful; discriminatory zone should not decide timing of TVS or diagnose EP; most EPs visualised at hCG < 1,000 IU/L; using the zone to justify methotrexate is dangerous; progesterone predicts viability not location."
+    },
+    {
+      "id": "pereira2019",
+      "kind": "external",
+      "citation": "Pereira PP, Cabar FR, Gomez ÚT, Francisco RPV. Pregnancy of unknown location. Clinics (Sao Paulo). 2019;74:e1111.",
+      "doi": "10.6061/clinics/2019/e1111",
+      "url": "https://europepmc.org/article/PMC/PMC6784610",
+      "consulted": true,
+      "usedFor": "Discriminatory value varies across centres and equipment; protocol using 3,500 mIU/mL; 53% minimum rise (older study) vs 35% minimal 48-h rise in 1,249 PUL patients (99.9% CI)."
+    },
+    {
+      "id": "nwabuobi2017",
+      "kind": "external",
+      "citation": "Nwabuobi C, Arlier S, Schatz F, et al. hCG: biological functions and clinical applications. Int J Mol Sci. 2017;18(10):2037.",
+      "doi": "10.3390/ijms18102037",
+      "url": "https://europepmc.org/article/PMC/PMC5666719",
+      "consulted": true,
+      "usedFor": "Trophoblast hCG maintains corpus luteum progesterone; doubling ~1.5–2 days in viable pregnancy; 53% vs 35% minimal rise; discriminatory zone 1,500–2,000 mIU/mL as classically used."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-normal",
+      "text": "Trophoblast hCG supports corpus luteum; doubles ~1.5–2 days in early viable IUP.",
+      "status": "checked",
+      "refs": [
+        "nwabuobi2017"
+      ]
+    },
+    {
+      "id": "cl-pul",
+      "text": "PUL is a classification; outcomes early IUP, failing pregnancy, ectopic; ≥ 35% 48-h rise fits viable IUP; 10–20% of ectopics mimic normal.",
+      "status": "checked",
+      "refs": [
+        "bobdiwala2017",
+        "pereira2019",
+        "farren2026",
+        "nwabuobi2017"
+      ]
+    },
+    {
+      "id": "cl-zone",
+      "text": "Discriminatory zone ~1,500–2,000 varies (some 3,500); most ectopics seen < 1,000; never diagnose ectopic or give methotrexate on one value.",
+      "status": "checked",
+      "refs": [
+        "bobdiwala2017",
+        "pereira2019",
+        "farren2026"
+      ]
+    },
+    {
+      "id": "cl-prog",
+      "text": "Progesterone predicts viability, not location.",
+      "status": "checked",
+      "refs": [
+        "bobdiwala2017"
+      ]
+    },
+    {
+      "id": "cl-prog-cut",
+      "text": "Progesterone < 5 ng/mL = abnormal (100% specific); > 20 ng/mL usually normal IUP.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch26"
+      ],
+      "note": "Not taught; sources read use different (nmol/L) thresholds."
+    },
+    {
+      "id": "cl-vis",
+      "text": "hCG graph and outcome tokens.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“PUL is a question, not an answer.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Graphs are illustrative.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against Farren 2026, Bobdiwala 2017, Pereira 2019 and Nwabuobi 2017 (full texts) read for this lesson; 1 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
