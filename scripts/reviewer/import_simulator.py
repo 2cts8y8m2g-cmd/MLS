@@ -76,6 +76,8 @@ FLAG_RULES = [
      'MBLs spare aztreonam, but co-produced ESBL/AmpC enzymes often inactivate it — hence aztreonam–avibactam (Khan 2026).'),
     ('rv-donor-hb', r'(≥|>=) ?12\.5 g/dL minimum|ALL whole-blood donors',
      'US rule (21 CFR 630.10): female allogeneic ≥ 12.5 g/dL (12.0–12.5 only under an FDA-acceptable procedure); male allogeneic ≥ 13.0 g/dL.'),
+    ('rv-entero-beta', r'PYR-positive beta-hemolytic streptococcus = Enterococcus',
+     'Enterococcus is its own genus, and most isolates are not β-hemolytic (about 20% were in one 2026 study). The answer stands, but confirm Enterococcus by growth in 6.5% NaCl and a positive bile esculin test.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
