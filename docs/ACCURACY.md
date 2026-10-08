@@ -73,6 +73,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **Dimorphic Fungi:** 2 pending claims (Histoplasma size and narrow-based budding; no lab conversion of Coccidioides) and 1 open flag (spherule size varies by source).
 - **Serum Protein Electrophoresis:** 1 pending claim (background γ suppression beside an M-spike); no open flags.
 - **Glanzmann vs Bernard-Soulier:** 2 pending claims (ristocetin works on fixed platelets; receptor roles stated as physiology) and 1 open flag (ristocetin may show a reduced second wave in GT).
 - **Therapeutic Plasma Exchange:** 1 pending claim (the reviewer's < 15% and 60–70% FFP figures) and 1 open flag (Hit 2 kinetics).
