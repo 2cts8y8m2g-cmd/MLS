@@ -140,6 +140,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Reagent-Strip Chemistry (Ch. 29):** 1 pending claim (βHB 78%, nitrite ≥ 4 h, urobilinogen oxidation, bilirubin 0.02 mg/dL, pad read times; not taught); no flags.
 - **Antigen Tests and Negatives (Ch. 66):** 1 pending claim (two throat swabs, “as low as 70%”, India ink in HIV; not taught); no flags.
 - **Anemia Clues Beyond the Indices (Ch. 33):** 1 pending claim (reticulocyte peak timing, isoniazid iron pattern, RPI in CKD, trait HbS %, hydroxyurea classification; not taught); no flags. Hit 16 (hydroxyurea “nonmegaloblastic”) conflicts with Kaferle 2009 and awaits a primary source.
+- **Male Fertility Labs (Ch. 26):** 1 pending claim (sperm concentration limit, eosin-nigrosin colour, hCG stimulation, current testosterone guidelines; not taught); register flag rv-semen-who (existing).
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
