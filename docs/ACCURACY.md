@@ -60,6 +60,7 @@ Verified:
 - **Ch. 42 Hits 15–16:** 12.5 g/dL / 38% said to apply to all whole-blood donors (21 CFR 630.10: male allogeneic ≥ 13.0 g/dL / 39%); lower BP limits omitted.
 - **Ch. 57 Hit 29:** Enterococcus called a “β-hemolytic streptococcus” (separate genus; β-hemolysis in only 20% of isolates, Fialho 2026). Confirm by 6.5% NaCl and bile esculin.
 - **Ch. 37 Hit 3:** VWF activity/antigen and FVIII/antigen cut-off “0.6” (2021 ASH ISTH NHF WFH guideline, via Tosetto 2026: < 0.7, low certainty).
+- **Ch. 15 Hit 3:** normal anion gap “≈ 12 (8–16)” (method-dependent: ion-selective electrodes ≈ 6 ± 3, Lee 2006; a 2025 review lists 4–12).
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -102,6 +103,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Streptococci and Enterococci ID:** 1 pending claim (bacitracin resistance of group B and enterococci; not taught as a stand-alone fact); 1 register flag (Hit 29). Rapid antigen sensitivity taught as ≈ 85% (≈ 40% with a light inoculum) rather than the reviewer's 31–95% range.
 - **Choosing the Graft (HPC sources):** 1 pending claim (HPC ABO expression, plerixafor side effects, cord volume cut-off; not taught); 1 register flag (Hit 12, needs verification). G-CSF taught as 10 µg/kg/day × 4–6 days (reviewer: 5–10 µg/kg × 4–5 days). Bleakley 2022 read as abstract only.
 - **Typing von Willebrand Disease:** 1 pending claim (type 1 share, type 3 FVIII level, LD-RIPA concentrations; not taught); 1 register flag (Hit 3). James 2021 read as abstract only; the guideline's cut-offs were taken from Tosetto & Eikenboom 2026.
+- **Anion Gap Detective:** 1 pending claim (Winter’s respiratory-alkalosis direction, reviewer’s delta-ratio bands; not taught); 1 register flag (Hit 3). Delta-ratio cut-offs differ between sources (< 1; > 1.2 in one abstract; reviewer > 2.0). The MUDPILES list is not reproduced.
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
