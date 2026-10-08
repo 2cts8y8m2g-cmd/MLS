@@ -1,0 +1,1986 @@
+{
+  "schemaVersion": 1,
+  "id": "heme-erythropoiesis-reticulocyte-index",
+  "title": "Erythropoiesis & the Reticulocyte Production Index: Shrink, Then Slow",
+  "summary": "Follow a red cell from progenitor to retirement, see how EPO speeds the line, and turn a raw reticulocyte percentage into a reticulocyte production index that tells you whether the marrow is keeping up.",
+  "domain": "p4-heme",
+  "topic": "ch32",
+  "conceptIds": [
+    "ch32.hit2",
+    "ch32.hit3",
+    "ch32.hit5",
+    "ch32.hit8",
+    "ch32.hit9",
+    "ch32.trap1",
+    "ch32.trap3",
+    "ch32.figure"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 32,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          3,
+          5,
+          8,
+          9
+        ]
+      },
+      {
+        "chapter": 32,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          3
+        ]
+      },
+      {
+        "chapter": 32,
+        "section": "Figure 32"
+      }
+    ],
+    "note": "Teaches Ch. 32 Hit 2 (RBC lifespan ~120 days), Hit 3 (EPO on BFU-E/CFU-E; early reticulocyte release), Hit 5 (normoblast order), Hit 8 (ineffective erythropoiesis), Hit 9 (maturation time and corrected index), Traps 1 and 3, and the Figure 32 anchor. Checked against El Hoss 2026, Huang 2026, Kalahasthi 2016, Chueh 2022 and Yoon 2025. Pending: ⁵¹Cr half-survival and the 3 million cells/second figure (Hit 2) are not taught."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "List the erythroid maturation sequence from progenitor to mature red cell.",
+    "Explain how EPO regulates erythropoiesis and why shift reticulocytes appear in anemia.",
+    "Calculate the corrected reticulocyte count and the reticulocyte production index.",
+    "Interpret an RPI and recognise ineffective erythropoiesis and the EPO pattern in polycythemia vera."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Seven percent reticulocytes — a great response?",
+      "start": 0,
+      "end": 20,
+      "altText": "Two anemic patients, both with hematocrit 25%. Patient A’s reticulocyte count is 7%; Patient B’s is 1%. A token asks: “Is A’s marrow making 7× normal?” The mascot looks doubtful.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Two patients, both anemic, both with a hematocrit of twenty-five percent."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Patient A has seven percent reticulocytes. Patient B has one percent. A’s marrow looks like it’s working seven times harder."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "But a raw reticulocyte percentage can mislead. Let’s see what the marrow is really doing."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pa",
+          "type": "card",
+          "props": {
+            "x": 280,
+            "y": 150,
+            "w": 320,
+            "h": 110,
+            "tone": "a",
+            "title": "Patient A",
+            "lines": [
+              "Hct 25%",
+              "Retic 7%"
+            ],
+            "reveal": 1,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7.5,
+              "reveal": 1
+            },
+            {
+              "t": 9.0,
+              "reveal": 2,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "pb",
+          "type": "card",
+          "props": {
+            "x": 680,
+            "y": 150,
+            "w": 320,
+            "h": 110,
+            "tone": "b",
+            "title": "Patient B",
+            "lines": [
+              "Hct 25%",
+              "Retic 1%"
+            ],
+            "reveal": 1,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 1
+            },
+            {
+              "t": 11.0,
+              "reveal": 2,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 280,
+            "y": 300,
+            "w": 300,
+            "label": "7× normal output?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 820,
+            "y": 430,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: from stem cell to red cell",
+      "start": 20,
+      "end": 60,
+      "altText": "A maturation line of tokens: pronormoblast → basophilic → polychromatophilic → orthochromatic normoblast → reticulocyte → mature red cell, with arrows between them. Above, a kidney card releases EPO in response to hypoxia, and an arrow points to BFU-E and CFU-E progenitors. Notes: hemoglobin builds up and the nucleus condenses, then is expelled; the reticulocyte leaves the marrow and matures in blood for about a day; the red cell lives about 120 days before splenic macrophages remove it.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Red cells come from stem cells, through two progenitor stages — BFU-E and CFU-E. Their main driver is erythropoietin, EPO, made mainly by the kidney when oxygen delivery falls."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 42,
+          "text": "Then the recognisable precursors: pronormoblast, basophilic, polychromatophilic, and orthochromatic normoblast. Hemoglobin builds up as the nucleus shrinks."
+        },
+        {
+          "id": "n3",
+          "start": 42,
+          "end": 51,
+          "text": "The nucleus is pushed out, leaving a reticulocyte — still carrying some RNA. It leaves the marrow and normally finishes maturing in the blood in about a day."
+        },
+        {
+          "id": "n4",
+          "start": 51,
+          "end": 60,
+          "text": "The mature red cell then circulates for about a hundred and twenty days, until macrophages in the spleen remove it."
+        }
+      ],
+      "objects": [
+        {
+          "id": "kid",
+          "type": "card",
+          "props": {
+            "x": 150,
+            "y": 90,
+            "w": 200,
+            "h": 80,
+            "tone": "a",
+            "title": "Kidney",
+            "lines": [
+              "Hypoxia → EPO"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "epo",
+          "type": "arrow",
+          "props": {
+            "x": 250,
+            "y": 90,
+            "dx": 200,
+            "dy": 0,
+            "draw": 0,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3,
+              "draw": 0
+            },
+            {
+              "t": 3.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "draw": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "prog",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 90,
+            "w": 260,
+            "label": "BFU-E → CFU-E multiply",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s0",
+          "type": "token",
+          "props": {
+            "x": 95,
+            "y": 260,
+            "w": 146,
+            "label": "Pronormoblast",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s1",
+          "type": "token",
+          "props": {
+            "x": 249,
+            "y": 260,
+            "w": 146,
+            "label": "Basophilic",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.1,
+              "opacity": 0
+            },
+            {
+              "t": 12.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "token",
+          "props": {
+            "x": 403,
+            "y": 260,
+            "w": 146,
+            "label": "Polychromatophilic",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.7,
+              "opacity": 0
+            },
+            {
+              "t": 14.299999999999999,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "token",
+          "props": {
+            "x": 557,
+            "y": 260,
+            "w": 146,
+            "label": "Orthochromatic",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.3,
+              "opacity": 0
+            },
+            {
+              "t": 15.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s4",
+          "type": "token",
+          "props": {
+            "x": 711,
+            "y": 260,
+            "w": 146,
+            "label": "Reticulocyte",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s5",
+          "type": "token",
+          "props": {
+            "x": 865,
+            "y": 260,
+            "w": 146,
+            "label": "Mature RBC",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hb",
+          "type": "label",
+          "props": {
+            "x": 330,
+            "y": 320,
+            "text": "Hemoglobin ↑ · nucleus condenses",
+            "size": 14,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 18.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "enuc",
+          "type": "token",
+          "props": {
+            "x": 635,
+            "y": 380,
+            "w": 230,
+            "label": "Nucleus expelled · RNA left",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 24.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "day",
+          "type": "token",
+          "props": {
+            "x": 635,
+            "y": 440,
+            "w": 230,
+            "label": "~1 day maturing in blood",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 27.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "life",
+          "type": "token",
+          "props": {
+            "x": 865,
+            "y": 380,
+            "w": 180,
+            "label": "~120 days",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 34.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes in anemia: two distortions",
+      "start": 60,
+      "end": 104,
+      "altText": "Left: a box of red cells shrinks from Hct 45% to 25%; the same number of reticulocytes now makes up a larger percentage — the first distortion. Right: EPO rises and releases reticulocytes early (“shift” reticulocytes), which spend longer maturing in the blood; a table of maturation times appears: Hct 45% → 1 day, 35% → 1.5, 25% → 2, 15% → 2.5. Counting a cell for 2 days instead of 1 doubles how often it is seen.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "Distortion one: the denominator. A reticulocyte count is a percentage of red cells. When anemia shrinks the red-cell mass, the same reticulocytes make up a bigger share."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "So first, correct for the anemia: multiply the percentage by the patient’s hematocrit over a normal forty-five."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "Distortion two: timing. High EPO pushes reticulocytes out of the marrow early. These shift cells spend longer maturing in the blood, so they get counted for more days."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "The usual maturation times: one day at a hematocrit of forty-five, one and a half at thirty-five, two at twenty-five, and two and a half at fifteen."
+        }
+      ],
+      "objects": [
+        {
+          "id": "box",
+          "type": "card",
+          "props": {
+            "x": 200,
+            "y": 200,
+            "w": 200,
+            "h": 220,
+            "tone": "bad",
+            "title": "Red cells",
+            "lines": [],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "h": 220
+            },
+            {
+              "t": 7,
+              "h": 120,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "hct",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 340,
+            "w": 140,
+            "label": "Hct 45%",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "label": "Hct 45%"
+            },
+            {
+              "t": 7,
+              "label": "Hct 25%"
+            }
+          ]
+        },
+        {
+          "id": "pct",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 400,
+            "w": 260,
+            "label": "Same retics → bigger %",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "f1",
+          "type": "card",
+          "props": {
+            "x": 200,
+            "y": 480,
+            "w": 340,
+            "h": 90,
+            "tone": "a",
+            "title": "Correction 1",
+            "lines": [
+              "Retic % × (Hct ÷ 45)"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12,
+              "reveal": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "marrow",
+          "type": "card",
+          "props": {
+            "x": 560,
+            "y": 110,
+            "w": 180,
+            "h": 80,
+            "tone": "neutral",
+            "title": "Marrow",
+            "lines": [
+              "EPO ↑"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "shift",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 200,
+            "w": 160,
+            "label": "Shift retic",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24,
+              "opacity": 0
+            },
+            {
+              "t": 24,
+              "x": 560
+            },
+            {
+              "t": 24.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "x": 800,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "long",
+          "type": "token",
+          "props": {
+            "x": 800,
+            "y": 250,
+            "w": 230,
+            "label": "Counted for longer",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 29.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tbl",
+          "type": "table",
+          "props": {
+            "x": 700,
+            "y": 320,
+            "title": "Maturation time in blood",
+            "cols": [
+              "Hct %",
+              "Days"
+            ],
+            "rows": [
+              [
+                "45",
+                "1.0"
+              ],
+              [
+                "35",
+                "1.5"
+              ],
+              [
+                "25",
+                "2.0"
+              ],
+              [
+                "15",
+                "2.5"
+              ]
+            ],
+            "cellW": 110,
+            "cellH": 26,
+            "reveal": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34,
+              "reveal": 0
+            },
+            {
+              "t": 34.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 42,
+              "reveal": 10,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: calculate the RPI",
+      "start": 104,
+      "end": 144,
+      "altText": "Worked calculation for Patient A: corrected count 7 × 25/45 = 3.9%; divide by 2 days → reticulocyte production index (RPI) ≈ 1.9. Patient B: 1 × 25/45 = 0.56%; ÷ 2 → 0.28. An interpretation scale: RPI < 2 = inadequate marrow response (hypoproliferative, or ineffective erythropoiesis); RPI > 3 = appropriate response (bleeding or hemolysis with a healthy marrow). Note: labs band hematocrit slightly differently; a normal RPI is about 1.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Patient A. Correct for anemia: seven times twenty-five over forty-five is about three point nine percent."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 123,
+          "text": "Then correct for timing. At a hematocrit of twenty-five, divide by two. The reticulocyte production index is about one point nine."
+        },
+        {
+          "id": "l3",
+          "start": 123,
+          "end": 133,
+          "text": "Patient B: one times twenty-five over forty-five, divided by two — about point three. A marrow that is barely responding."
+        },
+        {
+          "id": "l4",
+          "start": 133,
+          "end": 144,
+          "text": "Interpretation: an RPI below two means the marrow isn’t keeping up. Above three is an appropriate response, as after bleeding or hemolysis. So Patient A is making about twice normal — not seven times — and that’s still not enough."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a1",
+          "type": "card",
+          "props": {
+            "x": 260,
+            "y": 110,
+            "w": 440,
+            "h": 100,
+            "tone": "a",
+            "title": "Patient A · step 1",
+            "lines": [
+              "7 × 25 ÷ 45",
+              "= 3.9% corrected"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "a2",
+          "type": "card",
+          "props": {
+            "x": 260,
+            "y": 240,
+            "w": 440,
+            "h": 100,
+            "tone": "a",
+            "title": "Patient A · step 2",
+            "lines": [
+              "3.9 ÷ 2 days",
+              "RPI ≈ 1.9"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "b1",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 175,
+            "w": 380,
+            "h": 100,
+            "tone": "b",
+            "title": "Patient B",
+            "lines": [
+              "1 × 25 ÷ 45 ÷ 2",
+              "RPI ≈ 0.3"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19.5,
+              "opacity": 0
+            },
+            {
+              "t": 20,
+              "reveal": 0
+            },
+            {
+              "t": 20.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "lo",
+          "type": "bin",
+          "props": {
+            "x": 300,
+            "y": 400,
+            "w": 320,
+            "h": 110,
+            "label": "RPI < 2",
+            "sub": "Inadequate response",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29.5,
+              "opacity": 0
+            },
+            {
+              "t": 30.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hi",
+          "type": "bin",
+          "props": {
+            "x": 680,
+            "y": 400,
+            "w": 320,
+            "h": 110,
+            "label": "RPI > 3",
+            "sub": "Appropriate (bleed, hemolysis)",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ta",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 330,
+            "w": 60,
+            "label": "A",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 33.5,
+              "y": 330
+            },
+            {
+              "t": 33.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35.5,
+              "y": 395,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tb",
+          "type": "token",
+          "props": {
+            "x": 350,
+            "y": 330,
+            "w": 60,
+            "label": "B",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35,
+              "opacity": 0
+            },
+            {
+              "t": 35,
+              "y": 330
+            },
+            {
+              "t": 35.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "y": 395,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Trap card: “Retic 7% means 7× marrow output” is crossed out → “Correct for anemia and maturation time (RPI ≈ 2 here).” Trap card: “High EPO means polycythemia vera” is crossed out → “PV usually has low EPO; high EPO points to secondary erythrocytosis.” Trap card: “A busy, hypercellular marrow must be producing well” is crossed out → “Ineffective erythropoiesis: precursors die in the marrow (thalassemia, megaloblastic anemia, MDS), so the RPI stays low.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a raw seven percent isn’t seven times normal output. Correct for the anemia and for the maturation time."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a high EPO doesn’t mean polycythemia vera. PV makes red cells on its own, so EPO is usually low. A high EPO points to a secondary cause."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: a crowded marrow isn’t always productive. In ineffective erythropoiesis — thalassemia, megaloblastic anemia, myelodysplasia — late precursors die in the marrow, and the RPI stays low."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Retic 7% means 7× marrow output.”",
+            "lines": [
+              "✓ Correct for anemia and maturation time (RPI)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “High EPO means polycythemia vera.”",
+            "lines": [
+              "✓ PV usually low EPO · high EPO → secondary erythrocytosis"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “A busy marrow must be producing well.”",
+            "lines": [
+              "✓ Ineffective erythropoiesis: precursors die in the marrow"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Shrink, then slow",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Shrink, then slow” — first correct for the shrunken hematocrit (× Hct/45), then for the slower maturation (÷ days). The shift-time ladder: 45-1, 35-1.5, 25-2, 15-2.5. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: shrink, then slow. Correct for the shrunken hematocrit, then for slower maturation. And the ladder: forty-five, one; thirty-five, one and a half; twenty-five, two; fifteen, two and a half."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: the maturation times are approximations, and labs band hematocrit differently. The RPI is only an estimate — it can’t tell you why the marrow is failing, and it can’t separate a hypoproliferative marrow from ineffective erythropoiesis."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Shrink, then slow",
+            "size": 32,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 170,
+            "w": 280,
+            "label": "Shrink: × Hct ÷ 45",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 170,
+            "w": 280,
+            "label": "Slow: ÷ maturation days",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "lad",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 240,
+            "w": 420,
+            "label": "45 → 1 · 35 → 1.5 · 25 → 2 · 15 → 2.5",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 390,
+            "w": 860,
+            "h": 130,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Maturation times are approximate; labs band Hct differently",
+              "RPI estimates output — it doesn’t give the cause",
+              "Low RPI: hypoproliferative OR ineffective erythropoiesis"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “RPI = retic % × (Hct/45) ÷ maturation days”, “RPI < 2 inadequate · > 3 appropriate · PV usually has low EPO”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Never read a raw reticulocyte percentage — correct it for the hematocrit and the maturation time, and an RPI below two means the marrow isn’t keeping up."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 760,
+            "label": "RPI = retic % × (Hct ÷ 45) ÷ maturation days",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 760,
+            "label": "RPI < 2 inadequate · > 3 appropriate · PV usually has low EPO",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: the marrow builds red cells step by step, EPO turns up production, and a reticulocyte count only tells you how hard the marrow is working once you correct it. Scientific terms: HSC → BFU-E → CFU-E → pronormoblast → basophilic → polychromatophilic → orthochromatic normoblast → reticulocyte → erythrocyte (~120-day lifespan). Corrected reticulocyte count = retic % × patient Hct ÷ 45; RPI = corrected count ÷ maturation time (1 / 1.5 / 2 / 2.5 days at Hct ≈ 45 / 35 / 25 / 15%).",
+    "why": "EPO, made mainly by the kidney in response to hypoxia, promotes survival and proliferation of erythroid progenitors and pushes reticulocytes out early. Anemia shrinks the denominator of the reticulocyte percentage, and early-released reticulocytes stay longer in the blood, so both inflate the raw percentage.",
+    "measure": "Reticulocyte % (automated or supravital stain) and hematocrit → corrected count → RPI. RPI > 3 = appropriate marrow response; RPI < 2 = inadequate response (Chueh 2022). Maturation-time bands vary slightly between labs.",
+    "differs": "Hypoproliferative anemia (low output, low RPI) vs ineffective erythropoiesis (expanded early precursors with apoptosis of late precursors; low RPI despite a busy marrow) vs blood loss/hemolysis with a healthy marrow (high RPI). PV (EPO usually subnormal) vs secondary erythrocytosis (EPO normal or high).",
+    "examAngle": "Expect: maturation order, RPI calculation from retic % and Hct, interpretation of RPI, and “high EPO = PV?” traps."
+  },
+  "comparisons": [
+    {
+      "id": "raw-vs-rpi",
+      "title": "Raw reticulocyte % vs RPI",
+      "left": {
+        "label": "Raw retic %",
+        "points": [
+          "Fraction of the current red cells",
+          "Inflated by anemia and early release"
+        ]
+      },
+      "right": {
+        "label": "RPI",
+        "points": [
+          "× Hct ÷ 45, ÷ maturation days",
+          "Estimates output relative to normal (~1)"
+        ]
+      },
+      "distinguisher": "Only the RPI corrects for both distortions."
+    },
+    {
+      "id": "pv-vs-secondary",
+      "title": "Polycythemia vera vs secondary erythrocytosis",
+      "left": {
+        "label": "Polycythemia vera",
+        "points": [
+          "Autonomous (JAK2) production",
+          "EPO usually subnormal"
+        ]
+      },
+      "right": {
+        "label": "Secondary",
+        "points": [
+          "Driven by EPO (hypoxia, tumours, drugs)",
+          "EPO normal or high"
+        ]
+      },
+      "distinguisher": "EPO level: low favours PV; high argues against it."
+    }
+  ],
+  "mnemonic": {
+    "text": "Shrink, then slow — and the ladder 45-1, 35-1.5, 25-2, 15-2.5.",
+    "explanation": "First correct for the shrunken hematocrit (× Hct/45), then for slower maturation (÷ days from the ladder).",
+    "limitation": "Maturation times are approximate and banded differently by labs; the RPI estimates output but does not give the cause."
+  },
+  "analogyLimitations": [
+    "Tokens and boxes are schematic; no cell morphology is shown.",
+    "Patients A and B are invented.",
+    "Absolute reticulocyte counts, IRF and reticulocyte hemoglobin are not covered here."
+  ],
+  "takeaway": "Never read a raw reticulocyte percentage — correct it for the hematocrit and the maturation time, and an RPI below two means the marrow isn’t keeping up.",
+  "questions": [
+    {
+      "id": "heme-rpi-q1",
+      "stem": "A patient has a reticulocyte count of 6% and a hematocrit of 30%. Using a maturation time of 1.5 days, what is the reticulocyte production index?",
+      "options": [
+        {
+          "id": "a",
+          "text": "About 2.7",
+          "rationale": "Correct. 6 × 30/45 = 4.0% corrected; 4.0 ÷ 1.5 ≈ 2.7."
+        },
+        {
+          "id": "b",
+          "text": "6.0",
+          "rationale": "Incorrect. That is the raw percentage, uncorrected for anemia or maturation time."
+        },
+        {
+          "id": "c",
+          "text": "4.0",
+          "rationale": "Incorrect. That is the corrected count before dividing by the maturation time."
+        },
+        {
+          "id": "d",
+          "text": "About 1.3",
+          "rationale": "Incorrect. This divides by 3 rather than 1.5."
+        }
+      ],
+      "answer": "a",
+      "skill": "RPI calculation",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-rpi-q2",
+      "stem": "Which sequence correctly orders erythroid precursors from least to most mature?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pronormoblast → basophilic → polychromatophilic → orthochromatic normoblast → reticulocyte",
+          "rationale": "Correct. Hemoglobin accumulates and the nucleus condenses, then is expelled to form the reticulocyte."
+        },
+        {
+          "id": "b",
+          "text": "Pronormoblast → polychromatophilic → basophilic → orthochromatic → reticulocyte",
+          "rationale": "Incorrect. The basophilic stage precedes the polychromatophilic stage."
+        },
+        {
+          "id": "c",
+          "text": "Basophilic → pronormoblast → orthochromatic → polychromatophilic → reticulocyte",
+          "rationale": "Incorrect. The pronormoblast is the earliest recognisable precursor."
+        },
+        {
+          "id": "d",
+          "text": "Pronormoblast → basophilic → orthochromatic → reticulocyte → polychromatophilic",
+          "rationale": "Incorrect. Polychromatophilic normoblasts are nucleated and precede the orthochromatic stage."
+        }
+      ],
+      "answer": "a",
+      "skill": "Maturation sequence",
+      "difficulty": "recall"
+    },
+    {
+      "id": "heme-rpi-q3",
+      "stem": "A patient with β-thalassemia has a hypercellular marrow full of erythroid precursors, but the RPI is 1.2. What best explains this?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ineffective erythropoiesis: late precursors die in the marrow before release",
+          "rationale": "Correct. Early precursors expand, but apoptosis of late precursors reduces the number of red cells delivered."
+        },
+        {
+          "id": "b",
+          "text": "An appropriate marrow response to hemolysis",
+          "rationale": "Incorrect. An appropriate response gives an RPI above about 3."
+        },
+        {
+          "id": "c",
+          "text": "Low EPO causing marrow aplasia",
+          "rationale": "Incorrect. The marrow is hypercellular, not aplastic."
+        },
+        {
+          "id": "d",
+          "text": "A calculation error, because a busy marrow always gives a high RPI",
+          "rationale": "Incorrect. Marrow cellularity and effective output can diverge."
+        }
+      ],
+      "answer": "a",
+      "skill": "Ineffective erythropoiesis",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch32",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 32, How Blood Cells Are Made (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 32,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            3,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "chapter": 32,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "elhoss2026",
+      "kind": "external",
+      "citation": "El Hoss S, Lizarralde-Iragorri MA, Maciel TT, Hermine O. Erythropoiesis in health and disease: distinguishing defective and ineffective erythropoiesis. Hemasphere. 2026;10(1):e70297.",
+      "doi": "10.1002/hem3.70297",
+      "url": "https://europepmc.org/article/PMC/PMC12820578",
+      "consulted": true,
+      "usedFor": "HSC → BFU-E → CFU-E → proerythroblast → basophilic → polychromatic → orthochromatic → reticulocyte; hemoglobin synthesis and nuclear condensation before enucleation; RBC circulates ~120 days before splenic macrophage removal; EPO made mainly by the kidney in response to hypoxia promotes progenitor survival and proliferation; ineffective erythropoiesis = expansion of early precursors with apoptosis of late precursors (β-thalassemia, MDS)."
+    },
+    {
+      "id": "huang2026",
+      "kind": "external",
+      "citation": "Huang L, Lin B, Zhu G, et al. Age- and sex-specific normative values for reticulocyte indices and their relation to early-stage CKM syndrome. BMC Cardiovasc Disord. 2026;26(1):802.",
+      "doi": "10.1186/s12872-026-06185-x",
+      "url": "https://europepmc.org/article/PMC/PMC13579875",
+      "consulted": true,
+      "usedFor": "RPI = (retic % / maturation time) × (Hct / 0.45); maturation time 1 d (Hct ≥ 40%), 1.5 d (30–39.9%), 2 d (20–29.9%), 2.5 d (< 20%)."
+    },
+    {
+      "id": "kalahasthi2016",
+      "kind": "external",
+      "citation": "Kalahasthi R, Barman T. Effect of lead exposure on the status of reticulocyte count indices among workers from lead battery manufacturing plant. Toxicol Res. 2016;32(4):281-287.",
+      "doi": "10.5487/tr.2016.32.4.281",
+      "url": "https://europepmc.org/article/PMC/PMC5080849",
+      "consulted": true,
+      "usedFor": "Raw reticulocyte % does not reflect marrow response in anemia; RI = RC% × patient Hct / normal Hct; RPI = RI ÷ maturation factor (1 / 1.5 / 2 … days by Hct band) — shows that labs band hematocrit differently."
+    },
+    {
+      "id": "chueh2022",
+      "kind": "external",
+      "citation": "Chueh HW, Hwang SM, Shim YJ, et al. Korean clinical practice guidelines for the diagnosis of hereditary hemolytic anemia. Blood Res. 2022;57(2):86-94.",
+      "doi": "10.5045/br.2022.2021224",
+      "url": "https://europepmc.org/article/PMC/PMC9242826",
+      "consulted": true,
+      "usedFor": "Corrected reticulocyte count = retic % × patient Hct / normal Hct (45); RPI = corrected count / maturation time; RPI > 3 = appropriate marrow response, < 2 = inadequate."
+    },
+    {
+      "id": "yoon2025",
+      "kind": "external",
+      "citation": "Yoon SY, Kwon SS, Jeong SY, et al. Low neutrophil-to-lymphocyte ratio identifies secondary polycythemia in patients with erythrocytosis. Sci Rep. 2025;15(1):42043.",
+      "doi": "10.1038/s41598-025-26200-z",
+      "url": "https://europepmc.org/article/PMC/PMC12657909",
+      "consulted": true,
+      "usedFor": "Subnormal EPO in 72% of PV vs 5% of secondary polycythemia; subnormal EPO used in the 2016 WHO PV criteria."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-seq",
+      "text": "Erythroid sequence BFU-E → CFU-E → pronormoblast → basophilic → polychromatophilic → orthochromatic → reticulocyte; RBC lifespan ~120 days.",
+      "status": "checked",
+      "refs": [
+        "elhoss2026"
+      ]
+    },
+    {
+      "id": "cl-epo",
+      "text": "EPO is made mainly by the kidney in response to hypoxia and drives erythroid progenitor survival and proliferation.",
+      "status": "checked",
+      "refs": [
+        "elhoss2026"
+      ]
+    },
+    {
+      "id": "cl-rpi",
+      "text": "Corrected count = retic % × Hct/45; RPI = corrected ÷ maturation time (1/1.5/2/2.5 d by Hct); labs band Hct differently.",
+      "status": "checked",
+      "refs": [
+        "huang2026",
+        "kalahasthi2016",
+        "chueh2022"
+      ]
+    },
+    {
+      "id": "cl-int",
+      "text": "RPI > 3 appropriate; RPI < 2 inadequate marrow response.",
+      "status": "checked",
+      "refs": [
+        "chueh2022"
+      ]
+    },
+    {
+      "id": "cl-ie",
+      "text": "Ineffective erythropoiesis: expanded early precursors with apoptosis of late precursors (β-thalassemia, MDS).",
+      "status": "checked",
+      "refs": [
+        "elhoss2026"
+      ]
+    },
+    {
+      "id": "cl-pv",
+      "text": "EPO is usually subnormal in PV and rarely in secondary polycythemia.",
+      "status": "checked",
+      "refs": [
+        "yoon2025"
+      ]
+    },
+    {
+      "id": "cl-shift",
+      "text": "High EPO releases reticulocytes early (shift reticulocytes), which spend longer maturing in the blood; normal reticulocyte maturation in blood ~1 day.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch32"
+      ],
+      "note": "Implied by the maturation-time table in Huang 2026 and Chueh 2022 but the mechanism was not stated in a consulted source."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Schematic tokens and boxes.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Shrink, then slow.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Maturation stages are shown as labelled tokens, not real cell morphology.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 claims checked against El Hoss 2026, Huang 2026, Kalahasthi 2016, Chueh 2022 and Yoon 2025 (full texts) read for this lesson; 1 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}

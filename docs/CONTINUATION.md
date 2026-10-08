@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 51, teaching 224 of 1,932 concepts (about 11.6%).** All 51 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 52, teaching 232 of 1,932 concepts (about 12.0%).** All 52 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -16,6 +16,7 @@
   - Ch. 24 (5/26 concepts): `chem-drug-screen-confirmation-validity`.
   - Ch. 26 (3/22 concepts): `chem-hcg-pregnancy-unknown-location`.
   - Ch. 31 (4/28 concepts): `heme-red-cell-indices-high-mchc`.
+  - Ch. 32 (8/23 concepts): `heme-erythropoiesis-reticulocyte-index`.
   - Ch. 33 (6/27 concepts): `heme-microcytic-anemia-ferritin-mentzer`.
   - Ch. 34 (3/25 concepts): `heme-cml-vs-leukemoid-reaction`.
   - Ch. 35 (7/23 concepts): `heme-flow-cytometry-gating`.
@@ -36,7 +37,7 @@
   - Ch. 65 (7/24 concepts): `micro-malaria-thick-thin-films`.
   - Ch. 66 (3/54 concepts): `micro-blood-culture-volume-contamination`.
 - **Reviewer accuracy register:** 49 flags (29 verified issues, 20 needing verification), plus scan results.
-- **Checks:** 372 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 378 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -72,7 +73,7 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 | 6 | ✅ Ch. 39 Anticoagulant monitoring (14) | ✅ Ch. 21 Enzymes (10) | ✅ Ch. 65 Parasites (12) | ✅ Ch. 40 Rh / weak D (Hit 16) |
 | 7 | ✅ Ch. 34 White cell disorders (14) | ✅ Ch. 18 Lipids (10) | ✅ Ch. 61 Spirochetes (12) | ✅ Ch. 40 antibody ID / Kidd (Hits 3, 5) |
 | 8 | ✅ Ch. 35 Flow cytometry (13) | ✅ Ch. 26 Fertility & pregnancy (10) | ✅ Ch. 58 Susceptibility testing (11) | ✅ Ch. 41 storage & irradiation (Hits 3, 10, 16) |
-| 9 | Ch. 32 Hematopoiesis (12) | Ch. 25 Endocrine (9) | Ch. 62 Chlamydia & Mycoplasma (11) | Ch. 40 DAT & warm AIHA (Hits 1, 9) |
+| 9 | ✅ Ch. 32 Hematopoiesis (12) | Ch. 25 Endocrine (9) | Ch. 62 Chlamydia & Mycoplasma (11) | Ch. 40 DAT & warm AIHA (Hits 1, 9) |
 
 Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.
 

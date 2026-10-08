@@ -116,7 +116,7 @@ describe('recommendations', () => {
   it('respects the track filter', () => {
     const s = emptyState();
     s.settings.track = 'mtle';
-    expect(recommend(curriculum, lessons, s, 50).length).toBe(complete.filter((l) => l.lesson.tracks.includes('mtle')).length);
+    expect(recommend(curriculum, lessons, s, 500).length).toBe(complete.filter((l) => l.lesson.tracks.includes('mtle')).length);
   });
 });
 
