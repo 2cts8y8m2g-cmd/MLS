@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 87, teaching 469 of 1,932 concepts (about 24.3%).** All 87 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 88, teaching 473 of 1,932 concepts (about 24.5%).** All 88 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -22,7 +22,7 @@
   - Ch. 30 (6/25 concepts): `cm-serous-fluids-transudate-exudate`.
   - Ch. 31 (11/28 concepts): `heme-red-cell-indices-high-mchc`, `heme-spurious-cbc-corrections`.
   - Ch. 32 (8/23 concepts): `heme-erythropoiesis-reticulocyte-index`.
-  - Ch. 33 (12/27 concepts): `heme-hemolytic-anemia-workup`, `heme-microcytic-anemia-ferritin-mentzer`.
+  - Ch. 33 (16/27 concepts): `heme-anemia-second-clues`, `heme-hemolytic-anemia-workup`, `heme-microcytic-anemia-ferritin-mentzer`.
   - Ch. 34 (6/25 concepts): `heme-cml-vs-leukemoid-reaction`, `heme-mpn-pv-et-pmf`.
   - Ch. 35 (7/23 concepts): `heme-flow-cytometry-gating`.
   - Ch. 36 (18/29 concepts): `heme-dic-liver-fibrinolysis`, `heme-hemophilia-factor-inhibitor-lab`, `heme-mixing-study-pt-aptt`.
@@ -44,7 +44,7 @@
   - Ch. 65 (7/24 concepts): `micro-malaria-thick-thin-films`.
   - Ch. 66 (20/54 concepts): `micro-antigen-tests-negatives`, `micro-blood-culture-volume-contamination`, `micro-specimen-acceptability-transport`.
 - **Reviewer accuracy register:** 83 flags (59 verified issues, 24 needing verification), plus scan results.
-- **Checks:** 588 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 594 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -88,7 +88,7 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 | 14 | ✅ Ch. 34 white cell disorders (2nd lesson) | ✅ Ch. 24 drugs & poisons (2nd lesson) | ✅ Ch. 64 viral infections (2nd lesson) | ✅ Ch. 42 apheresis & blood collection (3rd lesson) |
 | 15 | ✅ Ch. 38 clot risk (2nd lesson) | ✅ Ch. 20 plasma proteins (2nd lesson) | ✅ Ch. 60 fungal infections (2nd lesson) | ✅ Ch. 40 blood groups & compatibility (next lesson) |
 | 16 | ✅ Ch. 36 coag cascade (3rd lesson) | ✅ Ch. 17 glucose & diabetes (2nd lesson) | ✅ Ch. 57 bacteria that cause disease (3rd lesson) | ✅ Ch. 42 apheresis & blood collection (4th lesson) |
-| 17 | Ch. 33 hemolytic anemias (3rd lesson) | Ch. 26 fertility & pregnancy (2nd lesson) | ✅ Ch. 66 specimen collection (3rd lesson) | Ch. 41 transfusion (5th lesson) |
+| 17 | ✅ Ch. 33 hemolytic anemias (3rd lesson) | Ch. 26 fertility & pregnancy (2nd lesson) | ✅ Ch. 66 specimen collection (3rd lesson) | Ch. 41 transfusion (5th lesson) |
 
 Clinical Microscopy runs alongside rounds 14–15: **Ch. 29 urinalysis** (✅ core lesson, round 14) and **Ch. 30 body fluids** (✅ core lesson, round 15). Round 16 adds **Ch. 29 urinalysis (2nd lesson)** (✅ reagent-strip chemistry); round 17 adds **Ch. 30 body fluids (2nd lesson)**. Molecular Diagnostics (Ch. 67–72) still has no lessons and follows round 17; Ch. 29 still ranks third by simulator questions × untaught share.
 
