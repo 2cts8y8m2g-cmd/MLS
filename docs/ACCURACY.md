@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 58 flags: 38 verified issues and 20 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 59 flags: 39 verified issues and 20 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -55,6 +55,7 @@ Verified:
 - **Ch. 41 Hit 5:** “< 8.0 g/dL in acute coronary syndrome” (MINT: restrictive 7–8 g/dL may increase MI or death in acute MI).
 - **Ch. 41 Hit 7:** cryo trigger fibrinogen < 100 mg/dL and 150–250 mg/unit (current reviews: risk rises below ~200 mg/dL; AABB ≥ 150 mg/unit; triggers vary).
 - **Ch. 36 Hit 5:** mild hemophilia given as 6–30% (standard: > 5–40 IU/dL).
+- **Ch. 19 Hits 1, 3, 5:** built on the Fourth Universal Definition of MI; the Fifth (2026) requires sex-specific 99th percentile URLs and replaces numbered types with primary, secondary and procedure-related MI.
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -85,11 +86,12 @@ Automated scan: **23** dated-guideline statements and **134** High-Yield Hits wi
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 24 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 25 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
 - **Hemophilia in the Lab:** no pending claims; 1 register flag on Hit 5 (mild range). Prevalence, bleed frequencies, intron 22 and inhibitor percentages are not taught; the source gives the Bethesda detection limit as 0.42 BU/mL (reviewer: ~0.5).
 - **Choosing the Component:** 1 pending claim (platelets in ITP/TTP; CCI < 7,500 definition; neither taught); 2 register flags (Hit 5 acute-MI trigger; Hit 7 cryo trigger). Per-unit increments and the 100 × 10⁹/L CNS platelet threshold are not taught.
 - **Tick-Borne Rickettsial Diseases:** 1 pending claim (Weil–Felix obsolete, < 20% seropositive at presentation, Coxiella by inhalation; none taught); 1 register flag on Trap 5. Q fever chronic cut-off taught as CDC ≥ 1:1024 with the Duke > 1:800 criterion (reviewer: ≥ 1:800).

@@ -70,6 +70,8 @@ FLAG_RULES = [
      'Current reviews place increased bleeding risk below ~200 mg/dL fibrinogen (population-dependent); AABB requires ≥ 150 mg fibrinogen per cryo unit (Rahe-Meyer 2026).'),
     ('rv-hemo-mild', r'mild 6[–-]30|6[–-]30 ?%',
      'Standard classification: mild hemophilia is > 5–40 IU/dL (severe < 1, moderate 1–5) (Alvarez-Payares 2026).'),
+    ('rv-udmi-fifth', r'Fourth Universal Definition',
+     'The Fifth Universal Definition of MI (2026) now applies: sex-specific 99th percentile URLs, and MI classified as primary, secondary or procedure-related (Mills 2026).'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
