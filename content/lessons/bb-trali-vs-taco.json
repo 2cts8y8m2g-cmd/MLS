@@ -1,0 +1,2265 @@
+{
+  "schemaVersion": 1,
+  "id": "bb-trali-vs-taco",
+  "title": "TRALI vs TACO: TACO Pushes, TRALI Leaks",
+  "summary": "Tell transfusion-associated circulatory overload from transfusion-related acute lung injury by mechanism, timing and criteria, and see what BNP can and cannot add.",
+  "domain": "p5-bb",
+  "topic": "ch41",
+  "conceptIds": [
+    "ch41.hit4"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 41,
+        "section": "High-Yield Hits",
+        "items": [
+          4
+        ]
+      },
+      {
+        "chapter": 41,
+        "section": "Memory Hooks"
+      },
+      {
+        "chapter": 41,
+        "section": "Number Vault"
+      }
+    ],
+    "note": "Teaches Ch. 41 Hit 4 (TRALI vs TACO: timing, BNP, treatment). Checked against Vlaar 2019 (TRALI consensus redefinition), Kuriri 2025, Ackfeld 2022, White 2025 and Vik 2025. The reviewer’s “BNP does NOT rise” in TRALI and “oxygen only” are corrected — see register flag rv-trali-bnp. Pending: resolution in 48–96 h (source read: most recover within 48–72 h) and ~10% mortality (source read: 5–25%)."
+  },
+  "prerequisites": [
+    "ch41.hit1"
+  ],
+  "objectives": [
+    "Contrast the mechanisms of TACO (hydrostatic) and TRALI (increased permeability).",
+    "State the timing and key criteria used to classify TRALI (2019 consensus) and TACO (NHSN).",
+    "Interpret BNP/NT-proBNP correctly and match each reaction to its supportive management."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Breathless two hours into a transfusion",
+      "start": 0,
+      "end": 20,
+      "altText": "A patient receiving plasma becomes short of breath; an oxygen-saturation token drops from 97% to 86%. Two suspect cards appear: TRALI (transfusion-related acute lung injury) and TACO (transfusion-associated circulatory overload). Both mean fluid in the lungs; a question asks which one.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Two hours into a plasma transfusion, a patient becomes short of breath. Oxygen saturation falls."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The chest film shows fluid in both lungs. There are two main suspects: TRALI and TACO."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Both flood the lungs. But the cause, the lab clues and the treatment are different."
+        }
+      ],
+      "objects": [
+        {
+          "id": "bag",
+          "type": "tube",
+          "props": {
+            "x": 150,
+            "y": 90,
+            "level": 0.6,
+            "fluid": "plasma",
+            "label": "Plasma",
+            "cap": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "sat",
+          "type": "token",
+          "props": {
+            "x": 380,
+            "y": 150,
+            "w": 200,
+            "label": "SpO₂ 97%",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4.5,
+              "label": "SpO₂ 86%",
+              "tone": "bad"
+            }
+          ]
+        },
+        {
+          "id": "cxr",
+          "type": "token",
+          "props": {
+            "x": 650,
+            "y": 150,
+            "w": 320,
+            "label": "Chest film: fluid in both lungs",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 300,
+            "y": 320,
+            "w": 340,
+            "h": 110,
+            "tone": "b",
+            "title": "TRALI",
+            "lines": [
+              "Transfusion-related acute lung injury"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0
+            },
+            {
+              "t": 10.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 660,
+            "y": 320,
+            "w": 340,
+            "h": 110,
+            "tone": "a",
+            "title": "TACO",
+            "lines": [
+              "Transfusion-associated circulatory overload"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 420,
+            "label": "Same flood — which cause?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 900,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: what keeps the air sacs dry",
+      "start": 20,
+      "end": 56,
+      "altText": "Schematic lung capillary beside an air sac. Pressure inside the capillary pushes a little fluid out; an intact wall holds most of it in, so the air sac stays dry. Two ways to flood: push harder (raised pressure from too much volume or a struggling heart), or make the wall leaky (inflammation).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 29,
+          "text": "In a healthy lung, blood in a capillary sits right next to an air sac. Pressure in the capillary pushes a little fluid outward."
+        },
+        {
+          "id": "n2",
+          "start": 29,
+          "end": 38,
+          "text": "An intact capillary wall holds most of it back, so the air sac stays dry and oxygen crosses easily."
+        },
+        {
+          "id": "n3",
+          "start": 38,
+          "end": 47,
+          "text": "There are two ways to flood the air sac. One: push harder. Too much volume, or a heart that can’t keep up, raises the pressure."
+        },
+        {
+          "id": "n4",
+          "start": 47,
+          "end": 56,
+          "text": "Two: make the wall leaky. Inflammation opens gaps, and fluid pours through even at normal pressure."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cap",
+          "type": "card",
+          "props": {
+            "x": 300,
+            "y": 250,
+            "w": 200,
+            "h": 300,
+            "tone": "blood",
+            "title": "Capillary",
+            "lines": [],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "alv",
+          "type": "card",
+          "props": {
+            "x": 640,
+            "y": 250,
+            "w": 300,
+            "h": 300,
+            "tone": "neutral",
+            "title": "Air sac",
+            "lines": [],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d0",
+          "type": "token",
+          "props": {
+            "x": 340,
+            "y": 180,
+            "w": 60,
+            "label": "H₂O",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3,
+              "x": 340
+            },
+            {
+              "t": 3.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "x": 452,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d1",
+          "type": "token",
+          "props": {
+            "x": 340,
+            "y": 240,
+            "w": 60,
+            "label": "H₂O",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0
+            },
+            {
+              "t": 4,
+              "x": 340
+            },
+            {
+              "t": 4.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "x": 452,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d2",
+          "type": "token",
+          "props": {
+            "x": 340,
+            "y": 300,
+            "w": 60,
+            "label": "H₂O",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5,
+              "opacity": 0
+            },
+            {
+              "t": 5,
+              "x": 340
+            },
+            {
+              "t": 5.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "x": 452,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "wall",
+          "type": "highlight",
+          "props": {
+            "x": 400,
+            "y": 250,
+            "w": 20,
+            "h": 290,
+            "dashed": false,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "dry",
+          "type": "token",
+          "props": {
+            "x": 640,
+            "y": 250,
+            "w": 200,
+            "label": "Dry · O₂ crosses",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "w1",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 450,
+            "w": 280,
+            "label": "① Push harder (pressure)",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 19.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "w2",
+          "type": "token",
+          "props": {
+            "x": 640,
+            "y": 450,
+            "w": 280,
+            "label": "② Leaky wall (inflammation)",
+            "tone": "b",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 28.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: pressure flood vs leak flood",
+      "start": 56,
+      "end": 100,
+      "altText": "Split screen. Left, TACO: a pressure bar rises inside the capillary and fluid is pushed out; criteria card — onset within 12 hours (NHSN), with at least three of: acute respiratory distress, elevated natriuretic peptide, cardiovascular changes, fluid overload, pulmonary edema. Right, TRALI: donor antibodies in plasma-rich products meet the recipient’s white cells; the wall opens gaps; criteria card — onset during or within 6 hours, hypoxemia, bilateral pulmonary edema on imaging, and raised left-atrial pressure absent or not the main cause.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 56,
+          "end": 67,
+          "text": "TACO is a pressure flood. Too much volume, too fast, for that patient’s heart. Pressure rises and fluid is pushed into the air sacs."
+        },
+        {
+          "id": "c2",
+          "start": 67,
+          "end": 78,
+          "text": "The US surveillance definition counts TACO up to 12 hours after transfusion, with at least three findings — such as respiratory distress, a raised natriuretic peptide, cardiovascular changes, fluid overload, or pulmonary edema."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 89,
+          "text": "TRALI is a leak flood. Antibodies in the donor’s plasma — often from female donors — activate the recipient’s white cells, and the capillary wall becomes leaky."
+        },
+        {
+          "id": "c4",
+          "start": 89,
+          "end": 100,
+          "text": "TRALI begins during or within 6 hours, with low oxygen and edema in both lungs on imaging — and raised heart pressure is absent, or not the main cause."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lt",
+          "type": "label",
+          "props": {
+            "x": 250,
+            "y": 50,
+            "text": "TACO · pressure flood",
+            "size": 20,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "capA",
+          "type": "card",
+          "props": {
+            "x": 150,
+            "y": 190,
+            "w": 120,
+            "h": 200,
+            "tone": "blood",
+            "title": "",
+            "lines": [],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pres",
+          "type": "card",
+          "props": {
+            "x": 150,
+            "y": 190,
+            "w": 40,
+            "h": 20,
+            "tone": "warn",
+            "title": "",
+            "lines": [],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2,
+              "h": 20
+            },
+            {
+              "t": 7,
+              "h": 170,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "pl",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 320,
+            "w": 150,
+            "label": "Pressure ↑",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 4.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pa0",
+          "type": "token",
+          "props": {
+            "x": 220,
+            "y": 130,
+            "w": 60,
+            "label": "H₂O",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.0,
+              "opacity": 0
+            },
+            {
+              "t": 5.0,
+              "x": 220
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8.0,
+              "x": 340,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pa1",
+          "type": "token",
+          "props": {
+            "x": 220,
+            "y": 190,
+            "w": 60,
+            "label": "H₂O",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0
+            },
+            {
+              "t": 5.6,
+              "x": 220
+            },
+            {
+              "t": 5.8999999999999995,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8.6,
+              "x": 340,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pa2",
+          "type": "token",
+          "props": {
+            "x": 220,
+            "y": 250,
+            "w": 60,
+            "label": "H₂O",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.2,
+              "opacity": 0
+            },
+            {
+              "t": 6.2,
+              "x": 220
+            },
+            {
+              "t": 6.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.2,
+              "x": 340,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "critA",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 432,
+            "w": 400,
+            "h": 150,
+            "tone": "a",
+            "title": "TACO (NHSN)",
+            "lines": [
+              "Within 12 h of transfusion",
+              "≥ 3: distress · ↑ BNP · CV changes",
+              "fluid overload · pulmonary edema"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12,
+              "reveal": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "rt",
+          "type": "label",
+          "props": {
+            "x": 710,
+            "y": 50,
+            "text": "TRALI · leak flood",
+            "size": 20,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "capB",
+          "type": "card",
+          "props": {
+            "x": 610,
+            "y": 190,
+            "w": 120,
+            "h": 200,
+            "tone": "blood",
+            "title": "",
+            "lines": [],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab0",
+          "type": "antibody",
+          "props": {
+            "x": 600,
+            "y": 70,
+            "size": 26,
+            "spec": "HLA",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.5,
+              "y": 70
+            },
+            {
+              "t": 23.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26.5,
+              "y": 140,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab1",
+          "type": "antibody",
+          "props": {
+            "x": 600,
+            "y": 70,
+            "size": 26,
+            "spec": "HLA",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.0,
+              "opacity": 0
+            },
+            {
+              "t": 24.0,
+              "y": 70
+            },
+            {
+              "t": 24.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27.0,
+              "y": 190,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "gap0",
+          "type": "token",
+          "props": {
+            "x": 690,
+            "y": 130,
+            "w": 40,
+            "label": "⋯",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 27.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "gap1",
+          "type": "token",
+          "props": {
+            "x": 690,
+            "y": 190,
+            "w": 40,
+            "label": "⋯",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 28.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "gap2",
+          "type": "token",
+          "props": {
+            "x": 690,
+            "y": 250,
+            "w": 40,
+            "label": "⋯",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 28.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pb0",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 130,
+            "w": 60,
+            "label": "H₂O",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28.0,
+              "opacity": 0
+            },
+            {
+              "t": 28.0,
+              "x": 700
+            },
+            {
+              "t": 28.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31.0,
+              "x": 820,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pb1",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 190,
+            "w": 60,
+            "label": "H₂O",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28.6,
+              "opacity": 0
+            },
+            {
+              "t": 28.6,
+              "x": 700
+            },
+            {
+              "t": 28.900000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31.6,
+              "x": 820,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pb2",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 250,
+            "w": 60,
+            "label": "H₂O",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29.2,
+              "opacity": 0
+            },
+            {
+              "t": 29.2,
+              "x": 700
+            },
+            {
+              "t": 29.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32.2,
+              "x": 820,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "critB",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 432,
+            "w": 400,
+            "h": 150,
+            "tone": "b",
+            "title": "TRALI (2019 consensus)",
+            "lines": [
+              "Onset during or within 6 h",
+              "Hypoxemia · bilateral edema on imaging",
+              "Raised LA pressure absent / not main cause"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34,
+              "reveal": 0
+            },
+            {
+              "t": 34.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 42,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: what BNP can and can’t tell you",
+      "start": 100,
+      "end": 140,
+      "altText": "A BNP meter. Low BNP (< 300 pg/mL) or NT-proBNP (< 2,000 pg/mL) at symptom onset argues against TACO; a post- to pre-transfusion NT-proBNP ratio > 1.5 suggests TACO. Caution card: in severe TRALI and critically ill patients, natriuretic peptides are also raised (hypoxic vasoconstriction), so BNP helps mainly in milder cases. Two more cards: TRALI is a clinical diagnosis — donor antibody testing supports it but is not required; when the two cannot be separated, the case is classified “TRALI/TACO”. A report token: every post-transfusion pulmonary edema goes to the transfusion service.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 110,
+          "text": "Natriuretic peptides, BNP and NT-pro-BNP, rise when the heart is stretched. A low value at the onset of symptoms argues against TACO."
+        },
+        {
+          "id": "l2",
+          "start": 110,
+          "end": 119,
+          "text": "A clear rise in NT-pro-BNP from before to after the transfusion — a ratio above one and a half — supports TACO."
+        },
+        {
+          "id": "l3",
+          "start": 119,
+          "end": 128,
+          "text": "But BNP is not a TRALI test. In severe TRALI and in critically ill patients, it’s raised too, because low oxygen tightens the lung vessels and strains the heart. So it helps most in milder cases."
+        },
+        {
+          "id": "l4",
+          "start": 128,
+          "end": 140,
+          "text": "TRALI stays a clinical diagnosis: finding donor antibodies supports it, but isn’t required. If the two can’t be separated, the case is classified as TRALI or TACO. Either way, every case of post-transfusion lung edema is reported to the transfusion service."
+        }
+      ],
+      "objects": [
+        {
+          "id": "m1",
+          "type": "card",
+          "props": {
+            "x": 100,
+            "y": 345,
+            "w": 80,
+            "h": 40,
+            "tone": "good",
+            "title": "Low",
+            "lines": [],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "h": 40
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "h": 70,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "l1",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 110,
+            "w": 440,
+            "label": "Low BNP < 300 / NT-proBNP < 2,000 → TACO unlikely",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 4.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "card",
+          "props": {
+            "x": 200,
+            "y": 280,
+            "w": 80,
+            "h": 70,
+            "tone": "a",
+            "title": "High",
+            "lines": [],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "h": 70
+            },
+            {
+              "t": 14,
+              "h": 200,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "l2",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 180,
+            "w": 440,
+            "label": "NT-proBNP post/pre ratio > 1.5 → suggests TACO",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cau",
+          "type": "card",
+          "props": {
+            "x": 620,
+            "y": 300,
+            "w": 480,
+            "h": 110,
+            "tone": "warn",
+            "title": "Caution: not a TRALI test",
+            "lines": [
+              "Severe TRALI / critically ill: BNP raised too",
+              "Most useful in milder cases"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19.5,
+              "opacity": 0
+            },
+            {
+              "t": 20,
+              "reveal": 0
+            },
+            {
+              "t": 20.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "tone": "bad"
+            },
+            {
+              "t": 26,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "clin",
+          "type": "token",
+          "props": {
+            "x": 330,
+            "y": 420,
+            "w": 440,
+            "label": "TRALI = clinical diagnosis (antibodies support)",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 29.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "both",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 420,
+            "w": 300,
+            "label": "Can’t separate → “TRALI/TACO”",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "rep",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 560,
+            "label": "Report all post-transfusion lung edema",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 36.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 140,
+      "end": 170,
+      "altText": "Trap card: “BNP never rises in TRALI” is crossed out → “Severe TRALI raises it too; a low BNP best argues against TACO.” Trap card: “Give furosemide for any transfusion dyspnea” is crossed out → “Diuretics treat TACO; in TRALI they can cause hypotension — give respiratory support.” Trap card: “No donor antibody found = not TRALI” is crossed out → “TRALI is a clinical diagnosis.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 140,
+          "end": 151,
+          "text": "Trap one: BNP does not reliably separate the two. Severe TRALI raises it too. A low BNP is more useful — it argues against TACO."
+        },
+        {
+          "id": "e2",
+          "start": 151,
+          "end": 161,
+          "text": "Trap two: diuretics are not for every breathless patient. TACO responds to diuretics and slowing or stopping fluid. In TRALI they can drop the blood pressure; care is supportive — oxygen, and ventilation if needed."
+        },
+        {
+          "id": "e3",
+          "start": 161,
+          "end": 170,
+          "text": "Trap three: a negative donor antibody work-up doesn’t exclude TRALI. It’s a clinical diagnosis."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “BNP never rises in TRALI.”",
+            "lines": [
+              "✓ Severe TRALI raises it too — a low BNP argues against TACO"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 0
+            },
+            {
+              "t": 6,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Give furosemide for any transfusion dyspnea.”",
+            "lines": [
+              "✓ Diuretics for TACO; TRALI = supportive care (O₂, ventilation)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 0
+            },
+            {
+              "t": 16,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “No donor antibody = not TRALI.”",
+            "lines": [
+              "✓ TRALI is a clinical diagnosis"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 22.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "TACO pushes, TRALI leaks",
+      "start": 170,
+      "end": 190,
+      "altText": "Memory aid: “TACO pushes (pressure) — TRALI leaks (wall)”, with “6 h for TRALI, 12 h for TACO” and “Low BNP lets the pump off the hook.” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 170,
+          "end": 178,
+          "text": "Memory aid: TACO pushes, TRALI leaks. Six hours for TRALI, twelve for TACO. And a low BNP lets the pump off the hook."
+        },
+        {
+          "id": "m2",
+          "start": 178,
+          "end": 190,
+          "text": "Where it breaks: TACO can have an inflammatory component and even fever; both conditions can occur together; the time windows come from surveillance definitions, not biology; and treatment decisions belong to the clinical team."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "TACO pushes · TRALI leaks",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 180,
+            "w": 250,
+            "label": "TACO: pressure · ≤ 12 h",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 250,
+            "label": "TRALI: leak · ≤ 6 h",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 180,
+            "w": 250,
+            "label": "Low BNP: not the pump",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 110,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "TACO may be partly inflammatory (fever) · both can coexist",
+              "Time windows are surveillance rules · treatment is a clinical decision"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 190,
+      "end": 200,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 190,
+          "end": 195,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 195,
+          "end": 200,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 200,
+      "end": 210,
+      "altText": "Three tokens: “TACO = pressure overload, within 12 h, responds to diuretics”, “TRALI = leaky capillaries, within 6 h, supportive care”, “Low BNP argues against TACO; high BNP doesn’t exclude TRALI”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 200,
+          "end": 210,
+          "text": "TACO is a pressure flood that responds to diuretics, while TRALI is a leak flood within 6 hours that needs supportive care; a low BNP argues against TACO, but a high one does not rule out TRALI."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 660,
+            "label": "TACO = pressure overload · ≤ 12 h · diuretics",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 240,
+            "w": 660,
+            "label": "TRALI = leaky capillaries · ≤ 6 h · supportive care",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 310,
+            "w": 660,
+            "label": "Low BNP argues against TACO; high BNP doesn’t exclude TRALI",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.6,
+              "opacity": 0
+            },
+            {
+              "t": 2.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: both reactions flood the lungs after a transfusion, but TACO is too much pressure from too much volume, while TRALI is a leaky lung lining caused by an immune reaction to donor plasma. Scientific terms: TACO is hydrostatic (cardiogenic) pulmonary edema; TRALI is increased-permeability (non-cardiogenic) pulmonary edema, often triggered by donor HLA/HNA antibodies activating recipient neutrophils in a primed host.",
+    "why": "Raised hydrostatic pressure pushes fluid across an intact wall (TACO); inflammatory endothelial injury opens the barrier so fluid leaks at normal pressure (TRALI). Natriuretic peptides rise with cardiac stretch, but severe hypoxemia also raises them.",
+    "measure": "TRALI (Vlaar 2019): acute onset during or within 6 h, hypoxemia (P/F ≤ 300 or SpO₂ < 90% on room air), bilateral pulmonary edema on imaging, no left-atrial hypertension or LAH not the main contributor; Type I/II by ARDS risk factors; antibody detection not required. TACO (NHSN): new or worsening respiratory symptoms within 12 h with ≥ 3 of acute respiratory distress, elevated natriuretic peptide, cardiovascular changes, fluid overload, pulmonary edema. BNP < 300 pg/mL or NT-proBNP < 2,000 pg/mL can rule out TACO; NT-proBNP post/pre ratio > 1.5 suggests TACO; in severe TRALI and critical illness these are always elevated.",
+    "differs": "TACO: hydrostatic, up to 12 h, diuretics and fluid restriction, leading cause of transfusion-related deaths in several hemovigilance systems. TRALI: permeability, within 6 h, supportive care (oxygen, ventilation), diuretics may cause hypotension; plasma-rich products from female donors with leukocyte antibodies carry more risk.",
+    "examAngle": "Expect: the 6-hour TRALI window, “non-cardiogenic” vs “cardiogenic” edema, BNP as a clue for TACO, diuretics for TACO but not TRALI, and female-donor plasma as the TRALI risk factor."
+  },
+  "comparisons": [
+    {
+      "id": "taco-vs-trali",
+      "title": "TACO vs TRALI",
+      "left": {
+        "label": "TACO",
+        "points": [
+          "Hydrostatic (pressure) edema; within 12 h (NHSN)",
+          "Diuretics, slow or stop fluids"
+        ]
+      },
+      "right": {
+        "label": "TRALI",
+        "points": [
+          "Permeability (leak) edema; during or within 6 h",
+          "Supportive care; diuretics may cause hypotension"
+        ]
+      },
+      "distinguisher": "Whether raised left-atrial pressure explains the edema — judged clinically, with echo and BNP as aids."
+    },
+    {
+      "id": "bnp-low-high",
+      "title": "Reading BNP",
+      "left": {
+        "label": "Low BNP / NT-proBNP",
+        "points": [
+          "BNP < 300 pg/mL or NT-proBNP < 2,000 pg/mL",
+          "Argues against TACO"
+        ]
+      },
+      "right": {
+        "label": "High BNP / NT-proBNP",
+        "points": [
+          "Post/pre NT-proBNP ratio > 1.5 suggests TACO",
+          "But also raised in severe TRALI"
+        ]
+      },
+      "distinguisher": "A low value is more informative than a high one."
+    }
+  ],
+  "mnemonic": {
+    "text": "TACO pushes, TRALI leaks — 6 h for TRALI, 12 h for TACO; a low BNP lets the pump off the hook.",
+    "explanation": "TACO is pressure-driven edema; TRALI is leaky-capillary edema. The time windows come from current definitions, and a low natriuretic peptide argues against a cardiac (pressure) cause.",
+    "limitation": "TACO may have an inflammatory component (fever in some cases); both can coexist (“TRALI/TACO”); the time windows are surveillance rules; management is a clinical decision."
+  },
+  "analogyLimitations": [
+    "The capillary, air sac, antibody and water tokens are schematic.",
+    "The patient case is invented.",
+    "BNP bars are illustrative, not to scale."
+  ],
+  "takeaway": "TACO is a pressure flood that responds to diuretics, while TRALI is a leak flood within 6 hours that needs supportive care; a low BNP argues against TACO, but a high one does not rule out TRALI.",
+  "questions": [
+    {
+      "id": "bb-tt-q1",
+      "stem": "Ninety minutes into a plasma transfusion, a patient develops hypoxemia and bilateral infiltrates. Echocardiography shows normal left-atrial pressure, and the patient is hypotensive. Which is most likely?",
+      "options": [
+        {
+          "id": "a",
+          "text": "TRALI",
+          "rationale": "Correct. Onset within 6 hours with hypoxemia, bilateral edema and no left-atrial hypertension fits TRALI."
+        },
+        {
+          "id": "b",
+          "text": "TACO",
+          "rationale": "Incorrect. TACO is hydrostatic edema, so evidence of raised cardiac filling pressure or fluid overload would be expected."
+        },
+        {
+          "id": "c",
+          "text": "Febrile non-hemolytic reaction",
+          "rationale": "Incorrect. That reaction does not cause hypoxemia with bilateral pulmonary edema."
+        },
+        {
+          "id": "d",
+          "text": "Delayed hemolytic reaction",
+          "rationale": "Incorrect. Delayed hemolysis occurs days later and does not present as acute lung edema."
+        }
+      ],
+      "answer": "a",
+      "skill": "Classify pulmonary reaction",
+      "difficulty": "application"
+    },
+    {
+      "id": "bb-tt-q2",
+      "stem": "An elderly patient with heart failure becomes breathless and hypertensive after 3 units of red cells; NT-proBNP rose from 900 to 4,500 pg/mL. What is the best interpretation and management?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Likely TACO — stop the transfusion, support breathing and give a diuretic",
+          "rationale": "Correct. A post/pre NT-proBNP ratio > 1.5 with a fluid-overload setting supports TACO, which responds to diuresis."
+        },
+        {
+          "id": "b",
+          "text": "TRALI is excluded because NT-proBNP is high",
+          "rationale": "Incorrect. High natriuretic peptides do not exclude TRALI; severe TRALI raises them too."
+        },
+        {
+          "id": "c",
+          "text": "Likely TRALI — avoid all diuretics",
+          "rationale": "Incorrect. The picture (heart failure, volume, hypertension, rising NT-proBNP) points to TACO."
+        },
+        {
+          "id": "d",
+          "text": "Continue the transfusion at the same rate",
+          "rationale": "Incorrect. A suspected transfusion reaction means stopping the transfusion."
+        }
+      ],
+      "answer": "a",
+      "skill": "Interpret BNP",
+      "difficulty": "application"
+    },
+    {
+      "id": "bb-tt-q3",
+      "stem": "A suspected TRALI case is investigated and no HLA or HNA antibodies are found in the implicated donor. What follows?",
+      "options": [
+        {
+          "id": "a",
+          "text": "TRALI can still be diagnosed clinically",
+          "rationale": "Correct. TRALI is a clinical diagnosis; antibody detection supports it but is not required."
+        },
+        {
+          "id": "b",
+          "text": "TRALI is ruled out",
+          "rationale": "Incorrect. Antibody-negative TRALI occurs, and the definition does not require antibodies."
+        },
+        {
+          "id": "c",
+          "text": "The case must be reclassified as TACO",
+          "rationale": "Incorrect. TACO depends on hydrostatic findings, not on a negative antibody test."
+        },
+        {
+          "id": "d",
+          "text": "The recipient should be tested for anti-IgA",
+          "rationale": "Incorrect. Anti-IgA relates to anaphylactic reactions, not lung injury."
+        }
+      ],
+      "answer": "a",
+      "skill": "TRALI definition",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch41",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 41, Transfusion Practice and Reactions (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 41,
+          "section": "High-Yield Hits",
+          "items": [
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "vlaar2019",
+      "kind": "external",
+      "citation": "Vlaar APJ, Toy P, Fung M, et al. A consensus redefinition of transfusion-related acute lung injury. Transfusion. 2019;59(7):2465-2476.",
+      "doi": "10.1111/trf.15311",
+      "url": "https://europepmc.org/article/PMC/PMC6850655",
+      "consulted": true,
+      "usedFor": "TRALI Type I/II criteria (onset during or within 6 h; hypoxemia P/F ≤ 300 or SpO₂ < 90%; bilateral edema on imaging; no LAH or LAH not main contributor); TRALI/TACO category; BNP < 300 or NT-proBNP < 2,000 pg/mL can rule out TACO, NT-proBNP ratio > 1.5 suggests TACO, but always elevated in critically ill and severe TRALI; TRALI is a clinical diagnosis not requiring antibody detection; plasma from female donors with WBC antibodies is a risk factor; report all post-transfusion pulmonary edema."
+    },
+    {
+      "id": "kuriri2025",
+      "kind": "external",
+      "citation": "Kuriri FA. Transfusion-related acute lung injury (TRALI): current understanding, challenges, and future directions. Saudi Med J. 2025;46(8):865-877.",
+      "doi": "10.15537/smj.2025.46.8.20250233",
+      "url": "https://europepmc.org/article/PMC/PMC12392415",
+      "consulted": true,
+      "usedFor": "TRALI is leaky-vessel (inflammatory) edema, not fluid excess; diuretics often ineffective and may worsen hypotension; TRALI care is supportive (oxygen, mechanical ventilation in severe cases) while TACO responds to diuretics and fluid restriction; most recover within 48–72 h; mortality 5–25%."
+    },
+    {
+      "id": "ackfeld2022",
+      "kind": "external",
+      "citation": "Ackfeld T, Schmutz T, Guechi Y, Le Terrier C. Blood transfusion reactions—a comprehensive review of the literature including a Swiss perspective. J Clin Med. 2022;11(10):2859.",
+      "doi": "10.3390/jcm11102859",
+      "url": "https://europepmc.org/article/PMC/PMC9144124",
+      "consulted": true,
+      "usedFor": "NHSN TACO: new or worsening respiratory symptoms within 12 h (changed from 6 h in 2016) with ≥ 3 of respiratory distress, elevated BNP, cardiovascular changes, fluid overload, pulmonary edema; TACO management like acute heart failure (diuresis, oxygen, ventilation); diuretics may be harmful in TRALI (hypotension); TACO is a leading cause of transfusion-related deaths; fever in about a third of TACO cases (Parmar 2017)."
+    },
+    {
+      "id": "white2025",
+      "kind": "external",
+      "citation": "White SK, Walker BS, Potter S, Anderson D, Metcalf RA. Estimating the incidence of transfusion-associated circulatory overload using active surveillance: a systematic review and meta-analysis. Transfusion. 2025;65(6):1061-1071.",
+      "doi": "10.1111/trf.18258",
+      "url": "https://europepmc.org/article/PMC/PMC12168435",
+      "consulted": true,
+      "usedFor": "TACO is the leading cause of transfusion-related mortality reported to the US FDA; cardiogenic pulmonary edema; newer definitions allow onset up to 12 h."
+    },
+    {
+      "id": "vik2025",
+      "kind": "external",
+      "citation": "Vik RE, Bulle EB, Webley WC, et al. Inflammatory pathways in transfusion-associated circulatory overload. Blood Vessel Thromb Hemost. 2025;2(3):100080.",
+      "doi": "10.1016/j.bvth.2025.100080",
+      "url": "https://europepmc.org/article/PMC/PMC12395531",
+      "consulted": true,
+      "usedFor": "NHSN TACO case definition (respiratory distress and/or pulmonary edema during or up to 12 h after transfusion, plus cardiovascular changes, fluid overload or a biomarker); TACO thought to be hydrostatic but may involve inflammation."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-mech",
+      "text": "TACO is hydrostatic (cardiogenic) edema; TRALI is inflammatory permeability edema, linked to donor leukocyte antibodies (female-donor plasma a risk factor).",
+      "status": "checked",
+      "refs": [
+        "vlaar2019",
+        "kuriri2025",
+        "white2025"
+      ]
+    },
+    {
+      "id": "cl-trali-def",
+      "text": "TRALI: onset during or within 6 h, hypoxemia, bilateral edema on imaging, no LAH or LAH not the main contributor; a clinical diagnosis without required antibody detection; TRALI/TACO when indistinguishable.",
+      "status": "checked",
+      "refs": [
+        "vlaar2019"
+      ]
+    },
+    {
+      "id": "cl-taco-def",
+      "text": "TACO (NHSN): within 12 h, ≥ 3 of respiratory distress, elevated BNP, cardiovascular changes, fluid overload, pulmonary edema.",
+      "status": "checked",
+      "refs": [
+        "ackfeld2022",
+        "vik2025"
+      ]
+    },
+    {
+      "id": "cl-bnp",
+      "text": "Low BNP (< 300 pg/mL) or NT-proBNP (< 2,000 pg/mL) can rule out TACO; NT-proBNP ratio > 1.5 suggests TACO; both elevated in severe TRALI and critical illness.",
+      "status": "checked",
+      "refs": [
+        "vlaar2019"
+      ]
+    },
+    {
+      "id": "cl-tx",
+      "text": "TACO: diuretics, fluid restriction, oxygen; TRALI: supportive care (oxygen, ventilation), diuretics may cause hypotension.",
+      "status": "checked",
+      "refs": [
+        "kuriri2025",
+        "ackfeld2022"
+      ]
+    },
+    {
+      "id": "cl-taco-deaths",
+      "text": "TACO is a leading cause of transfusion-related death in several hemovigilance systems.",
+      "status": "checked",
+      "refs": [
+        "white2025",
+        "ackfeld2022"
+      ]
+    },
+    {
+      "id": "cl-resolve",
+      "text": "TRALI resolves in 48–96 h; mortality ~10%.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch41"
+      ],
+      "note": "Not taught; Kuriri 2025 gives most recovering within 48–72 h and mortality 5–25%."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Capillary, air sac, pressure bar, antibody and water tokens.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“TACO pushes, TRALI leaks.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Capillaries, air sacs and antibodies are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 claims checked against Vlaar 2019, Kuriri 2025, Ackfeld 2022, White 2025 and Vik 2025 (full texts) read for this lesson; 1 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}

@@ -50,6 +50,8 @@ FLAG_RULES = [
      'WHO semen-analysis reference values changed in the 6th edition (2021); check which edition the question assumes.'),
     ('rv-dilute-criteria', r'dilute (urine|specimen)|creatinine[^.]{0,60}specific gravity|substituted',
      'US DOT laboratory criteria: dilute = creatinine ≥ 2 and < 20 mg/dL with SG > 1.0010 and < 1.0030; substituted = creatinine < 2 mg/dL with SG ≤ 1.0010 or ≥ 1.0200. Temperature is a collection check, not a substitution criterion.'),
+    ('rv-trali-bnp', r'TRALI[^.]{0,160}BNP|BNP[^.]{0,160}TRALI',
+     'Natriuretic peptides are raised in severe TRALI and critical illness (Vlaar 2019); a low BNP argues against TACO, but a high BNP does not exclude TRALI.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
