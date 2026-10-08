@@ -1,0 +1,2442 @@
+{
+  "schemaVersion": 1,
+  "id": "ih-weak-d-partial-d-del",
+  "title": "Weak D, Partial D and DEL: Find It in Donors, Protect Patients",
+  "summary": "Tell weak D (less D), partial D (missing epitopes) and DEL (traces only) apart, and apply the opposite donor and patient rules, including RHD genotyping for serological weak D.",
+  "domain": "p5-bb",
+  "topic": "ch40",
+  "conceptIds": [
+    "ch40.hit12",
+    "ch40.hit16",
+    "ch40.hit17",
+    "ch40.trap3"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 40,
+        "section": "High-Yield Hits",
+        "items": [
+          12,
+          16,
+          17
+        ]
+      },
+      {
+        "chapter": 40,
+        "section": "Exam Traps",
+        "items": [
+          3
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 40 Hits 12 and 16 (partial D makes anti-D; weak D types 1/2/3 managed as D-positive; RHD genotyping), Hit 17 (DEL detectable only by adsorption–elution; DEL units can immunize) and Trap 3 (donor vs recipient rules). Checked against Sandler 2015 (AABB/CAP Work Group), Sandler 2017, Suksard 2024 and Sainath 2025. Added context: Asian-type DEL patients may tolerate D-positive blood; some other weak D types make anti-D. Pending: D-site and weak-D molecule numbers (Number Vault)."
+  },
+  "prerequisites": [
+    "ch40.hit2"
+  ],
+  "objectives": [
+    "Distinguish weak D, partial D and DEL by what changes in the RhD antigen.",
+    "Apply donor and patient RhD typing rules, including when a weak D test is required.",
+    "Use RHD genotype results to decide RhIG and blood selection for a serological weak D phenotype."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "“Weak D positive” — so is she Rh-positive?",
+      "start": 0,
+      "end": 20,
+      "altText": "A pregnant patient’s D typing: direct anti-D test negative; an antiglobulin (weak D) test, done anyway, is positive. Two decision cards wait: “Give RhIG?” and “Rh-positive or Rh-negative blood?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A pregnant patient is typed for RhD. The direct test with anti-D is negative."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Someone runs the antiglobulin weak D test anyway. It’s positive."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "So does she need Rh immune globulin? And which blood should she get? It depends on what kind of D she has."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 240,
+            "y": 140,
+            "w": 360,
+            "h": 110,
+            "tone": "a",
+            "title": "Pregnant patient",
+            "lines": [
+              "Direct anti-D: negative",
+              "Weak D (IAT): positive"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 1.5,
+              "reveal": 0
+            },
+            {
+              "t": 2.1,
+              "reveal": 1,
+              "ease": "inOut"
+            },
+            {
+              "t": 7.5,
+              "reveal": 1
+            },
+            {
+              "t": 8.1,
+              "reveal": 2,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "c1",
+          "type": "card",
+          "props": {
+            "x": 330,
+            "y": 330,
+            "w": 280,
+            "h": 80,
+            "tone": "neutral",
+            "title": "Give RhIG?",
+            "lines": [],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0
+            },
+            {
+              "t": 15.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "card",
+          "props": {
+            "x": 660,
+            "y": 330,
+            "w": 320,
+            "h": 80,
+            "tone": "neutral",
+            "title": "D+ or D− blood?",
+            "lines": [],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0
+            },
+            {
+              "t": 16.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 900,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: a D-positive red cell",
+      "start": 20,
+      "end": 60,
+      "altText": "A schematic red cell carries many D antigens; each D antigen (a membrane protein) is drawn with a full set of epitopes, labelled a–d. Routine typing uses anti-D by direct agglutination; an antiglobulin (indirect antiglobulin, IAT) step — the “weak D test” — can detect cells with weaker D expression.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "A D-positive red cell carries many copies of the RhD protein in its membrane."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Each RhD protein shows a full set of epitopes — the small surface patches that anti-D antibodies recognise."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Routine typing mixes the cells with anti-D and looks for direct agglutination."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "If that is negative or weak, an antiglobulin step — the weak D test — can pick up cells with less D on their surface."
+        }
+      ],
+      "objects": [
+        {
+          "id": "n",
+          "type": "rbc",
+          "props": {
+            "x": 260,
+            "y": 230,
+            "r": 40,
+            "antigen": "none",
+            "face": false,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nL",
+          "type": "label",
+          "props": {
+            "x": 260,
+            "y": 316,
+            "text": "D-positive cell",
+            "size": 14,
+            "weight": 700,
+            "color": "ink",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nd0",
+          "type": "token",
+          "props": {
+            "x": 260,
+            "y": 172,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nd1",
+          "type": "token",
+          "props": {
+            "x": 294,
+            "y": 183,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nd2",
+          "type": "token",
+          "props": {
+            "x": 315,
+            "y": 212,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nd3",
+          "type": "token",
+          "props": {
+            "x": 315,
+            "y": 248,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nd4",
+          "type": "token",
+          "props": {
+            "x": 294,
+            "y": 277,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nd5",
+          "type": "token",
+          "props": {
+            "x": 260,
+            "y": 288,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nd6",
+          "type": "token",
+          "props": {
+            "x": 226,
+            "y": 277,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nd7",
+          "type": "token",
+          "props": {
+            "x": 205,
+            "y": 248,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nd8",
+          "type": "token",
+          "props": {
+            "x": 205,
+            "y": 212,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nd9",
+          "type": "token",
+          "props": {
+            "x": 226,
+            "y": 183,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "prot",
+          "type": "card",
+          "props": {
+            "x": 680,
+            "y": 160,
+            "w": 300,
+            "h": 110,
+            "tone": "a",
+            "title": "One RhD protein",
+            "lines": [],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ep0",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 185,
+            "w": 46,
+            "label": "a",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ep1",
+          "type": "token",
+          "props": {
+            "x": 650,
+            "y": 185,
+            "w": 46,
+            "label": "b",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.1,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ep2",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 185,
+            "w": 46,
+            "label": "c",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.7,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.7,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ep3",
+          "type": "token",
+          "props": {
+            "x": 770,
+            "y": 185,
+            "w": 46,
+            "label": "d",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.3,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 14.3,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "dir",
+          "type": "token",
+          "props": {
+            "x": 680,
+            "y": 310,
+            "w": 320,
+            "label": "Typing: anti-D, direct agglutination",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "iat",
+          "type": "token",
+          "props": {
+            "x": 680,
+            "y": 380,
+            "w": 320,
+            "label": "Weak D test = antiglobulin (IAT) step",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32.5,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: weak D, partial D and DEL",
+      "start": 60,
+      "end": 104,
+      "altText": "Three schematic cells. Weak D: fewer RhD proteins, but each has all epitopes — a quantitative change. Partial D: RhD protein with amino acid changes so some epitopes are missing (epitope gap) — a qualitative change; the person can make anti-D against the missing parts; many partial D cells still type D-positive by direct agglutination. DEL: so little D that routine typing, even the antiglobulin test, reads D-negative; only adsorption–elution or molecular testing finds it.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Weak D: fewer RhD proteins, but each is complete. It’s a change in amount. People with the common weak D types 1, 2 and 3 have all the epitopes."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 84,
+          "text": "Partial D: the RhD protein is altered, so some epitopes are missing. If exposed to normal D, the person can make anti-D against the missing parts. And many partial D cells still type D-positive on direct testing."
+        },
+        {
+          "id": "c3",
+          "start": 84,
+          "end": 94,
+          "text": "DEL: so little D that routine typing reads D-negative — even with the antiglobulin step. Only adsorption and elution, or DNA testing, finds it."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "So a typing result alone can mislead in both directions."
+        }
+      ],
+      "objects": [
+        {
+          "id": "w",
+          "type": "rbc",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "r": 40,
+            "antigen": "none",
+            "face": false,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "wL",
+          "type": "label",
+          "props": {
+            "x": 170,
+            "y": 296,
+            "text": "Weak D: fewer, complete",
+            "size": 14,
+            "weight": 700,
+            "color": "ink",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "wd0",
+          "type": "token",
+          "props": {
+            "x": 170,
+            "y": 152,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "wd1",
+          "type": "token",
+          "props": {
+            "x": 228,
+            "y": 210,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "wd2",
+          "type": "token",
+          "props": {
+            "x": 170,
+            "y": 268,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "wd3",
+          "type": "token",
+          "props": {
+            "x": 112,
+            "y": 210,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "wq",
+          "type": "token",
+          "props": {
+            "x": 170,
+            "y": 345,
+            "w": 220,
+            "label": "Change in amount",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 5.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p",
+          "type": "rbc",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "r": 40,
+            "antigen": "none",
+            "face": false,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pL",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 296,
+            "text": "Partial D: epitopes missing",
+            "size": 14,
+            "weight": 700,
+            "color": "ink",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pd0",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 152,
+            "w": 30,
+            "label": "D",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pd1",
+          "type": "token",
+          "props": {
+            "x": 517,
+            "y": 166,
+            "w": 30,
+            "label": "D",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pd2",
+          "type": "token",
+          "props": {
+            "x": 537,
+            "y": 200,
+            "w": 30,
+            "label": "D",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pd3",
+          "type": "token",
+          "props": {
+            "x": 530,
+            "y": 239,
+            "w": 30,
+            "label": "D",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pd4",
+          "type": "token",
+          "props": {
+            "x": 500,
+            "y": 265,
+            "w": 30,
+            "label": "D",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pd5",
+          "type": "token",
+          "props": {
+            "x": 460,
+            "y": 265,
+            "w": 30,
+            "label": "D",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pd6",
+          "type": "token",
+          "props": {
+            "x": 430,
+            "y": 239,
+            "w": 30,
+            "label": "D",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pd7",
+          "type": "token",
+          "props": {
+            "x": 423,
+            "y": 200,
+            "w": 30,
+            "label": "D",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pd8",
+          "type": "token",
+          "props": {
+            "x": 443,
+            "y": 166,
+            "w": 30,
+            "label": "D",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pq",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 345,
+            "w": 260,
+            "label": "Can make anti-D",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pe",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 300,
+            "h": 60,
+            "tone": "neutral",
+            "title": "Epitopes: a · b · — · d",
+            "lines": [],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 14.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "e",
+          "type": "rbc",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "r": 40,
+            "antigen": "none",
+            "face": false,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "eL",
+          "type": "label",
+          "props": {
+            "x": 790,
+            "y": 296,
+            "text": "DEL: traces only",
+            "size": 14,
+            "weight": 700,
+            "color": "ink",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ed0",
+          "type": "token",
+          "props": {
+            "x": 790,
+            "y": 152,
+            "w": 30,
+            "label": "D",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "eq",
+          "type": "token",
+          "props": {
+            "x": 790,
+            "y": 345,
+            "w": 320,
+            "label": "Types D−; found by adsorption–elution",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 28.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mis",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 520,
+            "label": "Typing alone can mislead both ways",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36.5,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: donors and patients follow opposite rules",
+      "start": 104,
+      "end": 144,
+      "altText": "Two lanes. Donor lane: a weak D test is done so that weak D and partial D units are labelled D-positive and never given to D-negative recipients; DEL units still type D-negative and have caused anti-D in D-negative recipients. Patient lane (including pregnant women): a weak D test is not required — a negative direct typing is interpreted as D-negative, the safe default. If a serological weak D phenotype is found, RHD genotyping decides: weak D types 1, 2 or 3 → manage as D-positive (no RhIG, D-positive blood); other results, including partial D → manage as D-negative. Note: US monoclonal anti-D reagents for patients must not detect partial DVI on initial testing.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "For donors, the lab hunts for every trace of D. A weak D test makes sure weak D and partial D units are labelled D-positive, so they never reach a D-negative patient."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 122,
+          "text": "DEL is the gap: those units still type D-negative, and they have caused anti-D in D-negative recipients."
+        },
+        {
+          "id": "l3",
+          "start": 122,
+          "end": 131,
+          "text": "For patients, including pregnant women, the default is protective. A weak D test isn’t required; a negative direct typing is treated as D-negative."
+        },
+        {
+          "id": "l4",
+          "start": 131,
+          "end": 144,
+          "text": "If a weak D result does turn up, RHD genotyping settles it. Weak D types 1, 2 or 3 are managed as D-positive — no Rh immune globulin, and D-positive blood is fine. Other types, including partial D, are managed as D-negative."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ld",
+          "type": "label",
+          "props": {
+            "x": 250,
+            "y": 50,
+            "text": "Donors · find every D",
+            "size": 20,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d1",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 150,
+            "w": 400,
+            "h": 110,
+            "tone": "a",
+            "title": "Weak D test on donors",
+            "lines": [
+              "Weak D & partial D → labelled D+",
+              "Protects D-negative recipients"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "reveal": 0
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "d2",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 260,
+            "w": 400,
+            "label": "DEL units type D− and can immunize",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lp",
+          "type": "label",
+          "props": {
+            "x": 710,
+            "y": 50,
+            "text": "Patients · protect by default",
+            "size": 20,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 19.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p1",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 150,
+            "w": 400,
+            "h": 110,
+            "tone": "b",
+            "title": "Weak D test not required",
+            "lines": [
+              "Negative direct typing → D-negative",
+              "Safe default (RhIG, D− blood)"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19,
+              "opacity": 0
+            },
+            {
+              "t": 19.5,
+              "reveal": 0
+            },
+            {
+              "t": 19.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "g",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 260,
+            "w": 400,
+            "label": "Serological weak D → RHD genotype",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 28.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "g1",
+          "type": "card",
+          "props": {
+            "x": 600,
+            "y": 380,
+            "w": 230,
+            "h": 110,
+            "tone": "good",
+            "title": "Types 1, 2, 3",
+            "lines": [
+              "Manage as D+",
+              "No RhIG"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29.5,
+              "opacity": 0
+            },
+            {
+              "t": 30.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "g2",
+          "type": "card",
+          "props": {
+            "x": 840,
+            "y": 380,
+            "w": 230,
+            "h": 110,
+            "tone": "bad",
+            "title": "Others · partial D",
+            "lines": [
+              "Manage as D−",
+              "RhIG if indicated"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32,
+              "opacity": 0
+            },
+            {
+              "t": 32.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ar",
+          "type": "arrow",
+          "props": {
+            "x": 710,
+            "y": 280,
+            "dx": 0,
+            "dy": 40,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 28.5,
+              "draw": 0
+            },
+            {
+              "t": 29.5,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Trap card: “Weak D test positive = Rh-positive patient” is crossed out → “Genotype first; partial D can make anti-D — manage as D-negative until resolved.” Trap card: “Recipients need a weak D test” is crossed out → “Required for donors, not recipients.” Trap card: “Types D-negative = no D at all” is crossed out → “DEL types D-negative; DEL donor units can immunize.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 155,
+          "text": "Trap one: a positive weak D test doesn’t make a patient Rh-positive. Until genotyping shows weak D type 1, 2 or 3, manage the patient as D-negative — a partial D can make anti-D."
+        },
+        {
+          "id": "e2",
+          "start": 155,
+          "end": 165,
+          "text": "Trap two: the weak D test is required for donors, not for transfusion recipients."
+        },
+        {
+          "id": "e3",
+          "start": 165,
+          "end": 174,
+          "text": "Trap three: D-negative by serology doesn’t always mean no D. DEL cells type negative, and DEL donor units have immunized D-negative recipients."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Weak D test positive = Rh-positive patient.”",
+            "lines": [
+              "✓ Genotype first — partial D can make anti-D"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 0
+            },
+            {
+              "t": 6,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Recipients need a weak D test.”",
+            "lines": [
+              "✓ Required for donors, not recipients"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 0
+            },
+            {
+              "t": 16,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Types D-negative = no D at all.”",
+            "lines": [
+              "✓ DEL types negative — DEL donor units can immunize"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 22.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Donors: find it. Patients: protect them.",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Weak D is a whisper (less D, all words); partial D is a torn page (missing words); DEL is a ghost (almost nothing).” And “Donors: find every D. Patients: protect until the genotype says otherwise.” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: weak D whispers — less D, but every word. Partial D is a torn page — words missing. DEL is a ghost. Donors: find every D. Patients: protect until the genotype says otherwise."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: which variants are common depends on ancestry; some other weak D types, such as type 4.2, have made anti-D; studies suggest Asian-type DEL patients may safely receive D-positive blood; and policies differ between countries."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Whisper · torn page · ghost",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 180,
+            "w": 260,
+            "label": "Weak D: less, complete",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 260,
+            "label": "Partial D: missing epitopes",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 180,
+            "w": 260,
+            "label": "DEL: types negative",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "rule",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 250,
+            "w": 560,
+            "label": "Donors: find every D · Patients: protect until genotyped",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 7.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 390,
+            "w": 860,
+            "h": 110,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Variant frequencies vary by ancestry · some weak D types (e.g. 4.2) make anti-D",
+              "Asian-type DEL patients may tolerate D+ blood · national policies differ"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Weak D = less D (types 1–3 manage as D+); partial D = missing epitopes (manage as D−)”, “Donors get a weak D test; patients default to D− until genotyped; DEL types negative”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Weak D types 1 to 3 are managed as D-positive, partial D as D-negative; donors are tested for weak D, patients default to D-negative until genotyped, and DEL hides as D-negative."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 740,
+            "label": "Weak D 1–3 → manage D+ · partial D → manage D−",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 740,
+            "label": "Donors: weak D test · patients: D− until genotyped · DEL types D−",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: some people have less D on their red cells, some have D with pieces missing, and some have so little that tests miss it. Scientific terms: weak D (reduced antigen density with, for types 1–3, all epitopes), partial D (amino acid substitutions with missing epitopes; can form allo-anti-D), DEL (extremely low expression, typing D-negative, detected only by adsorption–elution or molecular testing).",
+    "why": "Anti-D forms against epitopes a person lacks. Weak D types 1–3 express all epitopes at lower density and have not been associated with alloimmunization; partial D lacks epitopes; DEL red cells can still immunize D-negative recipients.",
+    "measure": "Donors: weak D test so weak D/partial D units are labelled D-positive. Patients and pregnant women: weak D test not required; negative direct typing interpreted as D-negative. Serological weak D → RHD genotype: weak D types 1, 2, 3 → manage as D-positive (RhIG not needed, D-positive blood acceptable); others including partial D → manage as D-negative. US monoclonal anti-D reagents for patient typing must not detect partial DVI on initial testing.",
+    "differs": "Quantitative (weak D) vs qualitative (partial D) vs trace (DEL); donor rule (detect all D) vs patient rule (protect by default); serology vs RHD genotyping.",
+    "examAngle": "Expect: “weak D positive recipient” management, partial D making anti-D, weak D types 1/2/3 not needing RhIG, the donor weak D test, and DEL detected by adsorption–elution."
+  },
+  "comparisons": [
+    {
+      "id": "weak-vs-partial",
+      "title": "Weak D vs partial D",
+      "left": {
+        "label": "Weak D (types 1–3)",
+        "points": [
+          "Fewer D sites, all epitopes",
+          "Manage as D-positive"
+        ]
+      },
+      "right": {
+        "label": "Partial D",
+        "points": [
+          "Missing epitopes; can make anti-D",
+          "Manage as D-negative (patients)"
+        ]
+      },
+      "distinguisher": "Whether all D epitopes are present — resolved by RHD genotyping."
+    },
+    {
+      "id": "donor-vs-patient",
+      "title": "Donor vs patient D typing",
+      "left": {
+        "label": "Donor",
+        "points": [
+          "Weak D test performed",
+          "Weak/partial D labelled D-positive"
+        ]
+      },
+      "right": {
+        "label": "Patient / pregnant woman",
+        "points": [
+          "Weak D test not required",
+          "Negative direct typing → D-negative"
+        ]
+      },
+      "distinguisher": "Donors protect recipients from D exposure; patients are protected from making anti-D."
+    }
+  ],
+  "mnemonic": {
+    "text": "Weak D whispers (less, but complete), partial D is a torn page (missing epitopes), DEL is a ghost. Donors: find every D; patients: protect until genotyped.",
+    "explanation": "The metaphors map to quantitative, qualitative and trace D expression; the rule pair captures opposite donor and patient typing goals.",
+    "limitation": "Variant frequencies depend on ancestry; some weak D types (e.g. 4.2) have made anti-D; Asian-type DEL patients may tolerate D-positive blood; national policies differ."
+  },
+  "analogyLimitations": [
+    "D tokens and epitope letters are schematic; real D sites number in the thousands.",
+    "The patient case is invented.",
+    "RhCE and anti-G are not covered."
+  ],
+  "takeaway": "Weak D types 1 to 3 are managed as D-positive, partial D as D-negative; donors are tested for weak D, patients default to D-negative until genotyped, and DEL hides as D-negative.",
+  "questions": [
+    {
+      "id": "ih-wd-q1",
+      "stem": "A pregnant patient has a serological weak D phenotype. RHD genotyping shows weak D type 1. How should she be managed?",
+      "options": [
+        {
+          "id": "a",
+          "text": "As D-positive: RhIG is not needed and D-positive blood is acceptable",
+          "rationale": "Correct. Weak D types 1, 2 and 3 express all D epitopes and are managed as D-positive."
+        },
+        {
+          "id": "b",
+          "text": "As D-negative: give RhIG and D-negative blood",
+          "rationale": "Incorrect. That approach applies to partial D and other weak D types, not type 1."
+        },
+        {
+          "id": "c",
+          "text": "Repeat serology until it turns clearly positive",
+          "rationale": "Incorrect. Genotyping has already answered the question."
+        },
+        {
+          "id": "d",
+          "text": "Perform adsorption–elution",
+          "rationale": "Incorrect. Adsorption–elution detects DEL, not weak D typing."
+        }
+      ],
+      "answer": "a",
+      "skill": "Weak D management",
+      "difficulty": "application"
+    },
+    {
+      "id": "ih-wd-q2",
+      "stem": "Why can a person with partial D form anti-D after exposure to D-positive red cells?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Their RhD protein lacks some epitopes, so they respond to the missing ones",
+          "rationale": "Correct. Partial D is a qualitative change with missing epitopes."
+        },
+        {
+          "id": "b",
+          "text": "They have too few D sites to tolerate normal D",
+          "rationale": "Incorrect. That describes weak D, which (for types 1–3) does not lead to anti-D."
+        },
+        {
+          "id": "c",
+          "text": "They lack the RHD gene entirely",
+          "rationale": "Incorrect. That is the usual D-negative state, not partial D."
+        },
+        {
+          "id": "d",
+          "text": "Partial D cells are destroyed by complement",
+          "rationale": "Incorrect. This is unrelated to alloimmunization."
+        }
+      ],
+      "answer": "a",
+      "skill": "Partial D",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ih-wd-q3",
+      "stem": "For which group is a weak D (antiglobulin) test required during routine RhD typing?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Blood donors",
+          "rationale": "Correct. Donor units with weak or partial D must be labelled D-positive to protect D-negative recipients."
+        },
+        {
+          "id": "b",
+          "text": "Transfusion recipients",
+          "rationale": "Incorrect. A weak D test is not required for recipients; a negative direct typing is treated as D-negative."
+        },
+        {
+          "id": "c",
+          "text": "Pregnant women",
+          "rationale": "Incorrect. Standards state a weak D test is not required if the woman’s D test is negative."
+        },
+        {
+          "id": "d",
+          "text": "All groups equally",
+          "rationale": "Incorrect. Donor and patient rules differ."
+        }
+      ],
+      "answer": "a",
+      "skill": "Donor vs patient",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch40",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 40, Immunohematology (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 40,
+          "section": "High-Yield Hits",
+          "items": [
+            12,
+            16,
+            17
+          ]
+        },
+        {
+          "chapter": 40,
+          "section": "Exam Traps",
+          "items": [
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "sandler2015",
+      "kind": "external",
+      "citation": "Sandler SG, Flegel WA, Westhoff CM, et al. It’s time to phase in RHD genotyping for patients with a serologic weak D phenotype. Transfusion. 2015;55(3):680-689.",
+      "doi": "10.1111/trf.12941",
+      "url": "https://europepmc.org/article/PMC/PMC4357540",
+      "consulted": true,
+      "usedFor": "Weak D types 1, 2, 3 encode all RhD epitopes at lower density and should be managed as RhD-positive (RhIG, component selection); ~80% of serological weak D in the US mixed population are types 1–3; other weak D types (e.g. 4.2, 11, 15) have made anti-D; partial D lacks epitopes and many type D-positive by immediate spin; FDA requires patient monoclonal anti-D not to detect partial DVI on initial testing; weak D test on donors; AABB Standards: weak D test not required for women whose D test is negative; DEL types RhD-negative, detected only by adsorption–elution, implicated in alloimmunization."
+    },
+    {
+      "id": "sandler2017",
+      "kind": "external",
+      "citation": "Sandler SG, Chen LN, Flegel WA. Serological weak D phenotypes: a review and guidance for interpreting the RhD blood type using the RHD genotype. Br J Haematol. 2017;179(1):10-19.",
+      "doi": "10.1111/bjh.14757",
+      "url": "https://europepmc.org/article/PMC/PMC5612847",
+      "consulted": true,
+      "usedFor": "Most serological weak D in Caucasians are types 1, 2 or 3 and can be managed as RhD-positive; laboratories should complete RhD testing by RHD genotyping; weak D test not required for pregnant women or recipients in the US; donors vs recipients managed differently."
+    },
+    {
+      "id": "suksard2024",
+      "kind": "external",
+      "citation": "Suksard K, Luangtrakool K, Rungroung T, et al. Two cases of anti-D alloimmunization in D-negative Thai patients as a result of the Asian-type DEL on transfused red cells. Transfus Med Hemother. 2024;51(2):122-125.",
+      "doi": "10.1159/000533625",
+      "url": "https://europepmc.org/article/PMC/PMC10996056",
+      "consulted": true,
+      "usedFor": "DEL is extremely weak D detectable only by adsorption–elution; no agglutination in the IAT, so typed D-negative; DEL donor units caused anti-D in D-negative recipients."
+    },
+    {
+      "id": "sainath2025",
+      "kind": "external",
+      "citation": "Sainath PB, Ramaiyan V. Weak D phenotype in transfusion medicine and obstetrics: challenges and opportunities. World J Exp Med. 2025;15(2):102345.",
+      "doi": "10.5493/wjem.v15.i2.102345",
+      "url": "https://europepmc.org/article/PMC/PMC12019613",
+      "consulted": true,
+      "usedFor": "Weak D is a quantitative decrease; partial D loses epitopes and can alloimmunize; > 90% of weak D in a south-western German study were types 1–3; weak D types 1–3 treated as D-positive; Asian-type DEL appears D-negative but can be treated as D-positive (as recipients)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-types",
+      "text": "Weak D = reduced density with all epitopes (types 1–3); partial D = missing epitopes, can make anti-D; DEL = types D-negative, adsorption–elution only.",
+      "status": "checked",
+      "refs": [
+        "sandler2015",
+        "sainath2025",
+        "suksard2024"
+      ]
+    },
+    {
+      "id": "cl-mgmt",
+      "text": "Serological weak D in patients → RHD genotype; weak D types 1, 2, 3 managed as D-positive; others including partial D managed as D-negative.",
+      "status": "checked",
+      "refs": [
+        "sandler2015",
+        "sandler2017"
+      ]
+    },
+    {
+      "id": "cl-donor",
+      "text": "Donors get a weak D test; patients/pregnant women do not require one; FDA partial DVI reagent requirement.",
+      "status": "checked",
+      "refs": [
+        "sandler2015",
+        "sandler2017"
+      ]
+    },
+    {
+      "id": "cl-del",
+      "text": "DEL donor units can immunize D-negative recipients; Asian-type DEL patients may be treated as D-positive.",
+      "status": "checked",
+      "refs": [
+        "suksard2024",
+        "sandler2015",
+        "sainath2025"
+      ]
+    },
+    {
+      "id": "cl-numbers",
+      "text": "D sites ~10–33 × 10³ per cell; weak D 66–5,200 molecules per cell; ~1% of D-positives type as weak D.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch40"
+      ],
+      "note": "Not taught; not stated in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Schematic cells with D and epitope tokens.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Whisper, torn page, ghost.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Cells and antigen tokens are schematic; antigen counts are not to scale.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against Sandler 2015, Sandler 2017, Suksard 2024 and Sainath 2025 (full texts) read for this lesson; 1 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
