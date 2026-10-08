@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 66 flags: 44 verified issues and 22 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 67 flags: 45 verified issues and 22 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -61,6 +61,7 @@ Verified:
 - **Ch. 57 Hit 29:** Enterococcus called a “β-hemolytic streptococcus” (separate genus; β-hemolysis in only 20% of isolates, Fialho 2026). Confirm by 6.5% NaCl and bile esculin.
 - **Ch. 37 Hit 3:** VWF activity/antigen and FVIII/antigen cut-off “0.6” (2021 ASH ISTH NHF WFH guideline, via Tosetto 2026: < 0.7, low certainty).
 - **Ch. 15 Hit 3:** normal anion gap “≈ 12 (8–16)” (method-dependent: ion-selective electrodes ≈ 6 ± 3, Lee 2006; a 2025 review lists 4–12).
+- **Ch. 66 Hit 4:** sputum rejected at > 10 SEC/LPF but “acceptable if < 25 epithelial cells” (self-contradictory; Dong 2026: < 10 SEC + > 25 leukocytes).
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -93,7 +94,7 @@ Automated scan: **23** dated-guideline statements and **134** High-Yield Hits wi
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 29 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 31 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
@@ -104,6 +105,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Choosing the Graft (HPC sources):** 1 pending claim (HPC ABO expression, plerixafor side effects, cord volume cut-off; not taught); 1 register flag (Hit 12, needs verification). G-CSF taught as 10 µg/kg/day × 4–6 days (reviewer: 5–10 µg/kg × 4–5 days). Bleakley 2022 read as abstract only.
 - **Typing von Willebrand Disease:** 1 pending claim (type 1 share, type 3 FVIII level, LD-RIPA concentrations; not taught); 1 register flag (Hit 3). James 2021 read as abstract only; the guideline's cut-offs were taken from Tosetto & Eikenboom 2026.
 - **Anion Gap Detective:** 1 pending claim (Winter’s respiratory-alkalosis direction, reviewer’s delta-ratio bands; not taught); 1 register flag (Hit 3). Delta-ratio cut-offs differ between sources (< 1; > 1.2 in one abstract; reviewer > 2.0). The MUDPILES list is not reproduced.
+- **Specimen Acceptability and Transport:** 1 pending claim (C. difficile frequency and age criteria, UTI threshold, cotton toxicity; not taught); 1 register flag (Hit 4). IDSA/ASM guide read in its 2013 edition (2018 update abstract only). Urine taught as “4 °C unless ≤ 1 h” (reviewer: 2 h).
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.

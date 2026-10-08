@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 69, teaching 344 of 1,932 concepts (about 17.8%).** All 69 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 70, teaching 355 of 1,932 concepts (about 18.4%).** All 70 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -40,9 +40,9 @@
   - Ch. 63 (9/19 concepts): `micro-rickettsial-tickborne-diagnosis`.
   - Ch. 64 (2/24 concepts): `micro-respiratory-virus-naat-antigen-culture`.
   - Ch. 65 (7/24 concepts): `micro-malaria-thick-thin-films`.
-  - Ch. 66 (3/54 concepts): `micro-blood-culture-volume-contamination`.
-- **Reviewer accuracy register:** 66 flags (44 verified issues, 22 needing verification), plus scan results.
-- **Checks:** 480 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+  - Ch. 66 (14/54 concepts): `micro-blood-culture-volume-contamination`, `micro-specimen-acceptability-transport`.
+- **Reviewer accuracy register:** 67 flags (45 verified issues, 22 needing verification), plus scan results.
+- **Checks:** 486 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -82,7 +82,7 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 | 10 | ✅ Ch. 33 hemolytic anemias (2nd lesson) | ✅ Ch. 23 GI & pancreas (9) | ✅ Ch. 63 Rickettsia & tick-borne (10) | ✅ Ch. 41 component choice & thresholds (3rd lesson; the reviewer has little on CMV-safe/washed products) |
 | 11 | ✅ Ch. 36 hemophilia factor & inhibitor testing (2nd lesson) | ✅ Ch. 19 troponin & Fifth UDMI (8) | ✅ Ch. 58 β-lactamases/ESBL/CPE (2nd lesson) | ✅ Ch. 42 donor eligibility (2nd lesson) |
 | 12 | ✅ Ch. 31 spurious CBC results (2nd lesson) | ✅ Ch. 22 liver function (2nd lesson) | ✅ Ch. 57 bacterial ID (2nd lesson) | ✅ Ch. 43 stem cells & tissue banking (2nd lesson) |
-| 13 | ✅ Ch. 37 platelets & von Willebrand disease (2nd lesson) | ✅ Ch. 15 kidney, electrolytes & acid–base (2nd lesson) | Ch. 66 specimen collection (2nd lesson) | Ch. 41 reactions & lookback (4th lesson) |
+| 13 | ✅ Ch. 37 platelets & von Willebrand disease (2nd lesson) | ✅ Ch. 15 kidney, electrolytes & acid–base (2nd lesson) | ✅ Ch. 66 specimen collection (2nd lesson) | Ch. 41 reactions & lookback (4th lesson) |
 
 Rounds 10–13 rank chapters by simulator questions × share of concepts not yet taught (Heme and Blood Bank already have a lesson in every chapter, so their next lessons go deeper in the heaviest ones). Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.
 
