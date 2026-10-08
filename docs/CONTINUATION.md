@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 81, teaching 429 of 1,932 concepts (about 22.2%).** All 81 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 82, teaching 434 of 1,932 concepts (about 22.5%).** All 82 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -33,7 +33,7 @@
   - Ch. 41 (24/35 concepts): `bb-acute-hemolytic-reaction-abo-compatibility`, `bb-component-choice-thresholds`, `bb-component-storage-irradiation`, `bb-trali-vs-taco`, `ih-dhtr-lookback-windows`.
   - Ch. 42 (17/29 concepts): `bb-donor-eligibility-criteria`, `ih-apheresis-citrate-asfa-rce`, `ih-plasma-exchange-tpe`.
   - Ch. 43 (12/22 concepts): `ih-hpc-cd34-dose-cryopreservation`, `ih-hpc-graft-sources-abo`.
-  - Ch. 57 (15/57 concepts): `micro-gpc-catalase-coagulase-mrsa`, `micro-strep-enterococcus-id`.
+  - Ch. 57 (20/57 concepts): `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-strep-enterococcus-id`.
   - Ch. 58 (12/30 concepts): `micro-ast-mic-breakpoints-dtest`, `micro-beta-lactamases-esbl-cpe`.
   - Ch. 59 (5/26 concepts): `micro-afb-smear-decontamination`.
   - Ch. 60 (13/25 concepts): `micro-dimorphic-fungi`, `micro-invasive-mold-markers`.
@@ -43,8 +43,8 @@
   - Ch. 64 (7/24 concepts): `micro-ebv-cmv-serology`, `micro-respiratory-virus-naat-antigen-culture`.
   - Ch. 65 (7/24 concepts): `micro-malaria-thick-thin-films`.
   - Ch. 66 (14/54 concepts): `micro-blood-culture-volume-contamination`, `micro-specimen-acceptability-transport`.
-- **Reviewer accuracy register:** 79 flags (55 verified issues, 24 needing verification), plus scan results.
-- **Checks:** 552 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Reviewer accuracy register:** 80 flags (56 verified issues, 24 needing verification), plus scan results.
+- **Checks:** 558 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -87,8 +87,9 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 | 13 | ✅ Ch. 37 platelets & von Willebrand disease (2nd lesson) | ✅ Ch. 15 kidney, electrolytes & acid–base (2nd lesson) | ✅ Ch. 66 specimen collection (2nd lesson) | ✅ Ch. 41 reactions & lookback (4th lesson) |
 | 14 | ✅ Ch. 34 white cell disorders (2nd lesson) | ✅ Ch. 24 drugs & poisons (2nd lesson) | ✅ Ch. 64 viral infections (2nd lesson) | ✅ Ch. 42 apheresis & blood collection (3rd lesson) |
 | 15 | ✅ Ch. 38 clot risk (2nd lesson) | ✅ Ch. 20 plasma proteins (2nd lesson) | ✅ Ch. 60 fungal infections (2nd lesson) | ✅ Ch. 40 blood groups & compatibility (next lesson) |
+| 16 | Ch. 36 coag cascade (3rd lesson) | Ch. 17 glucose & diabetes (2nd lesson) | ✅ Ch. 57 bacteria that cause disease (3rd lesson) | Ch. 42 apheresis & blood collection (4th lesson) |
 
-Clinical Microscopy runs alongside rounds 14–15: **Ch. 29 urinalysis** (✅ core lesson, round 14) and **Ch. 30 body fluids** (✅ core lesson, round 15). Both have no lesson yet and rank third and sixth by simulator questions × untaught share.
+Clinical Microscopy runs alongside rounds 14–15: **Ch. 29 urinalysis** (✅ core lesson, round 14) and **Ch. 30 body fluids** (✅ core lesson, round 15). Round 16 adds **Ch. 29 urinalysis (2nd lesson)**; Ch. 29 still ranks third by simulator questions × untaught share.
 
 Rounds 10–13 rank chapters by simulator questions × share of concepts not yet taught (Heme and Blood Bank already have a lesson in every chapter, so their next lessons go deeper in the heaviest ones). Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.
 

@@ -1,0 +1,1603 @@
+{
+  "schemaVersion": 1,
+  "id": "micro-gn-oxidase-fastidious",
+  "title": "Gram-Negative First Forks: Oxidase, Neisseria Sugars, X and V, HACEK",
+  "summary": "Use the oxidase test to separate the Enterobacteriaceae from oxidase-positive gram-negatives, identify Neisseria by sugar use, Haemophilus by X and V factors, and grow HACEK organisms correctly.",
+  "domain": "p7-micro",
+  "topic": "ch57",
+  "conceptIds": [
+    "ch57.hit10",
+    "ch57.hit11",
+    "ch57.hit13",
+    "ch57.hit28",
+    "ch57.hit43"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 57,
+        "section": "High-Yield Hits",
+        "items": [
+          10,
+          11,
+          13,
+          28,
+          43
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 57 Hits 10, 11, 13, 28 and 43. Checked against the WHO/CDC 2003 manual (Perilla et al.), the CDC 1998 meningitis laboratory manual and Khaledi 2022. Hit 36 calls HACEK “culture-negative”; Khaledi 2022 reports ~99% detection within 5 days by an automated system and no value for prolonged incubation (register flag rv-hacek-culture). Not taught: HACEK failing to grow on MacConkey (Trap 5), the Pseudomonas grape odour and sneaker-puncture association (Hits 24, 26), Hib epidemiology, and indole for E. coli vs Klebsiella (not in the sources read)."
+  },
+  "prerequisites": [
+    "ch57.hit2"
+  ],
+  "objectives": [
+    "Perform and read the Kovac’s oxidase test and name oxidase-positive and oxidase-negative groups.",
+    "Identify N. meningitidis, N. gonorrhoeae and related species by carbohydrate use, with the gonococcal caveat.",
+    "Identify H. influenzae by X and V requirements, media and satellitism, and separate it from H. haemolyticus and H. parainfluenzae.",
+    "Describe growth conditions and blood-culture detection of HACEK organisms."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three gram-negatives, three first questions",
+      "start": 0,
+      "end": 20,
+      "altText": "Three isolate cards. Isolate A: tiny gram-negative coccobacilli from a toddler’s CSF; grows on chocolate agar but not sheep blood agar. Isolate B: gram-negative diplococci from a urethral swab on modified Thayer–Martin. Isolate C: gram-negative rods from stool; a swab of the colony turns purple within seconds of adding oxidase reagent. A question token: “Which one test sorts each?” The cartoon scientist holds an oxidase swab.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Isolate A: tiny gram-negative coccobacilli from a toddler’s spinal fluid. They grow on chocolate agar but not on sheep blood agar."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 13,
+          "text": "Isolate B: gram-negative diplococci from a urethral swab, growing on modified Thayer–Martin."
+        },
+        {
+          "id": "h3",
+          "start": 13,
+          "end": 20,
+          "text": "Isolate C: gram-negative rods from stool that turn an oxidase swab purple within seconds. Three organisms; each has one sorting test that matters most."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 180,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "A · CSF",
+            "lines": [
+              "GN coccobacilli",
+              "Chocolate ✓ · sheep blood ✗"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "B · Urethral swab",
+            "lines": [
+              "GN diplococci",
+              "Modified Thayer–Martin"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.3,
+              "opacity": 0
+            },
+            {
+              "t": 8,
+              "reveal": 0
+            },
+            {
+              "t": 8.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 180,
+            "w": 290,
+            "h": 170,
+            "tone": "good",
+            "title": "C · Stool",
+            "lines": [
+              "GN rods",
+              "Oxidase purple in seconds"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.3,
+              "opacity": 0
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 14.100000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "highlight",
+          "props": {
+            "x": 790,
+            "y": 183,
+            "w": 290,
+            "h": 30,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16,
+              "opacity": 0
+            },
+            {
+              "t": 16.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 540,
+            "y": 420,
+            "w": 420,
+            "label": "Which one test sorts each?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 18.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 150,
+            "y": 420,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The oxidase test: one swab, one fork",
+      "start": 20,
+      "end": 60,
+      "altText": "A swab with a colony picked from a non-selective plate; a drop of Kovac’s reagent (1% tetramethyl-p-phenylenediamine). Cytochrome c oxidase turns it purple — a positive must appear within 10 seconds. A note: the dimethyl (Gordon–McLeod) reagent turns blue and takes 10–30 minutes. Two bins: oxidase-positive — Vibrio, Neisseria, Campylobacter, Aeromonas, Plesiomonas, Pseudomonas, Alcaligenes; oxidase-negative — all Enterobacteriaceae (Enterobacterales), e.g., E. coli, Salmonella, Shigella.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "The oxidase test asks one question: does the organism have cytochrome c oxidase in its respiratory chain? Pick a colony from a non-selective plate."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "Add Kovac’s reagent, tetramethyl-p-phenylenediamine. A positive turns purple, and it must do so within 10 seconds. Later colour does not count."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 44,
+          "text": "Some labs use the dimethyl reagent instead. It turns blue, and slowly, over 10 to 30 minutes."
+        },
+        {
+          "id": "n4",
+          "start": 44,
+          "end": 52,
+          "text": "Oxidase-positive: Vibrio, Neisseria, Campylobacter, Aeromonas, Plesiomonas, Pseudomonas and Alcaligenes."
+        },
+        {
+          "id": "n5",
+          "start": 52,
+          "end": 60,
+          "text": "Oxidase-negative: every member of the Enterobacteriaceae, such as E. coli, Salmonella and Shigella. A positive result rules them out."
+        }
+      ],
+      "objects": [
+        {
+          "id": "swab",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 160,
+            "w": 420,
+            "h": 180,
+            "tone": "neutral",
+            "title": "Kovac’s oxidase",
+            "lines": [
+              "Colony from non-selective plate",
+              "Tetramethyl reagent → purple",
+              "Positive only within 10 s"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            },
+            {
+              "t": 15,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "dm",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 300,
+            "w": 420,
+            "label": "Dimethyl reagent: blue, 10–30 min",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pos",
+          "type": "bin",
+          "props": {
+            "x": 720,
+            "y": 150,
+            "w": 400,
+            "h": 110,
+            "label": "+ Vibrio · Neisseria · Campylobacter",
+            "sub": "Aeromonas · Plesiomonas · Pseudomonas · Alcaligenes",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "neg",
+          "type": "bin",
+          "props": {
+            "x": 720,
+            "y": 350,
+            "w": 400,
+            "h": 100,
+            "label": "− All Enterobacteriaceae",
+            "sub": "E. coli · Salmonella · Shigella",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Neisseria: which sugars turn yellow",
+      "start": 60,
+      "end": 104,
+      "altText": "A row of CTA sugar tubes (schematic): glucose, maltose, lactose, sucrose. N. meningitidis: glucose + maltose. N. gonorrhoeae: glucose only, and weak — some strains look glucose-negative. N. lactamica: glucose + maltose + lactose. N. sicca: glucose + maltose + sucrose. Moraxella catarrhalis: none. A caution card: do not read a tube negative before 72 hours; confirm gonococci with additional tests because weak acid producers can look glucose-negative.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 69,
+          "text": "Neisseria are oxidase-positive diplococci, so the next fork is sugar use, classically in cystine trypticase agar. A yellow tube means acid."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 78,
+          "text": "Meningococcus uses glucose and maltose. Gonococcus uses glucose only."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 86,
+          "text": "Neisseria lactamica adds lactose, Neisseria sicca adds sucrose, and Moraxella catarrhalis uses none of them."
+        },
+        {
+          "id": "c4",
+          "start": 86,
+          "end": 95,
+          "text": "Watch gonococcus: its acid production is weak, so some strains look glucose-negative. A negative gonococcal result is not reliable on its own."
+        },
+        {
+          "id": "c5",
+          "start": 95,
+          "end": 104,
+          "text": "Do not call a tube negative before 72 hours, and back up a gonococcal identification with additional tests."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tbl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 440,
+            "h": 290,
+            "tone": "a",
+            "title": "CTA sugars (G · M · L · S)",
+            "lines": [
+              "N. meningitidis: G + M",
+              "N. gonorrhoeae: G only (weak)",
+              "N. lactamica: G + M + L",
+              "N. sicca: G + M + S",
+              "M. catarrhalis: none"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 24,
+              "reveal": 5,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "highlight",
+          "props": {
+            "x": 250,
+            "y": 164,
+            "w": 440,
+            "h": 30,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0
+            },
+            {
+              "t": 27.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "weak",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 220,
+            "w": 400,
+            "h": 190,
+            "tone": "warn",
+            "title": "Cautions",
+            "lines": [
+              "Weak gonococci can look G-negative",
+              "No negative call before 72 h",
+              "Confirm GC with extra tests"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0
+            },
+            {
+              "t": 27,
+              "reveal": 0
+            },
+            {
+              "t": 27.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Haemophilus factors and the HACEK group",
+      "start": 104,
+      "end": 144,
+      "altText": "A chocolate plate and a sheep blood plate: H. influenzae grows on chocolate (heated blood frees X = hemin and V = NAD) but not on plain sheep blood agar — unless the sheep blood plate is cross-streaked with S. aureus, along which satellite colonies form. A disk test on factor-free medium: growth only around the XV disk. Table: H. influenzae X+ V+, non-hemolytic; H. haemolyticus X+ V+, β-hemolytic on rabbit or horse blood; H. parainfluenzae V only. A HACEK card: oral and upper-respiratory flora, slow-growing, enhanced by 5–10% CO₂ on blood and chocolate agar; automated blood cultures detect ~99% within 5 days, so prolonged incubation adds little. Back to the hook: A = Haemophilus (confirm X and V), B = Neisseria (sugars), C = oxidase-positive, not an enteric.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 112,
+          "text": "Haemophilus influenzae grows on chocolate agar, where heated blood releases X factor, hemin, and V factor, NAD. Plain sheep blood agar does not support it."
+        },
+        {
+          "id": "l2",
+          "start": 112,
+          "end": 120,
+          "text": "Unless you cross-streak the sheep blood plate with Staphylococcus aureus. Tiny satellite colonies then grow along the staph streak."
+        },
+        {
+          "id": "l3",
+          "start": 120,
+          "end": 128,
+          "text": "On factor-free medium with paper disks, H. influenzae grows only around the disk with both X and V. H. haemolyticus needs both too, but it is beta-hemolytic on rabbit or horse blood. H. parainfluenzae needs V only."
+        },
+        {
+          "id": "l4",
+          "start": 128,
+          "end": 136,
+          "text": "The HACEK group are slow-growing oral and upper-respiratory flora that grow better in 5 to 10 percent carbon dioxide. Automated blood cultures detect about 99 percent within five days."
+        },
+        {
+          "id": "l5",
+          "start": 136,
+          "end": 144,
+          "text": "So isolate A is Haemophilus: confirm X and V. Isolate B is Neisseria: check the sugars. Isolate C is oxidase-positive, so it is not an enteric."
+        }
+      ],
+      "objects": [
+        {
+          "id": "hi",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 130,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "H. influenzae on plates",
+            "lines": [
+              "Chocolate ✓ (X + V freed)",
+              "Sheep blood ✗",
+              "Satellites along S. aureus streak"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "xv",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 130,
+            "w": 420,
+            "h": 170,
+            "tone": "b",
+            "title": "X/V disks (factor-free agar)",
+            "lines": [
+              "H. influenzae: XV only, non-hemolytic",
+              "H. haemolyticus: XV, β-hemolytic",
+              "H. parainfluenzae: V only"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "reveal": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            },
+            {
+              "t": 23,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "hacek",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 340,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "HACEK",
+            "lines": [
+              "Oral / upper-respiratory flora · slow growers",
+              "5–10% CO₂ on blood and chocolate agar",
+              "Automated blood cultures: ~99% within 5 days"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "res",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 480,
+            "w": 780,
+            "label": "A: Haemophilus (X + V) · B: Neisseria (sugars) · C: oxidase + → not an enteric",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "highlight",
+          "props": {
+            "x": 480,
+            "y": 480,
+            "w": 800,
+            "h": 50,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36,
+              "opacity": 0
+            },
+            {
+              "t": 36.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Four classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Four trap cards: “Oxidase purple after 2 minutes with Kovac’s = positive” (✓ only within 10 seconds counts); “Glucose-negative CTA rules out gonococcus” (✓ weak acid producers can look negative — confirm); “Growth around the XV disk = H. influenzae” (✓ or H. haemolyticus — check hemolysis on rabbit or horse blood); “Suspected HACEK: incubate blood cultures for weeks” (✓ ~99% detected within 5 days in automated systems).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 152,
+          "text": "Trap one: oxidase purple after two minutes with Kovac’s reagent is positive. No. Only a colour within 10 seconds counts."
+        },
+        {
+          "id": "e2",
+          "start": 152,
+          "end": 159,
+          "text": "Trap two: a glucose-negative CTA tube rules out gonococcus. Weak acid producers can look negative. Confirm with other tests."
+        },
+        {
+          "id": "e3",
+          "start": 159,
+          "end": 166,
+          "text": "Trap three: growth only around the XV disk means H. influenzae. It could be H. haemolyticus. Check hemolysis on rabbit or horse blood."
+        },
+        {
+          "id": "e4",
+          "start": 166,
+          "end": 174,
+          "text": "Trap four: hold blood cultures for weeks to find HACEK. Automated systems detect about 99 percent within five days."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 70,
+            "w": 840,
+            "h": 100,
+            "tone": "warn",
+            "title": "✗ “Kovac’s purple at 2 min = positive.”",
+            "lines": [
+              "✓ Positive only within 10 s"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 840,
+            "h": 100,
+            "tone": "warn",
+            "title": "✗ “Glucose-negative CTA rules out GC.”",
+            "lines": [
+              "✓ Weak acid producers — confirm"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 12,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 310,
+            "w": 840,
+            "h": 100,
+            "tone": "warn",
+            "title": "✗ “XV-only growth = H. influenzae.”",
+            "lines": [
+              "✓ Or H. haemolyticus — check hemolysis"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0
+            },
+            {
+              "t": 16.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "reveal": 0
+            },
+            {
+              "t": 19,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t4",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 430,
+            "w": 840,
+            "h": 100,
+            "tone": "warn",
+            "title": "✗ “HACEK needs weeks of incubation.”",
+            "lines": [
+              "✓ ~99% detected within 5 days"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 26,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Purple in ten; Gono glucose, Meningo maltose",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Purple in ten — or it’s not oxidase. Gono takes glucose; Meningo adds maltose. Influenzae needs both X and V.” A stopwatch token at 10 s, two sugar tokens, an XV disk token. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: purple in ten, or it is not oxidase. Gono takes glucose; meningo adds maltose. Influenzae needs both X and V."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: the dimethyl reagent turns blue and takes longer; weak gonococci can look glucose-negative; and H. haemolyticus also needs X and V."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Purple in ten · glucose / maltose · X + V",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "⏱ Kovac’s: ≤ 10 s",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "g",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "GC: G · NM: G + M",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "opacity": 0
+            },
+            {
+              "t": 3.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "x",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "H. influenzae: X + V",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Dimethyl reagent: blue, 10–30 min",
+              "Weak gonococci can look glucose-negative",
+              "H. haemolyticus also needs X + V"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Oxidase (Kovac’s ≤ 10 s): + Vibrio, Neisseria, Campylobacter, Aeromonas, Pseudomonas · − Enterobacteriaceae”, “Neisseria: GC glucose, NM glucose + maltose · H. influenzae: X + V, non-hemolytic · HACEK: CO₂, ≤ 5 days”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Oxidase splits gram-negatives from the enterics, sugars split the Neisseria, X and V factors identify Haemophilus influenzae, and HACEK grow with extra carbon dioxide within five days."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Oxidase ≤ 10 s: + Vibrio · Neisseria · Campylobacter · Pseudomonas · − Enterobacteriaceae",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "GC: G · NM: G + M · H. influenzae: X + V · HACEK: CO₂, ≤ 5 days",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a few quick tests tell gram-negative bacteria apart — whether they turn an oxidase reagent purple, which sugars they use and which blood-derived growth factors they need. Scientific terms: cytochrome c oxidase, Kovac’s (tetramethyl-p-phenylenediamine) reagent, cystine trypticase agar (CTA), X factor (hemin), V factor (NAD), satellitism, HACEK (Haemophilus [Aggregatibacter], Cardiobacterium, Eikenella, Kingella).",
+    "why": "Oxidase-positive organisms carry cytochrome c in their respiratory chain; the Enterobacteriaceae do not. Neisseria species differ in which sugars they oxidize to acid. H. influenzae cannot make hemin or NAD; chocolate agar’s heated blood releases both, and S. aureus colonies supply V factor on sheep blood agar.",
+    "measure": "Kovac’s oxidase: purple within 10 s (dimethyl reagent: blue in 10–30 min). CTA: do not read negative before 72 h. X/V disks on factor-free medium, CO₂, 35 °C, 18–24 h. HACEK: blood and chocolate agar in 5–10% CO₂; automated blood cultures ~99% sensitive within 5 days.",
+    "differs": "N. meningitidis (glucose + maltose) vs N. gonorrhoeae (glucose only, weak) vs N. lactamica (+ lactose) vs M. catarrhalis (none). H. influenzae (X + V, non-hemolytic) vs H. haemolyticus (X + V, β-hemolytic) vs H. parainfluenzae (V only). Oxidase-positive gram-negative rods vs Enterobacteriaceae (oxidase-negative).",
+    "examAngle": "Expect: oxidase-positive vs Enterobacterales, gonococcus vs meningococcus sugars, X and V factor patterns and satellitism, and HACEK growth needs."
+  },
+  "comparisons": [
+    {
+      "id": "gc-vs-nm",
+      "title": "N. gonorrhoeae vs N. meningitidis",
+      "left": {
+        "label": "N. gonorrhoeae",
+        "points": [
+          "Glucose only (weak)",
+          "May look glucose-negative"
+        ]
+      },
+      "right": {
+        "label": "N. meningitidis",
+        "points": [
+          "Glucose + maltose",
+          "Grows on BAP and chocolate"
+        ]
+      },
+      "distinguisher": "Maltose utilization."
+    },
+    {
+      "id": "hi-vs-hh",
+      "title": "H. influenzae vs H. haemolyticus",
+      "left": {
+        "label": "H. influenzae",
+        "points": [
+          "X + V",
+          "Non-hemolytic on rabbit blood"
+        ]
+      },
+      "right": {
+        "label": "H. haemolyticus",
+        "points": [
+          "X + V",
+          "β-hemolytic on rabbit or horse blood"
+        ]
+      },
+      "distinguisher": "Hemolysis on rabbit or horse blood agar."
+    }
+  ],
+  "mnemonic": {
+    "text": "Purple in ten; Gono glucose, Meningo maltose; influenzae needs X and V.",
+    "explanation": "A Kovac’s oxidase positive appears within 10 s; gonococci use glucose only while meningococci add maltose; H. influenzae requires both hemin and NAD.",
+    "limitation": "The dimethyl reagent turns blue and takes 10–30 min; weak gonococci can look glucose-negative; H. haemolyticus also needs X and V."
+  },
+  "analogyLimitations": [
+    "Sugar tubes, plates and disks are schematic.",
+    "The isolates are invented teaching cases.",
+    "MALDI-TOF and molecular identification, now common, are not covered here."
+  ],
+  "takeaway": "Oxidase splits gram-negatives from the enterics, sugars split the Neisseria, X and V factors identify Haemophilus influenzae, and HACEK grow with extra carbon dioxide within five days.",
+  "questions": [
+    {
+      "id": "micro-gn-q1",
+      "stem": "A CSF isolate of small gram-negative coccobacilli grows on factor-free agar only around the disk containing both X and V factors and is non-hemolytic on rabbit blood agar. What is the identification?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Haemophilus influenzae",
+          "rationale": "Correct. Requires X and V and is non-hemolytic on rabbit blood."
+        },
+        {
+          "id": "b",
+          "text": "Haemophilus haemolyticus",
+          "rationale": "Incorrect. It also needs X and V but is β-hemolytic on rabbit or horse blood."
+        },
+        {
+          "id": "c",
+          "text": "Haemophilus parainfluenzae",
+          "rationale": "Incorrect. It needs V factor only and would grow around the V disk."
+        },
+        {
+          "id": "d",
+          "text": "Neisseria meningitidis",
+          "rationale": "Incorrect. Meningococci are diplococci that grow on sheep blood agar without added factors."
+        }
+      ],
+      "answer": "a",
+      "skill": "Haemophilus factors",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-gn-q2",
+      "stem": "Oxidase-positive gram-negative diplococci from CSF produce acid from glucose and maltose but not lactose or sucrose. What is the most likely organism?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Neisseria meningitidis",
+          "rationale": "Correct. Glucose + maltose is the meningococcal pattern."
+        },
+        {
+          "id": "b",
+          "text": "Neisseria gonorrhoeae",
+          "rationale": "Incorrect. Gonococci use glucose only."
+        },
+        {
+          "id": "c",
+          "text": "Neisseria lactamica",
+          "rationale": "Incorrect. N. lactamica also uses lactose."
+        },
+        {
+          "id": "d",
+          "text": "Moraxella catarrhalis",
+          "rationale": "Incorrect. M. catarrhalis produces acid from none of these sugars."
+        }
+      ],
+      "answer": "a",
+      "skill": "Neisseria sugars",
+      "difficulty": "recall"
+    },
+    {
+      "id": "micro-gn-q3",
+      "stem": "A technologist adds Kovac’s oxidase reagent to a colony on a swab. No colour appears at 10 seconds, but the swab is faintly purple at 2 minutes. How should the result be recorded?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Oxidase-negative",
+          "rationale": "Correct. With Kovac’s reagent, only a purple colour within 10 seconds counts as positive."
+        },
+        {
+          "id": "b",
+          "text": "Oxidase-positive",
+          "rationale": "Incorrect. Late colour with Kovac’s reagent is not a positive result."
+        },
+        {
+          "id": "c",
+          "text": "Weakly positive; report as Enterobacteriaceae",
+          "rationale": "Incorrect. Enterobacteriaceae are oxidase-negative; there is no “weak positive” category here."
+        },
+        {
+          "id": "d",
+          "text": "Repeat with the dimethyl reagent and read at 10 seconds",
+          "rationale": "Incorrect. The dimethyl reagent is slower (10–30 minutes)."
+        }
+      ],
+      "answer": "a",
+      "skill": "Oxidase reading",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch57",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 57, Bacteria That Cause Disease (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 57,
+          "section": "High-Yield Hits",
+          "items": [
+            10,
+            11,
+            13,
+            28,
+            43
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "who2003",
+      "kind": "external",
+      "citation": "Perilla MJ, Ajello G, Bopp C, et al. Manual for the laboratory identification and antimicrobial susceptibility testing of bacterial pathogens of public health importance in the developing world. WHO/CDS/CSR/RMD/2003.6. World Health Organization and Centers for Disease Control and Prevention; 2003.",
+      "url": "https://stacks.cdc.gov/view/cdc/11374",
+      "consulted": true,
+      "usedFor": "H. influenzae: small GN bacilli/coccobacilli, require X and V, grow on chocolate but not sheep blood agar; chocolate (heated horse blood) supplies X and V; X/V disk test on factor-free medium, CO₂, 35 °C, 18–24 h, growth only around XV; Table 1 (H. influenzae X+V non-hemolytic; H. haemolyticus X+V β-hemolytic on rabbit/horse blood; H. parainfluenzae V only). Kovac’s oxidase (tetramethyl, purple) vs dimethyl (blue, 10–30 min); positive within 10 s; pick from non-selective plate; Vibrio, Neisseria, Campylobacter, Aeromonas, Plesiomonas, Pseudomonas, Alcaligenes oxidase-positive; all Enterobacteriaceae oxidase-negative. CTA carbohydrate table (N. meningitidis G+M; N. gonorrhoeae G weak; N. sicca G+M+S; N. lactamica G+M+L; M. catarrhalis none); no negative reading before 72 h; weak gonococci may appear glucose-negative; supplement with additional tests."
+    },
+    {
+      "id": "cdc1998",
+      "kind": "external",
+      "citation": "Centers for Disease Control and Prevention. Laboratory methods for the diagnosis of meningitis caused by Neisseria meningitidis, Streptococcus pneumoniae, and Haemophilus influenzae. Atlanta: CDC; 1998.",
+      "url": "https://stacks.cdc.gov/view/cdc/28557",
+      "consulted": true,
+      "usedFor": "H. influenzae on BAP via cross-streak with S. aureus (satellite colonies) or XV disk halo; chocolate agar supplemented with hemin and growth supplement; N. meningitidis grows on BAP and CAP."
+    },
+    {
+      "id": "khaledi2022",
+      "kind": "external",
+      "citation": "Khaledi M, Sameni F, Afkhami H, et al. Infective endocarditis by HACEK: a review. J Cardiothorac Surg. 2022;17(1):185.",
+      "doi": "10.1186/s13019-022-01932-5",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9389832/",
+      "consulted": true,
+      "usedFor": "HACEK genera; fastidious gram-negative oral and upper-respiratory flora; slow growth enhanced by CO₂; subculture on sheep blood and chocolate agar at 37 °C in 5–10% CO₂; BacT/Alert ~99% sensitive within 5 days; prolonged incubation of no value; 1–3% of endocarditis."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-ox",
+      "text": "Kovac’s oxidase purple within 10 s (dimethyl blue 10–30 min); oxidase-positive Vibrio, Neisseria, Campylobacter, Aeromonas, Plesiomonas, Pseudomonas, Alcaligenes; Enterobacteriaceae negative.",
+      "status": "checked",
+      "refs": [
+        "who2003"
+      ]
+    },
+    {
+      "id": "cl-neis",
+      "text": "CTA sugar patterns for Neisseria and M. catarrhalis; weak gonococci may look glucose-negative; no negative before 72 h.",
+      "status": "checked",
+      "refs": [
+        "who2003"
+      ]
+    },
+    {
+      "id": "cl-hi",
+      "text": "H. influenzae requires X and V; chocolate not sheep blood; satellites along S. aureus; XV disk only; H. haemolyticus β-hemolytic; H. parainfluenzae V only.",
+      "status": "checked",
+      "refs": [
+        "who2003",
+        "cdc1998"
+      ]
+    },
+    {
+      "id": "cl-hacek",
+      "text": "HACEK oral/upper-respiratory flora, slow, enhanced by 5–10% CO₂; ~99% detected within 5 days by automated blood culture.",
+      "status": "checked",
+      "refs": [
+        "khaledi2022"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "HACEK do not grow on MacConkey; Pseudomonas grape odour and sneaker puncture osteomyelitis; indole separates E. coli from Klebsiella.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch57"
+      ],
+      "note": "Not taught; not in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Swabs, tubes, plates and disks are schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Purple in ten; Gono glucose, Meningo maltose; influenzae needs X and V.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Plates, CTA tubes and disks are schematic drawings, not photographs.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against the WHO/CDC 2003 manual, the CDC 1998 meningitis manual and Khaledi 2022 read for this lesson; 1 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
