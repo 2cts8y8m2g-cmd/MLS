@@ -1,0 +1,2402 @@
+{
+  "schemaVersion": 1,
+  "id": "heme-anticoagulant-test-selection",
+  "title": "Anticoagulant Monitoring: Test the Target",
+  "summary": "Match each anticoagulant to the test that actually sees it — APTT and anti-Xa for heparins, the thrombin-time family for dabigatran, drug-calibrated anti-Xa for apixaban and rivaroxaban — and learn why a normal PT reassures about none of the DOACs.",
+  "domain": "p4-heme",
+  "topic": "ch39",
+  "conceptIds": [
+    "ch39.hit3",
+    "ch39.hit4",
+    "ch39.hit8",
+    "ch39.trap1",
+    "ch39.trap3",
+    "ch39.trap5"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 39,
+        "section": "High-Yield Hits",
+        "items": [
+          3,
+          4,
+          8
+        ]
+      },
+      {
+        "chapter": 39,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          3,
+          5
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 39 Hit 3 (UFH anti-Xa 0.3–0.7; local APTT range from patients on heparin), Hit 4 (normal TT excludes dabigatran; anti-Xa for Xa inhibitors), Hit 8 (LMWH by anti-Xa at ~4 h, not APTT), Traps 1, 3 and 5. Checked against Reardon 2026, Li 2025, Barouqa 2026, Tran 2025 and Mithoowani 2026. Added context: routine LMWH monitoring is not recommended in standard patients. Pending: “spiked plasma lies” and “normal anti-Xa excludes clinically relevant Xa-inhibitor levels”; fondaparinux; APTT plateau with Xa inhibitors."
+  },
+  "prerequisites": [
+    "ch36.hit1"
+  ],
+  "objectives": [
+    "Explain what PT, APTT, thrombin time and chromogenic anti-Xa each measure.",
+    "Choose and interpret monitoring for unfractionated heparin and LMWH, including how a local APTT range is set.",
+    "Select tests to detect and measure dabigatran and factor Xa inhibitors, and explain why a normal PT does not exclude them."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Four blood thinners, one test menu",
+      "start": 0,
+      "end": 20,
+      "altText": "Four patient cards slide in, each on a different anticoagulant: unfractionated heparin drip, enoxaparin (LMWH) injections, dabigatran, apixaban. A test menu shows PT, APTT, thrombin time, anti-Xa. Every patient has a “normal PT”, yet the question is which test actually sees each drug.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Four patients, four anticoagulants: a heparin drip, enoxaparin injections, dabigatran and apixaban."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The lab menu offers the same four tests to all of them: PT, APTT, thrombin time and anti-factor-Xa."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Pick the wrong test and a drug can hide behind a normal result. So which test sees which drug?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "p0",
+          "type": "card",
+          "props": {
+            "x": 150,
+            "y": 130,
+            "w": 200,
+            "h": 90,
+            "tone": "a",
+            "title": "Heparin drip",
+            "lines": [
+              "Unfractionated (UFH)"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p1",
+          "type": "card",
+          "props": {
+            "x": 370,
+            "y": 130,
+            "w": 200,
+            "h": 90,
+            "tone": "a",
+            "title": "Enoxaparin",
+            "lines": [
+              "Low-molecular-weight"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.7,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "card",
+          "props": {
+            "x": 590,
+            "y": 130,
+            "w": 200,
+            "h": 90,
+            "tone": "a",
+            "title": "Dabigatran",
+            "lines": [
+              "Thrombin inhibitor"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.9,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "type": "card",
+          "props": {
+            "x": 810,
+            "y": 130,
+            "w": 200,
+            "h": 90,
+            "tone": "a",
+            "title": "Apixaban",
+            "lines": [
+              "Factor Xa inhibitor"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.1,
+              "opacity": 0
+            },
+            {
+              "t": 4.699999999999999,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 290,
+            "w": 180,
+            "label": "PT",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 290,
+            "w": 180,
+            "label": "APTT",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.3,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 290,
+            "w": 180,
+            "label": "Thrombin time",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 10.1,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 810,
+            "y": 290,
+            "w": 180,
+            "label": "Anti-Xa",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.9,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 10.9,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 410,
+            "w": 480,
+            "label": "Which test sees which drug?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 900,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: what each test measures",
+      "start": 20,
+      "end": 60,
+      "altText": "A simplified coagulation line: contact factors → … → factor Xa → thrombin → fibrin. Four test cards light the part each one covers: PT (tissue-factor route + common pathway), APTT (contact route + common pathway), thrombin time (thrombin turning fibrinogen into fibrin), anti-Xa (a chromogenic test). In the anti-Xa demo, a known amount of factor Xa is added; drug-inhibited Xa cannot cut a colour substrate, so the more drug, the paler the tube.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Clotting runs like a relay. Two starting routes meet at factor ten-a, which makes thrombin, which turns fibrinogen into fibrin."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "The PT starts the relay with tissue factor. The APTT starts it through the contact factors. Both run all the way to a clot."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 49,
+          "text": "The thrombin time skips almost everything: it adds thrombin and times the fibrin clot. Anything that blocks thrombin stretches it."
+        },
+        {
+          "id": "n4",
+          "start": 49,
+          "end": 60,
+          "text": "The anti-Xa test isn’t a clot test. It adds a known amount of factor ten-a and a colour-releasing substrate. Drug-blocked ten-a can’t release colour — so more drug means a paler tube."
+        }
+      ],
+      "objects": [
+        {
+          "id": "c0",
+          "type": "token",
+          "props": {
+            "x": 110,
+            "y": 90,
+            "w": 160,
+            "label": "Start routes",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c1",
+          "type": "token",
+          "props": {
+            "x": 295,
+            "y": 90,
+            "w": 160,
+            "label": "Factor Xa",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.0,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 160,
+            "label": "Thrombin",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "type": "token",
+          "props": {
+            "x": 665,
+            "y": 90,
+            "w": 160,
+            "label": "Fibrin clot",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.0,
+              "opacity": 0
+            },
+            {
+              "t": 5.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ar",
+          "type": "arrow",
+          "props": {
+            "x": 110,
+            "y": 130,
+            "dx": 555,
+            "dy": 0,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 1,
+              "draw": 0
+            },
+            {
+              "t": 7,
+              "draw": 1,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 200,
+            "y": 220,
+            "w": 280,
+            "h": 80,
+            "tone": "neutral",
+            "title": "PT",
+            "lines": [
+              "Tissue factor → clot"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "aptt",
+          "type": "card",
+          "props": {
+            "x": 520,
+            "y": 220,
+            "w": 280,
+            "h": 80,
+            "tone": "neutral",
+            "title": "APTT",
+            "lines": [
+              "Contact factors → clot"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13,
+              "opacity": 0
+            },
+            {
+              "t": 13.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tt",
+          "type": "card",
+          "props": {
+            "x": 840,
+            "y": 220,
+            "w": 220,
+            "h": 80,
+            "tone": "neutral",
+            "title": "Thrombin time",
+            "lines": [
+              "Thrombin → fibrin"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "tone": "b"
+            }
+          ]
+        },
+        {
+          "id": "xa",
+          "type": "card",
+          "props": {
+            "x": 240,
+            "y": 400,
+            "w": 320,
+            "h": 110,
+            "tone": "neutral",
+            "title": "Anti-Xa (chromogenic)",
+            "lines": [
+              "Add factor Xa + colour substrate",
+              "More drug → less colour"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29.5,
+              "opacity": 0
+            },
+            {
+              "t": 30.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "tone": "a"
+            }
+          ]
+        },
+        {
+          "id": "t1",
+          "type": "tube",
+          "props": {
+            "x": 560,
+            "y": 330,
+            "level": 0.6,
+            "fluid": "plasma",
+            "label": "Little drug",
+            "cap": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31,
+              "opacity": 0
+            },
+            {
+              "t": 31.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "tube",
+          "props": {
+            "x": 700,
+            "y": 330,
+            "level": 0.6,
+            "fluid": "saline",
+            "label": "Much drug",
+            "cap": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33,
+              "opacity": 0
+            },
+            {
+              "t": 33.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: heparins",
+      "start": 60,
+      "end": 102,
+      "altText": "Unfractionated heparin lane: the APTT is used, but there is no INR-like standard, so each lab builds its own APTT range — plotting APTT against anti-Xa in samples from patients on heparin and reading off the APTT that matches anti-Xa 0.3–0.7 IU/mL. A scatter plot with a regression line and a shaded band illustrates this. Anti-Xa is preferred when the baseline APTT is abnormal (e.g. lupus anticoagulant, factor deficiency). LMWH lane: APTT is unreliable; anti-Xa drawn at the peak (~4 h after a dose) is used — but routine monitoring is not recommended; it is reserved for special groups (pregnancy, renal impairment, weight extremes).",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "Unfractionated heparin has long been followed with the APTT. But APTT reagents differ, and there is no INR-style correction."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "So each lab builds its own range. It plots APTT against anti-Xa in samples from real patients on heparin, and finds the APTT that matches anti-Xa 0.3 to 0.7 units per millilitre."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 91,
+          "text": "When the baseline APTT is already abnormal — a lupus anticoagulant, or a factor deficiency — anti-Xa is the better monitor."
+        },
+        {
+          "id": "c4",
+          "start": 91,
+          "end": 102,
+          "text": "Low-molecular-weight heparin barely moves the APTT. When it needs monitoring, use anti-Xa drawn at the peak, about 4 hours after a dose. Routine monitoring isn’t recommended — it’s for groups like pregnancy, kidney impairment or extreme body weight."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lu",
+          "type": "label",
+          "props": {
+            "x": 260,
+            "y": 50,
+            "text": "Unfractionated heparin",
+            "size": 20,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ax",
+          "type": "arrow",
+          "props": {
+            "x": 80,
+            "y": 330,
+            "dx": 360,
+            "dy": 0,
+            "draw": 0,
+            "label": "Anti-Xa (IU/mL)"
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "draw": 0
+            },
+            {
+              "t": 12.7,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ay",
+          "type": "arrow",
+          "props": {
+            "x": 80,
+            "y": 330,
+            "dx": 0,
+            "dy": -230,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "draw": 0
+            },
+            {
+              "t": 12.7,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ayl",
+          "type": "label",
+          "props": {
+            "x": 70,
+            "y": 85,
+            "text": "APTT (s)",
+            "size": 13,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pt0",
+          "type": "token",
+          "props": {
+            "x": 110,
+            "y": 298,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 14.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pt1",
+          "type": "token",
+          "props": {
+            "x": 144,
+            "y": 292,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.35,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 14.35,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pt2",
+          "type": "token",
+          "props": {
+            "x": 178,
+            "y": 286,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.7,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 14.7,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pt3",
+          "type": "token",
+          "props": {
+            "x": 212,
+            "y": 250,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.05,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.05,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pt4",
+          "type": "token",
+          "props": {
+            "x": 246,
+            "y": 244,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.4,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.4,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pt5",
+          "type": "token",
+          "props": {
+            "x": 280,
+            "y": 208,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.75,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.75,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pt6",
+          "type": "token",
+          "props": {
+            "x": 314,
+            "y": 202,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.1,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pt7",
+          "type": "token",
+          "props": {
+            "x": 348,
+            "y": 196,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.45,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.45,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pt8",
+          "type": "token",
+          "props": {
+            "x": 382,
+            "y": 160,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.8,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.8,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pt9",
+          "type": "token",
+          "props": {
+            "x": 416,
+            "y": 154,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.15,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.15,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "reg",
+          "type": "arrow",
+          "props": {
+            "x": 100,
+            "y": 315,
+            "dx": 330,
+            "dy": -185,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "draw": 0
+            },
+            {
+              "t": 18.5,
+              "draw": 1,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "band",
+          "type": "highlight",
+          "props": {
+            "x": 240,
+            "y": 230,
+            "w": 110,
+            "h": 200,
+            "dashed": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "bl",
+          "type": "token",
+          "props": {
+            "x": 260,
+            "y": 370,
+            "w": 280,
+            "label": "0.3–0.7 → local APTT range",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 20.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab",
+          "type": "token",
+          "props": {
+            "x": 270,
+            "y": 440,
+            "w": 500,
+            "label": "Abnormal baseline APTT (LA, deficiency) → anti-Xa",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ll",
+          "type": "label",
+          "props": {
+            "x": 720,
+            "y": 50,
+            "text": "LMWH",
+            "size": 20,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "lm1",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 130,
+            "w": 340,
+            "h": 70,
+            "tone": "neutral",
+            "title": "APTT",
+            "lines": [
+              "Unreliable for LMWH"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32,
+              "opacity": 0
+            },
+            {
+              "t": 32.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "tone": "bad"
+            }
+          ]
+        },
+        {
+          "id": "lm2",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 240,
+            "w": 340,
+            "h": 90,
+            "tone": "neutral",
+            "title": "Anti-Xa at peak",
+            "lines": [
+              "≈ 4 h after a dose"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34,
+              "opacity": 0
+            },
+            {
+              "t": 34.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "tone": "good"
+            }
+          ]
+        },
+        {
+          "id": "lm3",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 380,
+            "w": 340,
+            "h": 110,
+            "tone": "warn",
+            "title": "Not routine",
+            "lines": [
+              "Pregnancy · renal impairment",
+              "Extremes of body weight"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 37,
+              "opacity": 0
+            },
+            {
+              "t": 37.5,
+              "reveal": 0
+            },
+            {
+              "t": 37.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 40.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: the direct oral anticoagulants",
+      "start": 102,
+      "end": 142,
+      "altText": "Dabigatran lane: the thrombin time is very sensitive — even small amounts prolong it, so a normal TT excludes dabigatran; but TT cannot measure how much. Quantify with a dilute thrombin time or ecarin-based assay calibrated for dabigatran. Factor Xa inhibitor lane: PT sensitivity is reagent-dependent and often too low (apixaban frequently leaves the PT normal); quantify with an anti-Xa assay calibrated with the specific drug. Caution: Xa-inhibiting DOACs make a heparin-calibrated anti-Xa read falsely high.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 102,
+          "end": 112,
+          "text": "Dabigatran blocks thrombin. The thrombin time is so sensitive that even small amounts prolong it. A normal thrombin time means dabigatran is essentially absent."
+        },
+        {
+          "id": "l2",
+          "start": 112,
+          "end": 121,
+          "text": "But the plain thrombin time can’t say how much. To measure dabigatran, use a dilute thrombin time or an ecarin-based assay with dabigatran calibrators."
+        },
+        {
+          "id": "l3",
+          "start": 121,
+          "end": 132,
+          "text": "Apixaban, rivaroxaban and edoxaban block factor ten-a. The PT may lengthen with some of them, but it depends on the reagent — and apixaban often leaves the PT normal. To measure them, use an anti-Xa assay calibrated with that drug."
+        },
+        {
+          "id": "l4",
+          "start": 132,
+          "end": 142,
+          "text": "One more catch: these drugs also push a heparin-calibrated anti-Xa high. A patient switching from a DOAC to heparin can look over-anticoagulated."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ld",
+          "type": "label",
+          "props": {
+            "x": 250,
+            "y": 50,
+            "text": "Dabigatran (anti-thrombin)",
+            "size": 20,
+            "weight": 800,
+            "color": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tt",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 130,
+            "w": 120,
+            "h": 70,
+            "tone": "b",
+            "title": "TT: very sensitive",
+            "lines": [],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2,
+              "w": 120
+            },
+            {
+              "t": 6,
+              "w": 380,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "ttn",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 380,
+            "label": "Normal TT → dabigatran essentially absent",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 7.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dtt",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 310,
+            "w": 400,
+            "h": 100,
+            "tone": "neutral",
+            "title": "To measure",
+            "lines": [
+              "Dilute TT or ecarin assay",
+              "with dabigatran calibrators"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "lx",
+          "type": "label",
+          "props": {
+            "x": 720,
+            "y": 50,
+            "text": "Apixaban · rivaroxaban (anti-Xa)",
+            "size": 20,
+            "weight": 800,
+            "color": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 20.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ptn",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 130,
+            "w": 380,
+            "h": 70,
+            "tone": "neutral",
+            "title": "PT: often normal (apixaban)",
+            "lines": [
+              "Reagent-dependent"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20,
+              "opacity": 0
+            },
+            {
+              "t": 20.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "tone": "bad"
+            }
+          ]
+        },
+        {
+          "id": "dxa",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 250,
+            "w": 400,
+            "h": 100,
+            "tone": "a",
+            "title": "To measure",
+            "lines": [
+              "Anti-Xa calibrated",
+              "with the specific drug"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "cau",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 720,
+            "label": "Xa-inhibitor DOAC → heparin-calibrated anti-Xa falsely high",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32.5,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 142,
+      "end": 172,
+      "altText": "Trap card: “Monitor enoxaparin with the APTT” is crossed out → “APTT is unreliable for LMWH; use peak anti-Xa when monitoring is needed.” Trap card: “Normal PT, so no apixaban effect” is crossed out → “PT is often normal on apixaban; use a drug-calibrated anti-Xa.” Trap card: “Normal PT, so no dabigatran” is crossed out → “Use the thrombin time — normal TT excludes dabigatran.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 142,
+          "end": 153,
+          "text": "Trap one: don’t monitor low-molecular-weight heparin with the APTT. If monitoring is needed, draw an anti-Xa at the peak."
+        },
+        {
+          "id": "e2",
+          "start": 153,
+          "end": 163,
+          "text": "Trap two: a normal PT doesn’t rule out apixaban. Use an anti-Xa assay calibrated for the drug."
+        },
+        {
+          "id": "e3",
+          "start": 163,
+          "end": 172,
+          "text": "Trap three: a normal PT doesn’t rule out dabigatran either. Check the thrombin time — if it’s normal, dabigatran is essentially absent."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Monitor enoxaparin with the APTT.”",
+            "lines": [
+              "✓ Peak anti-Xa (~4 h) when monitoring is needed"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 0
+            },
+            {
+              "t": 6,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Normal PT, so no apixaban effect.”",
+            "lines": [
+              "✓ PT often normal on apixaban — use drug-calibrated anti-Xa"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 0
+            },
+            {
+              "t": 16,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Normal PT, so no dabigatran.”",
+            "lines": [
+              "✓ Thrombin time: normal TT excludes dabigatran"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 22.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Test the target",
+      "start": 172,
+      "end": 192,
+      "altText": "Memory aid: “Test the target.” Xa blockers (LMWH, apixaban, rivaroxaban) → anti-Xa; thrombin blockers (dabigatran) → thrombin time family; UFH → APTT matched to anti-Xa. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 172,
+          "end": 180,
+          "text": "Memory aid: test the target. Drugs that block ten-a, measure with anti-Xa. Drugs that block thrombin, check with the thrombin time. Heparin drips, an APTT matched to anti-Xa."
+        },
+        {
+          "id": "m2",
+          "start": 180,
+          "end": 192,
+          "text": "Where it breaks: unfractionated heparin blocks both ten-a and thrombin; the anti-Xa must be calibrated for the right drug; the plain thrombin time detects dabigatran but can’t measure it; and therapeutic ranges are set locally."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Test the target",
+            "size": 32,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 180,
+            "w": 260,
+            "label": "Xa blockers → anti-Xa",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 260,
+            "label": "Thrombin blockers → TT",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 180,
+            "w": 260,
+            "label": "UFH → APTT ≈ anti-Xa",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 110,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "UFH blocks both Xa and thrombin · anti-Xa must match the drug",
+              "Plain TT detects but can’t measure dabigatran · ranges are local"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 192,
+      "end": 202,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 192,
+          "end": 197,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 197,
+          "end": 202,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 202,
+      "end": 210,
+      "altText": "Three tokens: “UFH: APTT matched locally to anti-Xa 0.3–0.7”, “LMWH and Xa-inhibitor DOACs: anti-Xa calibrated for the drug”, “Dabigatran: normal TT excludes it; dTT/ECT measures it”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 202,
+          "end": 210,
+          "text": "Match the test to the drug’s target: heparin by an APTT calibrated to anti-Xa, LMWH and factor Xa inhibitors by drug-calibrated anti-Xa, and dabigatran by the thrombin-time family — a normal PT rules out none of the DOACs."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 680,
+            "label": "UFH: APTT matched locally to anti-Xa 0.3–0.7",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 240,
+            "w": 680,
+            "label": "LMWH / Xa-inhibitor DOACs: drug-calibrated anti-Xa",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 310,
+            "w": 680,
+            "label": "Dabigatran: normal TT excludes it · dTT / ECT measures it",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.6,
+              "opacity": 0
+            },
+            {
+              "t": 2.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: each blood thinner blocks a particular step of clotting, and only tests that include that step will show it. Scientific terms: UFH (antithrombin-mediated anti-Xa and anti-IIa) is followed by APTT calibrated to anti-Xa or by anti-Xa; LMWH and direct factor Xa inhibitors are measured by chromogenic anti-Xa with appropriate calibrators; dabigatran (direct thrombin inhibitor) prolongs the thrombin time and is measured by dilute TT or ecarin-based assays.",
+    "why": "Clot-based tests respond to a drug only through the steps they include and vary with reagent sensitivity; the chromogenic anti-Xa measures residual factor Xa activity directly, so colour falls as drug rises. The thrombin time adds thrombin, so even small amounts of a thrombin inhibitor prolong it.",
+    "measure": "UFH: anti-Xa target ~0.3–0.7 IU/mL; APTT therapeutic range set locally by regression against anti-Xa in samples from patients on UFH; anti-Xa preferred when the baseline APTT is abnormal (LA, factor deficiency). LMWH: anti-Xa at peak (~4 h post-dose) only in special populations; APTT unreliable. Dabigatran: normal TT excludes it; quantify with dTT/ECT. Apixaban/rivaroxaban/edoxaban: PT reagent-dependent and often normal on apixaban; quantify with drug-calibrated anti-Xa; Xa DOACs falsely raise heparin-calibrated anti-Xa.",
+    "differs": "Detecting (TT for dabigatran) vs measuring (dTT/ECT, drug-calibrated anti-Xa); heparin-calibrated vs drug-calibrated anti-Xa; UFH (APTT or anti-Xa, routinely monitored) vs LMWH and DOACs (no routine monitoring).",
+    "examAngle": "Expect: LMWH → anti-Xa not APTT, UFH anti-Xa 0.3–0.7, normal TT excludes dabigatran, PT insensitive to apixaban, and how a heparin APTT range is established."
+  },
+  "comparisons": [
+    {
+      "id": "ufh-vs-lmwh",
+      "title": "UFH vs LMWH monitoring",
+      "left": {
+        "label": "Unfractionated heparin",
+        "points": [
+          "APTT with a local range matched to anti-Xa 0.3–0.7",
+          "Anti-Xa if baseline APTT abnormal"
+        ]
+      },
+      "right": {
+        "label": "LMWH",
+        "points": [
+          "APTT unreliable",
+          "Peak anti-Xa (~4 h) only in special groups"
+        ]
+      },
+      "distinguisher": "LMWH acts mainly through factor Xa, which the APTT reflects poorly."
+    },
+    {
+      "id": "dabi-vs-xa",
+      "title": "Dabigatran vs factor Xa inhibitors",
+      "left": {
+        "label": "Dabigatran",
+        "points": [
+          "Normal TT excludes it",
+          "Measure: dilute TT / ecarin assay"
+        ]
+      },
+      "right": {
+        "label": "Apixaban / rivaroxaban",
+        "points": [
+          "PT often normal (apixaban)",
+          "Measure: drug-calibrated anti-Xa"
+        ]
+      },
+      "distinguisher": "Test the drug’s target: thrombin vs factor Xa."
+    }
+  ],
+  "mnemonic": {
+    "text": "Test the target: Xa blockers → anti-Xa; thrombin blockers → thrombin time; heparin drips → APTT matched to anti-Xa.",
+    "explanation": "A test sees a drug only if it includes the step the drug blocks.",
+    "limitation": "UFH blocks both Xa and thrombin; anti-Xa must be calibrated for the drug; the plain TT detects but cannot measure dabigatran; therapeutic ranges are local."
+  },
+  "analogyLimitations": [
+    "The coagulation “relay” is simplified (no feedback loops or cofactors).",
+    "The scatter plot and tubes are illustrative, not real data.",
+    "Patient cards are invented."
+  ],
+  "takeaway": "Match the test to the drug’s target: heparin by an APTT calibrated to anti-Xa, LMWH and factor Xa inhibitors by drug-calibrated anti-Xa, and dabigatran by the thrombin-time family — a normal PT rules out none of the DOACs.",
+  "questions": [
+    {
+      "id": "heme-ac-q1",
+      "stem": "A pregnant patient on therapeutic enoxaparin needs her anticoagulant effect checked. Which test and timing are appropriate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Anti-Xa drawn about 4 hours after a dose",
+          "rationale": "Correct. LMWH is monitored (when needed, e.g. in pregnancy) with anti-Xa at the expected peak."
+        },
+        {
+          "id": "b",
+          "text": "APTT drawn just before the next dose",
+          "rationale": "Incorrect. The APTT is unreliable for LMWH."
+        },
+        {
+          "id": "c",
+          "text": "PT/INR at any time",
+          "rationale": "Incorrect. The PT does not reflect LMWH effect."
+        },
+        {
+          "id": "d",
+          "text": "Thrombin time 1 hour after a dose",
+          "rationale": "Incorrect. The thrombin time is the test for thrombin inhibitors such as dabigatran."
+        }
+      ],
+      "answer": "a",
+      "skill": "LMWH monitoring",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-ac-q2",
+      "stem": "A patient on dabigatran needs urgent surgery. The PT is normal and the thrombin time is normal. What can be concluded?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dabigatran is essentially absent",
+          "rationale": "Correct. Even small dabigatran concentrations prolong the thrombin time, so a normal TT excludes it."
+        },
+        {
+          "id": "b",
+          "text": "Nothing — only the PT matters for dabigatran",
+          "rationale": "Incorrect. The PT is insensitive to dabigatran."
+        },
+        {
+          "id": "c",
+          "text": "The dabigatran level is in the therapeutic range",
+          "rationale": "Incorrect. A therapeutic level would prolong the TT."
+        },
+        {
+          "id": "d",
+          "text": "An anti-Xa assay is needed to confirm",
+          "rationale": "Incorrect. Dabigatran inhibits thrombin, not factor Xa."
+        }
+      ],
+      "answer": "a",
+      "skill": "DOAC detection",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-ac-q3",
+      "stem": "How should a laboratory establish its therapeutic APTT range for unfractionated heparin?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Regress APTT against anti-Xa in samples from patients on heparin and read the APTT matching 0.3–0.7 IU/mL",
+          "rationale": "Correct. APTT reagents vary and there is no INR-like standard, so the range is calibrated locally to anti-Xa."
+        },
+        {
+          "id": "b",
+          "text": "Use 1.5–2.5 times the control for every reagent",
+          "rationale": "Incorrect. A fixed ratio ignores reagent and analyzer differences."
+        },
+        {
+          "id": "c",
+          "text": "Apply an ISI correction as for the INR",
+          "rationale": "Incorrect. There is no INR-like standardization for the APTT."
+        },
+        {
+          "id": "d",
+          "text": "Adopt the manufacturer’s normal reference interval",
+          "rationale": "Incorrect. A normal reference interval is not a therapeutic range."
+        }
+      ],
+      "answer": "a",
+      "skill": "Heparin APTT range",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch39",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 39, Blood Thinners and Their Monitoring (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 39,
+          "section": "High-Yield Hits",
+          "items": [
+            3,
+            4,
+            8
+          ]
+        },
+        {
+          "chapter": 39,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            3,
+            5
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "reardon2026",
+      "kind": "external",
+      "citation": "Reardon B, Pasalic L, Lippi G, Favaloro EJ. Heparin anticoagulant therapy and its monitoring. Biomolecules. 2026;16(3):425.",
+      "doi": "10.3390/biom16030425",
+      "url": "https://europepmc.org/article/PMC/PMC13023786",
+      "consulted": true,
+      "usedFor": "APTT reagent/analyzer variability requires local calibration to anti-Xa ~0.3–0.7 IU/mL; therapeutic range built by regression on samples from patients on UFH; anti-Xa preferred with abnormal baseline APTT (LA, factor deficiency); LMWH peak ~4 h; routine LMWH anti-Xa monitoring not recommended in standard patients, considered in pregnancy, renal impairment, ECMO, weight extremes; FXa DOACs greatly elevate heparin-calibrated anti-Xa."
+    },
+    {
+      "id": "li2025",
+      "kind": "external",
+      "citation": "Li HX, Song LH, Chen YH, Zhao J, Zhang XF. A narrative literature review on the clinical utility of activated partial thromboplastin time and anti-factor Xa activity assays in cancer patients with anticoagulant therapy. Transl Cancer Res. 2025;14(10):7438-7449.",
+      "doi": "10.21037/tcr-2025-1944",
+      "url": "https://europepmc.org/article/PMC/PMC12605607",
+      "consulted": true,
+      "usedFor": "UFH anti-Xa target 0.3–0.7; LMWH tested 4 h post-injection; aPTT not a reliable monitor for LMWH; anti-Xa principle (residual Xa, chromogenic substrate); linear anti-Xa–level relationship for apixaban and rivaroxaban."
+    },
+    {
+      "id": "barouqa2026",
+      "kind": "external",
+      "citation": "Barouqa M, Yassa ME, Dela Cruz N, Babker M. Anticoagulants, their laboratory monitoring, and reversal. Hematol Rep. 2026;18(5):67.",
+      "doi": "10.3390/hematolrep18050067",
+      "url": "https://europepmc.org/article/PMC/PMC13600188",
+      "consulted": true,
+      "usedFor": "Anti-Xa for UFH 0.3–0.7 U/mL; dilute TT or ecarin assays for dabigatran; factor Xa inhibitors measured by chromogenic anti-Xa with drug-specific calibrators; PT reagent-dependent and often normal on apixaban; LA interferes with aPTT."
+    },
+    {
+      "id": "tran2025",
+      "kind": "external",
+      "citation": "Tran HA, Merriman E, Baker R, et al. 2025 Guidelines for direct oral anticoagulants: a practical guidance on the prescription, laboratory testing, peri-operative and bleeding management. Intern Med J. 2025;55(7):1174-1183.",
+      "doi": "10.1111/imj.70103",
+      "url": "https://europepmc.org/article/PMC/PMC12240022",
+      "consulted": true,
+      "usedFor": "PT generally insensitive to apixaban; even small dabigatran concentrations prolong the TT, so a normal TT excludes dabigatran but cannot estimate concentration; quantification by dilute TT/ECT and calibrated anti-FXa assays."
+    },
+    {
+      "id": "mithoowani2026",
+      "kind": "external",
+      "citation": "Mithoowani S, Tan CW, Siegal DM. Measuring direct oral anticoagulant (DOAC) levels: applications, limitations, and future directions. Int J Lab Hematol. 2026;48(2):250-258.",
+      "doi": "10.1111/ijlh.14483",
+      "url": "https://europepmc.org/article/PMC/PMC12956501",
+      "consulted": true,
+      "usedFor": "Ecarin-based assays and chromogenic anti-FIIa with dabigatran calibrators measure dabigatran; dilute TT uses pooled plasma."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-tests",
+      "text": "PT, APTT, TT and chromogenic anti-Xa principles; anti-Xa colour inversely related to drug.",
+      "status": "checked",
+      "refs": [
+        "li2025",
+        "barouqa2026"
+      ]
+    },
+    {
+      "id": "cl-ufh",
+      "text": "UFH anti-Xa ~0.3–0.7 IU/mL; APTT range calibrated locally by regression in patients on UFH; anti-Xa preferred when baseline APTT abnormal.",
+      "status": "checked",
+      "refs": [
+        "reardon2026",
+        "li2025",
+        "barouqa2026"
+      ]
+    },
+    {
+      "id": "cl-lmwh",
+      "text": "APTT unreliable for LMWH; anti-Xa at ~4 h peak; routine monitoring not recommended except special populations.",
+      "status": "checked",
+      "refs": [
+        "reardon2026",
+        "li2025"
+      ]
+    },
+    {
+      "id": "cl-dabi",
+      "text": "Normal TT excludes dabigatran but cannot quantify it; dTT/ECT with dabigatran calibrators measure it.",
+      "status": "checked",
+      "refs": [
+        "tran2025",
+        "mithoowani2026",
+        "barouqa2026"
+      ]
+    },
+    {
+      "id": "cl-xa",
+      "text": "PT reagent-dependent and often normal on apixaban; drug-calibrated anti-Xa measures Xa inhibitors; Xa DOACs falsely raise heparin-calibrated anti-Xa.",
+      "status": "checked",
+      "refs": [
+        "barouqa2026",
+        "tran2025",
+        "reardon2026"
+      ]
+    },
+    {
+      "id": "cl-spiked",
+      "text": "Spiked normal plasma must not be used to set the heparin APTT range; a normal anti-Xa excludes clinically relevant Xa-inhibitor levels; APTT plateaus with Xa inhibitors.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch39"
+      ],
+      "note": "Not taught; not stated explicitly in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Coagulation relay, scatter plot, tubes and lane tokens.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Test the target.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Coagulation diagram, scatter plot and tubes are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Reardon 2026, Li 2025, Barouqa 2026, Tran 2025 and Mithoowani 2026 (full texts) read for this lesson; 1 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
