@@ -91,7 +91,7 @@ describe('recommendations', () => {
   const complete = lessons.filter((l) => l.validation.complete);
 
   it('suggests lessons in reviewer order to a new learner', () => {
-    const r = recommend(curriculum, lessons, emptyState(), 50);
+    const r = recommend(curriculum, lessons, emptyState(), 500);
     expect(r).toHaveLength(complete.length);
     expect(r.every((x) => x.kind === 'next')).toBe(true);
     const o = r.map((x) => firstOrder(x.lessonId));
