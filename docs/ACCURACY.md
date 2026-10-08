@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 82 flags: 58 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 83 flags: 59 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -75,6 +75,7 @@ Verified:
 - **Ch. 57 Hit 36:** HACEK called “culture-negative” (Khaledi 2022: ~99% detected within 5 days by automated blood culture; prolonged incubation of no value). Ch. 57 Hit 33 repeats the *A. niger* “uniseriate” error (rv-niger-seriation).
 - **Ch. 36 Hit 14 / Trap 6:** platelets “> 20 × 10⁹/L” in bleeding DIC (Wada 2014, summarizing BCSH/JSTH/SISET/ISTH: transfuse bleeding DIC at ≤ 50 × 10⁹/L; 10–20 only for non-bleeding).
 - **Ch. 17 Hit 3 / Trap 3:** high insulin + high C-peptide called insulinoma without excluding sulfonylureas (ENETS 2012; Peltola 2018).
+- **Ch. 42 Hit 8:** plerixafor described as only for NHL/myeloma patients “failing G-CSF” (De Clercq 2019: approved 2008 for autologous mobilization in NHL/myeloma, with G-CSF).
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -135,6 +136,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Gram-Negative First Forks (Ch. 57):** 1 pending claim (HACEK on MacConkey, Pseudomonas odour and puncture wounds, indole; not taught); no lesson flags (register flag rv-hacek-culture concerns Hit 36).
 - **DIC, Liver Disease and Fibrinolysis (Ch. 36):** 1 pending claim (D-dimer cross-link wording, low-dose heparin dose, vitamin K onset, dysfibrinogenemia TT/reptilase, VWF 300–600%; not taught); 1 register flag (rv-dic-platelets).
 - **Ketones and Hypoglycemia (Ch. 17):** 1 pending claim (≤ 55 mg/dL threshold, glycated albumin standardization, 1,5-AG, “10–15%”; not taught as stated); 1 register flag (rv-cpeptide-sulfonylurea).
+- **Mobilizing Stem Cells and Photopheresis (Ch. 42):** 1 pending claim (G-CSF split dosing and ceiling, bone pain 80%, GVHD > 8 × 10⁶/kg, product Hct < 7%, 24 h sun avoidance, ECP ASFA category; not taught); 1 register flag (rv-plerixafor-label).
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
