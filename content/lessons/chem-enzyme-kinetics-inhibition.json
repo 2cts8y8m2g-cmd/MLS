@@ -1,0 +1,2887 @@
+{
+  "schemaVersion": 1,
+  "id": "chem-enzyme-kinetics-inhibition",
+  "title": "Enzyme Kinetics: Km, Vmax and Where the Lines Meet",
+  "summary": "Read the Michaelis–Menten curve and the Lineweaver–Burk plot, tell competitive, noncompetitive and uncompetitive inhibition apart, and see why labs measure initial rates and dilute samples with very high activity.",
+  "domain": "p2-chem",
+  "topic": "ch21",
+  "conceptIds": [
+    "ch21.hit1",
+    "ch21.hit5",
+    "ch21.hit6",
+    "ch21.trap3",
+    "ch21.figure"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 21,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          5,
+          6
+        ]
+      },
+      {
+        "chapter": 21,
+        "section": "Exam Traps",
+        "items": [
+          3
+        ]
+      },
+      {
+        "chapter": 21,
+        "section": "Figure 21"
+      }
+    ],
+    "note": "Teaches Ch. 21 Hit 1 (inhibition patterns), Hit 5 (Lineweaver–Burk intercepts and slope), Hit 6 (Km; rate ∝ enzyme at saturation; initial velocity), Trap 3 (endpoint assays falsely low with very high activity) and the Figure 21 anchor. Checked against Robinson 2015 and Ramsay & Tipton 2017; intercepts and the parallel uncompetitive line follow from the rearranged equations. Pending: Km = (k−1 + k2)/k1 expression."
+  },
+  "prerequisites": [
+    "ch20.hit1"
+  ],
+  "objectives": [
+    "Define Vmax and Km from the Michaelis–Menten curve and explain why assays use excess substrate and initial rates.",
+    "Read the Lineweaver–Burk plot (intercepts and slope) and identify competitive, noncompetitive and uncompetitive inhibition.",
+    "Explain why an endpoint assay can under-report very high enzyme activity and how dilution fixes it."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "A “normal” amylase in severe pancreatitis",
+      "start": 0,
+      "end": 20,
+      "altText": "A patient with classic severe pancreatitis pain: lipase 1,200 U/L. The fixed-time (endpoint) amylase result comes back “normal”. A puzzled token asks how an enzyme result can be falsely low. The answer: enzyme kinetics.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A patient has severe upper abdominal pain. The lipase is very high."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "But the amylase, measured with a fixed-time endpoint method, comes back normal."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Can an enormous amount of enzyme ever read as normal? To answer that, you need to know how enzymes behave."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 150,
+            "w": 360,
+            "h": 110,
+            "tone": "a",
+            "title": "Patient",
+            "lines": [
+              "Severe pancreatitis pain",
+              "Lipase 1,200 U/L ▲"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "am",
+          "type": "card",
+          "props": {
+            "x": 700,
+            "y": 150,
+            "w": 320,
+            "h": 110,
+            "tone": "neutral",
+            "title": "Amylase (endpoint)",
+            "lines": [
+              "“Normal”"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "tone": "good"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 330,
+            "w": 520,
+            "label": "Huge enzyme activity → “normal” result?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 900,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: the Michaelis–Menten curve",
+      "start": 20,
+      "end": 60,
+      "altText": "Axes: reaction rate (v) against substrate concentration [S]. Points trace a hyperbola that rises steeply, then flattens toward a ceiling, Vmax. A dashed line marks Vmax/2; dropping to the [S] axis marks Km — the substrate concentration giving half-maximal velocity. A low Km means the enzyme is half-saturated at low substrate (high affinity). At saturating substrate, rate is proportional to the amount of enzyme — which is why enzyme assays supply excess substrate and measure the initial rate.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Add more substrate and an enzyme works faster — at first. Then the curve flattens, because every enzyme molecule is busy. That ceiling is V-max."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Halfway up, at V-max over two, drop down to the substrate axis. That substrate concentration is K-m, the Michaelis constant."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 49,
+          "text": "A low K-m means the enzyme reaches half speed with only a little substrate. We read that as high affinity."
+        },
+        {
+          "id": "n4",
+          "start": 49,
+          "end": 60,
+          "text": "When substrate is in excess, rate depends only on how much enzyme there is: double the enzyme, double the rate. That is why enzyme assays add plenty of substrate and measure the initial rate."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ax",
+          "type": "arrow",
+          "props": {
+            "x": 120,
+            "y": 430,
+            "dx": 640,
+            "dy": 0,
+            "draw": 0,
+            "label": "[S]"
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "draw": 0
+            },
+            {
+              "t": 1.3,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ay",
+          "type": "arrow",
+          "props": {
+            "x": 120,
+            "y": 430,
+            "dx": 0,
+            "dy": -340,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "draw": 0
+            },
+            {
+              "t": 1.3,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ayl",
+          "type": "label",
+          "props": {
+            "x": 100,
+            "y": 70,
+            "text": "Rate (v)",
+            "size": 14,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.8,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mm0",
+          "type": "token",
+          "props": {
+            "x": 137.5,
+            "y": 370.0,
+            "w": 16,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.2,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mm1",
+          "type": "token",
+          "props": {
+            "x": 155.0,
+            "y": 330.0,
+            "w": 16,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.7999999999999998,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.8,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mm2",
+          "type": "token",
+          "props": {
+            "x": 190,
+            "y": 280.0,
+            "w": 16,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.4,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 3.4,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mm3",
+          "type": "token",
+          "props": {
+            "x": 225.0,
+            "y": 250.0,
+            "w": 16,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 4.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mm4",
+          "type": "token",
+          "props": {
+            "x": 260,
+            "y": 230.0,
+            "w": 16,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5999999999999996,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 4.6,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mm5",
+          "type": "token",
+          "props": {
+            "x": 330,
+            "y": 205.0,
+            "w": 16,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.2,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 5.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mm6",
+          "type": "token",
+          "props": {
+            "x": 400,
+            "y": 190.0,
+            "w": 16,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.8,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 5.8,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mm7",
+          "type": "token",
+          "props": {
+            "x": 470,
+            "y": 180.0,
+            "w": 16,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.4,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.4,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mm8",
+          "type": "token",
+          "props": {
+            "x": 540,
+            "y": 172.8571428571429,
+            "w": 16,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 7.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mm9",
+          "type": "token",
+          "props": {
+            "x": 680,
+            "y": 163.33333333333337,
+            "w": 16,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 7.6,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "vmax",
+          "type": "highlight",
+          "props": {
+            "x": 480,
+            "y": 130,
+            "w": 640,
+            "h": 4,
+            "dashed": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "vml",
+          "type": "token",
+          "props": {
+            "x": 860,
+            "y": 130,
+            "w": 110,
+            "label": "Vmax",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 9.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "half",
+          "type": "highlight",
+          "props": {
+            "x": 155,
+            "y": 280.0,
+            "w": 70,
+            "h": 4,
+            "dashed": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "token",
+          "props": {
+            "x": 70,
+            "y": 280.0,
+            "w": 100,
+            "label": "Vmax/2",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "kmv",
+          "type": "arrow",
+          "props": {
+            "x": 190,
+            "y": 280.0,
+            "dx": 0,
+            "dy": 150,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "draw": 0
+            },
+            {
+              "t": 14.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "kml",
+          "type": "token",
+          "props": {
+            "x": 190,
+            "y": 460,
+            "w": 80,
+            "label": "Km",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "aff",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 300,
+            "w": 360,
+            "label": "Low Km = half-saturated early (high affinity)",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lin",
+          "type": "card",
+          "props": {
+            "x": 560,
+            "y": 390,
+            "w": 420,
+            "h": 100,
+            "tone": "a",
+            "title": "Excess substrate",
+            "lines": [
+              "Rate ∝ amount of enzyme",
+              "Measure the initial rate"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29.5,
+              "opacity": 0
+            },
+            {
+              "t": 30,
+              "reveal": 0
+            },
+            {
+              "t": 30.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: inhibitors on the double-reciprocal plot",
+      "start": 60,
+      "end": 104,
+      "altText": "Lineweaver–Burk (double-reciprocal) plot: 1/v against 1/[S] gives a straight line. Y-intercept = 1/Vmax, x-intercept = −1/Km, slope = Km/Vmax. Then three inhibitor lines are added in turn. Competitive (binds the active site; overcome by more substrate): Km rises, Vmax unchanged — the line pivots and meets the original on the y-axis. Noncompetitive (binds elsewhere, removes active enzyme): Vmax falls, Km unchanged — lines meet on the x-axis. Uncompetitive (binds only the enzyme–substrate complex): both fall — a parallel line.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "Flip both axes — one over rate against one over substrate — and the curve becomes a straight line. It crosses the y-axis at one over V-max, and the x-axis at minus one over K-m."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 80,
+          "text": "A competitive inhibitor looks like the substrate and sits in the active site. Enough substrate outcompetes it, so V-max is unchanged, but K-m rises. The new line meets the old one on the y-axis."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 91,
+          "text": "A noncompetitive inhibitor binds somewhere else and simply takes enzyme out of action. V-max falls; K-m stays the same. The lines meet on the x-axis."
+        },
+        {
+          "id": "c4",
+          "start": 91,
+          "end": 104,
+          "text": "An uncompetitive inhibitor binds only to enzyme that already holds substrate. Both V-max and K-m fall by the same factor, so the line shifts up but stays parallel."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ax",
+          "type": "arrow",
+          "props": {
+            "x": 130,
+            "y": 420,
+            "dx": 500,
+            "dy": 0,
+            "draw": 0,
+            "label": "1/[S]"
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "draw": 0
+            },
+            {
+              "t": 1.3,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ay",
+          "type": "arrow",
+          "props": {
+            "x": 380,
+            "y": 470,
+            "dx": 0,
+            "dy": -420,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "draw": 0
+            },
+            {
+              "t": 1.3,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ayl",
+          "type": "label",
+          "props": {
+            "x": 350,
+            "y": 40,
+            "text": "1/v",
+            "size": 15,
+            "weight": 800,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.8,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "l0",
+          "type": "arrow",
+          "props": {
+            "x": 280,
+            "y": 420,
+            "dx": 400,
+            "dy": -320,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 1.2,
+              "draw": 0
+            },
+            {
+              "t": 2.7,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "l0L",
+          "type": "label",
+          "props": {
+            "x": 680,
+            "y": 86,
+            "text": "No inhibitor",
+            "size": 14,
+            "weight": 800,
+            "color": "ink",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.4,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 3.4,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "yi",
+          "type": "token",
+          "props": {
+            "x": 455,
+            "y": 344,
+            "w": 110,
+            "label": "1/Vmax",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 4.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "xi",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 450,
+            "w": 110,
+            "label": "−1/Km",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "lc",
+          "type": "arrow",
+          "props": {
+            "x": 330.0,
+            "y": 420.0,
+            "dx": 200.0,
+            "dy": -320.0,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "draw": 0
+            },
+            {
+              "t": 12.0,
+              "draw": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19.8,
+              "opacity": 1
+            },
+            {
+              "t": 20.400000000000002,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "lcL",
+          "type": "label",
+          "props": {
+            "x": 530.0,
+            "y": 86.0,
+            "text": "+ competitive",
+            "size": 14,
+            "weight": 800,
+            "color": "ink",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.7,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.7,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19.8,
+              "opacity": 1
+            },
+            {
+              "t": 20.400000000000002,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "cl",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 290,
+            "w": 300,
+            "h": 110,
+            "tone": "a",
+            "title": "Competitive",
+            "lines": [
+              "Km ↑ · Vmax same",
+              "Meets on y-axis"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0
+            },
+            {
+              "t": 11.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19.5,
+              "opacity": 1
+            },
+            {
+              "t": 20.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ln",
+          "type": "arrow",
+          "props": {
+            "x": 280,
+            "y": 420,
+            "dx": 200,
+            "dy": -320,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "draw": 0
+            },
+            {
+              "t": 22.0,
+              "draw": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30.8,
+              "opacity": 1
+            },
+            {
+              "t": 31.400000000000002,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "lnL",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 86,
+            "text": "+ noncompetitive",
+            "size": 14,
+            "weight": 800,
+            "color": "ink",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.7,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 22.7,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30.8,
+              "opacity": 1
+            },
+            {
+              "t": 31.400000000000002,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "nl",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 290,
+            "w": 300,
+            "h": 110,
+            "tone": "b",
+            "title": "Noncompetitive",
+            "lines": [
+              "Vmax ↓ · Km same",
+              "Meets on x-axis"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21,
+              "opacity": 0
+            },
+            {
+              "t": 21.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30.5,
+              "opacity": 1
+            },
+            {
+              "t": 31.0,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "lu",
+          "type": "arrow",
+          "props": {
+            "x": 180,
+            "y": 420,
+            "dx": 400,
+            "dy": -320,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "draw": 0
+            },
+            {
+              "t": 33.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "luL",
+          "type": "label",
+          "props": {
+            "x": 540,
+            "y": 86,
+            "text": "+ uncompetitive",
+            "size": 14,
+            "weight": 800,
+            "color": "ink",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.7,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.7,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ul",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 290,
+            "w": 300,
+            "h": 110,
+            "tone": "warn",
+            "title": "Uncompetitive",
+            "lines": [
+              "Vmax ↓ · Km ↓",
+              "Parallel line"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32,
+              "opacity": 0
+            },
+            {
+              "t": 32.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "es",
+          "type": "token",
+          "props": {
+            "x": 790,
+            "y": 400,
+            "w": 300,
+            "label": "Binds only enzyme–substrate",
+            "tone": "neutral",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: measure the straight part",
+      "start": 104,
+      "end": 144,
+      "altText": "A progress curve: product formed against time, straight at first, then bending flat. Causes listed: substrate depletion, product inhibition, approaching equilibrium, instability. A kinetic assay reads the slope (ΔA/min) in the straight, initial part. Second curve: a sample with enormous activity uses up substrate within seconds; a fixed-time endpoint reading taken later sees a flattened curve and under-reports. Remedy: dilute and re-run; kinetic methods flag the non-linearity.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Follow an enzyme reaction over time. At first, product builds in a straight line. Then the curve bends and flattens."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 123,
+          "text": "Why? The substrate runs out, products start inhibiting the enzyme, the reaction nears equilibrium, or a component breaks down."
+        },
+        {
+          "id": "l3",
+          "start": 123,
+          "end": 133,
+          "text": "So labs measure the initial rate — the slope of the straight part. Kinetic methods read the change in absorbance per minute, and can detect when the line stops being straight."
+        },
+        {
+          "id": "l4",
+          "start": 133,
+          "end": 144,
+          "text": "Now a sample with enormous activity. It burns through the substrate within seconds. A single endpoint reading taken later sees a flat curve and under-reports. The fix: dilute the sample and run it again."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ax",
+          "type": "arrow",
+          "props": {
+            "x": 100,
+            "y": 430,
+            "dx": 440,
+            "dy": 0,
+            "draw": 0,
+            "label": "Time"
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "draw": 0
+            },
+            {
+              "t": 1.3,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ay",
+          "type": "arrow",
+          "props": {
+            "x": 100,
+            "y": 430,
+            "dx": 0,
+            "dy": -330,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "draw": 0
+            },
+            {
+              "t": 1.3,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ayl",
+          "type": "label",
+          "props": {
+            "x": 100,
+            "y": 80,
+            "text": "Product",
+            "size": 14,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.8,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pc0",
+          "type": "token",
+          "props": {
+            "x": 100,
+            "y": 430.0,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pc1",
+          "type": "token",
+          "props": {
+            "x": 140,
+            "y": 359.26726734070843,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 3.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pc2",
+          "type": "token",
+          "props": {
+            "x": 180,
+            "y": 307.77730187161234,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pc3",
+          "type": "token",
+          "props": {
+            "x": 220,
+            "y": 270.2951285646767,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 4.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pc4",
+          "type": "token",
+          "props": {
+            "x": 260,
+            "y": 243.0099419654669,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 4.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pc5",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 223.14766232502933,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 5.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pc6",
+          "type": "token",
+          "props": {
+            "x": 340,
+            "y": 208.68889543771164,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 5.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pc7",
+          "type": "token",
+          "props": {
+            "x": 380,
+            "y": 198.16362121510033,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pc8",
+          "type": "token",
+          "props": {
+            "x": 420,
+            "y": 190.50173702231092,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pc9",
+          "type": "token",
+          "props": {
+            "x": 460,
+            "y": 184.92426054596393,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 7.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pc10",
+          "type": "token",
+          "props": {
+            "x": 500,
+            "y": 180.86413081005904,
+            "w": 14,
+            "label": "",
+            "tone": "blood",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 7.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "slope",
+          "type": "arrow",
+          "props": {
+            "x": 100,
+            "y": 430,
+            "dx": 150,
+            "dy": -150,
+            "draw": 0,
+            "label": "Initial rate"
+          },
+          "keys": [
+            {
+              "t": 5,
+              "draw": 0
+            },
+            {
+              "t": 6.5,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "why",
+          "type": "card",
+          "props": {
+            "x": 740,
+            "y": 130,
+            "w": 380,
+            "h": 110,
+            "tone": "neutral",
+            "title": "Why it flattens",
+            "lines": [
+              "Substrate depletion · product inhibition",
+              "Equilibrium · instability"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "kin",
+          "type": "token",
+          "props": {
+            "x": 740,
+            "y": 240,
+            "w": 380,
+            "label": "Kinetic: ΔA/min in the straight part",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 20.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hc0",
+          "type": "token",
+          "props": {
+            "x": 100,
+            "y": 430.0,
+            "w": 16,
+            "label": "",
+            "tone": "warn",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 30.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hc1",
+          "type": "token",
+          "props": {
+            "x": 140,
+            "y": 207.87628323675588,
+            "w": 16,
+            "label": "",
+            "tone": "warn",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29.8,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 30.8,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hc2",
+          "type": "token",
+          "props": {
+            "x": 180,
+            "y": 175.51774166088828,
+            "w": 16,
+            "label": "",
+            "tone": "warn",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.1,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hc3",
+          "type": "token",
+          "props": {
+            "x": 220,
+            "y": 170.80381363836557,
+            "w": 16,
+            "label": "",
+            "tone": "warn",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.4,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.4,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hc4",
+          "type": "token",
+          "props": {
+            "x": 260,
+            "y": 170.11709797321657,
+            "w": 16,
+            "label": "",
+            "tone": "warn",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.7,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.7,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hc5",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 170.01705860000004,
+            "w": 16,
+            "label": "",
+            "tone": "warn",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hc6",
+          "type": "token",
+          "props": {
+            "x": 340,
+            "y": 170.00248506294315,
+            "w": 16,
+            "label": "",
+            "tone": "warn",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.3,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.3,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hc7",
+          "type": "token",
+          "props": {
+            "x": 380,
+            "y": 170.00036201903038,
+            "w": 16,
+            "label": "",
+            "tone": "warn",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.6,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hc8",
+          "type": "token",
+          "props": {
+            "x": 420,
+            "y": 170.0000527382128,
+            "w": 16,
+            "label": "",
+            "tone": "warn",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.9,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.9,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hc9",
+          "type": "token",
+          "props": {
+            "x": 460,
+            "y": 170.000007682798,
+            "w": 16,
+            "label": "",
+            "tone": "warn",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.2,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hc10",
+          "type": "token",
+          "props": {
+            "x": 500,
+            "y": 170.00000111921474,
+            "w": 16,
+            "label": "",
+            "tone": "warn",
+            "highlight": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ep",
+          "type": "highlight",
+          "props": {
+            "x": 420,
+            "y": 260,
+            "w": 30,
+            "h": 340,
+            "dashed": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32,
+              "opacity": 0
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "epl",
+          "type": "token",
+          "props": {
+            "x": 740,
+            "y": 320,
+            "w": 380,
+            "label": "High activity (ringed): flat early → endpoint falsely low",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "dil",
+          "type": "token",
+          "props": {
+            "x": 740,
+            "y": 390,
+            "w": 380,
+            "label": "Dilute and re-run",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 36.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Trap card: “Any inhibitor lowers Vmax” is crossed out → “Competitive: Vmax unchanged, Km up — more substrate overcomes it.” Trap card: “Uncompetitive is the same as noncompetitive” is crossed out → “Uncompetitive lowers Km and Vmax (parallel lines); noncompetitive lowers only Vmax.” Trap card: “A normal endpoint result rules out high activity” is crossed out → “Substrate depletion can make it falsely low — dilute.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 155,
+          "text": "Trap one: not every inhibitor lowers V-max. A competitive inhibitor raises K-m, and enough substrate restores full speed."
+        },
+        {
+          "id": "e2",
+          "start": 155,
+          "end": 165,
+          "text": "Trap two: uncompetitive is not noncompetitive. Uncompetitive lowers both K-m and V-max — parallel lines. Noncompetitive lowers only V-max — lines meet on the x-axis."
+        },
+        {
+          "id": "e3",
+          "start": 165,
+          "end": 174,
+          "text": "Trap three: a normal endpoint result doesn’t rule out very high activity. If the substrate ran out early, the result is falsely low — dilute and repeat."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Every inhibitor lowers Vmax.”",
+            "lines": [
+              "✓ Competitive: Km ↑, Vmax unchanged — excess substrate overcomes it"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 0
+            },
+            {
+              "t": 6,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Uncompetitive = noncompetitive.”",
+            "lines": [
+              "✓ Uncompetitive: Km ↓ and Vmax ↓ (parallel) · noncompetitive: Vmax ↓ only"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 0
+            },
+            {
+              "t": 16,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “A normal endpoint result rules out high activity.”",
+            "lines": [
+              "✓ Substrate depletion can make it falsely low — dilute"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 22.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Where the lines meet",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Competitors fight at the door (y-axis); noncompetitors sabotage the factory (x-axis); uncompetitors trap the busy workers (parallel).” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: competitive lines meet on the y-axis, noncompetitive on the x-axis, and uncompetitive lines never meet — they run parallel."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: many real inhibitors are mixed, and some authors use “noncompetitive” loosely for mixed inhibition. The double-reciprocal plot is good for showing patterns but inaccurate for estimating K-m and V-max; curve fitting is preferred."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Where do the lines meet?",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 180,
+            "w": 260,
+            "label": "Competitive → y-axis",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 260,
+            "label": "Noncompetitive → x-axis",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 180,
+            "w": 260,
+            "label": "Uncompetitive → parallel",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 110,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Many inhibitors are mixed · “noncompetitive” is used loosely",
+              "Double-reciprocal plots show patterns but estimate Km/Vmax poorly"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Km = [S] at Vmax/2; measure the initial rate with excess substrate”, “Competitive Km↑ · noncompetitive Vmax↓ · uncompetitive both↓”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Km is the substrate level at half Vmax; enzyme assays measure the initial rate with excess substrate, and inhibitors are told apart by what they do to Km and Vmax."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 700,
+            "label": "Km = [S] at Vmax/2 · measure the initial rate",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 700,
+            "label": "Competitive Km↑ · noncompetitive Vmax↓ · uncompetitive both↓",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: an enzyme speeds up as you give it more substrate until every enzyme molecule is busy; inhibitors slow it down in different ways. Scientific terms: v = Vmax[S]/(Km + [S]); Km is the substrate concentration giving half-maximal velocity; the Lineweaver–Burk plot (1/v vs 1/[S]) is linear with y-intercept 1/Vmax, x-intercept −1/Km and slope Km/Vmax.",
+    "why": "Competitive inhibitors bind the active site, so excess substrate displaces them (Vmax unchanged, apparent Km increased). Noncompetitive inhibitors bind elsewhere and remove active enzyme (Vmax decreased, Km unchanged). Uncompetitive inhibitors bind only the ES complex, lowering both Vmax and apparent Km by the same factor (parallel lines).",
+    "measure": "At saturating substrate, initial rate is proportional to enzyme concentration, so clinical assays supply excess substrate and measure the initial (linear) rate. Progress curves flatten because of substrate depletion, product inhibition, approach to equilibrium or instability; with very high activity, an endpoint reading can be falsely low — dilute and re-run.",
+    "differs": "Competitive (y-axis intersection) vs noncompetitive (x-axis intersection) vs uncompetitive (parallel); kinetic (rate) vs fixed-time endpoint methods.",
+    "examAngle": "Expect: identifying inhibition type from Km/Vmax changes or plot shape, reading Km and Vmax from intercepts, Km = [S] at Vmax/2, and the “falsely normal endpoint” trap."
+  },
+  "comparisons": [
+    {
+      "id": "inhib-types",
+      "title": "Competitive vs noncompetitive vs uncompetitive",
+      "left": {
+        "label": "Competitive",
+        "points": [
+          "Binds active site; overcome by substrate",
+          "Km ↑, Vmax unchanged; lines meet on y-axis"
+        ]
+      },
+      "right": {
+        "label": "Noncompetitive / uncompetitive",
+        "points": [
+          "Noncompetitive: Vmax ↓, Km same; meet on x-axis",
+          "Uncompetitive (ES only): both ↓; parallel"
+        ]
+      },
+      "distinguisher": "Which parameter changes — and where the double-reciprocal lines meet."
+    },
+    {
+      "id": "kinetic-vs-endpoint",
+      "title": "Kinetic vs endpoint assays",
+      "left": {
+        "label": "Kinetic",
+        "points": [
+          "Reads ΔA/min in the linear phase",
+          "Can detect non-linearity"
+        ]
+      },
+      "right": {
+        "label": "Endpoint (fixed time)",
+        "points": [
+          "Single reading after a set time",
+          "Falsely low if substrate is exhausted early"
+        ]
+      },
+      "distinguisher": "Whether the measurement stays within the initial, linear rate."
+    }
+  ],
+  "mnemonic": {
+    "text": "Where do the lines meet? Competitive → y-axis; noncompetitive → x-axis; uncompetitive → never (parallel).",
+    "explanation": "Competitive keeps Vmax (same 1/Vmax intercept); noncompetitive keeps Km (same −1/Km intercept); uncompetitive keeps the slope Km/Vmax.",
+    "limitation": "Many inhibitors are mixed; “noncompetitive” is used loosely by some authors; double-reciprocal plots are inaccurate for estimating parameters — nonlinear fitting is preferred."
+  },
+  "analogyLimitations": [
+    "Plots are idealised with Km = 1 and Vmax = 1, not real data.",
+    "The patient case is invented.",
+    "Mixed and partial inhibition are not shown."
+  ],
+  "takeaway": "Km is the substrate level at half Vmax; enzyme assays measure the initial rate with excess substrate, and inhibitors are told apart by what they do to Km and Vmax.",
+  "questions": [
+    {
+      "id": "chem-ek-q1",
+      "stem": "In the presence of an inhibitor, Vmax is unchanged and the apparent Km increases. Which type of inhibition is this?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Competitive",
+          "rationale": "Correct. Excess substrate outcompetes the inhibitor at the active site, so Vmax is reached but more substrate is needed for half-maximal rate."
+        },
+        {
+          "id": "b",
+          "text": "Noncompetitive",
+          "rationale": "Incorrect. Noncompetitive inhibition lowers Vmax and leaves Km unchanged."
+        },
+        {
+          "id": "c",
+          "text": "Uncompetitive",
+          "rationale": "Incorrect. Uncompetitive inhibition lowers both Vmax and apparent Km."
+        },
+        {
+          "id": "d",
+          "text": "Irreversible",
+          "rationale": "Incorrect. Irreversible inhibition removes active enzyme, lowering Vmax."
+        }
+      ],
+      "answer": "a",
+      "skill": "Inhibition type",
+      "difficulty": "recall"
+    },
+    {
+      "id": "chem-ek-q2",
+      "stem": "On a Lineweaver–Burk plot, the line crosses the y-axis at 0.5 and the x-axis at −0.25 (consistent units). What are Vmax and Km?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Vmax = 2, Km = 4",
+          "rationale": "Correct. Y-intercept = 1/Vmax, so Vmax = 2; x-intercept = −1/Km, so Km = 4."
+        },
+        {
+          "id": "b",
+          "text": "Vmax = 0.5, Km = 0.25",
+          "rationale": "Incorrect. The intercepts are reciprocals, not the values themselves."
+        },
+        {
+          "id": "c",
+          "text": "Vmax = 4, Km = 2",
+          "rationale": "Incorrect. The intercepts have been swapped."
+        },
+        {
+          "id": "d",
+          "text": "Vmax = 2, Km = 0.25",
+          "rationale": "Incorrect. Km is the negative reciprocal of the x-intercept, which gives 4."
+        }
+      ],
+      "answer": "a",
+      "skill": "Read L-B plot",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-ek-q3",
+      "stem": "A fixed-time (endpoint) enzyme result is unexpectedly normal in a patient whose other findings suggest extremely high activity. What is the best next step?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dilute the sample and re-run, or use a kinetic method",
+          "rationale": "Correct. Very high activity can exhaust the substrate before the reading, flattening the curve; dilution restores linearity."
+        },
+        {
+          "id": "b",
+          "text": "Report the result as normal",
+          "rationale": "Incorrect. Substrate depletion can produce a falsely low endpoint result."
+        },
+        {
+          "id": "c",
+          "text": "Repeat the same undiluted sample",
+          "rationale": "Incorrect. The same substrate depletion would recur."
+        },
+        {
+          "id": "d",
+          "text": "Increase the incubation time",
+          "rationale": "Incorrect. A longer time makes depletion worse."
+        }
+      ],
+      "answer": "a",
+      "skill": "Substrate depletion",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch21",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 21, Enzymes as Disease Clues (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 21,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            5,
+            6
+          ]
+        },
+        {
+          "chapter": 21,
+          "section": "Exam Traps",
+          "items": [
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "robinson2015",
+      "kind": "external",
+      "citation": "Robinson PK. Enzymes: principles and biotechnological applications. Essays Biochem. 2015;59:1-41.",
+      "doi": "10.1042/bse0590001",
+      "url": "https://europepmc.org/article/PMC/PMC4692135",
+      "consulted": true,
+      "usedFor": "Initial velocity; linear relationship between rate and enzyme concentration; saturation and Vmax; Km = substrate concentration giving half-maximal velocity, low Km = high affinity; Michaelis–Menten equation; Lineweaver–Burk plot linearises data and its intercepts give Vmax and Km; competitive (substrate analogue at the active site), non-competitive (other site, Vmax ↓, Km unchanged) and uncompetitive (binds only after substrate, Vmax ↓ and Km ↓) inhibition."
+    },
+    {
+      "id": "ramsay2017",
+      "kind": "external",
+      "citation": "Ramsay RR, Tipton KF. Assessment of enzyme inhibition: a review with examples from the development of monoamine oxidase and cholinesterase inhibitory drugs. Molecules. 2017;22(7):1192.",
+      "doi": "10.3390/molecules22071192",
+      "url": "https://europepmc.org/article/PMC/PMC6152246",
+      "consulted": true,
+      "usedFor": "Competitive: Vmax unchanged, Km increased; uncompetitive inhibitors bind only the ES complex, decreasing Km and Vmax; mixed vs noncompetitive (Vmax decreased, Km unaffected) and loose use of the term; double-reciprocal plot useful for display but inaccurate for parameter estimation; progress curves flatten from substrate depletion, approach to equilibrium, product inhibition, instability; initial rates avoid these."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-mm",
+      "text": "Vmax ceiling; Km = [S] at half-maximal velocity; low Km = high affinity; rate ∝ enzyme concentration; initial velocity.",
+      "status": "checked",
+      "refs": [
+        "robinson2015"
+      ]
+    },
+    {
+      "id": "cl-lb",
+      "text": "Lineweaver–Burk: linear 1/v vs 1/[S]; y-intercept 1/Vmax, x-intercept −1/Km, slope Km/Vmax (from the rearranged Michaelis–Menten equation).",
+      "status": "checked",
+      "refs": [
+        "robinson2015",
+        "ramsay2017"
+      ]
+    },
+    {
+      "id": "cl-inhib",
+      "text": "Competitive: Km ↑, Vmax same; noncompetitive: Vmax ↓, Km same; uncompetitive (ES only): both ↓, parallel lines.",
+      "status": "checked",
+      "refs": [
+        "robinson2015",
+        "ramsay2017"
+      ]
+    },
+    {
+      "id": "cl-progress",
+      "text": "Progress curves flatten (substrate depletion, product inhibition, equilibrium, instability); measure initial rates; very high activity can make an endpoint result falsely low — dilute.",
+      "status": "checked",
+      "refs": [
+        "ramsay2017"
+      ]
+    },
+    {
+      "id": "cl-km-rate",
+      "text": "Km = (k−1 + k2)/k1.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch21"
+      ],
+      "note": "Not taught; the derivation is outlined in Robinson 2015 but the expression was not confirmed in the text read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Plotted points, intercept tokens and inhibitor lines.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Where do the lines meet?”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Plots are idealised teaching graphs.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against Robinson 2015 and Ramsay & Tipton 2017 (full texts) read for this lesson; 1 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
