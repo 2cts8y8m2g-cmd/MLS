@@ -3,10 +3,10 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 47, teaching 200 of 1,932 concepts (about 10.4%).** All 47 still require review: each has pending claims, and none has had human expert review.
-  - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-lab-safety-precautions-osha`, `ops-reimbursement-drg-payment-window`, `ops-lab-design-hazcom-numbers`.
-  - Ch. 2 (23/23 concepts): `ops-workflow-before-technology`, `ops-six-sigma-vs-lean`, `ops-instrument-selection-uptime-batch`, `ops-consolidation-utilization-autoverification`.
-  - Ch. 3 (24/24 concepts): `pre-order-of-draw-edta`, `pre-citrate-ratio-heparin`, `pre-tube-additives-fluoride-gel`, `pre-patient-id-wbit`, `pre-csf-tubes-synovial-crystals`, `pre-biotin-daratumumab-interference`, `pre-allen-test-urine-timing`, `pre-specimen-numbers-rcf-24h-urine`.
+- **Lessons complete: 48, teaching 207 of 1,932 concepts (about 10.7%).** All 48 still require review: none has had human expert review, and most have pending claims.
+  - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
+  - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
+  - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
   - Ch. 15 (3/26 concepts): `chem-fena-prerenal-vs-atn`.
   - Ch. 17 (6/22 concepts): `chem-diabetes-diagnosis-hba1c`.
   - Ch. 18 (6/24 concepts): `chem-ldl-calculation-friedewald`.
@@ -17,11 +17,12 @@
   - Ch. 31 (4/28 concepts): `heme-red-cell-indices-high-mchc`.
   - Ch. 33 (6/27 concepts): `heme-microcytic-anemia-ferritin-mentzer`.
   - Ch. 34 (3/25 concepts): `heme-cml-vs-leukemoid-reaction`.
+  - Ch. 35 (7/23 concepts): `heme-flow-cytometry-gating`.
   - Ch. 36 (5/29 concepts): `heme-mixing-study-pt-aptt`.
   - Ch. 37 (4/24 concepts): `heme-glanzmann-bernard-soulier`.
   - Ch. 38 (5/22 concepts): `heme-lupus-anticoagulant-aps`.
   - Ch. 39 (6/23 concepts): `heme-anticoagulant-test-selection`.
-  - Ch. 40 (12/36 concepts): `ih-abo-forward-reverse`, `ih-abo-discrepancy-types-workup`, `ih-weak-d-partial-d-del`, `ih-antibody-id-dosage-kidd`.
+  - Ch. 40 (12/36 concepts): `ih-abo-discrepancy-types-workup`, `ih-abo-forward-reverse`, `ih-antibody-id-dosage-kidd`, `ih-weak-d-partial-d-del`.
   - Ch. 41 (5/35 concepts): `bb-acute-hemolytic-reaction-abo-compatibility`, `bb-trali-vs-taco`.
   - Ch. 42 (9/29 concepts): `ih-plasma-exchange-tpe`.
   - Ch. 43 (3/22 concepts): `ih-hpc-cd34-dose-cryopreservation`.
@@ -33,7 +34,7 @@
   - Ch. 65 (7/24 concepts): `micro-malaria-thick-thin-films`.
   - Ch. 66 (3/54 concepts): `micro-blood-culture-volume-contamination`.
 - **Reviewer accuracy register:** 45 flags (26 verified issues, 19 needing verification), plus scan results.
-- **Checks:** 348 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 354 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -68,7 +69,7 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 | 5 | ✅ Ch. 38 Clot risk (15 Qs) | ✅ Ch. 24 Drugs & poisons (11) | ✅ Ch. 59 Mycobacteria (13) | ✅ Ch. 41 TRALI vs TACO (Hit 4) |
 | 6 | ✅ Ch. 39 Anticoagulant monitoring (14) | ✅ Ch. 21 Enzymes (10) | ✅ Ch. 65 Parasites (12) | ✅ Ch. 40 Rh / weak D (Hit 16) |
 | 7 | ✅ Ch. 34 White cell disorders (14) | ✅ Ch. 18 Lipids (10) | ✅ Ch. 61 Spirochetes (12) | ✅ Ch. 40 antibody ID / Kidd (Hits 3, 5) |
-| 8 | Ch. 35 Flow cytometry (13) | Ch. 26 Fertility & pregnancy (10) | Ch. 58 Susceptibility testing (11) | Ch. 41 storage & irradiation (Hits 3, 10, 16) |
+| 8 | ✅ Ch. 35 Flow cytometry (13) | Ch. 26 Fertility & pregnancy (10) | Ch. 58 Susceptibility testing (11) | Ch. 41 storage & irradiation (Hits 3, 10, 16) |
 | 9 | Ch. 32 Hematopoiesis (12) | Ch. 25 Endocrine (9) | Ch. 62 Chlamydia & Mycoplasma (11) | Ch. 40 DAT & warm AIHA (Hits 1, 9) |
 
 Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.

@@ -1,0 +1,2081 @@
+{
+  "schemaVersion": 1,
+  "id": "heme-flow-cytometry-gating",
+  "title": "Flow Cytometry: Size Forward, Stuff Sideways",
+  "summary": "Learn what forward and side scatter measure, how a CD45-versus-side-scatter plot isolates blasts, which markers assign lineage, why the diagnostic blast percentage comes from morphology, and how therapies erase gating markers.",
+  "domain": "p4-heme",
+  "topic": "ch35",
+  "conceptIds": [
+    "ch35.hit1",
+    "ch35.hit2",
+    "ch35.hit3",
+    "ch35.hit8",
+    "ch35.trap1",
+    "ch35.trap2",
+    "ch35.figure"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 35,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          2,
+          3,
+          8
+        ]
+      },
+      {
+        "chapter": 35,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          2
+        ]
+      },
+      {
+        "chapter": 35,
+        "section": "Figure 35"
+      }
+    ],
+    "note": "Teaches Ch. 35 Hit 1 (core: FSC/SSC; CD45 vs SSC gate), Hit 2 (MPO, cytoplasmic CD3 lineage markers), Hit 3 (blast % from morphology), Hit 8 (therapy erases gating markers), Traps 1–2 and the Figure 35 anchor. Checked against Holl 2025, Ally & Chen 2024, Fuda & Chen 2025, Gajzer & Fromm 2025, Shameli 2025 and Lamble 2025. Context added: genetically defined AML exceptions to the 20% threshold (WHO-HAEM5/ICC). Pending: hemodilution/RBC-lysis explanation of flow vs morphology discrepancy."
+  },
+  "prerequisites": [
+    "ch34.hit1"
+  ],
+  "objectives": [
+    "Explain forward scatter, side scatter and fluorescent antibody detection.",
+    "Use a CD45-versus-side-scatter plot to locate blasts and name markers that assign lineage.",
+    "Explain why morphology supplies the diagnostic blast count and how targeted therapies affect gating."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Flow says 25% blasts — the smear says 12%",
+      "start": 0,
+      "end": 20,
+      "altText": "A bone marrow from a patient with suspected acute leukaemia. The flow cytometry report says 25% blasts; the morphologic 500-cell differential says 12%. Which number decides the diagnosis — and what is flow actually good at?",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A marrow sample from a patient with suspected acute leukaemia goes to flow cytometry. The report says 25 percent blasts."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "But the 500-cell count on the smear says 12 percent."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which number counts? To answer, you need to know what flow measures — and what it doesn’t."
+        }
+      ],
+      "objects": [
+        {
+          "id": "fl",
+          "type": "card",
+          "props": {
+            "x": 270,
+            "y": 150,
+            "w": 340,
+            "h": 110,
+            "tone": "b",
+            "title": "Flow cytometry",
+            "lines": [
+              "Blasts: 25%"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mo",
+          "type": "card",
+          "props": {
+            "x": 690,
+            "y": 150,
+            "w": 340,
+            "h": 110,
+            "tone": "a",
+            "title": "Smear (500 cells)",
+            "lines": [
+              "Blasts: 12%"
+            ],
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 330,
+            "w": 460,
+            "label": "Which number decides?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 900,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: cells in single file past a laser",
+      "start": 20,
+      "end": 60,
+      "altText": "Cells flow in single file through a laser beam. Light scattered forward (forward scatter, FSC) reflects cell size; light scattered to the side (side scatter, SSC) reflects internal complexity or granularity. Cells are also stained with fluorescent antibodies against CD markers; detectors measure each colour, so every cell gets a size, a granularity and a marker profile.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "In a flow cytometer, cells stream in single file through a laser beam, one at a time."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Light scattered forward tells you about size. Light scattered to the side tells you about what’s inside — granules and complexity."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "The cells are also stained with antibodies carrying fluorescent dyes, each aimed at a CD marker."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Detectors read every colour, so each cell gets a size, a granularity and a list of markers — thousands of cells per second."
+        }
+      ],
+      "objects": [
+        {
+          "id": "stream",
+          "type": "card",
+          "props": {
+            "x": 200,
+            "y": 270,
+            "w": 60,
+            "h": 420,
+            "tone": "neutral",
+            "title": "",
+            "lines": [],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 80,
+            "w": 36,
+            "label": "●",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.0,
+              "opacity": 0
+            },
+            {
+              "t": 1.0,
+              "y": 80
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7.0,
+              "y": 460,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c1",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 80,
+            "w": 36,
+            "label": "●",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.6,
+              "opacity": 0
+            },
+            {
+              "t": 1.6,
+              "y": 80
+            },
+            {
+              "t": 1.9000000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7.6,
+              "y": 460,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 80,
+            "w": 36,
+            "label": "●",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.2,
+              "opacity": 0
+            },
+            {
+              "t": 2.2,
+              "y": 80
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8.2,
+              "y": 460,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 80,
+            "w": 36,
+            "label": "●",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.8,
+              "opacity": 0
+            },
+            {
+              "t": 2.8,
+              "y": 80
+            },
+            {
+              "t": 3.0999999999999996,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8.8,
+              "y": 460,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c4",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 80,
+            "w": 36,
+            "label": "●",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.4,
+              "opacity": 0
+            },
+            {
+              "t": 3.4,
+              "y": 80
+            },
+            {
+              "t": 3.6999999999999997,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.4,
+              "y": 460,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c5",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 80,
+            "w": 36,
+            "label": "●",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.0,
+              "opacity": 0
+            },
+            {
+              "t": 4.0,
+              "y": 80
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.0,
+              "y": 460,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "laser",
+          "type": "arrow",
+          "props": {
+            "x": 40,
+            "y": 270,
+            "dx": 130,
+            "dy": 0,
+            "draw": 0,
+            "label": "Laser"
+          },
+          "keys": [
+            {
+              "t": 2,
+              "draw": 0
+            },
+            {
+              "t": 3.5,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "fsc",
+          "type": "arrow",
+          "props": {
+            "x": 230,
+            "y": 270,
+            "dx": 200,
+            "dy": 0,
+            "draw": 0,
+            "label": "Forward scatter"
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "draw": 0
+            },
+            {
+              "t": 12.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "fscl",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 270,
+            "w": 200,
+            "label": "FSC ≈ size",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ssc",
+          "type": "arrow",
+          "props": {
+            "x": 200,
+            "y": 250,
+            "dx": 0,
+            "dy": -140,
+            "draw": 0,
+            "label": "Side scatter"
+          },
+          "keys": [
+            {
+              "t": 14,
+              "draw": 0
+            },
+            {
+              "t": 15.5,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "sscl",
+          "type": "token",
+          "props": {
+            "x": 380,
+            "y": 110,
+            "w": 300,
+            "label": "SSC ≈ granularity / complexity",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab",
+          "type": "card",
+          "props": {
+            "x": 700,
+            "y": 150,
+            "w": 360,
+            "h": 110,
+            "tone": "a",
+            "title": "Fluorescent antibodies",
+            "lines": [
+              "One dye per CD marker",
+              "e.g. CD45, CD34, CD19, MPO"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "det",
+          "type": "card",
+          "props": {
+            "x": 680,
+            "y": 400,
+            "w": 440,
+            "h": 90,
+            "tone": "good",
+            "title": "Each cell: size + granularity + markers",
+            "lines": [],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: CD45 vs side scatter finds the blasts",
+      "start": 60,
+      "end": 104,
+      "altText": "A schematic CD45 (x) vs side scatter (y) plot. Lymphocytes: bright CD45, low SSC. Monocytes: bright CD45, intermediate SSC. Granulocytes: moderate CD45, high SSC. Blasts: dim CD45, low SSC — the blast gate. The gated blasts are then tested for lineage: myeloperoxidase (MPO) for myeloid; cytoplasmic CD3 for T lineage; B-lineage markers such as CD19 with CD79a or CD22.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "The standard first picture plots CD45, the common white-cell marker, against side scatter. Normal populations land in familiar places."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 80,
+          "text": "Lymphocytes: bright CD45, little side scatter. Monocytes: bright CD45, a bit more. Granulocytes: high side scatter."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 91,
+          "text": "Blasts sit in their own corner: dim CD45 and low side scatter. Draw a gate there, and you’ve isolated the blasts."
+        },
+        {
+          "id": "c4",
+          "start": 91,
+          "end": 104,
+          "text": "Then ask what lineage they are. Myeloperoxidase points to myeloid; cytoplasmic CD3 to T cells; B-cell markers such as CD19 with CD79a or CD22 to B cells."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ax",
+          "type": "arrow",
+          "props": {
+            "x": 80,
+            "y": 450,
+            "dx": 500,
+            "dy": 0,
+            "draw": 0,
+            "label": "CD45 →"
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "draw": 0
+            },
+            {
+              "t": 1.3,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ay",
+          "type": "arrow",
+          "props": {
+            "x": 80,
+            "y": 450,
+            "dx": 0,
+            "dy": -400,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "draw": 0
+            },
+            {
+              "t": 1.3,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ayl",
+          "type": "label",
+          "props": {
+            "x": 80,
+            "y": 35,
+            "text": "Side scatter",
+            "size": 14,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.8,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ly",
+          "type": "cocci",
+          "props": {
+            "x": 470,
+            "y": 400,
+            "arrangement": "scatter",
+            "gram": "blue",
+            "count": 16,
+            "r": 5,
+            "w": 88,
+            "h": 48,
+            "seed": 1,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "lyl",
+          "type": "token",
+          "props": {
+            "x": 470,
+            "y": 430,
+            "w": 110,
+            "label": "Lymphs",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mo",
+          "type": "cocci",
+          "props": {
+            "x": 470,
+            "y": 300,
+            "arrangement": "scatter",
+            "gram": "neg",
+            "count": 12,
+            "r": 5,
+            "w": 80,
+            "h": 56,
+            "seed": 2,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 14.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mol",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 300,
+            "w": 110,
+            "label": "Monos",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "gr",
+          "type": "cocci",
+          "props": {
+            "x": 380,
+            "y": 160,
+            "arrangement": "scatter",
+            "gram": "pos",
+            "count": 20,
+            "r": 5,
+            "w": 140,
+            "h": 100,
+            "seed": 3,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "grl",
+          "type": "token",
+          "props": {
+            "x": 380,
+            "y": 80,
+            "w": 130,
+            "label": "Granulocytes",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 18.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "bl",
+          "type": "cocci",
+          "props": {
+            "x": 230,
+            "y": 390,
+            "arrangement": "scatter",
+            "gram": "afb",
+            "count": 16,
+            "r": 5,
+            "w": 88,
+            "h": 64,
+            "seed": 4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "gate",
+          "type": "highlight",
+          "props": {
+            "x": 230,
+            "y": 390,
+            "w": 120,
+            "h": 90,
+            "dashed": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22,
+              "opacity": 0
+            },
+            {
+              "t": 22.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "bll",
+          "type": "token",
+          "props": {
+            "x": 230,
+            "y": 320,
+            "w": 200,
+            "label": "Blasts: dim CD45, low SSC",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 24.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lin",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 230,
+            "w": 300,
+            "h": 150,
+            "tone": "neutral",
+            "title": "Lineage of gated blasts",
+            "lines": [
+              "MPO → myeloid",
+              "Cytoplasmic CD3 → T",
+              "CD19 + CD79a/CD22 → B"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32,
+              "reveal": 0
+            },
+            {
+              "t": 32.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 40,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "sch",
+          "type": "label",
+          "props": {
+            "x": 330,
+            "y": 480,
+            "text": "Schematic plot",
+            "size": 12,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: what flow can’t decide alone",
+      "start": 104,
+      "end": 144,
+      "altText": "Card 1: the blast percentage used to classify acute leukaemia comes from the morphologic count (e.g. ≥ 20% for acute leukaemias of ambiguous lineage); flow percentages are reported but don’t replace it. Note: some genetically defined AML types are diagnosed below 20% (WHO-HAEM5: no threshold for several; ICC: ≥ 10%). Card 2: therapy erases markers — rituximab removes detectable CD20; blinatumomab and CD19 CAR T reduce CD19; daratumumab blocks CD38 detection. Laboratories gate with other markers (e.g. CD22, CD79a/b, CD40/HLA-DR for B cells; CD319, CD138 for plasma cells).",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Back to the first question. The blast percentage that classifies an acute leukaemia comes from the morphologic count on the smear. Flow adds lineage and phenotype, but its percentage doesn’t replace that count."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 123,
+          "text": "There are exceptions in the other direction: some genetically defined AMLs are diagnosed even below 20 percent blasts."
+        },
+        {
+          "id": "l3",
+          "start": 123,
+          "end": 135,
+          "text": "Treatment can also erase the markers flow relies on. Rituximab removes detectable CD20. Blinatumomab and CD19 CAR T cells reduce CD19. Daratumumab blocks CD38."
+        },
+        {
+          "id": "l4",
+          "start": 135,
+          "end": 144,
+          "text": "So a “missing” B cell or plasma cell may just be wearing a different label. Labs gate with other markers — like CD22 or CD79 for B cells, and CD319 or CD138 for plasma cells."
+        }
+      ],
+      "objects": [
+        {
+          "id": "m1",
+          "type": "card",
+          "props": {
+            "x": 260,
+            "y": 130,
+            "w": 440,
+            "h": 110,
+            "tone": "a",
+            "title": "Blast % for classification",
+            "lines": [
+              "From the morphologic count",
+              "Flow % does not replace it"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 260,
+            "y": 240,
+            "w": 440,
+            "label": "Some genetic AML types: < 20% allowed",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tx0",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 100,
+            "w": 380,
+            "label": "Rituximab → CD20 gone",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 20.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21.0,
+              "tone": "bad"
+            }
+          ]
+        },
+        {
+          "id": "tx1",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 160,
+            "w": 380,
+            "label": "Blinatumomab / CD19 CAR T → CD19 ↓",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 22.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22.5,
+              "tone": "bad"
+            }
+          ]
+        },
+        {
+          "id": "tx2",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 220,
+            "w": 380,
+            "label": "Daratumumab → CD38 blocked",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24.0,
+              "tone": "bad"
+            }
+          ]
+        },
+        {
+          "id": "alt",
+          "type": "card",
+          "props": {
+            "x": 600,
+            "y": 390,
+            "w": 560,
+            "h": 110,
+            "tone": "good",
+            "title": "Gate with other markers",
+            "lines": [
+              "B cells: CD22, CD79a/b, CD40 + HLA-DR",
+              "Plasma cells: CD319, CD138"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32,
+              "reveal": 0
+            },
+            {
+              "t": 32.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Trap card: “Flow shows 25% blasts, so it’s AML” is crossed out → “Use the morphologic blast count (with genetic exceptions).” Trap card: “No CD20+ cells after rituximab = no B cells” is crossed out → “Gate B cells on CD19/CD22/CD79.” Trap card: “Bright side scatter = blasts” is crossed out → “Blasts are dim CD45, LOW side scatter.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 155,
+          "text": "Trap one: a flow blast percentage doesn’t establish the diagnosis. The morphologic count does — with some genetic exceptions."
+        },
+        {
+          "id": "e2",
+          "start": 155,
+          "end": 165,
+          "text": "Trap two: no CD20-positive cells after rituximab doesn’t mean no B cells. Look with other B-cell markers."
+        },
+        {
+          "id": "e3",
+          "start": 165,
+          "end": 174,
+          "text": "Trap three: blasts are not the high side-scatter cells. They’re dim CD45 with low side scatter."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Flow shows 25% blasts, so it’s AML.”",
+            "lines": [
+              "✓ Morphologic blast count classifies (genetic exceptions apply)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 0
+            },
+            {
+              "t": 6,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “No CD20+ cells after rituximab = no B cells.”",
+            "lines": [
+              "✓ Gate B cells on CD19 / CD22 / CD79"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 0
+            },
+            {
+              "t": 16,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “High side scatter = blasts.”",
+            "lines": [
+              "✓ Blasts: dim CD45, low side scatter"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 22.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Size forward, stuff sideways",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Forward = size, Side = stuff inside.” And “Blasts live in the dim, quiet corner (dim CD45, low SSC).” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: forward is size, side is stuff inside. Blasts live in the dim, quiet corner — dim CD45, low side scatter."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: some leukaemias sit outside the classic blast gate — promyelocytes in APL have high side scatter; scatter depends on instrument settings; and lineage rules use intensity thresholds that differ between WHO and ICC."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Forward = size · Side = stuff",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 180,
+            "w": 260,
+            "label": "FSC = size",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 260,
+            "label": "SSC = granularity",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 180,
+            "w": 260,
+            "label": "Blasts: dim + quiet",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 110,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "APL promyelocytes have HIGH side scatter · settings vary",
+              "Lineage intensity rules differ (WHO vs ICC)"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “FSC = size, SSC = granularity; CD45 vs SSC gates blasts (dim CD45, low SSC)”, “Lineage: MPO, cytoplasmic CD3, B markers — blast % from morphology; therapy can erase markers”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Forward scatter is size and side scatter is granularity; CD45 versus side scatter finds the blasts, MPO and cytoplasmic CD3 assign lineage, morphology supplies the blast percentage, and treatment can erase the markers you gate on."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 760,
+            "label": "FSC = size · SSC = granularity · blasts = dim CD45, low SSC",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 760,
+            "label": "MPO / cCD3 / B markers · blast % from morphology · therapy erases markers",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a flow cytometer looks at cells one by one, measuring size, inner graininess and which labelled markers they carry. Scientific terms: forward scatter (FSC) correlates with size, side scatter (SSC) with granularity/complexity; fluorochrome-conjugated antibodies identify CD antigens; CD45 vs SSC separates lymphocytes, monocytes, granulocytes and blasts.",
+    "why": "Blasts express less CD45 and have few granules, placing them in a dim-CD45, low-SSC region; lineage-defining markers (MPO, cytoplasmic CD3, B-lineage markers) assign lineage. Targeted antibodies bind or remove their antigens, so the same epitopes cannot be detected by diagnostic reagents.",
+    "measure": "Gating sequence: acquisition stability → singlets → viability → CD45 vs SSC → blast gate → lineage panel. Blast percentage for classifying acute leukaemia comes from morphologic evaluation (e.g. ≥ 20% for acute leukaemia of ambiguous lineage); several genetically defined AMLs are diagnosed without the 20% threshold (WHO-HAEM5) or at ≥ 10% (ICC). Post-therapy: rituximab (CD20), blinatumomab/CD19 CAR T (CD19), daratumumab (CD38) → gate with CD22, CD79a/b, CD40/HLA-DR (B cells) or CD319/CD138 (plasma cells).",
+    "differs": "Scatter (physical properties) vs fluorescence (antigens); lymphocytes (bright CD45, low SSC) vs granulocytes (high SSC) vs blasts (dim CD45, low SSC); flow percentage vs morphologic blast count.",
+    "examAngle": "Expect: FSC/SSC meaning, CD45 vs SSC as the first gate, MPO and cytoplasmic CD3 as lineage markers, morphology for blast percentage, and rituximab/daratumumab erasing markers."
+  },
+  "comparisons": [
+    {
+      "id": "fsc-vs-ssc",
+      "title": "Forward vs side scatter",
+      "left": {
+        "label": "Forward scatter",
+        "points": [
+          "Correlates with cell size",
+          "Used for singlet and viability gates"
+        ]
+      },
+      "right": {
+        "label": "Side scatter",
+        "points": [
+          "Correlates with granularity",
+          "High in granulocytes, low in blasts and lymphocytes"
+        ]
+      },
+      "distinguisher": "Direction of collected light."
+    },
+    {
+      "id": "flow-vs-morph",
+      "title": "Flow vs morphologic blast %",
+      "left": {
+        "label": "Flow cytometry",
+        "points": [
+          "Lineage and aberrant phenotype",
+          "Percentage not the classifying count"
+        ]
+      },
+      "right": {
+        "label": "Morphology",
+        "points": [
+          "Classifying blast percentage",
+          "Genetic exceptions to 20% exist"
+        ]
+      },
+      "distinguisher": "Classification criteria specify a morphologic blast count."
+    }
+  ],
+  "mnemonic": {
+    "text": "Forward = size, side = stuff inside. Blasts live in the dim, quiet corner.",
+    "explanation": "FSC/SSC meanings and the dim-CD45, low-SSC blast region.",
+    "limitation": "APL promyelocytes have high SSC; scatter depends on instrument settings; lineage intensity thresholds differ between WHO and ICC."
+  },
+  "analogyLimitations": [
+    "The CD45/SSC plot and stream are schematic, not real data.",
+    "The case is invented.",
+    "Compensation, MRD and PNH testing are not covered."
+  ],
+  "takeaway": "Forward scatter is size and side scatter is granularity; CD45 versus side scatter finds the blasts, MPO and cytoplasmic CD3 assign lineage, morphology supplies the blast percentage, and treatment can erase the markers you gate on.",
+  "questions": [
+    {
+      "id": "heme-flow-q1",
+      "stem": "On a CD45 versus side scatter plot of marrow, where do blasts typically fall?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dim CD45, low side scatter",
+          "rationale": "Correct. Blasts express less CD45 than mature leukocytes and have few granules."
+        },
+        {
+          "id": "b",
+          "text": "Bright CD45, low side scatter",
+          "rationale": "Incorrect. That is the lymphocyte region."
+        },
+        {
+          "id": "c",
+          "text": "Moderate CD45, high side scatter",
+          "rationale": "Incorrect. That is the granulocyte region."
+        },
+        {
+          "id": "d",
+          "text": "CD45-negative, very high side scatter",
+          "rationale": "Incorrect. That does not describe typical blasts."
+        }
+      ],
+      "answer": "a",
+      "skill": "CD45/SSC gating",
+      "difficulty": "recall"
+    },
+    {
+      "id": "heme-flow-q2",
+      "stem": "Flow cytometry reports 28% blasts, but the 500-cell morphologic differential shows 12% blasts and cytogenetics show no defining abnormality. How should the blast percentage be used?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Use the morphologic count for classification; flow percentages do not replace it",
+          "rationale": "Correct. Classification criteria specify a morphologic blast count."
+        },
+        {
+          "id": "b",
+          "text": "Diagnose AML because flow shows ≥ 20%",
+          "rationale": "Incorrect. The flow percentage is not the classifying count."
+        },
+        {
+          "id": "c",
+          "text": "Average the two values (20%)",
+          "rationale": "Incorrect. Averaging different methods is not valid."
+        },
+        {
+          "id": "d",
+          "text": "Repeat flow until it agrees",
+          "rationale": "Incorrect. The methods measure differently; morphology classifies."
+        }
+      ],
+      "answer": "a",
+      "skill": "Blast count",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-flow-q3",
+      "stem": "A patient treated with rituximab has no CD20-positive cells on flow cytometry. What is the best interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "CD20 may be undetectable because of therapy; look for B cells with CD19, CD22 or CD79",
+          "rationale": "Correct. Rituximab removes detectable CD20, so other B-lineage markers must be used."
+        },
+        {
+          "id": "b",
+          "text": "B cells are absent; disease is eradicated",
+          "rationale": "Incorrect. Residual B cells may simply lack detectable CD20."
+        },
+        {
+          "id": "c",
+          "text": "The sample is a T-cell lymphoma",
+          "rationale": "Incorrect. Missing CD20 does not indicate T lineage."
+        },
+        {
+          "id": "d",
+          "text": "Use CD38 to find B cells",
+          "rationale": "Incorrect. CD38 is not a B-lineage marker."
+        }
+      ],
+      "answer": "a",
+      "skill": "Therapy and gating",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch35",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 35, Flow Cytometry for Blood Cancers (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 35,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            2,
+            3,
+            8
+          ]
+        },
+        {
+          "chapter": 35,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            2
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "holl2025",
+      "kind": "external",
+      "citation": "Holl E, Kapinsky M, Larbi A. An update on flow cytometry analysis of hematological malignancies: focus on standardization. Cancers (Basel). 2025;17(12):2045.",
+      "doi": "10.3390/cancers17122045",
+      "url": "https://europepmc.org/article/PMC/PMC12190783",
+      "consulted": true,
+      "usedFor": "Cells pass a laser in a fluid stream; forward scatter = size, side scatter = granularity; fluorescent antibodies identify surface and intracellular markers."
+    },
+    {
+      "id": "ally2024",
+      "kind": "external",
+      "citation": "Ally F, Chen X. Acute myeloid leukemia: diagnosis and evaluation by flow cytometry. Cancers (Basel). 2024;16(22):3855.",
+      "doi": "10.3390/cancers16223855",
+      "url": "https://europepmc.org/article/PMC/PMC11592599",
+      "consulted": true,
+      "usedFor": "Gating sequence (acquisition, singlets, viability); CD45 vs SSC defines blast (low CD45, low SSC), lymphocyte (high CD45, low SSC) and myelomonocytic gates; lineage tube with cMPO and cCD3; APL promyelocytes have high SSC; WHO-HAEM5 diagnoses several genetically defined AMLs without a 20% threshold, ICC requires ≥ 10%."
+    },
+    {
+      "id": "fuda2025",
+      "kind": "external",
+      "citation": "Fuda F, Chen W. Acute leukemia of ambiguous lineage: diagnosis and evaluation by flow cytometry. Cancers (Basel). 2025;17(5):871.",
+      "doi": "10.3390/cancers17050871",
+      "url": "https://europepmc.org/article/PMC/PMC11898493",
+      "consulted": true,
+      "usedFor": "Blast count ≥ 20% based on morphological evaluation for ALAL; T lineage by cytoplasmic CD3 at intensity approaching mature T cells; MPO for myeloid lineage; WHO vs ICC differences."
+    },
+    {
+      "id": "gajzer2025",
+      "kind": "external",
+      "citation": "Gajzer DC, Fromm JR. Flow cytometry for B-cell non-Hodgkin and Hodgkin lymphomas. Cancers (Basel). 2025;17(5):814.",
+      "doi": "10.3390/cancers17050814",
+      "url": "https://europepmc.org/article/PMC/PMC11898643",
+      "consulted": true,
+      "usedFor": "B-lineage markers CD19, CD20, CD22, CD79a/b; rituximab removes detectable CD20; anti-CD19 therapies (e.g. blinatumomab) reduce CD19; alternative B-cell gating with CD22, CD40 and HLA-DR."
+    },
+    {
+      "id": "shameli2025",
+      "kind": "external",
+      "citation": "Shameli A, Catey T, Woodings V, et al. Daratumumab and isatuximab differentially affect CD38 detection on plasma cells in myeloma. Br J Haematol. 2025;207(3):757-766.",
+      "doi": "10.1111/bjh.20218",
+      "url": "https://europepmc.org/article/PMC/PMC12436233",
+      "consulted": true,
+      "usedFor": "Daratumumab blocks CD38 detection by conventional antibodies; plasma cells gated with CD138, CD319 and alternative anti-CD38 clones; CD45 vs SSC lymphocyte gate."
+    },
+    {
+      "id": "lamble2025",
+      "kind": "external",
+      "citation": "Lamble A, Bohling SD, Davis KL, et al. Harmonization on defining B-cell recovery post CD19-CAR T-cell therapy in B-cell acute lymphoblastic leukemia: an international consensus statement. Hemasphere. 2025;9(11):e70247.",
+      "doi": "10.1002/hem3.70247",
+      "url": "https://europepmc.org/article/PMC/PMC12683365",
+      "consulted": true,
+      "usedFor": "CD19 CAR T, blinatumomab, inotuzumab and rituximab cause B-cell aplasia; rituximab B-cell aplasia lasts 6–9 months."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-scatter",
+      "text": "FSC ≈ size; SSC ≈ granularity; fluorescent antibodies detect CD markers.",
+      "status": "checked",
+      "refs": [
+        "holl2025"
+      ]
+    },
+    {
+      "id": "cl-gate",
+      "text": "CD45 vs SSC: blasts dim CD45/low SSC; lymphocytes bright CD45/low SSC; granulocytes high SSC.",
+      "status": "checked",
+      "refs": [
+        "ally2024",
+        "shameli2025"
+      ]
+    },
+    {
+      "id": "cl-lineage",
+      "text": "MPO (myeloid), cytoplasmic CD3 (T), B markers (CD19 with CD79a/CD22) assign lineage.",
+      "status": "checked",
+      "refs": [
+        "fuda2025",
+        "ally2024",
+        "gajzer2025"
+      ]
+    },
+    {
+      "id": "cl-morph",
+      "text": "Classifying blast % from morphology; genetic AML exceptions (WHO-HAEM5 no threshold; ICC ≥ 10%).",
+      "status": "checked",
+      "refs": [
+        "fuda2025",
+        "ally2024"
+      ]
+    },
+    {
+      "id": "cl-therapy",
+      "text": "Rituximab (CD20), blinatumomab/CAR T (CD19), daratumumab (CD38) erase markers; alternative gating markers.",
+      "status": "checked",
+      "refs": [
+        "gajzer2025",
+        "shameli2025",
+        "lamble2025"
+      ]
+    },
+    {
+      "id": "cl-hemodil",
+      "text": "Flow blast counts are falsely low with hemodilution and falsely high after RBC lysis removes erythroid precursors.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch35"
+      ],
+      "note": "Not taught; not stated in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Schematic flow stream and CD45/SSC dot plot.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Forward = size, side = stuff inside.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Dot plot clusters and cells are schematic, not real cytometry data.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Holl 2025, Ally & Chen 2024, Fuda & Chen 2025, Gajzer & Fromm 2025, Shameli 2025 and Lamble 2025 (full texts) read for this lesson; 1 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
