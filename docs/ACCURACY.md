@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 49 flags: 29 verified issues and 20 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 50 flags: 30 verified issues and 20 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -49,6 +49,7 @@ Verified:
 - **Ch. 26 Hits 1–2:** fixed hCG discriminatory zone presented as diagnostic context (Bobdiwala 2017: varies, never diagnoses ectopic alone); “< 53% rise in 48 h = abnormal” (newer data: 35% minimum for a viable IUP).
 - **Ch. 18 Trap 2:** direct LDL assay said to “stay valid even at TG 600” (HEART UK/ACB 2025: method-dependent, marked bias vs the reference method, not recommended in hypertriglyceridaemia).
 - **Ch. 41 Hit 4:** BNP said to “NOT rise” in TRALI and TRALI treated with “oxygen only” (Vlaar 2019: natriuretic peptides are always raised in severe TRALI and critical illness; care is supportive, including ventilation).
+- **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 41 Hit 10:** platelets stored “up to 5 days” (Akaraphanth 2026: 5–7 days at room temperature, plus an FDA 2023 variance for cold-stored platelets up to 14 days at 1–6 °C for active bleeding).
 - **Ch. 24 Trap 3:** dilute urine given as creatinine ≤ 20 mg/dL and SG ≤ 1.0030 (DOT 40.88: creatinine ≥ 2 and < 20, SG > 1.0010 and < 1.0030 — the reviewer's numbers match clinical tampering flags); out-of-range temperature listed as a substitution criterion (DOT 40.65: a collection check that triggers an observed recollection).
 - **Ch. 15 core:** "FENa > 1% suggests ATN"; a 2025 consensus treats 1–2% as indeterminate and > 2% as intrinsic.
@@ -76,11 +77,12 @@ Automated scan: **23** dated-guideline statements and **134** High-Yield Hits wi
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 21 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 22 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **Dynamic Endocrine Testing:** 1 pending claim (the CBG mechanism behind estrogen-related DST false positives); 1 register flag on Hit 1 (acromegaly diagnosis). The GHD cut-off (3 µg/L) is not taught because thresholds are assay-dependent.
 - **Erythropoiesis and RPI:** 1 pending claim (shift-reticulocyte mechanism and ~1-day normal maturation); no flags. Notes that labs band hematocrit differently for maturation time, and that the reviewer’s ⁵¹Cr and 3-million-cells-per-second figures are not taught.
 - **Component Storage and Irradiation:** 1 pending claim (RBC transport 1–10 °C, the US 5-day thawed-plasma relabel, never irradiating HPCs; none stated as numbers); 2 register flags on Hit 10 (5-day platelet storage, verified; pH ≥ 6.0, needs verification). Irradiation dose taught as the US FDA rule, with the Council of Europe range noted.
 - **hCG and PUL:** 1 pending claim (progesterone ng/mL cut-offs); 2 register flags on Hits 1–2.

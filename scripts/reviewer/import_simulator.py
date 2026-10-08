@@ -62,6 +62,8 @@ FLAG_RULES = [
      'Platelet storage is now 5–7 days at 20–24 °C where bacterial-risk controls are used, and licensed cold-stored platelets (FDA 2023 variance, up to 14 days at 1–6 °C) are an exception (Akaraphanth 2026).'),
     ('rv-plt-ph', r'pH ?(≥|>=) ?6\.0',
      'A 2022 US licensing study used end-of-storage platelet pH ≥ 6.2 as its acceptance endpoint; the reviewer’s ≥ 6.0 is unconfirmed.'),
+    ('rv-acro-ogtt', r'acromegaly is diagnosed by failure of GH',
+     'The 2024 Acromegaly Consensus confirms acromegaly with IGF-I > 1.3 × ULN plus clinical signs; the OGTT is reserved for equivocal results (Giustina 2024).'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
