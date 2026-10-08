@@ -1,0 +1,1904 @@
+{
+  "schemaVersion": 1,
+  "id": "chem-drug-screen-confirmation-validity",
+  "title": "Drug Screens: The Screen Accuses, the Mass Spec Decides",
+  "summary": "See why a positive immunoassay drug screen is only presumptive, how confirmation by chromatography and mass spectrometry works, and how labs judge whether a urine specimen is valid, dilute or substituted.",
+  "domain": "p2-chem",
+  "topic": "ch24",
+  "conceptIds": [
+    "ch24.hit1",
+    "ch24.hit2",
+    "ch24.trap2",
+    "ch24.trap3",
+    "ch24.figure"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 24,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          2
+        ]
+      },
+      {
+        "chapter": 24,
+        "section": "Exam Traps",
+        "items": [
+          2,
+          3
+        ]
+      },
+      {
+        "chapter": 24,
+        "section": "Figure 24"
+      }
+    ],
+    "note": "Teaches Ch. 24 Hit 1 (core: one immunoassay cannot confirm another; chain of custody), Hit 2 (GC-MS / LC-MS/MS as confirmation tools), Trap 2 (repeat immunoassay), Trap 3 (dilute specimen) and the Figure 24 anchor. Checked against 49 CFR Part 40, Argoff 2018 and Wissenbach & Steuer 2023. Trap 3 numbers differ from the DOT laboratory criteria — see register flags rv-dilute-criteria and rv-temp-substituted. Pending: TLC as a confirmation method; GC-MS vs LC-MS/MS by volatility/derivatization."
+  },
+  "prerequisites": [
+    "ch23.hit1"
+  ],
+  "objectives": [
+    "Explain why a screening immunoassay result is presumptive and why a second immunoassay cannot confirm it.",
+    "Describe confirmation as an independent procedure on a separate aliquot using chromatography with mass spectrometry.",
+    "Apply specimen-validity criteria (temperature, creatinine, specific gravity) and explain chain of custody."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "A positive screen — so test it again?",
+      "start": 0,
+      "end": 20,
+      "altText": "A urine cup labelled “Urine”. A screening immunoassay card turns “Opiates: POSITIVE”. Someone proposes “Repeat the same immunoassay to confirm”; a second identical card also turns positive, and a question mark asks whether that proves anything.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A workplace urine sample screens positive for opiates on an immunoassay."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Someone suggests running the same kind of immunoassay again to confirm it. It comes back positive again."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Two positives. But does the second one prove anything the first one didn’t?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "cup",
+          "type": "tube",
+          "props": {
+            "x": 180,
+            "y": 140,
+            "level": 0.7,
+            "fluid": "plasma",
+            "label": "Urine",
+            "cap": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 420,
+            "y": 180,
+            "w": 290,
+            "h": 110,
+            "tone": "neutral",
+            "title": "Immunoassay #1",
+            "lines": [
+              "Opiates: POSITIVE"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 2.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "tone": "bad"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 760,
+            "y": 180,
+            "w": 290,
+            "h": 110,
+            "tone": "neutral",
+            "title": "Immunoassay #2",
+            "lines": [
+              "Opiates: POSITIVE"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8,
+              "opacity": 0
+            },
+            {
+              "t": 8.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "tone": "bad"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 630,
+            "y": 330,
+            "w": 560,
+            "label": "Same method twice = proof?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 900,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: what a screening immunoassay really says",
+      "start": 20,
+      "end": 60,
+      "altText": "An antibody recognises a drug by shape. A look-alike molecule fits the same antibody, so the screen lights up anyway (cross-reactivity → false positive). A cut-off line splits results: below it the specimen is reported negative; at or above it the result is only presumptive and goes on to confirmation.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "A screening immunoassay uses antibodies that recognise a drug by its shape. It is fast, cheap and easy to automate."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 41,
+          "text": "But a different molecule with a similar shape can fit the same antibody. That is cross-reactivity, and it causes false positives. Some drugs in a class are also missed."
+        },
+        {
+          "id": "n3",
+          "start": 41,
+          "end": 51,
+          "text": "So the screen is compared with a cut-off. Below the cut-off, the specimen can be reported negative."
+        },
+        {
+          "id": "n4",
+          "start": 51,
+          "end": 60,
+          "text": "At or above the cut-off, the result is only presumptive. It is a reason to test further, not an answer."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ab",
+          "type": "antibody",
+          "props": {
+            "x": 300,
+            "y": 200,
+            "size": 60,
+            "spec": "Drug",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "drug",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 60,
+            "w": 150,
+            "label": "Drug",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3.5,
+              "y": 60
+            },
+            {
+              "t": 6.5,
+              "y": 150,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "look",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 60,
+            "w": 200,
+            "label": "Look-alike",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "y": 60
+            },
+            {
+              "t": 14,
+              "y": 150,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab2",
+          "type": "antibody",
+          "props": {
+            "x": 560,
+            "y": 200,
+            "size": 60,
+            "spec": "Drug",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "fp",
+          "type": "token",
+          "props": {
+            "x": 780,
+            "y": 230,
+            "w": 300,
+            "label": "Also “positive” → false positive",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cut",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 800,
+            "h": 110,
+            "tone": "neutral",
+            "title": "Compare with the screening cut-off",
+            "lines": [
+              "Below cut-off → negative (can be reported)",
+              "At / above cut-off → presumptive only"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 22,
+              "reveal": 0
+            },
+            {
+              "t": 22.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pres",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 520,
+            "w": 520,
+            "label": "Presumptive = reason to test further",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: confirmation by an independent method",
+      "start": 60,
+      "end": 102,
+      "altText": "A fresh aliquot is poured from the original specimen. It flows into a chromatography column, where bands separate by time; each band then enters a mass spectrometer box that reads its mass fingerprint and gives a concentration. A side panel shows that the screening and confirmation cut-offs differ (example: marijuana metabolite screen 50 ng/mL, confirmation 15 ng/mL).",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "Confirmation is a second, different analytical procedure, run on a separate aliquot of the original specimen."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 81,
+          "text": "First, chromatography separates the molecules, so look-alikes come off at different times."
+        },
+        {
+          "id": "c3",
+          "start": 81,
+          "end": 92,
+          "text": "Then mass spectrometry identifies each one by its mass fingerprint and measures how much is there. Gas or liquid chromatography with mass spectrometry are the usual tools."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 102,
+          "text": "The two steps use different cut-offs. In US federal workplace testing, the marijuana metabolite screen cut-off is 50 nanograms per millilitre, but the confirmation cut-off is 15."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cup",
+          "type": "tube",
+          "props": {
+            "x": 130,
+            "y": 120,
+            "level": 0.7,
+            "fluid": "plasma",
+            "label": "Original",
+            "cap": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2,
+              "level": 0.55
+            }
+          ]
+        },
+        {
+          "id": "al",
+          "type": "tube",
+          "props": {
+            "x": 240,
+            "y": 120,
+            "level": 0,
+            "fluid": "plasma",
+            "label": "New aliquot",
+            "cap": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 2,
+              "level": 0
+            },
+            {
+              "t": 2.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3.5,
+              "level": 0.3,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "col",
+          "type": "card",
+          "props": {
+            "x": 440,
+            "y": 230,
+            "w": 120,
+            "h": 260,
+            "tone": "neutral",
+            "title": "Column",
+            "lines": [],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "band0",
+          "type": "token",
+          "props": {
+            "x": 440,
+            "y": 140,
+            "w": 90,
+            "label": "Drug",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12.0,
+              "y": 140
+            },
+            {
+              "t": 17.0,
+              "y": 330,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "band1",
+          "type": "token",
+          "props": {
+            "x": 440,
+            "y": 140,
+            "w": 90,
+            "label": "Look-alike",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13.5,
+              "y": 140
+            },
+            {
+              "t": 18.5,
+              "y": 260,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ar",
+          "type": "arrow",
+          "props": {
+            "x": 510,
+            "y": 300,
+            "dx": 120,
+            "dy": 0,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "draw": 0
+            },
+            {
+              "t": 23.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ms",
+          "type": "card",
+          "props": {
+            "x": 770,
+            "y": 300,
+            "w": 260,
+            "h": 130,
+            "tone": "b",
+            "title": "Mass spectrometer",
+            "lines": [
+              "Identifies by mass",
+              "Measures amount"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22,
+              "opacity": 0
+            },
+            {
+              "t": 22.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 29,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "id",
+          "type": "token",
+          "props": {
+            "x": 770,
+            "y": 410,
+            "w": 320,
+            "label": "GC-MS or LC-MS/MS",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 29.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "c1",
+          "type": "card",
+          "props": {
+            "x": 110,
+            "y": 410,
+            "w": 150,
+            "h": 30,
+            "tone": "warn",
+            "title": "Screen 50",
+            "lines": [],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "h": 30
+            },
+            {
+              "t": 33.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33.8,
+              "h": 140,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "card",
+          "props": {
+            "x": 280,
+            "y": 410,
+            "w": 150,
+            "h": 30,
+            "tone": "good",
+            "title": "Confirm 15",
+            "lines": [],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0
+            },
+            {
+              "t": 35,
+              "h": 30
+            },
+            {
+              "t": 35.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35.8,
+              "h": 50,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "unit",
+          "type": "label",
+          "props": {
+            "x": 200,
+            "y": 505,
+            "text": "Marijuana metabolite, ng/mL (US DOT example)",
+            "size": 13,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 37.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: is the specimen valid?",
+      "start": 102,
+      "end": 140,
+      "altText": "A checklist builds. Temperature at collection: read within 4 minutes, acceptable 32–38 °C (90–100 °F); out of range means an immediate new collection under direct observation. Creatinine on every specimen; specific gravity if creatinine is below 20 mg/dL. Two result cards: Dilute (creatinine ≥ 2 and < 20 mg/dL with SG > 1.0010 and < 1.0030) and Substituted (creatinine < 2 mg/dL with SG ≤ 1.0010 or ≥ 1.0200). A chain-of-custody form slides along the bottom with signatures.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 102,
+          "end": 111,
+          "text": "Before a result can be trusted, so must the specimen. At collection, temperature is read within four minutes. The acceptable range is 32 to 38 degrees Celsius."
+        },
+        {
+          "id": "l2",
+          "start": 111,
+          "end": 118,
+          "text": "If it’s out of range, the collector immediately starts a new collection under direct observation."
+        },
+        {
+          "id": "l3",
+          "start": 118,
+          "end": 125,
+          "text": "In the lab, creatinine is measured on every specimen. Specific gravity is added when creatinine is below 20 milligrams per decilitre."
+        },
+        {
+          "id": "l4",
+          "start": 125,
+          "end": 133,
+          "text": "Under US federal rules, a dilute specimen has creatinine from 2 up to just under 20, and specific gravity just above 1.001 but below 1.003. Lower than that — creatinine under 2 with an extreme specific gravity — means substituted: that is not human urine."
+        },
+        {
+          "id": "l5",
+          "start": 133,
+          "end": 140,
+          "text": "And every hand-off, from collection to result, is signed and documented. That record is the chain of custody."
+        }
+      ],
+      "objects": [
+        {
+          "id": "temp",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 110,
+            "w": 400,
+            "h": 90,
+            "tone": "neutral",
+            "title": "Temperature ≤ 4 min",
+            "lines": [
+              "32–38 °C (90–100 °F)"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "obs",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 110,
+            "w": 420,
+            "label": "Out of range → new observed collection",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "crea",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 225,
+            "w": 760,
+            "h": 100,
+            "tone": "neutral",
+            "title": "Laboratory checks",
+            "lines": [
+              "Creatinine on every specimen",
+              "Specific gravity if creatinine < 20 mg/dL"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "reveal": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "dil",
+          "type": "card",
+          "props": {
+            "x": 270,
+            "y": 365,
+            "w": 400,
+            "h": 110,
+            "tone": "warn",
+            "title": "Dilute",
+            "lines": [
+              "Creatinine ≥ 2 and < 20 mg/dL",
+              "SG > 1.0010 and < 1.0030"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23.5,
+              "opacity": 0
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 24.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "sub",
+          "type": "card",
+          "props": {
+            "x": 690,
+            "y": 365,
+            "w": 400,
+            "h": 110,
+            "tone": "bad",
+            "title": "Substituted",
+            "lines": [
+              "Creatinine < 2 mg/dL",
+              "SG ≤ 1.0010 or ≥ 1.0200"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27,
+              "opacity": 0
+            },
+            {
+              "t": 27.5,
+              "reveal": 0
+            },
+            {
+              "t": 27.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "coc",
+          "type": "token",
+          "props": {
+            "x": 120,
+            "y": 490,
+            "w": 520,
+            "label": "Chain of custody: collector → courier → lab ✍",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.5,
+              "x": 120
+            },
+            {
+              "t": 32.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35.5,
+              "x": 480,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 140,
+      "end": 170,
+      "altText": "Trap card: “Repeat immunoassay (or a different immunoassay) confirms” is crossed out → “Confirm with an independent method: chromatography + mass spectrometry.” Trap card: “Dilute specimen, drug not detected = clean negative” is crossed out → “Report it as dilute; a low concentration may sit under the cut-off.” Trap card: “Hot or cold cup = substituted” is crossed out → “Temperature is a collection check that triggers an observed recollection.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 140,
+          "end": 151,
+          "text": "Trap one: a repeat immunoassay, or a different immunoassay, is not confirmation. Both rely on antibody binding. Confirmation needs an independent method, such as chromatography with mass spectrometry."
+        },
+        {
+          "id": "e2",
+          "start": 151,
+          "end": 161,
+          "text": "Trap two: a dilute specimen with no drug detected is not simply clean. Dilution can push a drug under the cut-off, so it is reported as dilute."
+        },
+        {
+          "id": "e3",
+          "start": 161,
+          "end": 170,
+          "text": "Trap three: a cup outside the temperature range isn’t a lab result of “substituted.” It’s a collection check that triggers a new, observed collection."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “A repeat immunoassay confirms.”",
+            "lines": [
+              "✓ Independent method: chromatography + mass spectrometry"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 0
+            },
+            {
+              "t": 6,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Dilute + not detected = clean negative.”",
+            "lines": [
+              "✓ Reported as dilute — drug may sit under the cut-off"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 0
+            },
+            {
+              "t": 16,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Out-of-range temperature = substituted.”",
+            "lines": [
+              "✓ Collection check → new observed collection"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 22.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "The screen accuses, the mass spec decides",
+      "start": 170,
+      "end": 190,
+      "altText": "Memory aid: a magnifying-glass token “Screen accuses” and a gavel token “Mass spec decides”, with a reminder that the specimen itself must be valid. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 170,
+          "end": 178,
+          "text": "Memory aid: the screen accuses, the mass spec decides — and only if the specimen itself is valid."
+        },
+        {
+          "id": "m2",
+          "start": 178,
+          "end": 190,
+          "text": "Where it breaks: a medical review officer, not the lab, interprets a confirmed positive, and a prescription can explain it. Some labs now screen by mass spectrometry. And the exact cut-offs belong to the program — these numbers are US federal workplace rules."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Screen accuses · mass spec decides",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 180,
+            "w": 250,
+            "label": "Screen: presumptive",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 250,
+            "label": "Confirm: GC/LC-MS",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 180,
+            "w": 250,
+            "label": "Specimen: valid?",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 110,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "A confirmed positive still goes to medical review (prescriptions)",
+              "Some labs screen by MS · cut-offs are program-specific"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 190,
+      "end": 200,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 190,
+          "end": 195,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 195,
+          "end": 200,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 200,
+      "end": 210,
+      "altText": "Three tokens: “Immunoassay screen = presumptive”, “Confirm on a new aliquot by chromatography + MS”, “Check validity: temperature, creatinine, SG, chain of custody”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 200,
+          "end": 210,
+          "text": "A positive immunoassay screen is only presumptive: confirm it on a separate aliquot by an independent method such as chromatography with mass spectrometry, and check that the specimen is valid before trusting any result."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 660,
+            "label": "Immunoassay screen = presumptive",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 240,
+            "w": 660,
+            "label": "Confirm on a new aliquot by chromatography + MS",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 310,
+            "w": 660,
+            "label": "Check validity: temperature, creatinine, SG, custody",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.6,
+              "opacity": 0
+            },
+            {
+              "t": 2.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a drug screen is a quick antibody test that can be fooled by look-alike molecules, so a positive screen must be checked by a different, more specific method. Scientific terms: immunoassay screens are presumptive because of antibody cross-reactivity; confirmatory testing is a second analytical procedure, on a different aliquot of the original specimen, that identifies and quantifies the drug — typically GC-MS or LC-MS(/MS).",
+    "why": "Two immunoassays share the same weakness (antibody recognition by shape), so agreement between them does not rule out cross-reactivity. Chromatography separates compounds and mass spectrometry identifies them by mass, which is independent of antibody binding.",
+    "measure": "Screen against a cut-off (below = negative; at/above = presumptive); confirm by chromatography–MS with its own cut-off (US DOT example: marijuana metabolite 50 ng/mL screen, 15 ng/mL confirmation). Validity (US DOT, 49 CFR Part 40): temperature 32–38 °C within 4 minutes at collection, out of range → immediate observed recollection; creatinine on every specimen, SG if creatinine < 20 mg/dL; dilute = creatinine ≥ 2 and < 20 mg/dL with SG > 1.0010 and < 1.0030; substituted = creatinine < 2 mg/dL with SG ≤ 1.0010 or ≥ 1.0200. Chain of custody documents every hand-off.",
+    "differs": "Presumptive (immunoassay) vs definitive (chromatography–MS) testing; dilute (still human urine, diluted) vs substituted (not consistent with human urine); collection-site checks (temperature) vs laboratory validity tests (creatinine, SG, pH, oxidants).",
+    "examAngle": "Expect: “repeat EMIT/FPIA to confirm” (wrong), GC-MS as the classic confirmation method, dilute vs substituted creatinine/SG criteria, and chain of custody."
+  },
+  "comparisons": [
+    {
+      "id": "screen-vs-confirm",
+      "title": "Screen vs confirmation",
+      "left": {
+        "label": "Immunoassay screen",
+        "points": [
+          "Antibody recognition; fast and cheap",
+          "Cross-reactivity → presumptive only"
+        ]
+      },
+      "right": {
+        "label": "Confirmation",
+        "points": [
+          "Separate aliquot; chromatography + MS",
+          "Identifies and quantifies the drug"
+        ]
+      },
+      "distinguisher": "Independent principle: separation plus mass identification, not antibody binding."
+    },
+    {
+      "id": "dilute-vs-sub",
+      "title": "Dilute vs substituted (US DOT)",
+      "left": {
+        "label": "Dilute",
+        "points": [
+          "Creatinine ≥ 2 and < 20 mg/dL",
+          "SG > 1.0010 and < 1.0030"
+        ]
+      },
+      "right": {
+        "label": "Substituted",
+        "points": [
+          "Creatinine < 2 mg/dL",
+          "SG ≤ 1.0010 or ≥ 1.0200"
+        ]
+      },
+      "distinguisher": "Creatinine below 2 mg/dL with an extreme SG is not consistent with human urine."
+    }
+  ],
+  "mnemonic": {
+    "text": "The screen accuses, the mass spec decides — if the specimen is valid.",
+    "explanation": "An immunoassay positive is an accusation (presumptive); chromatography–mass spectrometry on a separate aliquot decides; validity checks make sure the specimen is real urine from the donor.",
+    "limitation": "A confirmed positive still goes to medical review (a prescription can explain it); some labs screen by MS; cut-offs and validity rules are program-specific (the numbers shown are US federal workplace rules)."
+  },
+  "analogyLimitations": [
+    "Antibody, column and band tokens are schematic.",
+    "The workplace case is invented.",
+    "Validity criteria shown are the US DOT laboratory rules; clinical and other national programs may use different flags."
+  ],
+  "takeaway": "A positive immunoassay screen is only presumptive: confirm it on a separate aliquot by an independent method such as chromatography with mass spectrometry, and check that the specimen is valid before trusting any result.",
+  "questions": [
+    {
+      "id": "chem-ds-q1",
+      "stem": "An EMIT urine screen is positive for opiates. Which follow-up counts as confirmation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "GC-MS or LC-MS/MS on a separate aliquot of the original specimen",
+          "rationale": "Correct. Confirmation is an independent analytical procedure, on a different aliquot, that identifies and quantifies the drug."
+        },
+        {
+          "id": "b",
+          "text": "Repeating the EMIT on the same specimen",
+          "rationale": "Incorrect. Repeating the same immunoassay only reproduces the same cross-reactivity."
+        },
+        {
+          "id": "c",
+          "text": "Running a fluorescence polarization immunoassay (FPIA)",
+          "rationale": "Incorrect. FPIA is also an immunoassay, so it is not an independent principle."
+        },
+        {
+          "id": "d",
+          "text": "Collecting a new specimen and repeating the screen",
+          "rationale": "Incorrect. A second screen is still presumptive and breaks the link to the original specimen."
+        }
+      ],
+      "answer": "a",
+      "skill": "Confirmation principle",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-ds-q2",
+      "stem": "Under US DOT laboratory criteria, a urine specimen has creatinine 12 mg/dL and specific gravity 1.0020. How is it classified?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dilute",
+          "rationale": "Correct. Creatinine ≥ 2 and < 20 mg/dL with SG > 1.0010 and < 1.0030 meets the dilute criteria."
+        },
+        {
+          "id": "b",
+          "text": "Substituted",
+          "rationale": "Incorrect. Substituted requires creatinine < 2 mg/dL with SG ≤ 1.0010 or ≥ 1.0200."
+        },
+        {
+          "id": "c",
+          "text": "Valid negative with no comment",
+          "rationale": "Incorrect. The values meet dilute criteria, which must be reported."
+        },
+        {
+          "id": "d",
+          "text": "Adulterated",
+          "rationale": "Incorrect. Adulteration is shown by an added substance or abnormal pH, not by creatinine and SG alone."
+        }
+      ],
+      "answer": "a",
+      "skill": "Specimen validity",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-ds-q3",
+      "stem": "Within four minutes of collection, a urine cup reads 30 °C (86 °F). What should happen?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Note it and immediately collect a new specimen under direct observation",
+          "rationale": "Correct. In US DOT collections, an out-of-range temperature triggers an immediate new collection under direct observation; both specimens are sent."
+        },
+        {
+          "id": "b",
+          "text": "Report the specimen as substituted",
+          "rationale": "Incorrect. “Substituted” is a laboratory result based on creatinine and specific gravity, not on temperature."
+        },
+        {
+          "id": "c",
+          "text": "Discard the cup and send the donor home",
+          "rationale": "Incorrect. The original specimen is still processed, alongside the observed one."
+        },
+        {
+          "id": "d",
+          "text": "Warm the cup to 35 °C and send it to the lab",
+          "rationale": "Incorrect. That would falsify the specimen record."
+        }
+      ],
+      "answer": "a",
+      "skill": "Collection checks",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch24",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 24, Drugs, Poisons, and Drug Levels (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 24,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            2
+          ]
+        },
+        {
+          "chapter": 24,
+          "section": "Exam Traps",
+          "items": [
+            2,
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "cfr49-40",
+      "kind": "external",
+      "citation": "US Department of Transportation. 49 CFR Part 40 — Procedures for Transportation Workplace Drug and Alcohol Testing Programs (§§ 40.3, 40.65, 40.85, 40.87, 40.88). Electronic Code of Federal Regulations, accessed 2026-10-08.",
+      "url": "https://www.ecfr.gov/current/title-49/subtitle-A/part-40",
+      "consulted": true,
+      "usedFor": "Definitions of initial and confirmatory drug test (second analytical procedure on a different aliquot that identifies and quantifies); temperature 32–38 °C/90–100 °F read within 4 minutes, out of range → immediate new collection under direct observation; screen/confirmation cut-offs (THCA 50/15 ng/mL); creatinine on every specimen and SG if creatinine < 20 mg/dL; dilute and substituted criteria."
+    },
+    {
+      "id": "argoff2018",
+      "kind": "external",
+      "citation": "Argoff CE, Alford DP, Fudin J, et al. Rational urine drug monitoring in patients receiving opioids for chronic pain: consensus recommendations. Pain Med. 2018;19(1):97-117.",
+      "doi": "10.1093/pm/pnx285",
+      "url": "https://europepmc.org/article/PMC/PMC6516588",
+      "consulted": true,
+      "usedFor": "Immunoassay = presumptive; false positives from cross-reactivity and false negatives from cut-offs; definitive testing by GC-MS, LC-MS or LC-MS/MS for confirmation; GC-MS long considered the gold standard, LC-MS/MS now favoured; chain of custody as documentation of specimen handling; clinical tampering flags (creatinine ≤ 20 mg/dL, SG ≤ 1.003, temperature 90–100 °F)."
+    },
+    {
+      "id": "wissenbach2023",
+      "kind": "external",
+      "citation": "Wissenbach DK, Steuer AE. Advances in testing for sample manipulation in clinical and forensic toxicology—Part A: urine samples. Anal Bioanal Chem. 2023;415(21):5101-5115.",
+      "doi": "10.1007/s00216-023-04711-w",
+      "url": "https://europepmc.org/article/PMC/PMC10404192",
+      "consulted": true,
+      "usedFor": "Immunoassay prescreen with positives submitted to GC-MS or LC-MS confirmation; dilution, substitution and adulteration as manipulation strategies; dilution detected by creatinine and SG, with classification depending on national guidelines."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-presumptive",
+      "text": "Immunoassay screens are presumptive: cross-reactivity causes false positives; cut-offs and cross-reactivity cause false negatives.",
+      "status": "checked",
+      "refs": [
+        "argoff2018"
+      ]
+    },
+    {
+      "id": "cl-confirm",
+      "text": "Confirmation is a second analytical procedure on a different aliquot that identifies and quantifies the drug, typically GC-MS or LC-MS(/MS); a second immunoassay is not independent.",
+      "status": "checked",
+      "refs": [
+        "cfr49-40",
+        "argoff2018",
+        "wissenbach2023"
+      ]
+    },
+    {
+      "id": "cl-cutoffs",
+      "text": "US DOT marijuana metabolite cut-offs: 50 ng/mL screen, 15 ng/mL confirmation.",
+      "status": "checked",
+      "refs": [
+        "cfr49-40"
+      ]
+    },
+    {
+      "id": "cl-validity",
+      "text": "US DOT: temperature 32–38 °C within 4 min (out of range → observed recollection); creatinine every specimen, SG if < 20 mg/dL; dilute and substituted criteria.",
+      "status": "checked",
+      "refs": [
+        "cfr49-40"
+      ]
+    },
+    {
+      "id": "cl-custody",
+      "text": "Chain of custody documents specimen handling from collection to result.",
+      "status": "checked",
+      "refs": [
+        "argoff2018",
+        "cfr49-40"
+      ]
+    },
+    {
+      "id": "cl-tlc",
+      "text": "TLC is an acceptable independent confirmation method for EMIT.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch24"
+      ],
+      "note": "Not taught; the sources read name GC-MS, LC-MS and LC-MS/MS."
+    },
+    {
+      "id": "cl-volatile",
+      "text": "GC-MS suits volatile analytes; LC-MS/MS handles polar, thermolabile, nonvolatile molecules without derivatization.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch24"
+      ],
+      "note": "Not taught; the sources read do not state the volatility/derivatization contrast."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Antibody, column, band and mass-spectrometer tokens.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“The screen accuses, the mass spec decides.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Antibodies, chromatography bands and the mass spectrometer are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against 49 CFR Part 40 (eCFR), Argoff 2018 and Wissenbach & Steuer 2023 (full texts) read for this lesson; 2 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
