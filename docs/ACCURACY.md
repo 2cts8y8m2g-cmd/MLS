@@ -84,6 +84,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **DAT Patterns and AIHA Workup:** 1 pending claim (IgM dissociation leaving C3d; post-viral timing of PCH; neither taught); no flags. The reviewer’s “70–80% of AIHA” warm figure and CAD thermal amplitude are not taught.
 - **Chlamydia and Mycoplasma:** no pending claims; 2 register flags (Hit 3 energy metabolism; Trap 4 regimen, not taught). EB/RB sizes are not taught.
 - **Dynamic Endocrine Testing:** 1 pending claim (the CBG mechanism behind estrogen-related DST false positives); 1 register flag on Hit 1 (acromegaly diagnosis). The GHD cut-off (3 µg/L) is not taught because thresholds are assay-dependent.
 - **Erythropoiesis and RPI:** 1 pending claim (shift-reticulocyte mechanism and ~1-day normal maturation); no flags. Notes that labs band hematocrit differently for maturation time, and that the reviewer’s ⁵¹Cr and 3-million-cells-per-second figures are not taught.
