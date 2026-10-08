@@ -1,0 +1,2016 @@
+{
+  "schemaVersion": 1,
+  "id": "ih-hpc-graft-sources-abo",
+  "title": "Choosing the Graft: Marrow, Mobilized Blood or Cord",
+  "summary": "Compare bone marrow, mobilized blood and cord blood as stem-cell sources, explain G-CSF and plerixafor mobilization and the T-cell depletion trade-off, and process ABO-mismatched grafts safely.",
+  "domain": "p5-bb",
+  "topic": "ch43",
+  "conceptIds": [
+    "ch43.hit7",
+    "ch43.hit9",
+    "ch43.hit10",
+    "ch43.hit11",
+    "ch43.hit12",
+    "ch43.hit14",
+    "ch43.trap4",
+    "ch43.trap5",
+    "ch43.trap6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 43,
+        "section": "High-Yield Hits",
+        "items": [
+          7,
+          9,
+          10,
+          11,
+          12,
+          14
+        ]
+      },
+      {
+        "chapter": 43,
+        "section": "Exam Traps",
+        "items": [
+          4,
+          5,
+          6
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 43 Hit 7 (G-CSF and plerixafor mobilization), Hit 9 (cord blood), Hit 10 (blood vs marrow), Hit 11 (T-cell depletion), Hit 12 (ABO-incompatible grafts), Hit 14 (reinfusion reactions) and Traps 4–6. Checked against Alipourfard 2026, Anasetti 2012, Nunn 2026, Koster 2024, Bleakley 2022 (abstract), Matteocci 2024 and Niebergall-Roth 2025. The reviewer gives G-CSF as 5–10 µg/kg for 4–5 days; the source read gives 10 µg/kg/day for 4–6 days with apheresis on day 5. Hit 12’s “HPCs do not express ABO antigens” conflicts with Matteocci 2024 (register flag rv-hpc-abo); the lesson teaches only that ABO mismatch is not a contraindication. Not taught: chemotherapy mobilization timing, plerixafor side effects, cord volume cut-offs, 2017 graft-source percentages and the CAR-T approvals (Hit 13)."
+  },
+  "prerequisites": [
+    "ch43.hit1"
+  ],
+  "objectives": [
+    "Explain how G-CSF and plerixafor mobilize stem cells into the blood.",
+    "Compare mobilized blood, bone marrow and cord blood grafts for engraftment, GVHD and matching.",
+    "Explain the T-cell depletion trade-off between GVHD and relapse.",
+    "Choose red-cell or plasma depletion for major or minor ABO-mismatched grafts and recognize DMSO infusion reactions."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three bags, one patient",
+      "start": 0,
+      "end": 20,
+      "altText": "A patient card: adult with acute leukemia, blood group O, needs an allogeneic transplant. Three source bins appear: Bone marrow, Mobilized blood, Cord blood. A donor card: group A. Question tokens: “Which source?”, “What about the A red cells?”. The cartoon scientist looks between the bins.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "An adult with leukemia, blood group O, needs a stem-cell transplant from a donor."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The stem cells can come from bone marrow, from blood after mobilization, or from umbilical cord blood. Each choice has a trade-off."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "And the matched donor is group A. Does that block the transplant, and what must the lab do to the bag?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 200,
+            "y": 110,
+            "w": 300,
+            "h": 100,
+            "tone": "a",
+            "title": "Patient",
+            "lines": [
+              "Acute leukemia · group O"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b0",
+          "type": "bin",
+          "props": {
+            "x": 200,
+            "y": 300,
+            "w": 240,
+            "h": 120,
+            "label": "Bone marrow",
+            "sub": "harvested",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.3,
+              "opacity": 0
+            },
+            {
+              "t": 7.8999999999999995,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "highlight": 0
+            }
+          ]
+        },
+        {
+          "id": "b1",
+          "type": "bin",
+          "props": {
+            "x": 480,
+            "y": 300,
+            "w": 240,
+            "h": 120,
+            "label": "Mobilized blood",
+            "sub": "apheresis",
+            "tone": "b",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "highlight": 0
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "type": "bin",
+          "props": {
+            "x": 760,
+            "y": 300,
+            "w": 240,
+            "h": 120,
+            "label": "Cord blood",
+            "sub": "banked",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.7,
+              "opacity": 0
+            },
+            {
+              "t": 10.299999999999999,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "highlight": 0
+            }
+          ]
+        },
+        {
+          "id": "dn",
+          "type": "card",
+          "props": {
+            "x": 760,
+            "y": 110,
+            "w": 280,
+            "h": 100,
+            "tone": "warn",
+            "title": "Donor",
+            "lines": [
+              "Group A"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 14.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q1",
+          "type": "token",
+          "props": {
+            "x": 330,
+            "y": 470,
+            "w": 260,
+            "label": "Which source?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "type": "token",
+          "props": {
+            "x": 650,
+            "y": 470,
+            "w": 320,
+            "label": "What about the A red cells?",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 18.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 480,
+            "y": 110,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Mobilization: cutting the marrow’s tether",
+      "start": 20,
+      "end": 60,
+      "altText": "A marrow card holds stem-cell tokens tethered by “CXCR4 ↔ CXCL12 (SDF-1)”. A G-CSF token arrives (10 µg/kg/day for 4–6 days); a protease token cuts the tether and the stem-cell tokens slide right into a “Blood” card; an apheresis token appears at day 5. A plerixafor token blocks CXCR4 directly; a result card: with G-CSF in a lymphoma trial, ≥ 5 × 10⁶ CD34⁺/kg was reached in 70% vs 34% with G-CSF alone.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "Stem cells live in a marrow niche. The CXCR4 receptor on the stem cell holds onto CXCL12, also called SDF-1, like a tether."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "G-CSF, given at about 10 micrograms per kilogram per day for 4 to 6 days, makes marrow cells release proteases that break down SDF-1."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 44,
+          "text": "With the tether cut, stem cells spill into the blood, and apheresis collects them, usually starting on day 5."
+        },
+        {
+          "id": "n4",
+          "start": 44,
+          "end": 52,
+          "text": "Some patients mobilize poorly. Plerixafor blocks CXCR4 directly and is added to G-CSF."
+        },
+        {
+          "id": "n5",
+          "start": 52,
+          "end": 60,
+          "text": "In a lymphoma trial, G-CSF plus plerixafor reached the target CD34 dose in 70 percent of patients, versus 34 percent with G-CSF alone."
+        }
+      ],
+      "objects": [
+        {
+          "id": "mar",
+          "type": "card",
+          "props": {
+            "x": 200,
+            "y": 220,
+            "w": 300,
+            "h": 220,
+            "tone": "a",
+            "title": "Marrow niche",
+            "lines": [],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "bl",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 220,
+            "w": 260,
+            "h": 220,
+            "tone": "bad",
+            "title": "Blood",
+            "lines": [],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 190,
+            "w": 110,
+            "label": "HSC",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.0,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17.0,
+              "x": 200
+            },
+            {
+              "t": 20.0,
+              "x": 720,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h1",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 240,
+            "w": 110,
+            "label": "HSC",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17.6,
+              "x": 200
+            },
+            {
+              "t": 20.6,
+              "x": 720,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h2",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 290,
+            "w": 110,
+            "label": "HSC",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.8,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18.2,
+              "x": 200
+            },
+            {
+              "t": 21.2,
+              "x": 720,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "teth",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 370,
+            "w": 280,
+            "label": "CXCR4 ↔ CXCL12 (SDF-1)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "tone": "neutral",
+              "label": "Tether cut"
+            }
+          ]
+        },
+        {
+          "id": "gcsf",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 80,
+            "w": 300,
+            "label": "G-CSF 10 µg/kg/day × 4–6 d",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.5,
+              "y": 60
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11.5,
+              "y": 80,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "prot",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 150,
+            "w": 180,
+            "label": "Proteases",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "aph",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 370,
+            "w": 230,
+            "label": "Apheresis ~day 5",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 22.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pler",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 240,
+            "label": "Plerixafor blocks CXCR4",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 25.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "res",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 700,
+            "h": 90,
+            "tone": "good",
+            "title": "≥ 5 × 10⁶ CD34⁺/kg reached (lymphoma trial)",
+            "lines": [
+              "G-CSF + plerixafor 70%",
+              "G-CSF alone 34%"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Trade-offs: speed, GVHD, matching and T cells",
+      "start": 60,
+      "end": 104,
+      "altText": "Three cards fill in. “Blood vs marrow (unrelated donors, randomized trial)”: neutrophils engraft 5 days sooner and platelets 7 days sooner with blood; graft failure 3% vs 9%; chronic GVHD at 2 years 53% vs 41%; 2-year survival similar. “Cord blood”: tolerates more HLA mismatch, available immediately, less chronic GVHD; low cell dose → slower engraftment; ex vivo expansion and double cords extend adult use. “T-cell depletion”: less severe GVHD but more relapse, because the graft-versus-leukemia effect falls; donor lymphocyte infusion can boost it later.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 69,
+          "text": "Mobilized blood versus marrow, from a randomized trial of unrelated donors. With blood, neutrophils engraft about 5 days sooner and platelets about 7 days sooner."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 78,
+          "text": "Blood grafts failed less often, 3 versus 9 percent, but caused more chronic GVHD, 53 versus 41 percent at two years. Survival was similar."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 87,
+          "text": "Cord blood tolerates more HLA mismatch, is available at once, and causes less chronic GVHD. Its weakness is a small cell dose, so engraftment is slower."
+        },
+        {
+          "id": "c4",
+          "start": 87,
+          "end": 95,
+          "text": "That is why cord was limited in adults. Ex vivo expansion and double-cord grafts are partly overcoming it."
+        },
+        {
+          "id": "c5",
+          "start": 95,
+          "end": 104,
+          "text": "Removing T cells from a graft lowers severe GVHD but raises relapse: the same donor T cells fight the leukemia. That is the graft-versus-leukemia effect."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pb",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 220,
+            "w": 300,
+            "h": 230,
+            "tone": "b",
+            "title": "Blood vs marrow",
+            "lines": [
+              "Neutrophils 5 d sooner",
+              "Platelets 7 d sooner",
+              "Graft failure 3% vs 9%",
+              "Chronic GVHD 53% vs 41%"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pbs",
+          "type": "token",
+          "props": {
+            "x": 170,
+            "y": 380,
+            "w": 260,
+            "label": "2-year survival: similar",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cb",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 220,
+            "w": 300,
+            "h": 230,
+            "tone": "good",
+            "title": "Cord blood",
+            "lines": [
+              "More HLA mismatch tolerated",
+              "Available at once · less cGVHD",
+              "Small cell dose → slow",
+              "Expansion · double cord"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "cbd",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 240,
+            "label": "Cell dose limits adults",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 26.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "td",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 220,
+            "w": 290,
+            "h": 230,
+            "tone": "warn",
+            "title": "T-cell depletion",
+            "lines": [
+              "Severe GVHD ↓",
+              "Relapse ↑ (GVL ↓)",
+              "DLI can boost GVL"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35.5,
+              "opacity": 0
+            },
+            {
+              "t": 36,
+              "reveal": 0
+            },
+            {
+              "t": 36.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 42,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "gvl",
+          "type": "token",
+          "props": {
+            "x": 790,
+            "y": 380,
+            "w": 260,
+            "label": "Same T cells: GVHD + GVL",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 41,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 42.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "ABO-mismatched bags and the thaw",
+      "start": 104,
+      "end": 144,
+      "altText": "A card: “ABO incompatibility is not a contraindication to transplant.” Major mismatch (group O recipient, group A donor): recipient anti-A meets donor A red cells → red-cell depletion of marrow grafts with > 20 mL of red cells; blood grafts usually carry < 20 mL; later risk: delayed hemolysis and pure red cell aplasia. Minor mismatch (group O donor, group A recipient): donor anti-A plasma → plasma depletion if the anti-recipient titer is ≥ 256; later risk: passenger lymphocyte syndrome. Then a thaw card: DMSO (up to ~1 g/kg accepted) causes histamine-related reactions — chills, nausea and vomiting, blood pressure and heart-rate changes, cough and dyspnea, rarely neurologic events; premedicate and start the infusion slowly.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 112,
+          "text": "ABO mismatch does not stop a stem-cell transplant. Donor choice rests on HLA. But the bag still contains red cells and plasma."
+        },
+        {
+          "id": "l2",
+          "start": 112,
+          "end": 121,
+          "text": "Major mismatch: a group O recipient has anti-A, and the group A donor bag has A red cells. Marrow grafts with more than 20 milliliters of red cells are red-cell depleted."
+        },
+        {
+          "id": "l3",
+          "start": 121,
+          "end": 129,
+          "text": "Minor mismatch is the reverse: donor plasma carries antibody against the recipient’s cells. The plasma is removed when the titer is high."
+        },
+        {
+          "id": "l4",
+          "start": 129,
+          "end": 136,
+          "text": "Watch later, too: pure red cell aplasia after major mismatch, and passenger lymphocyte hemolysis after minor mismatch."
+        },
+        {
+          "id": "l5",
+          "start": 136,
+          "end": 144,
+          "text": "At thaw, DMSO is not inert. It releases histamine: chills, nausea, blood pressure swings and dyspnea. Premedicate and start slowly."
+        }
+      ],
+      "objects": [
+        {
+          "id": "top",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 50,
+            "w": 560,
+            "label": "ABO mismatch ≠ contraindication (HLA decides)",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "maj",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "bad",
+            "title": "Major: recipient O, donor A",
+            "lines": [
+              "Recipient anti-A vs donor A red cells",
+              "Marrow > 20 mL RBC → RBC depletion",
+              "Blood graft usually < 20 mL"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "min",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "b",
+            "title": "Minor: donor O, recipient A",
+            "lines": [
+              "Donor anti-A plasma vs recipient",
+              "Titer ≥ 256 → plasma depletion"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.5,
+              "opacity": 0
+            },
+            {
+              "t": 18,
+              "reveal": 0
+            },
+            {
+              "t": 18.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "prca",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 310,
+            "w": 320,
+            "label": "Later: delayed hemolysis · PRCA",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 26.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pls",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 310,
+            "w": 320,
+            "label": "Later: passenger lymphocytes",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 28.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "highlight",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 430,
+            "h": 180,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "dmso",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 760,
+            "h": 130,
+            "tone": "warn",
+            "title": "Thaw: DMSO (≈ 1 g/kg accepted) releases histamine",
+            "lines": [
+              "Chills · nausea/vomiting",
+              "BP and heart-rate swings · cough, dyspnea",
+              "Premedicate · start the infusion slowly"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards appear in turn: “Removing T cells lowers relapse because GVHD is gone” (✓ relapse rises — graft-versus-leukemia is lost); “Cord’s looser matching makes it ideal for adults” (✓ the small cell dose limits adults; expansion helps); “DMSO is inert” (✓ histamine-release reactions — premedicate, infuse slowly).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: removing T cells lowers relapse because GVHD is gone. No. Relapse rises, because the graft-versus-leukemia effect is lost."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: cord blood’s looser matching makes it ideal for adults. No. Its small cell dose slows engraftment; expansion helps."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: DMSO is inert. No. It releases histamine and causes infusion reactions, so premedicate and infuse slowly."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “T-cell depletion lowers relapse — GVHD is gone.”",
+            "lines": [
+              "✓ Relapse rises: graft-versus-leukemia is lost"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Looser matching makes cord ideal for adults.”",
+            "lines": [
+              "✓ Small cell dose limits adults · expansion helps"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “DMSO is inert.”",
+            "lines": [
+              "✓ Histamine-release reactions · premedicate, go slow"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Blood is fast, marrow is gentle, cord is forgiving",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Blood is fast, marrow is gentle, cord is forgiving — but small.” Three tokens: blood = fastest engraftment, more chronic GVHD; marrow = less chronic GVHD, more graft failure; cord = tolerates mismatch, small dose. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: blood is fast, marrow is gentle, cord is forgiving but small. Blood engrafts fastest, marrow causes less chronic GVHD, and cord tolerates mismatch but has few cells."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: results depend on donor type and GVHD prevention, such as post-transplant cyclophosphamide; newer selective T-cell depletion may avoid the relapse penalty; and cord expansion is changing the cell-dose limit."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Fast · gentle · forgiving (but small)",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 180,
+            "y": 170,
+            "w": 270,
+            "label": "Blood: fast · more cGVHD",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 270,
+            "label": "Marrow: gentle · more failure",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 780,
+            "y": 170,
+            "w": 270,
+            "label": "Cord: forgiving · small",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Depends on donor type and GVHD prophylaxis (e.g., PTCy)",
+              "Selective naïve T-cell depletion may spare relapse",
+              "Cord expansion is easing the cell-dose limit"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Blood: faster engraftment, more chronic GVHD · cord: tolerant but small · T-cell depletion: GVHD ↓, relapse ↑”, “ABO mismatch is allowed: major → RBC depletion, minor → plasma depletion · DMSO reactions: premedicate”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Mobilized blood engrafts fastest but causes more chronic GVHD, cord tolerates mismatch but has few cells, T-cell depletion trades GVHD for relapse, and ABO mismatch is allowed if the lab removes incompatible red cells or plasma."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Blood fast, more cGVHD · cord tolerant but small · T-cell depletion: GVHD ↓ relapse ↑",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "ABO mismatch allowed: major → RBC depletion · minor → plasma depletion · DMSO: premedicate",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: stem cells can be taken from marrow, coaxed into the blood and collected, or banked from cord blood; each source trades speed, GVHD risk and cell dose. Scientific terms: G-CSF mobilization, plerixafor (CXCR4 antagonist), PB-HPC vs BM-HPC, umbilical cord blood (UCB), T-cell depletion (TCD), graft-versus-host disease (GVHD), graft-versus-leukemia (GVL), major and minor ABO incompatibility, DMSO cryoprotectant.",
+    "why": "CXCR4 on stem cells binds marrow CXCL12 (SDF-1); G-CSF-induced proteases degrade SDF-1 and plerixafor blocks CXCR4, so stem cells leave the marrow. Blood grafts carry more cells and T cells: faster engraftment but more chronic GVHD. Cord blood’s naïve immune cells tolerate HLA mismatch but its cell dose is small. Donor T cells cause GVHD and also kill leukemia.",
+    "measure": "G-CSF ≈ 10 µg/kg/day for 4–6 days, apheresis from day 5. Major ABO mismatch: red-cell depletion of marrow grafts with > 20 mL red cells; minor: plasma depletion when anti-recipient titer ≥ 256 (one review’s protocol). DMSO dose up to ~1 g/kg is typically accepted; premedicate and start infusion slowly.",
+    "differs": "Major mismatch (recipient antibody vs donor red cells → immediate hemolysis, delayed hemolysis, PRCA) vs minor mismatch (donor antibody vs recipient red cells → immediate hemolysis, passenger lymphocyte syndrome).",
+    "examAngle": "Expect: blood vs marrow engraftment and chronic GVHD, cord cell-dose limit, T-cell depletion and relapse, which product manipulation for major vs minor ABO mismatch, and DMSO reactions on reinfusion."
+  },
+  "comparisons": [
+    {
+      "id": "pb-vs-bm",
+      "title": "Mobilized blood vs bone marrow (unrelated donors)",
+      "left": {
+        "label": "Mobilized blood",
+        "points": [
+          "Neutrophils 5 d, platelets 7 d sooner",
+          "More chronic GVHD (53%)"
+        ]
+      },
+      "right": {
+        "label": "Bone marrow",
+        "points": [
+          "More graft failure (9%)",
+          "Less chronic GVHD (41%)"
+        ]
+      },
+      "distinguisher": "Speed and engraftment vs chronic GVHD; survival similar."
+    },
+    {
+      "id": "major-vs-minor",
+      "title": "Major vs minor ABO mismatch",
+      "left": {
+        "label": "Major (recipient O, donor A)",
+        "points": [
+          "Recipient anti-A vs donor red cells",
+          "RBC depletion · later PRCA"
+        ]
+      },
+      "right": {
+        "label": "Minor (donor O, recipient A)",
+        "points": [
+          "Donor anti-A plasma",
+          "Plasma depletion · later passenger lymphocytes"
+        ]
+      },
+      "distinguisher": "Whose antibody meets whose red cells."
+    }
+  ],
+  "mnemonic": {
+    "text": "Blood is fast, marrow is gentle, cord is forgiving — but small.",
+    "explanation": "Blood grafts engraft fastest but cause more chronic GVHD; marrow causes less chronic GVHD but fails more often; cord tolerates HLA mismatch but has a small cell dose.",
+    "limitation": "Results depend on donor type and GVHD prophylaxis (e.g., post-transplant cyclophosphamide); selective naïve T-cell depletion may avoid the relapse penalty; cord expansion is easing the cell-dose limit."
+  },
+  "analogyLimitations": [
+    "The tether, bags and cards are schematic, not real anatomy or products.",
+    "The patient and donor are invented.",
+    "Haploidentical donors, post-transplant cyclophosphamide and CAR-T cells are not covered here."
+  ],
+  "takeaway": "Mobilized blood engrafts fastest but causes more chronic GVHD, cord tolerates mismatch but has few cells, T-cell depletion trades GVHD for relapse, and ABO mismatch is allowed if the lab removes incompatible red cells or plasma.",
+  "questions": [
+    {
+      "id": "ih-graft-q1",
+      "stem": "A group O recipient will receive a bone marrow graft from a group A, HLA-matched donor. The product contains 150 mL of red cells. What should the processing laboratory do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Red-cell deplete the graft before infusion",
+          "rationale": "Correct. This is a major ABO mismatch: recipient anti-A would hemolyze the donor A red cells, so marrow grafts with > 20 mL of red cells are red-cell depleted."
+        },
+        {
+          "id": "b",
+          "text": "Cancel the transplant because ABO groups differ",
+          "rationale": "Incorrect. ABO incompatibility is not a contraindication to stem-cell transplant."
+        },
+        {
+          "id": "c",
+          "text": "Remove the plasma only",
+          "rationale": "Incorrect. Plasma depletion addresses minor mismatch (donor antibody); here the problem is donor red cells."
+        },
+        {
+          "id": "d",
+          "text": "Infuse unchanged; stem cells are not affected by ABO",
+          "rationale": "Incorrect. The red cells in the bag can cause acute hemolysis."
+        }
+      ],
+      "answer": "a",
+      "skill": "ABO-mismatched graft processing",
+      "difficulty": "application"
+    },
+    {
+      "id": "ih-graft-q2",
+      "stem": "In a randomized trial of unrelated-donor transplants, how did mobilized peripheral blood stem cells compare with bone marrow?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Faster engraftment and less graft failure, but more chronic GVHD",
+          "rationale": "Correct. Neutrophils engrafted 5 days and platelets 7 days sooner; graft failure 3% vs 9%; chronic GVHD 53% vs 41%."
+        },
+        {
+          "id": "b",
+          "text": "Slower engraftment and less chronic GVHD",
+          "rationale": "Incorrect. That describes marrow relative to blood."
+        },
+        {
+          "id": "c",
+          "text": "Clearly better two-year survival",
+          "rationale": "Incorrect. Two-year survival was not significantly different."
+        },
+        {
+          "id": "d",
+          "text": "Identical outcomes in every respect",
+          "rationale": "Incorrect. Engraftment speed, graft failure and chronic GVHD differed."
+        }
+      ],
+      "answer": "a",
+      "skill": "Graft-source comparison",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ih-graft-q3",
+      "stem": "A transplant program removes T cells from donor grafts. Which outcome should it expect, compared with unmanipulated grafts?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Less severe GVHD but a higher relapse risk",
+          "rationale": "Correct. The same donor T cells that cause GVHD also provide the graft-versus-leukemia effect."
+        },
+        {
+          "id": "b",
+          "text": "Less GVHD and less relapse",
+          "rationale": "Incorrect. Losing graft-versus-leukemia raises relapse risk."
+        },
+        {
+          "id": "c",
+          "text": "More GVHD and less relapse",
+          "rationale": "Incorrect. Removing T cells lowers GVHD."
+        },
+        {
+          "id": "d",
+          "text": "No change in GVHD",
+          "rationale": "Incorrect. T-cell depletion is used precisely to reduce severe GVHD."
+        }
+      ],
+      "answer": "a",
+      "skill": "T-cell depletion trade-off",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch43",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 43, Stem Cells and Tissue Banking (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 43,
+          "section": "High-Yield Hits",
+          "items": [
+            7,
+            9,
+            10,
+            11,
+            12,
+            14
+          ]
+        },
+        {
+          "chapter": 43,
+          "section": "Exam Traps",
+          "items": [
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "alipourfard2026",
+      "kind": "external",
+      "citation": "Alipourfard I, Mokhtari T, Lesniak A, Saharkhiz S, Zelazewska Z. Immunomodulatory agents and factors in poor hematopoietic stem cell mobilization: current strategies and future prospects. Stem Cell Rev Rep. 2026;22(3):1127-1138.",
+      "doi": "10.1007/s12015-025-11047-8",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12960371/",
+      "consulted": true,
+      "usedFor": "CXCR4–CXCL12 (SDF-1) retains HSCs in the marrow niche; G-CSF releases proteases that degrade SDF-1; G-CSF 10 µg/kg/day for 4–6 days with apheresis on day 5; plerixafor is a selective CXCR4 inhibitor; G-CSF + plerixafor reached ≥ 5 × 10⁶ CD34⁺/kg in 70% vs 34% with G-CSF alone in a phase III NHL study."
+    },
+    {
+      "id": "anasetti2012",
+      "kind": "external",
+      "citation": "Anasetti C, Logan BR, Lee SJ, et al. Peripheral-blood stem cells versus bone marrow from unrelated donors. N Engl J Med. 2012;367(16):1487-1496.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3816375/",
+      "consulted": true,
+      "usedFor": "Randomized trial: 2-year survival 51% vs 46% (NS); graft failure 3% vs 9%; chronic GVHD at 2 years 53% vs 41%; median neutrophil engraftment 5 days and platelet engraftment 7 days shorter with PBSC; no difference in acute GVHD or relapse."
+    },
+    {
+      "id": "nunn2026",
+      "kind": "external",
+      "citation": "Nunn J, Poulton K, Wynn R. Don’t cut the cord: why umbilical cord blood still deserves a place in transplantation. Int J Immunogenet. 2026;53(3):229-239.",
+      "doi": "10.1111/iji.70050",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13136670/",
+      "consulted": true,
+      "usedFor": "UCB permits greater HLA mismatch tolerance, can be accessed immediately and has lower chronic GVHD; challenges are cost and cell dose (TNC/kg correlates with outcome); delayed engraftment; ex vivo expansion is overcoming low cell dose and delayed engraftment for older paediatric and adult recipients."
+    },
+    {
+      "id": "koster2024",
+      "kind": "external",
+      "citation": "Koster EAS, von dem Borne PA, van Balen P, et al. Risk factors for graft-versus-host-disease after donor lymphocyte infusion following T-cell depleted allogeneic stem cell transplantation. Front Immunol. 2024;15:1335341.",
+      "doi": "10.3389/fimmu.2024.1335341",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10966113/",
+      "consulted": true,
+      "usedFor": "TCD reduces the risk of severe GvHD but increases relapse risk by reducing the GvL effect; unmodified DLI can be given after alloSCT to boost GvL."
+    },
+    {
+      "id": "bleakley2022",
+      "kind": "external",
+      "citation": "Bleakley M, Sehgal A, Seropian S, et al. Naive T-cell depletion to prevent chronic graft-versus-host disease. J Clin Oncol. 2022;40(11):1174-1185.",
+      "doi": "10.1200/JCO.21.01755",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8987226/",
+      "consulted": true,
+      "usedFor": "Abstract only: naïve T-cell depletion of PBSC grafts gave very low chronic GVHD without apparent excess relapse or nonrelapse mortality."
+    },
+    {
+      "id": "matteocci2024",
+      "kind": "external",
+      "citation": "Matteocci A, Pierelli L. Immuno-hematologic complexity of ABO-incompatible allogeneic HSC transplantation. Cells. 2024;13(10):814.",
+      "doi": "10.3390/cells13100814",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11119197/",
+      "consulted": true,
+      "usedFor": "ABO incompatibility is not a contraindication for HSCT; Table 2: major — RBC depletion of BM grafts (> 20 mL), no RBC manipulation of PBSC grafts (< 20 mL), delayed hemolysis, PRCA; minor — plasma depletion if anti-recipient titer ≥ 1:256, passenger lymphocyte syndrome; states ABO antigens are present on HSCs."
+    },
+    {
+      "id": "niebergall2025",
+      "kind": "external",
+      "citation": "Niebergall-Roth E, Kluth MA. Dimethyl sulfoxide in cryopreserved mesenchymal stromal cell therapy products: is there a safety risk to patients? J Transl Med. 2025;23(1):932.",
+      "doi": "10.1186/s12967-025-06807-6",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12362920/",
+      "consulted": true,
+      "usedFor": "DMSO-cryopreserved HSC infusions cause reactions mostly attributed to histamine release: chills, GI (nausea, vomiting, abdominal pain), cardiopulmonary (hypo/hypertension, brady/tachycardia, cough, dyspnea), neurologic (rare); ~1 g DMSO/kg typically accepted for HSCT; premedication; start infusion slowly."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-mob",
+      "text": "CXCR4–CXCL12 retains HSCs; G-CSF proteases degrade SDF-1; G-CSF 10 µg/kg/day × 4–6 d, apheresis day 5; plerixafor blocks CXCR4; 70% vs 34% target reached.",
+      "status": "checked",
+      "refs": [
+        "alipourfard2026"
+      ]
+    },
+    {
+      "id": "cl-pbbm",
+      "text": "PB vs BM (unrelated): engraftment 5 d / 7 d sooner; graft failure 3% vs 9%; chronic GVHD 53% vs 41%; survival similar.",
+      "status": "checked",
+      "refs": [
+        "anasetti2012"
+      ]
+    },
+    {
+      "id": "cl-cord",
+      "text": "Cord: more HLA mismatch tolerated, immediate availability, less chronic GVHD; low cell dose → delayed engraftment; expansion extending use.",
+      "status": "checked",
+      "refs": [
+        "nunn2026"
+      ]
+    },
+    {
+      "id": "cl-tcd",
+      "text": "T-cell depletion lowers severe GVHD but raises relapse (GVL loss); DLI boosts GVL; selective naïve T-cell depletion may avoid excess relapse.",
+      "status": "checked",
+      "refs": [
+        "koster2024",
+        "bleakley2022"
+      ]
+    },
+    {
+      "id": "cl-abo",
+      "text": "ABO mismatch not a contraindication; major → RBC depletion of BM > 20 mL; minor → plasma depletion if titer ≥ 256; PRCA and passenger lymphocyte syndrome.",
+      "status": "checked",
+      "refs": [
+        "matteocci2024"
+      ]
+    },
+    {
+      "id": "cl-dmso",
+      "text": "DMSO infusion reactions from histamine release; ~1 g/kg accepted; premedicate, start slowly.",
+      "status": "checked",
+      "refs": [
+        "niebergall2025"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "HPCs do not express ABO antigens; plerixafor’s main side effect is GI irritation; cord collections < 40 mL are discarded.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch43"
+      ],
+      "note": "Not taught. Matteocci 2024 states ABO antigens are present on HSCs (register flag rv-hpc-abo); the other details were not in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Tethers, bags and cards are schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Blood is fast, marrow is gentle, cord is forgiving — but small.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-hpc-abo",
+      "issue": "Hit 12 says HPCs do not express ABO antigens; Matteocci 2024 states ABO antigens are present on HSCs. Not resolved; the lesson teaches only that ABO mismatch is not a contraindication.",
+      "kind": "contradiction",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "The marrow tether, bags and cards are schematic, not real anatomy or product images.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 claims checked against 7 sources read for this lesson (Bleakley 2022 abstract only); 1 pending (HPC ABO expression, plerixafor side effects, cord volume cut-off). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
