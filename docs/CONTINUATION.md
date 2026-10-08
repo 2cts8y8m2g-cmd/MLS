@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 85, teaching 455 of 1,932 concepts (about 23.6%).** All 85 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 86, teaching 463 of 1,932 concepts (about 24.0%).** All 86 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -18,7 +18,7 @@
   - Ch. 24 (14/26 concepts): `chem-drug-screen-confirmation-validity`, `chem-tdm-timing-kinetics`.
   - Ch. 25 (4/21 concepts): `chem-endocrine-dynamic-testing`.
   - Ch. 26 (3/22 concepts): `chem-hcg-pregnancy-unknown-location`.
-  - Ch. 29 (3/27 concepts): `cm-urine-casts-localize`.
+  - Ch. 29 (11/27 concepts): `cm-urine-casts-localize`, `cm-urine-strip-chemistry`.
   - Ch. 30 (6/25 concepts): `cm-serous-fluids-transudate-exudate`.
   - Ch. 31 (11/28 concepts): `heme-red-cell-indices-high-mchc`, `heme-spurious-cbc-corrections`.
   - Ch. 32 (8/23 concepts): `heme-erythropoiesis-reticulocyte-index`.
@@ -44,7 +44,7 @@
   - Ch. 65 (7/24 concepts): `micro-malaria-thick-thin-films`.
   - Ch. 66 (14/54 concepts): `micro-blood-culture-volume-contamination`, `micro-specimen-acceptability-transport`.
 - **Reviewer accuracy register:** 83 flags (59 verified issues, 24 needing verification), plus scan results.
-- **Checks:** 576 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 582 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -89,7 +89,7 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 | 15 | ✅ Ch. 38 clot risk (2nd lesson) | ✅ Ch. 20 plasma proteins (2nd lesson) | ✅ Ch. 60 fungal infections (2nd lesson) | ✅ Ch. 40 blood groups & compatibility (next lesson) |
 | 16 | ✅ Ch. 36 coag cascade (3rd lesson) | ✅ Ch. 17 glucose & diabetes (2nd lesson) | ✅ Ch. 57 bacteria that cause disease (3rd lesson) | ✅ Ch. 42 apheresis & blood collection (4th lesson) |
 
-Clinical Microscopy runs alongside rounds 14–15: **Ch. 29 urinalysis** (✅ core lesson, round 14) and **Ch. 30 body fluids** (✅ core lesson, round 15). Round 16 adds **Ch. 29 urinalysis (2nd lesson)**; Ch. 29 still ranks third by simulator questions × untaught share.
+Clinical Microscopy runs alongside rounds 14–15: **Ch. 29 urinalysis** (✅ core lesson, round 14) and **Ch. 30 body fluids** (✅ core lesson, round 15). Round 16 adds **Ch. 29 urinalysis (2nd lesson)** (✅ reagent-strip chemistry); Ch. 29 still ranks third by simulator questions × untaught share.
 
 Rounds 10–13 rank chapters by simulator questions × share of concepts not yet taught (Heme and Blood Bank already have a lesson in every chapter, so their next lessons go deeper in the heaviest ones). Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.
 

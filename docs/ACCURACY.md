@@ -137,6 +137,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **DIC, Liver Disease and Fibrinolysis (Ch. 36):** 1 pending claim (D-dimer cross-link wording, low-dose heparin dose, vitamin K onset, dysfibrinogenemia TT/reptilase, VWF 300–600%; not taught); 1 register flag (rv-dic-platelets).
 - **Ketones and Hypoglycemia (Ch. 17):** 1 pending claim (≤ 55 mg/dL threshold, glycated albumin standardization, 1,5-AG, “10–15%”; not taught as stated); 1 register flag (rv-cpeptide-sulfonylurea).
 - **Mobilizing Stem Cells and Photopheresis (Ch. 42):** 1 pending claim (G-CSF split dosing and ceiling, bone pain 80%, GVHD > 8 × 10⁶/kg, product Hct < 7%, 24 h sun avoidance, ECP ASFA category; not taught); 1 register flag (rv-plerixafor-label).
+- **Reagent-Strip Chemistry (Ch. 29):** 1 pending claim (βHB 78%, nitrite ≥ 4 h, urobilinogen oxidation, bilirubin 0.02 mg/dL, pad read times; not taught); no flags.
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
