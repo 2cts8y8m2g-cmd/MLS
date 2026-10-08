@@ -952,7 +952,10 @@ function Cocci({ p }: { p: Props }) {
   const dh = num(p, 'h', 150);
   const label = str(p, 'label', '');
   const rnd = rand(num(p, 'seed', 7));
-  const fill = gram === 'neg' ? 'var(--gram-neg)' : 'var(--gram-pos)';
+  // 'rod' draws bacilli instead of cocci; gram also accepts acid-fast stain colors.
+  const rod = str(p, 'shape', 'coccus') === 'rod';
+  const FILLS: Record<string, string> = { pos: 'var(--gram-pos)', neg: 'var(--gram-neg)', afb: 'var(--afb-red)', blue: 'var(--mb-blue)' };
+  const fill = FILLS[gram] ?? FILLS.pos;
   let pts: [number, number][] = [];
   if (arrangement === 'chain') {
     for (let i = 0; i < n; i++) {
@@ -985,9 +988,16 @@ function Cocci({ p }: { p: Props }) {
   return (
     <g>
       {drop && <ellipse rx={dw / 2} ry={dh / 2} fill="var(--peroxide)" stroke="var(--line)" strokeWidth={2} />}
-      {cells.map(([x, y], i) => (
-        <circle key={i} cx={x} cy={y} r={r} fill={fill} stroke="var(--ink)" strokeOpacity={0.35} strokeWidth={1.2} />
-      ))}
+      {cells.map(([x, y], i) =>
+        rod ? (
+          <g key={i} transform={`translate(${x},${y}) rotate(${Math.round(((i * 47) % 180) - 90)})`}>
+            <rect x={-r * 1.7} y={-r * 0.5} width={r * 3.4} height={r} rx={r * 0.5} fill={fill} stroke="var(--ink)" strokeOpacity={0.35} strokeWidth={1.2} />
+            {gram === 'afb' && [-1, 0, 1].map((k) => <circle key={k} cx={k * r * 0.95} cy={0} r={r * 0.28} fill="var(--ink)" opacity={0.25} />)}
+          </g>
+        ) : (
+          <circle key={i} cx={x} cy={y} r={r} fill={fill} stroke="var(--ink)" strokeOpacity={0.35} strokeWidth={1.2} />
+        ),
+      )}
       {Array.from({ length: bubbles }, (_, i) => {
         const phase = ((bt * 0.5 + i * 0.37) % 1);
         const br = 4 + (i % 4) * 2.5;

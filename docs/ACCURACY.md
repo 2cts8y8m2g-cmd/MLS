@@ -75,6 +75,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **AFB Smears:** 2 pending claims (centrifugation force/volume; heat vs phenol mordant and NALC mucolytic role); no flags.
 - **Drug Screens:** 2 pending claims (TLC as a confirmation method; GC-MS vs LC-MS/MS by volatility/derivatization); 2 register flags on Trap 3.
 - **Lupus Anticoagulant:** 1 pending claim (immediate-acting; strongest lab risk factor; 99th-percentile cut-off); no open flags.
 - **Stem-Cell Products: CD34⁺ Dose and Cryopreservation:** 2 pending claims (CFU timing; reviewer's freezing ramp, storage temperature and DMSO reinfusion toxicity) and 1 open flag (minimum dose).

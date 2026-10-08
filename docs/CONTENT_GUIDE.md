@@ -69,7 +69,7 @@ Every visual object has `type`, `props` (initial values) and optional `keys`:
 | `building` | `w`, `h`, `sign`, `label`, *`highlight`* |
 | `document` | `w`, `h`, `title`, `sub`, `tone`, `stampText`, *`stamp`* (0→1 stamp lands), *`highlight`* |
 | `smear` | `w`, `h`, *`count`* (cells in field ≈ RBC count), *`size`* (1 = normal MCV), *`pallor`* (central pallor, normal ≈ 0.33), *`aniso`* (size variation ≈ RDW), *`target`* (fraction of target cells), `seed`, `label` — a **schematic** smear field, not real morphology |
-| `cocci` | *`arrangement`* (`cluster`, `chain`, `pair`, `scatter`), *`gram`* (`pos` purple / `neg` pink), *`count`*, *`r`*, *`drop`* (reagent drop of size `w`×`h`), *`fizz`* (0–1 oxygen bubbles, catalase), *`clump`* (0–1 cells pulled into clumps, slide coagulase), `seed`, `label` — **schematic** bacteria, not real Gram-stain morphology |
+| `cocci` | *`arrangement`* (`cluster`, `chain`, `pair`, `scatter`), *`gram`* (`pos` purple / `neg` pink / `afb` carbolfuchsin red with beading / `blue` methylene-blue counterstain), *`shape`* (`coccus` or `rod`), *`count`*, *`r`*, *`drop`* (reagent drop of size `w`×`h`), *`fizz`* (0–1 oxygen bubbles, catalase), *`clump`* (0–1 cells pulled into clumps, slide coagulase), `seed`, `label` — **schematic** bacteria, not real Gram-stain morphology |
 | `token` | `label`, `w`, `wrap` (default: about w ÷ 8.5 characters, min 16), `tone`, *`highlight`* — a chip that can be moved and sorted |
 | `bin` | `w`, `h`, `label`, `sub`, `tone`, *`highlight`* — a category bucket |
 | `prion` | *`fold`* (0 normal α-helical PrP^C → 1 misfolded β-sheet PrP^Sc), *`stack`* (copies in a fibril), *`size`*, *`highlight`*, `label` |
