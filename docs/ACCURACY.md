@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 54 flags: 34 verified issues and 20 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 55 flags: 35 verified issues and 20 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -51,6 +51,7 @@ Verified:
 - **Ch. 41 Hit 4:** BNP said to “NOT rise” in TRALI and TRALI treated with “oxygen only” (Vlaar 2019: natriuretic peptides are always raised in severe TRALI and critical illness; care is supportive, including ventilation).
 - **Ch. 33 Hit 5:** osmotic fragility listed as an HS test without noting the conventional OFT is no longer recommended (Chueh 2022: flow-based OFT and EMA binding preferred).
 - **Ch. 23 Hit 2:** acute pancreatitis defined as clinical features + enzymes > 3 × ULN (revised Atlanta: any two of pain, enzymes ≥ 3 × ULN, imaging).
+- **Ch. 63 Trap 5:** granulocytic morulae equated with Anaplasma only (Biggs 2016: E. ewingii also infects granulocytes; smears need confirmation).
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -86,6 +87,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **Tick-Borne Rickettsial Diseases:** 1 pending claim (Weil–Felix obsolete, < 20% seropositive at presentation, Coxiella by inhalation; none taught); 1 register flag on Trap 5. Q fever chronic cut-off taught as CDC ≥ 1:1024 with the Duke > 1:800 criterion (reviewer: ≥ 1:800).
 - **Pancreatic Enzymes:** 1 pending claim (lipase 8–14-day duration; not taught); 1 register flag on Hit 2 (diagnostic criteria). The reviewer’s 48–72-h amylase normalisation differs from the source read (3–5 days) and is not taught. Choi 2023 is in Korean; only its English tables were used.
 - **Hemolytic Anemia Workup:** 1 pending claim (splenectomy rationale in HS; Ham test as historical; neither taught); 1 register flag on Hit 5 (osmotic fragility).
 - **DAT Patterns and AIHA Workup:** 1 pending claim (IgM dissociation leaving C3d; post-viral timing of PCH; neither taught); no flags. The reviewer’s “70–80% of AIHA” warm figure and CAD thermal amplitude are not taught.
