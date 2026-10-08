@@ -96,6 +96,8 @@ FLAG_RULES = [
      'Anti-K does suppress fetal erythropoiesis, but a 2025 meta-analysis found 98.6% of severe anti-K HDFN at maternal titers ≥ 8 and supports a (low) critical titer; guidelines differ. The answer’s mechanism stands; “titers underestimate danger” is an oversimplification.'),
     ('rv-rhig-vials', r'60 mL of fetal whole blood',
      'Technical guidance (cited by Hajjaj 2025) divides by 30, rounds, then adds one vial: 60 mL → 2 + 1 = 3 vials. Practice varies between laboratories; check your local policy.'),
+    ('rv-cpeptide-sulfonylurea', r'insulinoma gives high insulin',
+     'High insulin with high C-peptide means endogenous insulin: an insulinoma or a sulfonylurea/meglitinide. ENETS criteria require a negative sulfonylurea screen. The answer for this question (low C-peptide = injected insulin) stands.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
