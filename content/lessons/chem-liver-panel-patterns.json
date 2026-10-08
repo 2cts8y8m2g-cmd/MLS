@@ -1,0 +1,1827 @@
+{
+  "schemaVersion": 1,
+  "id": "chem-liver-panel-patterns",
+  "title": "Reading the Liver Panel: Cells Leak ALT, Ducts Make ALP",
+  "summary": "Classify liver injury as hepatocellular, cholestatic or mixed with the R value, confirm the hepatic origin of ALP with GGT, understand direct vs conjugated bilirubin and delta-bilirubin, and judge synthetic function correctly.",
+  "domain": "p2-chem",
+  "topic": "ch22",
+  "conceptIds": [
+    "ch22.hit2",
+    "ch22.hit3",
+    "ch22.hit4",
+    "ch22.hit8",
+    "ch22.hit11",
+    "ch22.trap1",
+    "ch22.trap2"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 22,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          3,
+          4,
+          8,
+          11
+        ]
+      },
+      {
+        "chapter": 22,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          2
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 22 Hit 2 (direct ≠ conjugated), Hit 3 (delta-bilirubin), Hit 4 (AST:ALT in alcohol — taught as > 2 per source; reviewer says 3–4:1), Hit 8 (GGT confirms hepatic ALP), Hit 11 (albumin vs PT/INR) and Traps 1–2. Checked against Guerra Ruiz 2021, Zhao 2024 and Kalas 2021. Not taught: “70–80%” direct fraction, B6 mechanism, 5′-nucleotidase ratio, factor VII half-life, light-exposure trap (not verified)."
+  },
+  "prerequisites": [
+    "ch22.hit1"
+  ],
+  "objectives": [
+    "Trace bilirubin from heme to bile and explain direct vs indirect reactions.",
+    "Classify liver injury with the R value.",
+    "Use GGT to confirm a hepatic source of ALP.",
+    "Explain delta-bilirubin and interpret synthetic-function tests."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Still yellow a month later",
+      "start": 0,
+      "end": 20,
+      "altText": "A patient recovered from acute hepatitis: ALT normal again, but direct bilirubin is still raised four weeks later and the urine has no bilirubin. A second card: ALP high in a teenager. Question token: “Liver still failing — or something else?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A patient’s acute hepatitis is settling. ALT is back to normal."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "But four weeks later, the direct bilirubin is still high — and there’s no bilirubin in the urine."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Is the liver still failing? Reading a liver panel means knowing what each test really measures."
+        }
+      ],
+      "objects": [
+        {
+          "id": "c1",
+          "type": "card",
+          "props": {
+            "x": 260,
+            "y": 160,
+            "w": 380,
+            "h": 140,
+            "tone": "warn",
+            "title": "Recovering hepatitis",
+            "lines": [
+              "ALT: normal again",
+              "Direct bilirubin: still ↑ at 4 weeks",
+              "Urine bilirubin: negative"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 360,
+            "w": 380,
+            "label": "Still failing — or something else?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 820,
+            "y": 200,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: the bilirubin journey",
+      "start": 20,
+      "end": 60,
+      "altText": "A pathway: hemoglobin → heme → biliverdin → unconjugated (indirect) bilirubin, water-insoluble, carried on albumin → liver adds glucuronic acid (conjugated, direct, water-soluble) → bile. Note: the diazo reaction is the reference method; “direct” bilirubin reacts without an accelerator, “indirect” needs one.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Bilirubin comes mostly from hemoglobin breakdown. Heme becomes biliverdin, then unconjugated bilirubin."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Unconjugated bilirubin doesn’t dissolve in water, so it travels on albumin to the liver."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "The liver attaches glucuronic acid — conjugation — making it water-soluble, so it can enter bile."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Labs measure these with the diazo reaction. Conjugated bilirubin reacts directly; unconjugated needs an accelerator. That’s where “direct” and “indirect” come from."
+        }
+      ],
+      "objects": [
+        {
+          "id": "p0",
+          "type": "token",
+          "props": {
+            "x": 110,
+            "y": 140,
+            "w": 140,
+            "label": "Hemoglobin",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p1",
+          "type": "token",
+          "props": {
+            "x": 260,
+            "y": 140,
+            "w": 140,
+            "label": "Heme → biliverdin",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.0,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "token",
+          "props": {
+            "x": 410,
+            "y": 140,
+            "w": 140,
+            "label": "Unconjugated",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 140,
+            "w": 140,
+            "label": "On albumin",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p4",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 140,
+            "w": 140,
+            "label": "Liver: + glucuronide",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0
+            },
+            {
+              "t": 16.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p5",
+          "type": "token",
+          "props": {
+            "x": 860,
+            "y": 140,
+            "w": 140,
+            "label": "Bile",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "a0",
+          "type": "arrow",
+          "props": {
+            "x": 180,
+            "y": 140,
+            "dx": 10,
+            "dy": 0,
+            "draw": 0,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "draw": 0
+            },
+            {
+              "t": 1.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2.5,
+              "draw": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "a1",
+          "type": "arrow",
+          "props": {
+            "x": 330,
+            "y": 140,
+            "dx": 10,
+            "dy": 0,
+            "draw": 0,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.5,
+              "draw": 0
+            },
+            {
+              "t": 4.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5.5,
+              "draw": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "a2",
+          "type": "arrow",
+          "props": {
+            "x": 480,
+            "y": 140,
+            "dx": 10,
+            "dy": 0,
+            "draw": 0,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 7.5,
+              "draw": 0
+            },
+            {
+              "t": 7.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8.5,
+              "draw": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "a3",
+          "type": "arrow",
+          "props": {
+            "x": 630,
+            "y": 140,
+            "dx": 10,
+            "dy": 0,
+            "draw": 0,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "draw": 0
+            },
+            {
+              "t": 10.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11.5,
+              "draw": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "a4",
+          "type": "arrow",
+          "props": {
+            "x": 780,
+            "y": 140,
+            "dx": 10,
+            "dy": 0,
+            "draw": 0,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.5,
+              "draw": 0
+            },
+            {
+              "t": 13.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.5,
+              "draw": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "dz",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 330,
+            "w": 560,
+            "h": 110,
+            "tone": "b",
+            "title": "Diazo method (reference)",
+            "lines": [
+              "Direct = reacts without accelerator (conjugated)",
+              "Indirect = needs accelerator (unconjugated)"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: hepatocellular or cholestatic?",
+      "start": 60,
+      "end": 104,
+      "altText": "Two enzyme families: hepatocellular injury releases ALT and AST; cholestasis raises ALP (with GGT) and often bilirubin. The R value = (ALT ÷ ULN) ÷ (ALP ÷ ULN): > 5 hepatocellular, 2–5 mixed, < 2 cholestatic. GGT confirms a liver source of high ALP — it isn’t raised by bone disease (but drugs, alcohol and other organs can raise it). AST:ALT > 2 is typical of alcoholic hepatitis.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "Two patterns. Hepatocellular injury releases the aminotransferases, ALT and AST. Cholestasis raises alkaline phosphatase, often with bilirubin."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 81,
+          "text": "The R value sorts them: ALT over its upper limit, divided by ALP over its upper limit. Above five is hepatocellular, below two cholestatic, in between mixed."
+        },
+        {
+          "id": "c3",
+          "start": 81,
+          "end": 93,
+          "text": "ALP also comes from bone and placenta. A raised GGT points to a liver or biliary source — bone disease doesn’t raise it — though drugs and alcohol can."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "And an AST-to-ALT ratio above two is typical of alcoholic hepatitis."
+        }
+      ],
+      "objects": [
+        {
+          "id": "hc",
+          "type": "bin",
+          "props": {
+            "x": 240,
+            "y": 140,
+            "w": 320,
+            "h": 110,
+            "label": "Hepatocellular",
+            "sub": "ALT ↑ · AST ↑",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ch",
+          "type": "bin",
+          "props": {
+            "x": 720,
+            "y": 140,
+            "w": 320,
+            "h": 110,
+            "label": "Cholestatic",
+            "sub": "ALP ↑ · GGT ↑ · bilirubin ↑",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 345,
+            "w": 600,
+            "h": 130,
+            "tone": "neutral",
+            "title": "R = (ALT/ULN) ÷ (ALP/ULN)",
+            "lines": [
+              "> 5 hepatocellular",
+              "2–5 mixed",
+              "< 2 cholestatic"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ggt",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 470,
+            "w": 360,
+            "label": "High ALP + high GGT → liver/biliary",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 22.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bone",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 520,
+            "w": 360,
+            "label": "Bone disease: GGT normal",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 27.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "alc",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 490,
+            "w": 320,
+            "label": "AST:ALT > 2 → alcoholic hepatitis",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 34.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35.5,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: delta-bilirubin and synthetic function",
+      "start": 104,
+      "end": 144,
+      "altText": "Delta-bilirubin: conjugated bilirubin covalently bound to albumin; measured as direct bilirubin (cannot be distinguished from conjugated in routine assays); takes on albumin’s half-life of 17–21 days vs 2–4 h for free conjugated bilirubin; too big to be filtered, so no bilirubinuria — explains prolonged direct hyperbilirubinemia during recovery. Synthetic function: albumin falls slowly (long half-life) and also drops in inflammation; PT/INR rises when the liver can’t make enough clotting factors.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Delta-bilirubin is conjugated bilirubin that has bonded permanently to albumin. Routine assays count it as direct bilirubin — they can’t tell it apart."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "It inherits albumin’s half-life — seventeen to twenty-one days, versus two to four hours for free conjugated bilirubin. And it’s too large to enter urine."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "That’s our patient: a slowly falling direct bilirubin with no bilirubinuria during recovery — usually not a sign of ongoing failure."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "For synthetic function, albumin falls slowly because of its long half-life, and it drops with inflammation too. PT and INR rise when the liver can’t make enough clotting factors."
+        }
+      ],
+      "objects": [
+        {
+          "id": "alb",
+          "type": "card",
+          "props": {
+            "x": 200,
+            "y": 150,
+            "w": 200,
+            "h": 110,
+            "tone": "b",
+            "title": "Albumin",
+            "lines": [],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cb",
+          "type": "token",
+          "props": {
+            "x": 400,
+            "y": 180,
+            "w": 150,
+            "label": "Conj. bilirubin",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 2,
+              "x": 400
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "x": 225,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "lk",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 262,
+            "w": 240,
+            "label": "Covalent → δ-bilirubin",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "card",
+          "props": {
+            "x": 650,
+            "y": 150,
+            "w": 420,
+            "h": 110,
+            "tone": "a",
+            "title": "Half-life",
+            "lines": [
+              "δ-bilirubin: 17–21 days (albumin)",
+              "Free conjugated: 2–4 hours"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "nu",
+          "type": "token",
+          "props": {
+            "x": 650,
+            "y": 240,
+            "w": 300,
+            "label": "Too big for urine",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 300,
+            "y": 380,
+            "w": 480,
+            "h": 110,
+            "tone": "good",
+            "title": "Our patient",
+            "lines": [
+              "Slowly falling direct bilirubin, no bilirubinuria",
+              "Usually recovery, not failure"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "syn",
+          "type": "card",
+          "props": {
+            "x": 740,
+            "y": 380,
+            "w": 360,
+            "h": 110,
+            "tone": "warn",
+            "title": "Synthetic function",
+            "lines": [
+              "Albumin: slow, also ↓ in inflammation",
+              "PT/INR: factor synthesis"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Trap card: “Direct bilirubin = conjugated bilirubin” is crossed out → “Direct includes delta-bilirubin.” Trap card: “Normal albumin = normal synthetic function in acute liver failure” is crossed out → “Albumin lags; check PT/INR.” Trap card: “High ALP = liver disease” is crossed out → “Check GGT — bone and placenta also make ALP.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: “direct” bilirubin isn’t purely conjugated bilirubin — it includes delta-bilirubin bound to albumin."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a normal albumin doesn’t prove normal synthetic function in acute liver failure. Albumin lags; look at PT and INR."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: a high ALP isn’t automatically liver disease. Check GGT — bone and placenta make ALP too."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Direct bilirubin = conjugated bilirubin.”",
+            "lines": [
+              "✓ Direct includes δ-bilirubin"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Normal albumin = normal synthetic function.”",
+            "lines": [
+              "✓ Albumin lags — check PT/INR"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “High ALP = liver disease.”",
+            "lines": [
+              "✓ GGT confirms a liver/biliary source"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Cells leak ALT; ducts make ALP",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Cells leak ALT; ducts make ALP; GGT says it’s the liver; delta lingers like albumin.” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: injured cells leak ALT; blocked ducts make ALP; GGT says it’s the liver; and delta-bilirubin lingers like albumin."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: many conditions give mixed patterns; GGT rises with drugs and alcohol even without liver disease; AST also comes from muscle; and the R value is a guide, not a diagnosis."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Cells leak ALT · ducts make ALP",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 140,
+            "y": 170,
+            "w": 210,
+            "label": "ALT: cells",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 170,
+            "w": 210,
+            "label": "ALP: ducts",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 210,
+            "label": "GGT: liver",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 830,
+            "y": 170,
+            "w": 210,
+            "label": "δ lingers",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.1,
+              "opacity": 0
+            },
+            {
+              "t": 5.8999999999999995,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 130,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Mixed patterns are common",
+              "GGT rises with drugs/alcohol; AST also from muscle",
+              "R value guides, doesn’t diagnose"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “R > 5 hepatocellular · < 2 cholestatic · GGT confirms hepatic ALP · AST:ALT > 2 alcoholic”, “Direct bilirubin includes δ-bilirubin (17–21 d, no bilirubinuria) · albumin lags; PT/INR for synthesis”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Sort liver injury with the R value and GGT, remember that direct bilirubin includes long-lived delta-bilirubin, and judge synthetic function with PT/INR rather than albumin alone."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 800,
+            "label": "R > 5 hepatocellular · < 2 cholestatic · GGT confirms hepatic ALP",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 800,
+            "label": "Direct includes δ-bilirubin (17–21 d) · albumin lags · PT/INR for synthesis",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: different liver tests show different kinds of damage, and some numbers linger after the damage stops. Scientific terms: unconjugated (indirect) bilirubin, albumin-bound and water-insoluble, is conjugated with glucuronic acid in the liver (direct); diazo reaction is the reference method. R value = (ALT/ULN)/(ALP/ULN): > 5 hepatocellular, 2–5 mixed, < 2 cholestatic. GGT confirms biliary origin of ALP (not raised in bone disease). Delta-bilirubin = conjugated bilirubin covalently bound to albumin.",
+    "why": "Hepatocyte injury releases aminotransferases; biliary obstruction induces ALP. Delta-bilirubin adopts albumin’s half-life (17–21 days) and is not filtered, so direct bilirubin falls slowly without bilirubinuria.",
+    "measure": "Delta-bilirubin is measured as direct bilirubin and cannot be distinguished from conjugated bilirubin in routine assays. Albumin is a slow, inflammation-sensitive marker; PT/INR reflects factor synthesis.",
+    "differs": "Hepatocellular vs cholestatic vs mixed (R value). Direct vs conjugated bilirubin. Alcoholic hepatitis (AST:ALT > 2) vs NAFLD (ALT > AST).",
+    "examAngle": "Expect: R value calculation, ALP source questions, direct vs conjugated, prolonged jaundice in recovery, albumin vs PT."
+  },
+  "comparisons": [
+    {
+      "id": "hc-ch",
+      "title": "Hepatocellular vs cholestatic pattern",
+      "left": {
+        "label": "Hepatocellular",
+        "points": [
+          "ALT/AST ↑↑",
+          "R > 5"
+        ]
+      },
+      "right": {
+        "label": "Cholestatic",
+        "points": [
+          "ALP ↑↑ (GGT ↑), bilirubin ↑",
+          "R < 2"
+        ]
+      },
+      "distinguisher": "R value and which enzyme family dominates."
+    },
+    {
+      "id": "conj-delta",
+      "title": "Free conjugated vs delta-bilirubin",
+      "left": {
+        "label": "Free conjugated",
+        "points": [
+          "Half-life 2–4 h",
+          "Filtered → bilirubinuria"
+        ]
+      },
+      "right": {
+        "label": "Delta (albumin-bound)",
+        "points": [
+          "Half-life 17–21 days",
+          "Not filtered; still “direct”"
+        ]
+      },
+      "distinguisher": "Covalent albumin binding."
+    }
+  ],
+  "mnemonic": {
+    "text": "Cells leak ALT; ducts make ALP; GGT says it’s the liver; delta lingers like albumin.",
+    "explanation": "Aminotransferases mark hepatocellular injury, ALP cholestasis; GGT confirms hepatic ALP; δ-bilirubin persists with albumin’s half-life.",
+    "limitation": "Mixed patterns are common; GGT rises with drugs/alcohol; AST also from muscle; R guides rather than diagnoses."
+  },
+  "analogyLimitations": [
+    "Pathways and cards are schematic.",
+    "The patient is invented.",
+    "Viral hepatitis serology, autoimmune markers and cirrhosis scores are covered elsewhere or not at all."
+  ],
+  "takeaway": "Sort liver injury with the R value and GGT, remember that direct bilirubin includes long-lived delta-bilirubin, and judge synthetic function with PT/INR rather than albumin alone.",
+  "questions": [
+    {
+      "id": "chem-liv-q1",
+      "stem": "ALT is 400 U/L (ULN 40) and ALP 150 U/L (ULN 120). What injury pattern is suggested?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Hepatocellular (R = 8)",
+          "rationale": "Correct. (400/40) ÷ (150/120) = 10 ÷ 1.25 = 8, which is > 5."
+        },
+        {
+          "id": "b",
+          "text": "Cholestatic",
+          "rationale": "Incorrect. Cholestatic requires R < 2."
+        },
+        {
+          "id": "c",
+          "text": "Mixed",
+          "rationale": "Incorrect. Mixed is R 2–5."
+        },
+        {
+          "id": "d",
+          "text": "Normal",
+          "rationale": "Incorrect. ALT is 10 × ULN."
+        }
+      ],
+      "answer": "a",
+      "skill": "R value",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-liv-q2",
+      "stem": "A 14-year-old in a growth spurt has a raised ALP with normal GGT, bilirubin and ALT. Most likely source?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Bone",
+          "rationale": "Correct. Normal GGT argues against a hepatobiliary source; bone ALP rises with growth."
+        },
+        {
+          "id": "b",
+          "text": "Biliary obstruction",
+          "rationale": "Incorrect. GGT would usually be raised."
+        },
+        {
+          "id": "c",
+          "text": "Hepatocellular injury",
+          "rationale": "Incorrect. ALT is normal."
+        },
+        {
+          "id": "d",
+          "text": "Delta-bilirubin",
+          "rationale": "Incorrect. Delta-bilirubin is a bilirubin fraction, not an ALP source."
+        }
+      ],
+      "answer": "a",
+      "skill": "ALP source",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-liv-q3",
+      "stem": "Four weeks after acute hepatitis, ALT is normal, direct bilirubin remains elevated but falling, and urine bilirubin is negative. Best explanation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Delta-bilirubin — albumin-bound, long half-life, not filtered",
+          "rationale": "Correct. It is measured as direct bilirubin and clears with albumin’s 17–21-day half-life."
+        },
+        {
+          "id": "b",
+          "text": "Ongoing biliary obstruction",
+          "rationale": "Incorrect. Obstruction usually causes bilirubinuria and raised ALP/GGT."
+        },
+        {
+          "id": "c",
+          "text": "Hemolysis",
+          "rationale": "Incorrect. Hemolysis raises unconjugated (indirect) bilirubin."
+        },
+        {
+          "id": "d",
+          "text": "Laboratory error",
+          "rationale": "Incorrect. This is a recognised physiological pattern."
+        }
+      ],
+      "answer": "a",
+      "skill": "Delta-bilirubin",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch22",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 22, Liver Function Testing (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 22,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            3,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "chapter": 22,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            2
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "guerraruiz2021",
+      "kind": "external",
+      "citation": "Guerra Ruiz AR, Crespo J, López Martínez RM, et al. Measurement and clinical usefulness of bilirubin in liver disease. Adv Lab Med. 2021;2(3):352-372.",
+      "doi": "10.1515/almed-2021-0047",
+      "url": "https://europepmc.org/article/PMC/PMC10197288",
+      "consulted": true,
+      "usedFor": "Heme → biliverdin → unconjugated (indirect) bilirubin, water-insoluble, albumin-bound; hepatic glucuronidation → water-soluble direct bilirubin → bile; diazo reaction is the gold standard; “direct/indirect” from reaction with or without accelerator; δ-bilirubin fraction covalently protein-bound."
+    },
+    {
+      "id": "zhao2024",
+      "kind": "external",
+      "citation": "Zhao D, Wu GY. Prolonged direct hyperbilirubinemia following acute hepatitis: when not to worry? J Clin Transl Hepatol. 2024;12(12):985-987.",
+      "doi": "10.14218/jcth.2024.00265",
+      "url": "https://europepmc.org/article/PMC/PMC11622201",
+      "consulted": true,
+      "usedFor": "Delta-bilirubin covalently bound to albumin; measured as direct bilirubin, indistinguishable from conjugated in clinical labs; half-life 17–21 days (albumin) vs 2–4 h for conjugated bilirubin; persists after recovery without bilirubinuria."
+    },
+    {
+      "id": "kalas2021",
+      "kind": "external",
+      "citation": "Kalas MA, Chavez L, Leon M, Taweesedt PT, Surani S. Abnormal liver enzymes: a review for clinicians. World J Hepatol. 2021;13(11):1688-1698.",
+      "doi": "10.4254/wjh.v13.i11.1688",
+      "url": "https://europepmc.org/article/PMC/PMC8637680",
+      "consulted": true,
+      "usedFor": "Hepatocellular (ALT/AST) vs cholestatic (ALP, bilirubin) patterns; R value = (ALT/ULN)/(ALP/ULN): > 5 hepatocellular, 2–5 mixed, < 2 cholestatic; ALP from liver, bone, placenta; GGT clarifies ALP origin and is not raised in bone disease but rises with drugs and other organs; AST:ALT > 2 in alcoholic hepatitis; albumin affected by inflammation; PT/INR reflects hepatic factor synthesis."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-path",
+      "text": "Bilirubin pathway; diazo reference method; direct vs indirect reaction.",
+      "status": "checked",
+      "refs": [
+        "guerraruiz2021"
+      ]
+    },
+    {
+      "id": "cl-r",
+      "text": "R value cut-offs; GGT confirms hepatic ALP, not raised in bone disease; AST:ALT > 2 alcoholic hepatitis.",
+      "status": "checked",
+      "refs": [
+        "kalas2021"
+      ]
+    },
+    {
+      "id": "cl-delta",
+      "text": "Delta-bilirubin: albumin-bound, measured as direct, half-life 17–21 days vs 2–4 h, no bilirubinuria.",
+      "status": "checked",
+      "refs": [
+        "zhao2024",
+        "guerraruiz2021"
+      ]
+    },
+    {
+      "id": "cl-syn",
+      "text": "Albumin slow (long half-life) and inflammation-sensitive; PT/INR reflects factor synthesis.",
+      "status": "checked",
+      "refs": [
+        "zhao2024",
+        "kalas2021"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Light exposure alters bilirubin results; factor VII half-life 4–6 h.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch22"
+      ],
+      "note": "Not taught; not verified."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Schematic pathway and cards.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Cells leak ALT; ducts make ALP.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Schematic pathway only.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against Guerra Ruiz 2021, Zhao 2024 and Kalas 2021 (full texts) read for this lesson; 1 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}

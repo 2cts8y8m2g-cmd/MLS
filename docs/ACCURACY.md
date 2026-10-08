@@ -95,6 +95,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
 - **Spurious CBC Results:** 1 pending claim (rouleaux dispersal; not taught); no flags. Pseudothrombocytopenia prevalence taught as ~0.1% (reviewer: 0.1–2%).
+- **Liver Panel Patterns:** 1 pending claim (light-exposure handling / FVII half-life; not taught); no flags. Reviewer quotes an AST:ALT ratio of 3–4:1 for alcoholic hepatitis; the lesson teaches the source-backed >2 threshold.
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
