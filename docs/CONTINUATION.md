@@ -83,6 +83,10 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 | 11 | ✅ Ch. 36 hemophilia factor & inhibitor testing (2nd lesson) | ✅ Ch. 19 troponin & Fifth UDMI (8) | ✅ Ch. 58 β-lactamases/ESBL/CPE (2nd lesson) | ✅ Ch. 42 donor eligibility (2nd lesson) |
 | 12 | ✅ Ch. 31 spurious CBC results (2nd lesson) | ✅ Ch. 22 liver function (2nd lesson) | ✅ Ch. 57 bacterial ID (2nd lesson) | ✅ Ch. 43 stem cells & tissue banking (2nd lesson) |
 | 13 | ✅ Ch. 37 platelets & von Willebrand disease (2nd lesson) | ✅ Ch. 15 kidney, electrolytes & acid–base (2nd lesson) | ✅ Ch. 66 specimen collection (2nd lesson) | ✅ Ch. 41 reactions & lookback (4th lesson) |
+| 14 | Ch. 34 white cell disorders (2nd lesson) | Ch. 24 drugs & poisons (2nd lesson) | Ch. 64 viral infections (2nd lesson) | Ch. 42 apheresis & blood collection (3rd lesson) |
+| 15 | Ch. 38 clot risk (2nd lesson) | Ch. 20 plasma proteins (2nd lesson) | Ch. 60 fungal infections (2nd lesson) | Ch. 40 blood groups & compatibility (next lesson) |
+
+Clinical Microscopy runs alongside rounds 14–15: **Ch. 29 urinalysis** (core lesson, round 14) and **Ch. 30 body fluids** (core lesson, round 15). Both have no lesson yet and rank third and sixth by simulator questions × untaught share.
 
 Rounds 10–13 rank chapters by simulator questions × share of concepts not yet taught (Heme and Blood Bank already have a lesson in every chapter, so their next lessons go deeper in the heaviest ones). Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.
 
