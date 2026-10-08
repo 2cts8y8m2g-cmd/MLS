@@ -74,6 +74,8 @@ FLAG_RULES = [
      'The Fifth Universal Definition of MI (2026) now applies: sex-specific 99th percentile URLs, and MI classified as primary, secondary or procedure-related (Mills 2026).'),
     ('rv-mbl-aztreonam', r'aztreonam (stays|remains) active|metallo[^.]{0,80}aztreonam',
      'MBLs spare aztreonam, but co-produced ESBL/AmpC enzymes often inactivate it — hence aztreonam–avibactam (Khan 2026).'),
+    ('rv-donor-hb', r'(≥|>=) ?12\.5 g/dL minimum|ALL whole-blood donors',
+     'US rule (21 CFR 630.10): female allogeneic ≥ 12.5 g/dL (12.0–12.5 only under an FDA-acceptable procedure); male allogeneic ≥ 13.0 g/dL.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
