@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 59 flags: 39 verified issues and 20 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 61 flags: 40 verified issues and 21 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -56,6 +56,7 @@ Verified:
 - **Ch. 41 Hit 7:** cryo trigger fibrinogen < 100 mg/dL and 150–250 mg/unit (current reviews: risk rises below ~200 mg/dL; AABB ≥ 150 mg/unit; triggers vary).
 - **Ch. 36 Hit 5:** mild hemophilia given as 6–30% (standard: > 5–40 IU/dL).
 - **Ch. 19 Hits 1, 3, 5:** built on the Fourth Universal Definition of MI; the Fifth (2026) requires sex-specific 99th percentile URLs and replaces numbered types with primary, secondary and procedure-related MI.
+- **Ch. 58 Trap 5:** “aztreonam stays active” against MBL producers (Khan 2026: co-produced ESBL/AmpC often inactivate it).
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -80,6 +81,7 @@ Needs verification:
 - Ch. 64 core: multiplex NAATs as "the standard of care" (IDSA 2018 recommends multiplex panels for hospitalized immunocompromised patients).
 - Ch. 66 Hit 1: sets "30–60 minutes apart" (CDC: within a few hours, separate sites).
 - Ch. 57 Trap 2: tube coagulase "~100% sensitive" (no source read gives a figure).
+- Ch. 58 Hit 5: nitrocefin as the safeguard for hidden staphylococcal β-lactamase (Ferreira 2017, S. saprophyticus: nitrocefin least sensitive, zone-edge most sensitive; S. aureus not checked).
 - Ch. 41 Hit 10: end-of-storage platelet pH “≥ 6.0” (Cancelas 2022 used ≥ 6.2 as the acceptance endpoint; the current AABB/FDA criterion was not read).
 
 Automated scan: **23** dated-guideline statements and **134** High-Yield Hits with only/always/never wording. Each must be checked when its lesson is built.
@@ -91,6 +93,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
 - **Hemophilia in the Lab:** no pending claims; 1 register flag on Hit 5 (mild range). Prevalence, bleed frequencies, intron 22 and inhibitor percentages are not taught; the source gives the Bethesda detection limit as 0.42 BU/mL (reviewer: ~0.5).
 - **Choosing the Component:** 1 pending claim (platelets in ITP/TTP; CCI < 7,500 definition; neither taught); 2 register flags (Hit 5 acute-MI trigger; Hit 7 cryo trigger). Per-unit increments and the 100 × 10⁹/L CNS platelet threshold are not taught.

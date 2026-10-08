@@ -1,0 +1,1793 @@
+{
+  "schemaVersion": 1,
+  "id": "micro-beta-lactamases-esbl-cpe",
+  "title": "β-Lactamases: Clav for A, Chelate for B",
+  "summary": "Sort β-lactamases by Ambler class and the inhibitor that blocks them — ESBL, AmpC, KPC, metallo-β-lactamases and OXA-48 — detect carbapenemases with mCIM/eCIM, and avoid the aztreonam and hidden-penicillinase traps.",
+  "domain": "p7-micro",
+  "topic": "ch58",
+  "conceptIds": [
+    "ch58.hit5",
+    "ch58.hit9",
+    "ch58.hit10",
+    "ch58.trap1",
+    "ch58.trap4",
+    "ch58.trap5"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 58,
+        "section": "High-Yield Hits",
+        "items": [
+          5,
+          9,
+          10
+        ]
+      },
+      {
+        "chapter": 58,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          4,
+          5
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 58 Hit 5 (β-lactamase detection in staphylococci), Hit 9 (ESBL vs AmpC), Hit 10 (carbapenemase classes and inhibitors), Traps 1, 4 and 5. Checked against Dhavale 2026, Khan 2026, Jadhav 2026, Ferreira 2017 and Rapi 2026. Register flags: rv-mbl-aztreonam (Trap 5), rv-nitrocefin (Hit 5). Not taught: nitrocefin colour change and timing, KPC “boronic acid” inhibition (sources name avibactam, vaborbactam, relebactam), temocillin OXA-48 screen."
+  },
+  "prerequisites": [
+    "ch58.hit1"
+  ],
+  "objectives": [
+    "Explain how β-lactamases inactivate β-lactams and how inhibitors protect them.",
+    "Match ESBL, AmpC, KPC, MBL and OXA-48 enzymes to their Ambler class and inhibitor clue.",
+    "Interpret mCIM and eCIM results.",
+    "Recognise the aztreonam–MBL and hidden staphylococcal penicillinase traps."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Resistant to everything — or is it?",
+      "start": 0,
+      "end": 20,
+      "altText": "A Klebsiella report: resistant to ceftriaxone, ceftazidime and meropenem. Three questions pop up: “Which enzyme?”, “Which inhibitor tells me?”, “Is any β-lactam still usable?” The mascot looks thoughtful.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A Klebsiella from a blood culture is resistant to third-generation cephalosporins — and to meropenem."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Which enzyme is doing this? The answer changes treatment and infection control."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "The clue is which inhibitor switches the enzyme off."
+        }
+      ],
+      "objects": [
+        {
+          "id": "rep",
+          "type": "document",
+          "props": {
+            "x": 260,
+            "y": 170,
+            "w": 340,
+            "h": 170,
+            "title": "K. pneumoniae · blood",
+            "sub": "Ceftriaxone R · ceftazidime R · meropenem R",
+            "tone": "bad",
+            "stampText": "CRE?",
+            "stamp": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "stamp": 0
+            },
+            {
+              "t": 4.6,
+              "stamp": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "q0",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 110,
+            "w": 300,
+            "label": "Which enzyme?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q1",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 180,
+            "w": 300,
+            "label": "Which inhibitor tells me?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 250,
+            "w": 300,
+            "label": "Any β-lactam left?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 440,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: how β-lactams and β-lactamases meet",
+      "start": 20,
+      "end": 60,
+      "altText": "A β-lactam token (ring drawn as a square) binds penicillin-binding proteins in the cell wall and stops wall synthesis. A β-lactamase token approaches and opens the ring — the drug is inactivated. An inhibitor token (clavulanate) binds the β-lactamase first, protecting the drug. A table of Ambler classes appears: A (serine) — ESBL, KPC; B — metallo (zinc); C — AmpC; D — OXA.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "β-lactam drugs bind penicillin-binding proteins and stop the bacterial cell wall from being built."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "β-lactamases are enzymes that open the β-lactam ring, inactivating the drug before it reaches its target."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 48,
+          "text": "A β-lactamase inhibitor binds the enzyme first and protects the drug — but each inhibitor only blocks certain enzymes."
+        },
+        {
+          "id": "n4",
+          "start": 48,
+          "end": 60,
+          "text": "So enzymes are grouped by the Ambler classes: A, C and D use serine; class B, the metallo-β-lactamases, need zinc."
+        }
+      ],
+      "objects": [
+        {
+          "id": "drug",
+          "type": "token",
+          "props": {
+            "x": 120,
+            "y": 150,
+            "w": 140,
+            "label": "β-lactam",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 1,
+              "x": 120
+            },
+            {
+              "t": 4,
+              "x": 240,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pbp",
+          "type": "card",
+          "props": {
+            "x": 420,
+            "y": 150,
+            "w": 200,
+            "h": 80,
+            "tone": "neutral",
+            "title": "PBP · cell wall",
+            "lines": [],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "enz",
+          "type": "token",
+          "props": {
+            "x": 120,
+            "y": 250,
+            "w": 160,
+            "label": "β-lactamase",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "x": 120
+            },
+            {
+              "t": 14,
+              "x": 230,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "label": "Ring opened ✗",
+              "tone": "bad"
+            }
+          ]
+        },
+        {
+          "id": "inh",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 250,
+            "w": 170,
+            "label": "Inhibitor",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "x": 700
+            },
+            {
+              "t": 24,
+              "x": 560,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "prot",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 310,
+            "w": 200,
+            "label": "Drug protected",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 26.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tbl",
+          "type": "table",
+          "props": {
+            "x": 560,
+            "y": 380,
+            "title": "Ambler classes",
+            "cols": [
+              "Class",
+              "Active site"
+            ],
+            "rows": [
+              [
+                "A",
+                "Serine"
+              ],
+              [
+                "B",
+                "Zinc (metallo)"
+              ],
+              [
+                "C",
+                "Serine (AmpC)"
+              ],
+              [
+                "D",
+                "Serine (OXA)"
+              ]
+            ],
+            "cellW": 150,
+            "cellH": 24,
+            "reveal": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28.5,
+              "opacity": 0
+            },
+            {
+              "t": 29,
+              "reveal": 0
+            },
+            {
+              "t": 29.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 10,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: match the enzyme to its inhibitor",
+      "start": 60,
+      "end": 104,
+      "altText": "A five-row table appears row by row: class A ESBL — inhibited by clavulanate; class A KPC — inhibited by avibactam, vaborbactam, relebactam; class B MBL (NDM, VIM, IMP) — inhibited by EDTA, not by clavulanate or avibactam; class C AmpC — not inhibited by clavulanate, sulbactam or tazobactam (detected with cloxacillin/boronic acid disks; cefoxitin resistance is a low-specificity screen); class D OXA-48-like — inhibited by avibactam.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 69,
+          "text": "ESBLs are class A enzymes that break down third-generation cephalosporins — and clavulanate inhibits them."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 78,
+          "text": "KPC is a class A carbapenemase. Newer inhibitors — avibactam, vaborbactam and relebactam — block it."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 87,
+          "text": "Metallo-β-lactamases, like NDM, VIM and IMP, need zinc. EDTA, a zinc chelator, inhibits them; clavulanate and avibactam don’t."
+        },
+        {
+          "id": "c4",
+          "start": 87,
+          "end": 96,
+          "text": "AmpC is class C. Clavulanate, sulbactam and tazobactam don’t inhibit it; labs detect it with cloxacillin or boronic acid disks, and cefoxitin resistance is a rough screen."
+        },
+        {
+          "id": "c5",
+          "start": 96,
+          "end": 104,
+          "text": "OXA-48-like enzymes are class D carbapenemases — avibactam inhibits them."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tb",
+          "type": "table",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "title": "Enzyme → inhibitor clue",
+            "cols": [
+              "Class",
+              "Enzyme",
+              "Inhibited by"
+            ],
+            "rows": [
+              [
+                "A",
+                "ESBL (CTX-M, TEM, SHV)",
+                "Clavulanate"
+              ],
+              [
+                "A",
+                "KPC",
+                "Avibactam · vaborbactam · relebactam"
+              ],
+              [
+                "B",
+                "MBL (NDM, VIM, IMP)",
+                "EDTA (zinc chelator)"
+              ],
+              [
+                "C",
+                "AmpC",
+                "Not clavulanate · cloxacillin/boronic acid (test)"
+              ],
+              [
+                "D",
+                "OXA-48-like",
+                "Avibactam"
+              ]
+            ],
+            "cellW": 260,
+            "cellH": 40,
+            "reveal": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "reveal": 18,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "hl0",
+          "type": "highlight",
+          "props": {
+            "x": 480,
+            "y": 189,
+            "w": 800,
+            "h": 40,
+            "dashed": false,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "opacity": 1
+            },
+            {
+              "t": 17.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "hl",
+          "type": "highlight",
+          "props": {
+            "x": 480,
+            "y": 229,
+            "w": 800,
+            "h": 40,
+            "dashed": false,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "opacity": 1
+            },
+            {
+              "t": 26.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "hl2",
+          "type": "highlight",
+          "props": {
+            "x": 480,
+            "y": 269,
+            "w": 800,
+            "h": 40,
+            "dashed": false,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0
+            },
+            {
+              "t": 28.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "opacity": 1
+            },
+            {
+              "t": 35.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "cef",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 420,
+            "label": "Cefoxitin R = AmpC screen (low specificity)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: mCIM, eCIM and hidden penicillinase",
+      "start": 104,
+      "end": 144,
+      "altText": "mCIM: a meropenem disk is incubated in a suspension of the isolate, then placed on a lawn of susceptible E. coli ATCC 25922; if a carbapenemase destroyed the meropenem, the E. coli grows up to the disk (small zone) = carbapenemase. eCIM: the same test with EDTA added — if EDTA restores the zone, the carbapenemase is a metallo-β-lactamase. Second card: an MBL cannot hydrolyse aztreonam, but many MBL producers also carry ESBL or AmpC enzymes that do — so aztreonam alone often fails. Third card (staphylococci): a β-lactamase can hide behind a “susceptible” penicillin MIC; phenotypic tests differ in sensitivity — a negative nitrocefin test does not rule it out; the zone-edge test is more sensitive.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "The modified carbapenem inactivation method, mCIM: soak a meropenem disk in the isolate, then lay it on a lawn of susceptible E. coli. If the disk’s meropenem was destroyed, the E. coli grows right up to it — carbapenemase present."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 123,
+          "text": "The eCIM repeats this with EDTA. If EDTA restores the zone, the carbapenemase is a metallo-β-lactamase."
+        },
+        {
+          "id": "l3",
+          "start": 123,
+          "end": 134,
+          "text": "Metallo-β-lactamases can’t hydrolyse aztreonam — but many of these organisms also carry ESBL or AmpC enzymes that can. So aztreonam alone often fails, which is why it’s combined with avibactam."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "In staphylococci, penicillinase can hide behind a susceptible penicillin result. Tests differ: a negative nitrocefin test doesn’t rule it out, and the zone-edge test is more sensitive."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lawn",
+          "type": "plate",
+          "props": {
+            "x": 180,
+            "y": 200,
+            "r": 110,
+            "label": "E. coli ATCC 25922 lawn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "z1",
+          "type": "zone",
+          "props": {
+            "x": 180,
+            "y": 200,
+            "r": 40,
+            "flat": 0,
+            "dir": 0,
+            "label": "MEM",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0
+            },
+            {
+              "t": 4.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "r": 40
+            },
+            {
+              "t": 9,
+              "r": 14,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 180,
+            "y": 350,
+            "w": 260,
+            "label": "Small zone = carbapenemase",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 9.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "lawn2",
+          "type": "plate",
+          "props": {
+            "x": 460,
+            "y": 200,
+            "r": 110,
+            "label": "+ EDTA (eCIM)",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "z2",
+          "type": "zone",
+          "props": {
+            "x": 460,
+            "y": 200,
+            "r": 14,
+            "flat": 0,
+            "dir": 0,
+            "label": "MEM",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0
+            },
+            {
+              "t": 12.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "r": 14
+            },
+            {
+              "t": 16,
+              "r": 44,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 460,
+            "y": 350,
+            "w": 260,
+            "label": "Zone restored = MBL",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "az",
+          "type": "card",
+          "props": {
+            "x": 780,
+            "y": 150,
+            "w": 320,
+            "h": 120,
+            "tone": "warn",
+            "title": "Aztreonam & MBL",
+            "lines": [
+              "MBL can’t hydrolyse it",
+              "Co-produced ESBL/AmpC can"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19.5,
+              "opacity": 0
+            },
+            {
+              "t": 20,
+              "reveal": 0
+            },
+            {
+              "t": 20.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "st",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 460,
+            "w": 640,
+            "h": 110,
+            "tone": "a",
+            "title": "Staphylococcal penicillinase",
+            "lines": [
+              "Can hide behind a susceptible penicillin MIC",
+              "Negative nitrocefin ≠ excluded · zone-edge test more sensitive"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Trap card: “Clavulanate inhibits AmpC” is crossed out → “Clavulanate inhibits ESBL, not AmpC.” Trap card: “Ceftazidime–avibactam covers NDM” is crossed out → “Avibactam doesn’t inhibit metallo-β-lactamases.” Trap card: “MBL can’t hydrolyse aztreonam, so aztreonam alone always works” is crossed out → “Co-produced ESBL/AmpC often inactivate it.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: clavulanate inhibits ESBLs — not AmpC."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: avibactam doesn’t inhibit metallo-β-lactamases, so ceftazidime–avibactam lacks activity against NDM producers."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: aztreonam survives metallo-β-lactamases, but co-produced ESBL or AmpC enzymes often destroy it — so don’t assume aztreonam alone will work."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Clavulanate inhibits AmpC.”",
+            "lines": [
+              "✓ ESBL yes · AmpC no"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Ceftazidime–avibactam covers NDM.”",
+            "lines": [
+              "✓ Avibactam doesn’t inhibit MBLs"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “MBL → aztreonam alone always works.”",
+            "lines": [
+              "✓ Co-produced ESBL/AmpC often inactivate it"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Clav for A, chelate for B",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Clav for A (ESBL), chelate for B (MBL), C ignores clav, and avibactam guards A and D.” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: clav for A, chelate for B. C ignores clav. And avibactam guards A and D."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: some class A enzymes are carbapenemases that clavulanate doesn’t reliably block; isolates often carry several enzymes at once; inhibitor tests can give false positives; and treatment follows current breakpoints and guidance, not the enzyme name alone."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Clav for A · chelate for B",
+            "size": 32,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 140,
+            "y": 170,
+            "w": 210,
+            "label": "A: clavulanate (ESBL)",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 170,
+            "w": 210,
+            "label": "B: EDTA (MBL)",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.8,
+              "opacity": 0
+            },
+            {
+              "t": 3.5999999999999996,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 210,
+            "label": "C: ignores clav",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.1,
+              "opacity": 0
+            },
+            {
+              "t": 4.8999999999999995,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 830,
+            "y": 170,
+            "w": 210,
+            "label": "A + D: avibactam",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.4,
+              "opacity": 0
+            },
+            {
+              "t": 6.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 130,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "KPC is class A but needs newer inhibitors",
+              "Isolates often carry several enzymes",
+              "Treat by current breakpoints and guidance"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “ESBL–clavulanate · KPC/OXA-48–avibactam · MBL–EDTA (not avibactam) · AmpC–not clavulanate”, “mCIM finds carbapenemase; eCIM (EDTA) flags MBL · aztreonam vs MBL only if no ESBL/AmpC”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Identify β-lactamases by which inhibitor stops them — clavulanate for ESBL, avibactam for KPC and OXA-48, EDTA for metallo-enzymes — and confirm carbapenemases with mCIM and eCIM."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 800,
+            "label": "ESBL–clav · KPC/OXA-48–avibactam · MBL–EDTA · AmpC–not clav",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 800,
+            "label": "mCIM: carbapenemase · eCIM (EDTA): MBL · watch co-produced enzymes",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: bacteria make enzymes that break β-lactam drugs, and the drug that blocks each enzyme is the clue to which one it is. Scientific terms: Ambler classes A (ESBL, KPC), B (metallo-β-lactamases: NDM, VIM, IMP; zinc-dependent), C (AmpC), D (OXA, incl. OXA-48-like). ESBL inhibited by clavulanate; AmpC not inhibited by clavulanate, sulbactam, tazobactam; KPC inhibited by avibactam, vaborbactam, relebactam; MBL inhibited by EDTA, not by clavulanate or avibactam; OXA-48 by avibactam.",
+    "why": "Serine β-lactamases (A, C, D) and zinc-dependent MBLs (B) differ chemically, so inhibitors work selectively. MBLs cannot hydrolyse aztreonam, but co-produced ESBL/AmpC enzymes can.",
+    "measure": "mCIM: meropenem disk incubated with the isolate, placed on E. coli ATCC 25922 lawn — small/no zone = carbapenemase; eCIM (EDTA) restores the zone for MBL producers (CLSI-standardised). AmpC disk tests with cloxacillin/boronic acid; cefoxitin resistance is a low-specificity screen. Staphylococcal penicillinase: combined phenotypic tests; zone-edge more sensitive than nitrocefin.",
+    "differs": "ESBL vs AmpC (clavulanate), KPC/OXA-48 vs MBL (avibactam vs EDTA), carbapenemase-producing vs non-producing CRE.",
+    "examAngle": "Expect: enzyme–inhibitor matching, mCIM/eCIM interpretation, aztreonam and MBL, AmpC detection, hidden staphylococcal β-lactamase."
+  },
+  "comparisons": [
+    {
+      "id": "esbl-ampc",
+      "title": "ESBL vs AmpC",
+      "left": {
+        "label": "ESBL (class A)",
+        "points": [
+          "Inhibited by clavulanate",
+          "Hydrolyses 3rd-gen cephalosporins"
+        ]
+      },
+      "right": {
+        "label": "AmpC (class C)",
+        "points": [
+          "Not inhibited by clavulanate",
+          "Hydrolyses cephamycins (cefoxitin)"
+        ]
+      },
+      "distinguisher": "Clavulanate effect; cloxacillin/boronic acid disks for AmpC."
+    },
+    {
+      "id": "kpc-mbl",
+      "title": "KPC vs metallo-β-lactamase",
+      "left": {
+        "label": "KPC (class A)",
+        "points": [
+          "Serine enzyme",
+          "Inhibited by avibactam"
+        ]
+      },
+      "right": {
+        "label": "MBL (class B)",
+        "points": [
+          "Zinc enzyme",
+          "Inhibited by EDTA; not avibactam"
+        ]
+      },
+      "distinguisher": "eCIM: EDTA restores the zone only for MBL."
+    }
+  ],
+  "mnemonic": {
+    "text": "Clav for A, chelate for B; C ignores clav; avibactam guards A and D.",
+    "explanation": "Clavulanate inhibits class A ESBLs; EDTA chelates zinc in class B MBLs; AmpC resists clavulanate; avibactam inhibits KPC and OXA-48.",
+    "limitation": "KPC is class A but needs newer inhibitors; isolates often carry several enzymes; treatment follows current breakpoints and guidance."
+  },
+  "analogyLimitations": [
+    "Plates, zones and tokens are schematic; zone sizes are not CLSI criteria.",
+    "The isolate is invented.",
+    "Detailed CLSI zone criteria, molecular assays and treatment choices are not covered."
+  ],
+  "takeaway": "Identify β-lactamases by which inhibitor stops them — clavulanate for ESBL, avibactam for KPC and OXA-48, EDTA for metallo-enzymes — and confirm carbapenemases with mCIM and eCIM.",
+  "questions": [
+    {
+      "id": "micro-bla-q1",
+      "stem": "A meropenem-resistant K. pneumoniae is mCIM positive. In the eCIM, adding EDTA restores the meropenem zone. Which enzyme is most likely?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A metallo-β-lactamase such as NDM",
+          "rationale": "Correct. EDTA chelates zinc and inhibits MBLs, restoring the zone."
+        },
+        {
+          "id": "b",
+          "text": "KPC",
+          "rationale": "Incorrect. KPC is a serine enzyme not inhibited by EDTA."
+        },
+        {
+          "id": "c",
+          "text": "OXA-48",
+          "rationale": "Incorrect. OXA-48 is a serine (class D) enzyme."
+        },
+        {
+          "id": "d",
+          "text": "No carbapenemase",
+          "rationale": "Incorrect. A positive mCIM indicates carbapenemase activity."
+        }
+      ],
+      "answer": "a",
+      "skill": "mCIM/eCIM",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-bla-q2",
+      "stem": "An E. cloacae isolate is resistant to cefoxitin and ceftazidime, and adding clavulanate does not restore ceftazidime activity; a cloxacillin disk does. Which enzyme fits?",
+      "options": [
+        {
+          "id": "a",
+          "text": "AmpC (class C)",
+          "rationale": "Correct. AmpC is not inhibited by clavulanate but is by cloxacillin/boronic acid."
+        },
+        {
+          "id": "b",
+          "text": "ESBL (class A)",
+          "rationale": "Incorrect. ESBLs are inhibited by clavulanate."
+        },
+        {
+          "id": "c",
+          "text": "Metallo-β-lactamase",
+          "rationale": "Incorrect. MBLs are inhibited by EDTA, and the isolate is not described as carbapenem-resistant."
+        },
+        {
+          "id": "d",
+          "text": "Penicillinase (blaZ)",
+          "rationale": "Incorrect. blaZ is a staphylococcal penicillinase."
+        }
+      ],
+      "answer": "a",
+      "skill": "ESBL vs AmpC",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-bla-q3",
+      "stem": "Which statement about ceftazidime–avibactam is correct?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It is active against KPC and OXA-48 producers but lacks activity against MBL producers",
+          "rationale": "Correct. Avibactam inhibits serine enzymes, not zinc-dependent MBLs."
+        },
+        {
+          "id": "b",
+          "text": "It reliably treats NDM producers",
+          "rationale": "Incorrect. Avibactam does not inhibit MBLs."
+        },
+        {
+          "id": "c",
+          "text": "It is inactive against KPC producers",
+          "rationale": "Incorrect. Avibactam inhibits KPC."
+        },
+        {
+          "id": "d",
+          "text": "EDTA is its active inhibitor",
+          "rationale": "Incorrect. EDTA is a laboratory chelator, not part of the drug."
+        }
+      ],
+      "answer": "a",
+      "skill": "Inhibitor spectrum",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch58",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 58, Antibiotic Susceptibility Testing (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 58,
+          "section": "High-Yield Hits",
+          "items": [
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "chapter": 58,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            4,
+            5
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "dhavale2026",
+      "kind": "external",
+      "citation": "Dhavale SL, Patil HV, Patil SR. Carbapenemase detection methods in clinical microbiology: conventional and automated approaches. Cureus. 2026;18(7):e112242.",
+      "doi": "10.7759/cureus.112242",
+      "url": "https://europepmc.org/article/PMC/PMC13448164",
+      "consulted": true,
+      "usedFor": "Ambler classes: class A KPC, class B MBLs (NDM, VIM, IMP), class D OXA-48-like; MBLs zinc-dependent, inhibited by EDTA, resistant to common inhibitors, cannot hydrolyse aztreonam; CLSI-standardised mCIM/eCIM — meropenem disk incubated with isolate, placed on E. coli ATCC 25922 lawn; eCIM uses EDTA to inhibit MBLs."
+    },
+    {
+      "id": "khan2026",
+      "kind": "external",
+      "citation": "Khan M, Patil P, Rathored J. Carbapenem-resistant Gram-negative pathogens: molecular epidemiology, diagnostic advances, and emerging therapeutic strategies. Front Microbiol. 2026;17:1913726.",
+      "doi": "10.3389/fmicb.2026.1913726",
+      "url": "https://europepmc.org/article/PMC/PMC13531602",
+      "consulted": true,
+      "usedFor": "Avibactam, vaborbactam and relebactam inhibit KPC; ceftazidime–avibactam active against KPC and OXA-48 producers, lacks activity against MBL producers; aztreonam resists MBL hydrolysis but co-expressed ESBL/AmpC inactivate it, hence aztreonam combinations."
+    },
+    {
+      "id": "jadhav2026",
+      "kind": "external",
+      "citation": "Jadhav PS, Mane PM, Patil S. AmpC β-lactamases in SPICE organisms: a rising threat to antimicrobial therapy. Cureus. 2026;18(5):e109750.",
+      "doi": "10.7759/cureus.109750",
+      "url": "https://europepmc.org/article/PMC/PMC13309091",
+      "consulted": true,
+      "usedFor": "AmpC (class C) hydrolyses cephamycins (cefoxitin) and extended-spectrum cephalosporins; not inhibited by clavulanate, sulbactam or tazobactam (unlike ESBLs); detection: cefoxitin screen (low specificity), AmpC disk tests with cloxacillin/boronic acid; MBLs inhibited by EDTA not clavulanate."
+    },
+    {
+      "id": "ferreira2017",
+      "kind": "external",
+      "citation": "Ferreira AM, Martins KB, Silva VR, Mondelli AL, Cunha ML. Correlation of phenotypic tests with the presence of the blaZ gene for detection of beta-lactamase. Braz J Microbiol. 2017;48(1):159-166.",
+      "doi": "10.1016/j.bjm.2016.10.011",
+      "url": "https://europepmc.org/article/PMC/PMC5221353",
+      "consulted": true,
+      "usedFor": "In staphylococci (S. saprophyticus study): zone-edge test most sensitive (90.3%), nitrocefin least sensitive (28.9%) for blaZ; combined tests improve accuracy; penicillin susceptibility defined with a negative chromogenic cephalosporin (nitrocefin) test; penicillinase inactivates penicillin by hydrolysing the β-lactam ring; nitrocefin changes colour when its β-lactam ring is opened."
+    },
+    {
+      "id": "rapi2026",
+      "kind": "external",
+      "citation": "Rapi MC, Filipe J, Penati M, et al. Phenotypic resistance to life-saving antimicrobials in Gram-positive bacteria isolated from wild birds in Northern Italy: a One Health surveillance perspective. One Health. 2026;23:101551.",
+      "doi": "10.1016/j.onehlt.2026.101551",
+      "url": "https://europepmc.org/article/PMC/PMC13505492",
+      "consulted": true,
+      "usedFor": "β-lactams act by binding penicillin-binding proteins (low-affinity PBP5 reduces β-lactam binding and confers resistance in E. faecium)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-class",
+      "text": "Ambler A (ESBL, KPC), B (MBL; zinc), C (AmpC), D (OXA-48-like).",
+      "status": "checked",
+      "refs": [
+        "dhavale2026",
+        "jadhav2026"
+      ]
+    },
+    {
+      "id": "cl-inh",
+      "text": "ESBL–clavulanate; AmpC not inhibited by clavulanate/sulbactam/tazobactam; KPC–avibactam/vaborbactam/relebactam; MBL–EDTA not avibactam; OXA-48–avibactam.",
+      "status": "checked",
+      "refs": [
+        "jadhav2026",
+        "khan2026",
+        "dhavale2026"
+      ]
+    },
+    {
+      "id": "cl-cim",
+      "text": "mCIM detects carbapenemase; eCIM (EDTA) identifies MBL (CLSI-standardised).",
+      "status": "checked",
+      "refs": [
+        "dhavale2026"
+      ]
+    },
+    {
+      "id": "cl-azt",
+      "text": "MBLs can’t hydrolyse aztreonam; co-produced ESBL/AmpC can.",
+      "status": "checked",
+      "refs": [
+        "dhavale2026",
+        "khan2026"
+      ]
+    },
+    {
+      "id": "cl-ampc",
+      "text": "AmpC detection: cloxacillin/boronic acid disks; cefoxitin screen low specificity.",
+      "status": "checked",
+      "refs": [
+        "jadhav2026"
+      ]
+    },
+    {
+      "id": "cl-staph",
+      "text": "Staphylococcal penicillinase can be missed; nitrocefin less sensitive than zone-edge test.",
+      "status": "checked",
+      "refs": [
+        "ferreira2017"
+      ]
+    },
+    {
+      "id": "cl-mech",
+      "text": "β-lactams bind PBPs; β-lactamases hydrolyse the β-lactam ring; nitrocefin changes colour when its ring is opened.",
+      "status": "checked",
+      "refs": [
+        "rapi2026",
+        "ferreira2017"
+      ]
+    },
+    {
+      "id": "cl-vis",
+      "text": "Schematic plates, zones and tokens.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Clav for A, chelate for B.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Plates and zones are schematic; zone sizes are not interpretive criteria.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "7 claims checked against Dhavale 2026, Khan 2026, Jadhav 2026, Ferreira 2017 and Rapi 2026 (full texts) read for this lesson; none pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
