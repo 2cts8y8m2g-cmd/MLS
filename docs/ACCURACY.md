@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 73 flags: 51 verified issues and 22 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 75 flags: 52 verified issues and 23 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -68,6 +68,7 @@ Verified:
 - **Ch. 34 Hit 4:** PV “JAK2 V617F in essentially all cases” (> 95%; 3–5% carry exon 12–15 mutations — Palandri 2026, Testa 2026).
 - **Ch. 34 Hit 5:** PMF median survival “~5 years” (Shao 2025: 9.2 years in a large series).
 - **Ch. 38 Hits 3 and 9:** factor V Leiden fold-risks (homozygous “10–15×”, + OCPs “8–20×”) conflict with the reviewer’s own Ch. 72 simulator question (~80× homozygous) and with published figures (Khider 2022: ~10× homozygous; Nakashima & Rogers 2014: 80× homozygous, 30–60× with OCPs).
+- **Ch. 20 Trap 2:** bisalbuminemia called a benign variant needing no work-up; Kapatia 2021 also describes a transient acquired form (high-dose β-lactams, pancreatic pseudocyst).
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -95,6 +96,7 @@ Needs verification:
 - Ch. 57 Trap 2: tube coagulase "~100% sensitive" (no source read gives a figure).
 - Ch. 58 Hit 5: nitrocefin as the safeguard for hidden staphylococcal β-lactamase (Ferreira 2017, S. saprophyticus: nitrocefin least sensitive, zone-edge most sensitive; S. aureus not checked).
 - Ch. 41 Hit 10: end-of-storage platelet pH “≥ 6.0” (Cancelas 2022 used ≥ 6.2 as the acceptance endpoint; the current AABB/FDA criterion was not read).
+- Ch. 20 Hit 4: “myoglobin doesn’t bind haptoglobin” (Petejova 2014 and Gupta 2021 say circulating myoglobin is bound mainly by haptoglobin; no primary binding study read).
 
 Automated scan: **23** dated-guideline statements and **134** High-Yield Hits with only/always/never wording. Each must be checked when its lesson is built.
 
@@ -120,6 +122,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Apheresis Safety (citrate, ASFA, RCE):** 1 pending claim (paresthesia as early sign, calcium dose, circuit targets, RCE hematocrit; not taught); no flags. RCE HbS goal taught as “often 30–50%, varies” (reviewer: < 30%). ASFA tenth edition (2026) read as abstract only.
 - **Serous Fluids (core, Ch. 30):** 1 pending claim (SAAG 98% accuracy, IFN-γ cut-off, pH > 7.30; not taught); no flags. Light’s cut-offs taught as “>” (reviewer writes “≥”).
 - **Inherited Thrombophilia (Ch. 38):** 1 pending claim (FVL fold-risks, free protein S falling from the 10th week, factor II assays “blind” to G20210A, ACMG/ACOG on MTHFR; not taught); 1 register flag (rv-fvl-risk).
+- **Plasma Protein Patterns (Ch. 20):** 1 pending claim (α2-macroglobulin size and 10-fold rise, δ-bilirubin, CRP bacterial vs viral, haptoglobin rebound/hemopexin, ZZ prevalence, myoglobin binding; not taught); 2 register flags (rv-myoglobin-hp, rv-bisalbumin).
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.

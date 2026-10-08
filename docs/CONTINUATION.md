@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 78, teaching 404 of 1,932 concepts (about 20.9%).** All 78 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 79, teaching 413 of 1,932 concepts (about 21.4%).** All 79 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -11,7 +11,7 @@
   - Ch. 17 (6/22 concepts): `chem-diabetes-diagnosis-hba1c`.
   - Ch. 18 (6/24 concepts): `chem-ldl-calculation-friedewald`.
   - Ch. 19 (7/21 concepts): `chem-troponin-myocardial-injury`.
-  - Ch. 20 (4/22 concepts): `chem-serum-protein-electrophoresis-m-spike`.
+  - Ch. 20 (13/22 concepts): `chem-plasma-protein-patterns`, `chem-serum-protein-electrophoresis-m-spike`.
   - Ch. 21 (5/23 concepts): `chem-enzyme-kinetics-inhibition`.
   - Ch. 22 (10/26 concepts): `chem-hepatitis-b-serology-window`, `chem-liver-panel-patterns`.
   - Ch. 23 (5/23 concepts): `chem-pancreatic-enzymes-pancreatitis`.
@@ -43,8 +43,8 @@
   - Ch. 64 (7/24 concepts): `micro-ebv-cmv-serology`, `micro-respiratory-virus-naat-antigen-culture`.
   - Ch. 65 (7/24 concepts): `micro-malaria-thick-thin-films`.
   - Ch. 66 (14/54 concepts): `micro-blood-culture-volume-contamination`, `micro-specimen-acceptability-transport`.
-- **Reviewer accuracy register:** 73 flags (51 verified issues, 22 needing verification), plus scan results.
-- **Checks:** 534 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Reviewer accuracy register:** 75 flags (52 verified issues, 23 needing verification), plus scan results.
+- **Checks:** 540 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -86,7 +86,7 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 | 12 | ✅ Ch. 31 spurious CBC results (2nd lesson) | ✅ Ch. 22 liver function (2nd lesson) | ✅ Ch. 57 bacterial ID (2nd lesson) | ✅ Ch. 43 stem cells & tissue banking (2nd lesson) |
 | 13 | ✅ Ch. 37 platelets & von Willebrand disease (2nd lesson) | ✅ Ch. 15 kidney, electrolytes & acid–base (2nd lesson) | ✅ Ch. 66 specimen collection (2nd lesson) | ✅ Ch. 41 reactions & lookback (4th lesson) |
 | 14 | ✅ Ch. 34 white cell disorders (2nd lesson) | ✅ Ch. 24 drugs & poisons (2nd lesson) | ✅ Ch. 64 viral infections (2nd lesson) | ✅ Ch. 42 apheresis & blood collection (3rd lesson) |
-| 15 | ✅ Ch. 38 clot risk (2nd lesson) | Ch. 20 plasma proteins (2nd lesson) | Ch. 60 fungal infections (2nd lesson) | Ch. 40 blood groups & compatibility (next lesson) |
+| 15 | ✅ Ch. 38 clot risk (2nd lesson) | ✅ Ch. 20 plasma proteins (2nd lesson) | Ch. 60 fungal infections (2nd lesson) | Ch. 40 blood groups & compatibility (next lesson) |
 
 Clinical Microscopy runs alongside rounds 14–15: **Ch. 29 urinalysis** (✅ core lesson, round 14) and **Ch. 30 body fluids** (✅ core lesson, round 15). Both have no lesson yet and rank third and sixth by simulator questions × untaught share.
 
