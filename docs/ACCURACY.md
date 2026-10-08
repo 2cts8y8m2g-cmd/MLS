@@ -76,6 +76,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **Malaria Films:** 1 pending claim (15–30× blood per thick-film field; Wright pH < 6.8); no flags.
 - **Enzyme Kinetics:** 1 pending claim (Km rate-constant expression); no flags.
 - **Anticoagulant Monitoring:** 1 pending claim (spiked plasma; normal anti-Xa excluding Xa inhibitors; APTT plateau); no flags. Adds context that routine LMWH anti-Xa monitoring is not recommended in standard patients.
 - **TRALI vs TACO:** 1 pending claim (48–96 h resolution and ~10% mortality; source read: 48–72 h, 5–25%); 1 register flag on Hit 4.

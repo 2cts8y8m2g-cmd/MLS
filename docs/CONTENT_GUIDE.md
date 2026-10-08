@@ -51,7 +51,7 @@ Every visual object has `type`, `props` (initial values) and optional `keys`:
 
 | Type | Key props (animatable numbers in *italics*) |
 |---|---|
-| `rbc` | `r`, `antigen` (`A`,`B`,`AB`,`O`=H only,`none`=Bombay), `antigens` (count), `face`, `mood` (`happy`/`neutral`/`worried`), *`highlight`*, `label`, `labelSize` |
+| `rbc` | `r`, `antigen` (`A`,`B`,`AB`,`O`=H only,`none`=Bombay), `antigens` (count), `face`, `mood` (`happy`/`neutral`/`worried`), *`highlight`*, `label`, `labelSize`, *`parasite`* (`ring`, `double`, `multi`, `applique`, `stippled`, `clefts`, `crescent`, `tetrad`), *`lysed`* (hide the red cell, as in a thick film) — **schematic** parasite marks, not real morphology |
 | `antibody` | `spec` (`A`,`B`,`H`,`AB`), `cls` (`IgM` pentamer / `IgG`), *`size`*, *`spin`* (rotates the molecule, not its label), `label` |
 | `cellField` | `w`, `h`, `count`, `cellR`, `antigen`, `spec`, `seed`, *`free`* (unbound antibodies), *`bound`* (bridging antibodies), *`clump`* (0 dispersed → 1 lattice), *`hemolysis`*, `label` |
 | `tube` | `label`, `fluid` (`saline`/`plasma`/CSS color), *`level`*, *`cells`*, *`settle`* (button forms), *`shake`* (resuspension), *`grade`* (0–4 clump pattern), *`hemolysis`*, *`clot`* (0–1 gel clot), *`highlight`*, `result` (chip text), `cap` (stopper colour as a CSS colour, e.g. `#8ec9ee` for citrate) |

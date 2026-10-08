@@ -144,6 +144,67 @@ function RbcShape({ r, antigen, face, mood, antigenCount }: { r: number; antigen
   );
 }
 
+/** Schematic intracellular parasite marks (not real morphology): blue cytoplasm, purple chromatin. */
+function ParasiteMark({ kind, r }: { kind: string; r: number }) {
+  const cyto = 'var(--mb-blue)';
+  const chrom = 'var(--gram-pos)';
+  const ring = (cx: number, cy: number, dots: number, key: string) => (
+    <g key={key} transform={`translate(${cx},${cy})`}>
+      <circle r={r * 0.26} fill="none" stroke={cyto} strokeWidth={Math.max(2.5, r * 0.09)} />
+      {Array.from({ length: dots }, (_, i) => <circle key={i} cx={r * 0.26 * (i ? -0.55 : 0.55)} cy={-r * 0.22} r={Math.max(2.5, r * 0.09)} fill={chrom} />)}
+    </g>
+  );
+  switch (kind) {
+    case 'ring':
+      return ring(r * 0.15, -r * 0.1, 1, 'r');
+    case 'double':
+      return ring(r * 0.15, -r * 0.1, 2, 'd');
+    case 'multi':
+      return <g>{ring(-r * 0.3, -r * 0.2, 2, 'm1')}{ring(r * 0.32, r * 0.25, 1, 'm2')}</g>;
+    case 'applique':
+      return ring(r * 0.78, 0, 1, 'a');
+    case 'stippled':
+      return (
+        <g>
+          {Array.from({ length: 22 }, (_, i) => {
+            const a = i * 2.4; const d = r * 0.82 * Math.sqrt((i + 0.5) / 22);
+            return <circle key={i} cx={Math.cos(a) * d} cy={Math.sin(a) * d} r={Math.max(1.5, r * 0.045)} fill="var(--stipple)" opacity={0.85} />;
+          })}
+          {ring(r * 0.1, -r * 0.05, 1, 's')}
+        </g>
+      );
+    case 'clefts':
+      return (
+        <g>
+          {[[-0.45, -0.3, 20], [0.4, -0.4, -30], [-0.3, 0.45, 60], [0.45, 0.35, 10]].map(([x, y, a], i) => (
+            <line key={i} x1={-r * 0.12} x2={r * 0.12} y1={0} y2={0} transform={`translate(${x * r},${y * r}) rotate(${a})`} stroke="var(--stipple)" strokeWidth={Math.max(2, r * 0.07)} strokeLinecap="round" />
+          ))}
+          {ring(r * 0.05, 0, 1, 'c')}
+        </g>
+      );
+    case 'crescent':
+      return (
+        <g>
+          <path d={`M${-r * 1.05},${r * 0.1} Q0,${-r * 0.75} ${r * 1.05},${r * 0.1} Q0,${-r * 0.2} ${-r * 1.05},${r * 0.1} Z`} fill={cyto} stroke="var(--ink)" strokeOpacity={0.3} />
+          <circle cx={0} cy={-r * 0.3} r={r * 0.12} fill={chrom} />
+        </g>
+      );
+    case 'tetrad':
+      return (
+        <g>
+          {[0, 90, 180, 270].map((a) => (
+            <g key={a} transform={`rotate(${a})`}>
+              <ellipse cx={0} cy={-r * 0.3} rx={r * 0.1} ry={r * 0.2} fill="none" stroke={cyto} strokeWidth={Math.max(2, r * 0.06)} />
+              <circle cx={0} cy={-r * 0.42} r={Math.max(1.8, r * 0.055)} fill={chrom} />
+            </g>
+          ))}
+        </g>
+      );
+    default:
+      return null;
+  }
+}
+
 function Rbc({ p }: { p: Props }) {
   const r = num(p, 'r', 34);
   const hl = num(p, 'highlight', 0);
@@ -151,7 +212,9 @@ function Rbc({ p }: { p: Props }) {
   return (
     <g>
       {hl > 0 && <circle r={r + 16} fill="none" stroke="var(--accent)" strokeWidth={4} opacity={hl} />}
-      <RbcShape r={r} antigen={str(p, 'antigen', 'A')} face={bool(p, 'face', true)} mood={str(p, 'mood', 'happy')} antigenCount={num(p, 'antigens', 10)} />
+      {/* lysed: the red cell is gone (thick blood film), leaving only the parasite mark */}
+      {!bool(p, 'lysed', false) && <RbcShape r={r} antigen={str(p, 'antigen', 'A')} face={bool(p, 'face', true)} mood={str(p, 'mood', 'happy')} antigenCount={num(p, 'antigens', 10)} />}
+      <ParasiteMark kind={str(p, 'parasite', '')} r={r} />
       {label && (() => {
         const lines = wrap(label, 18);
         const size = num(p, 'labelSize', 16);
