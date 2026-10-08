@@ -80,6 +80,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
 - **hCG and PUL:** 1 pending claim (progesterone ng/mL cut-offs); 2 register flags on Hits 1–2.
+- **Susceptibility testing (MIC, breakpoints, D-test):** 1 pending claim (current CLSI wording for reporting clindamycin as resistant after a positive D-test, and exact broth-microdilution conditions); no flags. Breakpoint numbers are deliberately not taught because they change with each CLSI M100 edition.
 - **Flow Cytometry Gating:** 1 pending claim (hemodilution/lysis explanation); no flags. Adds the genetic AML exceptions to the 20% blast threshold.
 - **Antibody ID — Dosage and Kidd:** 1 pending claim (DHTR 5–10 days); 1 register flag (S/s enzyme effect, needs verification). Adds Rh (non-D) to the dosage list.
 - **Syphilis Serology:** no pending claims; no flags. Notes CDC’s 15–25% treponemal seroreversion after primary-stage treatment (reviewer: “up to 20%”) and the “lipoidal antigen” terminology.

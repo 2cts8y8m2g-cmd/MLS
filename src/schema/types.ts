@@ -70,7 +70,7 @@ export const VISUAL_TYPES = [
   'autoclave',
   'bellCurve',
   'smear',
-  'cocci',
+  'cocci', 'plate', 'zone',
 ] as const;
 export type VisualType = (typeof VISUAL_TYPES)[number];
 

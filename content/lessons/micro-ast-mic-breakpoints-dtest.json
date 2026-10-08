@@ -1,0 +1,1910 @@
+{
+  "schemaVersion": 1,
+  "id": "micro-ast-mic-breakpoints-dtest",
+  "title": "Susceptibility Testing: Big Zone, Small MIC — and Mind the D",
+  "summary": "Read an MIC and MBC, connect zone size to MIC, interpret results with organism-specific breakpoints that change every year, and catch inducible clindamycin resistance with the D-test.",
+  "domain": "p7-micro",
+  "topic": "ch58",
+  "conceptIds": [
+    "ch58.hit1",
+    "ch58.hit3",
+    "ch58.hit4",
+    "ch58.hit7",
+    "ch58.trap2",
+    "ch58.figure"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 58,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          3,
+          4,
+          7
+        ]
+      },
+      {
+        "chapter": 58,
+        "section": "Exam Traps",
+        "items": [
+          2
+        ]
+      },
+      {
+        "chapter": 58,
+        "section": "Figure 58"
+      }
+    ],
+    "note": "Teaches Ch. 58 Hit 1 (MIC/MBC), Hit 3 (zone inversely related to MIC; species-specific breakpoints), Hit 4 (use current CLSI M100), Hit 7 (D-test), Trap 2 and the Figure 58 anchor. Checked against Hulankova 2024, Saar 2025, Yu 2026, Shoman & Radwan 2026, Addis 2025 and Rossi 2026. Pending: CLSI wording “report clindamycin resistant” for a positive D-test; broth microdilution conditions (Hit 2)."
+  },
+  "prerequisites": [
+    "ch57.hit1"
+  ],
+  "objectives": [
+    "Define MIC and MBC and read them from a dilution series.",
+    "Explain the inverse relationship between zone diameter and MIC and the role of organism-specific breakpoints.",
+    "Perform and interpret the D-test for inducible clindamycin resistance."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "“Clindamycin susceptible” — and the infection got worse",
+      "start": 0,
+      "end": 20,
+      "altText": "A Staphylococcus aureus skin abscess isolate: erythromycin resistant, clindamycin susceptible on routine disks. The patient is given clindamycin and gets worse. A question: did the lab report lie, or was something missing?",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A Staphylococcus aureus abscess isolate tests erythromycin-resistant and clindamycin-susceptible."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The patient is treated with clindamycin — and gets worse."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Was the report wrong? To see why, start with what “susceptible” really means."
+        }
+      ],
+      "objects": [
+        {
+          "id": "rep",
+          "type": "card",
+          "props": {
+            "x": 280,
+            "y": 150,
+            "w": 380,
+            "h": 120,
+            "tone": "a",
+            "title": "S. aureus — routine disks",
+            "lines": [
+              "Erythromycin: R",
+              "Clindamycin: S"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "rx",
+          "type": "card",
+          "props": {
+            "x": 700,
+            "y": 150,
+            "w": 320,
+            "h": 120,
+            "tone": "neutral",
+            "title": "Treated: clindamycin",
+            "lines": [
+              "Patient worsens"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "tone": "bad"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 340,
+            "w": 460,
+            "label": "What did the report miss?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 900,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: MIC and MBC",
+      "start": 20,
+      "end": 60,
+      "altText": "A row of tubes with doubling antibiotic concentrations (0.25–32 µg/mL), each inoculated with the same number of bacteria. After incubation, tubes with too little drug are turbid; the first clear tube is the MIC — the lowest concentration that inhibits visible growth (here 4 µg/mL). Subculturing clear tubes shows which concentration kills: the MBC is the lowest concentration that kills 99.9% of the inoculum (CLSI definition).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Line up tubes with doubling amounts of antibiotic, and add the same number of bacteria to each."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "After incubation, low-dose tubes are cloudy with growth. The first clear tube marks the minimum inhibitory concentration — the MIC. Here, 4."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 51,
+          "text": "Clear doesn’t mean dead. Subculture the clear tubes onto agar: the lowest concentration that kills 99.9 percent of the starting bacteria is the minimum bactericidal concentration — the MBC."
+        },
+        {
+          "id": "n4",
+          "start": 51,
+          "end": 60,
+          "text": "The MIC tells you what stops growth in the tube. It doesn’t yet tell you whether that drug will work in the patient."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t0",
+          "type": "tube",
+          "props": {
+            "x": 110,
+            "y": 110,
+            "level": 0.6,
+            "fluid": "saline",
+            "label": "0.25",
+            "cap": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 0.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11.0,
+              "fluid": "plasma"
+            }
+          ]
+        },
+        {
+          "id": "t1",
+          "type": "tube",
+          "props": {
+            "x": 210,
+            "y": 110,
+            "level": 0.6,
+            "fluid": "saline",
+            "label": "0.5",
+            "cap": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11.4,
+              "fluid": "plasma"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "tube",
+          "props": {
+            "x": 310,
+            "y": 110,
+            "level": 0.6,
+            "fluid": "saline",
+            "label": "1",
+            "cap": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.1,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11.8,
+              "fluid": "plasma"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "tube",
+          "props": {
+            "x": 410,
+            "y": 110,
+            "level": 0.6,
+            "fluid": "saline",
+            "label": "2",
+            "cap": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.7999999999999998,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12.2,
+              "fluid": "plasma"
+            }
+          ]
+        },
+        {
+          "id": "t4",
+          "type": "tube",
+          "props": {
+            "x": 510,
+            "y": 110,
+            "level": 0.6,
+            "fluid": "saline",
+            "label": "4",
+            "cap": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.7,
+              "opacity": 0
+            },
+            {
+              "t": 2.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12.6,
+              "fluid": "saline"
+            }
+          ]
+        },
+        {
+          "id": "t5",
+          "type": "tube",
+          "props": {
+            "x": 610,
+            "y": 110,
+            "level": 0.6,
+            "fluid": "saline",
+            "label": "8",
+            "cap": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.0,
+              "opacity": 0
+            },
+            {
+              "t": 2.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13.0,
+              "fluid": "saline"
+            }
+          ]
+        },
+        {
+          "id": "t6",
+          "type": "tube",
+          "props": {
+            "x": 710,
+            "y": 110,
+            "level": 0.6,
+            "fluid": "saline",
+            "label": "16",
+            "cap": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.3,
+              "opacity": 0
+            },
+            {
+              "t": 2.6999999999999997,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13.4,
+              "fluid": "saline"
+            }
+          ]
+        },
+        {
+          "id": "t7",
+          "type": "tube",
+          "props": {
+            "x": 810,
+            "y": 110,
+            "level": 0.6,
+            "fluid": "saline",
+            "label": "32",
+            "cap": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.6,
+              "opacity": 0
+            },
+            {
+              "t": 3.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13.8,
+              "fluid": "saline"
+            }
+          ]
+        },
+        {
+          "id": "unit",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 330,
+            "text": "Antibiotic, µg/mL (doubling dilutions)",
+            "size": 14,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mic",
+          "type": "highlight",
+          "props": {
+            "x": 510,
+            "y": 200,
+            "w": 80,
+            "h": 230,
+            "dashed": false,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15,
+              "opacity": 0
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "micl",
+          "type": "token",
+          "props": {
+            "x": 510,
+            "y": 380,
+            "w": 240,
+            "label": "MIC = 4 (first clear tube)",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mbc",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 600,
+            "h": 90,
+            "tone": "b",
+            "title": "MBC: lowest concentration killing 99.9%",
+            "lines": [
+              "Found by subculturing clear tubes"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "caveat",
+          "type": "token",
+          "props": {
+            "x": 810,
+            "y": 380,
+            "w": 250,
+            "label": "In the tube ≠ in the patient",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: zones, breakpoints and S/I/R",
+      "start": 60,
+      "end": 104,
+      "altText": "Disk diffusion plate: antibiotic diffuses out of each paper disk, making a gradient; bacteria grow only where the drug is too weak, leaving a clear zone. A large zone corresponds to a low MIC (inverse relationship). Breakpoint card: MIC or zone values are translated into susceptible / intermediate / resistant using breakpoints specific to the organism and drug; “S” means the MIC is at or below the breakpoint in vitro. Breakpoints are revised (CLSI M100 is updated yearly; e.g. minocycline breakpoints for Acinetobacter changed in the 2025 edition).",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "In disk diffusion, paper disks soaked in antibiotic sit on a lawn of bacteria. The drug spreads outward, getting weaker with distance."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 81,
+          "text": "Bacteria grow only where the drug is too weak, so a clear zone forms. A bigger zone means a lower MIC — the two move in opposite directions."
+        },
+        {
+          "id": "c3",
+          "start": 81,
+          "end": 93,
+          "text": "To turn a zone or an MIC into a report, the lab uses breakpoints specific to that organism and that drug. Susceptible means the MIC is at or below the breakpoint — under test conditions."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "Breakpoints change. CLSI publishes updated tables every year, so labs must use the current edition, not memorised numbers."
+        }
+      ],
+      "objects": [
+        {
+          "id": "plate",
+          "type": "plate",
+          "props": {
+            "x": 250,
+            "y": 270,
+            "r": 190,
+            "label": "Lawn of bacteria (schematic)",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "z1",
+          "type": "zone",
+          "props": {
+            "x": 180,
+            "y": 200,
+            "r": 15,
+            "label": "A",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2.5,
+              "r": 15
+            },
+            {
+              "t": 8.5,
+              "r": 80,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "z2",
+          "type": "zone",
+          "props": {
+            "x": 330,
+            "y": 230,
+            "r": 15,
+            "label": "B",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3.5,
+              "r": 15
+            },
+            {
+              "t": 9.5,
+              "r": 40,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "z3",
+          "type": "zone",
+          "props": {
+            "x": 240,
+            "y": 350,
+            "r": 15,
+            "label": "C",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0
+            },
+            {
+              "t": 4.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4.5,
+              "r": 15
+            },
+            {
+              "t": 8.5,
+              "r": 16,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "inv",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 140,
+            "w": 380,
+            "h": 140,
+            "tone": "neutral",
+            "title": "Zone ↔ MIC (inverse)",
+            "lines": [
+              "A: big zone → low MIC",
+              "B: medium zone → higher MIC",
+              "C: no zone → high MIC"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12,
+              "reveal": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "bp",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 310,
+            "w": 380,
+            "h": 110,
+            "tone": "a",
+            "title": "Breakpoints → S / I / R",
+            "lines": [
+              "Specific to organism + drug",
+              "S = MIC ≤ breakpoint (in vitro)"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 22,
+              "reveal": 0
+            },
+            {
+              "t": 22.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "m100",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 440,
+            "w": 380,
+            "label": "CLSI M100 revised yearly",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 34.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35.5,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: the D-test",
+      "start": 104,
+      "end": 144,
+      "altText": "D-test plate: an erythromycin disk (15 µg) and a clindamycin disk (2 µg) placed 15–20 mm apart on a S. aureus lawn. Erythromycin diffusing toward the clindamycin disk induces an erm methylase, so the bacteria near the erythromycin side become clindamycin-resistant and grow closer to the disk: the clindamycin zone flattens on that side into a “D”. A positive D-test means inducible MLSB resistance; clindamycin can fail during therapy. It is done on S. aureus isolates that are erythromycin-resistant and clindamycin-susceptible. A round zone (D-test negative) fits the efflux (MS) phenotype.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "The D-test is for staph that look erythromycin-resistant but clindamycin-susceptible. Place an erythromycin disk and a clindamycin disk 15 to 20 millimetres apart."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Erythromycin spreads toward the clindamycin disk and switches on an erm methylase gene in the bacteria nearby. Those bacteria now resist clindamycin too."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 135,
+          "text": "So the clindamycin zone gets flattened on the side facing erythromycin — it looks like the letter D. That’s inducible resistance: clindamycin may fail once treatment starts."
+        },
+        {
+          "id": "l4",
+          "start": 135,
+          "end": 144,
+          "text": "If the clindamycin zone stays round, the D-test is negative — erythromycin resistance is from an efflux pump that doesn’t affect clindamycin."
+        }
+      ],
+      "objects": [
+        {
+          "id": "plate",
+          "type": "plate",
+          "props": {
+            "x": 270,
+            "y": 260,
+            "r": 190,
+            "label": "S. aureus lawn (schematic)",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ery",
+          "type": "zone",
+          "props": {
+            "x": 190,
+            "y": 260,
+            "r": 15,
+            "label": "E 15",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cli",
+          "type": "zone",
+          "props": {
+            "x": 360,
+            "y": 260,
+            "r": 15,
+            "flat": 0,
+            "dir": 180,
+            "label": "CC 2",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2,
+              "r": 15
+            },
+            {
+              "t": 6,
+              "r": 85,
+              "ease": "inOut"
+            },
+            {
+              "t": 21,
+              "flat": 0
+            },
+            {
+              "t": 25,
+              "flat": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "gap",
+          "type": "token",
+          "props": {
+            "x": 275,
+            "y": 120,
+            "w": 180,
+            "label": "15–20 mm apart",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 7.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "erm",
+          "type": "card",
+          "props": {
+            "x": 740,
+            "y": 130,
+            "w": 360,
+            "h": 110,
+            "tone": "warn",
+            "title": "Erythromycin induces erm",
+            "lines": [
+              "Methylase → clindamycin resistance",
+              "near the erythromycin side"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "dpos",
+          "type": "card",
+          "props": {
+            "x": 740,
+            "y": 280,
+            "w": 360,
+            "h": 110,
+            "tone": "neutral",
+            "title": "D-shape = inducible MLSB",
+            "lines": [
+              "Clindamycin may fail in therapy"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 22.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "tone": "bad"
+            }
+          ]
+        },
+        {
+          "id": "dneg",
+          "type": "token",
+          "props": {
+            "x": 740,
+            "y": 420,
+            "w": 360,
+            "label": "Round zone = D-test negative (efflux, MS)",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Trap card: “Clindamycin zone looks susceptible, so report S” is crossed out → “Check the shape: a D means inducible resistance.” Trap card: “A bigger zone means a higher MIC” is crossed out → “Inverse: bigger zone, lower MIC.” Trap card: “Use the same zone cut-off for every organism” is crossed out → “Breakpoints are organism- and drug-specific and revised yearly.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 155,
+          "text": "Trap one: a clindamycin zone of susceptible size isn’t the whole story. If it’s flattened into a D next to erythromycin, resistance is inducible."
+        },
+        {
+          "id": "e2",
+          "start": 155,
+          "end": 165,
+          "text": "Trap two: zone size and MIC run opposite ways. Bigger zone, lower MIC."
+        },
+        {
+          "id": "e3",
+          "start": 165,
+          "end": 174,
+          "text": "Trap three: there’s no universal cut-off. Breakpoints depend on the organism and the drug, and they’re revised every year."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Clindamycin zone size is susceptible, so it’s fine.”",
+            "lines": [
+              "✓ A D-shaped zone = inducible resistance"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 0
+            },
+            {
+              "t": 6,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “A bigger zone means a higher MIC.”",
+            "lines": [
+              "✓ Inverse: bigger zone, lower MIC"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 0
+            },
+            {
+              "t": 16,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “One zone cut-off fits every organism.”",
+            "lines": [
+              "✓ Organism- and drug-specific breakpoints, revised yearly"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 22.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Big zone, small MIC — and mind the D",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Big zone, small MIC.” And “D is for Don’t trust clindamycin.” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: big zone, small MIC. And D is for don’t trust clindamycin."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: zone size can’t be compared across different drugs or organisms; “susceptible” is an in-vitro category, and site, dose and biofilm still matter; and the exact reporting rules come from the current CLSI or EUCAST documents."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Big zone, small MIC",
+            "size": 32,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 180,
+            "w": 260,
+            "label": "MIC: first clear tube",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 260,
+            "label": "Zone ↔ MIC: inverse",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 180,
+            "w": 260,
+            "label": "D = don’t trust clinda",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 110,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Zones can’t be compared across drugs/organisms",
+              "“S” is in vitro — site, dose, biofilm matter · follow current CLSI/EUCAST"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “MIC = lowest concentration inhibiting visible growth; MBC = 99.9% kill; zone size is inverse to MIC”, “Use current organism-specific breakpoints; a D-shaped clindamycin zone = inducible resistance”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "The MIC is the lowest concentration that stops visible growth and zone size runs opposite to it; interpret with current organism-specific breakpoints, and treat a D-shaped clindamycin zone as inducible resistance."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 760,
+            "label": "MIC: first clear tube · MBC: 99.9% kill · zone inverse to MIC",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 760,
+            "label": "Current organism-specific breakpoints · D-zone = inducible resistance",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: susceptibility tests find how much antibiotic it takes to stop a germ growing and whether that amount is achievable; the D-test reveals hidden clindamycin resistance. Scientific terms: MIC is the lowest concentration inhibiting visible growth; MBC the lowest killing 99.9% of the inoculum (CLSI); disk-diffusion zone diameters correlate inversely with MIC; breakpoints convert MICs/zones to S/I/R; erm-mediated inducible MLSB resistance flattens the clindamycin zone next to erythromycin.",
+    "why": "Drug diffusing from a disk forms a concentration gradient; organisms with low MICs are inhibited farther from the disk. Erythromycin induces erm methylase, which modifies the ribosomal target shared by macrolides, lincosamides and streptogramin B.",
+    "measure": "Dilution series: first clear well/tube = MIC; subculture for MBC. Interpret with current organism/drug-specific breakpoints (CLSI M100 is revised yearly; e.g. minocycline/Acinetobacter changes in 2025). D-test: erythromycin 15 µg and clindamycin 2 µg disks 15–20 mm apart on S. aureus that is erythromycin-R/clindamycin-S; flattened D = inducible MLSB (clindamycin may fail); round zone = MS (efflux) phenotype.",
+    "differs": "MIC (inhibition) vs MBC (killing); zone diameter vs MIC (inverse); inducible MLSB (D+) vs constitutive MLSB (both resistant) vs MS phenotype (D−).",
+    "examAngle": "Expect: MIC/MBC definitions, “bigger zone, lower MIC”, species-specific breakpoints, and D-test interpretation."
+  },
+  "comparisons": [
+    {
+      "id": "mic-vs-mbc",
+      "title": "MIC vs MBC",
+      "left": {
+        "label": "MIC",
+        "points": [
+          "Lowest concentration inhibiting visible growth",
+          "Read from first clear tube/well"
+        ]
+      },
+      "right": {
+        "label": "MBC",
+        "points": [
+          "Lowest concentration killing 99.9%",
+          "Requires subculture"
+        ]
+      },
+      "distinguisher": "Inhibition vs killing."
+    },
+    {
+      "id": "dtest",
+      "title": "D-test results",
+      "left": {
+        "label": "D-test positive",
+        "points": [
+          "Flattened (D) clindamycin zone",
+          "Inducible MLSB — clindamycin may fail"
+        ]
+      },
+      "right": {
+        "label": "D-test negative",
+        "points": [
+          "Round clindamycin zone",
+          "MS (efflux) phenotype"
+        ]
+      },
+      "distinguisher": "Shape of the clindamycin zone next to erythromycin."
+    }
+  ],
+  "mnemonic": {
+    "text": "Big zone, small MIC — and D is for “don’t trust clindamycin”.",
+    "explanation": "Zone diameter and MIC are inversely related; a D-shaped zone signals inducible clindamycin resistance.",
+    "limitation": "Zones cannot be compared across drugs or organisms; “S” is an in-vitro category; reporting follows current CLSI/EUCAST rules."
+  },
+  "analogyLimitations": [
+    "Plates, zones and tubes are schematic; zone sizes are not real measurements.",
+    "The case is invented.",
+    "β-lactamase, ESBL and carbapenemase testing are not covered here."
+  ],
+  "takeaway": "The MIC is the lowest concentration that stops visible growth and zone size runs opposite to it; interpret with current organism-specific breakpoints, and treat a D-shaped clindamycin zone as inducible resistance.",
+  "questions": [
+    {
+      "id": "micro-ast-q1",
+      "stem": "In a broth dilution series (0.25–32 µg/mL), tubes up to 2 µg/mL are turbid and tubes from 4 µg/mL upward are clear. What is the MIC?",
+      "options": [
+        {
+          "id": "a",
+          "text": "4 µg/mL",
+          "rationale": "Correct. The MIC is the lowest concentration with no visible growth."
+        },
+        {
+          "id": "b",
+          "text": "2 µg/mL",
+          "rationale": "Incorrect. That tube still shows growth."
+        },
+        {
+          "id": "c",
+          "text": "32 µg/mL",
+          "rationale": "Incorrect. That is the highest concentration, not the lowest inhibitory one."
+        },
+        {
+          "id": "d",
+          "text": "It cannot be read without subculture",
+          "rationale": "Incorrect. Subculture is needed for the MBC, not the MIC."
+        }
+      ],
+      "answer": "a",
+      "skill": "Read MIC",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-ast-q2",
+      "stem": "An erythromycin-resistant, clindamycin-susceptible S. aureus shows a clindamycin zone flattened on the side facing the erythromycin disk. What does this indicate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Inducible clindamycin (MLSB) resistance — clindamycin may fail",
+          "rationale": "Correct. Erythromycin induces erm methylase, producing the D-shaped zone."
+        },
+        {
+          "id": "b",
+          "text": "Efflux-mediated macrolide resistance only",
+          "rationale": "Incorrect. The MS phenotype gives a round clindamycin zone."
+        },
+        {
+          "id": "c",
+          "text": "Disks placed too close; repeat without interpretation",
+          "rationale": "Incorrect. Proximity (15–20 mm) is intended to reveal induction."
+        },
+        {
+          "id": "d",
+          "text": "Synergy between erythromycin and clindamycin",
+          "rationale": "Incorrect. Flattening indicates antagonism/induction, not synergy."
+        }
+      ],
+      "answer": "a",
+      "skill": "D-test",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-ast-q3",
+      "stem": "A 13-mm zone is measured around a cefepime disk for Pseudomonas aeruginosa. How should it be interpreted?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Using the current organism- and drug-specific breakpoint for P. aeruginosa and cefepime",
+          "rationale": "Correct. Breakpoints are specific to each organism–drug pair and are revised."
+        },
+        {
+          "id": "b",
+          "text": "As susceptible, because any zone above 10 mm is susceptible",
+          "rationale": "Incorrect. There is no universal zone cut-off."
+        },
+        {
+          "id": "c",
+          "text": "By comparing it with the zone for a different antibiotic on the same plate",
+          "rationale": "Incorrect. Zones of different drugs are not comparable."
+        },
+        {
+          "id": "d",
+          "text": "As resistant, because smaller zones always mean resistance",
+          "rationale": "Incorrect. Whether 13 mm is small depends on the breakpoint."
+        }
+      ],
+      "answer": "a",
+      "skill": "Breakpoints",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch58",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 58, Antibiotic Susceptibility Testing (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 58,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            3,
+            4,
+            7
+          ]
+        },
+        {
+          "chapter": 58,
+          "section": "Exam Traps",
+          "items": [
+            2
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "hulankova2024",
+      "kind": "external",
+      "citation": "Hulankova R. Methods for determination of antimicrobial activity of essential oils in vitro—a review. Plants (Basel). 2024;13(19):2784.",
+      "doi": "10.3390/plants13192784",
+      "url": "https://europepmc.org/article/PMC/PMC11478843",
+      "consulted": true,
+      "usedFor": "MIC = lowest concentration inhibiting growth; MBC defined by CLSI as 99.9% reduction of the inoculum; disk diffusion standardised by CLSI and EUCAST (Kirby–Bauer)."
+    },
+    {
+      "id": "saar2025",
+      "kind": "external",
+      "citation": "Saar M, Wawrzyk A, Pastuszak-Lewandoska D, Bielec F. Cefiderocol antimicrobial susceptibility testing by disk diffusion: influence of agar media and inhibition zone morphology in K. pneumoniae metallo-β-lactamase. Antibiotics (Basel). 2025;14(5):527.",
+      "doi": "10.3390/antibiotics14050527",
+      "url": "https://europepmc.org/article/PMC/PMC12108340",
+      "consulted": true,
+      "usedFor": "Negative correlation between MIC and inhibition zone diameter — the expected inverse relationship."
+    },
+    {
+      "id": "yu2026",
+      "kind": "external",
+      "citation": "Yu X, Liu Y, Du J, Hu F, Yin D. Assessment of the revision of the 2025 CLSI breakpoints for the interpretation of minocycline susceptibility for Acinetobacter baumannii complex. Microbiol Spectr. 2026;14(4):e0270025.",
+      "doi": "10.1128/spectrum.02700-25",
+      "url": "https://europepmc.org/article/PMC/PMC13055231",
+      "consulted": true,
+      "usedFor": "MIC values correlate inversely with zone diameters; CLSI M100 breakpoints revised between the 34th (2024) and 35th (2025) editions."
+    },
+    {
+      "id": "shoman2026",
+      "kind": "external",
+      "citation": "Shoman AM, Radwan AA. When culture results don’t tell the whole story: a practical review of antibiotics pitfalls for clinical decision-making. Infect Dis Ther. 2026;15(6):1649-1667.",
+      "doi": "10.1007/s40121-026-01361-0",
+      "url": "https://europepmc.org/article/PMC/PMC13219527",
+      "consulted": true,
+      "usedFor": "“Susceptible” means MIC at or below the breakpoint under in-vitro conditions, not guaranteed efficacy; macrolide exposure induces erm methylase causing clindamycin failure; D-test on erythromycin-R/clindamycin-S S. aureus before clindamycin use."
+    },
+    {
+      "id": "addis2025",
+      "kind": "external",
+      "citation": "Addis Z, Aschale Y, Fenta A, et al. Methicillin and inducible clindamycin resistance in clinical Staphylococcus aureus isolates: a cross-sectional study from Northwest Ethiopia. Front Microbiol. 2025;16:1569242.",
+      "doi": "10.3389/fmicb.2025.1569242",
+      "url": "https://europepmc.org/article/PMC/PMC12202448",
+      "consulted": true,
+      "usedFor": "D-test with erythromycin 15 µg and clindamycin 2 µg disks 15–20 mm apart; flattened D zone = iMLSB; constitutive MLSB (both resistant) and MS phenotype (round zone)."
+    },
+    {
+      "id": "rossi2026",
+      "kind": "external",
+      "citation": "Rossi M, Benboubker M, Belchkar S, et al. Phenotypic characterization of inducible and constitutive clindamycin resistance in clinical Staphylococcus aureus isolates. Rev Inst Med Trop Sao Paulo. 2026;68:e61.",
+      "doi": "10.1590/s1678-9946202668061",
+      "url": "https://europepmc.org/article/PMC/PMC13588561",
+      "consulted": true,
+      "usedFor": "Principle of induction; flattening of the clindamycin zone toward erythromycin producing a D-shape = erm-mediated inducible MLSB; round zone = MS phenotype."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-mic",
+      "text": "MIC = lowest concentration inhibiting visible growth; MBC = 99.9% kill (CLSI).",
+      "status": "checked",
+      "refs": [
+        "hulankova2024"
+      ]
+    },
+    {
+      "id": "cl-zone",
+      "text": "Zone diameter inversely related to MIC.",
+      "status": "checked",
+      "refs": [
+        "saar2025",
+        "yu2026"
+      ]
+    },
+    {
+      "id": "cl-bp",
+      "text": "Organism/drug-specific breakpoints convert to S/I/R; S = MIC ≤ breakpoint in vitro; CLSI M100 revised yearly.",
+      "status": "checked",
+      "refs": [
+        "shoman2026",
+        "yu2026"
+      ]
+    },
+    {
+      "id": "cl-dtest",
+      "text": "D-test: E 15 µg + CC 2 µg, 15–20 mm apart; D shape = inducible erm MLSB, clindamycin may fail; round = MS.",
+      "status": "checked",
+      "refs": [
+        "addis2025",
+        "rossi2026",
+        "shoman2026"
+      ]
+    },
+    {
+      "id": "cl-report",
+      "text": "CLSI: report clindamycin as resistant when the D-test is positive; BMD at 35 °C, 16–20 h is the reference method.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch58"
+      ],
+      "note": "Not taught as wording; CLSI documents were not read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Schematic tubes, plates and zones.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Big zone, small MIC; D is for don’t trust clindamycin.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Plates, zones and tubes are schematic drawings.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against Hulankova 2024, Saar 2025, Yu 2026, Shoman & Radwan 2026, Addis 2025 and Rossi 2026 (full texts) read for this lesson; 1 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}

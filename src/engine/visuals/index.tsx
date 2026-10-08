@@ -1075,6 +1075,43 @@ function Cocci({ p }: { p: Props }) {
   );
 }
 
+
+/** Agar plate (schematic): a circle of bacterial lawn. */
+function Plate({ p }: { p: Props }) {
+  const r = num(p, 'r', 200);
+  const label = str(p, 'label', '');
+  return (
+    <g>
+      <circle r={r + 8} fill="var(--stage-card)" stroke="var(--line)" strokeWidth={3} />
+      <circle r={r} fill="var(--lawn)" />
+      {label && <g transform={`translate(0,${r + 34})`}><Text lines={[label]} size={15} fill="var(--ink)" weight={700} /></g>}
+    </g>
+  );
+}
+
+/** Zone of inhibition around an antibiotic disk; flat (0-1) cuts the side facing dir (degrees) into a D-shape. */
+function Zone({ p }: { p: Props }) {
+  const r = Math.max(0, num(p, 'r', 50));
+  const flat = clamp(num(p, 'flat', 0));
+  const dir = (num(p, 'dir', 0) * Math.PI) / 180;
+  const label = str(p, 'label', '');
+  const d = r * (1 - flat * 0.75);
+  const id = `zc${Math.round(r)}${Math.round(flat * 100)}${Math.round(dir * 100)}`;
+  const cx = Math.cos(dir), cy = Math.sin(dir);
+  return (
+    <g>
+      <defs>
+        <clipPath id={id}>
+          <polygon points={[[-cy * 400 + cx * d, cx * 400 + cy * d], [cy * 400 + cx * d, -cx * 400 + cy * d], [cy * 400 - cx * 400, -cx * 400 - cy * 400], [-cy * 400 - cx * 400, cx * 400 - cy * 400]].map((q) => q.join(',')).join(' ')} />
+        </clipPath>
+      </defs>
+      <circle r={r} fill="var(--stage-card)" stroke="var(--line)" strokeWidth={1.5} clipPath={`url(#${id})`} />
+      <circle r={14} fill="#fff" stroke="var(--ink)" strokeWidth={1.5} />
+      {label && <g transform="translate(0,5)"><Text lines={[label]} size={11} fill="var(--ink)" weight={800} /></g>}
+    </g>
+  );
+}
+
 type Renderer = (args: { p: Props; id: string }) => ReactNode;
 
 export const VISUALS: Record<VisualType, Renderer> = {
@@ -1103,6 +1140,8 @@ export const VISUALS: Record<VisualType, Renderer> = {
   bellCurve: BellCurve,
   smear: Smear,
   cocci: Cocci,
+  plate: Plate,
+  zone: Zone,
 };
 
 /** Positions any visual using the shared transform props. */
