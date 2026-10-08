@@ -52,6 +52,14 @@ Rotate through the four ≈20%-weight areas, one lesson at a time, starting each
 
 Round 1 is done (Ch. 33, 17, 57, 41 each have their core lesson). Round 2 is done (Ch. 31, 15, 66, 40). Rounds 1–3 are done. Rounds 1–4 are done: every chapter in the rotation table has its core lesson. **Next:** continue by simulator-question count across the four heavy areas (remaining core chapters first), then ops chapters 4–14. Ch. 41 Hit 4 (TRALI vs TACO; NHSN v3.0 has definitions) is a natural follow-up.
 
+Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question count):
+
+| Round | Hematology | Chemistry | Microbiology | Blood Bank |
+|---|---|---|---|---|
+| 5 | Ch. 38 Clot risk (15 Qs) | Ch. 24 Drugs & poisons (11) | Ch. 59 Mycobacteria (13) | Ch. 41 TRALI vs TACO (Hit 4) |
+| 6 | Ch. 39 Anticoagulant monitoring (14) | Ch. 21 Enzymes (10) | Ch. 65 Parasites (12) | Ch. 40 Rh / weak D (Hit 16) |
+| 7 | Ch. 34 White cell disorders (14) | Ch. 18 Lipids (10) | Ch. 61 Spirochetes (12) | Ch. 40 antibody ID / Kidd (Hits 3, 5) |
+
 Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.
 
 ## Earlier plan: reviewer order
