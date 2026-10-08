@@ -68,6 +68,8 @@ FLAG_RULES = [
      'The MINT trial (acute MI) found a restrictive 7–8 g/dL strategy may increase MI or death; a fixed restrictive trigger in acute MI is contested (Yang 2026).'),
     ('rv-cryo-trigger', r'fibrinogen when <100 mg/dL',
      'Current reviews place increased bleeding risk below ~200 mg/dL fibrinogen (population-dependent); AABB requires ≥ 150 mg fibrinogen per cryo unit (Rahe-Meyer 2026).'),
+    ('rv-hemo-mild', r'mild 6[–-]30|6[–-]30 ?%',
+     'Standard classification: mild hemophilia is > 5–40 IU/dL (severe < 1, moderate 1–5) (Alvarez-Payares 2026).'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
