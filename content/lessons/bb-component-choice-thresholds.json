@@ -1,0 +1,1752 @@
+{
+  "schemaVersion": 1,
+  "id": "bb-component-choice-thresholds",
+  "title": "Choosing the Component: Seven for Red Cells, Ten for Platelets",
+  "summary": "Match each blood component to what is missing, apply current red-cell and platelet thresholds (and the acute-MI exception), and recognise when the obvious product is wrong — HIT, antiplatelet brain bleeds, warfarin reversal and platelet refractoriness.",
+  "domain": "p5-bb",
+  "topic": "ch41",
+  "conceptIds": [
+    "ch41.hit5",
+    "ch41.hit6",
+    "ch41.hit7",
+    "ch41.hit22",
+    "ch41.trap3",
+    "ch41.trap5"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 41,
+        "section": "High-Yield Hits",
+        "items": [
+          5,
+          6,
+          7,
+          22
+        ]
+      },
+      {
+        "chapter": 41,
+        "section": "Exam Traps",
+        "items": [
+          3,
+          5
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 41 Hit 5 (red-cell triggers), Hit 6 (platelet thresholds), Hit 7 (cryoprecipitate), Hit 22 (immune refractoriness), Trap 3 (platelets in HIT; PATCH) and Trap 5 (PCC vs plasma). Checked against Yang 2026, Mushtaq 2026, Li 2026, Coe 2026, Galli 2026, Rahe-Meyer 2026 and Hess 2026. Register flags: rv-acs-trigger (Hit 5, MINT), rv-cryo-trigger (Hit 7). Not taught: per-unit increments, the 100 × 10⁹/L CNS threshold, CCI < 7,500 cut-off, and platelets in ITP/TTP (no source read)."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Match blood components to the deficit each replaces.",
+    "Apply restrictive red-cell thresholds and recognise the acute-MI exception.",
+    "State AABB 2025 prophylactic platelet thresholds.",
+    "Recognise when platelets or plasma are the wrong choice, and manage immune platelet refractoriness."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Four orders on the board — which one is wrong?",
+      "start": 0,
+      "end": 20,
+      "altText": "A whiteboard with four transfusion orders: (1) 2 units RBC for a stable ICU patient with Hb 7.6 g/dL; (2) platelets for a patient with suspected heparin-induced thrombocytopenia and no bleeding; (3) 4 units plasma to reverse warfarin before urgent surgery; (4) cryoprecipitate for a bleeding patient with fibrinogen 90 mg/dL. Question: “Which orders fit the evidence?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Four transfusion orders arrive at the blood bank at the same time."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Red cells for a stable ICU patient with hemoglobin seven point six. Platelets for suspected heparin-induced thrombocytopenia. Plasma to reverse warfarin. And cryoprecipitate for a bleeding patient with very low fibrinogen."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Only one of these clearly fits current evidence. Let’s see why."
+        }
+      ],
+      "objects": [
+        {
+          "id": "o0",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 620,
+            "label": "① RBC × 2 · stable ICU · Hb 7.6",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "o1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 160,
+            "w": 620,
+            "label": "② Platelets · suspected HIT · not bleeding",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 620,
+            "label": "③ Plasma × 4 · reverse warfarin urgently",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.5,
+              "opacity": 0
+            },
+            {
+              "t": 6.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 300,
+            "w": 620,
+            "label": "④ Cryo · bleeding · fibrinogen 90 mg/dL",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.0,
+              "opacity": 0
+            },
+            {
+              "t": 8.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 340,
+            "label": "Which fit the evidence?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 870,
+            "y": 440,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: each component replaces one thing",
+      "start": 20,
+      "end": 60,
+      "altText": "Four cards in a row: Red cells → oxygen-carrying capacity; Platelets → primary hemostasis; Plasma → all coagulation factors, but dilute and large in volume; Cryoprecipitate → concentrated fibrinogen, factor VIII, von Willebrand factor, factor XIII and fibronectin (AABB: ≥ 150 mg fibrinogen per unit). A banner: “Give the component that replaces what is missing — and only when the benefit outweighs the risk.”",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Every blood component replaces one thing. Red cells restore oxygen-carrying capacity."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Platelets support the first, platelet-plug stage of clotting."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Plasma contains all the clotting factors — but they are dilute, so large volumes are needed."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Cryoprecipitate is concentrated: fibrinogen, factor eight, von Willebrand factor and factor thirteen in a small bag. Each AABB-standard unit carries at least a hundred and fifty milligrams of fibrinogen."
+        }
+      ],
+      "objects": [
+        {
+          "id": "rbc",
+          "type": "card",
+          "props": {
+            "x": 130,
+            "y": 200,
+            "w": 200,
+            "h": 150,
+            "tone": "bad",
+            "title": "Red cells",
+            "lines": [
+              "O₂ carrying"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "plt",
+          "type": "card",
+          "props": {
+            "x": 360,
+            "y": 200,
+            "w": 200,
+            "h": 150,
+            "tone": "warn",
+            "title": "Platelets",
+            "lines": [
+              "Platelet plug"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pl",
+          "type": "card",
+          "props": {
+            "x": 590,
+            "y": 200,
+            "w": 200,
+            "h": 150,
+            "tone": "a",
+            "title": "Plasma",
+            "lines": [
+              "All factors",
+              "Dilute · big volume"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22,
+              "h": 150
+            },
+            {
+              "t": 26,
+              "h": 230,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "cr",
+          "type": "card",
+          "props": {
+            "x": 820,
+            "y": 200,
+            "w": 200,
+            "h": 150,
+            "tone": "b",
+            "title": "Cryo",
+            "lines": [
+              "Fibrinogen · FVIII",
+              "vWF · FXIII"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ban",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 430,
+            "w": 640,
+            "label": "Replace what is missing — when benefit > risk",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 34.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: thresholds, not reflexes",
+      "start": 60,
+      "end": 104,
+      "altText": "Red-cell panel: restrictive threshold Hb 7 g/dL for most stable critically ill patients (trials showed no harm vs 9–10 g/dL); acute myocardial infarction is the exception — the MINT trial found a restrictive 7–8 g/dL strategy may increase MI or death, so a more liberal approach is favoured. Platelet panel (AABB 2025): prophylaxis < 10 × 10⁹/L in hypoproliferative thrombocytopenia; < 10 for compressible central line; < 20 for lumbar puncture; < 50 for major non-neuraxial surgery.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "Red cells: for most stable, critically ill patients, trials show a threshold of seven grams per decilitre is as safe as nine or ten."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "Acute myocardial infarction is the exception. In the large MINT trial, a restrictive strategy of seven or eight may have increased heart attack or death, so many favour a more liberal approach there."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "Platelets: prophylaxis below ten thousand per microlitre in stable hypoproliferative thrombocytopenia — and below ten for a central line at a compressible site."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "Below twenty for a lumbar puncture, and below fifty for major surgery outside the spine and brain."
+        }
+      ],
+      "objects": [
+        {
+          "id": "rl",
+          "type": "label",
+          "props": {
+            "x": 250,
+            "y": 50,
+            "text": "Red cells",
+            "size": 20,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hb7",
+          "type": "bin",
+          "props": {
+            "x": 250,
+            "y": 150,
+            "w": 300,
+            "h": 100,
+            "label": "Hb < 7 g/dL",
+            "sub": "Most stable critically ill",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mi",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 330,
+            "w": 360,
+            "h": 110,
+            "tone": "warn",
+            "title": "Acute MI: exception",
+            "lines": [
+              "MINT: 7–8 may raise MI/death",
+              "Favour a more liberal approach"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12,
+              "reveal": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pl",
+          "type": "label",
+          "props": {
+            "x": 720,
+            "y": 50,
+            "text": "Platelets (AABB 2025)",
+            "size": 20,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p0",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 120,
+            "w": 380,
+            "label": "< 10 · stable hypoproliferative",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23,
+              "opacity": 0
+            },
+            {
+              "t": 23.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p1",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 190,
+            "w": 380,
+            "label": "< 10 · central line (compressible)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26,
+              "opacity": 0
+            },
+            {
+              "t": 26.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 260,
+            "w": 380,
+            "label": "< 20 · lumbar puncture",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "type": "token",
+          "props": {
+            "x": 720,
+            "y": 330,
+            "w": 380,
+            "label": "< 50 · major non-neuraxial surgery",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36.5,
+              "opacity": 0
+            },
+            {
+              "t": 37.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: when the obvious component is the wrong one",
+      "start": 104,
+      "end": 144,
+      "altText": "Card 1, HIT: platelet transfusion is generally avoided because it can fuel immune activation and thrombosis; considered only for serious bleeding. Card 2, PATCH trial: platelets for intracerebral hemorrhage on antiplatelet drugs worsened outcomes. Card 3, warfarin reversal: vitamin K + 4-factor PCC is preferred — rapid INR correction in a small volume; plasma is slower, large in volume and an alternative only when PCC is unavailable. Card 4, refractoriness: poor platelet increments with HLA or platelet antibodies → crossmatch-compatible or HLA-selected platelets; non-immune causes → treat the cause. Card 5, cryo: fibrinogen falls early in major bleeding; bleeding risk rises below about 200 mg/dL (triggers vary).",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 113,
+          "text": "Heparin-induced thrombocytopenia: platelet transfusion is generally avoided, because it can fuel immune activation and clotting. It’s considered only for serious bleeding."
+        },
+        {
+          "id": "l2",
+          "start": 113,
+          "end": 121,
+          "text": "In the PATCH trial, giving platelets for brain hemorrhage in patients on antiplatelet drugs made outcomes worse."
+        },
+        {
+          "id": "l3",
+          "start": 121,
+          "end": 130,
+          "text": "To reverse warfarin quickly, give vitamin K with four-factor prothrombin complex concentrate. Plasma is slower, needs large volumes, and is a fallback only."
+        },
+        {
+          "id": "l4",
+          "start": 130,
+          "end": 138,
+          "text": "If platelet counts barely rise after transfusion and HLA or platelet antibodies are present, choose crossmatch-compatible or HLA-selected platelets. Non-immune causes are treated at the source."
+        },
+        {
+          "id": "l5",
+          "start": 138,
+          "end": 144,
+          "text": "And cryoprecipitate replaces fibrinogen, which falls early in major bleeding; risk rises below about two hundred milligrams per decilitre."
+        }
+      ],
+      "objects": [
+        {
+          "id": "h",
+          "type": "card",
+          "props": {
+            "x": 180,
+            "y": 100,
+            "w": 320,
+            "h": 110,
+            "tone": "bad",
+            "title": "HIT",
+            "lines": [
+              "Platelets generally avoided",
+              "Only for serious bleeding"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pa",
+          "type": "card",
+          "props": {
+            "x": 520,
+            "y": 100,
+            "w": 320,
+            "h": 110,
+            "tone": "bad",
+            "title": "PATCH trial",
+            "lines": [
+              "ICH on antiplatelets",
+              "Platelets → worse outcomes"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "reveal": 0
+            },
+            {
+              "t": 10.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "w",
+          "type": "card",
+          "props": {
+            "x": 180,
+            "y": 260,
+            "w": 320,
+            "h": 110,
+            "tone": "good",
+            "title": "Warfarin reversal",
+            "lines": [
+              "Vitamin K + 4F-PCC preferred",
+              "Plasma: slow, big volume, fallback"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.5,
+              "opacity": 0
+            },
+            {
+              "t": 18,
+              "reveal": 0
+            },
+            {
+              "t": 18.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "r",
+          "type": "card",
+          "props": {
+            "x": 520,
+            "y": 260,
+            "w": 320,
+            "h": 110,
+            "tone": "a",
+            "title": "Refractory platelets",
+            "lines": [
+              "Antibodies → crossmatched/HLA-selected",
+              "Non-immune → treat cause"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0
+            },
+            {
+              "t": 27,
+              "reveal": 0
+            },
+            {
+              "t": 27.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "card",
+          "props": {
+            "x": 350,
+            "y": 420,
+            "w": 420,
+            "h": 100,
+            "tone": "b",
+            "title": "Cryo for fibrinogen",
+            "lines": [
+              "Falls early in major bleeding",
+              "Risk ↑ below ~200 mg/dL (triggers vary)"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0
+            },
+            {
+              "t": 35,
+              "reveal": 0
+            },
+            {
+              "t": 35.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "chk",
+          "type": "icon",
+          "props": {
+            "x": 820,
+            "y": 420,
+            "glyph": "check",
+            "color": "good",
+            "disc": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 37.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Trap card: “Low platelets + suspected HIT → give platelets” is crossed out → “Generally avoided unless serious bleeding.” Trap card: “Plasma is the fastest warfarin reversal” is crossed out → “Vitamin K + 4F-PCC.” Trap card: “Transfuse every ICU patient to Hb 10” is crossed out → “Restrictive 7 g/dL for most; acute MI is the exception.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a low count in suspected HIT is not a reason to give platelets. They are generally avoided unless there is serious bleeding."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: plasma is not the fastest warfarin reversal. Vitamin K with four-factor PCC is."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: most stable ICU patients don’t need a hemoglobin of ten. A threshold of seven is standard — acute myocardial infarction is the exception."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Suspected HIT with low platelets → give platelets.”",
+            "lines": [
+              "✓ Generally avoided unless serious bleeding"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Plasma is the fastest warfarin reversal.”",
+            "lines": [
+              "✓ Vitamin K + 4-factor PCC"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Transfuse every ICU patient to Hb 10.”",
+            "lines": [
+              "✓ Restrictive 7 g/dL for most · acute MI is the exception"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Seven for red cells, ten for platelets",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Seven for red cells, ten for platelets — and ask what’s eating them.” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: seven for red cells, ten for platelets — and before you give platelets, ask what’s eating them."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: acute MI, active bleeding and procedures use different thresholds; trials and guidelines keep changing; and numbers never replace the clinical picture — a bleeding patient may need components at any count."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Seven for red cells · ten for platelets",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 170,
+            "w": 280,
+            "label": "RBC: Hb < 7 (most stable)",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 170,
+            "w": 280,
+            "label": "Platelets: < 10 (prophylaxis)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 240,
+            "w": 360,
+            "label": "Ask what’s eating the platelets",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 390,
+            "w": 860,
+            "h": 130,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Acute MI, bleeding and procedures differ",
+              "Guidelines change as trials report",
+              "Bleeding patients may need components at any count"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “RBC Hb < 7 for most stable patients (acute MI differs) · platelets < 10 prophylaxis, < 20 LP, < 50 major surgery”, “Avoid platelets in HIT · 4F-PCC for warfarin · cryo for fibrinogen · HLA/crossmatched for immune refractoriness”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Transfuse to evidence-based thresholds, not reflexes — seven for red cells in most stable patients, ten for prophylactic platelets — and choose the component that replaces what is missing."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 800,
+            "label": "RBC < 7 (acute MI differs) · platelets < 10 / 20 LP / 50 surgery",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 800,
+            "label": "No platelets in HIT unless bleeding · 4F-PCC for warfarin · cryo for fibrinogen",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: give the blood product that replaces what is missing, at evidence-based thresholds, and know the situations where the obvious product does harm. Scientific terms: restrictive RBC threshold Hb 7 g/dL in most stable critically ill patients; AABB 2025 platelet thresholds < 10 × 10⁹/L (hypoproliferative; compressible CVC), < 20 (LP), < 50 (major non-neuraxial surgery); cryoprecipitate supplies fibrinogen (≥ 150 mg/unit), FVIII, vWF, FXIII.",
+    "why": "Trials show restrictive RBC strategies are as safe for most patients, but MINT suggested possible harm in acute MI. In HIT, transfused platelets can worsen immune activation and thrombosis; in PATCH, platelets worsened outcomes after antiplatelet-associated ICH. 4F-PCC delivers vitamin K-dependent factors rapidly in small volume.",
+    "measure": "Hemoglobin, platelet count, fibrinogen; post-transfusion platelet increments (CCI) to detect refractoriness; HLA/platelet antibody testing guides crossmatch-compatible or HLA-selected platelets.",
+    "differs": "Plasma (dilute, all factors, large volume) vs 4F-PCC (concentrated vitamin K-dependent factors) vs cryoprecipitate (fibrinogen-rich). Immune (antibody) vs non-immune platelet refractoriness.",
+    "examAngle": "Expect: “which component?”, RBC and platelet thresholds, HIT/PATCH traps, PCC vs plasma, refractoriness management."
+  },
+  "comparisons": [
+    {
+      "id": "pcc-vs-plasma",
+      "title": "4F-PCC vs plasma for warfarin reversal",
+      "left": {
+        "label": "4F-PCC + vitamin K",
+        "points": [
+          "Rapid INR correction",
+          "Small volume — preferred"
+        ]
+      },
+      "right": {
+        "label": "Plasma",
+        "points": [
+          "Slower onset, large volume",
+          "Fallback when PCC unavailable"
+        ]
+      },
+      "distinguisher": "Speed and volume."
+    },
+    {
+      "id": "refract",
+      "title": "Immune vs non-immune platelet refractoriness",
+      "left": {
+        "label": "Immune",
+        "points": [
+          "HLA/platelet antibodies",
+          "Crossmatched or HLA-selected platelets"
+        ]
+      },
+      "right": {
+        "label": "Non-immune",
+        "points": [
+          "Fever, sepsis, consumption, spleen…",
+          "Treat the underlying cause"
+        ]
+      },
+      "distinguisher": "Presence of platelet-reactive antibodies."
+    }
+  ],
+  "mnemonic": {
+    "text": "Seven for red cells, ten for platelets — and ask what’s eating them.",
+    "explanation": "Hb 7 g/dL restrictive RBC threshold; platelet prophylaxis below 10 × 10⁹/L; consider consumptive or immune causes before giving platelets.",
+    "limitation": "Acute MI, bleeding and procedures use different thresholds; guidelines change; bleeding patients may need components at any count."
+  },
+  "analogyLimitations": [
+    "Cards and bins are schematic.",
+    "The orders are invented.",
+    "Massive transfusion, neonatal thresholds and special products (irradiated, washed) are covered elsewhere or not at all."
+  ],
+  "takeaway": "Transfuse to evidence-based thresholds, not reflexes — seven for red cells in most stable patients, ten for prophylactic platelets — and choose the component that replaces what is missing.",
+  "questions": [
+    {
+      "id": "bb-comp-q1",
+      "stem": "A stable ICU patient with sepsis (no cardiac disease, not bleeding) has Hb 7.6 g/dL. What is the most appropriate action?",
+      "options": [
+        {
+          "id": "a",
+          "text": "No red-cell transfusion now; transfuse if Hb falls below 7 g/dL",
+          "rationale": "Correct. Restrictive thresholds are as safe as liberal ones in stable critically ill patients."
+        },
+        {
+          "id": "b",
+          "text": "Transfuse 2 units to reach Hb 10 g/dL",
+          "rationale": "Incorrect. Trials show no benefit of liberal targets in this group."
+        },
+        {
+          "id": "c",
+          "text": "Give plasma to raise oxygen delivery",
+          "rationale": "Incorrect. Plasma does not carry oxygen."
+        },
+        {
+          "id": "d",
+          "text": "Give cryoprecipitate",
+          "rationale": "Incorrect. Cryo replaces fibrinogen, not red cells."
+        }
+      ],
+      "answer": "a",
+      "skill": "RBC thresholds",
+      "difficulty": "application"
+    },
+    {
+      "id": "bb-comp-q2",
+      "stem": "A patient on warfarin with INR 4.5 needs emergency surgery. Which is the preferred reversal?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Intravenous vitamin K plus 4-factor prothrombin complex concentrate",
+          "rationale": "Correct. 4F-PCC rapidly replaces vitamin K-dependent factors in a small volume."
+        },
+        {
+          "id": "b",
+          "text": "Large-volume plasma alone",
+          "rationale": "Incorrect. Plasma is slower and needs large volumes; it is a fallback."
+        },
+        {
+          "id": "c",
+          "text": "Platelet transfusion",
+          "rationale": "Incorrect. Platelets do not replace coagulation factors."
+        },
+        {
+          "id": "d",
+          "text": "Cryoprecipitate",
+          "rationale": "Incorrect. Cryo is a fibrinogen source, not a replacement for the vitamin K-dependent factors."
+        }
+      ],
+      "answer": "a",
+      "skill": "Warfarin reversal",
+      "difficulty": "application"
+    },
+    {
+      "id": "bb-comp-q3",
+      "stem": "A hematology patient’s platelet count barely rises after several transfusions; HLA class I antibodies are detected. What should the blood bank provide?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Crossmatch-compatible or HLA-selected platelets",
+          "rationale": "Correct. Immune refractoriness responds to antibody-compatible platelets."
+        },
+        {
+          "id": "b",
+          "text": "More random-donor platelets at double dose",
+          "rationale": "Incorrect. Random platelets are destroyed by the antibodies."
+        },
+        {
+          "id": "c",
+          "text": "Irradiated platelets",
+          "rationale": "Incorrect. Irradiation prevents TA-GVHD, not antibody-mediated destruction."
+        },
+        {
+          "id": "d",
+          "text": "Plasma",
+          "rationale": "Incorrect. Plasma does not raise the platelet count."
+        }
+      ],
+      "answer": "a",
+      "skill": "Platelet refractoriness",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch41",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 41, Transfusion: Giving Blood Safely (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 41,
+          "section": "High-Yield Hits",
+          "items": [
+            5,
+            6,
+            7,
+            22
+          ]
+        },
+        {
+          "chapter": 41,
+          "section": "Exam Traps",
+          "items": [
+            3,
+            5
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "yang2026",
+      "kind": "external",
+      "citation": "Yang H, Li F, Zhu Z, et al. Current perspectives and updates on transfusion strategies in critically ill anemic patients. Front Med (Lausanne). 2026;13:1762664.",
+      "doi": "10.3389/fmed.2026.1762664",
+      "url": "https://europepmc.org/article/PMC/PMC13008982",
+      "consulted": true,
+      "usedFor": "Restrictive 7 g/dL vs liberal 9–10 g/dL: no mortality difference in ICU and septic shock trials; 2023 AABB guidelines advocate restrictive thresholds; MINT (acute MI, n = 3504): restrictive 7–8 g/dL associated with more MI or death (HR 1.15)."
+    },
+    {
+      "id": "mushtaq2026",
+      "kind": "external",
+      "citation": "Mushtaq A, Salgado de la Mora M, Dabaliz AH, et al. The evolving landscape of platelet therapy: risks, innovations, and clinical judgment. Ann Hematol. 2026;105(1):14.",
+      "doi": "10.1007/s00277-026-06758-y",
+      "url": "https://europepmc.org/article/PMC/PMC12804256",
+      "consulted": true,
+      "usedFor": "AABB prophylactic thresholds: < 10 × 10⁹/L hypoproliferative (chemotherapy/allo-SCT), < 10 compressible CVC, < 20 lumbar puncture, < 50 major non-neuraxial surgery; PATCH trial — platelets for antiplatelet-associated ICH worsened outcomes."
+    },
+    {
+      "id": "li2026",
+      "kind": "external",
+      "citation": "Li J, Wang L, Qin Y, et al. Personalized management of platelet transfusion refractoriness: risk factors, cross-matching, and IVIG strategies. Front Med (Lausanne). 2026;13:1923303.",
+      "doi": "10.3389/fmed.2026.1923303",
+      "url": "https://europepmc.org/article/PMC/PMC13630665",
+      "consulted": true,
+      "usedFor": "Immune refractoriness: crossmatch-compatible or HLA-selected platelets per guidelines; non-immune causes treated at source; CCI as the response measure."
+    },
+    {
+      "id": "coe2026",
+      "kind": "external",
+      "citation": "Coe B, Elkhashab I, Saldarriaga CA, Johnson D, Cattelino B. Clinical challenges in profound thrombocytopenia associated with type 2 heparin-induced thrombocytopenia (HIT2). Cureus. 2026;18(3):e105848.",
+      "doi": "10.7759/cureus.105848",
+      "url": "https://europepmc.org/article/PMC/PMC13108829",
+      "consulted": true,
+      "usedFor": "Platelet transfusion is generally avoided in HIT because of immune activation and thrombosis risk; acceptable in serious bleeding."
+    },
+    {
+      "id": "galli2026",
+      "kind": "external",
+      "citation": "Galli M, Simeone B, Ten Berg J, et al. Managing bleeds on anticoagulant therapy: a practical guide for clinicians. Eur Heart J Acute Cardiovasc Care. 2026;15(7):557-572.",
+      "doi": "10.1093/ehjacc/zuag035",
+      "url": "https://europepmc.org/article/PMC/PMC13344178",
+      "consulted": true,
+      "usedFor": "VKA reversal: IV vitamin K + 4F-PCC preferred, rapid INR normalisation; plasma an alternative when PCC unavailable, limited by slower onset and large volumes."
+    },
+    {
+      "id": "rahemeyer2026",
+      "kind": "external",
+      "citation": "Rahe-Meyer N, Bartoszko J, Levy JH. Fibrinogen concentrate in acute hemorrhage: mechanistic insight, thresholds, and targeted replacement. J Clin Med. 2026;15(16):6156.",
+      "doi": "10.3390/jcm15166156",
+      "url": "https://europepmc.org/article/PMC/PMC13512969",
+      "consulted": true,
+      "usedFor": "Cryoprecipitate contains fibrinogen, FVIII, vWF, fibronectin, FXIII; AABB ≥ 150 mg fibrinogen per unit; fibrinogen often first factor to fall in major bleeding; bleeding risk increases below 200 mg/dL (varies by population)."
+    },
+    {
+      "id": "hess2026",
+      "kind": "external",
+      "citation": "Hess AS, White SK, Crowe EP, et al. The clinical use of cryoprecipitate and fibrinogen concentrate: a scoping review. Transfusion. 2026;66(7):1424-1437.",
+      "doi": "10.1111/trf.70255",
+      "url": "https://europepmc.org/article/PMC/PMC13350501",
+      "consulted": true,
+      "usedFor": "Trials commonly enrol bleeding patients with fibrinogen < 200 mg/dL; thawed conventional cryoprecipitate is usable for a limited time (thresholds and practice vary)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-rbc",
+      "text": "Restrictive Hb 7 g/dL safe for most stable critically ill patients; MINT: restrictive 7–8 may increase MI/death in acute MI.",
+      "status": "checked",
+      "refs": [
+        "yang2026"
+      ]
+    },
+    {
+      "id": "cl-plt",
+      "text": "AABB platelet thresholds: < 10 hypoproliferative and compressible CVC, < 20 LP, < 50 major non-neuraxial surgery; PATCH harm.",
+      "status": "checked",
+      "refs": [
+        "mushtaq2026"
+      ]
+    },
+    {
+      "id": "cl-hit",
+      "text": "Platelets generally avoided in HIT unless serious bleeding.",
+      "status": "checked",
+      "refs": [
+        "coe2026"
+      ]
+    },
+    {
+      "id": "cl-pcc",
+      "text": "Vitamin K + 4F-PCC preferred over plasma for urgent warfarin reversal.",
+      "status": "checked",
+      "refs": [
+        "galli2026"
+      ]
+    },
+    {
+      "id": "cl-ref",
+      "text": "Immune refractoriness → crossmatch-compatible or HLA-selected platelets; non-immune → treat cause.",
+      "status": "checked",
+      "refs": [
+        "li2026"
+      ]
+    },
+    {
+      "id": "cl-cryo",
+      "text": "Cryo: fibrinogen (≥ 150 mg/unit AABB), FVIII, vWF, FXIII; bleeding risk ↑ below ~200 mg/dL fibrinogen.",
+      "status": "checked",
+      "refs": [
+        "rahemeyer2026",
+        "hess2026"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Platelets relatively contraindicated in ITP and TTP; 1-h CCI < 7,500 on two occasions defines immune refractoriness.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch41"
+      ],
+      "note": "Not taught; not verified in a consulted source."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Schematic cards and bins.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Seven for red cells, ten for platelets.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Components are shown as labelled cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 claims checked against Yang 2026, Mushtaq 2026, Li 2026, Coe 2026, Galli 2026, Rahe-Meyer 2026 and Hess 2026 (full texts) read for this lesson; 1 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
