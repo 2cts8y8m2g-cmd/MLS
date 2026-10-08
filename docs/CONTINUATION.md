@@ -76,8 +76,10 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 | 7 | ✅ Ch. 34 White cell disorders (14) | ✅ Ch. 18 Lipids (10) | ✅ Ch. 61 Spirochetes (12) | ✅ Ch. 40 antibody ID / Kidd (Hits 3, 5) |
 | 8 | ✅ Ch. 35 Flow cytometry (13) | ✅ Ch. 26 Fertility & pregnancy (10) | ✅ Ch. 58 Susceptibility testing (11) | ✅ Ch. 41 storage & irradiation (Hits 3, 10, 16) |
 | 9 | ✅ Ch. 32 Hematopoiesis (12) | ✅ Ch. 25 Endocrine (9) | ✅ Ch. 62 Chlamydia & Mycoplasma (11) | ✅ Ch. 40 DAT & warm AIHA (Hits 1, 9) |
+| 10 | Ch. 33 hemolytic anemias (2nd lesson) | Ch. 23 GI & pancreas (9) | Ch. 63 Rickettsia & tick-borne (10) | Ch. 41 product selection: CMV-safe, washed, volume-reduced (2nd–3rd lesson) |
+| 11 | Ch. 36 coagulation cascade & factor deficiencies (2nd lesson) | Ch. 19 cardiac & clot markers (8) | Ch. 58 β-lactamases/ESBL/CPE (2nd lesson) | Ch. 42 donor eligibility & collection (2nd lesson) |
 
-Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.
+Rounds 10–11 rank chapters by simulator questions × share of concepts not yet taught (Heme and Blood Bank already have a lesson in every chapter, so their next lessons go deeper in the heaviest ones). Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.
 
 ## Earlier plan: reviewer order
 
