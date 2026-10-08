@@ -81,8 +81,10 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 | 9 | ✅ Ch. 32 Hematopoiesis (12) | ✅ Ch. 25 Endocrine (9) | ✅ Ch. 62 Chlamydia & Mycoplasma (11) | ✅ Ch. 40 DAT & warm AIHA (Hits 1, 9) |
 | 10 | ✅ Ch. 33 hemolytic anemias (2nd lesson) | ✅ Ch. 23 GI & pancreas (9) | ✅ Ch. 63 Rickettsia & tick-borne (10) | ✅ Ch. 41 component choice & thresholds (3rd lesson; the reviewer has little on CMV-safe/washed products) |
 | 11 | ✅ Ch. 36 hemophilia factor & inhibitor testing (2nd lesson) | ✅ Ch. 19 troponin & Fifth UDMI (8) | ✅ Ch. 58 β-lactamases/ESBL/CPE (2nd lesson) | ✅ Ch. 42 donor eligibility (2nd lesson) |
+| 12 | Ch. 31 blood & marrow basics (2nd lesson) | Ch. 22 liver function (2nd lesson) | Ch. 57 bacterial ID (2nd lesson) | Ch. 43 stem cells & tissue banking (2nd lesson) |
+| 13 | Ch. 37 platelets & von Willebrand disease (2nd lesson) | Ch. 15 kidney, electrolytes & acid–base (2nd lesson) | Ch. 66 specimen collection (2nd lesson) | Ch. 41 reactions & lookback (4th lesson) |
 
-Rounds 10–11 rank chapters by simulator questions × share of concepts not yet taught (Heme and Blood Bank already have a lesson in every chapter, so their next lessons go deeper in the heaviest ones). Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.
+Rounds 10–13 rank chapters by simulator questions × share of concepts not yet taught (Heme and Blood Bank already have a lesson in every chapter, so their next lessons go deeper in the heaviest ones). Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.
 
 ## Earlier plan: reviewer order
 
