@@ -1,0 +1,1675 @@
+{
+  "schemaVersion": 1,
+  "id": "heme-mpn-pv-et-pmf",
+  "title": "Philadelphia-Negative MPNs: One Stuck Switch, Three Diseases",
+  "summary": "Use driver mutations (JAK2, CALR, MPL), blood counts, EPO and marrow findings to separate polycythemia vera, essential thrombocythemia and primary myelofibrosis from each other and from reactive causes.",
+  "domain": "p4-heme",
+  "topic": "ch34",
+  "conceptIds": [
+    "ch34.hit4",
+    "ch34.hit5",
+    "ch34.trap4"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 34,
+        "section": "High-Yield Hits",
+        "items": [
+          4,
+          5
+        ]
+      },
+      {
+        "chapter": 34,
+        "section": "Exam Traps",
+        "items": [
+          4
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 34 Hit 4 (PV), Hit 5 (ET and PMF) and Trap 4 (thrombocytosis). Checked against Palandri 2026 (WHO/ICC 2022 PV criteria), Testa 2026, Strzała 2026 and Shao 2025. Hit 4 says JAK2 V617F is present “in essentially all cases”; it is > 95%, with 3–5% carrying exon 12–15 mutations (register flag rv-pv-jak2). Hit 5 gives PMF median survival as ~5 years; Shao 2025 cites 9.2 years (register flag rv-pmf-survival). Not taught: NAP score in PV, “ET usually > 1000” (JAK2 in ET is taught as ≈ 50–60%, matching the reviewer’s ~50%)."
+  },
+  "prerequisites": [
+    "ch34.hit1"
+  ],
+  "objectives": [
+    "Explain how JAK2, CALR and MPL driver mutations activate signaling in the MPNs.",
+    "Apply the WHO/ICC 2022 criteria for polycythemia vera and recognize secondary erythrocytosis.",
+    "Apply the essential thrombocythemia criteria, including exclusion of CML and reactive thrombocytosis.",
+    "Recognize the blood and marrow features of primary myelofibrosis and its higher leukemic risk."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Thick blood, high platelets, a scarred marrow",
+      "start": 0,
+      "end": 20,
+      "altText": "Three patient cards. Patient A: Hb 18.5 g/dL, headaches. Patient B: platelets 650 × 10⁹/L, found on a routine CBC. Patient C: anemia, big spleen, teardrop cells on the smear. A shared token: “BCR::ABL1 negative.” Question token: “Same engine, three diseases — or not a cancer at all?” The cartoon scientist looks between them.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Three patients. One has thick blood, one has a very high platelet count, and one has a big spleen with teardrop-shaped red cells."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "None of them has the BCR::ABL1 fusion of chronic myeloid leukemia. They may have the Philadelphia-negative myeloproliferative neoplasms."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Or they may have an ordinary reaction to something else. Driver mutations and diagnostic criteria tell the difference."
+        }
+      ],
+      "objects": [
+        {
+          "id": "p0",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 150,
+            "w": 280,
+            "h": 120,
+            "tone": "bad",
+            "title": "Patient A",
+            "lines": [
+              "Hb 18.5 g/dL"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 150,
+            "w": 280,
+            "h": 120,
+            "tone": "warn",
+            "title": "Patient B",
+            "lines": [
+              "Platelets 650 × 10⁹/L"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.8,
+              "opacity": 0
+            },
+            {
+              "t": 2.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 150,
+            "w": 280,
+            "h": 120,
+            "tone": "b",
+            "title": "Patient C",
+            "lines": [
+              "Spleen · teardrops"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.3,
+              "opacity": 0
+            },
+            {
+              "t": 4.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "bcr",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 290,
+            "w": 320,
+            "label": "BCR::ABL1 negative",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 560,
+            "label": "Same engine, three diseases — or a reaction?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.38,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "One engine, three drivers",
+      "start": 20,
+      "end": 60,
+      "altText": "A JAK2 signaling token normally waits for a key (EPO or TPO binding its receptor). A mutation token — JAK2 V617F — switches it on with no key. Two more driver tokens appear: CALR (mutant calreticulin activates the MPL receptor) and MPL. A driver-frequency table builds as cards: PV — JAK2 V617F > 95%, other JAK2 (exons 12–15) 3–5%; ET — JAK2 ≈ 50–60%, CALR 20–25%, MPL ≈ 5%, triple-negative ≈ 10%; PMF — JAK2 ≈ 50–60%, CALR 25–30%, MPL ≈ 5%, triple-negative 5–10%.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "Blood-cell production is switched on when hormones such as erythropoietin or thrombopoietin bind their receptors and activate the JAK2 signaling enzyme."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "The JAK2 V617F mutation keeps JAK2 switched on without the hormone. The marrow overproduces, even when the body does not need more cells."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 44,
+          "text": "Two other drivers do the same through the thrombopoietin receptor: mutant calreticulin, CALR, and mutations in the receptor itself, MPL."
+        },
+        {
+          "id": "n4",
+          "start": 44,
+          "end": 52,
+          "text": "In polycythemia vera, more than 95 percent carry JAK2 V617F, and most of the rest carry other JAK2 mutations, in exons 12 to 15."
+        },
+        {
+          "id": "n5",
+          "start": 52,
+          "end": 60,
+          "text": "In essential thrombocythemia and primary myelofibrosis, about half to 60 percent carry JAK2; CALR and MPL make up much of the rest, and some are triple-negative."
+        }
+      ],
+      "objects": [
+        {
+          "id": "rec",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 110,
+            "w": 260,
+            "label": "EPO / TPO receptor",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "jak",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 180,
+            "w": 260,
+            "label": "JAK2: waits for a key",
+            "tone": "neutral",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "label": "JAK2 V617F: always ON",
+              "tone": "bad",
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "calr",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 260,
+            "w": 260,
+            "label": "CALR → activates MPL",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mpl",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 330,
+            "w": 260,
+            "label": "MPL receptor mutation",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 19.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pv",
+          "type": "card",
+          "props": {
+            "x": 620,
+            "y": 110,
+            "w": 420,
+            "h": 110,
+            "tone": "bad",
+            "title": "PV",
+            "lines": [
+              "JAK2 V617F > 95%",
+              "Other JAK2 (exons 12–15) 3–5%"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "et",
+          "type": "card",
+          "props": {
+            "x": 620,
+            "y": 250,
+            "w": 420,
+            "h": 110,
+            "tone": "warn",
+            "title": "ET",
+            "lines": [
+              "JAK2 ≈ 50–60% · CALR 20–25%",
+              "MPL ≈ 5% · triple-negative ≈ 10%"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "mf",
+          "type": "card",
+          "props": {
+            "x": 620,
+            "y": 390,
+            "w": 420,
+            "h": 110,
+            "tone": "b",
+            "title": "PMF",
+            "lines": [
+              "JAK2 ≈ 50–60% · CALR 25–30%",
+              "MPL ≈ 5% · triple-negative 5–10%"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35,
+              "opacity": 0
+            },
+            {
+              "t": 35.5,
+              "reveal": 0
+            },
+            {
+              "t": 35.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Polycythemia vera — or a reason to be red?",
+      "start": 60,
+      "end": 104,
+      "altText": "A criteria card (WHO/ICC 2022) builds for PV. Major: Hb > 16.5 (men) / > 16.0 (women) g/dL or Hct > 49% / 48% or increased red-cell mass; marrow hypercellular with trilineage growth (panmyelosis); JAK2 V617F or JAK2 exon 12–15 mutation. Minor: low serum EPO. A secondary-erythrocytosis card: hypoxia (lung disease, smoking, sleep apnea), EPO-secreting tumors, testosterone, SGLT2 inhibitors, diuretics — usually with normal or high EPO. Patient A: Hb 18.5, EPO suppressed, JAK2 V617F → PV.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 69,
+          "text": "Polycythemia vera needs a high red-cell value: hemoglobin above 16.5 in men or 16.0 in women, or hematocrit above 49 or 48 percent, or a raised red-cell mass."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 78,
+          "text": "Plus a marrow that is busy in all three lines, called panmyelosis, and a JAK2 mutation: V617F, or one in exons 12 to 15."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 87,
+          "text": "A low erythropoietin level supports PV. The clone makes red cells without being asked, so the kidney turns its own signal down."
+        },
+        {
+          "id": "c4",
+          "start": 87,
+          "end": 96,
+          "text": "High hemoglobin has ordinary causes too: low oxygen from lung disease, smoking or sleep apnea, tumors making erythropoietin, testosterone, some diabetes drugs and diuretics."
+        },
+        {
+          "id": "c5",
+          "start": 96,
+          "end": 104,
+          "text": "Patient A has hemoglobin 18.5, a suppressed erythropoietin and JAK2 V617F. That fits polycythemia vera."
+        }
+      ],
+      "objects": [
+        {
+          "id": "maj",
+          "type": "card",
+          "props": {
+            "x": 270,
+            "y": 170,
+            "w": 480,
+            "h": 170,
+            "tone": "bad",
+            "title": "PV major criteria (WHO/ICC 2022)",
+            "lines": [
+              "Hb > 16.5 / 16.0 or Hct > 49 / 48% or ↑ RCM",
+              "Marrow panmyelosis",
+              "JAK2 V617F or exon 12–15"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "min",
+          "type": "token",
+          "props": {
+            "x": 270,
+            "y": 310,
+            "w": 360,
+            "label": "Minor: low serum EPO",
+            "tone": "b",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 19.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sec",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 170,
+            "w": 380,
+            "h": 170,
+            "tone": "neutral",
+            "title": "Secondary erythrocytosis",
+            "lines": [
+              "Hypoxia: lung, smoking, sleep apnea",
+              "EPO-secreting tumors",
+              "Testosterone · SGLT2 inhibitors · diuretics"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0
+            },
+            {
+              "t": 28,
+              "reveal": 0
+            },
+            {
+              "t": 28.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pa",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 520,
+            "h": 100,
+            "tone": "good",
+            "title": "Patient A → polycythemia vera",
+            "lines": [
+              "Hb 18.5 · EPO suppressed · JAK2 V617F"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36.5,
+              "opacity": 0
+            },
+            {
+              "t": 37.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "ET and PMF: platelets, marrow and scars",
+      "start": 104,
+      "end": 144,
+      "altText": "An ET card: platelets persistently ≥ 450 × 10⁹/L; marrow with increased large mature megakaryocytes; not meeting criteria for CML (BCR::ABL1), PV, PMF or MDS; driver mutation (JAK2, CALR, MPL) — or another clonal marker or no evidence of reactive thrombocytosis. Patient B: platelets 650, CALR positive, BCR::ABL1 negative → ET. A PMF card: teardrop cells, leukoerythroblastosis (nucleated RBCs and immature granulocytes), splenomegaly, reticulin/collagen fibrosis; minor criteria: anemia, WBC ≥ 11 × 10⁹/L, palpable spleen, raised LDH; prefibrotic PMF can mimic ET. Outlook tokens: AML transformation ≈ 20% PMF vs ≈ 4% PV vs ≈ 1% ET; median survival in PMF ≈ 9 years in one large series.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 112,
+          "text": "Essential thrombocythemia needs a persistent platelet count of at least 450, a marrow full of large, mature megakaryocytes, and no other myeloid neoplasm, including CML."
+        },
+        {
+          "id": "l2",
+          "start": 112,
+          "end": 120,
+          "text": "Then a driver mutation, or another clonal marker, or no evidence that the high platelets are a reaction to something else. Patient B is CALR-positive and BCR::ABL1-negative: ET."
+        },
+        {
+          "id": "l3",
+          "start": 120,
+          "end": 128,
+          "text": "Primary myelofibrosis scars the marrow. Red cells squeezed out of the fibrotic marrow become teardrops, and immature cells leak into the blood: leukoerythroblastosis."
+        },
+        {
+          "id": "l4",
+          "start": 128,
+          "end": 136,
+          "text": "Supporting findings are anemia, a white count of 11 or more, a palpable spleen and a raised LDH. Early, prefibrotic myelofibrosis can look like ET."
+        },
+        {
+          "id": "l5",
+          "start": 136,
+          "end": 144,
+          "text": "Myelofibrosis carries the highest risk of turning into acute leukemia, about 20 percent, versus about 4 percent in PV and 1 percent in ET."
+        }
+      ],
+      "objects": [
+        {
+          "id": "et",
+          "type": "card",
+          "props": {
+            "x": 260,
+            "y": 180,
+            "w": 460,
+            "h": 200,
+            "tone": "warn",
+            "title": "ET (WHO 2022)",
+            "lines": [
+              "Platelets ≥ 450 × 10⁹/L, persistent",
+              "Large mature megakaryocytes",
+              "Not CML (BCR::ABL1), PV, PMF, MDS",
+              "Driver, clonal marker or no reactive cause"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pb",
+          "type": "token",
+          "props": {
+            "x": 260,
+            "y": 320,
+            "w": 420,
+            "label": "Patient B: CALR + · BCR::ABL1 − → ET",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 14.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mf",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 180,
+            "w": 440,
+            "h": 200,
+            "tone": "b",
+            "title": "PMF",
+            "lines": [
+              "Teardrops · leukoerythroblastosis",
+              "Splenomegaly · marrow fibrosis",
+              "Minor: anemia, WBC ≥ 11, spleen, LDH ↑",
+              "Prefibrotic PMF can mimic ET"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "reveal": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "aml",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 560,
+            "label": "→ AML: PMF ≈ 20% · PV ≈ 4% · ET ≈ 1%",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "surv",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 485,
+            "w": 520,
+            "label": "PMF median survival ≈ 9 years (one large series)",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 37,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 38.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards appear in turn: “Platelets 600 = ET” (✓ exclude CML with BCR::ABL1, other neoplasms and reactive causes first); “JAK2 V617F negative rules out PV” (✓ 3–5% have JAK2 exon 12–15 mutations); “ET and PMF are JAK2 diseases” (✓ JAK2 in only about 50–60%; the rest CALR, MPL or triple-negative).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a platelet count of 600 means ET. Not until CML is excluded with BCR::ABL1 testing, along with other neoplasms and reactive causes."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a negative JAK2 V617F test rules out PV. No. Three to five percent carry JAK2 mutations in exons 12 to 15 instead."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: ET and myelofibrosis are JAK2 diseases. Only about half to 60 percent are; CALR, MPL or no known driver account for the rest."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Platelets 600 = ET.”",
+            "lines": [
+              "✓ Exclude CML (BCR::ABL1), other neoplasms, reactive causes"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “JAK2 V617F negative rules out PV.”",
+            "lines": [
+              "✓ 3–5% have JAK2 exon 12–15 mutations"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “ET and PMF are JAK2 diseases.”",
+            "lines": [
+              "✓ ≈ 50–60% JAK2 · rest CALR, MPL or triple-negative"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "One stuck switch, three outputs",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “One stuck switch, three outputs.” A JAK–STAT switch stuck ON feeds three pipes: red cells (PV — almost always JAK2), platelets (ET — JAK2, CALR or MPL), fibrosis (PMF — the same drivers, plus scarring). A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: one stuck switch, three outputs. The same switched-on signaling can mainly raise red cells in PV, platelets in ET, or scar the marrow in myelofibrosis."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: the same mutation can cause different diseases; prefibrotic myelofibrosis overlaps with ET; driver mutations also appear in healthy older people with clonal hematopoiesis; and criteria need marrow findings, not just a mutation."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "One stuck switch, three outputs",
+            "size": 32,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 180,
+            "y": 170,
+            "w": 270,
+            "label": "Red cells → PV",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 270,
+            "label": "Platelets → ET",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 780,
+            "y": 170,
+            "w": 270,
+            "label": "Scar → PMF",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Same mutation, different diseases · prefibrotic PMF ≈ ET",
+              "Drivers also occur in clonal hematopoiesis",
+              "Criteria need marrow findings, not a mutation alone"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “PV: Hb > 16.5/16.0 + panmyelosis + JAK2 (V617F > 95%, exon 12–15 3–5%) · low EPO”, “ET: plt ≥ 450 + megakaryocytes + exclude CML/reactive · PMF: fibrosis, teardrops, leukoerythroblastosis”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Diagnose the Philadelphia-negative MPNs with blood counts, marrow findings and a driver mutation — JAK2 in nearly all PV, JAK2, CALR or MPL in ET and myelofibrosis — after excluding CML and reactive causes."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "PV: Hb > 16.5/16.0 + panmyelosis + JAK2 (V617F > 95%, exon 12–15 3–5%) · low EPO",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "ET: plt ≥ 450 + megakaryocytes + exclude CML/reactive · PMF: fibrosis, teardrops",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: in these blood cancers, a stuck “on” switch makes the marrow overproduce red cells, platelets or scar tissue. Scientific terms: Philadelphia-negative myeloproliferative neoplasms (PV, ET, PMF), JAK2 V617F, JAK2 exon 12–15 mutations, CALR, MPL, triple-negative, panmyelosis, leukoerythroblastosis, prefibrotic and overt PMF.",
+    "why": "JAK2 V617F causes constitutive JAK2 activation without EPO or TPO binding; mutant CALR activates the MPL (TPO) receptor; MPL mutations activate it directly. Autonomous red-cell production suppresses EPO.",
+    "measure": "PV (WHO/ICC 2022): Hb > 16.5/16.0 g/dL or Hct > 49/48% or increased red-cell mass; marrow panmyelosis; JAK2 V617F or exon 12–15; minor: low EPO. ET: platelets ≥ 450 × 10⁹/L, characteristic megakaryocytes, exclusion of other myeloid neoplasms, driver mutation (minor: clonal marker or no reactive thrombocytosis). PMF minor criteria: anemia, WBC ≥ 11 × 10⁹/L, palpable spleen, raised LDH (plus leukoerythroblastosis in overt PMF).",
+    "differs": "PV vs secondary erythrocytosis (EPO, hypoxia, drugs); ET vs reactive thrombocytosis and CML (BCR::ABL1); ET vs prefibrotic PMF (marrow morphology).",
+    "examAngle": "Expect: low EPO + JAK2 = PV; JAK2 V617F-negative PV with exon 12; CALR-positive ET; teardrops and leukoerythroblastosis = PMF; always exclude BCR::ABL1."
+  },
+  "comparisons": [
+    {
+      "id": "pv-vs-secondary",
+      "title": "Polycythemia vera vs secondary erythrocytosis",
+      "left": {
+        "label": "Polycythemia vera",
+        "points": [
+          "JAK2 mutation · panmyelosis",
+          "Low serum EPO"
+        ]
+      },
+      "right": {
+        "label": "Secondary erythrocytosis",
+        "points": [
+          "Hypoxia, EPO tumors, drugs",
+          "No JAK2 mutation"
+        ]
+      },
+      "distinguisher": "JAK2 status and EPO level."
+    },
+    {
+      "id": "et-vs-pmf",
+      "title": "Essential thrombocythemia vs primary myelofibrosis",
+      "left": {
+        "label": "ET",
+        "points": [
+          "Platelets ≥ 450 × 10⁹/L",
+          "AML risk ≈ 1%"
+        ]
+      },
+      "right": {
+        "label": "PMF",
+        "points": [
+          "Fibrosis, teardrops, leukoerythroblastosis",
+          "AML risk ≈ 20%"
+        ]
+      },
+      "distinguisher": "Marrow morphology and fibrosis."
+    }
+  ],
+  "mnemonic": {
+    "text": "One stuck switch, three outputs.",
+    "explanation": "JAK–STAT signaling stuck on raises red cells (PV), platelets (ET) or drives fibrosis (PMF).",
+    "limitation": "The same mutation can cause different diseases; prefibrotic PMF overlaps ET; drivers also occur in clonal hematopoiesis; criteria need marrow findings."
+  },
+  "analogyLimitations": [
+    "The switch and pipes are schematic.",
+    "The patients are invented.",
+    "CML, mastocytosis and MPN treatment are not covered here."
+  ],
+  "takeaway": "Diagnose the Philadelphia-negative MPNs with blood counts, marrow findings and a driver mutation — JAK2 in nearly all PV, JAK2, CALR or MPL in ET and myelofibrosis — after excluding CML and reactive causes.",
+  "questions": [
+    {
+      "id": "heme-mpn-q1",
+      "stem": "A woman has Hb 17.4 g/dL, a low serum EPO and a hypercellular marrow with trilineage growth. JAK2 V617F is negative. What is the best next test?",
+      "options": [
+        {
+          "id": "a",
+          "text": "JAK2 exon 12–15 mutation testing",
+          "rationale": "Correct. 3–5% of PV carry non-V617F JAK2 mutations, mostly in exon 12."
+        },
+        {
+          "id": "b",
+          "text": "Rule out PV and diagnose secondary erythrocytosis",
+          "rationale": "Incorrect. Low EPO and panmyelosis still point to PV; a negative V617F test does not exclude it."
+        },
+        {
+          "id": "c",
+          "text": "BCR::ABL1 testing only",
+          "rationale": "Incorrect. CML is not suggested by isolated erythrocytosis with low EPO."
+        },
+        {
+          "id": "d",
+          "text": "Serum ferritin to diagnose PV",
+          "rationale": "Incorrect. Ferritin does not diagnose PV."
+        }
+      ],
+      "answer": "a",
+      "skill": "PV workup",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-mpn-q2",
+      "stem": "Platelets are 680 × 10⁹/L on repeated counts. Before diagnosing essential thrombocythemia, which test is essential?",
+      "options": [
+        {
+          "id": "a",
+          "text": "BCR::ABL1 to exclude CML",
+          "rationale": "Correct. ET requires that criteria for CML and other myeloid neoplasms are not met."
+        },
+        {
+          "id": "b",
+          "text": "Serum EPO",
+          "rationale": "Incorrect. EPO is a minor criterion for PV, not ET."
+        },
+        {
+          "id": "c",
+          "text": "Hemoglobin electrophoresis",
+          "rationale": "Incorrect. It does not help classify thrombocytosis."
+        },
+        {
+          "id": "d",
+          "text": "None — a platelet count ≥ 450 is diagnostic",
+          "rationale": "Incorrect. A high count alone does not distinguish ET from reactive or other neoplastic causes."
+        }
+      ],
+      "answer": "a",
+      "skill": "ET criteria",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-mpn-q3",
+      "stem": "An anemic patient has splenomegaly, teardrop cells, nucleated red cells and myelocytes on the smear, and a CALR mutation. What is the most likely diagnosis?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Primary myelofibrosis",
+          "rationale": "Correct. Teardrops, leukoerythroblastosis, splenomegaly and a driver mutation fit PMF."
+        },
+        {
+          "id": "b",
+          "text": "Essential thrombocythemia",
+          "rationale": "Incorrect. ET lacks leukoerythroblastosis and marrow fibrosis."
+        },
+        {
+          "id": "c",
+          "text": "Polycythemia vera",
+          "rationale": "Incorrect. PV causes erythrocytosis, not anemia with fibrosis at presentation."
+        },
+        {
+          "id": "d",
+          "text": "Reactive thrombocytosis",
+          "rationale": "Incorrect. A CALR mutation indicates a clonal neoplasm."
+        }
+      ],
+      "answer": "a",
+      "skill": "PMF recognition",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch34",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 34, White Cell Disorders (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 34,
+          "section": "High-Yield Hits",
+          "items": [
+            4,
+            5
+          ]
+        },
+        {
+          "chapter": 34,
+          "section": "Exam Traps",
+          "items": [
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "palandri2026",
+      "kind": "external",
+      "citation": "Palandri F, Sartor C, Pileri A, et al. Modern and multidisciplinary care in polycythemia vera. Ann Hematol. 2026;105(5):251.",
+      "doi": "10.1007/s00277-026-06970-w",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13091898/",
+      "consulted": true,
+      "usedFor": "WHO/ICC 2022 PV criteria: Hb > 16.5/16.0 g/dL or Hct > 49/48% or increased red-cell mass; marrow panmyelosis; JAK2 V617F or exon 12–15 mutation; minor: low serum EPO; JAK2 V617F > 95%, non-canonical JAK2 3–5%; secondary erythrocytosis from hypoxia (smoking, lung disease, sleep apnea), EPO production, SGLT2 inhibitors, diuretics, testosterone."
+    },
+    {
+      "id": "testa2026",
+      "kind": "external",
+      "citation": "Testa U, Castelli G, Pelosi E. Molecular abnormalities and associated clinical features in polycythemia vera. Med Sci (Basel). 2026;14(5):552.",
+      "doi": "10.3390/medsci14050552",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13609502/",
+      "consulted": true,
+      "usedFor": "PV, ET and MF caused by gain-of-function mutations in JAK2, CALR or MPL; JAK2 V617F > 95% of PV and about half of ET and MF; 2–5% of PV carry exon 12 mutations; V617F makes JAK2 constitutively active without EPO or TPO binding."
+    },
+    {
+      "id": "strzala2026",
+      "kind": "external",
+      "citation": "Strzała D, Homenda W, Połom A, et al. The roles of genetic and epigenetic abnormalities in essential thrombocythemia. Genes (Basel). 2026;17(9):989.",
+      "doi": "10.3390/genes17090989",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13606133/",
+      "consulted": true,
+      "usedFor": "WHO 2022 ET criteria: persistent platelets > 450,000/µL, characteristic marrow, not meeting criteria for other MPN/MDS, driver mutation in JAK2, CALR or MPL; minor: clonal marker or no evidence of reactive thrombocytosis; triple-negative ≈ 10–15%; mutant calreticulin activates MPL; CALR 20–25%."
+    },
+    {
+      "id": "shao2025",
+      "kind": "external",
+      "citation": "Shao R, Ryder C, Wang L, et al. A review of the pathological and molecular diagnosis of primary myelofibrosis. Cancers (Basel). 2025;18(1):50.",
+      "doi": "10.3390/cancers18010050",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12784778/",
+      "consulted": true,
+      "usedFor": "AML transformation PMF ≈ 20%, ET ≈ 1%, PV ≈ 4%; PMF median survival 9.2 years; driver frequencies (PMF: JAK2 ~60%, CALR 25–30%, MPL ~5%, triple-negative 5–10%; ET: JAK2 ~60%, CALR 20–25%, MPL ~5%, triple-negative ~10%); teardrops, leukoerythroblastosis, splenomegaly; prefibrotic vs overt PMF; minor criteria anemia, WBC ≥ 11 × 10⁹/L, palpable splenomegaly, raised LDH; exclusion of BCR::ABL1 CML, PV, ET, MDS."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-drivers",
+      "text": "JAK2/CALR/MPL activate signaling; V617F constitutively active; frequencies by disease.",
+      "status": "checked",
+      "refs": [
+        "testa2026",
+        "shao2025",
+        "strzala2026"
+      ]
+    },
+    {
+      "id": "cl-pv",
+      "text": "PV criteria (Hb/Hct/RCM, panmyelosis, JAK2 V617F or exon 12–15; low EPO) and secondary erythrocytosis causes.",
+      "status": "checked",
+      "refs": [
+        "palandri2026"
+      ]
+    },
+    {
+      "id": "cl-et",
+      "text": "ET criteria: platelets ≥ 450, megakaryocytes, exclusion of other myeloid neoplasms incl. CML, driver or clonal marker or no reactive cause.",
+      "status": "checked",
+      "refs": [
+        "strzala2026",
+        "shao2025"
+      ]
+    },
+    {
+      "id": "cl-pmf",
+      "text": "PMF features, minor criteria, AML risk 20/4/1%, median survival 9.2 years.",
+      "status": "checked",
+      "refs": [
+        "shao2025"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "NAP elevated in 80% of PV; ET platelets usually > 1000; reactive causes of thrombocytosis (iron deficiency, infection, inflammation).",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch34"
+      ],
+      "note": "Not taught; not in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Switch, pipes and tokens are schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“One stuck switch, three outputs.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-jak2",
+      "issue": "Hit 4 says JAK2 V617F is present “in essentially all cases” of PV; sources give > 95%, with 3–5% carrying JAK2 exon 12–15 mutations. The lesson teaches both.",
+      "kind": "contradiction",
+      "status": "open"
+    },
+    {
+      "id": "f-pmf",
+      "issue": "Hit 5 gives PMF median survival as ~5 years; Shao 2025 cites 9.2 years in a large series.",
+      "kind": "outdated",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No smear or marrow images are shown; features are named on cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against Palandri 2026, Testa 2026, Strzała 2026 and Shao 2025 read for this lesson; 1 pending (NAP, ET > 1000, reactive causes). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
