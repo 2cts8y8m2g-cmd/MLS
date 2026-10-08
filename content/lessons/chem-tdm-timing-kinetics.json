@@ -1,0 +1,1982 @@
+{
+  "schemaVersion": 1,
+  "id": "chem-tdm-timing-kinetics",
+  "title": "Timing the Drug Level: Steady State, Saturation and Induction",
+  "summary": "Interpret therapeutic drug levels by timing and pharmacokinetics: steady state after several half-lives, trough sampling, phenytoin’s saturable metabolism, enzyme induction and carbamazepine autoinduction, and digoxin assay interference after Fab.",
+  "domain": "p2-chem",
+  "topic": "ch24",
+  "conceptIds": [
+    "ch24.hit3",
+    "ch24.hit7",
+    "ch24.hit8",
+    "ch24.hit9",
+    "ch24.hit18",
+    "ch24.trap1",
+    "ch24.trap4",
+    "ch24.trap5",
+    "ch24.trap6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 24,
+        "section": "High-Yield Hits",
+        "items": [
+          3,
+          7,
+          8,
+          9,
+          18
+        ]
+      },
+      {
+        "chapter": 24,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          4,
+          5,
+          6
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 24 Hit 3 (steady-state sampling), Hit 7 (digoxin and Fab interference), Hit 8 (phenytoin saturable metabolism), Hit 9 (CYP inducers, carbamazepine autoinduction), Hit 18 (first-order elimination arithmetic) and Traps 1, 4, 5, 6. Checked against Salhi & Karmi 2026, Barreto 2026, Liu 2026, Yin 2024, Williams & Reddy 2025 and Vijay 2026. The 50/75/87.5/93.75/96.9% sequence is arithmetic (1 − 0.5ⁿ). Not taught: carbamazepine half-life figures (35 h → 8–20 h), Fab half-life 15–20 h, phenytoin half-life 24 ± 12 h and toxicity signs, and contraceptive/warfarin interactions — not in the sources read."
+  },
+  "prerequisites": [
+    "ch24.hit1"
+  ],
+  "objectives": [
+    "Explain first-order elimination and why levels for dose adjustment are drawn at steady state.",
+    "Choose trough vs post-dose sampling and recognize a distribution-phase level.",
+    "Explain phenytoin’s saturable metabolism and carbamazepine autoinduction.",
+    "Recognize falsely high digoxin immunoassay results after Fab therapy."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three drug levels that lie",
+      "start": 0,
+      "end": 20,
+      "altText": "Three result cards. Digoxin: 7.8 ng/mL — drawn after digoxin antibody fragments (Fab) were given. Phenytoin: dose raised from 300 to 400 mg/day — the level tripled. Carbamazepine: same dose for a month — the level keeps falling. Question token: “Lab error? Non-adherence? Or pharmacokinetics?” The cartoon scientist scratches their head.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Three drug levels look wrong. A digoxin level is sky-high after the antidote was given. A small phenytoin dose increase tripled the level."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "And a patient on a steady carbamazepine dose has levels that keep falling."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "None of these is a lab error or a broken promise. Each is a pharmacokinetic rule, and timing is the first rule of all."
+        }
+      ],
+      "objects": [
+        {
+          "id": "r0",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 160,
+            "w": 290,
+            "h": 130,
+            "tone": "bad",
+            "title": "Digoxin 7.8 ng/mL",
+            "lines": [
+              "After Fab antidote"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 160,
+            "w": 290,
+            "h": 130,
+            "tone": "warn",
+            "title": "Phenytoin ×3",
+            "lines": [
+              "300 → 400 mg/day"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.3,
+              "opacity": 0
+            },
+            {
+              "t": 3.0999999999999996,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 160,
+            "w": 290,
+            "h": 130,
+            "tone": "b",
+            "title": "Carbamazepine ↓",
+            "lines": [
+              "Same dose, 1 month"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.3,
+              "opacity": 0
+            },
+            {
+              "t": 5.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 340,
+            "w": 520,
+            "label": "Lab error? Non-adherence? Pharmacokinetics?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Halves add up: steady state and timing",
+      "start": 20,
+      "end": 60,
+      "altText": "Five bars rise step by step — 50%, 75%, 87.5%, 93.75%, 96.9% — labeled half-lives 1 to 5: with first-order kinetics, each half-life closes half of the remaining gap to steady state (and, after stopping, removes half of what is left). A token: “≈ 97% after 5 half-lives”. A timing card: TDM levels are drawn at steady state, usually as a trough just before the next dose; a sample drawn right after a dose catches the absorption/distribution peak. An example card: digoxin — half-life 35–48 h; serum peak 0.5–1.5 h after a dose, clinical effect peaks at 2–6 h.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "For most drugs, elimination is first order: in each half-life, the body clears half of the drug present."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "Regular dosing builds up the same way. After one half-life you reach 50 percent of steady state, then 75, 87.5, about 94, and about 97 percent after five."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 44,
+          "text": "So routine dose adjustment uses levels drawn at steady state. Earlier levels are still useful for suspected toxicity, but must be read cautiously."
+        },
+        {
+          "id": "n4",
+          "start": 44,
+          "end": 52,
+          "text": "Timing within the dose interval matters too. A trough is drawn just before the next dose. A sample drawn soon after a dose catches the absorption and distribution peak."
+        },
+        {
+          "id": "n5",
+          "start": 52,
+          "end": 60,
+          "text": "Digoxin is a good example: its half-life is 35 to 48 hours, the serum peak comes within about an hour or two, but the effect on the heart peaks 2 to 6 hours after the dose."
+        }
+      ],
+      "objects": [
+        {
+          "id": "b0",
+          "type": "bin",
+          "props": {
+            "x": 80,
+            "y": 330,
+            "w": 86,
+            "h": 10,
+            "label": "50%",
+            "sub": "t½ × 1",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.5,
+              "h": 10
+            },
+            {
+              "t": 8.5,
+              "y": 330
+            },
+            {
+              "t": 9.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "h": 100,
+              "ease": "inOut"
+            },
+            {
+              "t": 9.5,
+              "y": 285.0,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "b1",
+          "type": "bin",
+          "props": {
+            "x": 180,
+            "y": 330,
+            "w": 86,
+            "h": 10,
+            "label": "75%",
+            "sub": "t½ × 2",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.7,
+              "opacity": 0
+            },
+            {
+              "t": 9.7,
+              "h": 10
+            },
+            {
+              "t": 9.7,
+              "y": 330
+            },
+            {
+              "t": 10.2,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.7,
+              "h": 150,
+              "ease": "inOut"
+            },
+            {
+              "t": 10.7,
+              "y": 260.0,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "type": "bin",
+          "props": {
+            "x": 280,
+            "y": 330,
+            "w": 86,
+            "h": 10,
+            "label": "87.5%",
+            "sub": "t½ × 3",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.9,
+              "opacity": 0
+            },
+            {
+              "t": 10.9,
+              "h": 10
+            },
+            {
+              "t": 10.9,
+              "y": 330
+            },
+            {
+              "t": 11.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11.9,
+              "h": 175,
+              "ease": "inOut"
+            },
+            {
+              "t": 11.9,
+              "y": 247.5,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "type": "bin",
+          "props": {
+            "x": 380,
+            "y": 330,
+            "w": 86,
+            "h": 10,
+            "label": "93.75%",
+            "sub": "t½ × 4",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.1,
+              "opacity": 0
+            },
+            {
+              "t": 12.1,
+              "h": 10
+            },
+            {
+              "t": 12.1,
+              "y": 330
+            },
+            {
+              "t": 12.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13.1,
+              "h": 188,
+              "ease": "inOut"
+            },
+            {
+              "t": 13.1,
+              "y": 241.0,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "b4",
+          "type": "bin",
+          "props": {
+            "x": 480,
+            "y": 330,
+            "w": 86,
+            "h": 10,
+            "label": "96.9%",
+            "sub": "t½ × 5",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.3,
+              "opacity": 0
+            },
+            {
+              "t": 13.3,
+              "h": 10
+            },
+            {
+              "t": 13.3,
+              "y": 330
+            },
+            {
+              "t": 13.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.3,
+              "h": 194,
+              "ease": "inOut"
+            },
+            {
+              "t": 14.3,
+              "y": 238.0,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "fo",
+          "type": "token",
+          "props": {
+            "x": 280,
+            "y": 80,
+            "w": 420,
+            "label": "First order: half cleared per half-life",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 0.5,
+              "y": 60
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4.5,
+              "y": 80,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ss",
+          "type": "token",
+          "props": {
+            "x": 280,
+            "y": 420,
+            "w": 320,
+            "label": "≈ 97% after 5 half-lives",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tim",
+          "type": "card",
+          "props": {
+            "x": 780,
+            "y": 150,
+            "w": 320,
+            "h": 140,
+            "tone": "a",
+            "title": "When to draw",
+            "lines": [
+              "Steady state · trough before next dose",
+              "Soon after dose = absorption peak"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "dig",
+          "type": "card",
+          "props": {
+            "x": 780,
+            "y": 350,
+            "w": 320,
+            "h": 150,
+            "tone": "warn",
+            "title": "Digoxin",
+            "lines": [
+              "Half-life 35–48 h",
+              "Serum peak ≈ 0.5–1.5 h",
+              "Effect peaks 2–6 h"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Saturation and induction break the straight line",
+      "start": 60,
+      "end": 104,
+      "altText": "A dose-vs-level graph drawn with tokens: for a first-order drug, doubling the dose doubles the level (straight line). For phenytoin the line bends upward: its metabolizing enzymes saturate, so 300 → 400 mg/day can triple the level. A card: phenytoin is a narrow-therapeutic-index drug; total vs free level matters when albumin is low. Then an induction card: phenytoin and carbamazepine induce CYP enzymes (e.g., CYP3A4, CYP2C9), lowering levels of other drugs. Carbamazepine induces its own metabolism (autoinduction): on a stable dose its level falls over the first weeks.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 69,
+          "text": "For most drugs, doubling the dose doubles the steady-state level: a straight line."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 78,
+          "text": "Phenytoin is different. Its metabolizing enzymes become saturated, so a small dose increase can produce a large jump. Going from 300 to 400 milligrams a day can triple the level."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 86,
+          "text": "Phenytoin has a narrow therapeutic window, and it is highly protein bound, so a total level can mislead when albumin is low."
+        },
+        {
+          "id": "c4",
+          "start": 86,
+          "end": 95,
+          "text": "Phenytoin and carbamazepine induce liver enzymes such as CYP3A4 and CYP2C9, lowering the levels of other drugs."
+        },
+        {
+          "id": "c5",
+          "start": 95,
+          "end": 104,
+          "text": "Carbamazepine even induces its own metabolism. On a stable dose, its level falls during the first weeks. That is autoinduction, not non-adherence."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lin",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 140,
+            "w": 260,
+            "label": "First order: 2× dose → 2× level",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 0.5,
+              "x": 150
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4.5,
+              "x": 300,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p0",
+          "type": "bin",
+          "props": {
+            "x": 140,
+            "y": 370,
+            "w": 90,
+            "h": 10,
+            "label": "300 mg",
+            "sub": "level 10",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "h": 10
+            },
+            {
+              "t": 9.5,
+              "y": 370
+            },
+            {
+              "t": 10.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11.0,
+              "h": 50,
+              "ease": "inOut"
+            },
+            {
+              "t": 11.0,
+              "y": 350.0,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "p1",
+          "type": "bin",
+          "props": {
+            "x": 260,
+            "y": 370,
+            "w": 90,
+            "h": 10,
+            "label": "350 mg",
+            "sub": "level 17",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.0,
+              "opacity": 0
+            },
+            {
+              "t": 11.0,
+              "h": 10
+            },
+            {
+              "t": 11.0,
+              "y": 370
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12.5,
+              "h": 85,
+              "ease": "inOut"
+            },
+            {
+              "t": 12.5,
+              "y": 332.5,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "bin",
+          "props": {
+            "x": 380,
+            "y": 370,
+            "w": 90,
+            "h": 10,
+            "label": "400 mg",
+            "sub": "level 30",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.5,
+              "h": 10
+            },
+            {
+              "t": 12.5,
+              "y": 370
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14.0,
+              "h": 150,
+              "ease": "inOut"
+            },
+            {
+              "t": 14.0,
+              "y": 300.0,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "pn",
+          "type": "card",
+          "props": {
+            "x": 300,
+            "y": 495,
+            "w": 480,
+            "h": 76,
+            "tone": "warn",
+            "title": "Phenytoin: saturable · narrow window",
+            "lines": [
+              "Total vs free level when albumin is low"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ind",
+          "type": "card",
+          "props": {
+            "x": 740,
+            "y": 170,
+            "w": 380,
+            "h": 140,
+            "tone": "b",
+            "title": "CYP inducers",
+            "lines": [
+              "Phenytoin · carbamazepine",
+              "Lower levels of other drugs"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0
+            },
+            {
+              "t": 27,
+              "reveal": 0
+            },
+            {
+              "t": 27.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "auto",
+          "type": "card",
+          "props": {
+            "x": 740,
+            "y": 380,
+            "w": 380,
+            "h": 130,
+            "tone": "bad",
+            "title": "Carbamazepine autoinduction",
+            "lines": [
+              "Induces its own metabolism",
+              "Level falls on a stable dose"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 35.5,
+              "opacity": 0
+            },
+            {
+              "t": 36,
+              "reveal": 0
+            },
+            {
+              "t": 36.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 40,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "When the antidote fools the assay",
+      "start": 104,
+      "end": 144,
+      "altText": "A digoxin molecule bound by an antibody fragment (Fab) token. An immunoassay card: after Fab, serum digoxin results can be falsely elevated by assay interference — the measured total includes Fab-bound, inactive digoxin; toxicity is then judged clinically; Fab also draws digoxin out of tissues into plasma. A kidney card: in renal failure, Fab–digoxin complexes clear slowly and can dissociate, causing rebound toxicity; hemodialysis does not remove them; plasma exchange has been used as salvage. The patient: digoxin 7.8 ng/mL after Fab but improving rhythm → do not chase the number.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 112,
+          "text": "Digoxin antibody fragments, called Fab, bind digoxin and pull it out of action. The drug–Fab complex is inactive."
+        },
+        {
+          "id": "l2",
+          "start": 112,
+          "end": 120,
+          "text": "But many digoxin immunoassays still count the bound drug. After Fab, the reported level can be falsely high, so toxicity is judged by the patient."
+        },
+        {
+          "id": "l3",
+          "start": 120,
+          "end": 128,
+          "text": "Fab also pulls digoxin out of the tissues into the blood, which is another reason a single plasma number can mislead."
+        },
+        {
+          "id": "l4",
+          "start": 128,
+          "end": 136,
+          "text": "In kidney failure, the complexes clear slowly and can fall apart, releasing digoxin again: rebound toxicity. Hemodialysis does not remove them."
+        },
+        {
+          "id": "l5",
+          "start": 136,
+          "end": 144,
+          "text": "So our level of 7.8 after Fab, with an improving rhythm, is not a reason to give more antidote. Read the patient, not the number."
+        }
+      ],
+      "objects": [
+        {
+          "id": "dg",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 110,
+            "w": 160,
+            "label": "Digoxin",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "fab",
+          "type": "token",
+          "props": {
+            "x": 420,
+            "y": 110,
+            "w": 160,
+            "label": "Fab",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "x": 420
+            },
+            {
+              "t": 2.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4.5,
+              "x": 345,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cx",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 300,
+            "label": "Digoxin–Fab: inactive",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ia",
+          "type": "card",
+          "props": {
+            "x": 700,
+            "y": 160,
+            "w": 420,
+            "h": 160,
+            "tone": "bad",
+            "title": "After Fab: assay can read falsely high",
+            "lines": [
+              "Measured level includes bound drug",
+              "Fab draws tissue digoxin into plasma",
+              "Judge toxicity clinically"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "kd",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 360,
+            "w": 420,
+            "h": 130,
+            "tone": "warn",
+            "title": "Renal failure",
+            "lines": [
+              "Complexes clear slowly → rebound",
+              "Hemodialysis does not remove them"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pt",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 400,
+            "w": 420,
+            "label": "7.8 ng/mL after Fab, rhythm improving → watch the patient",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards appear in turn: “A theophylline level 2 h after an IV dose guides maintenance dosing” (✓ that is the distribution peak — use a steady-state trough); “Phenytoin tripled after a small increase — lab error” (✓ saturable metabolism); “Falling carbamazepine on a stable dose = non-adherence” (✓ autoinduction in the first weeks).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a theophylline level drawn 2 hours after an IV dose is used to set the maintenance dose. No. It reflects the distribution peak; use a steady-state trough."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: phenytoin tripled after a small increase, so it must be a lab error. No. Saturable metabolism makes the curve bend upward."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: a falling carbamazepine level on a stable dose means non-adherence. Not necessarily. Autoinduction lowers it during the first weeks."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “2-h post-IV level sets the maintenance dose.”",
+            "lines": [
+              "✓ Use a steady-state trough"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Phenytoin tripled — lab error.”",
+            "lines": [
+              "✓ Saturable metabolism: small dose, big jump"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Falling carbamazepine = non-adherence.”",
+            "lines": [
+              "✓ Autoinduction in the first weeks"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Wait, bend, speed up",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Wait, bend, speed up.” Wait for steady state (about 5 half-lives) and draw a trough; phenytoin’s curve bends (saturation); inducers speed up metabolism (carbamazepine even its own). A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: wait, bend, speed up. Wait for steady state and draw a trough; remember that phenytoin’s curve bends; and remember that inducers speed up metabolism, carbamazepine even its own."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: some drugs are monitored by peaks or by area under the curve; toxicity levels can be drawn any time; free and total levels differ when albumin is low; and kidney or liver disease changes the half-life."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Wait · bend · speed up",
+            "size": 34,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 180,
+            "y": 170,
+            "w": 270,
+            "label": "Wait: steady state",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 270,
+            "label": "Bend: phenytoin",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 780,
+            "y": 170,
+            "w": 270,
+            "label": "Speed up: inducers",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Some drugs use peaks or AUC · toxicity levels any time",
+              "Free vs total differs when albumin is low",
+              "Kidney or liver disease changes half-life"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Steady state ≈ 5 half-lives · trough before next dose · post-dose level = distribution peak”, “Phenytoin saturable · carbamazepine autoinduction · digoxin assay falsely high after Fab”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Interpret drug levels only with their timing: draw troughs at steady state, expect phenytoin to jump with small dose changes and carbamazepine to fall as it induces itself, and distrust digoxin results after Fab."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Steady state ≈ 5 half-lives · trough before next dose · post-dose = distribution peak",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Phenytoin saturable · carbamazepine autoinduction · digoxin falsely high after Fab",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a drug level means nothing without knowing when it was drawn, and some drugs do not follow straight-line rules. Scientific terms: first-order elimination, half-life, steady state, trough, absorption/distribution phase, saturable (nonlinear, Michaelis–Menten-type) metabolism, CYP450 induction, autoinduction, narrow therapeutic index, digoxin-specific antibody fragments (Fab).",
+    "why": "In first-order kinetics a constant fraction is removed per unit time, so accumulation approaches steady state geometrically. When metabolizing enzymes saturate (phenytoin), clearance falls as concentration rises. Inducers increase enzyme amounts, raising clearance of other drugs or of themselves (carbamazepine). Immunoassays may detect Fab-bound digoxin.",
+    "measure": "Fraction of steady state after n half-lives = 1 − 0.5ⁿ (50, 75, 87.5, 93.75, 96.9%). Trough just before the next dose at steady state; digoxin half-life 35–48 h, serum peak ≈ 0.5–1.5 h, effect peaks 2–6 h. After Fab: total digoxin can read falsely high; judge toxicity clinically.",
+    "differs": "First-order vs saturable kinetics; induction (levels of co-drugs fall) vs autoinduction (drug’s own level falls); total vs free drug.",
+    "examAngle": "Expect: when to draw a level, the theophylline/digoxin distribution-phase trap, phenytoin’s disproportionate rise, carbamazepine’s falling level, and the post-Fab digoxin result."
+  },
+  "comparisons": [
+    {
+      "id": "linear-vs-saturable",
+      "title": "First-order vs saturable (phenytoin) kinetics",
+      "left": {
+        "label": "First order",
+        "points": [
+          "Dose and level proportional",
+          "Constant half-life"
+        ]
+      },
+      "right": {
+        "label": "Saturable (phenytoin)",
+        "points": [
+          "Small dose rise → large level rise",
+          "Half-life lengthens as levels rise"
+        ]
+      },
+      "distinguisher": "Whether metabolizing enzymes saturate."
+    },
+    {
+      "id": "induction",
+      "title": "Enzyme induction vs autoinduction",
+      "left": {
+        "label": "Induction of other drugs",
+        "points": [
+          "Phenytoin, carbamazepine",
+          "Co-prescribed drug levels fall"
+        ]
+      },
+      "right": {
+        "label": "Autoinduction (carbamazepine)",
+        "points": [
+          "Induces its own metabolism",
+          "Own level falls on a stable dose"
+        ]
+      },
+      "distinguisher": "Whose metabolism speeds up."
+    }
+  ],
+  "mnemonic": {
+    "text": "Wait, bend, speed up.",
+    "explanation": "Wait for steady state and draw a trough; phenytoin’s dose–level curve bends; inducers speed up metabolism (carbamazepine its own).",
+    "limitation": "Some drugs are monitored by peaks or AUC; toxicity levels can be drawn any time; free and total levels differ with low albumin; organ disease changes half-life."
+  },
+  "analogyLimitations": [
+    "Bars and tokens are schematic; the phenytoin numbers are an invented example of the pattern.",
+    "The patients are invented.",
+    "Aminoglycoside and vancomycin dosing, and toxicology screens, are covered in other lessons."
+  ],
+  "takeaway": "Interpret drug levels only with their timing: draw troughs at steady state, expect phenytoin to jump with small dose changes and carbamazepine to fall as it induces itself, and distrust digoxin results after Fab.",
+  "questions": [
+    {
+      "id": "chem-tdm-q1",
+      "stem": "After digoxin Fab is given for toxicity, the serum digoxin result rises from 4.1 to 7.8 ng/mL while the patient’s rhythm improves. What is the best interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Assay interference: the result includes inactive Fab-bound digoxin; judge toxicity clinically",
+          "rationale": "Correct. After Fab, digoxin immunoassays can read falsely high."
+        },
+        {
+          "id": "b",
+          "text": "Worsening toxicity requiring more Fab immediately",
+          "rationale": "Incorrect. The clinical picture is improving; the number is misleading."
+        },
+        {
+          "id": "c",
+          "text": "Start hemodialysis to remove the complexes",
+          "rationale": "Incorrect. Hemodialysis does not remove digoxin–Fab complexes."
+        },
+        {
+          "id": "d",
+          "text": "A specimen mix-up",
+          "rationale": "Incorrect. This rise is expected after Fab."
+        }
+      ],
+      "answer": "a",
+      "skill": "Digoxin after Fab",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-tdm-q2",
+      "stem": "A phenytoin level was 10 µg/mL on 300 mg/day. After an increase to 400 mg/day it is 30 µg/mL, and the patient is ataxic. What explains this?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Saturable (nonlinear) phenytoin metabolism",
+          "rationale": "Correct. Once enzymes saturate, small dose increases cause disproportionate level rises."
+        },
+        {
+          "id": "b",
+          "text": "A laboratory error, because levels should rise by one-third",
+          "rationale": "Incorrect. Proportional rises apply only to first-order drugs."
+        },
+        {
+          "id": "c",
+          "text": "Carbamazepine-like autoinduction",
+          "rationale": "Incorrect. Autoinduction would lower, not raise, the level."
+        },
+        {
+          "id": "d",
+          "text": "Non-adherence",
+          "rationale": "Incorrect. Non-adherence lowers levels."
+        }
+      ],
+      "answer": "a",
+      "skill": "Phenytoin kinetics",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-tdm-q3",
+      "stem": "A drug with a half-life of 24 hours was started 2 days ago at a fixed dose. A level is requested to adjust the maintenance dose. What is the best advice?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Wait until about 5 days of therapy and draw a trough just before a dose",
+          "rationale": "Correct. About five half-lives are needed to approach steady state (≈ 97%)."
+        },
+        {
+          "id": "b",
+          "text": "Draw now, 1 hour after the dose",
+          "rationale": "Incorrect. That is neither steady state nor a trough; it catches the absorption peak."
+        },
+        {
+          "id": "c",
+          "text": "Draw now; any time point is equivalent",
+          "rationale": "Incorrect. At 2 half-lives the drug is only at about 75% of steady state."
+        },
+        {
+          "id": "d",
+          "text": "Draw only if toxicity occurs; routine levels are never useful",
+          "rationale": "Incorrect. Steady-state levels guide maintenance dosing for monitored drugs."
+        }
+      ],
+      "answer": "a",
+      "skill": "Sampling time",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch24",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 24, Drugs, Poisons, and Drug Levels (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 24,
+          "section": "High-Yield Hits",
+          "items": [
+            3,
+            7,
+            8,
+            9,
+            18
+          ]
+        },
+        {
+          "chapter": 24,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "salhi2026",
+      "kind": "external",
+      "citation": "Salhi I, Karmi B. Therapeutic drug monitoring of antiepileptic drugs in the West Bank, Palestine: a 25-year retrospective cohort study from a multi-branch laboratory network. BMC Neurol. 2026.",
+      "doi": "10.1186/s12883-026-05103-0",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13644187/",
+      "consulted": true,
+      "usedFor": "TDM measures concentrations at defined steady-state intervals; reaching a new steady state takes multiple half-lives (accumulation can cause toxicity weeks after a dose change); phenytoin is a potent CYP2C9/CYP3A4 inducer; total vs free phenytoin and albumin adjustment (Sheiner–Tozer)."
+    },
+    {
+      "id": "barreto2026",
+      "kind": "external",
+      "citation": "Barreto EF, McCreary EK, Pai Mangalore R, et al. Consensus guidance for beta-lactam antibiotic dose individualization in acutely ill patients. Pharmacotherapy. 2026;46(8):e70181.",
+      "doi": "10.1002/phar.70181",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13392062/",
+      "consulted": true,
+      "usedFor": "In traditional TDM, concentrations are measured once steady state is reached to assess exposure."
+    },
+    {
+      "id": "liu2026",
+      "kind": "external",
+      "citation": "Liu M, Wang Z, Chen Y, et al. Narrow therapeutic index drugs: regulatory frameworks, bioequivalence, and model-informed precision dosing. Pharmaceutics. 2026;18(9):1190.",
+      "doi": "10.3390/pharmaceutics18091190",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13610058/",
+      "consulted": true,
+      "usedFor": "Digoxin, phenytoin, lithium and theophylline are narrow-therapeutic-index drugs; phenytoin has pronounced nonlinear pharmacokinetics — small dose changes produce substantial concentration changes."
+    },
+    {
+      "id": "yin2024",
+      "kind": "external",
+      "citation": "Yin X, Cicali B, Rodriguez-Vera L, et al. Applying physiologically based pharmacokinetic modeling to interpret carbamazepine’s nonlinear pharmacokinetics and its induction potential on cytochrome P450 3A4 and cytochrome P450 2C9 enzymes. Pharmaceutics. 2024;16(6):737.",
+      "doi": "10.3390/pharmaceutics16060737",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11206836/",
+      "consulted": true,
+      "usedFor": "Carbamazepine induces the metabolism of other drugs and itself (autoinduction), causing nonlinear PK; induces CYP3A4 and CYP2C9."
+    },
+    {
+      "id": "williams2025",
+      "kind": "external",
+      "citation": "Williams JM, Reddy P. Digoxin toxicity in renal failure: resolution with plasma exchange after Fab therapy failure. Cureus. 2025;17(11):e96841.",
+      "doi": "10.7759/cureus.96841",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12702486/",
+      "consulted": true,
+      "usedFor": "Serum digoxin may be falsely elevated after Fab due to assay interference, so toxicity was graded clinically; Fab creates a gradient promoting redistribution of digoxin from tissue stores into plasma; renal dysfunction delays clearance of digoxin–Fab complexes, which can dissociate (rebound); hemodialysis ineffective; plasma exchange as salvage."
+    },
+    {
+      "id": "vijay2026",
+      "kind": "external",
+      "citation": "Vijay J, Bahl A, Dahiya N, Gupta H. Correlation of ventricular arrhythmias with peak and trough levels of oral digoxin: a prospective ambulatory electrocardiographic study. Cureus. 2026;18(7):e113522.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13411770/",
+      "consulted": true,
+      "usedFor": "Once-daily dosing produces a post-absorption peak before redistribution restores the trough; peak serum digoxin ≈ 30 min fasting to 90 min postprandial; effect onset 1–3 h, peak 2–6 h; half-life 35–48 h."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-ss",
+      "text": "TDM for dose adjustment at steady state, which takes multiple half-lives; fraction reached = 1 − 0.5ⁿ.",
+      "status": "checked",
+      "refs": [
+        "salhi2026",
+        "barreto2026"
+      ]
+    },
+    {
+      "id": "cl-time",
+      "text": "Post-dose samples catch the absorption/distribution peak; trough before next dose; digoxin half-life 35–48 h, serum peak 0.5–1.5 h, effect peak 2–6 h.",
+      "status": "checked",
+      "refs": [
+        "vijay2026"
+      ]
+    },
+    {
+      "id": "cl-pht",
+      "text": "Phenytoin: nonlinear, saturable PK — small dose increases cause large rises; narrow therapeutic index; total vs free with albumin.",
+      "status": "checked",
+      "refs": [
+        "liu2026",
+        "salhi2026"
+      ]
+    },
+    {
+      "id": "cl-ind",
+      "text": "Phenytoin and carbamazepine induce CYP3A4/CYP2C9; carbamazepine autoinduction lowers its own level.",
+      "status": "checked",
+      "refs": [
+        "yin2024",
+        "salhi2026"
+      ]
+    },
+    {
+      "id": "cl-dig",
+      "text": "After Fab, digoxin immunoassays can read falsely high; Fab draws tissue digoxin into plasma; judge clinically; complexes clear slowly in renal failure and can dissociate; hemodialysis ineffective.",
+      "status": "checked",
+      "refs": [
+        "williams2025"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Phenobarbital is a CYP inducer; free digoxin by ultrafiltrate; carbamazepine half-life falls from ~35 h to 8–20 h; Fab half-life 15–20 h.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch24"
+      ],
+      "note": "Not taught; not stated in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Bars, tokens and the phenytoin numbers are schematic examples.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Wait, bend, speed up.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Bars and tokens are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Salhi & Karmi 2026, Barreto 2026, Liu 2026, Yin 2024, Williams & Reddy 2025 and Vijay 2026 read for this lesson; 1 pending (phenobarbital induction, ultrafiltrate method, half-life figures). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}

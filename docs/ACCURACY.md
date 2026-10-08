@@ -114,6 +114,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **After the Bag Is Empty (DHTR, lookback):** 1 pending claim (DHTR 2-week presentation, Babesia timing, Philippine lookback rules; not taught); 1 register flag (Hit 14). US federal HIV lookback rules only.
 - **Urine Casts (core, Ch. 29):** 1 pending claim (glitter cells, > 30 WBC/hpf, mucus, broad casts; not taught); 2 register flags (Hits 1, 5).
 - **Ph-Negative MPNs:** 1 pending claim (NAP in PV, ET > 1000, reactive-thrombocytosis causes; not taught); 2 register flags (Hits 4, 5).
+- **Timing the Drug Level (TDM):** 1 pending claim (phenobarbital induction, free-digoxin ultrafiltrate, half-life figures; not taught); no flags. Steady-state percentages taught as arithmetic (1 − 0.5ⁿ).
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
