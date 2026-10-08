@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 55, teaching 250 of 1,932 concepts (about 12.9%).** All 55 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 56, teaching 256 of 1,932 concepts (about 13.3%).** All 56 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -18,7 +18,7 @@
   - Ch. 26 (3/22 concepts): `chem-hcg-pregnancy-unknown-location`.
   - Ch. 31 (4/28 concepts): `heme-red-cell-indices-high-mchc`.
   - Ch. 32 (8/23 concepts): `heme-erythropoiesis-reticulocyte-index`.
-  - Ch. 33 (6/27 concepts): `heme-microcytic-anemia-ferritin-mentzer`.
+  - Ch. 33 (12/27 concepts): `heme-hemolytic-anemia-workup`, `heme-microcytic-anemia-ferritin-mentzer`.
   - Ch. 34 (3/25 concepts): `heme-cml-vs-leukemoid-reaction`.
   - Ch. 35 (7/23 concepts): `heme-flow-cytometry-gating`.
   - Ch. 36 (5/29 concepts): `heme-mixing-study-pt-aptt`.
@@ -38,8 +38,8 @@
   - Ch. 64 (2/24 concepts): `micro-respiratory-virus-naat-antigen-culture`.
   - Ch. 65 (7/24 concepts): `micro-malaria-thick-thin-films`.
   - Ch. 66 (3/54 concepts): `micro-blood-culture-volume-contamination`.
-- **Reviewer accuracy register:** 52 flags (32 verified issues, 20 needing verification), plus scan results.
-- **Checks:** 396 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Reviewer accuracy register:** 53 flags (33 verified issues, 20 needing verification), plus scan results.
+- **Checks:** 402 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -76,7 +76,7 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 | 7 | ✅ Ch. 34 White cell disorders (14) | ✅ Ch. 18 Lipids (10) | ✅ Ch. 61 Spirochetes (12) | ✅ Ch. 40 antibody ID / Kidd (Hits 3, 5) |
 | 8 | ✅ Ch. 35 Flow cytometry (13) | ✅ Ch. 26 Fertility & pregnancy (10) | ✅ Ch. 58 Susceptibility testing (11) | ✅ Ch. 41 storage & irradiation (Hits 3, 10, 16) |
 | 9 | ✅ Ch. 32 Hematopoiesis (12) | ✅ Ch. 25 Endocrine (9) | ✅ Ch. 62 Chlamydia & Mycoplasma (11) | ✅ Ch. 40 DAT & warm AIHA (Hits 1, 9) |
-| 10 | Ch. 33 hemolytic anemias (2nd lesson) | Ch. 23 GI & pancreas (9) | Ch. 63 Rickettsia & tick-borne (10) | Ch. 41 product selection: CMV-safe, washed, volume-reduced (2nd–3rd lesson) |
+| 10 | ✅ Ch. 33 hemolytic anemias (2nd lesson) | Ch. 23 GI & pancreas (9) | Ch. 63 Rickettsia & tick-borne (10) | Ch. 41 product selection: CMV-safe, washed, volume-reduced (2nd–3rd lesson) |
 | 11 | Ch. 36 coagulation cascade & factor deficiencies (2nd lesson) | Ch. 19 cardiac & clot markers (8) | Ch. 58 β-lactamases/ESBL/CPE (2nd lesson) | Ch. 42 donor eligibility & collection (2nd lesson) |
 
 Rounds 10–11 rank chapters by simulator questions × share of concepts not yet taught (Heme and Blood Bank already have a lesson in every chapter, so their next lessons go deeper in the heaviest ones). Then continue by simulator-question count. Ops chapters 4–14 and other areas follow after the four heavy areas have their core concepts.

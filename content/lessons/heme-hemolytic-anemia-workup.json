@@ -1,0 +1,1941 @@
+{
+  "schemaVersion": 1,
+  "id": "heme-hemolytic-anemia-workup",
+  "title": "Hemolytic Anemia Workup: Prove It, Then Sort It",
+  "summary": "Confirm hemolysis with the right markers, use the DAT to separate immune from nonimmune causes, and recognise the classic DAT-negative culprits — hereditary spherocytosis, G6PD deficiency and PNH — with their modern tests and timing traps.",
+  "domain": "p4-heme",
+  "topic": "ch33",
+  "conceptIds": [
+    "ch33.hit4",
+    "ch33.hit5",
+    "ch33.hit8",
+    "ch33.hit9",
+    "ch33.trap2",
+    "ch33.trap5"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 33,
+        "section": "High-Yield Hits",
+        "items": [
+          4,
+          5,
+          8,
+          9
+        ]
+      },
+      {
+        "chapter": 33,
+        "section": "Exam Traps",
+        "items": [
+          2,
+          5
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 33 Hit 4 (hemolysis workup order), Hit 5 (hereditary spherocytosis tests), Hit 8 (G6PD), Hit 9 (PNH flow cytometry) and Traps 2 and 5. Checked against Chueh 2022, Taylor 2021, Edwards 2025, Cobbinah 2025, Almakadi 2025, El Hoss 2026 and Tang 2026. Adds that conventional osmotic fragility testing is no longer recommended (register flag rv-hs-oft). Pending: splenectomy rationale in HS; Ham test as historical."
+  },
+  "prerequisites": [
+    "ch32.hit2"
+  ],
+  "objectives": [
+    "List the laboratory markers that confirm hemolysis.",
+    "Explain what a positive and a negative DAT mean in a hemolysis workup.",
+    "Choose tests for hereditary spherocytosis, G6PD deficiency and PNH.",
+    "Avoid the G6PD reticulocyte-masking trap."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "“DAT negative — so it’s not hemolysis”",
+      "start": 0,
+      "end": 20,
+      "altText": "A patient card: tired, yellow eyes, hemoglobin 8.9 g/dL. A DAT tube reads negative. A doctor’s note says “DAT negative — hemolysis ruled out.” The mascot frowns; a question token asks: “Is that what the DAT tells you?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A young man is tired and jaundiced. His hemoglobin is eight point nine."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The direct antiglobulin test comes back negative, and the note reads: “DAT negative — hemolysis ruled out.”"
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "But the DAT doesn’t answer whether red cells are being destroyed. It answers a different question."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 150,
+            "w": 320,
+            "h": 110,
+            "tone": "warn",
+            "title": "Patient",
+            "lines": [
+              "Fatigue · jaundice",
+              "Hb 8.9 g/dL"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "dat",
+          "type": "tube",
+          "props": {
+            "x": 600,
+            "y": 160,
+            "level": 0.5,
+            "fluid": "saline",
+            "cells": 0.5,
+            "settle": 1,
+            "label": "DAT",
+            "cap": "none",
+            "result": "",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "result": "Negative"
+            }
+          ]
+        },
+        {
+          "id": "note",
+          "type": "document",
+          "props": {
+            "x": 300,
+            "y": 340,
+            "w": 360,
+            "h": 120,
+            "title": "Note",
+            "sub": "Hemolysis ruled out?",
+            "tone": "a",
+            "stampText": "?",
+            "stamp": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0
+            },
+            {
+              "t": 10.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "stamp": 0
+            },
+            {
+              "t": 12.6,
+              "stamp": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 680,
+            "y": 360,
+            "w": 320,
+            "label": "Which question does the DAT answer?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 150,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2,
+              "opacity": 0
+            },
+            {
+              "t": 3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: how red cells are retired",
+      "start": 20,
+      "end": 60,
+      "altText": "A red cell token travels a 120-day timeline and is removed by a macrophage token in the spleen. Its hemoglobin is broken down into bilirubin (unconjugated, indirect) that the liver conjugates. The marrow replaces lost cells at a steady rate, so the reticulocyte count stays low and haptoglobin and LDH stay in range.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "A red cell normally lives about a hundred and twenty days. Then macrophages, mostly in the spleen, remove it."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Its hemoglobin is broken down. Heme becomes bilirubin — the unconjugated, “indirect” kind — which the liver then conjugates."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Because destruction is slow and steady, the marrow keeps up easily. Reticulocytes stay low."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "And the markers of red-cell breakdown — LDH, indirect bilirubin and haptoglobin — all stay in their normal ranges."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tl",
+          "type": "card",
+          "props": {
+            "x": 420,
+            "y": 110,
+            "w": 600,
+            "h": 26,
+            "tone": "neutral",
+            "title": "",
+            "lines": [],
+            "size": 10,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "w": 20
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "w": 600,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "rbc",
+          "type": "rbc",
+          "props": {
+            "x": 140,
+            "y": 110,
+            "r": 26,
+            "antigen": "none",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2,
+              "x": 140
+            },
+            {
+              "t": 8,
+              "x": 680,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d120",
+          "type": "label",
+          "props": {
+            "x": 700,
+            "y": 155,
+            "text": "~120 days",
+            "size": 14,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 7.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mac",
+          "type": "card",
+          "props": {
+            "x": 820,
+            "y": 110,
+            "w": 150,
+            "h": 70,
+            "tone": "b",
+            "title": "Macrophage",
+            "lines": [
+              "(spleen)"
+            ],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "hb",
+          "type": "token",
+          "props": {
+            "x": 820,
+            "y": 180,
+            "w": 170,
+            "label": "Hb → bilirubin",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "y": 180
+            },
+            {
+              "t": 11.4,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "y": 250,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "liv",
+          "type": "card",
+          "props": {
+            "x": 600,
+            "y": 270,
+            "w": 220,
+            "h": 70,
+            "tone": "good",
+            "title": "Liver conjugates",
+            "lines": [],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15,
+              "opacity": 0
+            },
+            {
+              "t": 15.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ret",
+          "type": "token",
+          "props": {
+            "x": 240,
+            "y": 270,
+            "w": 230,
+            "label": "Reticulocytes: low, steady",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 22.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 420,
+            "w": 250,
+            "label": "LDH: normal",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 250,
+            "label": "Indirect bilirubin: normal",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.0,
+              "opacity": 0
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 420,
+            "w": 250,
+            "label": "Haptoglobin: normal",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: prove it, then sort it",
+      "start": 60,
+      "end": 104,
+      "altText": "Step 1 banner — confirm hemolysis: reticulocytes ↑, LDH ↑, indirect bilirubin ↑, haptoglobin ↓ (arrows animate). Step 2 — DAT: a fork. DAT positive → immune hemolysis (antibody or complement on the cells). DAT negative → nonimmune: intrinsic red-cell defects (membrane, enzyme, hemoglobin) or other extrinsic causes. Step 3 — the smear and specific tests point to the defect.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "Step one: prove that red cells are being destroyed. Reticulocytes rise, LDH rises, indirect bilirubin rises, and haptoglobin falls."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "Step two: the DAT. It doesn’t ask whether hemolysis is happening — it asks whether antibody or complement is coating the cells."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "A positive DAT points to immune hemolysis. A negative DAT points to a nonimmune cause — often a defect inside the red cell: its membrane, an enzyme, or its hemoglobin."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "Step three: the blood smear and targeted tests find the broken part."
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 40,
+            "text": "① Confirm hemolysis",
+            "size": 18,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h0",
+          "type": "token",
+          "props": {
+            "x": 135,
+            "y": 100,
+            "w": 210,
+            "label": "Reticulocytes ↑",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h1",
+          "type": "token",
+          "props": {
+            "x": 365,
+            "y": 100,
+            "w": 210,
+            "label": "LDH ↑",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.3,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h2",
+          "type": "token",
+          "props": {
+            "x": 595,
+            "y": 100,
+            "w": 210,
+            "label": "Indirect bilirubin ↑",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.1,
+              "opacity": 0
+            },
+            {
+              "t": 5.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h3",
+          "type": "token",
+          "props": {
+            "x": 825,
+            "y": 100,
+            "w": 210,
+            "label": "Haptoglobin ↓",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.9,
+              "opacity": 0
+            },
+            {
+              "t": 7.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "text": "② DAT",
+            "size": 18,
+            "weight": 800,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "dq",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 220,
+            "w": 380,
+            "label": "Antibody/complement on the cells?",
+            "tone": "neutral",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 14.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "al",
+          "type": "arrow",
+          "props": {
+            "x": 400,
+            "y": 245,
+            "dx": -150,
+            "dy": 45,
+            "draw": 0,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 22.5,
+              "draw": 0
+            },
+            {
+              "t": 22.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23.5,
+              "draw": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "ar",
+          "type": "arrow",
+          "props": {
+            "x": 560,
+            "y": 245,
+            "dx": 150,
+            "dy": 45,
+            "draw": 0,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24,
+              "opacity": 0
+            },
+            {
+              "t": 24,
+              "draw": 0
+            },
+            {
+              "t": 24.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "draw": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "imm",
+          "type": "bin",
+          "props": {
+            "x": 230,
+            "y": 330,
+            "w": 260,
+            "h": 90,
+            "label": "DAT +",
+            "sub": "Immune hemolysis",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23,
+              "opacity": 0
+            },
+            {
+              "t": 23.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "non",
+          "type": "bin",
+          "props": {
+            "x": 730,
+            "y": 330,
+            "w": 300,
+            "h": 90,
+            "label": "DAT −",
+            "sub": "Membrane · enzyme · hemoglobin …",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25,
+              "opacity": 0
+            },
+            {
+              "t": 25.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 485,
+            "w": 420,
+            "label": "③ Smear + targeted tests find the defect",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 34.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35.5,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: three DAT-negative culprits",
+      "start": 104,
+      "end": 144,
+      "altText": "Three cards. Hereditary spherocytosis: spherocytes on the smear; flow cytometry shows reduced eosin-5-maleimide (EMA) binding; the conventional osmotic fragility test is no longer recommended (flow-based osmotic fragility is better). G6PD deficiency: X-linked; oxidant drugs or infection denature hemoglobin into Heinz bodies; bite cells on the smear; reticulocytes carry 3–8× more G6PD, so testing during reticulocytosis can look falsely normal. PNH: PIGA mutation removes GPI-anchored CD55 and CD59, so complement lyses cells inside vessels; thrombosis; diagnosed by flow cytometry (CD59 on red cells, FLAER on granulocytes and monocytes).",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 115,
+          "text": "Hereditary spherocytosis: spherocytes on the smear. Flow cytometry shows reduced binding of the dye eosin-5-maleimide. The old osmotic fragility test is no longer recommended; flow-based versions perform better."
+        },
+        {
+          "id": "l2",
+          "start": 115,
+          "end": 126,
+          "text": "G6PD deficiency is X-linked. Oxidant drugs or infection damage hemoglobin into Heinz bodies, and the smear shows bite cells."
+        },
+        {
+          "id": "l3",
+          "start": 126,
+          "end": 134,
+          "text": "Timing matters: reticulocytes carry three to eight times more G6PD than older cells. Test during a reticulocyte surge and a deficient patient can look normal."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "PNH: an acquired PIGA mutation strips the protective proteins CD55 and CD59, so complement destroys cells inside the vessels — with a high risk of clots. Flow cytometry makes the diagnosis."
+        }
+      ],
+      "objects": [
+        {
+          "id": "hs",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 170,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "Hereditary spherocytosis",
+            "lines": [
+              "Spherocytes on smear",
+              "EMA binding ↓ (flow)",
+              "Conventional OFT not recommended"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "g6",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "G6PD deficiency",
+            "lines": [
+              "X-linked · oxidant trigger",
+              "Heinz bodies · bite cells",
+              "Retics 3–8× G6PD → mask"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12,
+              "reveal": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pnh",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 170,
+            "w": 290,
+            "h": 170,
+            "tone": "bad",
+            "title": "PNH",
+            "lines": [
+              "PIGA → no CD55/CD59",
+              "Intravascular lysis · clots",
+              "Flow: CD59 (RBC), FLAER (WBC)"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "old",
+          "type": "rbc",
+          "props": {
+            "x": 380,
+            "y": 390,
+            "r": 24,
+            "antigen": "O",
+            "mood": "worried",
+            "label": "Old cell: low G6PD",
+            "labelSize": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "young",
+          "type": "rbc",
+          "props": {
+            "x": 580,
+            "y": 390,
+            "r": 24,
+            "antigen": "O",
+            "mood": "happy",
+            "label": "Retic: 3–8× G6PD",
+            "labelSize": 12,
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24,
+              "opacity": 0
+            },
+            {
+              "t": 24.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Trap card: “DAT negative, so no hemolysis” is crossed out → “Hemolysis is proven by retics, LDH, bilirubin and haptoglobin; the DAT sorts immune vs nonimmune.” Trap card: “Normal G6PD activity two days after a hemolytic crisis rules out deficiency” is crossed out → “Reticulocytes mask it — retest when steady.” Trap card: “Osmotic fragility is the test for spherocytosis” is crossed out → “EMA binding / flow-based tests; conventional OFT not recommended.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a negative DAT doesn’t rule out hemolysis. It only says the cause probably isn’t immune."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a normal G6PD level right after a crisis can be false. The oldest, most deficient cells are gone, and young cells are full of enzyme."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the classic osmotic fragility test isn’t today’s best tool for spherocytosis. EMA binding and flow-based fragility tests are preferred."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “DAT negative, so no hemolysis.”",
+            "lines": [
+              "✓ Markers prove hemolysis; DAT sorts immune vs nonimmune"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Normal G6PD right after a crisis rules it out.”",
+            "lines": [
+              "✓ Reticulocytes mask deficiency — retest at steady state"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Osmotic fragility is the spherocytosis test.”",
+            "lines": [
+              "✓ EMA binding / flow-based tests preferred"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Prove it, then sort it",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid in three questions: “Is it hemolysis? (markers) — Is it immune? (DAT) — What’s broken? (smear + targeted tests).” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: prove it, then sort it. Is it hemolysis? Is it immune? What’s broken?"
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: markers can mislead — haptoglobin rises with inflammation, and LDH rises with many conditions; recent transfusion confuses both the DAT and enzyme tests; and some hemolysis is DAT-negative yet still immune."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Prove it, then sort it",
+            "size": 32,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 180,
+            "y": 170,
+            "w": 270,
+            "label": "Hemolysis? → markers",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 270,
+            "label": "Immune? → DAT",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 780,
+            "y": 170,
+            "w": 270,
+            "label": "What’s broken? → smear, tests",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 130,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Markers are not specific on their own",
+              "Recent transfusion confuses DAT and enzyme tests",
+              "Some immune hemolysis is DAT-negative"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Prove hemolysis with retics, LDH, indirect bilirubin, haptoglobin — then DAT sorts immune vs nonimmune”, “HS: EMA ↓ · G6PD: test at steady state · PNH: flow for CD59/FLAER”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Prove hemolysis with the markers, let the DAT sort immune from nonimmune, then find the defect — EMA for spherocytosis, steady-state G6PD, and flow cytometry for PNH."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 780,
+            "label": "Prove hemolysis (retics, LDH, bilirubin, haptoglobin) · DAT sorts immune vs nonimmune",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 780,
+            "label": "HS: EMA ↓ · G6PD: test at steady state · PNH: flow CD59 / FLAER",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: first prove red cells are being destroyed, then ask whether the immune system is doing it, then find what is broken. Scientific terms: hemolysis markers — reticulocytosis, raised LDH, unconjugated hyperbilirubinemia, low haptoglobin (and urobilinogen); DAT detects antibody or complement on red cells (positive = immune). DAT-negative intrinsic causes: membranopathies (hereditary spherocytosis), enzymopathies (G6PD deficiency), hemoglobinopathies; acquired PNH (PIGA mutation, loss of GPI-anchored CD55/CD59).",
+    "why": "Faster destruction drives marrow output (reticulocytes), releases LDH and heme (indirect bilirubin) and consumes haptoglobin. In HS, membrane-protein defects produce spherocytes with reduced EMA binding. G6PD-deficient cells cannot withstand oxidant stress: hemoglobin denatures into Heinz bodies. PNH cells lack complement regulators and lyse intravascularly.",
+    "measure": "HS: smear, EMA binding or flow-based osmotic fragility (conventional OFT not recommended). G6PD: quantitative or fluorescent spot test, avoiding periods of reticulocytosis (reticulocytes have ~3–8× G6PD activity). PNH: flow cytometry — CD59 on red cells; FLAER with lineage markers on granulocytes and monocytes.",
+    "differs": "Immune (DAT +) vs nonimmune (DAT −) hemolysis; extravascular (spherocytosis) vs intravascular (PNH) destruction; inherited (HS, G6PD) vs acquired (PNH).",
+    "examAngle": "Expect: hemolysis marker patterns, DAT interpretation, EMA in HS, Heinz bodies/bite cells and test timing in G6PD, CD55/CD59 flow in PNH."
+  },
+  "comparisons": [
+    {
+      "id": "dat",
+      "title": "DAT positive vs DAT negative hemolysis",
+      "left": {
+        "label": "DAT positive",
+        "points": [
+          "Antibody/complement on red cells",
+          "Immune hemolysis (e.g., AIHA)"
+        ]
+      },
+      "right": {
+        "label": "DAT negative",
+        "points": [
+          "No coating detected",
+          "Membrane, enzyme, hemoglobin defects; PNH"
+        ]
+      },
+      "distinguisher": "The DAT sorts the cause; markers prove hemolysis."
+    },
+    {
+      "id": "hs-g6pd",
+      "title": "Hereditary spherocytosis vs G6PD deficiency",
+      "left": {
+        "label": "Hereditary spherocytosis",
+        "points": [
+          "Spherocytes; EMA binding ↓",
+          "Chronic, membrane defect"
+        ]
+      },
+      "right": {
+        "label": "G6PD deficiency",
+        "points": [
+          "Heinz bodies, bite cells",
+          "Episodic after oxidant stress; X-linked"
+        ]
+      },
+      "distinguisher": "Membrane shape defect vs oxidant-triggered enzyme defect."
+    }
+  ],
+  "mnemonic": {
+    "text": "Prove it, then sort it: Is it hemolysis? Is it immune? What’s broken?",
+    "explanation": "Markers prove hemolysis; the DAT sorts immune vs nonimmune; the smear and targeted tests find the defect.",
+    "limitation": "Markers are not specific on their own; recent transfusion confuses DAT and enzyme tests; some immune hemolysis is DAT-negative."
+  },
+  "analogyLimitations": [
+    "Cells, timelines and cards are schematic; no real morphology is shown.",
+    "The patient is invented.",
+    "Hemoglobinopathies, PK deficiency and microangiopathic hemolysis are not covered here."
+  ],
+  "takeaway": "Prove hemolysis with the markers, let the DAT sort immune from nonimmune, then find the defect — EMA for spherocytosis, steady-state G6PD, and flow cytometry for PNH.",
+  "questions": [
+    {
+      "id": "heme-hemo-q1",
+      "stem": "Which set of results best supports ongoing hemolysis?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Reticulocytes ↑, LDH ↑, indirect bilirubin ↑, haptoglobin ↓",
+          "rationale": "Correct. These markers reflect increased red-cell destruction and marrow response."
+        },
+        {
+          "id": "b",
+          "text": "Reticulocytes ↓, LDH normal, haptoglobin ↑",
+          "rationale": "Incorrect. This pattern argues against hemolysis."
+        },
+        {
+          "id": "c",
+          "text": "Positive DAT alone",
+          "rationale": "Incorrect. A positive DAT shows coating, not that hemolysis is occurring."
+        },
+        {
+          "id": "d",
+          "text": "Direct (conjugated) bilirubin ↑ with normal LDH",
+          "rationale": "Incorrect. Conjugated hyperbilirubinemia points to liver or biliary disease."
+        }
+      ],
+      "answer": "a",
+      "skill": "Hemolysis markers",
+      "difficulty": "recall"
+    },
+    {
+      "id": "heme-hemo-q2",
+      "stem": "A man develops hemolysis two days after starting dapsone. A G6PD test drawn now is normal, and reticulocytes are 9%. What is the best next step?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Repeat G6PD testing once the reticulocyte count returns to baseline",
+          "rationale": "Correct. Reticulocytes have 3–8× more G6PD activity and can make a deficient patient look normal."
+        },
+        {
+          "id": "b",
+          "text": "Report G6PD deficiency excluded",
+          "rationale": "Incorrect. Testing during reticulocytosis can give false-normal results."
+        },
+        {
+          "id": "c",
+          "text": "Order an osmotic fragility test",
+          "rationale": "Incorrect. That addresses membrane disorders, not oxidant hemolysis."
+        },
+        {
+          "id": "d",
+          "text": "Order a DAT and stop investigating if it is negative",
+          "rationale": "Incorrect. A negative DAT does not exclude nonimmune hemolysis."
+        }
+      ],
+      "answer": "a",
+      "skill": "G6PD testing",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-hemo-q3",
+      "stem": "A patient has intravascular hemolysis, hemoglobinuria, a hepatic vein thrombosis and a negative DAT. Which test is most appropriate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Flow cytometry for CD59 on red cells and FLAER on granulocytes",
+          "rationale": "Correct. PNH cells lack GPI-anchored proteins, detected by flow cytometry."
+        },
+        {
+          "id": "b",
+          "text": "Eosin-5-maleimide binding test",
+          "rationale": "Incorrect. EMA binding screens for membrane disorders such as HS."
+        },
+        {
+          "id": "c",
+          "text": "Donath–Landsteiner test",
+          "rationale": "Incorrect. That is for paroxysmal cold hemoglobinuria."
+        },
+        {
+          "id": "d",
+          "text": "Hemoglobin electrophoresis",
+          "rationale": "Incorrect. It detects hemoglobin variants, not PNH clones."
+        }
+      ],
+      "answer": "a",
+      "skill": "PNH testing",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch33",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 33, Red Cell Disorders and Anemias (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 33,
+          "section": "High-Yield Hits",
+          "items": [
+            4,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "chapter": 33,
+          "section": "Exam Traps",
+          "items": [
+            2,
+            5
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "chueh2022",
+      "kind": "external",
+      "citation": "Chueh HW, Hwang SM, Shim YJ, et al. Korean clinical practice guidelines for the diagnosis of hereditary hemolytic anemia. Blood Res. 2022;57(2):86-94.",
+      "doi": "10.5045/br.2022.2021224",
+      "url": "https://europepmc.org/article/PMC/PMC9242826",
+      "consulted": true,
+      "usedFor": "Hemolysis markers (raised LDH, urobilinogen, unconjugated bilirubin, decreased haptoglobin); DAT detects antibody/complement — positive suggests immune rather than intrinsic membrane/enzyme causes; spherocytes in HS; conventional OFT not recommended (low sensitivity/specificity, unstandardised) — flow-based OFT and EMA binding preferred; reduced EMA fluorescence indicates a membrane disorder."
+    },
+    {
+      "id": "taylor2021",
+      "kind": "external",
+      "citation": "Taylor WRJ, Kim S, Kheng S, et al. Dynamics of G6PD activity in patients receiving weekly primaquine for therapy of Plasmodium vivax malaria. PLoS Negl Trop Dis. 2021;15(9):e0009690.",
+      "doi": "10.1371/journal.pntd.0009690",
+      "url": "https://europepmc.org/article/PMC/PMC8452019",
+      "consulted": true,
+      "usedFor": "Reticulocytes have ~3–8-fold greater G6PD activity than mature red cells, so a deficient patient with reticulocytosis may be misclassified as normal."
+    },
+    {
+      "id": "edwards2025",
+      "kind": "external",
+      "citation": "Edwards T, Montes-Rivera M, Fu L. Dapsone-induced Heinz body hemolytic anemia: a case report. Clin Case Rep. 2025;13(4):e70430.",
+      "doi": "10.1002/ccr3.70430",
+      "url": "https://europepmc.org/article/PMC/PMC11997461",
+      "consulted": true,
+      "usedFor": "Heinz bodies are denatured hemoglobin from oxidative damage (oxidant drugs such as dapsone); bite cells on smear; severe hemolysis in G6PD deficiency; DAT negative."
+    },
+    {
+      "id": "cobbinah2025",
+      "kind": "external",
+      "citation": "Cobbinah AE, Sackey B, Ofosu M, et al. Blood storage effect of G6PD on RBC quality. Hematol Transfus Cell Ther. 2025;47(3):103733.",
+      "doi": "10.1016/j.htct.2025.103733",
+      "url": "https://europepmc.org/article/PMC/PMC12140040",
+      "consulted": true,
+      "usedFor": "G6PD deficiency is X-linked and the most prevalent human enzymopathy."
+    },
+    {
+      "id": "almakadi2025",
+      "kind": "external",
+      "citation": "Almakadi M, AlHashim N, Al-Khabori M, et al. Clinical characteristics and management of paroxysmal nocturnal hemoglobinuria in the Middle East: a narrative review. Clin Exp Med. 2025;25(1):310.",
+      "doi": "10.1007/s10238-025-01834-5",
+      "url": "https://europepmc.org/article/PMC/PMC12399696",
+      "consulted": true,
+      "usedFor": "PNH: PIGA mutation → deficiency of GPI-anchored CD55 and CD59 → complement-mediated intravascular hemolysis, thromboembolism; diagnosis by flow cytometry (CD59 on red cells; FLAER on granulocytes and monocytes)."
+    },
+    {
+      "id": "elhoss2026",
+      "kind": "external",
+      "citation": "El Hoss S, Lizarralde-Iragorri MA, Maciel TT, Hermine O. Erythropoiesis in health and disease: distinguishing defective and ineffective erythropoiesis. Hemasphere. 2026;10(1):e70297.",
+      "doi": "10.1002/hem3.70297",
+      "url": "https://europepmc.org/article/PMC/PMC12820578",
+      "consulted": true,
+      "usedFor": "Mature RBCs circulate ~120 days before removal by macrophages of the spleen."
+    },
+    {
+      "id": "tang2026",
+      "kind": "external",
+      "citation": "Tang C, Xia L, Xu D. Advances in laboratory diagnosis of neonatal hyperbilirubinemia and peculiarities in plateau regions: a review of evidence. Front Pediatr. 2026;14:1782889.",
+      "doi": "10.3389/fped.2026.1782889",
+      "url": "https://europepmc.org/article/PMC/PMC13102838",
+      "consulted": true,
+      "usedFor": "Hemoglobin released from destroyed red cells is converted to unconjugated (indirect) bilirubin, taken up by hepatocytes and conjugated (UGT1A1)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-markers",
+      "text": "Hemolysis markers: LDH ↑, unconjugated bilirubin ↑, haptoglobin ↓ (with reticulocytosis); DAT positive = immune vs intrinsic.",
+      "status": "checked",
+      "refs": [
+        "chueh2022"
+      ]
+    },
+    {
+      "id": "cl-hs",
+      "text": "HS: spherocytes; EMA binding ↓ on flow; conventional OFT not recommended, flow-based OFT better.",
+      "status": "checked",
+      "refs": [
+        "chueh2022"
+      ]
+    },
+    {
+      "id": "cl-g6pd",
+      "text": "G6PD deficiency X-linked; oxidant drugs → Heinz bodies, bite cells; reticulocytes 3–8× G6PD activity can mask deficiency.",
+      "status": "checked",
+      "refs": [
+        "cobbinah2025",
+        "edwards2025",
+        "taylor2021"
+      ]
+    },
+    {
+      "id": "cl-pnh",
+      "text": "PNH: PIGA → loss of CD55/CD59 → intravascular hemolysis, thrombosis; flow cytometry CD59 (RBC) and FLAER (granulocytes/monocytes).",
+      "status": "checked",
+      "refs": [
+        "almakadi2025"
+      ]
+    },
+    {
+      "id": "cl-normal",
+      "text": "RBC ~120-day lifespan with splenic macrophage removal; hemoglobin → unconjugated bilirubin conjugated by the liver.",
+      "status": "checked",
+      "refs": [
+        "elhoss2026",
+        "tang2026"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Splenectomy helps in HS because the spleen destroys spherocytes; Ham test is historical for PNH.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch33"
+      ],
+      "note": "Not taught; not verified in a consulted source."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Schematic cells, timelines and cards.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Prove it, then sort it.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Red cells and macrophages are schematic; spherocytes, Heinz bodies and bite cells are named, not depicted.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Chueh 2022, Taylor 2021, Edwards 2025, Cobbinah 2025, Almakadi 2025, El Hoss 2026 and Tang 2026 (full texts) read for this lesson; 1 pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
