@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 38 flags: 21 verified issues and 17 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 39 flags: 22 verified issues and 17 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -44,6 +44,7 @@ Verified:
 - **Bibliography:** CLSI M100 2020; the current edition is Ed36 (2026). Ch. 58 breakpoints may be outdated.
 - **Ch. 26:** WHO 2010 semen values; the WHO 6th edition (2021) revised them, and the reviewer's 2–5 mL volume doesn't match WHO 2010 either.
 - **Ch. 35:** blast threshold ≥20% per WHO 2017; WHO-HAEM5 and the 2022 ICC differ.
+- **Ch. 42 Hit 2:** TPE removal percentages (30% / 10% left) contradict its own e⁻ˣ formula (≈37% / 14%).
 - **Ch. 22:** HBV chronicity "80% neonates, 1–2% adults" (CDC: ~90% infants, ~5% adults); IgM anti-HBc called the "sole" window marker (total anti-HBc and HBV DNA too).
 - **Ch. 15 core:** "FENa > 1% suggests ATN"; a 2025 consensus treats 1–2% as indeterminate and > 2% as intrinsic.
 - **Ch. 66 core:** blood-culture yields "80 / 96 / 100%" for 2 / 3 / 4 sets; Lee 2007 found 90 / 98 / 99.8%.
@@ -72,6 +73,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **Therapeutic Plasma Exchange:** 1 pending claim (the reviewer's < 15% and 60–70% FFP figures) and 1 open flag (Hit 2 kinetics).
 - **Respiratory Virus Testing:** 2 pending claims (amplification doubling, NAAT persistence after infection) and 1 open flag ("standard of care" wording).
 - **Hepatitis B Serology:** 1 pending claim (HCV figures, not taught) and 3 open flags (chronicity figures, the "sole marker" wording, HCV part of Hit 10 not taught).
 - **PT, APTT and the Mixing Study:** 2 pending claims (factor XIII not measured by PT/APTT/TT, the prekallikrein incubation effect) and 1 open flag (Hit 2's thrombin-time and FXIII content not taught).

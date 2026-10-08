@@ -1,0 +1,2257 @@
+{
+  "schemaVersion": 1,
+  "id": "ih-plasma-exchange-tpe",
+  "title": "Therapeutic Plasma Exchange: Replace, Repeat, and Fix the Source",
+  "summary": "Spin blood into layers, see why plasma exchange removes less with every volume, pick albumin or plasma as the refill (plasma for TTP), and watch citrate pull calcium down.",
+  "domain": "p5-bb",
+  "topic": "ch42",
+  "conceptIds": [
+    "ch42.hit1",
+    "ch42.hit2",
+    "ch42.hit7",
+    "ch42.hit13",
+    "ch42.trap1",
+    "ch42.trap2",
+    "ch42.trap3",
+    "ch42.trap6",
+    "ch42.figure"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 42,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          2,
+          7,
+          13
+        ]
+      },
+      {
+        "chapter": 42,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          2,
+          3,
+          6
+        ]
+      },
+      {
+        "chapter": 42,
+        "section": "Figure 42"
+      }
+    ],
+    "note": "Teaches Ch. 42 Hit 1 (core: plasmapheresis vs TPE), Hits 2, 7 and 13, Traps 1, 2, 3 and 6 and the Figure 42 memory anchor. Checked against Bauer 2022 (ASFA-based review). Pending: the reviewer’s “< 15% without replacement” definition and the 60–70% FFP split; the reviewer’s Hit 2 percentages conflict with its own formula (register flag rv-tpe-kinetics)."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Distinguish plasmapheresis from therapeutic plasma exchange and describe how apheresis separates blood.",
+    "Explain exponential removal, the 1.0–1.5 plasma-volume target and rebound.",
+    "Choose albumin or plasma replacement (plasma for TTP) and recognize citrate-related hypocalcemia."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Washing the plasma",
+      "start": 0,
+      "end": 20,
+      "altText": "A patient’s plasma is drawn as a tank full of red “bad antibody” tokens. Question tokens: “Remove some plasma?” and “Remove it and replace it?”. An apheresis machine with a spinning bowl appears.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Some diseases are driven by something carried in the plasma — an autoantibody, for example."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "One idea is to take that plasma out. But how much, and what goes back in its place?"
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "That is the difference between simply removing plasma and a therapeutic plasma exchange."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tank",
+          "type": "card",
+          "props": {
+            "x": 240,
+            "y": 200,
+            "w": 300,
+            "h": 200,
+            "tone": "warn",
+            "title": "Patient plasma",
+            "lines": [],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab0",
+          "type": "antibody",
+          "props": {
+            "x": 150,
+            "y": 230,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab1",
+          "type": "antibody",
+          "props": {
+            "x": 210,
+            "y": 230,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.8,
+              "opacity": 0
+            },
+            {
+              "t": 2.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab2",
+          "type": "antibody",
+          "props": {
+            "x": 270,
+            "y": 230,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.1,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab3",
+          "type": "antibody",
+          "props": {
+            "x": 330,
+            "y": 230,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.4,
+              "opacity": 0
+            },
+            {
+              "t": 2.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab4",
+          "type": "antibody",
+          "props": {
+            "x": 150,
+            "y": 290,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab5",
+          "type": "antibody",
+          "props": {
+            "x": 210,
+            "y": 290,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab6",
+          "type": "antibody",
+          "props": {
+            "x": 270,
+            "y": 290,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.3,
+              "opacity": 0
+            },
+            {
+              "t": 3.6999999999999997,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab7",
+          "type": "antibody",
+          "props": {
+            "x": 330,
+            "y": 290,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.6,
+              "opacity": 0
+            },
+            {
+              "t": 4.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q1",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 150,
+            "w": 300,
+            "label": "Remove some plasma?",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 220,
+            "w": 300,
+            "label": "Remove it and replace it?",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cf",
+          "type": "centrifuge",
+          "props": {
+            "x": 700,
+            "y": 360,
+            "label": "Apheresis",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0
+            },
+            {
+              "t": 15,
+              "spin": 0
+            },
+            {
+              "t": 15.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20,
+              "spin": 720,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 900,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: separating plasma from cells",
+      "start": 20,
+      "end": 56,
+      "altText": "An apheresis bowl spins: blood separates by density into red cells at the outside, then white cells and platelets, then plasma. A side note shows the other method: membrane filtration separates by particle size. Citrate anticoagulant enters the circuit. Two definition cards: plasmapheresis — removal of plasma; therapeutic plasma exchange (TPE) — plasma removed for treatment and replaced with albumin, donor plasma, crystalloid or a mixture.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 29,
+          "text": "Apheresis machines separate blood outside the body. Centrifugation sorts it by density: red cells are heaviest, plasma is lightest."
+        },
+        {
+          "id": "n2",
+          "start": 29,
+          "end": 36,
+          "text": "Some machines filter instead, using a membrane that separates by particle size. Either way, the circuit needs an anticoagulant — often citrate."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 46,
+          "text": "Plasmapheresis simply means removing plasma."
+        },
+        {
+          "id": "n4",
+          "start": 46,
+          "end": 56,
+          "text": "Therapeutic plasma exchange removes plasma for treatment and replaces it — with albumin solution, donor plasma, crystalloid, or a mix. Exam questions treat these as different procedures."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cf",
+          "type": "centrifuge",
+          "props": {
+            "x": 200,
+            "y": 180,
+            "label": "Centrifugal",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "spin": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "spin": 1440,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "l0",
+          "type": "token",
+          "props": {
+            "x": 470,
+            "y": 110,
+            "w": 260,
+            "label": "Plasma (lightest)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "l1",
+          "type": "token",
+          "props": {
+            "x": 470,
+            "y": 160,
+            "w": 260,
+            "label": "White cells + platelets",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.2,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "l2",
+          "type": "token",
+          "props": {
+            "x": 470,
+            "y": 210,
+            "w": 260,
+            "label": "Red cells (densest)",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.4,
+              "opacity": 0
+            },
+            {
+              "t": 5.9,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mem",
+          "type": "token",
+          "props": {
+            "x": 780,
+            "y": 160,
+            "w": 260,
+            "label": "Or: membrane filter (by size)",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cit",
+          "type": "token",
+          "props": {
+            "x": 780,
+            "y": 230,
+            "w": 260,
+            "label": "Anticoagulant: often citrate",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d1",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 430,
+            "w": 400,
+            "h": 100,
+            "tone": "a",
+            "title": "Plasmapheresis",
+            "lines": [
+              "Removal of plasma"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d2",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 440,
+            "h": 120,
+            "tone": "good",
+            "title": "Therapeutic plasma exchange (TPE)",
+            "lines": [
+              "Plasma removed for treatment",
+              "Replaced: albumin, plasma, crystalloid or mix"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0
+            },
+            {
+              "t": 27,
+              "reveal": 0
+            },
+            {
+              "t": 27.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: each exchange removes less",
+      "start": 56,
+      "end": 100,
+      "altText": "The plasma tank again, full of antibody tokens. As replacement fluid flows in and plasma flows out, the antibodies dilute: the first session removes about 65–70% of a substance that stays in the bloodstream; the second removes about 23% more; the third only about 9% more. A curve flattens — exponential removal. A card: ASFA suggests exchanging 1.0–1.5 total plasma volumes per session; returns diminish beyond that. A second card: substances outside the bloodstream redistribute back in, and the body keeps making antibodies, so levels rebound.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 56,
+          "end": 66,
+          "text": "During an exchange, replacement fluid mixes with the patient’s plasma while plasma is removed. So you aren’t removing pure antibody — you’re removing a mixture that keeps getting more dilute."
+        },
+        {
+          "id": "c2",
+          "start": 66,
+          "end": 76,
+          "text": "For a substance that stays in the bloodstream, the first session removes about 65 to 70 percent. The second removes about 23 percent more, the third only about 9 percent more."
+        },
+        {
+          "id": "c3",
+          "start": 76,
+          "end": 86,
+          "text": "That is exponential removal: each extra volume removes less. Guidelines suggest exchanging 1.0 to 1.5 total plasma volumes per session."
+        },
+        {
+          "id": "c4",
+          "start": 86,
+          "end": 100,
+          "text": "And levels bounce back. Antibody outside the blood vessels moves back in, and the body keeps making more. That is why TPE is paired with treatment that stops production."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tank",
+          "type": "card",
+          "props": {
+            "x": 200,
+            "y": 200,
+            "w": 280,
+            "h": 200,
+            "tone": "warn",
+            "title": "Plasma",
+            "lines": [],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab0",
+          "type": "antibody",
+          "props": {
+            "x": 110,
+            "y": 230,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.0,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4.0,
+              "opacity": 1
+            },
+            {
+              "t": 5.2,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ab1",
+          "type": "antibody",
+          "props": {
+            "x": 170,
+            "y": 230,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.2,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5.1,
+              "opacity": 1
+            },
+            {
+              "t": 6.3,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ab2",
+          "type": "antibody",
+          "props": {
+            "x": 230,
+            "y": 230,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.7,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6.2,
+              "opacity": 1
+            },
+            {
+              "t": 7.4,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ab3",
+          "type": "antibody",
+          "props": {
+            "x": 290,
+            "y": 230,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.6,
+              "opacity": 0
+            },
+            {
+              "t": 1.9000000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7.300000000000001,
+              "opacity": 1
+            },
+            {
+              "t": 8.5,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ab4",
+          "type": "antibody",
+          "props": {
+            "x": 110,
+            "y": 290,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.8,
+              "opacity": 0
+            },
+            {
+              "t": 2.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8.4,
+              "opacity": 1
+            },
+            {
+              "t": 9.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "ab5",
+          "type": "antibody",
+          "props": {
+            "x": 170,
+            "y": 290,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.0,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab6",
+          "type": "antibody",
+          "props": {
+            "x": 230,
+            "y": 290,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.2,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab7",
+          "type": "antibody",
+          "props": {
+            "x": 290,
+            "y": 290,
+            "size": 20,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.4000000000000004,
+              "opacity": 0
+            },
+            {
+              "t": 2.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s0",
+          "type": "token",
+          "props": {
+            "x": 420,
+            "y": 120,
+            "w": 40,
+            "wrap": 40,
+            "label": "Session 1: ~65–70%",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "w": 40
+            },
+            {
+              "t": 10.5,
+              "x": 420
+            },
+            {
+              "t": 10.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13.0,
+              "w": 448,
+              "ease": "inOut"
+            },
+            {
+              "t": 13.0,
+              "x": 624.0,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "s1",
+          "type": "token",
+          "props": {
+            "x": 420,
+            "y": 180,
+            "w": 40,
+            "wrap": 40,
+            "label": "2: +23%",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.5,
+              "w": 40
+            },
+            {
+              "t": 13.5,
+              "x": 420
+            },
+            {
+              "t": 13.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.0,
+              "w": 178,
+              "ease": "inOut"
+            },
+            {
+              "t": 16.0,
+              "x": 489.0,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "token",
+          "props": {
+            "x": 420,
+            "y": 240,
+            "w": 40,
+            "wrap": 40,
+            "label": "3: +9%",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 16.5,
+              "w": 40
+            },
+            {
+              "t": 16.5,
+              "x": 420
+            },
+            {
+              "t": 16.9,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19.0,
+              "w": 94,
+              "ease": "inOut"
+            },
+            {
+              "t": 19.0,
+              "x": 447.0,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "exp",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 320,
+            "w": 420,
+            "label": "Exponential: each volume removes less",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "asfa",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 380,
+            "w": 420,
+            "label": "ASFA: 1.0–1.5 plasma volumes / session",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 25.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "reb",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 860,
+            "h": 100,
+            "tone": "warn",
+            "title": "Rebound",
+            "lines": [
+              "Antibody outside the vessels moves back in",
+              "The body keeps making more → pair TPE with definitive treatment"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: replacement fluid and citrate",
+      "start": 100,
+      "end": 136,
+      "altText": "A fork: most indications use albumin as replacement; TTP uses donor plasma, because the goal is both to remove anti-ADAMTS13 autoantibodies and to supply ADAMTS13. Monitoring tokens for TTP: platelet count, LDH, ADAMTS13 activity. Then citrate binds ionized calcium in the circuit: a calcium token drops, symptomatic hypocalcemia (tingling) can follow, and prophylactic calcium can prevent it.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 100,
+          "end": 109,
+          "text": "What goes back in matters. For many indications the replacement is albumin solution."
+        },
+        {
+          "id": "l2",
+          "start": 109,
+          "end": 119,
+          "text": "TTP is the classic exception. The exchange must use donor plasma, because it both removes the autoantibody against ADAMTS13 and supplies ADAMTS13 itself."
+        },
+        {
+          "id": "l3",
+          "start": 119,
+          "end": 126,
+          "text": "For TTP, the lab follows the platelet count, LDH and ADAMTS13 activity."
+        },
+        {
+          "id": "l4",
+          "start": 126,
+          "end": 136,
+          "text": "Citrate keeps the circuit from clotting by binding calcium. That can cause symptomatic hypocalcemia, which prophylactic calcium can prevent."
+        }
+      ],
+      "objects": [
+        {
+          "id": "alb",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 120,
+            "w": 380,
+            "h": 100,
+            "tone": "a",
+            "title": "Many indications",
+            "lines": [
+              "Replacement: albumin"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ttp",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 120,
+            "w": 420,
+            "h": 120,
+            "tone": "good",
+            "title": "TTP: donor plasma",
+            "lines": [
+              "Removes anti-ADAMTS13 antibody",
+              "Supplies ADAMTS13"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "reveal": 0
+            },
+            {
+              "t": 10.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 240,
+            "w": 140,
+            "label": "Platelets",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19.5,
+              "opacity": 0
+            },
+            {
+              "t": 20.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 240,
+            "w": 140,
+            "label": "LDH",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.7,
+              "opacity": 0
+            },
+            {
+              "t": 21.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 860,
+            "y": 240,
+            "w": 140,
+            "label": "ADAMTS13",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.9,
+              "opacity": 0
+            },
+            {
+              "t": 22.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cit",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 350,
+            "w": 320,
+            "label": "Citrate binds calcium",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 27.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ca",
+          "type": "token",
+          "props": {
+            "x": 560,
+            "y": 350,
+            "w": 200,
+            "label": "Ionized Ca²⁺ ↓",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0
+            },
+            {
+              "t": 28.0,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "y": 350
+            },
+            {
+              "t": 31,
+              "y": 430,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "sym",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 640,
+            "label": "Tingling = hypocalcemia → prophylactic calcium helps",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 136,
+      "end": 168,
+      "altText": "Trap card: “Plasmapheresis and TPE are the same” is crossed out → “TPE replaces the removed plasma.” Trap card: “Use albumin for TTP” is crossed out → “TTP needs plasma to supply ADAMTS13.” Trap card: “More volumes = proportionally more removal” is crossed out → “Removal is exponential; extra volumes add little.” A small token: TPE is an adjunct — pair it with definitive therapy.",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 136,
+          "end": 145,
+          "text": "Trap one: plasmapheresis and plasma exchange are not the same thing. Plasma exchange replaces what it removes."
+        },
+        {
+          "id": "e2",
+          "start": 145,
+          "end": 153,
+          "text": "Trap two: albumin is not enough for TTP. The replacement must be plasma, to supply ADAMTS13."
+        },
+        {
+          "id": "e3",
+          "start": 153,
+          "end": 161,
+          "text": "Trap three: doubling the volume doesn’t double the removal. Each extra volume removes less."
+        },
+        {
+          "id": "e4",
+          "start": 161,
+          "end": 168,
+          "text": "And TPE doesn’t cure on its own. Without treatment that stops antibody production, levels rebound."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 80,
+            "w": 820,
+            "h": 96,
+            "tone": "warn",
+            "title": "✗ “Plasmapheresis = TPE.”",
+            "lines": [
+              "✓ TPE replaces the removed plasma"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 195,
+            "w": 820,
+            "h": 96,
+            "tone": "warn",
+            "title": "✗ “Albumin replacement for TTP.”",
+            "lines": [
+              "✓ Plasma — it supplies ADAMTS13"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12.5,
+              "reveal": 0
+            },
+            {
+              "t": 13.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 310,
+            "w": 820,
+            "h": 96,
+            "tone": "warn",
+            "title": "✗ “More volumes = proportionally more removal.”",
+            "lines": [
+              "✓ Exponential: extra volumes add little"
+            ],
+            "reveal": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.5,
+              "opacity": 0
+            },
+            {
+              "t": 18.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20.5,
+              "reveal": 0
+            },
+            {
+              "t": 21.5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t4",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 600,
+            "label": "TPE is an adjunct → pair with definitive therapy",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 26.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Bail, refill, and fix the leak",
+      "start": 168,
+      "end": 188,
+      "altText": "Memory aid: a leaking boat. Bailing water out (removing plasma) and pouring clean water in (replacement) is TPE; each bucket holds less dirty water than the last (exponential); and unless you fix the leak (definitive therapy), the water comes back (rebound). For TTP, the refill must be the right fluid (plasma). A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 168,
+          "end": 177,
+          "text": "Memory aid: a leaking boat. Bail out the dirty water and pour clean water in — that’s plasma exchange. Each bucket holds less dirt than the last, and unless you fix the leak, the dirt comes back."
+        },
+        {
+          "id": "m2",
+          "start": 177,
+          "end": 188,
+          "text": "Where it breaks: substances differ in how much sits outside the blood vessels and how fast they’re made, the best volume and schedule depend on the disease, and for TTP the refill itself is part of the treatment."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Bail · refill · fix the leak",
+            "size": 34,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b0",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 180,
+            "w": 200,
+            "label": "Bail = remove plasma",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.0,
+              "opacity": 0
+            },
+            {
+              "t": 1.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b1",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 180,
+            "w": 200,
+            "label": "Refill = replacement",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.6,
+              "opacity": 0
+            },
+            {
+              "t": 3.4000000000000004,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 180,
+            "w": 200,
+            "label": "Less each bucket",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.2,
+              "opacity": 0
+            },
+            {
+              "t": 5.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "type": "token",
+          "props": {
+            "x": 810,
+            "y": 180,
+            "w": 200,
+            "label": "Fix the leak = therapy",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.800000000000001,
+              "opacity": 0
+            },
+            {
+              "t": 6.6000000000000005,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 110,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Distribution and production rates differ by substance",
+              "Volume and schedule depend on the disease · in TTP the refill treats"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 188,
+      "end": 198,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 188,
+          "end": 193,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 193,
+          "end": 198,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 198,
+      "end": 210,
+      "altText": "Three tokens: “TPE = remove plasma + replace (albumin, or plasma for TTP)”, “1.0–1.5 plasma volumes; removal is exponential”, “Adjunct only — rebound without definitive therapy”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 198,
+          "end": 210,
+          "text": "Therapeutic plasma exchange removes plasma and replaces it — with plasma rather than albumin in TTP — removing less with each extra volume, so it works only alongside treatment that stops the harmful substance being made."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 640,
+            "label": "TPE = remove plasma + replace (plasma for TTP)",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 240,
+            "w": 640,
+            "label": "1.0–1.5 plasma volumes · removal is exponential",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 310,
+            "w": 640,
+            "label": "Adjunct only — rebound without definitive therapy",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.6,
+              "opacity": 0
+            },
+            {
+              "t": 2.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: plasma exchange takes out a patient’s plasma and puts a replacement fluid back, to wash out something harmful. Scientific terms: therapeutic apheresis separates blood by centrifugation (density) or membrane filtration (size); plasmapheresis is removal of plasma; TPE removes plasma for therapy and replaces it with albumin, donor plasma, crystalloid or a mixture, usually 1.0–1.5 total plasma volumes per session (ASFA).",
+    "why": "Replacement fluid dilutes the remaining plasma, so removal is exponential: for an intravascular substance the first session removes about 65–70%, the second about 23% more and the third about 9% more. Redistribution from the extravascular space and ongoing synthesis cause rebound, so TPE is combined with definitive therapy (e.g. corticosteroids, rituximab).",
+    "measure": "Replacement: albumin for many indications; plasma for TTP (supplies ADAMTS13 while removing anti-ADAMTS13 autoantibodies), monitored by platelet count, LDH and ADAMTS13 activity. Citrate anticoagulation can cause symptomatic hypocalcemia, preventable with prophylactic calcium. ASFA categories: I first-line, II second-line, III role not established, IV ineffective or harmful.",
+    "differs": "Plasmapheresis (removal) vs TPE (removal + replacement); albumin vs plasma replacement; centrifugal vs membrane separation.",
+    "examAngle": "Expect: plasmapheresis vs TPE, why extra volumes add little, plasma replacement in TTP, citrate toxicity, and TPE as an adjunct."
+  },
+  "comparisons": [
+    {
+      "id": "pp-vs-tpe",
+      "title": "Plasmapheresis vs TPE",
+      "left": {
+        "label": "Plasmapheresis",
+        "points": [
+          "Removal of plasma",
+          "Used for plasma donation and as a general term"
+        ]
+      },
+      "right": {
+        "label": "TPE",
+        "points": [
+          "Plasma removed for treatment",
+          "Replaced with albumin, plasma, crystalloid or a mix"
+        ]
+      },
+      "distinguisher": "Whether the removed plasma is replaced as part of a treatment."
+    },
+    {
+      "id": "alb-vs-plasma",
+      "title": "Albumin vs plasma replacement",
+      "left": {
+        "label": "Albumin",
+        "points": [
+          "Default for many indications",
+          "No clotting factors or ADAMTS13"
+        ]
+      },
+      "right": {
+        "label": "Plasma",
+        "points": [
+          "TTP (supplies ADAMTS13)",
+          "Also used when clotting factors are needed"
+        ]
+      },
+      "distinguisher": "Whether something in normal plasma must be replaced."
+    }
+  ],
+  "mnemonic": {
+    "text": "Bail, refill, and fix the leak.",
+    "explanation": "Bail (remove plasma), refill (replacement fluid), each bucket removes less (exponential), and fix the leak (definitive therapy) or the problem returns (rebound); in TTP the refill must be plasma.",
+    "limitation": "Distribution and production rates differ by substance; the best volume and schedule depend on the disease; in TTP the replacement fluid is itself therapeutic."
+  },
+  "analogyLimitations": [
+    "The boat and buckets are memory devices.",
+    "Antibody tokens, bars and the centrifuge are schematic.",
+    "Session percentages apply to a substance confined to the bloodstream and not rapidly made."
+  ],
+  "takeaway": "Therapeutic plasma exchange removes plasma and replaces it — with plasma rather than albumin in TTP — removing less with each extra volume, so it works only alongside treatment that stops the harmful substance being made.",
+  "questions": [
+    {
+      "id": "ih-tpe-q1",
+      "stem": "Which replacement fluid is required for therapeutic plasma exchange in thrombotic thrombocytopenic purpura (TTP)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Donor plasma",
+          "rationale": "Correct. Plasma supplies ADAMTS13 while the exchange removes the anti-ADAMTS13 autoantibody."
+        },
+        {
+          "id": "b",
+          "text": "5% albumin alone",
+          "rationale": "Incorrect. Albumin contains no ADAMTS13."
+        },
+        {
+          "id": "c",
+          "text": "Normal saline alone",
+          "rationale": "Incorrect. Saline replaces volume but supplies no ADAMTS13."
+        },
+        {
+          "id": "d",
+          "text": "Packed red cells",
+          "rationale": "Incorrect. Red cells are not a plasma-exchange replacement fluid."
+        }
+      ],
+      "answer": "a",
+      "skill": "TPE replacement fluid",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ih-tpe-q2",
+      "stem": "Why does exchanging 3 plasma volumes instead of 1.5 add relatively little benefit for an intravascular antibody?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Removal is exponential, so each additional volume removes a smaller amount",
+          "rationale": "Correct. Replacement fluid dilutes the remaining plasma; the first session removes ~65–70%, later ones much less."
+        },
+        {
+          "id": "b",
+          "text": "The machine cannot process more than 1.5 volumes",
+          "rationale": "Incorrect. The limit is kinetic, not mechanical."
+        },
+        {
+          "id": "c",
+          "text": "Antibodies are destroyed by the replacement fluid",
+          "rationale": "Incorrect. Replacement fluid dilutes; it does not destroy antibody."
+        },
+        {
+          "id": "d",
+          "text": "Removal is linear, so 3 volumes remove twice as much",
+          "rationale": "Incorrect. That linear assumption is the trap."
+        }
+      ],
+      "answer": "a",
+      "skill": "TPE kinetics",
+      "difficulty": "application"
+    },
+    {
+      "id": "ih-tpe-q3",
+      "stem": "During TPE with citrate anticoagulation, a patient reports tingling around the mouth and fingers. What is the most likely cause?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Citrate binding ionized calcium (hypocalcemia)",
+          "rationale": "Correct. Citrate chelates calcium; prophylactic or treatment calcium addresses it."
+        },
+        {
+          "id": "b",
+          "text": "Hyperkalemia from albumin",
+          "rationale": "Incorrect. Albumin replacement does not cause this pattern."
+        },
+        {
+          "id": "c",
+          "text": "An acute hemolytic transfusion reaction",
+          "rationale": "Incorrect. Perioral tingling during citrate apheresis points to hypocalcemia."
+        },
+        {
+          "id": "d",
+          "text": "A low platelet count",
+          "rationale": "Incorrect. A low platelet count does not cause tingling."
+        }
+      ],
+      "answer": "a",
+      "skill": "Citrate toxicity",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch42",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 42, Apheresis and Blood Collection (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 42,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            2,
+            7,
+            13
+          ]
+        },
+        {
+          "chapter": 42,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            2,
+            3,
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "bauer2022",
+      "kind": "external",
+      "citation": "Bauer PR, Ostermann M, Russell L, Robba C, et al. Plasma exchange in the intensive care unit: a narrative review. Intensive Care Med. 2022;48(10):1382.",
+      "doi": "10.1007/s00134-022-06793-z",
+      "url": "https://europepmc.org/article/PMC/PMC9372988",
+      "consulted": true,
+      "usedFor": "Therapeutic apheresis removes plasma (plasmapheresis) or cells; TPE when removed plasma is replaced by donor plasma, colloid, crystalloid or a mixture; centrifugation (density: RBCs densest, plasma lightest) or membrane filtration (size); citrate or heparin anticoagulation; citrate → symptomatic hypocalcemia, prevented by prophylactic calcium; ASFA 2019: 1.0–1.5 TPV; first session removes 65–70% of an intravascular substance, second +23%, third +9% (exponential); redistribution and rebound; ASFA categories I–IV; TTP: plasma replacement to administer ADAMTS13 and remove anti-ADAMTS13, with corticosteroids/rituximab, monitoring platelets, LDH, ADAMTS13 activity; albumin replacement for many indications."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-def",
+      "text": "Plasmapheresis = removal of plasma; TPE = therapeutic removal with replacement (albumin, plasma, crystalloid or mix).",
+      "status": "checked",
+      "refs": [
+        "bauer2022"
+      ]
+    },
+    {
+      "id": "cl-sep",
+      "text": "Centrifugation separates by density (RBCs densest, plasma lightest); membranes by size; citrate commonly used.",
+      "status": "checked",
+      "refs": [
+        "bauer2022"
+      ]
+    },
+    {
+      "id": "cl-kin",
+      "text": "1.0–1.5 TPV per session; first session removes ~65–70%, then +23%, +9% (exponential); redistribution and rebound.",
+      "status": "checked",
+      "refs": [
+        "bauer2022"
+      ]
+    },
+    {
+      "id": "cl-ttp",
+      "text": "TTP requires plasma replacement (ADAMTS13 supply and autoantibody removal), with immunosuppression; monitor platelets, LDH, ADAMTS13.",
+      "status": "checked",
+      "refs": [
+        "bauer2022"
+      ]
+    },
+    {
+      "id": "cl-cit",
+      "text": "Citrate can cause symptomatic hypocalcemia, preventable with prophylactic calcium.",
+      "status": "checked",
+      "refs": [
+        "bauer2022"
+      ]
+    },
+    {
+      "id": "cl-15",
+      "text": "Plasmapheresis removes < 15% of plasma volume without replacement; TTP replacement is 60–70% FFP plus saline.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch42"
+      ],
+      "note": "Reviewer figures not found in the source read; the lesson teaches the qualitative distinctions only."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Boat, buckets, antibody tokens.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Bail, refill, and fix the leak.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-kin",
+      "issue": "Reviewer Hit 2 gives Y = Y₀·e⁻ˣ but says 30% remains after one volume and 10% after two; the formula gives about 37% and 14%. The lesson teaches Bauer 2022’s per-session figures instead.",
+      "kind": "contradiction",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Centrifuge, layers and antibodies are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Bauer 2022 (full text) read for this lesson; 1 pending (reviewer’s numeric definitions). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
