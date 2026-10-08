@@ -1,0 +1,2373 @@
+{
+  "schemaVersion": 1,
+  "id": "micro-syphilis-serology-algorithms",
+  "title": "Syphilis Serology: Tattoo and Thermometer",
+  "summary": "Use treponemal and nontreponemal (lipoidal antigen) tests correctly: why treponemal tests stay positive, how nontreponemal titres track treatment, how the traditional and reverse algorithms work, and how to beat the prozone.",
+  "domain": "p7-micro",
+  "topic": "ch61",
+  "conceptIds": [
+    "ch61.hit1",
+    "ch61.hit2",
+    "ch61.hit4",
+    "ch61.hit5",
+    "ch61.trap1",
+    "ch61.trap2",
+    "ch61.trap3"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 61,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          2,
+          4,
+          5
+        ]
+      },
+      {
+        "chapter": 61,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 61 Hit 1 (core: treponemal tests stay positive; nontreponemal titre tracks activity), Hit 2 (prozone), Hit 4 (reverse algorithm), Hit 5 (fourfold decline; same method) and Traps 1–3. Checked against CDC Laboratory Recommendations for Syphilis Testing 2024 (MMWR) and CDC STI Treatment Guidelines 2021. Note: CDC gives 15–25% treponemal seroreversion after treatment of primary syphilis (reviewer: “up to 20%”); CDC now calls nontreponemal tests “lipoidal antigen” tests."
+  },
+  "prerequisites": [
+    "ch57.hit1"
+  ],
+  "objectives": [
+    "Contrast treponemal and nontreponemal (lipoidal antigen) tests and what each tells you.",
+    "Interpret nontreponemal titres after treatment (fourfold change, same test type).",
+    "Apply the traditional and reverse sequence algorithms and recognise the prozone phenomenon."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "A classic rash — and a negative RPR",
+      "start": 0,
+      "end": 20,
+      "altText": "A patient with a rash on the palms and soles and mouth patches, classic for secondary syphilis. The RPR comes back “nonreactive”. Another patient, treated years ago, asks why their syphilis antibody test is still positive. Two puzzles, one key: two kinds of antibody test.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A young man has a rash on his palms and soles and patches in his mouth — textbook secondary syphilis. But his RPR is nonreactive."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Another patient was treated for syphilis years ago, yet her treponemal antibody test is still positive."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Both make sense once you know there are two families of syphilis tests that answer different questions."
+        }
+      ],
+      "objects": [
+        {
+          "id": "p1",
+          "type": "card",
+          "props": {
+            "x": 270,
+            "y": 150,
+            "w": 380,
+            "h": 120,
+            "tone": "a",
+            "title": "Patient 1",
+            "lines": [
+              "Palm/sole rash, mouth patches",
+              "RPR: nonreactive ?"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "tone": "warn"
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "card",
+          "props": {
+            "x": 700,
+            "y": 150,
+            "w": 360,
+            "h": 120,
+            "tone": "b",
+            "title": "Patient 2",
+            "lines": [
+              "Treated years ago",
+              "Treponemal test: still positive"
+            ],
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 340,
+            "w": 460,
+            "label": "Two test families, two questions",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 900,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.4,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Normal: two families of syphilis antibody tests",
+      "start": 20,
+      "end": 60,
+      "altText": "Left family: nontreponemal (now called lipoidal antigen) tests — RPR and VDRL — detect antibodies to cardiolipin–lecithin–cholesterol antigen; they are titred, rise with active infection and fall after treatment. Right family: treponemal tests — TPPA, FTA-ABS and automated EIA/CIA — detect antibodies to T. pallidum antigens; they usually stay reactive for life, although about 15–25% of people treated for primary syphilis revert within 2–3 years.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "The first family is the nontreponemal tests — CDC now calls them lipoidal antigen tests. RPR and VDRL detect antibodies to a lipid antigen."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "They are reported as titres, like one in sixty-four. The titre rises with active infection and falls after treatment, so these are the activity tests."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "The second family is the treponemal tests — TPPA, FTA-ABS and automated immunoassays — which detect antibodies to the bacterium’s own antigens."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Treponemal antibodies usually last for life, even after cure. Only some people treated very early — about 15 to 25 percent of those treated in the primary stage — become negative again."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lf",
+          "type": "label",
+          "props": {
+            "x": 250,
+            "y": 50,
+            "text": "Nontreponemal (lipoidal)",
+            "size": 20,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "n1",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 140,
+            "w": 380,
+            "h": 110,
+            "tone": "a",
+            "title": "RPR · VDRL",
+            "lines": [
+              "Antibody to lipid antigen",
+              "(cardiolipin–lecithin–cholesterol)"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "reveal": 0
+            },
+            {
+              "t": 1.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "tt0",
+          "type": "token",
+          "props": {
+            "x": 110,
+            "y": 260,
+            "w": 60,
+            "label": "1:8",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tt1",
+          "type": "token",
+          "props": {
+            "x": 180,
+            "y": 260,
+            "w": 60,
+            "label": "1:16",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tt2",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 260,
+            "w": 60,
+            "label": "1:32",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tt3",
+          "type": "token",
+          "props": {
+            "x": 320,
+            "y": 260,
+            "w": 60,
+            "label": "1:64",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tt4",
+          "type": "token",
+          "props": {
+            "x": 390,
+            "y": 260,
+            "w": 60,
+            "label": "1:128",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "act",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 330,
+            "w": 360,
+            "label": "Titre tracks activity",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rf",
+          "type": "label",
+          "props": {
+            "x": 710,
+            "y": 50,
+            "text": "Treponemal",
+            "size": 20,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 140,
+            "w": 380,
+            "h": 110,
+            "tone": "b",
+            "title": "TPPA · FTA-ABS · EIA/CIA",
+            "lines": [
+              "Antibody to T. pallidum antigens",
+              "Qualitative (reactive / not)"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "reveal": 0
+            },
+            {
+              "t": 21.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "life",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 260,
+            "w": 360,
+            "label": "Usually reactive for life",
+            "tone": "b",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rev",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 330,
+            "w": 380,
+            "label": "15–25% treated in primary stage revert",
+            "tone": "neutral",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What changes: titres after treatment",
+      "start": 60,
+      "end": 104,
+      "altText": "A timeline graph. Infection, then both antibody families rise; treatment arrives; the nontreponemal titre falls from 1:64 to 1:16 — a fourfold (two-dilution) drop, the expected response within 12 months — while the treponemal line stays high. A rule card: follow-up titres must use the same type of nontreponemal test; RPR and VDRL titres are not interchangeable. Another card: a sustained fourfold rise suggests reinfection or treatment failure.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "Follow one patient. After infection, both families turn positive. The nontreponemal titre climbs — here to one in sixty-four."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "After treatment, the titre usually falls at least fourfold within twelve months — two doubling dilutions, from one in sixty-four to one in sixteen. The treponemal test stays reactive."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "To compare titres, use the same type of test every time. An RPR titre and a VDRL titre are not interchangeable."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "And a sustained fourfold rise in the titre suggests reinfection or treatment failure."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ax",
+          "type": "arrow",
+          "props": {
+            "x": 80,
+            "y": 400,
+            "dx": 560,
+            "dy": 0,
+            "draw": 0,
+            "label": "Time"
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "draw": 0
+            },
+            {
+              "t": 1.3,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ay",
+          "type": "arrow",
+          "props": {
+            "x": 80,
+            "y": 400,
+            "dx": 0,
+            "dy": -320,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "draw": 0
+            },
+            {
+              "t": 1.3,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tr",
+          "type": "arrow",
+          "props": {
+            "x": 100,
+            "y": 380,
+            "dx": 120,
+            "dy": -270,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "tr2",
+          "type": "arrow",
+          "props": {
+            "x": 220,
+            "y": 110,
+            "dx": 400,
+            "dy": 0,
+            "draw": 0,
+            "label": ""
+          },
+          "keys": [
+            {
+              "t": 4,
+              "draw": 0
+            },
+            {
+              "t": 7,
+              "draw": 1,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "trl",
+          "type": "token",
+          "props": {
+            "x": 520,
+            "y": 80,
+            "w": 230,
+            "label": "Treponemal: stays reactive",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 7.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nt0",
+          "type": "token",
+          "props": {
+            "x": 130,
+            "y": 370,
+            "w": 64,
+            "label": "1:4",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 3.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nt1",
+          "type": "token",
+          "props": {
+            "x": 180,
+            "y": 320,
+            "w": 64,
+            "label": "1:16",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.8,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nt2",
+          "type": "token",
+          "props": {
+            "x": 230,
+            "y": 270,
+            "w": 64,
+            "label": "1:32",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 4.6,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nt3",
+          "type": "token",
+          "props": {
+            "x": 285,
+            "y": 225,
+            "w": 64,
+            "label": "1:64",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.4,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 5.4,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "rxl",
+          "type": "highlight",
+          "props": {
+            "x": 330,
+            "y": 260,
+            "w": 8,
+            "h": 260,
+            "dashed": true,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "rx",
+          "type": "token",
+          "props": {
+            "x": 330,
+            "y": 150,
+            "w": 130,
+            "label": "Treatment",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d1",
+          "type": "token",
+          "props": {
+            "x": 410,
+            "y": 275,
+            "w": 64,
+            "label": "1:32",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 14.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "d2",
+          "type": "token",
+          "props": {
+            "x": 490,
+            "y": 325,
+            "w": 64,
+            "label": "1:16",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 16.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ntl",
+          "type": "label",
+          "props": {
+            "x": 200,
+            "y": 420,
+            "text": "Nontreponemal titre",
+            "size": 13,
+            "color": "muted",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 4.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "four",
+          "type": "card",
+          "props": {
+            "x": 800,
+            "y": 130,
+            "w": 280,
+            "h": 90,
+            "tone": "good",
+            "title": "≥ 4-fold drop",
+            "lines": [
+              "1:64 → 1:16 (2 dilutions)"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.5,
+              "opacity": 0
+            },
+            {
+              "t": 18.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "same",
+          "type": "card",
+          "props": {
+            "x": 800,
+            "y": 260,
+            "w": 280,
+            "h": 110,
+            "tone": "neutral",
+            "title": "Same test type",
+            "lines": [
+              "RPR ≠ VDRL titres"
+            ],
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "tone": "warn"
+            }
+          ]
+        },
+        {
+          "id": "rise",
+          "type": "token",
+          "props": {
+            "x": 800,
+            "y": 380,
+            "w": 300,
+            "label": "Sustained 4-fold rise → reinfection / failure",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 34.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35.5,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "In the lab: two algorithms and the prozone",
+      "start": 104,
+      "end": 144,
+      "altText": "Traditional algorithm: RPR/VDRL screen → reactive → treponemal test to confirm. Reverse sequence algorithm: automated treponemal EIA/CIA screen → reactive → quantitative nontreponemal test → if discordant (treponemal reactive, RPR nonreactive), a second treponemal test of a different format and antigen (e.g. TPPA) adjudicates. Prozone: in undiluted serum with very high antibody, antibody swamps antigen, no lattice forms and a flocculation test can read falsely negative; diluting the serum restores the zone of equivalence.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 113,
+          "text": "The traditional algorithm screens with RPR or VDRL, then confirms a reactive result with a treponemal test."
+        },
+        {
+          "id": "l2",
+          "start": 113,
+          "end": 124,
+          "text": "The reverse algorithm flips the order: an automated treponemal immunoassay first, then a quantitative RPR. If they disagree, a second treponemal test of a different type — such as TPPA — settles it."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 135,
+          "text": "Now the first patient. When antibody levels are extremely high, as in secondary syphilis, antibody swamps the antigen. No lattice forms, and an undiluted RPR can read nonreactive. That’s the prozone."
+        },
+        {
+          "id": "l4",
+          "start": 135,
+          "end": 144,
+          "text": "The fix: dilute the serum and test again. At the right ratio, flocculation appears — and the titre is high."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tl",
+          "type": "label",
+          "props": {
+            "x": 230,
+            "y": 45,
+            "text": "Traditional",
+            "size": 18,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ta0",
+          "type": "token",
+          "props": {
+            "x": 230,
+            "y": 90,
+            "w": 280,
+            "label": "RPR / VDRL screen",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ta1",
+          "type": "token",
+          "props": {
+            "x": 230,
+            "y": 140,
+            "w": 280,
+            "label": "Reactive → treponemal confirm",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "rl",
+          "type": "label",
+          "props": {
+            "x": 700,
+            "y": 45,
+            "text": "Reverse sequence",
+            "size": 18,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ra0",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 90,
+            "w": 380,
+            "label": "Treponemal EIA/CIA screen",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ra1",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 140,
+            "w": 380,
+            "label": "Reactive → quantitative RPR",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.6,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ra2",
+          "type": "token",
+          "props": {
+            "x": 700,
+            "y": 190,
+            "w": 380,
+            "label": "Discordant → second treponemal (TPPA)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.2,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 14.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pz",
+          "type": "card",
+          "props": {
+            "x": 260,
+            "y": 330,
+            "w": 360,
+            "h": 150,
+            "tone": "neutral",
+            "title": "Undiluted: antibody excess",
+            "lines": [
+              "No lattice → falsely nonreactive"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab0",
+          "type": "antibody",
+          "props": {
+            "x": 150,
+            "y": 350,
+            "size": 16,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.0,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab1",
+          "type": "antibody",
+          "props": {
+            "x": 194,
+            "y": 350,
+            "size": 16,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.25,
+              "opacity": 0
+            },
+            {
+              "t": 21.55,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab2",
+          "type": "antibody",
+          "props": {
+            "x": 238,
+            "y": 350,
+            "size": 16,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab3",
+          "type": "antibody",
+          "props": {
+            "x": 282,
+            "y": 350,
+            "size": 16,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.75,
+              "opacity": 0
+            },
+            {
+              "t": 22.05,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab4",
+          "type": "antibody",
+          "props": {
+            "x": 326,
+            "y": 350,
+            "size": 16,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.0,
+              "opacity": 0
+            },
+            {
+              "t": 22.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab5",
+          "type": "antibody",
+          "props": {
+            "x": 370,
+            "y": 350,
+            "size": 16,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.25,
+              "opacity": 0
+            },
+            {
+              "t": 22.55,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab6",
+          "type": "antibody",
+          "props": {
+            "x": 150,
+            "y": 380,
+            "size": 16,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 22.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab7",
+          "type": "antibody",
+          "props": {
+            "x": 194,
+            "y": 380,
+            "size": 16,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.75,
+              "opacity": 0
+            },
+            {
+              "t": 23.05,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab8",
+          "type": "antibody",
+          "props": {
+            "x": 238,
+            "y": 380,
+            "size": 16,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23.0,
+              "opacity": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab9",
+          "type": "antibody",
+          "props": {
+            "x": 282,
+            "y": 380,
+            "size": 16,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23.25,
+              "opacity": 0
+            },
+            {
+              "t": 23.55,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab10",
+          "type": "antibody",
+          "props": {
+            "x": 326,
+            "y": 380,
+            "size": 16,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ab11",
+          "type": "antibody",
+          "props": {
+            "x": 370,
+            "y": 380,
+            "size": 16,
+            "spec": "A",
+            "cls": "IgG",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23.75,
+              "opacity": 0
+            },
+            {
+              "t": 24.05,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "dil",
+          "type": "arrow",
+          "props": {
+            "x": 450,
+            "y": 380,
+            "dx": 110,
+            "dy": 0,
+            "draw": 0,
+            "label": "Dilute"
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "draw": 0
+            },
+            {
+              "t": 33.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "eq",
+          "type": "card",
+          "props": {
+            "x": 720,
+            "y": 360,
+            "w": 300,
+            "h": 110,
+            "tone": "neutral",
+            "title": "Diluted: equivalence",
+            "lines": [
+              "Flocculation → reactive, high titre"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33,
+              "opacity": 0
+            },
+            {
+              "t": 33.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34.5,
+              "tone": "good"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Trap card: “Nonreactive RPR rules out secondary syphilis” is crossed out → “Suspect prozone — dilute and retest.” Trap card: “Monitor treatment with a treponemal test” is crossed out → “Treponemal tests stay reactive; follow the nontreponemal titre.” Trap card: “Compare an RPR titre with a VDRL titre” is crossed out → “Not interchangeable — use the same test type.”",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 155,
+          "text": "Trap one: a nonreactive RPR with a florid secondary rash may be a prozone. Dilute and retest."
+        },
+        {
+          "id": "e2",
+          "start": 155,
+          "end": 165,
+          "text": "Trap two: don’t monitor treatment with a treponemal test. It usually stays reactive for life. Follow the nontreponemal titre."
+        },
+        {
+          "id": "e3",
+          "start": 165,
+          "end": 174,
+          "text": "Trap three: don’t compare an RPR titre with a VDRL titre. Use the same type of test for follow-up."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Nonreactive RPR rules out secondary syphilis.”",
+            "lines": [
+              "✓ Suspect prozone — dilute and retest"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 0
+            },
+            {
+              "t": 6,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Monitor treatment with a treponemal test.”",
+            "lines": [
+              "✓ Follow the nontreponemal titre (≥ 4-fold drop)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 0
+            },
+            {
+              "t": 16,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Compare an RPR titre with a VDRL titre.”",
+            "lines": [
+              "✓ Not interchangeable — same test type for follow-up"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 22.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Tattoo and thermometer",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “The treponemal test is a tattoo (it stays); the nontreponemal test is a thermometer (it shows how hot the infection is now).” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: the treponemal test is a tattoo — it stays. The nontreponemal test is a thermometer — it shows how active the infection is right now."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: some tattoos fade — people treated early can revert; some thermometers stick — the serofast state; nontreponemal tests can be positive for reasons other than syphilis; and very early infection may not register on either yet."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Tattoo and thermometer",
+            "size": 30,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 180,
+            "w": 260,
+            "label": "Treponemal = tattoo",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 260,
+            "label": "Nontreponemal = thermometer",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 180,
+            "w": 260,
+            "label": "4-fold drop = response",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 110,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Early-treated patients can revert · serofast titres persist",
+              "Nontreponemal false positives occur · very early infection may test negative"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Treponemal tests stay positive; nontreponemal titres track activity (≥ 4-fold drop, same test type)”, “Prozone: dilute · reverse algorithm: discordant → second treponemal test”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Treponemal tests stay positive for life, so follow the nontreponemal titre with the same test type — expect a fourfold drop, dilute when a prozone is possible, and settle reverse-algorithm discordance with a second treponemal test."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 780,
+            "label": "Treponemal stays + · nontreponemal titre tracks activity (same test)",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 780,
+            "label": "Prozone → dilute · reverse discordance → second treponemal",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: one kind of syphilis test shows whether you have ever been infected, the other shows how active the infection is now. Scientific terms: nontreponemal (lipoidal antigen) tests — RPR, VDRL — detect antibodies to cardiolipin–lecithin–cholesterol antigen and are titred; treponemal tests — TPPA, FTA-ABS, EIA/CIA — detect antibodies to T. pallidum antigens and usually remain reactive for life.",
+    "why": "Lipoidal antibody levels follow disease activity and fall after effective treatment; treponemal antibodies persist. Agglutination/flocculation needs antigen–antibody lattices; antibody excess prevents lattice formation (prozone), which dilution corrects.",
+    "measure": "Expected response: ≥ 4-fold (two-dilution) nontreponemal titre decline within 12 months; sustained ≥ 4-fold rise suggests reinfection or failure. Follow-up must use the same type of nontreponemal test (RPR and VDRL titres not interchangeable). Traditional algorithm: nontreponemal screen → treponemal confirmation. Reverse: treponemal immunoassay → quantitative nontreponemal → discordance adjudicated by a different treponemal test (e.g. TPPA, the preferred manual treponemal test). About 15–25% of patients treated for primary syphilis revert to nonreactive treponemal tests within 2–3 years.",
+    "differs": "Treponemal (exposure, persistent, qualitative) vs nontreponemal (activity, titred); traditional vs reverse sequence screening; true negative vs prozone false negative.",
+    "examAngle": "Expect: prozone in secondary syphilis, which test monitors treatment, fourfold titre change, RPR vs VDRL not interchangeable, and resolving reverse-algorithm discordance with TPPA."
+  },
+  "comparisons": [
+    {
+      "id": "trep-vs-nontrep",
+      "title": "Treponemal vs nontreponemal tests",
+      "left": {
+        "label": "Treponemal",
+        "points": [
+          "TPPA, FTA-ABS, EIA/CIA",
+          "Usually reactive for life"
+        ]
+      },
+      "right": {
+        "label": "Nontreponemal (lipoidal)",
+        "points": [
+          "RPR, VDRL; titred",
+          "Tracks activity and treatment"
+        ]
+      },
+      "distinguisher": "Exposure marker vs activity marker."
+    },
+    {
+      "id": "trad-vs-reverse",
+      "title": "Traditional vs reverse algorithm",
+      "left": {
+        "label": "Traditional",
+        "points": [
+          "RPR/VDRL screen",
+          "Treponemal confirmation"
+        ]
+      },
+      "right": {
+        "label": "Reverse sequence",
+        "points": [
+          "Treponemal immunoassay screen → quantitative RPR",
+          "Discordant → second treponemal (TPPA)"
+        ]
+      },
+      "distinguisher": "Which test screens, and how discordant results are adjudicated."
+    }
+  ],
+  "mnemonic": {
+    "text": "The treponemal test is a tattoo (it stays); the nontreponemal test is a thermometer (it shows activity now).",
+    "explanation": "Treponemal antibodies persist after cure; nontreponemal titres rise and fall with disease activity.",
+    "limitation": "Early-treated patients can revert; serofast titres can persist; nontreponemal tests have false positives; very early infection may be negative on both."
+  },
+  "analogyLimitations": [
+    "Titre timeline and antibody tokens are schematic.",
+    "Patient cases are invented.",
+    "Neurosyphilis and congenital syphilis testing are not covered."
+  ],
+  "takeaway": "Treponemal tests stay positive for life, so follow the nontreponemal titre with the same test type — expect a fourfold drop, dilute when a prozone is possible, and settle reverse-algorithm discordance with a second treponemal test.",
+  "questions": [
+    {
+      "id": "micro-syph-q1",
+      "stem": "A patient with a palm-and-sole rash typical of secondary syphilis has a nonreactive undiluted RPR. What is the best next step?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dilute the serum and repeat the RPR",
+          "rationale": "Correct. Very high antibody can cause a prozone (false negative) in undiluted serum; dilution restores equivalence."
+        },
+        {
+          "id": "b",
+          "text": "Report syphilis as ruled out",
+          "rationale": "Incorrect. A prozone can produce a false-negative RPR in secondary syphilis."
+        },
+        {
+          "id": "c",
+          "text": "Repeat the RPR in 6 months",
+          "rationale": "Incorrect. Waiting delays diagnosis of a likely active infection."
+        },
+        {
+          "id": "d",
+          "text": "Perform a VDRL on the same undiluted serum",
+          "rationale": "Incorrect. Another undiluted flocculation test can show the same prozone."
+        }
+      ],
+      "answer": "a",
+      "skill": "Prozone",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-syph-q2",
+      "stem": "A patient’s RPR was 1:64 at treatment. Which result 6–12 months later shows an adequate serologic response?",
+      "options": [
+        {
+          "id": "a",
+          "text": "RPR 1:16",
+          "rationale": "Correct. 1:64 → 1:16 is a fourfold (two-dilution) decline."
+        },
+        {
+          "id": "b",
+          "text": "RPR 1:32",
+          "rationale": "Incorrect. That is only a twofold decline."
+        },
+        {
+          "id": "c",
+          "text": "Nonreactive TPPA",
+          "rationale": "Incorrect. Treponemal tests usually stay reactive and are not used to monitor response."
+        },
+        {
+          "id": "d",
+          "text": "VDRL 1:16",
+          "rationale": "Incorrect. RPR and VDRL titres are not interchangeable; follow-up needs the same test type."
+        }
+      ],
+      "answer": "a",
+      "skill": "Titre response",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-syph-q3",
+      "stem": "Using the reverse sequence algorithm, a treponemal CIA is reactive and the reflex RPR is nonreactive. What is the next step?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Test with a second treponemal assay of a different format, such as TPPA",
+          "rationale": "Correct. Discordant results are adjudicated with a different treponemal test."
+        },
+        {
+          "id": "b",
+          "text": "Report a false-positive screen without further testing",
+          "rationale": "Incorrect. The discordance must be adjudicated; it may reflect past or early infection."
+        },
+        {
+          "id": "c",
+          "text": "Repeat the same CIA",
+          "rationale": "Incorrect. Repeating the same assay does not resolve discordance."
+        },
+        {
+          "id": "d",
+          "text": "Order a VDRL titre to monitor treatment",
+          "rationale": "Incorrect. Infection status must be clarified first."
+        }
+      ],
+      "answer": "a",
+      "skill": "Reverse algorithm",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch61",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 61, Syphilis, Lyme, and Spirochetes (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 61,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "chapter": 61,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "cdc-lab2024",
+      "kind": "external",
+      "citation": "Papp JR, Park IU, Fakile Y, Pereira L, Pillay A, Bolan GA. CDC laboratory recommendations for syphilis testing, United States, 2024. MMWR Recomm Rep. 2024;73(RR-1):1-32.",
+      "doi": "10.15585/mmwr.rr7301a1",
+      "url": "https://www.cdc.gov/mmwr/volumes/73/rr/rr7301a1.htm",
+      "consulted": true,
+      "usedFor": "Lipoidal antigen (nontreponemal) terminology; RPR/VDRL antigen; treponemal antibodies persist for life unless treated early — 15–25% treated for primary syphilis revert within 2–3 years; treponemal tests cannot monitor therapy; nontreponemal titres usually fall ≥ 4-fold within 12 months; RPR and VDRL not interchangeable — same type for follow-up; TPPA preferred manual treponemal test; reverse sequence algorithm with discordance adjudicated by a different treponemal assay; prozone mechanism and dilution."
+    },
+    {
+      "id": "cdc-sti2021",
+      "kind": "external",
+      "citation": "CDC. Sexually transmitted infections treatment guidelines, 2021 — primary and secondary syphilis (web version, accessed 2026-10-08).",
+      "url": "https://www.cdc.gov/std/treatment-guidelines/p-and-s-syphilis.htm",
+      "consulted": true,
+      "usedFor": "Compare titres with the titre at treatment; failure of fourfold decline within 12 months may indicate treatment failure; sustained fourfold rise > 2 weeks suggests reinfection or treatment failure."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-families",
+      "text": "Nontreponemal (lipoidal antigen: RPR, VDRL) titres track activity; treponemal tests (TPPA, FTA-ABS, EIA/CIA) usually stay reactive for life; 15–25% treated in primary stage revert.",
+      "status": "checked",
+      "refs": [
+        "cdc-lab2024"
+      ]
+    },
+    {
+      "id": "cl-response",
+      "text": "≥ 4-fold decline within 12 months expected; sustained ≥ 4-fold rise suggests reinfection/failure; same test type for follow-up.",
+      "status": "checked",
+      "refs": [
+        "cdc-lab2024",
+        "cdc-sti2021"
+      ]
+    },
+    {
+      "id": "cl-algos",
+      "text": "Traditional and reverse algorithms; discordance adjudicated with a different treponemal test (TPPA preferred).",
+      "status": "checked",
+      "refs": [
+        "cdc-lab2024"
+      ]
+    },
+    {
+      "id": "cl-prozone",
+      "text": "Prozone: antibody excess prevents lattice formation → false negative in undiluted serum; dilution corrects.",
+      "status": "checked",
+      "refs": [
+        "cdc-lab2024"
+      ]
+    },
+    {
+      "id": "cl-vis",
+      "text": "Titre timeline, algorithm tokens and antibody tokens.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Tattoo and thermometer.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Antibody tokens and graphs are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against CDC 2024 laboratory recommendations and CDC 2021 STI treatment guidelines read for this lesson; none pending. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-08"
+}
