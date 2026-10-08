@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 43 flags: 25 verified issues and 18 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 44 flags: 26 verified issues and 18 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -46,6 +46,7 @@ Verified:
 - **Ch. 35:** blast threshold ≥20% per WHO 2017; WHO-HAEM5 and the 2022 ICC differ.
 - **Ch. 42 Hit 2:** TPE removal percentages (30% / 10% left) contradict its own e⁻ˣ formula (≈37% / 14%).
 - **Ch. 22:** HBV chronicity "80% neonates, 1–2% adults" (CDC: ~90% infants, ~5% adults); IgM anti-HBc called the "sole" window marker (total anti-HBc and HBV DNA too).
+- **Ch. 18 Trap 2:** direct LDL assay said to “stay valid even at TG 600” (HEART UK/ACB 2025: method-dependent, marked bias vs the reference method, not recommended in hypertriglyceridaemia).
 - **Ch. 41 Hit 4:** BNP said to “NOT rise” in TRALI and TRALI treated with “oxygen only” (Vlaar 2019: natriuretic peptides are always raised in severe TRALI and critical illness; care is supportive, including ventilation).
 - **Ch. 24 Trap 3:** dilute urine given as creatinine ≤ 20 mg/dL and SG ≤ 1.0030 (DOT 40.88: creatinine ≥ 2 and < 20, SG > 1.0010 and < 1.0030 — the reviewer's numbers match clinical tampering flags); out-of-range temperature listed as a substitution criterion (DOT 40.65: a collection check that triggers an observed recollection).
 - **Ch. 15 core:** "FENa > 1% suggests ATN"; a 2025 consensus treats 1–2% as indeterminate and > 2% as intrinsic.
@@ -76,6 +77,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **LDL Calculation:** no pending claims; 1 register flag on Trap 2.
 - **CML vs Leukemoid Reaction:** 1 pending claim (WBC often > 30 × 10⁹/L); no flags. Adds context that the LAP/NAP score is rarely used now.
 - **Weak D, Partial D and DEL:** 1 pending claim (D-site numbers); no flags. Adds context on Asian-type DEL recipients and other weak D types that make anti-D.
 - **Malaria Films:** 1 pending claim (15–30× blood per thick-film field; Wright pH < 6.8); no flags.
