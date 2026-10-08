@@ -3,11 +3,11 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 68, teaching 337 of 1,932 concepts (about 17.4%).** All 68 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 69, teaching 344 of 1,932 concepts (about 17.8%).** All 69 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
-  - Ch. 15 (3/26 concepts): `chem-fena-prerenal-vs-atn`.
+  - Ch. 15 (10/26 concepts): `chem-anion-gap-delta-osmolal`, `chem-fena-prerenal-vs-atn`.
   - Ch. 17 (6/22 concepts): `chem-diabetes-diagnosis-hba1c`.
   - Ch. 18 (6/24 concepts): `chem-ldl-calculation-friedewald`.
   - Ch. 19 (7/21 concepts): `chem-troponin-myocardial-injury`.
@@ -41,8 +41,8 @@
   - Ch. 64 (2/24 concepts): `micro-respiratory-virus-naat-antigen-culture`.
   - Ch. 65 (7/24 concepts): `micro-malaria-thick-thin-films`.
   - Ch. 66 (3/54 concepts): `micro-blood-culture-volume-contamination`.
-- **Reviewer accuracy register:** 65 flags (43 verified issues, 22 needing verification), plus scan results.
-- **Checks:** 474 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Reviewer accuracy register:** 66 flags (44 verified issues, 22 needing verification), plus scan results.
+- **Checks:** 480 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
