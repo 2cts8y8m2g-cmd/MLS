@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 44 flags: 26 verified issues and 18 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 45 flags: 26 verified issues and 19 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -56,6 +56,7 @@ Verified:
 - **Ch. 1 and 13:** US-only regulation with no PH equivalents (context gap for the MTLE track).
 
 Needs verification:
+- Ch. 40 Hit 7: enzymes said to destroy S/s (Manduzio 2024: variable).
 - Ch. 1 Hit 4: breath tests "not regulated by CLIA".
 - Ch. 40 Vault #2: ">62 Rh antigens".
 - Ch. 73: "4 FDA-approved Alzheimer drugs".
@@ -77,6 +78,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **Antibody ID — Dosage and Kidd:** 1 pending claim (DHTR 5–10 days); 1 register flag (S/s enzyme effect, needs verification). Adds Rh (non-D) to the dosage list.
 - **Syphilis Serology:** no pending claims; no flags. Notes CDC’s 15–25% treponemal seroreversion after primary-stage treatment (reviewer: “up to 20%”) and the “lipoidal antigen” terminology.
 - **LDL Calculation:** no pending claims; 1 register flag on Trap 2.
 - **CML vs Leukemoid Reaction:** 1 pending claim (WBC often > 30 × 10⁹/L); no flags. Adds context that the LAP/NAP score is rarely used now.
