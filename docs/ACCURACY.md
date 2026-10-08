@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 37 flags: 21 verified issues and 16 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 38 flags: 21 verified issues and 17 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -59,6 +59,7 @@ Needs verification:
 - Ch. 40 Hit 2: "two ABO determinations" wording.
 - Appendix A: the ASCP weights.
 - Ch. 41 Hit 8: the ≥ 1 °C fever trigger and "never restart" (WHO 2001 allows a slow restart with a new unit).
+- Ch. 64 core: multiplex NAATs as "the standard of care" (IDSA 2018 recommends multiplex panels for hospitalized immunocompromised patients).
 - Ch. 66 Hit 1: sets "30–60 minutes apart" (CDC: within a few hours, separate sites).
 - Ch. 57 Trap 2: tube coagulase "~100% sensitive" (no source read gives a figure).
 
@@ -71,6 +72,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 ## Open lesson issues
 
 - **ABO Forward and Reverse Typing:** 10 pending claims. These cover infant antibody age and the reverse-typing cutoff, elderly patients, IgM binding sites, tube grading, hemolysis as positive, *Ulex*, rouleaux, A2 subgroups, two ABO determinations, and emergency-release components. There are also 3 open flags: tube-grading method dependence, the age cutoff and specimen type (the discrepancy-classification flag is resolved by the new discrepancy lesson).
+- **Respiratory Virus Testing:** 2 pending claims (amplification doubling, NAAT persistence after infection) and 1 open flag ("standard of care" wording).
 - **Hepatitis B Serology:** 1 pending claim (HCV figures, not taught) and 3 open flags (chronicity figures, the "sole marker" wording, HCV part of Hit 10 not taught).
 - **PT, APTT and the Mixing Study:** 2 pending claims (factor XIII not measured by PT/APTT/TT, the prekallikrein incubation effect) and 1 open flag (Hit 2's thrombin-time and FXIII content not taught).
 - **ABO Discrepancies: Four Types and the Workup:** 2 pending claims (subgroups and myeloma as named causes, relative frequency of rare causes) and 1 open flag (the reviewer's workup order differs from the source's).
