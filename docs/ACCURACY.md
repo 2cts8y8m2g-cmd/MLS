@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 84 flags: 60 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 86 flags: 62 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -77,6 +77,8 @@ Verified:
 - **Ch. 17 Hit 3 / Trap 3:** high insulin + high C-peptide called insulinoma without excluding sulfonylureas (ENETS 2012; Peltola 2018).
 - **Ch. 42 Hit 8:** plerixafor described as only for NHL/myeloma patients “failing G-CSF” (De Clercq 2019: approved 2008 for autologous mobilization in NHL/myeloma, with G-CSF).
 - **Ch. 30 Hit 5:** septic arthritis defined by WBC 50,000–200,000/µL and low glucose (Long 2019: counts overlap with crystal arthritis; ~half of septic joints ≤ 28,000/µL; glucose unhelpful).
+- **Ch. 72 Hit 4:** Huntington 36–39 CAG called “intermediate” (Nopoulos 2016; Chintalaphani 2021: 36–39 is reduced penetrance; 27–35 is the non-disease range that may expand).
+- **Ch. 72 Hit 5:** congenital DM1 “transmitted maternally only” (Wenninger 2018: characteristically maternal, but paternal transmission is known; healthy 5–37, penetrant > 50).
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -111,7 +113,7 @@ Automated scan: **23** dated-guideline statements and **134** High-Yield Hits wi
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 38 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 40 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
@@ -144,6 +146,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Male Fertility Labs (Ch. 26):** 1 pending claim (sperm concentration limit, eosin-nigrosin colour, hCG stimulation, current testosterone guidelines; not taught); register flag rv-semen-who (existing).
 - **CSF and Synovial Fluid (Ch. 30):** 1 pending claim (CSF glucose < 40 / ratio < 0.3, lactate 35 mg/dL, xanthochromia peak/duration, traumatic-tap correction; not taught); 1 register flag (rv-septic-synovial).
 - **Component Dating and Processing (Ch. 41):** 1 pending claim (granulocyte ABO/temperature, ISBT 128 DIN, swirling, mechanisms behind dating rules, albumin factor content; not taught); no flags. US rules only.
+- **Repeat Expansion Disorders (Ch. 72):** 1 pending claim (paternal transmission giving the largest HD expansions with juvenile onset; the reviewer's DM1 cutoffs > 100 and 1000–2000; not taught as stated); 2 register flags (rv-hd-intermediate, rv-dm1-maternal).
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
