@@ -1,0 +1,1485 @@
+{
+  "schemaVersion": 1,
+  "id": "ih-component-dating-processing",
+  "title": "Component Dating and Processing: Washed, Deglycerolized, Irradiated, Albumin",
+  "summary": "Apply the US federal dating periods for red cells, platelets, plasma and cryoprecipitate, explain that washing or opening a bag cuts red-cell dating to 24 hours, and know the heat treatment required for albumin.",
+  "domain": "p5-bb",
+  "topic": "ch41",
+  "conceptIds": [
+    "ch41.hit19",
+    "ch41.hit20"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 41,
+        "section": "High-Yield Hits",
+        "items": [
+          19,
+          20
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 41 Hits 19 and 20 with the full 21 CFR 610.53 dating table as context. Checked against 21 CFR 610.53, 21 CFR 640.81 and Cugno 2015. US federal rules only; Philippine rules were not checked. Not taught: granulocytes “must be ABO-compatible” (Hit 12) and room-temperature storage, ISBT 128 DIN details (Hit 15), and platelet swirling (Hit 21) — not in the sources read."
+  },
+  "prerequisites": [
+    "ch41.hit3"
+  ],
+  "objectives": [
+    "State US dating periods for red cells by preservative and processing, platelets, plasma and cryoprecipitate.",
+    "Apply the open-system, closed-deglycerolization and irradiation dating rules to a unit.",
+    "Describe the heat treatment required for albumin."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Same red cells, four different expiry dates",
+      "start": 0,
+      "end": 20,
+      "altText": "A shelf with four bags from the same donation-type: an AS-1 red cell unit (day 10 of 42), the same unit after washing in an open system, a deglycerolized unit processed in a closed system with additive, and an irradiated unit. A vial of 5% albumin sits beside them. Question token: “When does each expire — and what processing does albumin need?” The cartoon scientist checks labels.",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Four red-cell bags sit on the shelf: a standard additive-solution unit, the same kind of unit after washing in an open system, a closed-system deglycerolized unit, and an irradiated unit."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Beside them is a vial of 5 percent albumin, made from pooled plasma."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Processing changes the expiry date, and albumin has its own required processing. Which date goes on each label?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "b0",
+          "type": "card",
+          "props": {
+            "x": 130,
+            "y": 190,
+            "w": 220,
+            "h": 150,
+            "tone": "a",
+            "title": "AS RBC",
+            "lines": [
+              "Day 10 of ?"
+            ],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.3,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b1",
+          "type": "card",
+          "props": {
+            "x": 363,
+            "y": 190,
+            "w": 220,
+            "h": 150,
+            "tone": "warn",
+            "title": "Washed (open)",
+            "lines": [
+              "Expires ?"
+            ],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.8,
+              "opacity": 0
+            },
+            {
+              "t": 2.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "type": "card",
+          "props": {
+            "x": 596,
+            "y": 190,
+            "w": 220,
+            "h": 150,
+            "tone": "b",
+            "title": "Deglycerolized",
+            "lines": [
+              "Closed + additive"
+            ],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.3,
+              "opacity": 0
+            },
+            {
+              "t": 4.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "type": "card",
+          "props": {
+            "x": 829,
+            "y": 190,
+            "w": 220,
+            "h": 150,
+            "tone": "bad",
+            "title": "Irradiated",
+            "lines": [
+              "Expires ?"
+            ],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.8,
+              "opacity": 0
+            },
+            {
+              "t": 5.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "alb",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 330,
+            "w": 360,
+            "label": "Albumin 5% — processing?",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 520,
+            "y": 430,
+            "w": 460,
+            "label": "Which date on each label?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 150,
+            "y": 430,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The federal dating table",
+      "start": 20,
+      "end": 60,
+      "altText": "A table card (21 CFR 610.53, US): Red Blood Cells, 1–6 °C — CPD 21 days, CPDA-1 35 days, additive solutions 42 days from collection; open system (deglycerolized, washed) 24 hours after entering the bag; deglycerolized in a closed system with additive 14 days; irradiated 28 days from irradiation or original dating, whichever is shorter; frozen at −65 °C or colder 10 years. Platelets 20–24 °C: 5 days (unless the storage system’s FDA-cleared instructions say otherwise). Fresh frozen plasma −18 °C or colder: 1 year. Cryoprecipitated AHF −18 °C or colder: 1 year.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 28,
+          "text": "In the United States, 21 CFR 610.53 sets dating periods. Red cells at 1 to 6 degrees last 21 days in CPD, 35 in CPDA-1, and 42 in additive solutions."
+        },
+        {
+          "id": "n2",
+          "start": 28,
+          "end": 36,
+          "text": "Open the system, for washing or deglycerolizing, and the red cells expire 24 hours after the bag is entered."
+        },
+        {
+          "id": "n3",
+          "start": 36,
+          "end": 44,
+          "text": "Deglycerolized red cells processed in a closed system with additive solution keep 14 days. Irradiated red cells expire 28 days after irradiation or at the original date, whichever comes first."
+        },
+        {
+          "id": "n4",
+          "start": 44,
+          "end": 52,
+          "text": "Frozen red cells at minus 65 or colder keep 10 years. Platelets at 20 to 24 degrees keep 5 days, unless the FDA-cleared storage system allows otherwise."
+        },
+        {
+          "id": "n5",
+          "start": 52,
+          "end": 60,
+          "text": "Fresh frozen plasma and cryoprecipitate, at minus 18 or colder, keep one year."
+        }
+      ],
+      "objects": [
+        {
+          "id": "rbc",
+          "type": "card",
+          "props": {
+            "x": 280,
+            "y": 230,
+            "w": 500,
+            "h": 270,
+            "tone": "a",
+            "title": "Red cells (1–6 °C)",
+            "lines": [
+              "CPD 21 d · CPDA-1 35 d · AS 42 d",
+              "Open system (washed): 24 h",
+              "Closed deglycerolized + AS: 14 d",
+              "Irradiated: 28 d or original, shorter",
+              "Frozen (≤ −65 °C): 10 y"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            },
+            {
+              "t": 16.5,
+              "highlight": 0
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            },
+            {
+              "t": 31,
+              "reveal": 5,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "oth",
+          "type": "card",
+          "props": {
+            "x": 760,
+            "y": 240,
+            "w": 360,
+            "h": 230,
+            "tone": "b",
+            "title": "Others",
+            "lines": [
+              "Platelets 20–24 °C: 5 d",
+              "FFP ≤ −18 °C: 1 y",
+              "Cryo ≤ −18 °C: 1 y"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Processing resets the clock",
+      "start": 60,
+      "end": 104,
+      "altText": "A timeline for one additive-solution red-cell unit (schematic). Collected: 42-day dating. Washed in an open system: the clock resets to 24 hours after the bag is entered. Deglycerolized in a closed system with additive solution: 14 days after the bag is entered. Irradiated on day 30: expires on day 42 (original date), because 28 days from irradiation would be later. Irradiated on day 5: expires on day 33 (28 days after irradiation). A granulocyte card: current standards limit storage to 24 hours (one review: after 2 days at 4 °C only 2–7% remain viable).",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 69,
+          "text": "Processing resets the clock. Take one additive-solution unit: on collection it has 42 days."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 78,
+          "text": "Wash it in an open system and it now expires 24 hours after the bag was entered, regardless of the original date."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 87,
+          "text": "Deglycerolize it in a closed system with additive solution, and it keeps 14 days after the bag is entered."
+        },
+        {
+          "id": "c4",
+          "start": 87,
+          "end": 96,
+          "text": "Irradiate it on day 30 and it still expires on day 42, because the original date comes first. Irradiate it on day 5 and it expires on day 33, 28 days later."
+        },
+        {
+          "id": "c5",
+          "start": 96,
+          "end": 104,
+          "text": "Granulocytes are the shortest-lived product: current standards limit storage to 24 hours, and after two days in the cold only a few percent remain viable."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 420,
+            "h": 210,
+            "tone": "a",
+            "highlight": 0,
+            "title": "One AS unit",
+            "lines": [
+              "Collected: 42 d",
+              "Washed (open): 24 h",
+              "Closed deglycerolized: 14 d"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            },
+            {
+              "t": 17,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 18.5,
+              "highlight": 0
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ir1",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 110,
+            "w": 420,
+            "label": "Irradiated day 30 → expires day 42",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 28.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ir2",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "label": "Irradiated day 5 → expires day 33",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "gr",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 340,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Granulocytes",
+            "lines": [
+              "Storage limited to 24 h",
+              "2 days at 4 °C: 2–7% viable"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36.5,
+              "opacity": 0
+            },
+            {
+              "t": 37,
+              "reveal": 0
+            },
+            {
+              "t": 37.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            },
+            {
+              "t": 41,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Albumin: made safe by heat",
+      "start": 104,
+      "end": 144,
+      "altText": "An albumin manufacturing card (21 CFR 640.81): final containers heated continuously for 10–11 hours at 60 ± 0.5 °C, starting within 24 hours of filling; sodium caprylate (± acetyltryptophanate) stabilizer present; then incubated at 20–35 °C for at least 14 days and inspected — turbid containers are not issued. Back to the hook: AS unit 42 days from collection; washed (open) 24 h; closed deglycerolized 14 d; irradiated 28 d or original, whichever is shorter.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 112,
+          "text": "Albumin is made from pooled plasma. The federal rule requires the final containers to be heated continuously for 10 to 11 hours at 60 degrees."
+        },
+        {
+          "id": "l2",
+          "start": 112,
+          "end": 120,
+          "text": "A stabilizer, sodium caprylate, must be present. Afterwards, every container is incubated for at least 14 days and inspected; any turbid container is withheld."
+        },
+        {
+          "id": "l3",
+          "start": 120,
+          "end": 128,
+          "text": "Heating starts within 24 hours of filling. The rule sets the time and temperature precisely: not less than 10 hours and not more than 11."
+        },
+        {
+          "id": "l4",
+          "start": 128,
+          "end": 136,
+          "text": "Back to the shelf: the additive-solution unit keeps 42 days from collection; the washed open-system unit, 24 hours."
+        },
+        {
+          "id": "l5",
+          "start": 136,
+          "end": 144,
+          "text": "The closed-system deglycerolized unit, 14 days; the irradiated unit, 28 days or its original date, whichever is shorter."
+        }
+      ],
+      "objects": [
+        {
+          "id": "alb",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 210,
+            "tone": "good",
+            "title": "Albumin (21 CFR 640.81)",
+            "lines": [
+              "60 ± 0.5 °C for 10–11 h",
+              "Caprylate stabilizer",
+              "≥ 14-day incubation; turbid → not issued"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2,
+              "highlight": 1
+            },
+            {
+              "t": 15,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "use",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 360,
+            "w": 440,
+            "label": "Heating starts within 24 h of filling",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 420,
+            "h": 250,
+            "tone": "a",
+            "title": "The shelf",
+            "lines": [
+              "AS RBC: 42 d",
+              "Washed (open): 24 h",
+              "Closed deglycerolized: 14 d",
+              "Irradiated: 28 d or original"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Washed red cells keep the original expiry” (✓ open system → 24 hours after entering the bag); “Irradiated units always get 28 more days” (✓ 28 days or original dating, whichever is shorter); “Frozen red cells keep 1 year” (✓ 10 years at −65 °C or colder).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: washed red cells keep their original expiry. Washing opens the system, so they expire 24 hours after the bag is entered."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: irradiation gives a unit 28 more days. It is 28 days from irradiation or the original date, whichever is shorter."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: frozen red cells keep one year. At minus 65 degrees or colder they keep 10 years; one year is the plasma and cryoprecipitate rule."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Washed RBCs keep original expiry.”",
+            "lines": [
+              "✓ Open system → 24 h"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Irradiation adds 28 days.”",
+            "lines": [
+              "✓ 28 d or original — shorter"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Frozen RBCs keep 1 year.”",
+            "lines": [
+              "✓ 10 years at ≤ −65 °C"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Open = one day",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Open is one day; closed deglycerolized is two weeks; irradiation is four weeks — never longer than the original.” Tokens 24 h / 14 d / 28 d. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: open is one day; closed deglycerolized is two weeks; irradiation is four weeks, but never longer than the original date."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: FDA-cleared storage systems can specify other dating; rules outside the US differ; and local policies can be stricter."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Open = 1 day · closed = 2 wk · irradiated = 4 wk",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Open: 24 h",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Closed deglyc.: 14 d",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Irradiated: 28 d max",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "FDA-cleared systems may specify other dating",
+              "Non-US rules differ",
+              "Local policy may be stricter"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “RBC: AS 42 d · open (washed/deglycerolized) 24 h · closed deglycerolized + AS 14 d · irradiated 28 d or original · frozen 10 y”, “Platelets 5 d · FFP, cryo 1 y · granulocytes ≤ 24 h · albumin heated 60 °C 10–11 h”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Processing changes the expiry: opened red cells last 24 hours, closed deglycerolized 14 days, irradiated 28 days at most; and albumin final containers are heated at 60 °C for 10 to 11 hours."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "RBC: AS 42 d · open 24 h · closed deglyc. 14 d · irradiated 28 d/original · frozen 10 y",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Platelets 5 d · FFP, cryo 1 y · granulocytes ≤ 24 h · albumin 60 °C × 10–11 h",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: every blood product has a shelf life, and processing a unit (washing, deglycerolizing, irradiating) changes it; albumin must be heat-treated. Scientific terms: dating period, open vs closed system, deglycerolization, additive solution (AS), irradiation, Albumin (Human), pasteurization, sodium caprylate.",
+    "why": "Federal dating periods depend on the anticoagulant/preservative, storage temperature and whether the system has been opened or the unit irradiated. Albumin is a plasma-derived product; its processing rule requires heat treatment of the final containers with a stabilizer present.",
+    "measure": "21 CFR 610.53: RBC CPD 21 d, CPDA-1 35 d, AS 42 d; open system 24 h; closed deglycerolized with AS 14 d; irradiated 28 d or original, shorter; frozen ≤ −65 °C 10 y; platelets 20–24 °C 5 d (or per FDA-cleared system); FFP and cryo ≤ −18 °C 1 y. 21 CFR 640.81: albumin final containers 60 ± 0.5 °C for 10–11 h, then ≥ 14-day incubation at 20–35 °C. Granulocyte storage limited to 24 h.",
+    "differs": "Open vs closed processing; irradiated (28 d or original, shorter) vs non-irradiated (original); frozen RBC (10 y) vs frozen plasma and cryo (1 y).",
+    "examAngle": "Expect: washed RBC expiry, irradiated dating rule, frozen RBC 10 years, platelet 5 days, FFP/cryo 1 year, and albumin heat treatment."
+  },
+  "comparisons": [
+    {
+      "id": "open-vs-closed",
+      "title": "Open vs closed red-cell processing",
+      "left": {
+        "label": "Open (washed, deglycerolized)",
+        "points": [
+          "Bag entered",
+          "24 h"
+        ]
+      },
+      "right": {
+        "label": "Closed deglycerolized + AS",
+        "points": [
+          "Closed system + additive",
+          "14 d"
+        ]
+      },
+      "distinguisher": "Whether the bag was entered."
+    },
+    {
+      "id": "frozen-rbc-vs-ffp",
+      "title": "Frozen red cells vs frozen plasma",
+      "left": {
+        "label": "Frozen RBC",
+        "points": [
+          "≤ −65 °C",
+          "10 years"
+        ]
+      },
+      "right": {
+        "label": "FFP / cryo",
+        "points": [
+          "≤ −18 °C",
+          "1 year"
+        ]
+      },
+      "distinguisher": "Product and storage temperature."
+    }
+  ],
+  "mnemonic": {
+    "text": "Open is one day; closed deglycerolized is two weeks; irradiation is four weeks — never longer than the original.",
+    "explanation": "Open-system RBCs 24 h, closed deglycerolized with additive 14 d, irradiated 28 d or original (shorter).",
+    "limitation": "FDA-cleared storage systems can specify other dating; non-US rules differ; local policy may be stricter."
+  },
+  "analogyLimitations": [
+    "Bag and shelf drawings are schematic.",
+    "The units are invented examples.",
+    "Dating outside the US was not checked."
+  ],
+  "takeaway": "Processing changes the expiry: opened red cells last 24 hours, closed deglycerolized 14 days, irradiated 28 days at most; and albumin final containers are heated at 60 °C for 10 to 11 hours.",
+  "questions": [
+    {
+      "id": "ih-date-q1",
+      "stem": "An additive-solution red cell unit collected 10 days ago is washed in an open system at 09:00 today. When does it expire?",
+      "options": [
+        {
+          "id": "a",
+          "text": "09:00 tomorrow (24 hours after entering the bag)",
+          "rationale": "Correct. Open-system processing limits red cells to 24 hours after the bag is entered."
+        },
+        {
+          "id": "b",
+          "text": "Day 42 from collection",
+          "rationale": "Incorrect. The original dating no longer applies once the system is opened."
+        },
+        {
+          "id": "c",
+          "text": "14 days after washing",
+          "rationale": "Incorrect. 14 days applies to closed-system deglycerolized units with additive solution."
+        },
+        {
+          "id": "d",
+          "text": "28 days after washing",
+          "rationale": "Incorrect. 28 days is the irradiation rule."
+        }
+      ],
+      "answer": "a",
+      "skill": "Open-system dating",
+      "difficulty": "application"
+    },
+    {
+      "id": "ih-date-q2",
+      "stem": "An AS red cell unit collected 30 days ago is irradiated today. What is its new expiration?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Day 42 from collection (12 days from now) — the original date is shorter than 28 days",
+          "rationale": "Correct. Irradiated RBCs expire 28 days after irradiation or at the original date, whichever is shorter."
+        },
+        {
+          "id": "b",
+          "text": "28 days from today",
+          "rationale": "Incorrect. That would exceed the original 42-day dating."
+        },
+        {
+          "id": "c",
+          "text": "24 hours from irradiation",
+          "rationale": "Incorrect. Irradiation does not open the system."
+        },
+        {
+          "id": "d",
+          "text": "Day 35 from collection",
+          "rationale": "Incorrect. 35 days applies to CPDA-1, not additive solution."
+        }
+      ],
+      "answer": "a",
+      "skill": "Irradiation dating",
+      "difficulty": "calculation"
+    },
+    {
+      "id": "ih-date-q3",
+      "stem": "Which processing step does 21 CFR 640.81 require for the final containers of Albumin (Human)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Heating final containers at 60 °C for 10–11 hours",
+          "rationale": "Correct. The rule requires continuous heating at 60 ± 0.5 °C for 10–11 hours with a stabilizer present."
+        },
+        {
+          "id": "b",
+          "text": "Gamma irradiation",
+          "rationale": "Incorrect. Irradiation is used for cellular components to prevent TA-GVHD."
+        },
+        {
+          "id": "c",
+          "text": "Leukoreduction filtration",
+          "rationale": "Incorrect. Leukoreduction is not part of the albumin processing rule."
+        },
+        {
+          "id": "d",
+          "text": "Freezing at −18 °C",
+          "rationale": "Incorrect. The rule specifies heating of the final containers, not freezing."
+        }
+      ],
+      "answer": "a",
+      "skill": "Albumin processing",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch41",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 41, Transfusion: Giving Blood Safely (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 41,
+          "section": "High-Yield Hits",
+          "items": [
+            19,
+            20
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "cfr610",
+      "kind": "external",
+      "citation": "21 CFR 610.53 — Dating periods for Whole Blood and blood components (eCFR, current as of 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-F/part-610/subpart-F/section-610.53",
+      "consulted": true,
+      "usedFor": "RBC dating by anticoagulant/additive (21/35/42 d), open system 24 h, closed deglycerolized with AS 14 d, irradiated 28 d or original (shorter), frozen ≤ −65 °C 10 y; platelets 20–24 °C 5 d or per FDA-cleared system; FFP and cryo ≤ −18 °C 1 y."
+    },
+    {
+      "id": "cfr640",
+      "kind": "external",
+      "citation": "21 CFR 640.81 — Albumin (Human): processing (eCFR, current as of 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-F/part-640/subpart-H/section-640.81",
+      "consulted": true,
+      "usedFor": "Heat treatment of final containers 10–11 h at 60 ± 0.5 °C beginning within 24 h of filling; sodium caprylate (± acetyltryptophanate) stabilizer; incubation 20–35 °C ≥ 14 days; turbid containers not issued."
+    },
+    {
+      "id": "cugno2015",
+      "kind": "external",
+      "citation": "Cugno C, Deola S, Filippini P, Stroncek DF, Rutella S. Granulocyte transfusions in children and adults with hematological malignancies: benefits and controversies. J Transl Med. 2015;13:362.",
+      "doi": "10.1186/s12967-015-0724-5",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4647505/",
+      "consulted": true,
+      "usedFor": "Current standards limit granulocyte storage to 24 h; after 2 days at 4 °C only 2–7% viable."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-dating",
+      "text": "21 CFR 610.53 dating periods for RBC variants, platelets, FFP and cryo.",
+      "status": "checked",
+      "refs": [
+        "cfr610"
+      ]
+    },
+    {
+      "id": "cl-alb",
+      "text": "Albumin heat-treated 60 °C for 10–11 h with caprylate; ≥ 14-day incubation.",
+      "status": "checked",
+      "refs": [
+        "cfr640"
+      ]
+    },
+    {
+      "id": "cl-gran",
+      "text": "Granulocyte storage limited to 24 h.",
+      "status": "checked",
+      "refs": [
+        "cugno2015"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Granulocytes must be ABO-compatible and stored at room temperature; ISBT 128 DIN; platelet swirling; mechanistic reasons for the dating rules; albumin lacking clotting factors.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch41"
+      ],
+      "note": "Not taught; not in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Bags and shelf are schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Open is one day; closed deglycerolized is two weeks; irradiation is four weeks.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Bags and labels are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "3 claims checked against 21 CFR 610.53, 21 CFR 640.81 and Cugno 2015; 1 pending (granulocyte ABO/temperature, DIN, swirling, mechanisms, albumin factor content). No human expert has reviewed this lesson. US rules only."
+  },
+  "revisedAt": "2026-10-09"
+}

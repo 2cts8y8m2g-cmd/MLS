@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 90, teaching 483 of 1,932 concepts (about 25.0%).** All 90 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 91, teaching 485 of 1,932 concepts (about 25.1%).** All 91 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -30,7 +30,7 @@
   - Ch. 38 (19/22 concepts): `heme-lupus-anticoagulant-aps`, `heme-thrombophilia-testing-timing`.
   - Ch. 39 (6/23 concepts): `heme-anticoagulant-test-selection`.
   - Ch. 40 (25/36 concepts): `bb-dat-aiha-workup`, `ih-abo-discrepancy-types-workup`, `ih-abo-forward-reverse`, `ih-antibody-id-dosage-kidd`, `ih-hdfn-titers-rhig`, `ih-weak-d-partial-d-del`.
-  - Ch. 41 (24/35 concepts): `bb-acute-hemolytic-reaction-abo-compatibility`, `bb-component-choice-thresholds`, `bb-component-storage-irradiation`, `bb-trali-vs-taco`, `ih-dhtr-lookback-windows`.
+  - Ch. 41 (26/35 concepts): `bb-acute-hemolytic-reaction-abo-compatibility`, `bb-component-choice-thresholds`, `bb-component-storage-irradiation`, `bb-trali-vs-taco`, `ih-component-dating-processing`, `ih-dhtr-lookback-windows`.
   - Ch. 42 (21/29 concepts): `bb-donor-eligibility-criteria`, `ih-apheresis-citrate-asfa-rce`, `ih-hpc-mobilization-ecp`, `ih-plasma-exchange-tpe`.
   - Ch. 43 (12/22 concepts): `ih-hpc-cd34-dose-cryopreservation`, `ih-hpc-graft-sources-abo`.
   - Ch. 57 (20/57 concepts): `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-strep-enterococcus-id`.
@@ -44,7 +44,7 @@
   - Ch. 65 (7/24 concepts): `micro-malaria-thick-thin-films`.
   - Ch. 66 (20/54 concepts): `micro-antigen-tests-negatives`, `micro-blood-culture-volume-contamination`, `micro-specimen-acceptability-transport`.
 - **Reviewer accuracy register:** 84 flags (60 verified issues, 24 needing verification), plus scan results.
-- **Checks:** 606 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 612 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -88,7 +88,7 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 | 14 | ✅ Ch. 34 white cell disorders (2nd lesson) | ✅ Ch. 24 drugs & poisons (2nd lesson) | ✅ Ch. 64 viral infections (2nd lesson) | ✅ Ch. 42 apheresis & blood collection (3rd lesson) |
 | 15 | ✅ Ch. 38 clot risk (2nd lesson) | ✅ Ch. 20 plasma proteins (2nd lesson) | ✅ Ch. 60 fungal infections (2nd lesson) | ✅ Ch. 40 blood groups & compatibility (next lesson) |
 | 16 | ✅ Ch. 36 coag cascade (3rd lesson) | ✅ Ch. 17 glucose & diabetes (2nd lesson) | ✅ Ch. 57 bacteria that cause disease (3rd lesson) | ✅ Ch. 42 apheresis & blood collection (4th lesson) |
-| 17 | ✅ Ch. 33 hemolytic anemias (3rd lesson) | ✅ Ch. 26 fertility & pregnancy (2nd lesson) | ✅ Ch. 66 specimen collection (3rd lesson) | Ch. 41 transfusion (5th lesson) |
+| 17 | ✅ Ch. 33 hemolytic anemias (3rd lesson) | ✅ Ch. 26 fertility & pregnancy (2nd lesson) | ✅ Ch. 66 specimen collection (3rd lesson) | ✅ Ch. 41 transfusion (5th lesson) |
 
 Clinical Microscopy runs alongside rounds 14–15: **Ch. 29 urinalysis** (✅ core lesson, round 14) and **Ch. 30 body fluids** (✅ core lesson, round 15). Round 16 adds **Ch. 29 urinalysis (2nd lesson)** (✅ reagent-strip chemistry); round 17 adds **Ch. 30 body fluids (2nd lesson)** (✅ CSF and synovial fluid). Molecular Diagnostics (Ch. 67–72) still has no lessons and follows round 17; Ch. 29 still ranks third by simulator questions × untaught share.
 
