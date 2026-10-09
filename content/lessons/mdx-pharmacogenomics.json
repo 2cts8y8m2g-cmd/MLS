@@ -1,0 +1,1434 @@
+{
+  "schemaVersion": 1,
+  "id": "mdx-pharmacogenomics",
+  "title": "Pharmacogenomics: CYP2C19, CYP2D6, CYP2C9 and VKORC1",
+  "summary": "Translate pharmacogenetic genotypes into metabolizer phenotypes and predict the effect on prodrugs (clopidogrel, codeine) and an active drug with a genetic target (warfarin), using CPIC guidelines.",
+  "domain": "p8-mdx",
+  "topic": "ch67",
+  "conceptIds": [
+    "ch67.hit2",
+    "ch67.hit3"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 67,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          3
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 67 Hits 2 and 3 (precision medicine and pharmacogenomics: CYP450 isoforms, anticoagulants, antiplatelets) with CPIC examples. Checked against CPIC guidelines: Lee 2022 (CYP2C19–clopidogrel), Crews 2021 (CYP2D6–opioids) and Johnson 2017 (warfarin). Neuropsychiatric drug examples, Hit 4 (SNP rate) and the US billing/coding Hits are not taught here."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Translate allele function and diplotype into a metabolizer phenotype.",
+    "Predict the effect of poor and ultrarapid metabolism on prodrugs versus active drugs.",
+    "Apply CPIC guidance for clopidogrel, codeine and warfarin."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Same drug, same dose, opposite problems",
+      "start": 0,
+      "end": 20,
+      "altText": "Three invented patient cards: (1) after a coronary stent, on clopidogrel, CYP2C19 *2/*2; (2) given codeine after surgery, CYP2D6 ultrarapid metabolizer; (3) starting warfarin, CYP2C9 *1/*3 and VKORC1 −1639 A/A. Question token: “What does each genotype predict — too little effect or too much?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Three patients, three standard prescriptions. One has a new coronary stent and takes clopidogrel; the genotype report says CYP2C19 star-2 star-2."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "One receives codeine after surgery and is a CYP2D6 ultrarapid metabolizer. One starts warfarin with CYP2C9 and VKORC1 variants."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "For each, does the genotype predict too little drug effect, or too much?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "p0",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 200,
+            "w": 290,
+            "h": 150,
+            "tone": "a",
+            "title": "Clopidogrel",
+            "lines": [
+              "CYP2C19 *2/*2"
+            ],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 200,
+            "w": 290,
+            "h": 150,
+            "tone": "warn",
+            "title": "Codeine",
+            "lines": [
+              "CYP2D6 ultrarapid"
+            ],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 200,
+            "w": 290,
+            "h": 150,
+            "tone": "bad",
+            "title": "Warfarin",
+            "lines": [
+              "CYP2C9 *1/*3 · VKORC1 A/A"
+            ],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.4,
+              "opacity": 0
+            },
+            {
+              "t": 8.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 400,
+            "w": 520,
+            "label": "Too little effect — or too much?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 440,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "From alleles to metabolizer phenotype",
+      "start": 20,
+      "end": 60,
+      "altText": "Pharmacogenomics card: inherited variation in drug-metabolizing enzymes and drug targets changes drug response; testing lets therapy be chosen for the individual. Allele-function card (CPIC CYP2C19 example): normal function (*1), decreased function (*9), no function (*2, *3), increased function (*17). The two inherited alleles (the diplotype) translate into a phenotype: poor, intermediate, normal, rapid or ultrarapid metabolizer. Token: prodrug vs active drug decides which way a phenotype pushes.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Pharmacogenomics tests inherited variation in drug-metabolizing enzymes and drug targets, so therapy can be chosen for the individual patient."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Each allele has a function. For CYP2C19: star-1 is normal function, star-9 decreased, star-2 and star-3 no function, and star-17 increased function."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "The pair of alleles, the diplotype, is translated into a phenotype: poor, intermediate, normal, rapid or ultrarapid metabolizer."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Whether a phenotype means too little or too much effect depends on the drug: does the enzyme activate a prodrug, or clear an active drug?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "pg",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 100,
+            "w": 760,
+            "h": 120,
+            "tone": "b",
+            "title": "Pharmacogenomics",
+            "lines": [
+              "Genotype of enzymes/targets",
+              "Choose drug and dose for the patient"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "al",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 310,
+            "w": 440,
+            "h": 230,
+            "tone": "a",
+            "title": "CYP2C19 allele function",
+            "lines": [
+              "*1 normal",
+              "*9 decreased",
+              "*2, *3 no function",
+              "*17 increased"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ph",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 290,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Diplotype → phenotype",
+            "lines": [
+              "Poor · intermediate · normal",
+              "Rapid · ultrarapid"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pd",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "label": "Prodrug or active drug?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Prodrugs: too little activation, or too much",
+      "start": 60,
+      "end": 104,
+      "altText": "Clopidogrel card: a prodrug bioactivated by CYP2C19. Intermediate and poor metabolizers form less active metabolite → reduced platelet inhibition and more major adverse cardiovascular and cerebrovascular events. CPIC 2022: in ACS and/or PCI, avoid clopidogrel in intermediate and poor metabolizers and use prasugrel or ticagrelor if no contraindication. Codeine card: CYP2D6 converts codeine to morphine. Poor metabolizers: ~96% lower morphine exposure (little analgesia). Ultrarapid metabolizers: ~45% higher morphine exposure; toxic morphine levels can occur even at low codeine doses.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 69,
+          "text": "Clopidogrel is a prodrug. CYP2C19 turns it into the active metabolite."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 79,
+          "text": "Intermediate and poor metabolizers make less active drug, get weaker platelet inhibition and have more major cardiovascular and cerebrovascular events."
+        },
+        {
+          "id": "c3",
+          "start": 79,
+          "end": 87,
+          "text": "So the 2022 guideline says: after acute coronary syndrome or stenting, avoid clopidogrel in intermediate and poor metabolizers and use prasugrel or ticagrelor, if there is no contraindication."
+        },
+        {
+          "id": "c4",
+          "start": 87,
+          "end": 96,
+          "text": "Codeine is also activated: CYP2D6 converts it to morphine. Poor metabolizers make about 96 percent less morphine, so pain relief fails."
+        },
+        {
+          "id": "c5",
+          "start": 96,
+          "end": 104,
+          "text": "Ultrarapid metabolizers make about 45 percent more morphine, and toxic levels can occur even at low codeine doses."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "a",
+            "title": "Clopidogrel (prodrug)",
+            "lines": [
+              "CYP2C19 activates",
+              "IM/PM: less effect, more events",
+              "ACS/PCI: prasugrel or ticagrelor"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            },
+            {
+              "t": 25,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "co",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 230,
+            "tone": "warn",
+            "title": "Codeine (prodrug)",
+            "lines": [
+              "CYP2D6 → morphine",
+              "PM: ~96% less morphine",
+              "UM: more morphine, toxicity"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0
+            },
+            {
+              "t": 28,
+              "reveal": 0
+            },
+            {
+              "t": 28.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "highlight": 1
+            },
+            {
+              "t": 42,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Active drugs: warfarin needs a lower dose",
+      "start": 104,
+      "end": 144,
+      "altText": "Warfarin card: warfarin inhibits vitamin K epoxide reductase complex (VKORC1, the rate-limiting step in vitamin K recycling). CYP2C9 is the primary enzyme clearing the more potent S-warfarin. CYP2C9 *2 or *3 carriers: lower dose needed, more bleeding risk, longer time to stable INR. VKORC1 c.−1639G>A: each A allele → progressively lower dose. Genotype-guided dosing targets INR 2–3. Back to the hook: clopidogrel *2/*2 = poor metabolizer → too little effect; codeine UM → too much morphine; warfarin *1/*3 + VKORC1 A/A → too much effect at a standard dose.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 113,
+          "text": "Warfarin is the active drug. It inhibits VKORC1, the vitamin K epoxide reductase complex that recycles vitamin K."
+        },
+        {
+          "id": "l2",
+          "start": 113,
+          "end": 121,
+          "text": "CYP2C9 is the main enzyme clearing S-warfarin, the more potent form. Carriers of star-2 or star-3 need lower doses, bleed more and take longer to reach a stable INR."
+        },
+        {
+          "id": "l3",
+          "start": 121,
+          "end": 129,
+          "text": "A common VKORC1 promoter variant, minus 1639 G to A, makes patients more sensitive: each A allele means a progressively lower dose."
+        },
+        {
+          "id": "l4",
+          "start": 129,
+          "end": 137,
+          "text": "Back to the patients: clopidogrel with two no-function alleles is a poor metabolizer, too little effect."
+        },
+        {
+          "id": "l5",
+          "start": 137,
+          "end": 144,
+          "text": "The codeine ultrarapid metabolizer risks too much morphine, and the warfarin patient risks too much anticoagulation at a standard dose."
+        }
+      ],
+      "objects": [
+        {
+          "id": "wf",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "bad",
+            "title": "Warfarin (active drug)",
+            "lines": [
+              "Inhibits VKORC1",
+              "CYP2C9 *2/*3: lower dose",
+              "VKORC1 −1639A: lower dose"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            },
+            {
+              "t": 23,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "h1",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 150,
+            "w": 420,
+            "label": "Clopidogrel *2/*2 → too little",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 26.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h2",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 420,
+            "label": "Codeine UM → too much morphine",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 34.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "h3",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 310,
+            "w": 420,
+            "label": "Warfarin variants → too much at standard dose",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 37.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “A poor metabolizer always has more drug effect” (✓ only for active drugs; for prodrugs like clopidogrel and codeine, poor metabolizers get less effect); “Ultrarapid metabolizers need more codeine” (✓ they make more morphine — toxicity risk); “Warfarin genotype only involves CYP2C9” (✓ VKORC1 target variant matters too).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a poor metabolizer always has more drug effect. Only for drugs that are already active. For prodrugs like clopidogrel and codeine, poor metabolizers get less effect."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: ultrarapid metabolizers need more codeine. No: they convert more codeine to morphine and risk toxicity."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: warfarin genotyping is only CYP2C9. No: the drug’s target, VKORC1, has a common variant that lowers the dose too."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Poor metabolizer = more effect, always.”",
+            "lines": [
+              "✓ Prodrug → LESS effect"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Ultrarapid → give more codeine.”",
+            "lines": [
+              "✓ More morphine → toxicity"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Warfarin = CYP2C9 only.”",
+            "lines": [
+              "✓ VKORC1 target variant too"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Prodrug: the enzyme is the key",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “For a prodrug the enzyme is the KEY; for an active drug it is the EXIT.” Key: no key (poor metabolizer) → drug stays locked (less effect); too many keys (ultrarapid) → floods out. Exit: blocked exit (poor clearance) → drug piles up. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: for a prodrug, the enzyme is the key; for an active drug, it is the exit. No key, and clopidogrel or codeine stays locked. Too many keys, and codeine floods out as morphine. A narrow exit, and warfarin piles up."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: drug targets like VKORC1 are neither key nor exit; other enzymes, interactions and clinical factors also change response; and recommendations depend on the indication."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Prodrug: enzyme = KEY · active drug: enzyme = EXIT",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "No key: locked (PM)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Many keys: flood (UM)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Narrow exit: piles up",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Targets (VKORC1) are neither key nor exit",
+              "Other enzymes and interactions matter",
+              "Recommendations depend on indication"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Prodrugs (clopidogrel–CYP2C19, codeine–CYP2D6): PM → less effect; UM codeine → morphine toxicity”, “Active drug warfarin: CYP2C9 *2/*3 and VKORC1 −1639A → lower dose”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "A metabolizer phenotype means less effect for a prodrug such as clopidogrel or codeine but more effect for an active drug such as warfarin, whose target VKORC1 also changes the dose."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Prodrugs: clopidogrel–CYP2C19, codeine–CYP2D6 · PM → less · UM codeine → toxic",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Active drug warfarin: CYP2C9 *2/*3 and VKORC1 −1639A → lower dose",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: people inherit different versions of the enzymes that activate or clear drugs, so the same dose can do too little in one person and too much in another; testing the genes lets the prescriber choose. Scientific terms: pharmacogenomics, precision medicine, cytochrome P450 (CYP2C19, CYP2D6, CYP2C9), star (*) allele, diplotype, metabolizer phenotype (poor, intermediate, normal, rapid, ultrarapid), prodrug, VKORC1.",
+    "why": "For a prodrug, the enzyme makes the active form, so low activity means less effect and high activity can mean excess active drug. For an active drug, the enzyme clears it, so low activity means accumulation. Variants in a drug target (VKORC1) change sensitivity regardless of clearance.",
+    "measure": "CYP2C19: *1 normal, *9 decreased, *2/*3 no function, *17 increased. Clopidogrel in ACS/PCI: avoid in IM and PM; use prasugrel or ticagrelor if no contraindication (CPIC 2022). Codeine: CYP2D6 PM ~96% lower morphine AUC; UM ~45% higher morphine AUC, toxicity even at low doses (CPIC 2021). Warfarin: CYP2C9 *2/*3 → lower dose, more bleeding, longer to stable INR; VKORC1 c.−1639G>A → progressively lower dose per A allele (CPIC 2017).",
+    "differs": "Prodrug (clopidogrel, codeine) vs active drug (warfarin); metabolizing enzyme (CYP2C9) vs drug target (VKORC1); poor vs ultrarapid metabolizer.",
+    "examAngle": "Expect: what a CYP2C19 poor metabolizer means for clopidogrel, codeine toxicity in CYP2D6 ultrarapid metabolizers, and which genes guide warfarin dosing."
+  },
+  "comparisons": [
+    {
+      "id": "prodrug-vs-active",
+      "title": "Poor metabolizer: prodrug vs active drug",
+      "left": {
+        "label": "Prodrug (clopidogrel, codeine)",
+        "points": [
+          "Enzyme activates the drug",
+          "PM → less active drug, less effect"
+        ]
+      },
+      "right": {
+        "label": "Active drug (warfarin)",
+        "points": [
+          "Enzyme clears the drug",
+          "Reduced function → accumulation, lower dose"
+        ]
+      },
+      "distinguisher": "Whether the enzyme activates or clears the drug."
+    },
+    {
+      "id": "enzyme-vs-target",
+      "title": "Warfarin genes: CYP2C9 vs VKORC1",
+      "left": {
+        "label": "CYP2C9",
+        "points": [
+          "Clears S-warfarin",
+          "*2/*3 → lower dose, more bleeding"
+        ]
+      },
+      "right": {
+        "label": "VKORC1",
+        "points": [
+          "Warfarin’s target",
+          "−1639A → more sensitive, lower dose"
+        ]
+      },
+      "distinguisher": "Metabolism (clearance) vs drug target (sensitivity)."
+    }
+  ],
+  "mnemonic": {
+    "text": "For a prodrug the enzyme is the KEY; for an active drug it is the EXIT.",
+    "explanation": "Poor metabolizers cannot unlock prodrugs (less effect) and cannot clear active drugs (more effect); ultrarapid metabolizers flood out active metabolite from a prodrug.",
+    "limitation": "Drug targets such as VKORC1 are neither key nor exit; other enzymes, interactions and clinical factors matter; recommendations depend on the indication."
+  },
+  "analogyLimitations": [
+    "Patient cards are invented.",
+    "Key/exit is an analogy only; real pharmacokinetics involve several enzymes and transporters.",
+    "Guideline recommendations shown are CPIC’s for specific indications; local practice may differ."
+  ],
+  "takeaway": "A metabolizer phenotype means less effect for a prodrug such as clopidogrel or codeine but more effect for an active drug such as warfarin, whose target VKORC1 also changes the dose.",
+  "questions": [
+    {
+      "id": "mdx-pgx-q1",
+      "stem": "A patient undergoing PCI is CYP2C19 *2/*3. What does CPIC recommend regarding clopidogrel?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Avoid clopidogrel; use prasugrel or ticagrelor if no contraindication",
+          "rationale": "Correct. *2/*3 (two no-function alleles) is a poor metabolizer; clopidogrel is poorly activated."
+        },
+        {
+          "id": "b",
+          "text": "Give clopidogrel at a reduced dose",
+          "rationale": "Incorrect. Clopidogrel is a prodrug; poor metabolizers form too little active metabolite, so a lower dose makes it worse."
+        },
+        {
+          "id": "c",
+          "text": "Give standard clopidogrel; genotype is irrelevant",
+          "rationale": "Incorrect. CYP2C19 poor metabolizers have reduced platelet inhibition and more cardiovascular events."
+        },
+        {
+          "id": "d",
+          "text": "Switch to warfarin",
+          "rationale": "Incorrect. Warfarin is an anticoagulant, not the recommended antiplatelet alternative."
+        }
+      ],
+      "answer": "a",
+      "skill": "CYP2C19–clopidogrel",
+      "difficulty": "application"
+    },
+    {
+      "id": "mdx-pgx-q2",
+      "stem": "Why is codeine dangerous in a CYP2D6 ultrarapid metabolizer?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Codeine is converted to morphine faster, producing high morphine levels",
+          "rationale": "Correct. Ultrarapid metabolizers have higher morphine exposure; toxicity can occur even at low codeine doses."
+        },
+        {
+          "id": "b",
+          "text": "Codeine accumulates because it cannot be cleared",
+          "rationale": "Incorrect. That would describe reduced, not increased, enzyme activity."
+        },
+        {
+          "id": "c",
+          "text": "Codeine is not converted, so pain is untreated",
+          "rationale": "Incorrect. That describes a poor metabolizer."
+        },
+        {
+          "id": "d",
+          "text": "CYP2D6 converts codeine to a toxic non-opioid metabolite",
+          "rationale": "Incorrect. The relevant active metabolite is morphine."
+        }
+      ],
+      "answer": "a",
+      "skill": "CYP2D6–codeine",
+      "difficulty": "application"
+    },
+    {
+      "id": "mdx-pgx-q3",
+      "stem": "A patient starting warfarin carries CYP2C9 *3 and VKORC1 −1639 A/A. What should be expected?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A lower warfarin dose requirement and higher bleeding risk",
+          "rationale": "Correct. Reduced CYP2C9 clearance and VKORC1 sensitivity both lower the dose needed."
+        },
+        {
+          "id": "b",
+          "text": "A higher dose requirement",
+          "rationale": "Incorrect. Both variants increase warfarin effect at a given dose."
+        },
+        {
+          "id": "c",
+          "text": "No effect, because warfarin is a prodrug",
+          "rationale": "Incorrect. Warfarin is active; CYP2C9 clears S-warfarin."
+        },
+        {
+          "id": "d",
+          "text": "Faster time to a stable INR",
+          "rationale": "Incorrect. CYP2C9 *2/*3 carriers take longer to reach a stable INR."
+        }
+      ],
+      "answer": "a",
+      "skill": "Warfarin pharmacogenetics",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch67",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 67, Molecular Testing Basics (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 67,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "lee2022",
+      "kind": "external",
+      "citation": "Lee CR, Luzum JA, Sangkuhl K, et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther. 2022;112(5):959-967.",
+      "doi": "10.1002/cpt.2526",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9287492/",
+      "consulted": true,
+      "usedFor": "Clopidogrel prodrug bioactivated by CYP2C19; IM/PM reduced platelet inhibition and more MACCE; allele function groups (*1, *9, *2/*3, *17); diplotype → phenotype; ACS/PCI: avoid clopidogrel in IM/PM, use prasugrel or ticagrelor if no contraindication."
+    },
+    {
+      "id": "crews2021",
+      "kind": "external",
+      "citation": "Crews KR, Monte AA, Huddart R, et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2D6, OPRM1, and COMT Genotypes and Select Opioid Therapy. Clin Pharmacol Ther. 2021;110(4):888-896.",
+      "doi": "10.1002/cpt.2149",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8249478/",
+      "consulted": true,
+      "usedFor": "Codeine → morphine via CYP2D6; PMs 96% lower morphine AUC; UMs ~45% higher morphine AUC, toxic concentrations possible even at low codeine doses."
+    },
+    {
+      "id": "johnson2017",
+      "kind": "external",
+      "citation": "Johnson JA, Caudle KE, Gong L, et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update. Clin Pharmacol Ther. 2017;102(3):397-404.",
+      "doi": "10.1002/cpt.668",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5546947/",
+      "consulted": true,
+      "usedFor": "Warfarin inhibits VKORC1; S-warfarin more potent; CYP2C9 primary S-warfarin enzyme; *2/*3 → lower dose, more bleeding, longer to stable INR; VKORC1 c.−1639G>A → progressively lower dose; target INR 2–3."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-cyp2c19",
+      "text": "CYP2C19 allele function groups; clopidogrel prodrug; IM/PM outcomes; ACS/PCI recommendation.",
+      "status": "checked",
+      "refs": [
+        "lee2022"
+      ]
+    },
+    {
+      "id": "cl-cyp2d6",
+      "text": "CYP2D6 codeine → morphine; PM ~96% less, UM ~45% more morphine and toxicity risk.",
+      "status": "checked",
+      "refs": [
+        "crews2021"
+      ]
+    },
+    {
+      "id": "cl-warf",
+      "text": "Warfarin inhibits VKORC1; CYP2C9 clears S-warfarin; *2/*3 and VKORC1 −1639A lower dose.",
+      "status": "checked",
+      "refs": [
+        "johnson2017"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Neuropsychiatric pharmacogenomic examples; SNP rate ~1/1000 bp; molecular testing complements morphology.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch67"
+      ],
+      "note": "Not taught in this lesson."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Patient cards are invented.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“For a prodrug the enzyme is the KEY; for an active drug it is the EXIT.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-indication",
+      "issue": "CPIC clopidogrel recommendations are indication-specific (strongest for ACS/PCI); outside the indications covered, data may be insufficient. Local and non-US practice may differ.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; schematic cards only.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "3 claims checked against CPIC guidelines (Lee 2022, Crews 2021, Johnson 2017); 1 pending (other Ch. 67 points not taught). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-09"
+}
