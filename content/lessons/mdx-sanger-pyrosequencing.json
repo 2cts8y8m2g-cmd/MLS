@@ -1,0 +1,1549 @@
+{
+  "schemaVersion": 1,
+  "id": "mdx-sanger-pyrosequencing",
+  "title": "DNA Sequencing: Sanger Chain Termination, Pyrosequencing and NGS",
+  "summary": "Explain how ddNTPs terminate chains in Sanger sequencing, how pyrosequencing turns released pyrophosphate into light (and why it uses dATPαS and apyrase), and what makes next-generation sequencing massively parallel.",
+  "domain": "p8-mdx",
+  "topic": "ch68",
+  "conceptIds": [
+    "ch68.hit2",
+    "ch68.hit3",
+    "ch68.hit12",
+    "ch68.trap5"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 68,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          3,
+          12
+        ]
+      },
+      {
+        "chapter": 68,
+        "section": "Traps",
+        "items": [
+          5
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 68 Hits 2, 3 and 12 and Trap 5. Checked against Heather & Chain 2016 and Lamoril 2008 (French). Ronaghi 2001 was not accessible (login redirect) and is not cited. The reviewer says Sanger “sequenced the first human genome (2001)”; the lesson says capillary Sanger instruments were used for the Human Genome Project draft (Heather). Hit 12’s clinical-use examples (pathogen typing, BRCA1/BRCA2) are not taught."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Explain chain termination by ddNTPs and how a Sanger read is generated.",
+    "Describe the pyrosequencing enzyme cascade and the roles of apyrase and dATPαS.",
+    "Contrast first-generation with massively parallel sequencing."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Why did the A peaks blow up?",
+      "start": 0,
+      "end": 20,
+      "altText": "A pyrosequencing printout (schematic): every time dATP is dispensed, a huge light peak appears even where the template has no T. A student says “we used ordinary dATP — it was cheaper.” Beside it, a Sanger electropherogram with four coloured peak traces. Question token: “How does each method read DNA — and why did ordinary dATP ruin the run?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A pyrosequencing run went wrong: every time dATP was added, a huge light peak appeared, even where the template had no matching base."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The student explains they used ordinary dATP. Next to it, a Sanger trace shows four coloured peak lines."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "How does each method read DNA, and why did ordinary dATP ruin the run?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "py",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "Pyrosequencing run",
+            "lines": [
+              "Huge peak at every dATP",
+              "Ordinary dATP used"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sg",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Sanger trace",
+            "lines": [
+              "Four coloured peak lines"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 400,
+            "w": 560,
+            "label": "How does each read DNA? Why the dATP peaks?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 440,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Building DNA one nucleotide at a time",
+      "start": 20,
+      "end": 60,
+      "altText": "A primer–template card (schematic): DNA polymerase extends a primer by joining the 3′ hydroxyl (3′-OH) of the growing strand to the 5′ phosphate of the next dNTP, releasing pyrophosphate (PPi). Two tokens: “3′-OH needed to keep extending” and “each incorporation releases PPi”. Both sequencing methods exploit one of these facts: Sanger removes the 3′-OH; pyrosequencing detects the PPi.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Both methods start the same way: a primer annealed to a single-stranded template, and DNA polymerase adding nucleotides."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Each new nucleotide joins its 5 prime phosphate to the 3 prime hydroxyl at the end of the growing strand. Without that 3 prime hydroxyl, the chain cannot extend."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Every incorporation also releases pyrophosphate."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Sanger sequencing exploits the first fact by removing the 3 prime hydroxyl. Pyrosequencing exploits the second by detecting the pyrophosphate."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 150,
+            "w": 700,
+            "h": 150,
+            "tone": "b",
+            "title": "Primer + template + DNA polymerase",
+            "lines": [
+              "Primer annealed to single strand",
+              "Polymerase adds complementary dNTPs"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "oh",
+          "type": "token",
+          "props": {
+            "x": 280,
+            "y": 300,
+            "w": 380,
+            "label": "3′-OH needed to extend",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pp",
+          "type": "token",
+          "props": {
+            "x": 690,
+            "y": 300,
+            "w": 380,
+            "label": "Each incorporation releases PPi",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "two",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 430,
+            "w": 700,
+            "h": 130,
+            "tone": "warn",
+            "title": "Two tricks",
+            "lines": [
+              "Sanger: remove the 3′-OH",
+              "Pyrosequencing: detect the PPi"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Sanger: chain termination",
+      "start": 60,
+      "end": 104,
+      "altText": "Sanger card: dideoxynucleotides (ddNTPs) lack the 3′ hydroxyl, so once incorporated no further nucleotide can be added. A small amount of ddNTP mixed with normal dNTPs gives random termination at every position → a nested set of fragments, each ending at a known base. Modern form: four ddNTPs each with a different fluorophore, one tube, fragments separated by capillary electrophoresis; the order of colours read by size = the sequence. Capillary instruments were used for the Human Genome Project draft. Schematic ladder: fragments of length 1, 2, 3, 4… ending in G, A, T, C.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "In Sanger sequencing, a dideoxynucleotide, a ddNTP, lacks the 3 prime hydroxyl. Once the polymerase adds one, the chain stops."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 80,
+          "text": "A little ddNTP is mixed with normal dNTPs, so termination happens randomly at every position. The result is a nested set of fragments, each ending at a known base."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 92,
+          "text": "Today the four ddNTPs carry four different fluorescent dyes in one tube. Capillary electrophoresis sorts the fragments by size, and the order of colours spells the sequence."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "Automated capillary Sanger instruments were used to produce the Human Genome Project draft."
+        }
+      ],
+      "objects": [
+        {
+          "id": "dd",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 200,
+            "tone": "a",
+            "title": "ddNTP: no 3′-OH",
+            "lines": [
+              "Incorporated → chain stops",
+              "Random stop at every position",
+              "Nested fragments"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2,
+              "highlight": 1
+            },
+            {
+              "t": 17,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "f0",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 120,
+            "w": 60,
+            "label": "…G",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.0,
+              "opacity": 0
+            },
+            {
+              "t": 11.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "f1",
+          "type": "token",
+          "props": {
+            "x": 615,
+            "y": 175,
+            "w": 110,
+            "label": "…GA",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "f2",
+          "type": "token",
+          "props": {
+            "x": 640,
+            "y": 230,
+            "w": 160,
+            "label": "…GAT",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.0,
+              "opacity": 0
+            },
+            {
+              "t": 14.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "f3",
+          "type": "token",
+          "props": {
+            "x": 665,
+            "y": 285,
+            "w": 210,
+            "label": "…GATC",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 15.5,
+              "opacity": 0
+            },
+            {
+              "t": 16.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ce",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "h": 140,
+            "tone": "b",
+            "title": "One tube, four dyes",
+            "lines": [
+              "Capillary electrophoresis by size",
+              "Colour order = sequence"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "hgp",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "label": "Used for the Human Genome Project draft",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Pyrosequencing: light from pyrophosphate",
+      "start": 104,
+      "end": 144,
+      "altText": "Pyrosequencing card: nucleotides are dispensed one type at a time. If the base is incorporated, PPi is released; ATP sulfurylase converts PPi (with APS) to ATP; luciferase uses ATP to make light; light intensity is proportional to the number of bases incorporated (GG → double peak). Apyrase degrades unincorporated nucleotides and ATP before the next dispensation (on the 454 system washing does this instead). Luciferase can also make light from dATP, so dATP is replaced by dATPαS (deoxyadenosine α-thio triphosphate). Limitation: long homopolymers read non-linearly beyond about 4–5 identical bases. NGS card: second-generation platforms sequence millions of clonally amplified fragments in parallel (e.g., Illumina reversible terminators). Back to the hook: ordinary dATP fed luciferase directly → false light at every dATP dispensation.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 113,
+          "text": "Pyrosequencing adds one nucleotide type at a time. If it is incorporated, pyrophosphate is released; ATP sulfurylase turns it into ATP; luciferase uses the ATP to make light."
+        },
+        {
+          "id": "l2",
+          "start": 113,
+          "end": 120,
+          "text": "The light is proportional to the number of bases added: two G’s in a row give a double peak. Long runs of the same base become hard to count beyond about four or five."
+        },
+        {
+          "id": "l3",
+          "start": 120,
+          "end": 127,
+          "text": "Apyrase degrades leftover nucleotides and ATP before the next addition. Some platforms wash them away instead."
+        },
+        {
+          "id": "l4",
+          "start": 127,
+          "end": 135,
+          "text": "Luciferase can also make light from dATP itself. So pyrosequencing replaces dATP with a modified analogue, dATP alpha-S. That explains the hook: ordinary dATP lit up at every dispensation."
+        },
+        {
+          "id": "l5",
+          "start": 135,
+          "end": 144,
+          "text": "Next-generation sequencing goes massively parallel: millions of clonally amplified fragments read at once, for example with reversible-terminator chemistry."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pyr",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 240,
+            "tone": "good",
+            "title": "Pyrosequencing",
+            "lines": [
+              "PPi → ATP (sulfurylase)",
+              "ATP → light (luciferase)",
+              "Light ∝ bases added",
+              "Homopolymers > 4–5: unreliable"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            },
+            {
+              "t": 16,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "apy",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 110,
+            "w": 420,
+            "label": "Apyrase clears leftover dNTP/ATP",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "das",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 240,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "dATP → dATPαS",
+            "lines": [
+              "Luciferase also uses dATP",
+              "Ordinary dATP = false light"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 23.5,
+              "opacity": 0
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 24.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            },
+            {
+              "t": 29,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ngs",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 760,
+            "label": "NGS: millions of clonal fragments read in parallel",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Pyrosequencing works fine with natural dATP” (✓ luciferase uses dATP → false signal; use dATPαS); “ddNTPs stop extension because they lack the 5′ phosphate” (✓ they lack the 3′-OH); “Pyrosequencing light comes from a fluorescent dye on the nucleotide” (✓ from PPi → ATP → luciferase).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: pyrosequencing works with natural dATP. No: luciferase uses dATP and makes false light, so the analogue dATP alpha-S is used."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: ddNTPs stop the chain because they lack a 5 prime phosphate. No: they lack the 3 prime hydroxyl the next nucleotide must join to."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: pyrosequencing light comes from a dye on the nucleotide. No: it comes from released pyrophosphate, converted to ATP and then to light by luciferase."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Natural dATP is fine in pyrosequencing.”",
+            "lines": [
+              "✓ Luciferase uses dATP → use dATPαS"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “ddNTPs lack the 5′ phosphate.”",
+            "lines": [
+              "✓ They lack the 3′-OH"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Pyro light comes from a dye.”",
+            "lines": [
+              "✓ PPi → ATP → luciferase light"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Sanger stops; pyro glows",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Sanger STOPS (no 3′-OH); pyro GLOWS (PPi → ATP → light); and A must wear a disguise (dATPαS).” Tokens: Stop · Glow · Disguise. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: Sanger stops, pyro glows, and A wears a disguise. Sanger stops the chain with a missing 3 prime hydroxyl; pyrosequencing glows from pyrophosphate; dATP is disguised as dATP alpha-S."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: modern Sanger is read by fluorescence, so it also “glows”; some platforms wash instead of using apyrase; and next-generation chemistries differ by platform."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Sanger STOPS · pyro GLOWS · A wears a disguise",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Stop: no 3′-OH",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Glow: PPi → light",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Disguise: dATPαS",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Modern Sanger is read by fluorescence",
+              "Some platforms wash instead of apyrase",
+              "NGS chemistries differ by platform"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Sanger: ddNTPs lack 3′-OH → random stops → nested fragments → four dyes, capillary electrophoresis”, “Pyro: PPi → ATP (sulfurylase) → light (luciferase) ∝ bases · apyrase · dATPαS · NGS = massively parallel”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Sanger sequencing stops chains with ddNTPs that lack a 3′ hydroxyl, while pyrosequencing turns released pyrophosphate into light and must use dATPαS because luciferase also uses dATP."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Sanger: ddNTP lacks 3′-OH → nested fragments → 4 dyes, capillary",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Pyro: PPi → ATP → light ∝ bases · apyrase · dATPαS · NGS parallel",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: sequencing reads the order of bases by watching a DNA polymerase copy a template — Sanger stops copies at each base and sorts them by size; pyrosequencing makes a flash of light each time a base is added. Scientific terms: primer, DNA polymerase, dideoxynucleotide (ddNTP), chain termination, capillary electrophoresis, pyrophosphate (PPi), ATP sulfurylase, luciferase, apyrase, dATPαS, homopolymer, massively parallel (next-generation) sequencing, reversible terminator.",
+    "why": "Polymerase joins each dNTP to the 3′ hydroxyl of the growing strand and releases pyrophosphate. ddNTPs lack the 3′ hydroxyl, so incorporation ends the chain. In pyrosequencing, released PPi is converted to ATP, which luciferase turns into light; because luciferase can also use dATP, the dATP analogue dATPαS is used.",
+    "measure": "Sanger: four dye-labelled ddNTPs in one tube; fragments separated by capillary electrophoresis; colour order by size = sequence. Pyrosequencing: one nucleotide dispensed at a time; light proportional to bases incorporated; non-linear beyond ~4–5 identical bases; apyrase (or washing on 454) removes unincorporated nucleotides and ATP.",
+    "differs": "Sanger (termination, fragment sizing) vs pyrosequencing (sequencing by synthesis, real-time light) vs NGS (millions of clonal fragments in parallel, e.g., reversible terminators).",
+    "examAngle": "Expect: why ddNTPs terminate, how a Sanger read is detected, the pyrosequencing cascade, roles of apyrase and dATPαS, and the homopolymer limitation."
+  },
+  "comparisons": [
+    {
+      "id": "sanger-vs-pyro",
+      "title": "Sanger vs pyrosequencing",
+      "left": {
+        "label": "Sanger",
+        "points": [
+          "ddNTP lacks 3′-OH → chain stops",
+          "Fragments sized by capillary electrophoresis"
+        ]
+      },
+      "right": {
+        "label": "Pyrosequencing",
+        "points": [
+          "PPi → ATP → luciferase light",
+          "One nucleotide dispensed at a time"
+        ]
+      },
+      "distinguisher": "Chain termination and sizing vs real-time light from incorporation."
+    },
+    {
+      "id": "first-vs-next",
+      "title": "First-generation vs next-generation sequencing",
+      "left": {
+        "label": "First generation (Sanger)",
+        "points": [
+          "Clonal population, one read per reaction",
+          "Used for the Human Genome Project draft"
+        ]
+      },
+      "right": {
+        "label": "Second generation (NGS)",
+        "points": [
+          "Many reactions in parallel",
+          "Clonal clusters/beads, e.g., reversible terminators"
+        ]
+      },
+      "distinguisher": "Degree of parallelization."
+    }
+  ],
+  "mnemonic": {
+    "text": "Sanger STOPS, pyro GLOWS, and A wears a disguise.",
+    "explanation": "Sanger stops chains (ddNTP lacks 3′-OH); pyrosequencing glows from PPi → ATP → luciferase; dATP is replaced by dATPαS.",
+    "limitation": "Modern Sanger is read by fluorescence, so it also “glows”; some platforms wash instead of using apyrase; NGS chemistries differ by platform."
+  },
+  "analogyLimitations": [
+    "Printouts, ladders and peaks are schematic.",
+    "The failed run is an invented example.",
+    "NGS is only outlined; platform chemistries differ."
+  ],
+  "takeaway": "Sanger sequencing stops chains with ddNTPs that lack a 3′ hydroxyl, while pyrosequencing turns released pyrophosphate into light and must use dATPαS because luciferase also uses dATP.",
+  "questions": [
+    {
+      "id": "mdx-seq-q1",
+      "stem": "Why does incorporation of a dideoxynucleotide terminate DNA chain extension in Sanger sequencing?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It lacks the 3′ hydroxyl group needed to bond the next nucleotide",
+          "rationale": "Correct. The next dNTP’s 5′ phosphate must join a 3′-OH, which ddNTPs lack."
+        },
+        {
+          "id": "b",
+          "text": "It lacks the 5′ phosphate",
+          "rationale": "Incorrect. ddNTPs are triphosphates and can be incorporated; the missing group is the 3′-OH."
+        },
+        {
+          "id": "c",
+          "text": "It denatures the polymerase",
+          "rationale": "Incorrect. Termination is chemical, at the chain end, not enzyme denaturation."
+        },
+        {
+          "id": "d",
+          "text": "Its fluorescent dye blocks the template",
+          "rationale": "Incorrect. Dyes allow detection; termination is due to the missing 3′-OH (radiolabelled ddNTPs terminate too)."
+        }
+      ],
+      "answer": "a",
+      "skill": "Chain termination",
+      "difficulty": "recall"
+    },
+    {
+      "id": "mdx-seq-q2",
+      "stem": "In pyrosequencing, which enzyme converts released pyrophosphate into ATP?",
+      "options": [
+        {
+          "id": "a",
+          "text": "ATP sulfurylase",
+          "rationale": "Correct. ATP sulfurylase converts PPi (with APS) into ATP, which luciferase then uses to make light."
+        },
+        {
+          "id": "b",
+          "text": "Luciferase",
+          "rationale": "Incorrect. Luciferase uses ATP to make light; it does not make ATP."
+        },
+        {
+          "id": "c",
+          "text": "Apyrase",
+          "rationale": "Incorrect. Apyrase degrades unincorporated nucleotides and ATP."
+        },
+        {
+          "id": "d",
+          "text": "Reverse transcriptase",
+          "rationale": "Incorrect. Reverse transcriptase copies RNA into DNA and is not part of the cascade."
+        }
+      ],
+      "answer": "a",
+      "skill": "Pyrosequencing cascade",
+      "difficulty": "recall"
+    },
+    {
+      "id": "mdx-seq-q3",
+      "stem": "A pyrosequencing peak is about three times the height of a single-base peak for the same nucleotide. What does this indicate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Three identical bases were incorporated in a row",
+          "rationale": "Correct. Light is proportional to the number of bases incorporated (until long homopolymers become non-linear)."
+        },
+        {
+          "id": "b",
+          "text": "Three different bases were incorporated",
+          "rationale": "Incorrect. Only one nucleotide type is dispensed at a time."
+        },
+        {
+          "id": "c",
+          "text": "The run is contaminated with dATPαS",
+          "rationale": "Incorrect. dATPαS is the intended dATP substitute, not a contaminant."
+        },
+        {
+          "id": "d",
+          "text": "A ddNTP terminated the chain",
+          "rationale": "Incorrect. Pyrosequencing does not use chain-terminating ddNTPs."
+        }
+      ],
+      "answer": "a",
+      "skill": "Homopolymer signal",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch68",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 68, How Molecular Tests Work (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 68,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            3,
+            12
+          ]
+        },
+        {
+          "chapter": 68,
+          "section": "Traps",
+          "items": [
+            5
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "heather2016",
+      "kind": "external",
+      "citation": "Heather JM, Chain B. The sequence of sequencers: The history of sequencing DNA. Genomics. 2016;107(1):1-8.",
+      "doi": "10.1016/j.ygeno.2015.11.003",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4727787/",
+      "consulted": true,
+      "usedFor": "ddNTPs lack the 3′-OH and terminate extension; random incorporation gives 3′-truncated fragments; fluorescent detection in one vessel and capillary electrophoresis; capillary instruments used for the Human Genome Project draft; pyrosequencing PPi → ATP (ATP sulfurylase) → light (luciferase) proportional to PPi; homopolymer readout non-linear above 4–5; second generation parallelizes; Illumina reversible terminators."
+    },
+    {
+      "id": "lamoril2008",
+      "kind": "external",
+      "citation": "Lamoril J, Ameziane N, Deybach JC, Bouizegarène P, Bogard M. Les techniques de séquençage de l’ADN : une révolution en marche. Première partie [DNA sequencing technologies: a revolution in motion. Part one]. Immuno-analyse & Biologie Spécialisée. 2008;23(5):260-279.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7147846/",
+      "consulted": true,
+      "usedFor": "Four enzymes (polymerase, ATP sulfurylase, luciferase, apyrase); dATPαS replaces dATP because luciferase can produce light from dATP; apyrase degrades unincorporated dNTP and ATP (454 uses washing); signal proportional to identical bases (GG double peak); Sanger four-colour ddNTPs in one tube, capillary electrophoresis."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-sanger",
+      "text": "ddNTPs lack 3′-OH, random termination, nested fragments, four dyes in one tube, capillary electrophoresis; used for the HGP draft.",
+      "status": "checked",
+      "refs": [
+        "heather2016",
+        "lamoril2008"
+      ]
+    },
+    {
+      "id": "cl-pyro",
+      "text": "PPi → ATP (sulfurylase) → light (luciferase) proportional to bases; homopolymers non-linear > 4–5.",
+      "status": "checked",
+      "refs": [
+        "heather2016",
+        "lamoril2008"
+      ]
+    },
+    {
+      "id": "cl-apy",
+      "text": "Apyrase degrades unincorporated nucleotides and ATP (454 washes); dATPαS replaces dATP because luciferase uses dATP.",
+      "status": "checked",
+      "refs": [
+        "lamoril2008"
+      ]
+    },
+    {
+      "id": "cl-ngs",
+      "text": "Second-generation sequencing parallelizes many clonal reactions; Illumina reversible terminators.",
+      "status": "checked",
+      "refs": [
+        "heather2016"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Sanger “sequenced the first human genome (2001)” as phrased; NGS clinical uses (pathogen typing, BRCA1/2) and turnaround.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch68"
+      ],
+      "note": "Not taught as stated."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Printouts and ladders are schematic; failed run invented.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Sanger STOPS, pyro GLOWS, and A wears a disguise.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-ronaghi",
+      "issue": "The original pyrosequencing reviews (Ronaghi 1996, 2001) were not accessible; pyrosequencing chemistry is taught from Heather 2016 and Lamoril 2008 (French).",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Electropherogram and pyrogram are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against Heather 2016 and Lamoril 2008; 1 pending (HGP phrasing, NGS clinical examples). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-09"
+}
