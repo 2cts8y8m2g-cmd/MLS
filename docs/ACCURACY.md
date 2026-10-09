@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 83 flags: 59 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 84 flags: 60 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -76,6 +76,7 @@ Verified:
 - **Ch. 36 Hit 14 / Trap 6:** platelets “> 20 × 10⁹/L” in bleeding DIC (Wada 2014, summarizing BCSH/JSTH/SISET/ISTH: transfuse bleeding DIC at ≤ 50 × 10⁹/L; 10–20 only for non-bleeding).
 - **Ch. 17 Hit 3 / Trap 3:** high insulin + high C-peptide called insulinoma without excluding sulfonylureas (ENETS 2012; Peltola 2018).
 - **Ch. 42 Hit 8:** plerixafor described as only for NHL/myeloma patients “failing G-CSF” (De Clercq 2019: approved 2008 for autologous mobilization in NHL/myeloma, with G-CSF).
+- **Ch. 30 Hit 5:** septic arthritis defined by WBC 50,000–200,000/µL and low glucose (Long 2019: counts overlap with crystal arthritis; ~half of septic joints ≤ 28,000/µL; glucose unhelpful).
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -141,6 +142,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Antigen Tests and Negatives (Ch. 66):** 1 pending claim (two throat swabs, “as low as 70%”, India ink in HIV; not taught); no flags.
 - **Anemia Clues Beyond the Indices (Ch. 33):** 1 pending claim (reticulocyte peak timing, isoniazid iron pattern, RPI in CKD, trait HbS %, hydroxyurea classification; not taught); no flags. Hit 16 (hydroxyurea “nonmegaloblastic”) conflicts with Kaferle 2009 and awaits a primary source.
 - **Male Fertility Labs (Ch. 26):** 1 pending claim (sperm concentration limit, eosin-nigrosin colour, hCG stimulation, current testosterone guidelines; not taught); register flag rv-semen-who (existing).
+- **CSF and Synovial Fluid (Ch. 30):** 1 pending claim (CSF glucose < 40 / ratio < 0.3, lactate 35 mg/dL, xanthochromia peak/duration, traumatic-tap correction; not taught); 1 register flag (rv-septic-synovial).
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
