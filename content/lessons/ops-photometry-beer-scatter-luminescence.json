@@ -1,0 +1,1662 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-photometry-beer-scatter-luminescence",
+  "title": "How Analyzers See: Absorbance, Scatter and Chemiluminescence",
+  "summary": "Use the Beer–Lambert law to link transmittance, absorbance and concentration, tell nephelometry from turbidimetry, contrast fluorescence with chemiluminescence, and dilute an above-range result and back-calculate it.",
+  "domain": "p1-ops",
+  "topic": "ch4",
+  "conceptIds": [
+    "ch4.hit1",
+    "ch4.hit7",
+    "ch4.hit10",
+    "ch4.hit22",
+    "ch4.hit24",
+    "ch4.trap1"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 4,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          7,
+          10,
+          22,
+          24
+        ]
+      },
+      {
+        "chapter": 4,
+        "section": "Exam Traps",
+        "items": [
+          1
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 4 Hits 1, 7, 10, 22 and 24 and Trap 1 (first lesson for Ch. 4). Checked against Delgado 2022, Gross-Rother 2020, Heydari 2023, Cinquanta 2017, Mukhametova 2026, Whitehead 2017 and Lenicek Krleza 2019; dilution example is arithmetic. Not taught as fact: the A < 2.0 linearity limit, the 350 nm glass/quartz cut-off, the 15–90° nephelometry angle range, PMT and filter figures, and fluorescence/phosphorescence lifetimes (no open source read for these). Nuance: Gross-Rother describes nephelometry at 90°; the reviewer gives 15–90°."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Convert between transmittance and absorbance and apply the Beer–Lambert law.",
+    "Distinguish nephelometry from turbidimetry by what the detector measures.",
+    "Contrast fluorescence and chemiluminescence, and dilute an above-range result and back-calculate it."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three ways to see a molecule",
+      "start": 0,
+      "end": 20,
+      "altText": "Three invented analyzer modules side by side, each with a light detector: Module 1 reads how much light a coloured solution ABSORBS; Module 2 reads light SCATTERED by antigen–antibody complexes; Module 3 has NO lamp — light comes from a reaction in the tube. A sticky note: “Sample read above the analytical measurement range (AMR); diluted 0.5 mL + 1.5 mL, it reads 30 mg/dL — true value?” Question token: “What does each detector really measure?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Three analyzer modules sit side by side. One reads light a coloured solution absorbs. One reads light bounced off clumps of antibody and antigen."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The third has no lamp at all: the light comes from a reaction in the tube. And a sample that read above the measuring range has been diluted: what is its true value?"
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "What does each detector really measure, and how do you undo a dilution?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "m1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 200,
+            "w": 280,
+            "h": 150,
+            "tone": "b",
+            "title": "Module 1",
+            "lines": [
+              "Light absorbed"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 200,
+            "w": 280,
+            "h": 150,
+            "tone": "a",
+            "title": "Module 2",
+            "lines": [
+              "Light scattered"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0
+            },
+            {
+              "t": 4.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 200,
+            "w": 280,
+            "h": 150,
+            "tone": "good",
+            "title": "Module 3",
+            "lines": [
+              "No lamp: light made"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "note",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 360,
+            "w": 640,
+            "label": "Above AMR · diluted 0.5 + 1.5 mL reads 30 → true?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 640,
+            "label": "What does each detector measure?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Absorbance and the Beer–Lambert law",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic light path (not to scale): lamp → wavelength selector → cuvette (traditional interior path length 10 mm; Whitehead 2017) → detector. Equation card (Delgado 2022): transmittance T = I/I₀ (light out ÷ light in); absorbance A = −log₁₀ T; Beer–Lambert law A = ε·L·c (ε molar absorptivity, L path length in cm, c concentration in mol/L). Worked arithmetic: T = 10% → A = 1; T = 1% → A = 2. Doubling c or L doubles A. Cuvette material is chosen for the wavelength range needed (glass, quartz, plastic; Whitehead 2017).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "In absorbance photometry, light of a chosen wavelength passes through a cuvette, usually with a 10 millimetre path, to a detector."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Transmittance is the light coming out divided by the light going in. Absorbance is minus the log of transmittance."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "So 10 percent transmittance is an absorbance of 1, and 1 percent is an absorbance of 2. Each absorbance unit means ten times less light gets through."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "The Beer–Lambert law says absorbance equals molar absorptivity times path length times concentration: double the concentration, double the absorbance."
+        }
+      ],
+      "objects": [
+        {
+          "id": "path",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 220,
+            "tone": "b",
+            "title": "Light path (schematic)",
+            "lines": [
+              "Lamp",
+              "Wavelength selector",
+              "Cuvette (10 mm)",
+              "Detector"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "eq",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Definitions",
+            "lines": [
+              "T = I / I₀",
+              "A = −log₁₀ T"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            },
+            {
+              "t": 19,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "wk",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 290,
+            "w": 420,
+            "label": "T 10% → A 1 · T 1% → A 2",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bl",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "Beer–Lambert: A = ε · L · c",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Scattered light: nephelometry vs turbidimetry",
+      "start": 60,
+      "end": 104,
+      "altText": "Particle card (Gross-Rother 2020): particles such as antigen–antibody complexes scatter light. Two detector positions on one schematic beam: nephelometry measures scattered intensity at an angle to the beam (90° in this source); turbidimetry measures the transmitted beam (≈ 0°), which DIMS as more light is scattered away. Both are simple and highly sensitive. Clinical token (Heydari 2023): immunonephelometric and immunoturbidimetric assays are used for serum proteins such as lipoprotein(a). Contrast token: absorbance (Beer–Lambert) is light taken up by dissolved molecules; turbidimetry is light lost by scattering.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "Now add antibody to a protein sample. Antigen–antibody complexes form particles, and particles scatter light out of the beam."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 80,
+          "text": "A nephelometer puts its detector off to the side, at an angle such as 90 degrees, and measures the scattered light directly."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 90,
+          "text": "A turbidimeter keeps its detector straight ahead and measures the transmitted beam, which dims as more light is scattered away."
+        },
+        {
+          "id": "c4",
+          "start": 90,
+          "end": 98,
+          "text": "Both are used for serum proteins: immunonephelometry and immunoturbidimetry, for example for lipoprotein(a)."
+        },
+        {
+          "id": "c5",
+          "start": 98,
+          "end": 104,
+          "text": "Remember the difference: angle versus straight through. Scattered light gained, versus transmitted light lost."
+        }
+      ],
+      "objects": [
+        {
+          "id": "beam",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Beam + immune complexes",
+            "lines": [
+              "Particles scatter light"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "neph",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 160,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Nephelometry",
+            "lines": [
+              "Detector at an angle (e.g. 90°)",
+              "Measures scattered light"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            },
+            {
+              "t": 17,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "turb",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 340,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Turbidimetry",
+            "lines": [
+              "Detector straight ahead (≈ 0°)",
+              "Measures dimmed transmitted beam"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "highlight": 1
+            },
+            {
+              "t": 27,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "use",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "label": "Serum proteins, e.g. Lp(a)",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "rule",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 520,
+            "w": 700,
+            "label": "Angle = scattered gained · straight = transmitted lost",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 38.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 39.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Light made by chemistry, and undoing a dilution",
+      "start": 104,
+      "end": 144,
+      "altText": "Emission card (Mukhametova 2026; Cinquanta 2017): fluorescence needs EXCITATION light — the fluorophore absorbs photons and then emits; chemiluminescence takes the energy for the excited state from an exergonic chemical REACTION, so no excitation lamp is needed, and many systems have a low background signal. Label card (Cinquanta 2017): direct labels acridinium and ruthenium esters; indirect enzyme labels alkaline phosphatase with a dioxetane substrate (AMPPD) and horseradish peroxidase with luminol. Dilution card (Lenicek Krleza 2019): a result above the upper limit of the AMR is diluted to bring it within the AMR, either by the analyzer (auto-dilution) or manually, and the result is multiplied by the dilution factor; laboratories define the maximum permissible dilution. Arithmetic: dilution = sample volume ÷ total volume; 0.5 mL serum + 1.5 mL diluent = 0.5/2.0 = 1:4; true result = measured × 4 = 30 × 4 = 120 mg/dL. Hook answers: Module 1 absorbance, Module 2 nephelometry, Module 3 chemiluminescence; 120 mg/dL.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 113,
+          "text": "Fluorescence needs a lamp: the label absorbs excitation light, then emits its own. Chemiluminescence needs no lamp: a chemical reaction supplies the energy that makes the label glow."
+        },
+        {
+          "id": "l2",
+          "start": 113,
+          "end": 122,
+          "text": "With no excitation light, many chemiluminescent systems have a low background. Labels include acridinium esters directly, or enzymes such as alkaline phosphatase or peroxidase acting on a light-making substrate."
+        },
+        {
+          "id": "l3",
+          "start": 122,
+          "end": 134,
+          "text": "A result above the measuring range is diluted into range, then multiplied back. Half a millilitre of serum plus one and a half of diluent makes two millilitres: a 1 in 4 dilution. Divide total volume by sample volume."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "The diluted sample reads 30, so the true value is 30 times 4: 120. Module 1 measured absorbance, Module 2 scattered light, Module 3 chemiluminescence."
+        }
+      ],
+      "objects": [
+        {
+          "id": "fl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Fluorescence",
+            "lines": [
+              "Needs excitation light",
+              "Absorbs, then emits"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "cl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 360,
+            "w": 440,
+            "h": 180,
+            "tone": "good",
+            "title": "Chemiluminescence",
+            "lines": [
+              "Energy from a reaction — no lamp",
+              "Low background",
+              "Acridinium · ALP/dioxetane · HRP/luminol"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5,
+              "opacity": 0
+            },
+            {
+              "t": 5.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "reveal": 0
+            },
+            {
+              "t": 14,
+              "highlight": 1
+            },
+            {
+              "t": 16,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "dil",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 420,
+            "h": 200,
+            "tone": "warn",
+            "title": "Dilution",
+            "lines": [
+              "Above AMR → dilute into range",
+              "0.5 + 1.5 mL → factor 2.0/0.5 = 4",
+              "30 × 4 = 120 mg/dL"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 520,
+            "w": 780,
+            "label": "Hook: absorbance · nephelometry · chemiluminescence · 120 mg/dL",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Nephelometry and turbidimetry both read transmitted light” (✓ nephelometry reads scattered light at an angle; turbidimetry reads the dimmed transmitted beam); “Chemiluminescence needs an excitation lamp, like fluorescence” (✓ a chemical reaction supplies the energy — no lamp); “0.5 mL serum + 1.5 mL diluent is a 1:3 dilution” (✓ 1:4 — divide TOTAL volume by sample volume).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: nephelometry and turbidimetry both read transmitted light. No: nephelometry reads scattered light at an angle; turbidimetry reads the dimmed beam straight ahead."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: chemiluminescence needs an excitation lamp, like fluorescence. No: the light comes from a chemical reaction."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: half a millilitre plus one and a half is a 1 in 3 dilution. No: divide the total volume, 2, by the sample volume, 0.5. It is 1 in 4."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Both read transmitted light.”",
+            "lines": [
+              "✓ Neph: scattered at an angle · Turb: transmitted beam"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Chemiluminescence needs a lamp.”",
+            "lines": [
+              "✓ A reaction supplies the energy"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “0.5 + 1.5 mL = 1:3.”",
+            "lines": [
+              "✓ 1:4 — total ÷ sample"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Eat, bounce, glow",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Molecules EAT light (absorbance), particles BOUNCE it (scatter: neph to the side, turb straight on), labels GLOW (fluorescence needs a lamp; chemiluminescence makes its own).” Tokens: A = −log T = εLc · Neph = side · CL = no lamp. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: molecules eat light, particles bounce it, labels glow. Nephelometers watch the bounce from the side; turbidimeters watch the beam dim; chemiluminescence glows without a lamp."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: turbidimeters read the transmitted beam like an absorbance photometer, so their readings can look like absorbance; real samples can deviate from the Beer–Lambert line; and detector angles differ between instruments."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Eat · bounce · glow",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "A = −log T = εLc",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Neph = side · Turb = straight",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "CL = no lamp",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Turbidity is read like absorbance",
+              "Real samples can deviate from Beer–Lambert",
+              "Detector angles vary by instrument"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “A = −log₁₀ T = ε·L·c · nephelometry = scattered at an angle · turbidimetry = transmitted beam”, “Chemiluminescence: reaction-made light, no lamp · dilution factor = total ÷ sample (0.5 + 1.5 → ×4)”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Absorbance is minus the log of transmittance and rises in proportion to concentration and path length, nephelometry reads scattered light while turbidimetry reads the dimmed beam, and a dilution is undone by multiplying by total volume over sample volume."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "A = −log T = εLc · neph = scattered at angle · turb = transmitted",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Chemiluminescence: no lamp · dilution factor = total ÷ sample",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: analyzers measure molecules through light — how much is absorbed, how much is scattered by particles, or how much is produced by a reaction. Scientific terms: transmittance, absorbance, Beer–Lambert law, molar absorptivity, path length, nephelometry, turbidimetry, fluorescence, excitation, chemiluminescence, acridinium ester, dilution factor.",
+    "why": "Absorbance scales linearly with concentration and path length, so a calibrated photometer converts light lost into concentration. Particles scatter light: a detector at an angle sees the scattered light grow, a detector in line sees the transmitted beam shrink. Chemiluminescent labels are driven by a reaction, so no excitation light reaches the detector.",
+    "measure": "T = I/I₀; A = −log₁₀ T; A = ε·L·c (Delgado 2022). Nephelometry at an angle (90° in Gross-Rother 2020) vs turbidimetry at ≈ 0°. Above-AMR results: dilute into range and multiply by the dilution factor (Lenicek Krleza 2019). Dilution factor = total volume ÷ sample volume; true = measured × factor (0.5 + 1.5 mL → ×4; 30 → 120 mg/dL).",
+    "differs": "Absorbance (dissolved molecules absorb) vs turbidimetry (particles scatter light out of the beam) vs nephelometry (scattered light measured directly); fluorescence (excitation light needed) vs chemiluminescence (reaction energy, no lamp).",
+    "examAngle": "Expect: convert %T to absorbance, pick nephelometry vs turbidimetry from a detector description, identify chemiluminescence by “no excitation source”, and calculate a dilution correction."
+  },
+  "comparisons": [
+    {
+      "id": "neph-vs-turb",
+      "title": "Nephelometry vs turbidimetry",
+      "left": {
+        "label": "Nephelometry",
+        "points": [
+          "Detector at an angle (e.g. 90°)",
+          "Measures scattered light"
+        ]
+      },
+      "right": {
+        "label": "Turbidimetry",
+        "points": [
+          "Detector in line (≈ 0°)",
+          "Measures the dimmed transmitted beam"
+        ]
+      },
+      "distinguisher": "Where the detector sits relative to the beam."
+    },
+    {
+      "id": "fl-vs-cl",
+      "title": "Fluorescence vs chemiluminescence",
+      "left": {
+        "label": "Fluorescence",
+        "points": [
+          "Excitation light required",
+          "Label absorbs, then emits"
+        ]
+      },
+      "right": {
+        "label": "Chemiluminescence",
+        "points": [
+          "Energy from a chemical reaction",
+          "No lamp; low background"
+        ]
+      },
+      "distinguisher": "Source of the excited state: light vs reaction."
+    }
+  ],
+  "mnemonic": {
+    "text": "Molecules EAT light (absorbance), particles BOUNCE it (neph to the side, turb straight on), labels GLOW (fluorescence needs a lamp; chemiluminescence makes its own).",
+    "explanation": "Sorts the detection principles by what happens to the light.",
+    "limitation": "Turbidity is read like absorbance; real samples can deviate from Beer–Lambert; detector angles vary by instrument."
+  },
+  "analogyLimitations": [
+    "Analyzer modules are invented.",
+    "Light-path and detector figures are schematic.",
+    "The dilution example is arithmetic."
+  ],
+  "takeaway": "Absorbance is minus the log of transmittance and rises in proportion to concentration and path length, nephelometry reads scattered light while turbidimetry reads the dimmed beam, and a dilution is undone by multiplying by total volume over sample volume.",
+  "questions": [
+    {
+      "id": "ops-photo-q1",
+      "stem": "A solution transmits 1% of the incident light. What is its absorbance?",
+      "options": [
+        {
+          "id": "a",
+          "text": "2.0",
+          "rationale": "Correct. A = −log₁₀(0.01) = 2."
+        },
+        {
+          "id": "b",
+          "text": "1.0",
+          "rationale": "Incorrect. That corresponds to 10% transmittance."
+        },
+        {
+          "id": "c",
+          "text": "0.01",
+          "rationale": "Incorrect. That is the transmittance as a fraction, not the absorbance."
+        },
+        {
+          "id": "d",
+          "text": "99",
+          "rationale": "Incorrect. Absorbance is logarithmic, not percent absorbed."
+        }
+      ],
+      "answer": "a",
+      "skill": "Transmittance–absorbance",
+      "difficulty": "calculation"
+    },
+    {
+      "id": "ops-photo-q2",
+      "stem": "An immunoassay detector sits at 90° to the light beam and measures light deflected by antigen–antibody complexes. Which method is this?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nephelometry",
+          "rationale": "Correct. Nephelometry measures scattered light at an angle to the beam."
+        },
+        {
+          "id": "b",
+          "text": "Turbidimetry",
+          "rationale": "Incorrect. Turbidimetry measures the transmitted beam in line with the source."
+        },
+        {
+          "id": "c",
+          "text": "Chemiluminescence",
+          "rationale": "Incorrect. Chemiluminescence measures light made by a reaction, without an incident beam."
+        },
+        {
+          "id": "d",
+          "text": "Absorbance photometry",
+          "rationale": "Incorrect. Absorbance photometry reads transmitted light through a solution, not scattered light."
+        }
+      ],
+      "answer": "a",
+      "skill": "Detection principle",
+      "difficulty": "recognition"
+    },
+    {
+      "id": "ops-photo-q3",
+      "stem": "A specimen is diluted with 0.2 mL serum plus 0.8 mL saline and reads 45 mg/dL. What result should be reported?",
+      "options": [
+        {
+          "id": "a",
+          "text": "225 mg/dL",
+          "rationale": "Correct. Total 1.0 mL ÷ 0.2 mL = factor 5; 45 × 5 = 225."
+        },
+        {
+          "id": "b",
+          "text": "180 mg/dL",
+          "rationale": "Incorrect. That uses diluent ÷ sample (0.8/0.2 = 4) instead of total ÷ sample."
+        },
+        {
+          "id": "c",
+          "text": "45 mg/dL",
+          "rationale": "Incorrect. The dilution must be corrected."
+        },
+        {
+          "id": "d",
+          "text": "9 mg/dL",
+          "rationale": "Incorrect. That divides by the factor instead of multiplying."
+        }
+      ],
+      "answer": "a",
+      "skill": "Dilution factor",
+      "difficulty": "calculation"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch4",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 4, How Analyzers Work (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 4,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            7,
+            10,
+            22,
+            24
+          ]
+        },
+        {
+          "chapter": 4,
+          "section": "Exam Traps",
+          "items": [
+            1
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "delgado2022",
+      "kind": "external",
+      "citation": "Delgado R. Misuse of Beer-Lambert Law and other calibration curves. R Soc Open Sci. 2022;9(2):211103.",
+      "doi": "10.1098/rsos.211103",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8808104/",
+      "consulted": true,
+      "usedFor": "T = I/I₀; A = −log₁₀ T; Beer–Lambert law A = εLc with path length in cm and concentration in mol/L (molar absorptivity)."
+    },
+    {
+      "id": "whitehead2017",
+      "kind": "external",
+      "citation": "Whitehead HD, Waldman JV, Wirth DM, LeBlanc G. 3D Printed UV-Visible Cuvette Adapter for Low-Cost and Versatile Spectroscopic Experiments. ACS Omega. 2017;2(9):6118-6122.",
+      "doi": "10.1021/acsomega.7b01310",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6644542/",
+      "consulted": true,
+      "usedFor": "Traditional cuvette interior path length 10 mm; cuvette material (plastic, glass, quartz) chosen for wavelength range and solvent compatibility."
+    },
+    {
+      "id": "grossrother2020",
+      "kind": "external",
+      "citation": "Gross-Rother J, Blech M, Preis E, Bakowsky U, Garidel P. Particle Detection and Characterization for Biopharmaceutical Applications: Current Principles of Established and Alternative Techniques. Pharmaceutics. 2020;12(11):1112.",
+      "doi": "10.3390/pharmaceutics12111112",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7699340/",
+      "consulted": true,
+      "usedFor": "Turbidimetry and nephelometry are simple, highly sensitive light-scattering techniques; nephelometry measures intensity at 90°; turbidimetry detects transmitted light around 0°."
+    },
+    {
+      "id": "heydari2023",
+      "kind": "external",
+      "citation": "Heydari M, Rezayi M, Ruscica M, et al. The ins and outs of lipoprotein(a) assay methods. Arch Med Sci Atheroscler Dis. 2023;8:e128-e139.",
+      "doi": "10.5114/amsad/176653",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10811544/",
+      "consulted": true,
+      "usedFor": "Immunonephelometric and immunoturbidimetric assays are used to measure lipoprotein(a)."
+    },
+    {
+      "id": "cinquanta2017",
+      "kind": "external",
+      "citation": "Cinquanta L, Fontana DE, Bizzaro N. Chemiluminescent immunoassay technology: what does it change in autoantibody detection? Auto Immun Highlights. 2017;8(1):9.",
+      "doi": "10.1007/s13317-017-0097-2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5483212/",
+      "consulted": true,
+      "usedFor": "Chemiluminescence uses exergonic chemical reactions to produce the excited state; direct labels acridinium and ruthenium esters; indirect ALP with AMPPD and HRP with luminol; low background emission in many CL systems."
+    },
+    {
+      "id": "lenicek2019",
+      "kind": "external",
+      "citation": "Lenicek Krleza J, Honovic L, Vlasic Tanaskovic J, et al. Post-analytical laboratory work: national recommendations from the Working Group for Post-analytics on behalf of the Croatian Society of Medical Biochemistry and Laboratory Medicine. Biochem Med (Zagreb). 2019;29(2):020502.",
+      "doi": "10.11613/BM.2019.020502",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6559616/",
+      "consulted": true,
+      "usedFor": "Analyzers are programmed with an AMR; results above its upper limit are diluted (auto or manual) and multiplied by the dilution factor; laboratories define the maximal permissible dilution. National (Croatian) recommendations."
+    },
+    {
+      "id": "mukhametova2026",
+      "kind": "external",
+      "citation": "Mukhametova LI, Eremin SA, Tsakalof AK. Disease Biomarker Detection Using Fluorescence Polarization Assays: Principles and Clinical Applications. Diagnostics (Basel). 2026;16(18):3050.",
+      "doi": "10.3390/diagnostics16183050",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13605484/",
+      "consulted": true,
+      "usedFor": "A fluorophore is excited by light at its absorption maximum, absorbs photons, and later emits fluorescence (excited-state lifetime typically 1–100 ns)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-beer",
+      "text": "T = I/I₀; A = −log₁₀ T; A = εLc; worked %T conversions (arithmetic).",
+      "status": "checked",
+      "refs": [
+        "delgado2022"
+      ]
+    },
+    {
+      "id": "cl-cuv",
+      "text": "Traditional cuvette path 10 mm; material chosen for wavelength range.",
+      "status": "checked",
+      "refs": [
+        "whitehead2017"
+      ]
+    },
+    {
+      "id": "cl-scat",
+      "text": "Nephelometry measures scattered light at an angle (90°); turbidimetry transmitted light (≈ 0°); clinical immuno-versions for Lp(a).",
+      "status": "checked",
+      "refs": [
+        "grossrother2020",
+        "heydari2023"
+      ]
+    },
+    {
+      "id": "cl-lum",
+      "text": "Fluorescence requires excitation light; chemiluminescence energy from a chemical reaction; labels; low background.",
+      "status": "checked",
+      "refs": [
+        "cinquanta2017",
+        "mukhametova2026"
+      ]
+    },
+    {
+      "id": "cl-dil",
+      "text": "Above-AMR results are diluted into range and multiplied by the dilution factor; factor = total ÷ sample volume (arithmetic).",
+      "status": "checked",
+      "refs": [
+        "lenicek2019"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "A < 2.0 linearity limit; glass/quartz 350 nm cut-off; 15–90° nephelometry range; PMT/filter figures; fluorescence vs phosphorescence lifetimes.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch4"
+      ],
+      "note": "Not taught as facts; no open source read for these figures."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Analyzer modules invented; light paths schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Eat, bounce, glow.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-neph-angle",
+      "issue": "The reviewer gives the nephelometry scatter angle as 15–90°; the source read (Gross-Rother 2020) describes 90°. Angles differ between instruments; the 15–90° range is not verified here.",
+      "kind": "method-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; light paths and detectors are schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked (Delgado 2022, Whitehead 2017, Gross-Rother 2020, Heydari 2023, Cinquanta 2017, Mukhametova 2026; dilution arithmetic); 1 pending (linearity limit, cuvette cut-off, angle range, detector figures). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-10"
+}
