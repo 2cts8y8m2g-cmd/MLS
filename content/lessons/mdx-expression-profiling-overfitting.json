@@ -1,0 +1,1475 @@
+{
+  "schemaVersion": 1,
+  "id": "mdx-expression-profiling-overfitting",
+  "title": "Expression Profiling and Overfitting: Training, Testing and Validation",
+  "summary": "Contrast relative microarray signals with counted SAGE tags, separate class prediction from class discovery, and see why gene-expression classifiers must be validated on data never used to build them.",
+  "domain": "p8-mdx",
+  "topic": "ch79",
+  "conceptIds": [
+    "ch79.hit1",
+    "ch79.hit2",
+    "ch79.hit3",
+    "ch79.hit4",
+    "ch79.trap1",
+    "ch79.trap4"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 79,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "chapter": 79,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          4
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 79 Hits 1–4 and Traps 1 and 4 (first lesson for Ch. 79). Checked against Simon 2003, McShane 2013 and Liu 2011. Not taught as fact: SAGE tag-size and enzyme details beyond NlaIII/17-bp LongSAGE (BsmFI, 256-bp spacing, microSAGE input), the probe/target naming convention (Hit 3), Human Genome Project figures, WES “~85%”, SELDI/MALDI, the Golub and DLBCL survival figures, 21-/70-gene assay details, HRM and xTAG (no open source read for these)."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Contrast relative (microarray) and counted (SAGE) expression measurement.",
+    "Distinguish class prediction (supervised) from class discovery (unsupervised clustering).",
+    "Explain overfitting and the validation steps that guard against it."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "A perfect signature",
+      "start": 0,
+      "end": 20,
+      "altText": "An invented sales sheet: “70-gene tumour signature predicts relapse with 100% accuracy!” Small print: 60 patients; 20,000 genes measured; accuracy calculated on the same 60 patients used to choose the genes. The laboratory director asks: “Should we offer it?” Question token: “What does 100% on the development data really prove?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A company offers a 70-gene tumour signature that predicts relapse with 100 percent accuracy."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The small print: 60 patients, 20,000 genes measured, and the accuracy was calculated on the same 60 patients used to pick the genes."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "What does 100 percent on the development data really prove?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "ad",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 170,
+            "tone": "good",
+            "title": "“100% accurate!”",
+            "lines": [
+              "70-gene relapse signature"
+            ],
+            "highlight": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fine",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 200,
+            "tone": "warn",
+            "title": "Small print",
+            "lines": [
+              "60 patients",
+              "20,000 genes",
+              "Tested on the same 60"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8,
+              "reveal": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 640,
+            "label": "What does 100% on development data prove?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 480,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Measuring expression: relative vs counted",
+      "start": 20,
+      "end": 60,
+      "altText": "Two schematic panels (Liu 2011). Microarray: pre-designed probes for selected genes on a solid support; hybridization signal measures each gene’s expression RELATIVE to a reference sample. SAGE (serial analysis of gene expression): short sequence tags are cut from each transcript (NlaIII as the anchoring enzyme; 17-bp tags in LongSAGE), sequenced and COUNTED — a direct measurement that needs no reference sample and can detect novel transcripts without prior knowledge of the sequence.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "There are two classic ways to profile gene expression. A microarray carries pre-designed probes for selected genes."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Labelled sample binds the probes, and the signal tells you each gene’s expression relative to a reference sample, not an absolute count."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 52,
+          "text": "Serial analysis of gene expression, or SAGE, cuts a short tag from each transcript, for example with the anchoring enzyme NlaIII, then sequences and counts the tags."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "Counting is a direct measurement: no reference sample is needed, and new transcripts can be found without knowing their sequence in advance."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ma",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 220,
+            "tone": "b",
+            "title": "Microarray (schematic)",
+            "lines": [
+              "Pre-designed probes",
+              "Hybridization signal",
+              "Relative to a reference"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "sg",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 220,
+            "tone": "a",
+            "title": "SAGE (schematic)",
+            "lines": [
+              "Tags cut (NlaIII anchor)",
+              "Sequenced and counted",
+              "No reference · finds novel"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34,
+              "highlight": 1
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "k",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 480,
+            "w": 640,
+            "label": "Array = relative · SAGE = counted",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 37.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Prediction, discovery, and overfitting",
+      "start": 60,
+      "end": 104,
+      "altText": "Goal card (Simon 2003): class PREDICTION — classes are defined in advance, independently of the expression data, and a model learns to assign new samples (supervised); class DISCOVERY — no classes are predefined; cluster analysis groups samples by the distances between their profiles (unsupervised; e.g. Alizadeh 2000 in diffuse large B-cell lymphoma). Cluster analysis is generally not appropriate for class prediction. Overfitting card (McShane 2013; Simon 2003): with far more genes than patients, a model can describe random error or noise instead of the real relationship; including many noise variables reduces accuracy; a model nearly always fits its own development data better than independent data, and many omics predictors fail on a truly independent data set.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "Expression studies have different goals. In class prediction, the groups, such as relapse or no relapse, are defined in advance, and a supervised model learns to assign new samples."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 80,
+          "text": "In class discovery, no groups are defined. Unsupervised cluster analysis looks for new subsets, as was done for diffuse large B-cell lymphoma. Clustering is not the right tool for building a predictor."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 92,
+          "text": "Now the danger. With 20,000 genes and 60 patients, a model can fit random noise instead of the real biology. That is overfitting."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "An overfitted model looks excellent on the data used to build it and fails on new patients. Many published omics predictors have failed this way on truly independent data."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pred",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Class prediction (supervised)",
+            "lines": [
+              "Classes defined in advance",
+              "Model assigns new samples"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "disc",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 370,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Class discovery (unsupervised)",
+            "lines": [
+              "No predefined classes",
+              "Cluster analysis (e.g. DLBCL)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            },
+            {
+              "t": 19,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "of",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 260,
+            "w": 420,
+            "h": 230,
+            "tone": "bad",
+            "title": "Overfitting",
+            "lines": [
+              "Genes ≫ patients",
+              "Model fits noise",
+              "Fails on independent data"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            },
+            {
+              "t": 41,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "How a predictor earns trust",
+      "start": 104,
+      "end": 144,
+      "altText": "Bias card (Simon 2003): in a published breast-cancer study, error estimated with gene selection done OUTSIDE the cross-validation loop was 27% (12/44) versus 41% (18/44) when done properly — a seriously biased underestimate from overfitting. McShane 2013: a resubstitution estimate (plugging the development data back in) is biased. Validation card (Simon 2003; McShane 2013): split-sample — a training set builds the model and a separate test set, never used in development, estimates accuracy (e.g. two-thirds training in a lymphoma study); leave-one-out cross-validation repeats the WHOLE model building, including gene selection, with each sample left out in turn; then the predictor, its pre-processing and cut-points are locked down before final validation on independent data. Hook answer: 100% on the development data proves little — require locked-down, independent validation.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Testing on the development data hides the problem. In one published study, doing gene selection outside the cross-validation gave a 27 percent error rate; doing it properly gave 41 percent."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "The fix is to keep data apart. Build the model on a training set, and estimate accuracy only on a separate test set that played no part in development."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Cross-validation is an alternative, but every step, including choosing the genes, must be repeated with each left-out sample."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Finally, lock down the assay and algorithm, and validate on independent patients. So 100 percent on the development data proves little."
+        }
+      ],
+      "objects": [
+        {
+          "id": "bias",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 170,
+            "tone": "bad",
+            "title": "Biased vs proper (Simon 2003)",
+            "lines": [
+              "Selection outside CV: 27% error",
+              "Proper CV: 41% error"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "highlight": 1
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "split",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 200,
+            "tone": "b",
+            "title": "Keep data apart",
+            "lines": [
+              "Training set builds model",
+              "Test set never used to build",
+              "CV: redo gene selection each fold"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "lock",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 430,
+            "w": 700,
+            "label": "Lock down → validate on independent patients",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 500,
+            "w": 780,
+            "label": "Hook: 100% on development data proves little",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 37.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Microarrays give absolute transcript counts” (✓ relative to a reference sample; SAGE counts tags); “Use cluster analysis to build a relapse predictor” (✓ clustering is for class discovery; prediction uses supervised methods with predefined classes); “100% accuracy on the development set means the test is ready” (✓ resubstitution estimates are biased — independent validation of a locked-down predictor is required).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: microarrays give absolute transcript counts. No: they measure expression relative to a reference. SAGE counts tags."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: use cluster analysis to build a relapse predictor. No: clustering is for class discovery; prediction needs supervised methods and predefined classes."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: 100 percent accuracy on the development set means the test is ready. No: that estimate is biased. Lock it down and validate on independent patients."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Microarrays give absolute counts.”",
+            "lines": [
+              "✓ Relative to reference · SAGE counts tags"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Cluster to build a predictor.”",
+            "lines": [
+              "✓ Clustering = discovery · prediction = supervised"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “100% on development data = ready.”",
+            "lines": [
+              "✓ Biased — validate independently"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "The test set never sees training",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Studying from the answer key: a student who memorizes this year’s exam scores 100% on it and fails next year’s. The test set must never see training — not even to pick the genes.” Tokens: Train → Test → Lock → Independent. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: an overfitted model is a student who memorized this year’s exam. Perfect on that paper, lost on next year’s. The test set must never see training, not even to choose the genes."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: a model can also fail for real biological or technical reasons, like a different patient population or assay drift, even when the statistics were done properly; and cross-validation within one cohort is still not independent validation."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "The test set never sees training",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Train → Test",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Lock down",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Independent cohort",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Population or assay changes also break models",
+              "CV in one cohort ≠ independent validation",
+              "Overfitting is statistical, not memorization"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Microarray = relative to reference · SAGE = counted tags · prediction = supervised · discovery = clustering”, “Genes ≫ patients → overfitting: never test on training data; lock down, then validate on independent patients”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "With thousands of genes and few patients a classifier can fit noise, so its accuracy must come from samples never used to build it, ideally from independent patients after the predictor is locked down."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Array relative · SAGE counted · prediction supervised · discovery clusters",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Genes ≫ patients → overfitting: lock down, validate independently",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: when a test uses thousands of genes but only a few dozen patients, it can “learn” chance patterns, so its accuracy must be checked on patients it has never seen. Scientific terms: microarray, reference sample, SAGE, tag counting, class prediction, class discovery, supervised and unsupervised methods, cluster analysis, overfitting, noise variables, resubstitution, split-sample validation, leave-one-out cross-validation, locked-down predictor, independent validation.",
+    "why": "Each extra gene is another chance to match random noise in a small sample. Testing on the same data used to select genes and fit the model rewards that noise; only data kept completely apart reveals how the model will perform on future patients.",
+    "measure": "Microarray: expression relative to a reference; SAGE: counted tags (Liu 2011). Accuracy: split-sample training/test or cross-validation with gene selection repeated in each loop (Simon 2003); lock down and validate on independent data (McShane 2013). Example: improper CV 27% vs proper 41% error (Simon 2003).",
+    "differs": "Class prediction (predefined classes, supervised) vs class discovery (no predefined classes, clustering); resubstitution or improper CV (biased) vs split-sample/proper CV and independent validation.",
+    "examAngle": "Expect: recognize overfitting from a small-sample, many-gene story; choose supervised vs unsupervised methods; know microarrays are relative while SAGE counts."
+  },
+  "comparisons": [
+    {
+      "id": "pred-vs-disc",
+      "title": "Class prediction vs class discovery",
+      "left": {
+        "label": "Prediction",
+        "points": [
+          "Classes defined in advance",
+          "Supervised model assigns new samples"
+        ]
+      },
+      "right": {
+        "label": "Discovery",
+        "points": [
+          "No predefined classes",
+          "Unsupervised clustering finds subsets"
+        ]
+      },
+      "distinguisher": "Whether class labels are used to build the model."
+    },
+    {
+      "id": "array-vs-sage",
+      "title": "Microarray vs SAGE",
+      "left": {
+        "label": "Microarray",
+        "points": [
+          "Pre-designed probes",
+          "Relative to a reference sample"
+        ]
+      },
+      "right": {
+        "label": "SAGE",
+        "points": [
+          "Tags sequenced and counted",
+          "No reference; finds novel transcripts"
+        ]
+      },
+      "distinguisher": "Relative hybridization signal vs direct tag counts."
+    }
+  ],
+  "mnemonic": {
+    "text": "Studying from the answer key: a student who memorizes this year’s exam scores 100% on it and fails next year’s. The test set must never see training — not even to pick the genes.",
+    "explanation": "Overfitting rewards memorized noise; only unseen data shows true performance.",
+    "limitation": "Models also fail from population or assay changes; cross-validation in one cohort is not independent validation; overfitting is statistical, not literal memorization."
+  },
+  "analogyLimitations": [
+    "The signature and company are invented.",
+    "Panels are schematic.",
+    "The 27% vs 41% example is from one published study."
+  ],
+  "takeaway": "With thousands of genes and few patients a classifier can fit noise, so its accuracy must come from samples never used to build it, ideally from independent patients after the predictor is locked down.",
+  "questions": [
+    {
+      "id": "mdx-ovf-q1",
+      "stem": "A 40-gene classifier built from 50 patients is 98% accurate when re-applied to those same 50 patients but 60% accurate in a new hospital. What best explains this?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Overfitting to noise in the small development set",
+          "rationale": "Correct. With many genes and few patients the model fit chance patterns; resubstitution accuracy is biased."
+        },
+        {
+          "id": "b",
+          "text": "The new hospital used class discovery",
+          "rationale": "Incorrect. The model is a class predictor; the drop reflects overfitting, not the analysis type at the new site."
+        },
+        {
+          "id": "c",
+          "text": "Microarrays give absolute counts that vary by hospital",
+          "rationale": "Incorrect. Microarrays measure relative expression, and the core problem is the biased development estimate."
+        },
+        {
+          "id": "d",
+          "text": "The model needs more genes",
+          "rationale": "Incorrect. Adding noise variables generally reduces prediction accuracy."
+        }
+      ],
+      "answer": "a",
+      "skill": "Overfitting",
+      "difficulty": "application"
+    },
+    {
+      "id": "mdx-ovf-q2",
+      "stem": "Investigators want to know whether tumours with identical microscopic appearance fall into previously unrecognized molecular groups. Which approach fits?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Unsupervised cluster analysis (class discovery)",
+          "rationale": "Correct. No classes are predefined; clustering groups samples by profile similarity."
+        },
+        {
+          "id": "b",
+          "text": "A supervised classifier trained on known outcomes",
+          "rationale": "Incorrect. Supervised methods need predefined classes; this is class prediction."
+        },
+        {
+          "id": "c",
+          "text": "Leave-one-out cross-validation alone",
+          "rationale": "Incorrect. Cross-validation estimates prediction accuracy; it does not discover groups."
+        },
+        {
+          "id": "d",
+          "text": "Resubstitution",
+          "rationale": "Incorrect. Resubstitution is a (biased) way to estimate accuracy, not a discovery method."
+        }
+      ],
+      "answer": "a",
+      "skill": "Supervised vs unsupervised",
+      "difficulty": "recognition"
+    },
+    {
+      "id": "mdx-ovf-q3",
+      "stem": "During leave-one-out cross-validation of a gene-expression predictor, when should the genes be selected?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Afresh within each loop, using only the samples left in the training set",
+          "rationale": "Correct. Simon 2003: the whole model, including gene selection, is rebuilt each time; selecting genes beforehand biases error estimates."
+        },
+        {
+          "id": "b",
+          "text": "Once, using all samples, before cross-validation starts",
+          "rationale": "Incorrect. This lets the left-out samples influence the model; in one study it gave 27% vs a proper 41% error."
+        },
+        {
+          "id": "c",
+          "text": "After testing, choosing the genes that predicted best",
+          "rationale": "Incorrect. Choosing genes after seeing test results is overfitting to the test set."
+        },
+        {
+          "id": "d",
+          "text": "Gene selection is unnecessary in cross-validation",
+          "rationale": "Incorrect. Selection is part of model building and must be repeated in each loop."
+        }
+      ],
+      "answer": "a",
+      "skill": "Validation design",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch79",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 79, Genomics and Big-Data Lab Tech (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 79,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "chapter": 79,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "simon2003",
+      "kind": "external",
+      "citation": "Simon R. Diagnostic and prognostic prediction using gene expression profiles in high-dimensional microarray data. Br J Cancer. 2003;89(9):1599-1604.",
+      "doi": "10.1038/sj.bjc.6601326",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2394420/",
+      "consulted": true,
+      "usedFor": "Class comparison/prediction/discovery definitions; cluster analysis is unsupervised, useful for discovery, generally not for prediction (Alizadeh 2000 DLBCL as discovery example); noise variables reduce accuracy; split-sample training/test (test samples never used in development; Rosenwald two-thirds training); LOOCV rebuilding the model each time; improper vs proper CV 27% (12/44) vs 41% (18/44)."
+    },
+    {
+      "id": "mcshane2013",
+      "kind": "external",
+      "citation": "McShane LM, Cavenagh MM, Lively TG, et al. Criteria for the use of omics-based predictors in clinical trials: explanation and elaboration. BMC Med. 2013;11:220.",
+      "doi": "10.1186/1741-7015-11-220",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3852338/",
+      "consulted": true,
+      "usedFor": "Overfitting definition (model describes random error/noise); predictors nearly always fit development data better than independent data; many fail on truly independent data; resubstitution estimates biased; lock down algorithm, pre-processing and cut-points before final validation."
+    },
+    {
+      "id": "liu2011",
+      "kind": "external",
+      "citation": "Liu Y, Munro D, Layfield D, et al. Serial analysis of gene expression (SAGE) in normal human trabecular meshwork. Mol Vis. 2011;17:885-893.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3081805/",
+      "consulted": true,
+      "usedFor": "SAGE: direct measurement of transcripts, no reference sample, detects novel transcripts; NlaIII anchoring enzyme; 17-bp LongSAGE tags counted; microarrays use pre-designed probes and measure expression relative to a reference sample."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-meas",
+      "text": "Microarray relative to reference; SAGE counted tags, NlaIII, 17-bp LongSAGE.",
+      "status": "checked",
+      "refs": [
+        "liu2011"
+      ]
+    },
+    {
+      "id": "cl-goals",
+      "text": "Class prediction (supervised) vs class discovery (unsupervised clustering); clustering not for prediction.",
+      "status": "checked",
+      "refs": [
+        "simon2003"
+      ]
+    },
+    {
+      "id": "cl-ovf",
+      "text": "Overfitting definition; resubstitution bias; failure on independent data; noise variables.",
+      "status": "checked",
+      "refs": [
+        "mcshane2013",
+        "simon2003"
+      ]
+    },
+    {
+      "id": "cl-val",
+      "text": "Split-sample and LOOCV with gene selection in each loop; 27% vs 41% example; lock down then validate independently.",
+      "status": "checked",
+      "refs": [
+        "simon2003",
+        "mcshane2013"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "BsmFI tagging enzyme, ~256-bp NlaIII spacing, microSAGE input; probe/target naming; HGP figures; WES ~85%; SELDI/MALDI; Golub and DLBCL figures; 21-/70-gene assays; HRM, xTAG.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch79"
+      ],
+      "note": "Not taught as facts; no open source read for these."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Company and signature invented; panels schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Studying from the answer key.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; assay panels and data splits are schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against Simon 2003, McShane 2013 and Liu 2011; 1 pending (SAGE enzyme details, probe/target naming, HGP, WES, proteomics, named classifier figures). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-10"
+}
