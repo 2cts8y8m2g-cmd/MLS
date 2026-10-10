@@ -106,6 +106,8 @@ FLAG_RULES = [
      'CDC 2014: HIV-1 RNA (by NAT) is detectable about 4–10 days before p24 antigen. Among the options offered here p24 is still the earliest, so the answer stands; the explanation overstates it.'),
     ('rv-calcium-ref-albumin', r'4\.4 ?[-−–] ?\d|outdated Payne',
      'Open sources (Desgagnés 2025; Mirrakhimov 2015) give the commonly used simplified formula with a 4.0 g/dL reference albumin, not 4.4; with 4.0 this example gives 8.4 + 0.8 × 2.0 = 10.0 mg/dL (still normal). Laboratories may use local formulas; ionized calcium is preferred.'),
+    ('rv-oncoprotein-spec', r'Oncoprotein assays have 95–100% specificity',
+     'Specificity is marker-specific: the NMP22 BladderChek test had pooled specificity 88% (Wang 2017), so a positive marker needs confirmation (e.g. cystoscopy). Answer (c) is still the best choice here: a positive does not name the tissue of origin, but “strongly implied” overstates it.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
