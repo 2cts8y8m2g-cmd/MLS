@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 93 flags: 69 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 94 flags: 70 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -86,6 +86,7 @@ Verified:
 - **Ch. 76 Hit 1:** blanket “95–100% specificity” for oncoprotein assays (NMP22 BladderChek pooled specificity 88%).
 - **Ch. 76 Hit 4:** KRAS “~75% of colon cancers” (Simanshu 2017 Table 1: 42%).
 - **Ch. 73 Hit 7 / Trap 2:** “ACE inhibition is a risk factor for AD” (observational evidence only; RCT meta-analysis non-significant — Belachew 2025).
+- **Ch. 50 Hit 4:** positive CDC crossmatch called an “absolute contraindication” (DTT-negative IgM/autoreactive positives are standard risk; lupus false positives — Althaf 2017).
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -120,7 +121,7 @@ Automated scan: **23** dated-guideline statements and **134** High-Yield Hits wi
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 44 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 45 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
@@ -180,6 +181,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Expression Profiling and Overfitting (Ch. 79):** 1 pending claim (SAGE enzyme details, probe/target naming, HGP and WES figures, SELDI/MALDI, named classifier figures, HRM/xTAG; not taught); no open lesson flags; no register flags.
 - **Immunoglobulin Classes and Newborn Serology (Ch. 47):** 1 pending claim (molecular weights/S values, placental transfer timing, IgE carbohydrate, numeric serum ranges, “strongest” complement activator; not taught); no open lesson flags; no register flags.
 - **Complement Workup: CH50/AH50 and HAE (Ch. 48):** 1 pending claim (assay erythrocytes, IgG4, SLE C3/C4 patterns, HAE cut-offs, C3NeF, PNH, MBL figures; not taught); no open lesson flags; no register flags. The AH50-only pattern is derived from the pathway map (Merle 2015), not from a cited case.
+- **HLA and the Transplant Crossmatch (Ch. 50):** 1 pending claim (peptide lengths, β2M chromosome, sibling inheritance, allele counts, graft survival, HCT matching, typing methods; not taught); 1 open lesson flag (f-cdc-absolute); register flag rv-cdc-absolute.
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.

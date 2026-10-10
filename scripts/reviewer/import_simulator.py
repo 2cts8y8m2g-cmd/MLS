@@ -110,6 +110,8 @@ FLAG_RULES = [
      'Specificity is marker-specific: the NMP22 BladderChek test had pooled specificity 88% (Wang 2017), so a positive marker needs confirmation (e.g. cystoscopy). Answer (c) is still the best choice here: a positive does not name the tissue of origin, but “strongly implied” overstates it.'),
     ('rv-ace-ad', r'ACE inhibition is a risk factor',
      'The explanation’s added claim that ACE inhibition is a risk factor for AD is not established: a 2025 meta-analysis found only observational support and a non-significant RCT comparison (Belachew 2025). The ACE Aβ42→Aβ40 claims in this question were not verified by the app.'),
+    ('rv-cdc-absolute', r'an absolute contraindication to renal transplantation',
+     'For an IgG donor-specific HLA antibody this is the classic answer. But not every positive CDC crossmatch is a veto: positives that disappear with DTT (IgM, often autoreactive) are standard risk, and lupus immune complexes can cause false-positive B-cell results (Althaf 2017). Check antibody class and specificity.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
