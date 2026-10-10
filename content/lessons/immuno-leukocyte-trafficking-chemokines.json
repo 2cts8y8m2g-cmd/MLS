@@ -1,0 +1,1555 @@
+{
+  "schemaVersion": 1,
+  "id": "immuno-leukocyte-trafficking-chemokines",
+  "title": "Leukocyte Trafficking: Adhesion Cascade, LAD-I and Chemokine Receptors",
+  "summary": "Follow a neutrophil from rolling to transmigration, see why missing CD18 in LAD-I causes leukocytosis, and use chemokine receptors in the lab: HIV tropism before maraviroc, CXCR4 blockade for stem-cell mobilization, and Duffy-null neutrophil counts.",
+  "domain": "p6-immuno",
+  "topic": "ch49",
+  "conceptIds": [
+    "ch49.hit1",
+    "ch49.hit2",
+    "ch49.hit5",
+    "ch49.hit6",
+    "ch49.hit13",
+    "ch49.hit14",
+    "ch49.trap4",
+    "ch49.trap6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 49,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          2,
+          5,
+          6,
+          13,
+          14
+        ]
+      },
+      {
+        "chapter": 49,
+        "section": "Exam Traps",
+        "items": [
+          4,
+          6
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 49 Hits 1, 2, 5, 6, 13 and 14 and Traps 4 and 6 (first lesson for Ch. 49). Checked against Shahraki 2026, Bondarenko 2023, Iqbal 2026, Yang 2019 and Barouqa 2026. Not taught as fact: chemokine cysteine-spacing classes and receptor naming (Hits 3–4), TNF-inhibitor and MS, natalizumab/vedolizumab PML, GPIIb/IIIa blockers, anakinra/tocilizumab/denosumab, asthma biologics, cytokines and RANKL, “Duffy binds ~20 chemokines”, bioassay vs ELISA, soluble P-selectin."
+  },
+  "prerequisites": [
+    "ch52.hit1"
+  ],
+  "objectives": [
+    "Order the steps of the leukocyte adhesion cascade and name the molecules involved.",
+    "Explain why LAD-I causes leukocytosis and how flow cytometry confirms it.",
+    "Apply chemokine-receptor knowledge to HIV tropism testing, stem-cell mobilization and Duffy-null neutrophil counts."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Too many neutrophils, too few in the tissue",
+      "start": 0,
+      "end": 20,
+      "altText": "Two invented CBCs. (1) A 9-month-old with recurrent skin infections, slow-healing ulcers: WBC 22 × 10³/µL with neutrophilia. (2) A healthy adult blood donor: ANC 1.2 × 10³/µL, flagged “neutropenia”; red cells type Fy(a−b−). Question token: “Why does one patient have neutrophils that cannot leave the blood — and is the other really neutropenic?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A 9-month-old has recurrent skin infections and ulcers that will not heal, yet the white count is 22 thousand, mostly neutrophils."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "A healthy blood donor has a neutrophil count of 1.2 thousand, flagged as neutropenia, and red cells that type Duffy-null."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Why can the baby’s neutrophils not reach the infection, and is the donor really neutropenic?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "baby",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 180,
+            "tone": "bad",
+            "title": "Infant",
+            "lines": [
+              "Recurrent infections, poor healing",
+              "WBC 22 × 10³/µL (neutrophilia)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "donor",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 180,
+            "tone": "b",
+            "title": "Donor",
+            "lines": [
+              "ANC 1.2 × 10³/µL",
+              "Fy(a−b−)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8,
+              "reveal": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 12,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 640,
+            "label": "Stuck in the blood? Really neutropenic?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The leukocyte adhesion cascade",
+      "start": 20,
+      "end": 60,
+      "altText": "Cascade strip (Shahraki 2026; schematic, not to scale): (1) selectin-dependent TETHERING and ROLLING along activated endothelium; (2) CHEMOKINE-triggered integrin activation; (3) FIRM ARREST via integrins binding endothelial ligands such as ICAM-1 and VCAM-1; (4) intraluminal crawling; (5) TRANSENDOTHELIAL MIGRATION. Integrin card: β2 integrins share the CD18 chain — LFA-1 (αLβ2, CD11a/CD18), Mac-1 (αMβ2, CD11b/CD18), CR4 (CD11c/CD18); VLA-4 (α4β1) is a complementary β1 integrin.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "To reach an infection, a white cell must leave the bloodstream. First, selectins let it tether and roll along the inflamed vessel wall."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Chemokines on the endothelium then switch on the cell’s integrins."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Activated integrins grip endothelial ligands such as ICAM-1 and VCAM-1, and the cell stops: firm arrest. It crawls, then squeezes between endothelial cells into the tissue."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "The beta-2 integrins, LFA-1, Mac-1 and CR4, all share one chain: CD18."
+        }
+      ],
+      "objects": [
+        {
+          "id": "roll",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 180,
+            "w": 270,
+            "h": 140,
+            "tone": "b",
+            "title": "1 Roll",
+            "lines": [
+              "Selectins"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "act",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 270,
+            "h": 140,
+            "tone": "a",
+            "title": "2 Activate",
+            "lines": [
+              "Chemokines → integrins"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "arrest",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 180,
+            "w": 270,
+            "h": 140,
+            "tone": "warn",
+            "title": "3–5 Arrest → exit",
+            "lines": [
+              "Integrins + ICAM-1/VCAM-1",
+              "Crawl · transmigrate"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "highlight": 1
+            },
+            {
+              "t": 27,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 700,
+            "h": 150,
+            "tone": "good",
+            "title": "β2 integrins share CD18",
+            "lines": [
+              "LFA-1 CD11a/CD18",
+              "Mac-1 CD11b/CD18",
+              "CR4 CD11c/CD18"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "highlight": 1
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "When neutrophils cannot leave",
+      "start": 60,
+      "end": 104,
+      "altText": "LAD-I card (Bondarenko 2023): leukocyte adhesion deficiency type I is a rare autosomal recessive disorder caused by ITGB2 mutations in the CD18 β2-integrin subunit; patients often have delayed separation of the umbilical cord, poor wound healing, LEUKOCYTOSIS, recurrent bacterial and fungal infections and periodontitis, because neutrophil migration is impaired. Severity by CD18 expression on neutrophils: severe < 2%, moderate 2–30%, mild > 30%. Case example (Bondarenko 2023): episodes of infection with leukocytosis of 17,000–25,000/mm³; flow cytometry showed absent CD18/CD11b on granulocytes, establishing the diagnosis.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "In leukocyte adhesion deficiency type one, the CD18 chain is faulty, inherited as an autosomal recessive trait."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 82,
+          "text": "Without beta-2 integrins, neutrophils roll but cannot arrest and exit. They pile up in the blood, so the white count is high, while infections go uncontrolled in the tissues."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "Typical clues are delayed umbilical cord separation, poor wound healing, recurrent bacterial and fungal infections, and gum disease."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "The laboratory confirms it with flow cytometry: CD18 and CD11b are missing or reduced on neutrophils. Below 2 percent expression is severe; above 30 percent is mild."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lad",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "bad",
+            "title": "LAD-I (ITGB2 / CD18)",
+            "lines": [
+              "Autosomal recessive",
+              "No firm arrest → no exit",
+              "Leukocytosis + tissue infections"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "clue",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 490,
+            "w": 440,
+            "label": "Late cord separation · poor healing",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "flow",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 420,
+            "h": 210,
+            "tone": "good",
+            "title": "Flow cytometry",
+            "lines": [
+              "CD18 / CD11b on neutrophils",
+              "< 2% severe · 2–30% moderate",
+              "> 30% mild"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0
+            },
+            {
+              "t": 35,
+              "reveal": 0
+            },
+            {
+              "t": 35.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 42,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Chemokine receptors in the laboratory",
+      "start": 104,
+      "end": 144,
+      "altText": "CCR5 card (Iqbal 2026): CCR5 is a G-protein-coupled chemokine receptor on CD4⁺ T cells, monocytes, macrophages and NK cells and the principal co-receptor for R5-tropic HIV-1; maraviroc, the only FDA-approved small-molecule CCR5 antagonist, requires a phenotypic or genotypic TROPISM test confirming exclusively CCR5-tropic virus before use, because it is ineffective against X4- or dual/mixed-tropic virus. CXCR4 card (Yang 2019): plerixafor reversibly binds CXCR4, blocking its interaction with SDF-1α (CXCL12) and mobilizing stem cells from marrow to blood; with G-CSF it is used to collect stem cells for autologous transplant in non-Hodgkin lymphoma and multiple myeloma. Duffy card (Barouqa 2026): the Duffy antigen (ACKR1) is a transmembrane chemokine receptor on RBCs and other tissues and is relevant to Plasmodium vivax; the Duffy-null phenotype Fy(a−b−) is associated with lower baseline WBC and ANC with a benign course; derived 95% reference interval ANC 1.01–4.34 × 10³/µL. Hook answers: infant — suspect LAD-I, order CD18/CD11 flow; donor — consistent with Duffy-null-associated neutrophil count, not necessarily disease.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Chemokine receptors also matter at the bench. CCR5 is the main HIV co-receptor; before maraviroc, the lab must show the virus uses only CCR5, because the drug fails against CXCR4-using virus."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Plerixafor blocks CXCR4, freeing stem cells from the marrow. With G-CSF it is used to collect stem cells for transplant in lymphoma and myeloma."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 136,
+          "text": "The Duffy blood-group antigen is itself a chemokine receptor. Duffy-null people have lower baseline white and neutrophil counts with a benign course; one study derived a neutrophil interval down to about 1.0 thousand."
+        },
+        {
+          "id": "l4",
+          "start": 136,
+          "end": 144,
+          "text": "So: test the infant for CD18 by flow cytometry. The donor’s count fits a Duffy-null-associated neutrophil count rather than disease."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ccr5",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 180,
+            "tone": "b",
+            "title": "CCR5 · maraviroc",
+            "lines": [
+              "Main HIV-1 co-receptor",
+              "Tropism test first",
+              "Fails on X4 / dual-mixed"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "highlight": 1
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "cxcr4",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 410,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "CXCR4 · plerixafor",
+            "lines": [
+              "Blocks SDF-1α → mobilizes CD34⁺",
+              "+ G-CSF in NHL, myeloma"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "duffy",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 420,
+            "h": 230,
+            "tone": "warn",
+            "title": "Duffy (ACKR1)",
+            "lines": [
+              "RBC chemokine receptor · P. vivax",
+              "Fy(a−b−): lower WBC/ANC, benign",
+              "ANC RI 1.01–4.34 × 10³/µL"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 520,
+            "w": 420,
+            "label": "Hook: CD18 flow · Duffy-null count",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “LAD-I shows neutropenia because neutrophils are defective” (✓ leukocytosis — cells cannot leave the blood); “Maraviroc and plerixafor block the same receptor” (✓ maraviroc = CCR5 (HIV entry, tropism test first); plerixafor = CXCR4 (stem-cell mobilization)); “Every ANC below the standard cut-off is pathological neutropenia” (✓ Duffy-null individuals have lower baseline counts with a benign course — consider phenotype-specific intervals).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: LAD-I shows neutropenia. No: neutrophils cannot leave the blood, so the count is high."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: maraviroc and plerixafor block the same receptor. No: maraviroc blocks CCR5 for HIV, after a tropism test; plerixafor blocks CXCR4 to mobilize stem cells."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: every neutrophil count below the usual cut-off is disease. No: Duffy-null people have lower baseline counts with a benign course."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “LAD-I = neutropenia.”",
+            "lines": [
+              "✓ Leukocytosis — cells can’t exit"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Maraviroc = plerixafor target.”",
+            "lines": [
+              "✓ CCR5 (HIV) vs CXCR4 (mobilization)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Low ANC is always disease.”",
+            "lines": [
+              "✓ Duffy-null: lower baseline, benign"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Roll, grip, go",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “SELECTINS let the cell ROLL; chemokines say GRIP; INTEGRINS (CD18) hold on; then GO through the wall. No CD18, no grip — cells crowd the bloodstream.” Tokens: selectin = roll · integrin = grip · CD18 missing = leukocytosis · CCR5 ≠ CXCR4. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: selectins let the cell roll, chemokines say grip, integrins with CD18 hold on, and then the cell goes through the wall. No CD18, no grip, so cells crowd the bloodstream."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: recruitment is not a rigid sequence, and the molecules used differ between leukocyte types and vessels; partial CD18 expression gives milder disease; and one person can carry virus that uses CXCR4 as well as CCR5."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Roll · grip · go",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Selectin = roll",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Integrin (CD18) = grip",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "CCR5 ≠ CXCR4",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Not a rigid sequence; varies by cell/vessel",
+              "Partial CD18 → milder LAD-I",
+              "Dual/mixed-tropic HIV exists"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Roll (selectins) → chemokine activation → arrest (β2 integrins/CD18) → transmigration · LAD-I: CD18 ↓ on flow, leukocytosis”, “CCR5/maraviroc needs tropism test · CXCR4/plerixafor mobilizes CD34⁺ · Duffy (ACKR1)-null: lower benign ANC”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Leukocytes leave the blood by selectin rolling, chemokine-triggered integrin arrest and transmigration, so missing CD18 in LAD-I causes leukocytosis with tissue infections, while chemokine receptors such as CCR5, CXCR4 and Duffy shape HIV drug choice, stem-cell collection and neutrophil reference ranges."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Roll → activate → arrest (CD18) → exit · LAD-I: CD18 ↓, leukocytosis",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "CCR5 → tropism test · CXCR4 → mobilization · Duffy-null → lower benign ANC",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: white cells leave the blood in steps — rolling, gripping, then squeezing out — and if the “grip” protein is missing, they stay stuck in the blood. Some chemokine receptors also matter for HIV treatment, stem-cell collection and normal neutrophil counts. Scientific terms: selectins, chemokines, integrins, CD18 (β2 integrin), LFA-1, Mac-1, ICAM-1, VCAM-1, transendothelial migration, LAD-I, ITGB2, CCR5, CXCR4, SDF-1α/CXCL12, HIV tropism, maraviroc, plerixafor, Duffy/ACKR1, Fy(a−b−).",
+    "why": "Selectins slow cells, chemokines activate integrins, and β2 integrins (sharing CD18) bind endothelial ligands to stop the cell before it migrates. Without CD18, neutrophils cannot arrest and exit, so they accumulate in blood while tissues go undefended. HIV must use a co-receptor; a CCR5 blocker only works if the virus uses CCR5 alone.",
+    "measure": "LAD-I: flow cytometry for CD18/CD11b on neutrophils (severe < 2%, moderate 2–30%, mild > 30%) (Bondarenko 2023). HIV tropism test before maraviroc (Iqbal 2026). Plerixafor + G-CSF mobilization for CD34⁺ collection (Yang 2019). Duffy-null ANC reference interval 1.01–4.34 × 10³/µL in one study (Barouqa 2026).",
+    "differs": "Selectins (rolling) vs integrins (firm arrest); LAD-I (leukocytosis, tissue infections) vs neutropenia; maraviroc (CCR5, HIV) vs plerixafor (CXCR4, mobilization); Duffy-null benign low ANC vs pathological neutropenia.",
+    "examAngle": "Expect: order the cascade, recognize LAD-I from leukocytosis with poor healing and delayed cord separation, match maraviroc/plerixafor to receptors, and interpret a low ANC in a Duffy-null person."
+  },
+  "comparisons": [
+    {
+      "id": "selectin-vs-integrin",
+      "title": "Selectins vs integrins",
+      "left": {
+        "label": "Selectins",
+        "points": [
+          "Tethering and rolling",
+          "First, transient contacts"
+        ]
+      },
+      "right": {
+        "label": "Integrins (e.g. CD18 β2)",
+        "points": [
+          "Activated by chemokines",
+          "Firm arrest on ICAM-1/VCAM-1"
+        ]
+      },
+      "distinguisher": "Rolling vs stopping."
+    },
+    {
+      "id": "mara-vs-pler",
+      "title": "Maraviroc vs plerixafor",
+      "left": {
+        "label": "Maraviroc",
+        "points": [
+          "Blocks CCR5",
+          "HIV; tropism test first"
+        ]
+      },
+      "right": {
+        "label": "Plerixafor",
+        "points": [
+          "Blocks CXCR4",
+          "Stem-cell mobilization with G-CSF"
+        ]
+      },
+      "distinguisher": "Which chemokine receptor."
+    }
+  ],
+  "mnemonic": {
+    "text": "SELECTINS let the cell ROLL; chemokines say GRIP; INTEGRINS (CD18) hold on; then GO through the wall. No CD18, no grip — cells crowd the bloodstream.",
+    "explanation": "Orders the cascade and explains LAD-I leukocytosis.",
+    "limitation": "Recruitment is not a rigid sequence; partial CD18 gives milder disease; dual/mixed-tropic HIV exists."
+  },
+  "analogyLimitations": [
+    "Patients are invented.",
+    "The cascade strip is schematic.",
+    "The Duffy-null interval is from one retrospective study."
+  ],
+  "takeaway": "Leukocytes leave the blood by selectin rolling, chemokine-triggered integrin arrest and transmigration, so missing CD18 in LAD-I causes leukocytosis with tissue infections, while chemokine receptors such as CCR5, CXCR4 and Duffy shape HIV drug choice, stem-cell collection and neutrophil reference ranges.",
+  "questions": [
+    {
+      "id": "immuno-traf-q1",
+      "stem": "Which step of leukocyte recruitment fails in leukocyte adhesion deficiency type I?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Firm arrest mediated by β2 integrins (CD18)",
+          "rationale": "Correct. ITGB2/CD18 defects prevent integrin-mediated arrest and exit."
+        },
+        {
+          "id": "b",
+          "text": "Selectin-mediated rolling only",
+          "rationale": "Incorrect. Rolling depends on selectins, not CD18."
+        },
+        {
+          "id": "c",
+          "text": "Phagocytic oxidative burst",
+          "rationale": "Incorrect. That is defective in chronic granulomatous disease."
+        },
+        {
+          "id": "d",
+          "text": "Neutrophil production in the marrow",
+          "rationale": "Incorrect. Production is intact; counts are high."
+        }
+      ],
+      "answer": "a",
+      "skill": "Adhesion cascade",
+      "difficulty": "recognition"
+    },
+    {
+      "id": "immuno-traf-q2",
+      "stem": "Before starting maraviroc, what laboratory test is required?",
+      "options": [
+        {
+          "id": "a",
+          "text": "An HIV tropism test confirming exclusively CCR5-tropic virus",
+          "rationale": "Correct. Maraviroc is ineffective against X4 or dual/mixed-tropic virus."
+        },
+        {
+          "id": "b",
+          "text": "CD18 flow cytometry",
+          "rationale": "Incorrect. That diagnoses LAD-I."
+        },
+        {
+          "id": "c",
+          "text": "Duffy phenotyping",
+          "rationale": "Incorrect. Unrelated to maraviroc eligibility."
+        },
+        {
+          "id": "d",
+          "text": "CXCR4 expression on stem cells",
+          "rationale": "Incorrect. CXCR4 is the plerixafor target."
+        }
+      ],
+      "answer": "a",
+      "skill": "Tropism testing",
+      "difficulty": "recall"
+    },
+    {
+      "id": "immuno-traf-q3",
+      "stem": "A healthy adult with Fy(a−b−) red cells has an ANC of 1.2 × 10³/µL and no infections. What is the best interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Consistent with the lower baseline counts of Duffy-null individuals; interpret with phenotype-appropriate ranges",
+          "rationale": "Correct. Duffy-null is associated with lower WBC/ANC with a benign course (Barouqa 2026)."
+        },
+        {
+          "id": "b",
+          "text": "Severe congenital neutropenia requiring treatment",
+          "rationale": "Incorrect. The clinical course is benign and the value fits a Duffy-null interval."
+        },
+        {
+          "id": "c",
+          "text": "LAD-I",
+          "rationale": "Incorrect. LAD-I causes leukocytosis."
+        },
+        {
+          "id": "d",
+          "text": "A sign of CCR5 deficiency",
+          "rationale": "Incorrect. Unrelated."
+        }
+      ],
+      "answer": "a",
+      "skill": "Duffy-null ANC",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch49",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 49, Cytokines and Immune Signals (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 49,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            2,
+            5,
+            6,
+            13,
+            14
+          ]
+        },
+        {
+          "chapter": 49,
+          "section": "Exam Traps",
+          "items": [
+            4,
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "shahraki2026",
+      "kind": "external",
+      "citation": "Shahraki H, Bashash D, Mohammadi MH, et al. Integrin-Mediated Leukocyte Recruitment in Atherosclerosis: A Mechanistic Review of β2 Integrins and VLA-4 Signaling Pathways. J Inflamm Res. 2026;19:622677.",
+      "doi": "10.2147/JIR.S622677",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13615812/",
+      "consulted": true,
+      "usedFor": "Canonical cascade: selectin tethering/rolling, chemokine-triggered integrin activation, firm arrest, intraluminal crawling, transendothelial migration; varies by subset and vessel; β2 integrins LFA-1 (CD11a/CD18), Mac-1 (CD11b/CD18), CR4 (CD11c/CD18); VLA-4 (α4β1); ICAM-1/VCAM-1 ligands."
+    },
+    {
+      "id": "bondarenko2023",
+      "kind": "external",
+      "citation": "Bondarenko AV, Boyarchuk OR, Sakovich IS, et al. Variable CD18 expression in a 22-year-old female with leukocyte adhesion deficiency I: Clinical case and literature review. Clin Case Rep. 2023;11(8):e7791.",
+      "doi": "10.1002/ccr3.7791",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10432584/",
+      "consulted": true,
+      "usedFor": "LAD-I autosomal recessive, ITGB2/CD18; delayed cord separation, poor wound healing, leukocytosis, recurrent bacterial/fungal infections, periodontitis from impaired PMN migration; severity by CD18 expression (< 2%, 2–30%, > 30%); case leukocytosis 17,000–25,000/mm³; diagnosis by flow cytometry for CD18/CD11b."
+    },
+    {
+      "id": "iqbal2026",
+      "kind": "external",
+      "citation": "Iqbal U, Khalid K, Shaltout M, Yukselten Y, Sutton RE. CCR5 as a Therapeutic Target in HIV Disease: From CRISPR/Cas9 Gene Editing to Maraviroc-Mediated Inhibition. Viruses. 2026;18(9):972.",
+      "doi": "10.3390/v18090972",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13611976/",
+      "consulted": true,
+      "usedFor": "CCR5 GPCR on CD4⁺ T cells, monocytes, macrophages, NK cells; principal co-receptor for R5-tropic HIV-1; maraviroc only FDA-approved small-molecule CCR5 antagonist; tropism test (phenotypic or genotypic) required; ineffective against X4 or dual/mixed-tropic virus."
+    },
+    {
+      "id": "yang2019",
+      "kind": "external",
+      "citation": "Yang X, Wan M, Yu F, Wang Z. Efficacy and safety of plerixafor for hematopoietic stem cell mobilization for autologous transplantation in patients with non-Hodgkin lymphoma and multiple myeloma: A systematic review and meta-analysis. Exp Ther Med. 2019;18(2):1141-1148.",
+      "doi": "10.3892/etm.2019.7691",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6614714/",
+      "consulted": true,
+      "usedFor": "Plerixafor reversibly binds CXCR4 and antagonizes SDF-1α, mobilizing stem cells; with G-CSF for HSC collection in NHL and MM; approved in US and EU."
+    },
+    {
+      "id": "barouqa2026",
+      "kind": "external",
+      "citation": "Barouqa M, Ashfaq MA, Jiang KJ, et al. Establishing Reference Intervals for White Blood Cell and Absolute Neutrophil Counts in Duffy Null Individuals. Hematol Rep. 2026;18(3):38.",
+      "doi": "10.3390/hematolrep18030038",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13299395/",
+      "consulted": true,
+      "usedFor": "Duffy (ACKR1) transmembrane chemokine receptor on RBCs and other tissues; relevance to P. vivax; Duffy-null Fy(a−b−) associated with lower WBC/ANC with benign course; 95% RI WBC 2.43–7.05, ANC 1.01–4.34 × 10³/µL."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-cascade",
+      "text": "Adhesion cascade steps and β2 integrins sharing CD18.",
+      "status": "checked",
+      "refs": [
+        "shahraki2026"
+      ]
+    },
+    {
+      "id": "cl-lad",
+      "text": "LAD-I genetics, features, leukocytosis, CD18 flow severity categories.",
+      "status": "checked",
+      "refs": [
+        "bondarenko2023"
+      ]
+    },
+    {
+      "id": "cl-ccr5",
+      "text": "CCR5 co-receptor; maraviroc requires tropism test; fails on X4/dual-mixed.",
+      "status": "checked",
+      "refs": [
+        "iqbal2026"
+      ]
+    },
+    {
+      "id": "cl-cxcr4",
+      "text": "Plerixafor CXCR4 antagonism and mobilization with G-CSF in NHL/MM.",
+      "status": "checked",
+      "refs": [
+        "yang2019"
+      ]
+    },
+    {
+      "id": "cl-duffy",
+      "text": "Duffy/ACKR1 chemokine receptor; P. vivax; Duffy-null lower benign WBC/ANC and derived interval.",
+      "status": "checked",
+      "refs": [
+        "barouqa2026"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Chemokine classes and receptor naming; TNF inhibitors and MS; natalizumab/vedolizumab; GPIIb/IIIa blockers; IL-1Ra/IL-6R/RANKL drugs; asthma biologics; RANKL cytokines; Duffy binds ~20 chemokines; bioassay vs ELISA; soluble P-selectin.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch49"
+      ],
+      "note": "Not taught as facts in this lesson."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Patients invented; cascade schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Roll, grip, go.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; cascade and assays shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Shahraki 2026, Bondarenko 2023, Iqbal 2026, Yang 2019 and Barouqa 2026; 1 pending (other cytokine and biologic topics). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-10"
+}
