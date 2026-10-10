@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 119, teaching 600 of 1,932 concepts (about 31.1%).** All 119 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 120, teaching 608 of 1,932 concepts (about 31.5%).** All 120 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -44,6 +44,7 @@
   - Ch. 48 (7/22 concepts): `immuno-complement-ch50-ah50`.
   - Ch. 50 (5/22 concepts): `immuno-hla-crossmatch-pra`.
   - Ch. 53 (4/23 concepts): `immuno-ana-hep2-patterns`.
+  - Ch. 56 (8/24 concepts): `immuno-allergy-sige-tryptase`.
   - Ch. 57 (23/57 concepts): `micro-enteric-pathogens-stec`, `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-strep-enterococcus-id`.
   - Ch. 58 (12/30 concepts): `micro-ast-mic-breakpoints-dtest`, `micro-beta-lactamases-esbl-cpe`.
   - Ch. 59 (5/26 concepts): `micro-afb-smear-decontamination`.
@@ -68,7 +69,7 @@
   - Ch. 78 (1/21 concepts): `mdx-her2-ish-groups`.
   - Ch. 79 (6/20 concepts): `mdx-expression-profiling-overfitting`.
 - **Reviewer accuracy register:** 94 flags (70 verified issues, 24 needing verification), plus scan results.
-- **Checks:** 780 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 786 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -118,7 +119,7 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 
 | 18 | ✅ Ch. 57 bacteria that cause disease (4th lesson: stool pathogens & STEC) | ✅ Ch. 66 specimen collection (4th lesson: urine culture) | ✅ Ch. 64 viral infections (3rd lesson: HIV/HCV algorithms) | ✅ Ch. 34 white cell disorders (3rd lesson: B-cell phenotypes) |
 
-**Round 19 — first lessons for chapters with none** (34 chapters had no lesson after round 18): ✅ Ch. 16 bone & mineral · ✅ Ch. 27 vitamins & trace elements (Wilson disease) · ✅ Ch. 28 how tests work (ISE, Jaffe) · Ch. 73–79 molecular/genomics (✅ Ch. 73 APOE/Alzheimer, ✅ Ch. 74 STR/Y/mtDNA, ✅ Ch. 76 RAS/p53/NMP22, ✅ Ch. 75 toxicity genotyping, ✅ Ch. 77 CML IS, ✅ Ch. 78 HER2 ISH, ✅ Ch. 79 overfitting/validation) · Ch. 44–56 immunology (✅ Ch. 45 assay formats, ✅ Ch. 47 Ig classes, ✅ Ch. 48 complement, ✅ Ch. 50 HLA crossmatch, ✅ Ch. 53 ANA) · Ch. 4–14 lab operations (✅ Ch. 4 photometry, ✅ Ch. 8 diagnostic accuracy, ✅ Ch. 11 QC).
+**Round 19 — first lessons for chapters with none** (34 chapters had no lesson after round 18): ✅ Ch. 16 bone & mineral · ✅ Ch. 27 vitamins & trace elements (Wilson disease) · ✅ Ch. 28 how tests work (ISE, Jaffe) · Ch. 73–79 molecular/genomics (✅ Ch. 73 APOE/Alzheimer, ✅ Ch. 74 STR/Y/mtDNA, ✅ Ch. 76 RAS/p53/NMP22, ✅ Ch. 75 toxicity genotyping, ✅ Ch. 77 CML IS, ✅ Ch. 78 HER2 ISH, ✅ Ch. 79 overfitting/validation) · Ch. 44–56 immunology (✅ Ch. 45 assay formats, ✅ Ch. 47 Ig classes, ✅ Ch. 48 complement, ✅ Ch. 50 HLA crossmatch, ✅ Ch. 53 ANA, ✅ Ch. 56 allergy testing) · Ch. 4–14 lab operations (✅ Ch. 4 photometry, ✅ Ch. 8 diagnostic accuracy, ✅ Ch. 11 QC).
 
 Clinical Microscopy runs alongside rounds 14–15: **Ch. 29 urinalysis** (✅ core lesson, round 14) and **Ch. 30 body fluids** (✅ core lesson, round 15). Round 16 adds **Ch. 29 urinalysis (2nd lesson)** (✅ reagent-strip chemistry); round 17 adds **Ch. 30 body fluids (2nd lesson)** (✅ CSF and synovial fluid). Molecular Diagnostics (Ch. 67–72) follows round 17 (see the MDx round above); Ch. 29 still ranks third by simulator questions × untaught share.
 
