@@ -1,0 +1,1523 @@
+{
+  "schemaVersion": 1,
+  "id": "immuno-hla-disease-association",
+  "title": "HLA and Disease: Odds Ratios, Predictive Values and Penetrance",
+  "summary": "Measure an HLA disease association with the odds ratio, see why HLA-B27 or HLA-DQ2/DQ8 positivity predicts poorly while negativity helps, and why HFE C282Y homozygosity is a risk genotype rather than a diagnosis.",
+  "domain": "p6-immuno",
+  "topic": "ch51",
+  "conceptIds": [
+    "ch51.hit1",
+    "ch51.hit2",
+    "ch51.hit6",
+    "ch51.hit11",
+    "ch51.trap1",
+    "ch51.trap2"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 51,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          2,
+          6,
+          11
+        ]
+      },
+      {
+        "chapter": 51,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          2
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 51 Hits 1, 2, 6 and 11 and Traps 1–2 (first lesson for Ch. 51). Checked against Ziade 2017, Chen 2017, Gallego 2015, ESsCD 2025 and Trevethan 2017; the PPV example is arithmetic with an assumed prevalence. Discrepancies: the reviewer calls (a × d)/(b × c) the “relative risk” — it is the odds ratio (Ziade 2017); HFE penetrance “as low as 1–10%” depends on the definition used — eMERGE found clinical diagnosis in 24.4% of male and 14.0% of female homozygotes. Not taught as fact: the “~2% of B27 carriers develop AS” and “5–10% of controls” figures, DQ2.5 90–95%, NPV > 99%, narcolepsy, T1D haplotypes, complement genes/complotypes, birdshot, Behçet, LOD scores, B27 in HIV/HCV; drug-HLA screening is covered in mdx-pgx-toxicity-screening."
+  },
+  "prerequisites": [
+    "ch8.hit1",
+    "ch50.hit2"
+  ],
+  "objectives": [
+    "Calculate and interpret an odds ratio for an HLA disease association.",
+    "Explain why HLA-B27 and HLA-DQ2/DQ8 have poor positive but high negative predictive value.",
+    "Distinguish a risk genotype from a diagnosis using HFE C282Y penetrance data."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "A strong association, a weak diagnosis",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented case: a 28-year-old with 4 months of back pain. A clinician orders HLA-B27 “to diagnose ankylosing spondylitis”. Result: HLA-B27 POSITIVE. A second patient, a 50-year-old man, learns from a direct-to-consumer test that he is HFE C282Y homozygous and asks: “So I have haemochromatosis?” Question token: “What does a positive genetic association test actually tell you?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A 28-year-old with back pain tests positive for HLA-B27. The request said: to diagnose ankylosing spondylitis."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "A 50-year-old man learns he is homozygous for the HFE C282Y variant and asks whether he has haemochromatosis."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "What does a positive genetic association test actually tell you?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "b27",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 170,
+            "tone": "warn",
+            "title": "Patient 1",
+            "lines": [
+              "Back pain · HLA-B27 +"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hfe",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "b",
+            "title": "Patient 2",
+            "lines": [
+              "HFE C282Y/C282Y",
+              "“Do I have it?”"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 640,
+            "label": "What does a positive association test tell you?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Measuring an association: the odds ratio",
+      "start": 20,
+      "end": 60,
+      "altText": "Association card (Ziade 2017): the strength of association between HLA-B27 and axial spondyloarthritis (AxSpA) is measured as an ODDS RATIO from a 2 × 2 table, OR = (a × d)/(b × c) — the odds of disease given the allele compared with the odds without it; values > 1 indicate positive association; ORs are most commonly used in case-control studies. Data card (Ziade 2017, Middle Eastern and Arab countries, 27 studies): HLA-B27 prevalence in the general population 0.3% (Oman) to 6.8% (Turkey); in AxSpA 26.2% (Lebanon) to 91% (Turkey); ORs 21.6 to 105.6. Chen 2017: HLA-B27 is present in up to 90% of AS patients in most ethnic groups.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Genetic association studies compare how often an allele appears in patients and in controls. The usual measure is the odds ratio: a times d over b times c from a two-by-two table."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "An odds ratio above 1 means the allele is more common with the disease. For HLA-B27 and axial spondyloarthritis, odds ratios ranged from about 22 to over 100 in one review."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "HLA-B27 is found in up to 90 percent of people with ankylosing spondylitis in most ethnic groups."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "But it also appears in healthy people: in the same review, from 0.3 to 6.8 percent of the general population, depending on the country."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tab",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 210,
+            "tone": "b",
+            "title": "2 × 2 association table",
+            "lines": [
+              "a: B27+ cases · b: B27+ controls",
+              "c: B27− cases · d: B27− controls",
+              "OR = (a × d)/(b × c)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "highlight": 1
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "or",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 460,
+            "w": 440,
+            "label": "B27–AxSpA OR ≈ 22 to 106",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pts",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 130,
+            "tone": "bad",
+            "title": "In AS patients",
+            "lines": [
+              "Up to 90% B27+"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pop",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 370,
+            "w": 420,
+            "h": 130,
+            "tone": "a",
+            "title": "In the general population",
+            "lines": [
+              "0.3–6.8% B27+ (review)"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Why association does not equal diagnosis",
+      "start": 60,
+      "end": 104,
+      "altText": "Worked example (ARITHMETIC, invented population of 100,000 with an assumed AS prevalence of 0.5%): 500 have AS, 90% B27+ → 450; 99,500 do not, 6% B27+ → 5,970. Positive predictive value = 450/(450 + 5,970) ≈ 7%. Negative: 50 AS patients are B27−, versus 93,530 healthy B27− → NPV ≈ 99.9%. Coeliac card (ESsCD 2025): HLA-DQ2/DQ8 typing has a POOR positive but a HIGH negative predictive value. Penetrance card (Gallego 2015, eMERGE network): among HFE p.Cys282Tyr homozygotes, the clinical diagnostic rate of haemochromatosis was 24.4% in males and 14.0% in females — most homozygotes were not diagnosed.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "Do the arithmetic for an invented town of 100,000 people, assuming half a percent have ankylosing spondylitis. Of 500 patients, 90 percent, 450, carry B27."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 80,
+          "text": "But of 99,500 people without it, 6 percent, nearly 6,000, also carry B27. So a positive result means only about a 7 percent chance of the disease."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 90,
+          "text": "A negative result is far more useful: in this example, almost everyone who is B27-negative does not have the disease. HLA-DQ2 and DQ8 in coeliac disease behave the same way: poor positive, high negative predictive value."
+        },
+        {
+          "id": "c4",
+          "start": 90,
+          "end": 104,
+          "text": "Genotype is also not destiny. In a large US network, among men homozygous for HFE C282Y only about a quarter had a clinical diagnosis of haemochromatosis, and about one in seven women."
+        }
+      ],
+      "objects": [
+        {
+          "id": "calc",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "warn",
+            "title": "Worked example (arithmetic)",
+            "lines": [
+              "AS 500 → B27+ 450",
+              "No AS 99,500 → B27+ 5,970",
+              "PPV ≈ 450/6,420 ≈ 7%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "npv",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 490,
+            "w": 440,
+            "label": "NPV ≈ 99.9% · DQ2/DQ8 same pattern",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pen",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 420,
+            "h": 230,
+            "tone": "b",
+            "title": "HFE C282Y/C282Y (Gallego 2015)",
+            "lines": [
+              "Diagnosed: 24.4% of men",
+              "Diagnosed: 14.0% of women",
+              "Genotype ≠ disease"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 40,
+              "highlight": 1
+            },
+            {
+              "t": 41,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Reporting association tests responsibly",
+      "start": 104,
+      "end": 144,
+      "altText": "Reporting card: an HLA association result is reported as presence/absence of the allele with an interpretive comment — supports but does not establish the diagnosis; a negative result makes the associated disease less likely (strength depends on the association). Population card (Ziade 2017): the strength of the HLA-B27 association varies between populations (lower in most Arab populations than Western European), which affects its diagnostic value and the local use of referral strategies developed in high-prevalence populations. Penetrance card (Gallego 2015): HFE homozygosity identifies risk; most homozygotes in the eMERGE network had no clinical diagnosis of haemochromatosis. Hook answers: Patient 1 — B27+ supports but does not diagnose AS; Patient 2 — C282Y homozygosity is a risk genotype, not a diagnosis.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "So report an HLA association test with a clear comment: a positive result supports, but does not establish, the diagnosis; a negative result makes the associated disease less likely."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 126,
+          "text": "Remember that the strength of the association depends on the population. HLA-B27 is less tightly linked to spondyloarthritis in most Arab populations than in Western Europe, which changes its diagnostic value."
+        },
+        {
+          "id": "l3",
+          "start": 126,
+          "end": 136,
+          "text": "For HFE, homozygosity marks risk. Most homozygotes in a large US network had never been diagnosed with haemochromatosis, so the genotype alone is not the diagnosis."
+        },
+        {
+          "id": "l4",
+          "start": 136,
+          "end": 144,
+          "text": "So Patient 1’s positive B27 supports, but does not prove, ankylosing spondylitis. Patient 2 has a risk genotype, not a diagnosis."
+        }
+      ],
+      "objects": [
+        {
+          "id": "rep",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 170,
+            "tone": "good",
+            "title": "Interpretive comment",
+            "lines": [
+              "Positive: supports, not diagnostic",
+              "Negative: disease less likely"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "highlight": 1
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "popn",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "Population matters",
+            "lines": [
+              "B27–SpA weaker in most Arab cohorts",
+              "Diagnostic value changes"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 20,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "iron",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 410,
+            "w": 700,
+            "label": "HFE genotype = risk; most homozygotes undiagnosed",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 780,
+            "label": "Hook: B27+ supports, not proves · C282Y = risk, not disease",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “HLA-B27 positive = ankylosing spondylitis” (✓ B27 is common in healthy people; a positive has poor PPV — a negative is more informative); “C282Y homozygous = haemochromatosis” (✓ incomplete penetrance — 24.4% of men and 14.0% of women homozygotes had a clinical diagnosis in eMERGE); “(a × d)/(b × c) is the relative risk” (✓ that cross-product is the odds ratio).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: HLA-B27 positive means ankylosing spondylitis. No: B27 is common in healthy people, so a positive result predicts poorly. A negative result is more informative."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: C282Y homozygous means haemochromatosis. No: penetrance is incomplete. In one large network, about a quarter of homozygous men and one in seven women had a clinical diagnosis."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: a times d over b times c is the relative risk. No: that cross-product is the odds ratio, the measure used in case-control association studies."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “B27+ = ankylosing spondylitis.”",
+            "lines": [
+              "✓ Poor PPV · negative more informative"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “C282Y/C282Y = haemochromatosis.”",
+            "lines": [
+              "✓ Incomplete penetrance (24% men, 14% women)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “(a×d)/(b×c) = relative risk.”",
+            "lines": [
+              "✓ That is the odds ratio"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Common key, rare door",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “An HLA allele is a common KEY that fits a rare DOOR. Most people carrying the key never open the door — but without the key, the door almost never opens.” Tokens: strong OR ≠ high PPV · negative = high NPV · genotype ≠ disease. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: an HLA allele is a common key that fits a rare door. Most key-carriers never open the door, but without the key the door almost never opens."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: some disease patients lack the allele, so a negative never fully excludes; the strength of association differs between populations; and the predictive values in the worked example depend on the prevalence assumed."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Common key, rare door",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Strong OR ≠ high PPV",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Negative → high NPV",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Genotype ≠ disease",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Some patients lack the allele",
+              "Association strength varies by population",
+              "Predictive values depend on prevalence"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Association = odds ratio (a×d)/(b×c) · B27 in up to 90% of AS but common in healthy people → poor PPV, useful negative · DQ2/DQ8: high NPV”, “HFE C282Y homozygosity: incomplete penetrance (eMERGE 24.4% men, 14.0% women diagnosed) — risk, not diagnosis”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "A strong HLA disease association, measured as an odds ratio, does not make a positive result diagnostic, because the allele is common in healthy people and penetrance is incomplete; such tests are most useful when negative."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "OR = (a×d)/(b×c) · B27/DQ2-DQ8: poor PPV, useful negative",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "HFE C282Y/C282Y: incomplete penetrance — risk, not diagnosis",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: some HLA types (and other gene variants) are much more common in people with a disease, but they are also common in healthy people, so a positive test usually means “higher risk”, not “has the disease”. Scientific terms: genetic association, odds ratio, case-control study, positive and negative predictive value, prevalence, penetrance, HLA-B27, axial spondyloarthritis, HLA-DQ2/DQ8, HFE p.Cys282Tyr homozygosity.",
+    "why": "The odds ratio measures how strongly an allele and a disease go together in patients versus controls, but predictive value depends on how many healthy carriers there are relative to patients. When the disease is rare and the allele common, healthy carriers vastly outnumber patients.",
+    "measure": "OR = (a × d)/(b × c) from a 2 × 2 case-control table (Ziade 2017). B27: up to 90% of AS (Chen 2017); 0.3–6.8% of general population, 26.2–91% of AxSpA in Middle Eastern/Arab studies (Ziade 2017). Worked PPV ≈ 7%, NPV ≈ 99.9% at assumed 0.5% prevalence (arithmetic). HFE C282Y homozygotes clinically diagnosed: 24.4% men, 14.0% women (Gallego 2015).",
+    "differs": "Strength of association (odds ratio) vs diagnostic usefulness (predictive values); genotype (risk) vs clinical diagnosis (disease).",
+    "examAngle": "Expect: interpret a positive or negative HLA-B27, compute an OR from a 2 × 2 table, recognize the NPV value of DQ2/DQ8, and explain incomplete HFE penetrance."
+  },
+  "comparisons": [
+    {
+      "id": "or-vs-ppv",
+      "title": "Odds ratio vs positive predictive value",
+      "left": {
+        "label": "Odds ratio",
+        "points": [
+          "(a × d)/(b × c)",
+          "How strongly allele and disease co-occur"
+        ]
+      },
+      "right": {
+        "label": "PPV",
+        "points": [
+          "Chance a carrier has the disease",
+          "Depends on prevalence and healthy carriers"
+        ]
+      },
+      "distinguisher": "Association strength vs individual prediction."
+    },
+    {
+      "id": "genotype-vs-disease",
+      "title": "Risk genotype vs disease",
+      "left": {
+        "label": "HFE C282Y/C282Y",
+        "points": [
+          "Risk genotype",
+          "Many never diagnosed"
+        ]
+      },
+      "right": {
+        "label": "Haemochromatosis",
+        "points": [
+          "A clinical diagnosis, not a genotype",
+          "24.4% men / 14.0% women homozygotes diagnosed (eMERGE)"
+        ]
+      },
+      "distinguisher": "Penetrance."
+    }
+  ],
+  "mnemonic": {
+    "text": "An HLA allele is a common KEY that fits a rare DOOR. Most people carrying the key never open the door — but without the key, the door almost never opens.",
+    "explanation": "Poor PPV (many key-carriers) and high NPV (no key, no door).",
+    "limitation": "Some patients lack the allele; association strength varies by population; predictive values depend on prevalence."
+  },
+  "analogyLimitations": [
+    "Patients are invented.",
+    "The worked example uses an assumed prevalence (arithmetic, not a study result).",
+    "B27 prevalence data are from Middle Eastern/Arab studies and vary elsewhere."
+  ],
+  "takeaway": "A strong HLA disease association, measured as an odds ratio, does not make a positive result diagnostic, because the allele is common in healthy people and penetrance is incomplete; such tests are most useful when negative.",
+  "questions": [
+    {
+      "id": "immuno-hlad-q1",
+      "stem": "In a case-control study, 90 of 100 patients and 60 of 1,000 controls carry an HLA allele. What is the odds ratio?",
+      "options": [
+        {
+          "id": "a",
+          "text": "About 141",
+          "rationale": "Correct. OR = (90 × 940)/(10 × 60) = 84,600/600 = 141."
+        },
+        {
+          "id": "b",
+          "text": "15",
+          "rationale": "Incorrect. That is the ratio of carrier proportions (0.90/0.06), not the odds ratio."
+        },
+        {
+          "id": "c",
+          "text": "0.9",
+          "rationale": "Incorrect. That is the carrier proportion among patients."
+        },
+        {
+          "id": "d",
+          "text": "1.5",
+          "rationale": "Incorrect. Not derived from the table."
+        }
+      ],
+      "answer": "a",
+      "skill": "Odds ratio",
+      "difficulty": "calculation"
+    },
+    {
+      "id": "immuno-hlad-q2",
+      "stem": "A patient with chronic back pain is HLA-B27 negative. What is the best interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ankylosing spondylitis is less likely, though not completely excluded",
+          "rationale": "Correct. B27 is present in up to 90% of AS, so a negative lowers probability, but some patients are B27-negative."
+        },
+        {
+          "id": "b",
+          "text": "Ankylosing spondylitis is excluded with certainty",
+          "rationale": "Incorrect. Some patients with AS lack HLA-B27."
+        },
+        {
+          "id": "c",
+          "text": "The result is uninformative",
+          "rationale": "Incorrect. The negative result is the more informative one."
+        },
+        {
+          "id": "d",
+          "text": "The patient has a different HLA disease",
+          "rationale": "Incorrect. A negative B27 result does not identify another disease."
+        }
+      ],
+      "answer": "a",
+      "skill": "Negative predictive value",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-hlad-q3",
+      "stem": "A man is HFE C282Y homozygous with normal iron studies. What is the best description?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A risk genotype with incomplete penetrance; not a diagnosis of haemochromatosis",
+          "rationale": "Correct. Most homozygotes in eMERGE had no clinical diagnosis; genotype alone is not disease."
+        },
+        {
+          "id": "b",
+          "text": "Haemochromatosis is confirmed",
+          "rationale": "Incorrect. Genotype alone is not disease."
+        },
+        {
+          "id": "c",
+          "text": "The genotype result must be wrong",
+          "rationale": "Incorrect. Normal iron studies are common in homozygotes."
+        },
+        {
+          "id": "d",
+          "text": "An HLA-B27 test is now needed",
+          "rationale": "Incorrect. Unrelated to iron overload."
+        }
+      ],
+      "answer": "a",
+      "skill": "Penetrance",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch51",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 51, HLA and Disease (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 51,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            2,
+            6,
+            11
+          ]
+        },
+        {
+          "chapter": 51,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            2
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "ziade2017",
+      "kind": "external",
+      "citation": "Ziade NR. HLA B27 antigen in Middle Eastern and Arab countries: systematic review of the strength of association with axial spondyloarthritis and methodological gaps. BMC Musculoskelet Disord. 2017;18(1):280.",
+      "doi": "10.1186/s12891-017-1639-5",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5492927/",
+      "consulted": true,
+      "usedFor": "OR from a 2 × 2 table, OR = a*d/b*c, values > 1 positive association, mainly case-control; B27 general population 0.3–6.8%, AxSpA 26.2–91%; ORs 21.63–105.6; association weaker in most Arab populations, affecting diagnostic value and referral strategies."
+    },
+    {
+      "id": "chen2017",
+      "kind": "external",
+      "citation": "Chen B, Li J, He C, et al. Role of HLA-B27 in the pathogenesis of ankylosing spondylitis (Review). Mol Med Rep. 2017;15(4):1943-1951.",
+      "doi": "10.3892/mmr.2017.6248",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5364987/",
+      "consulted": true,
+      "usedFor": "HLA-B27 present in up to 90% of AS patients in most ethnic groups; strong association."
+    },
+    {
+      "id": "gallego2015",
+      "kind": "external",
+      "citation": "Gallego CJ, Burt A, Sundaresan AS, et al. Penetrance of Hemochromatosis in HFE Genotypes Resulting in p.Cys282Tyr and p.[Cys282Tyr];[His63Asp] in the eMERGE Network. Am J Hum Genet. 2015;97(4):512-520.",
+      "doi": "10.1016/j.ajhg.2015.08.008",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4596892/",
+      "consulted": true,
+      "usedFor": "Among 98 p.Cys282Tyr homozygotes, clinical diagnostic rate of haemochromatosis 24.4% (males) and 14.0% (females); compound heterozygotes 3.5% and 2.3%."
+    },
+    {
+      "id": "altoma2025",
+      "kind": "external",
+      "citation": "Al-Toma A, Zingone F, Branchi F, et al. European Society for the Study of Coeliac Disease 2025 Updated Guidelines on the Diagnosis and Management of Coeliac Disease in Adults. Part 1: Diagnostic Approach. United European Gastroenterol J. 2025;13(10):1855-1886.",
+      "doi": "10.1002/ueg2.70119",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12704582/",
+      "consulted": true,
+      "usedFor": "HLA-DQ2/DQ8 typing has poor PPV but high NPV for coeliac disease; not used routinely for initial diagnosis."
+    },
+    {
+      "id": "trevethan2017",
+      "kind": "external",
+      "citation": "Trevethan R. Sensitivity, Specificity, and Predictive Values: Foundations, Pliabilities, and Pitfalls in Research and Practice. Front Public Health. 2017;5:307.",
+      "doi": "10.3389/fpubh.2017.00307",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5701930/",
+      "consulted": true,
+      "usedFor": "PPV and NPV definitions and their dependence on prevalence (applied in the worked example)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-or",
+      "text": "OR = (a×d)/(b×c) from a 2 × 2 case-control table; worked OR (arithmetic).",
+      "status": "checked",
+      "refs": [
+        "ziade2017"
+      ]
+    },
+    {
+      "id": "cl-b27",
+      "text": "B27 in up to 90% of AS; 0.3–6.8% of general population and 26.2–91% of AxSpA in reviewed studies; population variation.",
+      "status": "checked",
+      "refs": [
+        "chen2017",
+        "ziade2017"
+      ]
+    },
+    {
+      "id": "cl-ppv",
+      "text": "Worked PPV ≈ 7% and NPV ≈ 99.9% at assumed prevalence (arithmetic).",
+      "status": "checked",
+      "refs": [
+        "trevethan2017"
+      ]
+    },
+    {
+      "id": "cl-dq",
+      "text": "HLA-DQ2/DQ8 poor PPV, high NPV.",
+      "status": "checked",
+      "refs": [
+        "altoma2025"
+      ]
+    },
+    {
+      "id": "cl-hfe",
+      "text": "HFE C282Y homozygote clinical diagnosis rates in eMERGE.",
+      "status": "checked",
+      "refs": [
+        "gallego2015"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "~2% of B27 carriers develop AS; 5–10% controls; DQ2.5 90–95%; NPV > 99%; narcolepsy; T1D; complement genes; birdshot; Behçet; LOD; B27 in HIV/HCV.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch51"
+      ],
+      "note": "Not taught as facts in this lesson."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Patients and town invented.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Common key, rare door.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-rr-or",
+      "issue": "The reviewer labels (a × d)/(b × c) as the “relative risk”. That cross-product ratio is the odds ratio (Ziade 2017), not a risk ratio.",
+      "kind": "contradiction",
+      "status": "open"
+    },
+    {
+      "id": "f-hfe-pen",
+      "issue": "The reviewer gives HFE C282Y homozygote penetrance as “as low as 1–10%”. Penetrance estimates depend on the definition (biochemical, clinical, organ damage); the eMERGE network found a clinical diagnosis in 24.4% of male and 14.0% of female homozygotes (Gallego 2015).",
+      "kind": "method-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; tables and cards only.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Ziade 2017, Chen 2017, Gallego 2015, ESsCD 2025 and Trevethan 2017 (worked examples are arithmetic); 1 pending (other HLA associations and figures). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-10"
+}
