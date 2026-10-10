@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 88 flags: 64 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 89 flags: 65 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -81,6 +81,7 @@ Verified:
 - **Ch. 72 Hit 5:** congenital DM1 “transmitted maternally only” (Wenninger 2018: characteristically maternal, but paternal transmission is known; healthy 5–37, penetrant > 50).
 - **Ch. 57 Hit 40:** Shiga toxin detected “directly in stool by EIA” (Humphries 2015; CDC 2009: EIA on enrichment broth; direct stool ~70% sensitivity).
 - **Ch. 64 Hit 14:** p24 antigen called “the earliest detectable HIV marker” (CDC 2014: HIV-1 RNA appears first; p24 4–10 days later).
+- **Ch. 16 Hit 4:** corrected calcium with a 4.4 g/dL reference albumin; simulator calls 4.0 “outdated” (Desgagnés 2025; Mirrakhimov 2015: the commonly used simplified Payne formula uses 4.0 g/dL).
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -115,7 +116,7 @@ Automated scan: **23** dated-guideline statements and **134** High-Yield Hits wi
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 41 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 42 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
@@ -158,6 +159,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Urine Culture Interpretation (Ch. 66):** 1 pending claim (urinary pathogen lineup; ≤ 2 h / ≤ 24 h processing window; not taught); 3 open lesson flags (≥ 10⁵ = bacteriuria not infection; pyuria in catheterized patients; processing window; two guidelines read via page fetch); no register flags.
 - **HIV and HCV Testing Algorithms (Ch. 64):** 1 pending claim (HIV viral-load monitoring, HCV SVR12, HBV IgM anti-HBc, 2018 HIV update; not taught); 1 register flag (rv-hiv-earliest-marker).
 - **Mature B-Cell Neoplasm Phenotypes (Ch. 34):** 1 pending claim (del17p, HCL therapy, Burkitt/B-ALL, FL bcl-6; not taught); 2 open lesson flags (CLL definition missing duration/cytopenia rule; BRAF V600E not universal); no register flags.
+- **Hypercalcemia: PTH, PTHrP and Adjusted Calcium (Ch. 16):** 1 pending claim (80–90% share, urinary cAMP, PTHrP 50–90%, CKD secondary/tertiary HPT; not taught); 1 register flag (rv-calcium-ref-albumin).
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
