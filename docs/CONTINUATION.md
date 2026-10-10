@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 100, teaching 525 of 1,932 concepts (about 27.2%).** All 100 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 101, teaching 528 of 1,932 concepts (about 27.3%).** All 101 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -23,7 +23,7 @@
   - Ch. 31 (11/28 concepts): `heme-red-cell-indices-high-mchc`, `heme-spurious-cbc-corrections`.
   - Ch. 32 (8/23 concepts): `heme-erythropoiesis-reticulocyte-index`.
   - Ch. 33 (16/27 concepts): `heme-anemia-second-clues`, `heme-hemolytic-anemia-workup`, `heme-microcytic-anemia-ferritin-mentzer`.
-  - Ch. 34 (6/25 concepts): `heme-cml-vs-leukemoid-reaction`, `heme-mpn-pv-et-pmf`.
+  - Ch. 34 (9/25 concepts): `heme-bcell-neoplasm-phenotypes`, `heme-cml-vs-leukemoid-reaction`, `heme-mpn-pv-et-pmf`.
   - Ch. 35 (7/23 concepts): `heme-flow-cytometry-gating`.
   - Ch. 36 (18/29 concepts): `heme-dic-liver-fibrinolysis`, `heme-hemophilia-factor-inhibitor-lab`, `heme-mixing-study-pt-aptt`.
   - Ch. 37 (13/24 concepts): `heme-glanzmann-bernard-soulier`, `heme-vwd-typing-ratios`.
@@ -50,7 +50,7 @@
   - Ch. 71 (6/23 concepts): `mdx-cytogenetic-test-choice`.
   - Ch. 72 (5/26 concepts): `mdx-repeat-expansions`.
 - **Reviewer accuracy register:** 88 flags (64 verified issues, 24 needing verification), plus scan results.
-- **Checks:** 666 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 672 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -98,7 +98,7 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 
 **Molecular Diagnostics round** (core lessons; no MDx lessons existed before it): ✅ Ch. 72 genetic diseases (repeat expansions) · ✅ Ch. 67 molecular basics (pharmacogenomics) · ✅ Ch. 68 how tests work (sequencing) · ✅ Ch. 69 PCR & amplification (qPCR quantification) · ✅ Ch. 70 microarrays & hybridization (line probes, HC2, arrays) · ✅ Ch. 71 cytogenetics (test choice).
 
-| 18 | ✅ Ch. 57 bacteria that cause disease (4th lesson: stool pathogens & STEC) | ✅ Ch. 66 specimen collection (4th lesson: urine culture) | ✅ Ch. 64 viral infections (3rd lesson: HIV/HCV algorithms) | Ch. 34 white cell disorders |
+| 18 | ✅ Ch. 57 bacteria that cause disease (4th lesson: stool pathogens & STEC) | ✅ Ch. 66 specimen collection (4th lesson: urine culture) | ✅ Ch. 64 viral infections (3rd lesson: HIV/HCV algorithms) | ✅ Ch. 34 white cell disorders (3rd lesson: B-cell phenotypes) |
 
 Clinical Microscopy runs alongside rounds 14–15: **Ch. 29 urinalysis** (✅ core lesson, round 14) and **Ch. 30 body fluids** (✅ core lesson, round 15). Round 16 adds **Ch. 29 urinalysis (2nd lesson)** (✅ reagent-strip chemistry); round 17 adds **Ch. 30 body fluids (2nd lesson)** (✅ CSF and synovial fluid). Molecular Diagnostics (Ch. 67–72) follows round 17 (see the MDx round above); Ch. 29 still ranks third by simulator questions × untaught share.
 
