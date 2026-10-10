@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 95 flags: 71 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 96 flags: 72 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -88,6 +88,7 @@ Verified:
 - **Ch. 73 Hit 7 / Trap 2:** “ACE inhibition is a risk factor for AD” (observational evidence only; RCT meta-analysis non-significant — Belachew 2025).
 - **Ch. 50 Hit 4:** positive CDC crossmatch called an “absolute contraindication” (DTT-negative IgM/autoreactive positives are standard risk; lupus false positives — Althaf 2017).
 - **Ch. 52 Hit 6:** CVID “age > 2 years” (1999 ESID/PAGID); ICON 2016 advises not before age 4.
+- **Ch. 55 Hit 1:** anti-EMA as the confirmation test (ESsCD 2025: routine IgA-EMA confirmation no longer recommended in adults).
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -186,6 +187,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Allergy Testing: Sensitization, Components and Tryptase (Ch. 56):** 1 pending claim (IgE constants, receptor numbers, intradermal thresholds, rare syndromes, omalizumab, mediators; not taught); 1 open lesson flag (f-arah2-region); no register flags.
 - **Primary Immunodeficiency Screening: TREC, DHR, CVID (Ch. 52):** 1 pending claim (other PIDs and figures; not taught); 2 open lesson flags (f-cvid-age, f-trec-rt); register flag rv-cvid-age.
 - **Vasculitis Testing: PR3/MPO-ANCA and Cryoglobulins (Ch. 54):** 1 pending claim (other vasculitides, seronegativity figures, incubation range, HCV share; not taught); no open lesson flags; no register flags. The 2017 consensus is cited through Kozmar 2025; Gür Vural 2024 read as abstract only.
+- **Organ-Specific Autoantibodies: Coeliac Serology and AMA (Ch. 55):** 1 pending claim (assay percentages, HLA frequencies, AMA thresholds, ALP duration, other Ch. 55 topics; not taught); 1 open lesson flag (f-ema-confirm); register flag rv-ema-confirm.
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
