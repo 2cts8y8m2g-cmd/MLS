@@ -1,0 +1,1521 @@
+{
+  "schemaVersion": 1,
+  "id": "micro-urine-culture-interpretation",
+  "title": "Urine Culture Interpretation: Colony Counts, Catheters and Contamination",
+  "summary": "Convert calibrated-loop colonies to CFU/mL, apply the right threshold for asymptomatic, symptomatic and catheterized patients, recognize contaminated specimens, and know when asymptomatic bacteriuria is treated.",
+  "domain": "p7-micro",
+  "topic": "ch66",
+  "conceptIds": [
+    "ch66.hit3",
+    "ch66.hit21",
+    "ch66.hit22"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 66,
+        "section": "High-Yield Hits",
+        "items": [
+          3,
+          21,
+          22
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 66 Hits 3, 21 and 22. Checked against Baron 2013 (IDSA/ASM laboratory guide; full text), Hooton 2010 (IDSA CAUTI) and Nicolle 2019 (IDSA ASB), the latter two read as web pages through a page-fetch tool. Nuances: ≥ 10⁵ CFU/mL defines bacteriuria, not infection, without symptoms; in catheterized patients pyuria does not distinguish CA-ASB from CA-UTI (Hit 21 pairs pyuria with catheters). The reviewer’s “≥ 10² in acute urethral syndrome” is taught as the 2013 guide’s “as low as 200 CFU/mL may be significant”. Not taught: the urinary pathogen lineup (Hit 40) and the “≤ 2 h or refrigerate ≤ 24 h” processing window (the 2013 guide says ≤ 30 min at room temperature)."
+  },
+  "prerequisites": [
+    "ch66.hit1"
+  ],
+  "objectives": [
+    "Convert calibrated-loop colony counts to CFU/mL.",
+    "Apply thresholds for asymptomatic, symptomatic and catheterized patients.",
+    "Recognize contaminated urine and state when asymptomatic bacteriuria is treated."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Four urine plates, four different answers",
+      "start": 0,
+      "end": 20,
+      "altText": "Four invented urine cultures, each plated with a 0.001-mL calibrated loop: (A) healthy non-pregnant woman, no symptoms, 150 colonies of E. coli; (B) young woman with dysuria, pyuria, 1 colony of E. coli (= 10³ CFU/mL); (C) catheterized patient with fever, no other source, 3 colonies of one gram-negative rod; (D) outpatient, no symptoms, 3 different species at high counts. Question token: “Which count is significant — and when does the count not matter?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Four urine cultures, each streaked with a 1-microlitre calibrated loop. A woman with no symptoms grows 150 colonies of E. coli. A young woman with painful urination and pyuria grows only one colony."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "A catheterized patient with fever and no other source grows 3 colonies of one gram-negative rod. And a symptom-free outpatient grows three different species."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which counts are significant, and when does the number alone not decide?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "u0",
+          "type": "card",
+          "props": {
+            "x": 130,
+            "y": 200,
+            "w": 220,
+            "h": 170,
+            "tone": "a",
+            "title": "A: no symptoms",
+            "lines": [
+              "150 col E. coli"
+            ],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "u1",
+          "type": "card",
+          "props": {
+            "x": 363,
+            "y": 200,
+            "w": 220,
+            "h": 170,
+            "tone": "warn",
+            "title": "B: dysuria",
+            "lines": [
+              "Pyuria · 1 colony"
+            ],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.4,
+              "opacity": 0
+            },
+            {
+              "t": 4.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "u2",
+          "type": "card",
+          "props": {
+            "x": 596,
+            "y": 200,
+            "w": 220,
+            "h": 170,
+            "tone": "bad",
+            "title": "C: catheter, fever",
+            "lines": [
+              "3 col, 1 GNR"
+            ],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.4,
+              "opacity": 0
+            },
+            {
+              "t": 7.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "u3",
+          "type": "card",
+          "props": {
+            "x": 829,
+            "y": 200,
+            "w": 220,
+            "h": 170,
+            "tone": "b",
+            "title": "D: no symptoms",
+            "lines": [
+              "3 species, high"
+            ],
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.4,
+              "opacity": 0
+            },
+            {
+              "t": 10.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 410,
+            "w": 560,
+            "label": "Significant? When does the count not decide?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 450,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "From colonies to CFU/mL",
+      "start": 20,
+      "end": 60,
+      "altText": "Loop arithmetic card: a 0.001-mL loop delivers one-thousandth of a millilitre, so 1 colony = 1,000 (10³) CFU/mL and 100 colonies = 100,000 (10⁵) CFU/mL; a 0.01-mL loop makes 1 colony = 100 CFU/mL. Handling card (IDSA/ASM 2013): collect to minimize perineal and mucosal contamination; urine should not sit at room temperature more than 30 minutes — refrigerate if not cultured within 30 minutes. Token: bacteria multiply in urine left warm.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "A calibrated loop delivers a known volume. A 1-microlitre loop carries one-thousandth of a millilitre, so each colony represents 1,000 CFU per millilitre."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "So 100 colonies means 100,000, ten to the fifth, CFU per millilitre. With a 10-microlitre loop, each colony is 100 CFU per millilitre."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "The count is only meaningful if the specimen was handled well. Collect it to minimize contamination from skin and mucosa."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "The 2013 laboratory guide says urine should not sit at room temperature for more than 30 minutes; refrigerate it if it cannot be cultured by then."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lp",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "a",
+            "title": "Calibrated loop",
+            "lines": [
+              "0.001 mL: 1 colony = 10³ CFU/mL",
+              "100 colonies = 10⁵ CFU/mL",
+              "0.01 mL: 1 colony = 10² CFU/mL"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "hd",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Handling (IDSA/ASM 2013)",
+            "lines": [
+              "Minimize contamination",
+              "RT ≤ 30 min, else refrigerate"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "The threshold depends on the patient",
+      "start": 60,
+      "end": 104,
+      "altText": "Threshold ladder. Asymptomatic bacteriuria (IDSA 2019): ≥10⁵ CFU/mL of bacteria in a patient without UTI symptoms, irrespective of pyuria; women need 2 consecutive specimens (preferably within 2 weeks), men 1; in-and-out catheter specimens ≥10² CFU/mL. Symptomatic: a single potential pathogen as low as ~200 CFU/mL may be significant, e.g., acute urethral syndrome (IDSA/ASM 2013). Indwelling catheter (IDSA 2010): CA-UTI = symptoms with no other source + ≥10³ CFU/mL of ≥1 species in a single catheter specimen; CA-ASB = no symptoms + ≥10⁵ CFU/mL. Token: in catheterized patients, pyuria does not separate CA-ASB from CA-UTI.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "Without symptoms, 10 to the fifth CFU per millilitre or more is asymptomatic bacteriuria, whether or not pus cells are present. Women need two consecutive positive specimens; men need one."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 80,
+          "text": "With symptoms, much lower counts can matter: a single potential pathogen at about 200 CFU per millilitre may be significant, as in acute urethral syndrome."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 92,
+          "text": "With an indwelling catheter, symptoms and no other source plus 10 to the third or more of one or more species is a catheter-associated UTI. Without symptoms, 10 to the fifth is catheter-associated asymptomatic bacteriuria."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "In catheterized patients, pyuria does not tell bacteriuria from infection, so it should not be used to decide."
+        }
+      ],
+      "objects": [
+        {
+          "id": "as",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 160,
+            "w": 440,
+            "h": 200,
+            "tone": "a",
+            "title": "No symptoms (ASB)",
+            "lines": [
+              "≥ 10⁵ CFU/mL, pyuria irrelevant",
+              "Women: 2 specimens · men: 1",
+              "In-out catheter: ≥ 10²"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "sy",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 160,
+            "w": 420,
+            "h": 160,
+            "tone": "warn",
+            "title": "Symptomatic",
+            "lines": [
+              "Single pathogen ~200 CFU/mL",
+              "e.g., acute urethral syndrome"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "highlight": 1
+            },
+            {
+              "t": 17,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ca",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 390,
+            "w": 760,
+            "h": 150,
+            "tone": "bad",
+            "title": "Indwelling catheter (IDSA 2010)",
+            "lines": [
+              "CA-UTI: symptoms, no other source + ≥ 10³",
+              "CA-ASB: no symptoms + ≥ 10⁵"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "highlight": 1
+            },
+            {
+              "t": 29,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "py",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 640,
+            "label": "Catheter: pyuria does not separate ASB from UTI",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Contamination, and who needs treatment",
+      "start": 104,
+      "end": 144,
+      "altText": "Contamination card (IDSA/ASM 2013): three or more species usually indicates contamination at collection; interpretation is fraught with error → request a new, properly collected specimen rather than identifying everything. Yeast at high counts is often recovered from patients without yeast UTI. Treatment card (IDSA 2019): screen for and treat ASB in pregnancy and before endoscopic urologic procedures with mucosal trauma; do not screen or treat in most others (healthy non-pregnant women, older adults, diabetes). Back to the hook: A = 1.5 × 10⁵ CFU/mL, no symptoms → ASB, usually not treated (confirm with a 2nd specimen if it matters); B = 10³ in a symptomatic woman with pyuria → may be significant; C = 3 × 10³ with fever and no other source → meets CA-UTI; D = 3 species → likely contamination, recollect.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 113,
+          "text": "Three or more species in one urine usually means contamination during collection. Interpretation is unreliable, so ask for a new, properly collected specimen."
+        },
+        {
+          "id": "l2",
+          "start": 113,
+          "end": 120,
+          "text": "Yeast at high counts is often recovered from patients who do not have a yeast UTI, so interpret it with care."
+        },
+        {
+          "id": "l3",
+          "start": 120,
+          "end": 128,
+          "text": "Asymptomatic bacteriuria is screened for and treated in pregnancy and before urologic procedures that injure the mucosa, but not in most other people, including older adults and people with diabetes."
+        },
+        {
+          "id": "l4",
+          "start": 128,
+          "end": 136,
+          "text": "Back to the plates: A is 150,000 CFU per millilitre without symptoms, asymptomatic bacteriuria, usually not treated. B, at 1,000 in a symptomatic woman with pyuria, may be significant."
+        },
+        {
+          "id": "l5",
+          "start": 136,
+          "end": 144,
+          "text": "C, 3,000 of one organism with fever and no other source, meets catheter-associated UTI. D, three species, is most likely contamination; recollect."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ct",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 440,
+            "h": 200,
+            "tone": "b",
+            "title": "Contamination",
+            "lines": [
+              "≥ 3 species → likely contaminated",
+              "Recollect, don’t work up all",
+              "High-count yeast: interpret carefully"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2,
+              "highlight": 1
+            },
+            {
+              "t": 13,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "tx",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 160,
+            "tone": "good",
+            "title": "Treat ASB only in",
+            "lines": [
+              "Pregnancy",
+              "Before mucosa-injuring urologic surgery"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "reveal": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20,
+              "highlight": 1
+            },
+            {
+              "t": 22,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ab",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 760,
+            "label": "A: ASB · B: may be significant",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 25.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "cd",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 480,
+            "w": 760,
+            "label": "C: CA-UTI · D: contamination → recollect",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “≥10⁵ CFU/mL always means a UTI that needs treatment” (✓ without symptoms it is ASB — treat only in pregnancy or before urologic procedures); “Counts below 10⁵ are never significant” (✓ symptomatic patients: ~200 CFU/mL may matter; catheter with symptoms: ≥10³); “Pyuria proves CA-UTI in a catheterized patient” (✓ pyuria does not separate CA-ASB from CA-UTI).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: 10 to the fifth always means a UTI to treat. Without symptoms it is asymptomatic bacteriuria, treated only in pregnancy or before mucosa-injuring urologic procedures."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: counts below 10 to the fifth are never significant. In symptomatic patients, a single pathogen near 200 per millilitre may matter, and 10 to the third defines catheter-associated UTI."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: pyuria proves catheter-associated UTI. It does not; pyuria cannot separate bacteriuria from infection in a catheterized patient."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “≥ 10⁵ = UTI, treat.”",
+            "lines": [
+              "✓ No symptoms → ASB; treat rarely"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “< 10⁵ is never significant.”",
+            "lines": [
+              "✓ Symptomatic ~200 · catheter ≥ 10³"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Pyuria proves CA-UTI.”",
+            "lines": [
+              "✓ Pyuria doesn’t separate ASB from UTI"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Count, then ask who",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Count, then ask WHO: no symptoms → 5; symptoms → as low as 2–3; three bugs → do it again.” Tokens: No symptoms 10⁵ · Catheter + symptoms 10³ · ≥ 3 species = recollect. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: count, then ask who. No symptoms, the bar is 10 to the fifth. Symptoms, it can drop to 10 to the second or third. Three bugs, do it again."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: “significant” for a symptomatic patient depends on the organism and collection method; women need two positive specimens for asymptomatic bacteriuria; and local laboratory policies set reporting thresholds."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Count, then ask WHO",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "No symptoms: 10⁵",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Catheter + sx: 10³",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "≥ 3 species: recollect",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Symptomatic cutoffs vary by organism/method",
+              "ASB in women: 2 specimens",
+              "Local reporting thresholds differ"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “0.001-mL loop: 1 colony = 10³ CFU/mL · no symptoms ≥ 10⁵ = ASB · symptomatic: ~200 may matter · catheter + symptoms ≥ 10³ = CA-UTI”, “≥ 3 species = contamination → recollect · treat ASB only in pregnancy/urologic procedures · urine ≤ 30 min at RT”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "A urine colony count only means something together with the patient: 10⁵ CFU/mL without symptoms is asymptomatic bacteriuria, much lower counts can be infection when symptoms or a catheter are present, and three species means recollect."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "1 col (0.001 mL) = 10³ · ASB ≥ 10⁵ · symptomatic ~200 · CA-UTI ≥ 10³",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "≥ 3 species → recollect · treat ASB: pregnancy, urologic surgery · RT ≤ 30 min",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a urine culture counts how many bacteria grow from a tiny measured drop; whether that number means infection depends on the patient — symptoms, catheter, pregnancy — and on how cleanly the urine was collected. Scientific terms: calibrated loop, CFU/mL, significant bacteriuria, asymptomatic bacteriuria (ASB), acute urethral syndrome, catheter-associated UTI (CA-UTI) and asymptomatic bacteriuria (CA-ASB), pyuria, contamination.",
+    "why": "Urine passes over colonized skin and mucosa, and bacteria multiply in urine left warm, so counts reflect collection and handling as well as infection. High counts without symptoms are common and usually harmless; low counts can be significant when symptoms point to infection.",
+    "measure": "0.001-mL loop: 1 colony = 10³ CFU/mL; 0.01 mL: 1 colony = 10² CFU/mL. ASB: ≥ 10⁵ CFU/mL without symptoms, irrespective of pyuria; women 2 consecutive specimens, men 1; in-and-out catheter ≥ 10² (Nicolle 2019). Symptomatic: single pathogen as low as ~200 CFU/mL may be significant (Baron 2013). CA-UTI: symptoms, no other source, ≥ 10³ CFU/mL; CA-ASB ≥ 10⁵ without symptoms (Hooton 2010). ≥ 3 species usually = contamination; urine ≤ 30 min at room temperature, else refrigerate (Baron 2013).",
+    "differs": "ASB (no symptoms, ≥ 10⁵) vs symptomatic UTI (lower counts may matter) vs CA-UTI (symptoms + ≥ 10³ in a catheter specimen); single uropathogen vs ≥ 3 species (contamination).",
+    "examAngle": "Expect: loop calculations, the 10⁵ threshold and when lower counts count, catheter thresholds, ≥ 3 species = recollect, and treating ASB only in pregnancy or before urologic procedures."
+  },
+  "comparisons": [
+    {
+      "id": "asb-vs-cauti",
+      "title": "CA-ASB vs CA-UTI",
+      "left": {
+        "label": "CA-ASB",
+        "points": [
+          "No UTI symptoms",
+          "≥ 10⁵ CFU/mL"
+        ]
+      },
+      "right": {
+        "label": "CA-UTI",
+        "points": [
+          "Symptoms, no other source",
+          "≥ 10³ CFU/mL of ≥ 1 species"
+        ]
+      },
+      "distinguisher": "Symptoms, not pyuria."
+    },
+    {
+      "id": "single-vs-mixed",
+      "title": "Single uropathogen vs mixed growth",
+      "left": {
+        "label": "Single predominant organism",
+        "points": [
+          "Interpret by patient and count",
+          "Identify and test"
+        ]
+      },
+      "right": {
+        "label": "≥ 3 species",
+        "points": [
+          "Usually contamination",
+          "Request a new specimen"
+        ]
+      },
+      "distinguisher": "Number of species."
+    }
+  ],
+  "mnemonic": {
+    "text": "Count, then ask WHO: no symptoms → 10⁵; symptoms → as low as 10²–10³; three bugs → do it again.",
+    "explanation": "ASB is ≥ 10⁵ without symptoms; symptomatic or catheterized patients can have significant infection at 10²–10³; ≥ 3 species means contamination.",
+    "limitation": "Symptomatic cutoffs vary by organism and collection method; ASB in women needs 2 specimens; local reporting policies differ."
+  },
+  "analogyLimitations": [
+    "Plates and patients are invented and schematic.",
+    "Loop volumes are nominal; calibrated loops have tolerances.",
+    "Guidance is from US (IDSA/ASM) sources; local protocols may differ."
+  ],
+  "takeaway": "A urine colony count only means something together with the patient: 10⁵ CFU/mL without symptoms is asymptomatic bacteriuria, much lower counts can be infection when symptoms or a catheter are present, and three species means recollect.",
+  "questions": [
+    {
+      "id": "micro-ucx-q1",
+      "stem": "Using a 0.001-mL calibrated loop, 45 colonies of E. coli grow from a midstream urine. What is the count?",
+      "options": [
+        {
+          "id": "a",
+          "text": "45,000 CFU/mL (4.5 × 10⁴)",
+          "rationale": "Correct. Each colony represents 1,000 CFU/mL with a 0.001-mL loop: 45 × 1,000."
+        },
+        {
+          "id": "b",
+          "text": "4,500 CFU/mL",
+          "rationale": "Incorrect. That would be a 0.01-mL loop (× 100)."
+        },
+        {
+          "id": "c",
+          "text": "450,000 CFU/mL",
+          "rationale": "Incorrect. The multiplier for a 0.001-mL loop is 1,000, not 10,000."
+        },
+        {
+          "id": "d",
+          "text": "45 CFU/mL",
+          "rationale": "Incorrect. Colonies must be multiplied by the reciprocal of the volume plated."
+        }
+      ],
+      "answer": "a",
+      "skill": "Calibrated-loop calculation",
+      "difficulty": "calculation"
+    },
+    {
+      "id": "micro-ucx-q2",
+      "stem": "A patient with an indwelling urinary catheter has fever and flank pain with no other source; the catheter urine grows 5 × 10³ CFU/mL of a single gram-negative rod. How should this be interpreted?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Meets the definition of catheter-associated UTI",
+          "rationale": "Correct. CA-UTI requires compatible symptoms with no other source and ≥ 10³ CFU/mL of ≥ 1 species."
+        },
+        {
+          "id": "b",
+          "text": "Insignificant because it is below 10⁵",
+          "rationale": "Incorrect. 10⁵ applies to CA-ASB in patients without symptoms."
+        },
+        {
+          "id": "c",
+          "text": "Contamination",
+          "rationale": "Incorrect. A single species at this count in a symptomatic catheterized patient is not typical contamination."
+        },
+        {
+          "id": "d",
+          "text": "Decide by pyuria",
+          "rationale": "Incorrect. Pyuria does not distinguish CA-ASB from CA-UTI."
+        }
+      ],
+      "answer": "a",
+      "skill": "CA-UTI criteria",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-ucx-q3",
+      "stem": "A voided urine from an outpatient without symptoms grows three different organisms, each > 10⁴ CFU/mL. What is the best action?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Report probable contamination and request a properly collected repeat specimen",
+          "rationale": "Correct. Three or more species usually indicates contamination at collection."
+        },
+        {
+          "id": "b",
+          "text": "Identify all three and perform susceptibility testing",
+          "rationale": "Incorrect. Working up a contaminated specimen gives misleading results."
+        },
+        {
+          "id": "c",
+          "text": "Report polymicrobial UTI",
+          "rationale": "Incorrect. Mixed growth in an asymptomatic patient points to contamination, not infection."
+        },
+        {
+          "id": "d",
+          "text": "Treat for asymptomatic bacteriuria",
+          "rationale": "Incorrect. ASB is not treated in most non-pregnant patients, and this specimen is likely contaminated."
+        }
+      ],
+      "answer": "a",
+      "skill": "Contamination recognition",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch66",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 66, Collecting Microbiology Specimens (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 66,
+          "section": "High-Yield Hits",
+          "items": [
+            3,
+            21,
+            22
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "baron2013",
+      "kind": "external",
+      "citation": "Baron EJ, Miller JM, Weinstein MP, et al. A guide to utilization of the microbiology laboratory for diagnosis of infectious diseases: 2013 recommendations by the Infectious Diseases Society of America (IDSA) and the American Society for Microbiology (ASM). Clin Infect Dis. 2013;57(4):e22-e121.",
+      "doi": "10.1093/cid/cit278",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3719886/",
+      "consulted": true,
+      "usedFor": "Urine ≤ 30 min at room temperature, otherwise refrigerate; minimize perineal/mucosal contamination; ≥ 3 species usually contamination; single pathogen as low as 200 CFU/mL may be significant (acute urethral syndrome); yeast at high counts often without yeast UTI."
+    },
+    {
+      "id": "hooton2010",
+      "kind": "external",
+      "citation": "Hooton TM, Bradley SF, Cardenas DD, et al. Diagnosis, prevention, and treatment of catheter-associated urinary tract infection in adults: 2009 International Clinical Practice Guidelines from the Infectious Diseases Society of America. Clin Infect Dis. 2010;50(5):625-663.",
+      "doi": "10.1086/650482",
+      "url": "https://academic.oup.com/cid/article/50/5/625/324341",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. CA-UTI: symptoms, no other source, ≥ 10³ CFU/mL of ≥ 1 species; CA-ASB ≥ 10⁵ without symptoms; pyuria not diagnostic and should not differentiate CA-ASB from CA-UTI."
+    },
+    {
+      "id": "nicolle2019",
+      "kind": "external",
+      "citation": "Nicolle LE, Gupta K, Bradley SF, et al. Clinical Practice Guideline for the Management of Asymptomatic Bacteriuria: 2019 Update by the Infectious Diseases Society of America. Clin Infect Dis. 2019;68(10):e83-e110.",
+      "doi": "10.1093/cid/ciy1121",
+      "url": "https://academic.oup.com/cid/article/68/10/e83/5407612",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. ASB ≥ 10⁵ CFU/mL without symptoms irrespective of pyuria; women 2 consecutive specimens, men 1; in-and-out catheter ≥ 10²; screen/treat in pregnancy and before endoscopic urologic procedures with mucosal trauma; not in most others."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-loop",
+      "text": "Calibrated loop conversion (arithmetic).",
+      "status": "checked",
+      "refs": [
+        "baron2013"
+      ]
+    },
+    {
+      "id": "cl-asb",
+      "text": "ASB definition, specimen numbers, catheter specimen threshold, who to treat.",
+      "status": "checked",
+      "refs": [
+        "nicolle2019"
+      ]
+    },
+    {
+      "id": "cl-cauti",
+      "text": "CA-UTI ≥ 10³ with symptoms; CA-ASB ≥ 10⁵; pyuria non-discriminating.",
+      "status": "checked",
+      "refs": [
+        "hooton2010"
+      ]
+    },
+    {
+      "id": "cl-low",
+      "text": "Single pathogen ~200 CFU/mL may be significant (acute urethral syndrome).",
+      "status": "checked",
+      "refs": [
+        "baron2013"
+      ]
+    },
+    {
+      "id": "cl-contam",
+      "text": "≥ 3 species = likely contamination; urine handling ≤ 30 min RT.",
+      "status": "checked",
+      "refs": [
+        "baron2013"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Urinary pathogen lineup (E. coli #1, Proteus struvite, S. saprophyticus); reviewer ≤ 2 h / ≤ 24 h refrigeration window.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch66"
+      ],
+      "note": "Not taught; not checked."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Plates and patients are invented.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Count, then ask WHO.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-threshold",
+      "issue": "Hit 3 says ≥ 10⁵ CFU/mL “= infection”. Without symptoms this is asymptomatic bacteriuria, which is usually not treated (Nicolle 2019). Hit 21 pairs pyuria with catheterized patients, but Hooton 2010 says pyuria does not separate CA-ASB from CA-UTI.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-window",
+      "issue": "The reviewer’s Number Vault gives a ≤ 2 h processing window (or ≤ 24 h refrigerated); Baron 2013 says urine should not sit at room temperature more than 30 minutes. Not taught as a fixed rule here; local policy applies.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-fetch",
+      "issue": "Hooton 2010 and Nicolle 2019 were read through a page-fetch tool returning quoted passages, not as downloaded full text.",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Plates and colonies are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Baron 2013, Hooton 2010 and Nicolle 2019; 1 pending (pathogen lineup, processing window). No human expert has reviewed this lesson. US guidance only."
+  },
+  "revisedAt": "2026-10-10"
+}
