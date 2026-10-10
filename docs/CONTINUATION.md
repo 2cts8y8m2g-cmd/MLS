@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 97, teaching 516 of 1,932 concepts (about 26.7%).** All 97 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 98, teaching 519 of 1,932 concepts (about 26.9%).** All 98 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -33,7 +33,7 @@
   - Ch. 41 (26/35 concepts): `bb-acute-hemolytic-reaction-abo-compatibility`, `bb-component-choice-thresholds`, `bb-component-storage-irradiation`, `bb-trali-vs-taco`, `ih-component-dating-processing`, `ih-dhtr-lookback-windows`.
   - Ch. 42 (21/29 concepts): `bb-donor-eligibility-criteria`, `ih-apheresis-citrate-asfa-rce`, `ih-hpc-mobilization-ecp`, `ih-plasma-exchange-tpe`.
   - Ch. 43 (12/22 concepts): `ih-hpc-cd34-dose-cryopreservation`, `ih-hpc-graft-sources-abo`.
-  - Ch. 57 (20/57 concepts): `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-strep-enterococcus-id`.
+  - Ch. 57 (23/57 concepts): `micro-enteric-pathogens-stec`, `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-strep-enterococcus-id`.
   - Ch. 58 (12/30 concepts): `micro-ast-mic-breakpoints-dtest`, `micro-beta-lactamases-esbl-cpe`.
   - Ch. 59 (5/26 concepts): `micro-afb-smear-decontamination`.
   - Ch. 60 (13/25 concepts): `micro-dimorphic-fungi`, `micro-invasive-mold-markers`.
@@ -49,8 +49,8 @@
   - Ch. 70 (6/23 concepts): `mdx-hybridization-arrays`.
   - Ch. 71 (6/23 concepts): `mdx-cytogenetic-test-choice`.
   - Ch. 72 (5/26 concepts): `mdx-repeat-expansions`.
-- **Reviewer accuracy register:** 86 flags (62 verified issues, 24 needing verification), plus scan results.
-- **Checks:** 648 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Reviewer accuracy register:** 87 flags (63 verified issues, 24 needing verification), plus scan results.
+- **Checks:** 654 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -97,6 +97,8 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 | 17 | ✅ Ch. 33 hemolytic anemias (3rd lesson) | ✅ Ch. 26 fertility & pregnancy (2nd lesson) | ✅ Ch. 66 specimen collection (3rd lesson) | ✅ Ch. 41 transfusion (5th lesson) |
 
 **Molecular Diagnostics round** (core lessons; no MDx lessons existed before it): ✅ Ch. 72 genetic diseases (repeat expansions) · ✅ Ch. 67 molecular basics (pharmacogenomics) · ✅ Ch. 68 how tests work (sequencing) · ✅ Ch. 69 PCR & amplification (qPCR quantification) · ✅ Ch. 70 microarrays & hybridization (line probes, HC2, arrays) · ✅ Ch. 71 cytogenetics (test choice).
+
+| 18 | ✅ Ch. 57 bacteria that cause disease (4th lesson: stool pathogens & STEC) | Ch. 66 specimen collection | Ch. 64 viral infections | Ch. 34 white cell disorders |
 
 Clinical Microscopy runs alongside rounds 14–15: **Ch. 29 urinalysis** (✅ core lesson, round 14) and **Ch. 30 body fluids** (✅ core lesson, round 15). Round 16 adds **Ch. 29 urinalysis (2nd lesson)** (✅ reagent-strip chemistry); round 17 adds **Ch. 30 body fluids (2nd lesson)** (✅ CSF and synovial fluid). Molecular Diagnostics (Ch. 67–72) follows round 17 (see the MDx round above); Ch. 29 still ranks third by simulator questions × untaught share.
 
