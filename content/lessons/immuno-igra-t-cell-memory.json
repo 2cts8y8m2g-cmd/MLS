@@ -1,0 +1,1468 @@
+{
+  "schemaVersion": 1,
+  "id": "immuno-igra-t-cell-memory",
+  "title": "Testing Cellular Immunity: Interferon-γ Release Assays for TB",
+  "summary": "Link CD4/CD8 T-cell recognition to interferon-γ release, see why ESAT-6 and CFP-10 let IGRAs ignore BCG, compare QuantiFERON and T-SPOT.TB, and avoid indeterminate and pre-analytical errors.",
+  "domain": "p6-immuno",
+  "topic": "ch46",
+  "conceptIds": [
+    "ch46.hit2",
+    "ch46.hit8"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 46,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          8
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 46 Hits 2 and 8 (first lesson for Ch. 46). Checked against Zarei 2026 and Pai 2014 (read via a page-fetch tool, first 100,000 characters). Not taught as fact: ELISPOT sensitivity of 1 in 10⁵–10⁶ cells, the two-signal model, cytokine type 1/2 lists, NK mechanisms, NBT percentages, cell-cycle figures, stimulation-index formula, the “never lithium heparin” rule (IGRA kit inserts govern tube types), CD4 diurnal variation, cancer CD4/CD8 ratios, gating rules, microlymphocytotoxicity."
+  },
+  "prerequisites": [
+    "ch50.hit2"
+  ],
+  "objectives": [
+    "Explain which T cells recognize class I vs class II and how memory T cells release IFN-γ.",
+    "Explain why IGRAs are unaffected by BCG and what they cannot tell you.",
+    "Compare QuantiFERON and T-SPOT.TB and recognize indeterminate and pre-analytical errors."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "A BCG scar and a positive skin test",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented case: a newly hired hospital worker, BCG-vaccinated at birth, has a positive tuberculin skin test (TST) at pre-employment screening; no symptoms; chest film normal. Occupational health orders an interferon-γ release assay (IGRA). The blood sat at room temperature for 14 hours before incubation. Question token: “Can an IGRA separate BCG from TB infection — and can this sample be trusted?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A new hospital worker, vaccinated with BCG at birth, has a positive tuberculin skin test. No symptoms, normal chest film."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "An interferon-gamma release assay is ordered, but the blood sat for 14 hours before it was incubated."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Can this test tell BCG from tuberculosis infection, and can the sample be trusted?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 200,
+            "tone": "b",
+            "title": "Worker",
+            "lines": [
+              "BCG at birth",
+              "TST positive",
+              "Well · chest film normal"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tube",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "IGRA sample",
+            "lines": [
+              "14 h before incubation"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "BCG vs TB? Trust the sample?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 480,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "T-cell memory and interferon-γ",
+      "start": 20,
+      "end": 60,
+      "altText": "Presentation card (Zarei 2026): HLA class II (DP, DQ, DR) presents antigens from outside the cell to CD4⁺ helper T cells; HLA class I (A, B, C) presents intracellular peptides to CD8⁺ cytotoxic T cells. Memory card (Pai 2014, read via a page-fetch tool): IGRAs stimulate a patient’s blood T cells with Mycobacterium tuberculosis antigens — early secreted antigenic target 6 (ESAT-6) and culture filtrate protein 10 (CFP-10) — and measure the interferon-γ (IFN-γ) released by previously sensitized T cells. Schematic: antigen-presenting cell → T cell → IFN-γ.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Helper T cells, which carry CD4, recognize antigen presented on HLA class II; cytotoxic T cells, which carry CD8, recognize peptides on HLA class I."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "After an infection, some T cells remember the microbe. Meeting its antigens again, they release cytokines such as interferon-gamma."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "An interferon-gamma release assay uses that memory. Fresh blood is mixed with two tuberculosis antigens, ESAT-6 and CFP-10."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "If the person has been sensitized to tuberculosis, their T cells release interferon-gamma, which the assay measures."
+        }
+      ],
+      "objects": [
+        {
+          "id": "mhc",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Who sees what",
+            "lines": [
+              "Class II → CD4⁺ helpers",
+              "Class I → CD8⁺ cytotoxic"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "mem",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "label": "Memory T cells → IFN-γ on re-exposure",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ag",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "IGRA stimulus",
+            "lines": [
+              "ESAT-6",
+              "CFP-10"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            },
+            {
+              "t": 28,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ifn",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "label": "Sensitized → IFN-γ measured",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Why BCG does not fool an IGRA",
+      "start": 60,
+      "end": 104,
+      "altText": "Specificity card (Pai 2014): ESAT-6 and CFP-10 are NOT encoded in the genomes of any BCG vaccine strain or of most nontuberculous mycobacteria (NTM) — so prior BCG vaccination does not make an IGRA positive. Limitation card (Pai 2014): IGRAs CANNOT distinguish latent TB infection from active TB disease. Indeterminate card (Pai 2014): an indeterminate result can occur when the response to the positive (mitogen) control is low; indeterminate proportions were higher in patients with CD4⁺ T-cell counts below 200.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Here is why IGRAs help after BCG. ESAT-6 and CFP-10 are not made by any BCG vaccine strain, nor by most nontuberculous mycobacteria."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "So BCG vaccination by itself should not make an IGRA positive, which is why it helps in vaccinated people."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 92,
+          "text": "But an IGRA only shows T-cell memory. It cannot tell latent infection from active disease."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "And the test needs working T cells. If the mitogen control barely responds, as is more common with CD4 counts below 200, the result is indeterminate, not negative."
+        }
+      ],
+      "objects": [
+        {
+          "id": "bcg",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "good",
+            "title": "ESAT-6 / CFP-10",
+            "lines": [
+              "Not in any BCG strain",
+              "Not in most NTM",
+              "BCG alone → IGRA negative"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "lat",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "label": "Cannot separate latent from active TB",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ind",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 340,
+            "w": 420,
+            "h": 170,
+            "tone": "bad",
+            "title": "Indeterminate",
+            "lines": [
+              "Low mitogen response",
+              "More common if CD4 < 200"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 42,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Two formats, and the pre-analytical traps",
+      "start": 104,
+      "end": 144,
+      "altText": "Format card (Pai 2014): QuantiFERON — ELISA; IFN-γ reported in IU/mL after subtracting the negative (nil) control; CDC serial-testing guidance uses a cut-off of ≥ 0.35 IU/mL. T-SPOT.TB — ELISPOT; reported as the number of IFN-γ-producing T cells (spot-forming cells). Both include a negative (nil) and a positive (mitogen) control. Pre-analytical card (Pai 2014): incubation DELAY has a negative effect on results; vigorous SHAKING increased IFN-γ in the nil and TB-antigen tubes; blood VOLUME in the antigen tube related inversely to response; some lots were affected by shipping temperature. Variability card: results close to the cut-off can be discordant on repeat (conversions/reversions). Hook answers: an IGRA can separate BCG from TB sensitization; the 14-hour delay can lower the response — recollect and incubate promptly per the kit insert.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "There are two commercial formats. QuantiFERON is an ELISA that reports interferon-gamma in international units per millilitre, after subtracting the nil tube."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 122,
+          "text": "T-SPOT.TB is an ELISPOT that counts individual T cells releasing interferon-gamma, as spots. Both have a nil and a mitogen control."
+        },
+        {
+          "id": "l3",
+          "start": 122,
+          "end": 134,
+          "text": "Handling changes results. Delays before incubation lower the response; vigorous shaking raised interferon-gamma in nil and antigen tubes; blood volume and shipping temperature matter too."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Values near the cut-off can flip on repeat testing. For our worker, the IGRA can separate BCG from TB, but the 14-hour delay may lower the result. Recollect and incubate promptly, following the kit insert."
+        }
+      ],
+      "objects": [
+        {
+          "id": "qft",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 180,
+            "tone": "b",
+            "title": "QuantiFERON (ELISA)",
+            "lines": [
+              "IFN-γ IU/mL − nil",
+              "Cut-off ≥ 0.35 IU/mL (CDC)",
+              "Nil + mitogen controls"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "tsp",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 410,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "T-SPOT.TB (ELISPOT)",
+            "lines": [
+              "Counts spot-forming cells",
+              "Nil + mitogen controls"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pre",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 420,
+            "h": 230,
+            "tone": "warn",
+            "title": "Pre-analytics (Pai 2014)",
+            "lines": [
+              "Delay → lower response",
+              "Shaking → higher nil/antigen",
+              "Blood volume matters",
+              "Shipping temperature"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            },
+            {
+              "t": 29,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 530,
+            "w": 800,
+            "label": "Hook: IGRA separates BCG · recollect, incubate promptly",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “A positive IGRA means active TB” (✓ IGRAs cannot distinguish latent infection from active disease); “BCG vaccination makes the IGRA positive” (✓ ESAT-6/CFP-10 are absent from all BCG strains); “Indeterminate = negative” (✓ low mitogen response — consider immunosuppression or handling; it is not a negative).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a positive IGRA means active tuberculosis. No: it shows T-cell sensitization and cannot separate latent infection from active disease."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: BCG vaccination makes the IGRA positive. No: the test antigens are not encoded by any BCG strain."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: an indeterminate result is a negative. No: it usually means the mitogen control failed, from immunosuppression or handling."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “IGRA positive = active TB.”",
+            "lines": [
+              "✓ Latent and active look the same"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “BCG makes IGRA positive.”",
+            "lines": [
+              "✓ ESAT-6/CFP-10 not in BCG"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Indeterminate = negative.”",
+            "lines": [
+              "✓ Low mitogen — immunosuppression or handling"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "TB’s ID cards",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “ESAT-6 and CFP-10 are TB’s ID CARDS — BCG never carries them. An IGRA asks memory T cells: ‘Have you seen these cards before?’ The mitogen tube checks the T cells can answer at all.” Tokens: ESAT-6/CFP-10 = TB ID · mitogen = can T cells answer? · memory ≠ active disease. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: ESAT-6 and CFP-10 are tuberculosis’s ID cards, and BCG never carries them. The IGRA asks memory T cells whether they have seen these cards before; the mitogen tube checks the T cells can answer at all."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: a few nontuberculous mycobacteria do carry these antigens; memory says nothing about whether disease is latent or active; and results near the cut-off can flip on repeat testing."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "TB’s ID cards",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "ESAT-6/CFP-10 = TB ID",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Mitogen = can T cells answer?",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Memory ≠ active disease",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "A few NTM carry the antigens",
+              "Latent vs active not separated",
+              "Near-cut-off results can flip"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “IGRA: ESAT-6/CFP-10 → IFN-γ from memory T cells · absent from BCG · cannot separate latent from active TB · low mitogen = indeterminate”, “QFT = ELISA IU/mL (≥ 0.35) · T-SPOT = ELISPOT spots · delay lowers, shaking raises”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Interferon-gamma release assays detect T-cell memory of ESAT-6 and CFP-10, antigens absent from BCG, so they separate vaccination from TB sensitization but cannot tell latent from active disease and must be handled promptly to avoid false results."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "ESAT-6/CFP-10 not in BCG · latent ≈ active · low mitogen = indeterminate",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "QFT ELISA IU/mL · T-SPOT ELISPOT spots · delay ↓ · shaking ↑",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: an IGRA asks whether a person’s T cells “remember” tuberculosis by exposing their blood to two TB proteins and measuring the signal chemical, interferon-gamma, that remembering cells release. Scientific terms: CD4/CD8, HLA class I/II, memory T cell, interferon-γ, ESAT-6, CFP-10, BCG, nontuberculous mycobacteria, latent TB infection, ELISA, ELISPOT, spot-forming cells, nil and mitogen controls, indeterminate result.",
+    "why": "ESAT-6 and CFP-10 are encoded by M. tuberculosis but not by BCG strains or most NTM, so only TB-sensitized T cells respond. Both latent infection and active disease leave sensitized T cells, so the test cannot separate them. Without functional T cells (low mitogen response) no conclusion is possible.",
+    "measure": "QuantiFERON: IFN-γ IU/mL minus nil (CDC serial-testing cut-off ≥ 0.35 IU/mL); T-SPOT.TB: spot-forming cells; both with nil and mitogen controls (Pai 2014). Pre-analytics: prompt incubation, avoid vigorous shaking, correct blood volume, controlled shipping temperature.",
+    "differs": "IGRA antigens (TB-specific; absent from BCG); QuantiFERON (ELISA, concentration) vs T-SPOT.TB (ELISPOT, cell count); negative vs indeterminate (failed mitogen control).",
+    "examAngle": "Expect: explain why BCG does not affect an IGRA, state that a positive IGRA does not mean active TB, interpret an indeterminate result, and identify handling errors."
+  },
+  "comparisons": [
+    {
+      "id": "qft-vs-tspot",
+      "title": "QuantiFERON vs T-SPOT.TB",
+      "left": {
+        "label": "QuantiFERON",
+        "points": [
+          "ELISA",
+          "IFN-γ concentration in IU/mL (minus nil)"
+        ]
+      },
+      "right": {
+        "label": "T-SPOT.TB",
+        "points": [
+          "ELISPOT",
+          "Number of IFN-γ-producing cells (spots)"
+        ]
+      },
+      "distinguisher": "Concentration vs cell count."
+    },
+    {
+      "id": "neg-vs-indet",
+      "title": "Negative vs indeterminate IGRA",
+      "left": {
+        "label": "Negative",
+        "points": [
+          "Mitogen control responds",
+          "No TB-antigen response above nil"
+        ]
+      },
+      "right": {
+        "label": "Indeterminate",
+        "points": [
+          "Low mitogen response",
+          "More common with CD4 < 200"
+        ]
+      },
+      "distinguisher": "Whether the positive control worked."
+    }
+  ],
+  "mnemonic": {
+    "text": "ESAT-6 and CFP-10 are TB’s ID CARDS — BCG never carries them. An IGRA asks memory T cells: ‘Have you seen these cards before?’ The mitogen tube checks the T cells can answer at all.",
+    "explanation": "Specific antigens, memory response and the positive control in one image.",
+    "limitation": "A few NTM carry the antigens; latent vs active not separated; near-cut-off results can flip."
+  },
+  "analogyLimitations": [
+    "The worker and sample are invented.",
+    "Cell-interaction figure is schematic.",
+    "Tube types and handling limits follow each kit’s insert, not this lesson."
+  ],
+  "takeaway": "Interferon-gamma release assays detect T-cell memory of ESAT-6 and CFP-10, antigens absent from BCG, so they separate vaccination from TB sensitization but cannot tell latent from active disease and must be handled promptly to avoid false results.",
+  "questions": [
+    {
+      "id": "immuno-igra-q1",
+      "stem": "Why does prior BCG vaccination not cause a positive IGRA?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Its antigens, ESAT-6 and CFP-10, are not encoded by any BCG strain",
+          "rationale": "Correct. BCG vaccination therefore does not cause a positive IGRA."
+        },
+        {
+          "id": "b",
+          "text": "It distinguishes latent from active TB",
+          "rationale": "Incorrect. IGRAs cannot make this distinction."
+        },
+        {
+          "id": "c",
+          "text": "It detects antibodies against M. tuberculosis",
+          "rationale": "Incorrect. IGRAs measure T-cell IFN-γ release, not antibodies."
+        },
+        {
+          "id": "d",
+          "text": "It needs no positive control",
+          "rationale": "Incorrect. A mitogen positive control is part of the test."
+        }
+      ],
+      "answer": "a",
+      "skill": "IGRA specificity",
+      "difficulty": "recognition"
+    },
+    {
+      "id": "immuno-igra-q2",
+      "stem": "An IGRA from a patient with a CD4 count of 120/μL shows a very low mitogen response and no TB-antigen response. How should it be reported?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Indeterminate",
+          "rationale": "Correct. A low mitogen response prevents interpretation; indeterminate results are more common with CD4 < 200."
+        },
+        {
+          "id": "b",
+          "text": "Negative",
+          "rationale": "Incorrect. Without a working positive control, a negative cannot be trusted."
+        },
+        {
+          "id": "c",
+          "text": "Positive",
+          "rationale": "Incorrect. There is no TB-antigen response."
+        },
+        {
+          "id": "d",
+          "text": "Active TB",
+          "rationale": "Incorrect. IGRAs never diagnose active TB."
+        }
+      ],
+      "answer": "a",
+      "skill": "Indeterminate result",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-igra-q3",
+      "stem": "A QuantiFERON tube set was shaken vigorously before incubation. What effect was reported?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Increased IFN-γ in the nil and TB-antigen tubes",
+          "rationale": "Correct. Pai 2014 reports that vigorous shaking significantly increased IFN-γ responses."
+        },
+        {
+          "id": "b",
+          "text": "No effect on any tube",
+          "rationale": "Incorrect. Handling affected results."
+        },
+        {
+          "id": "c",
+          "text": "It converts the assay to an ELISPOT",
+          "rationale": "Incorrect. The format does not change."
+        },
+        {
+          "id": "d",
+          "text": "It removes the need for a nil tube",
+          "rationale": "Incorrect. The nil control is still required."
+        }
+      ],
+      "answer": "a",
+      "skill": "Pre-analytics",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch46",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 46, Testing Cellular Immunity (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 46,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            8
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "zarei2026",
+      "kind": "external",
+      "citation": "Zarei E, Roozbeh J, Nikoupour Deylami H, et al. HLA Type and the Effect of HLA Antibodies in Kidney, Liver, and Pancreas Transplantation: A Review. Avicenna J Med Biotechnol. 2026;18(1):16-31.",
+      "doi": "10.18502/ajmb.v18i1.21042",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13134671/",
+      "consulted": true,
+      "usedFor": "Class I presents intracellular peptides to CD8⁺ T cells; class II presents extracellular antigens to CD4⁺ helper T cells."
+    },
+    {
+      "id": "pai2014",
+      "kind": "external",
+      "citation": "Pai M, Denkinger CM, Kik SV, et al. Gamma interferon release assays for detection of Mycobacterium tuberculosis infection. Clin Microbiol Rev. 2014;27(1):3-20.",
+      "doi": "10.1128/CMR.00034-13",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3910908/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (first 100,000 characters; quoted passages). ESAT-6/CFP-10 not encoded in any BCG strain or most NTM; QuantiFERON IFN-γ IU/mL after nil subtraction; T-SPOT.TB spot-forming cells; mitogen positive control; cannot distinguish LTBI from active TB; indeterminate from low mitogen, more with CD4 < 200; incubation delay lowers, shaking raises nil/antigen IFN-γ, blood volume inverse relationship, shipping temperature lots; ≥ 0.35 IU/mL cut-off in CDC serial-testing context; discordance near cut-off."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-mhc",
+      "text": "Class I → CD8; class II → CD4.",
+      "status": "checked",
+      "refs": [
+        "zarei2026"
+      ]
+    },
+    {
+      "id": "cl-igra",
+      "text": "IGRA principle; ESAT-6/CFP-10 absent from BCG and most NTM; cannot separate latent from active TB.",
+      "status": "checked",
+      "refs": [
+        "pai2014"
+      ]
+    },
+    {
+      "id": "cl-format",
+      "text": "QuantiFERON vs T-SPOT.TB formats and controls; ≥ 0.35 IU/mL in CDC serial-testing guidance.",
+      "status": "checked",
+      "refs": [
+        "pai2014"
+      ]
+    },
+    {
+      "id": "cl-pre",
+      "text": "Indeterminate results; pre-analytical effects of delay, shaking, volume, temperature; near-cut-off variability.",
+      "status": "checked",
+      "refs": [
+        "pai2014"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "ELISPOT 1 in 10⁵–10⁶ sensitivity; two-signal model; cytokine lists; NK; NBT; cell cycle; stimulation index; anticoagulant rules; CD4 diurnal variation; cancer ratios; gating; microlymphocytotoxicity.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch46"
+      ],
+      "note": "Not taught as facts in this lesson."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Worker invented; figures schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“TB’s ID cards.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; cell interactions and assay formats shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against Zarei 2026 and Pai 2014 (page fetch); 1 pending (other cellular-immunity assays and figures). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-10"
+}
