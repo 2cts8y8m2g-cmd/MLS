@@ -1,0 +1,1430 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-sensitivity-specificity-predictive-values",
+  "title": "Diagnostic Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios",
+  "summary": "Build a 2 × 2 table, calculate sensitivity, specificity, PPV and NPV, show why predictive values depend on prevalence, and use likelihood ratios to convert pre-test to post-test probability.",
+  "domain": "p1-ops",
+  "topic": "ch8",
+  "conceptIds": [
+    "ch8.hit1",
+    "ch8.hit3",
+    "ch8.hit5"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 8,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          3,
+          5
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 8 Hits 1, 3 and 5 (first lesson for Ch. 8). Checked against Trevethan 2017 and Deeks & Altman 2004 (read via page fetch); the worked prevalence example is arithmetic. Nuance: the reviewer states likelihood ratios are “NOT affected by prevalence”; Deeks & Altman describe them as allowing estimates that adapt for varying prior probabilities, and Trevethan notes all cell-based metrics depend on the sample. Not taught: ROC curves and AUC thresholds (Hit 6) — Altman & Bland 1994 notes were scanned and not readable; the explicit “lower cutoff raises sensitivity” direction (Hit 4)."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Calculate sensitivity, specificity, PPV and NPV from a 2 × 2 table.",
+    "Explain and quantify how prevalence changes predictive values.",
+    "Use likelihood ratios to convert pre-test to post-test probability."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "A 99% test that is usually wrong",
+      "start": 0,
+      "end": 20,
+      "altText": "An invented screening programme: a test with 99% sensitivity and 99% specificity is used on 1,000,000 people for a disease with prevalence 1 in 10,000. A patient tests positive and asks: “So I almost certainly have it?” Question token: “What is the chance a positive result is a true positive?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A test is 99 percent sensitive and 99 percent specific. It screens a million people for a disease that affects 1 in 10,000."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "A patient tests positive and asks: so I almost certainly have it?"
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "What is the real chance that a positive result is a true positive?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "ts",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 200,
+            "tone": "a",
+            "title": "Screening test",
+            "lines": [
+              "Sensitivity 99%",
+              "Specificity 99%",
+              "Prevalence 1 in 10,000"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Positive result",
+            "lines": [
+              "“I almost certainly have it?”"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 520,
+            "label": "Chance a positive is truly positive?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 460,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The 2 × 2 table",
+      "start": 20,
+      "end": 60,
+      "altText": "2 × 2 card (Trevethan 2017): people are classified by a reference standard (disease present/absent) and by the test (positive/negative) into four cells: a = true positive, b = false positive, c = false negative, d = true negative. Formulas: sensitivity = a/(a + c); specificity = d/(b + d); positive predictive value (PPV) = a/(a + b); negative predictive value (NPV) = d/(c + d). Sensitivity uses only people WITH the condition; specificity only people WITHOUT it; PPV is the probability that a person with a positive test truly has the condition.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Every test result falls into one of four cells. True positives, a; false positives, b; false negatives, c; and true negatives, d."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Sensitivity is a over a plus c: of the people who have the disease, the fraction the test calls positive. Specificity is d over b plus d: of those without it, the fraction called negative."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Positive predictive value is a over a plus b: of everyone who tests positive, the fraction who really have the disease. Negative predictive value is d over c plus d."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Notice the difference: sensitivity and specificity look down the disease columns; predictive values look across the test rows."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tb",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 440,
+            "h": 250,
+            "tone": "b",
+            "title": "2 × 2 table",
+            "lines": [
+              "a = true positive",
+              "b = false positive",
+              "c = false negative",
+              "d = true negative"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "fm",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 220,
+            "w": 420,
+            "h": 250,
+            "tone": "a",
+            "title": "Formulas",
+            "lines": [
+              "Sens = a/(a + c)",
+              "Spec = d/(b + d)",
+              "PPV = a/(a + b)",
+              "NPV = d/(c + d)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            },
+            {
+              "t": 29,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "dir",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "Sens/spec: by disease · PPV/NPV: by test result",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Prevalence changes predictive value",
+      "start": 60,
+      "end": 104,
+      "altText": "Worked example (arithmetic, 1,000,000 people, prevalence 1 in 10,000): diseased = 100 → true positives 99 (99% sensitivity), false negatives 1; healthy = 999,900 → false positives 9,999 (1% of healthy), true negatives 989,901. PPV = 99/(99 + 9,999) ≈ 1%; NPV ≈ 99.9999%. Same test at prevalence 10%: diseased 100,000 → TP 99,000; healthy 900,000 → FP 9,000; PPV = 99,000/108,000 ≈ 92%. Source token (Deeks & Altman 2004; Trevethan 2017): predictive values depend on the prevalence in the population tested and rarely generalize beyond it.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "Work it through for a million people. At 1 in 10,000, only 100 have the disease; the test finds 99 of them."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 80,
+          "text": "But 999,900 are healthy, and 1 percent of them, 9,999 people, test falsely positive."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 90,
+          "text": "So of 10,098 positives, only 99 are real. The positive predictive value is about 1 percent, despite a 99 percent test."
+        },
+        {
+          "id": "c4",
+          "start": 90,
+          "end": 98,
+          "text": "Use the same test where 10 percent have the disease, and the positive predictive value rises to about 92 percent."
+        },
+        {
+          "id": "c5",
+          "start": 98,
+          "end": 104,
+          "text": "Predictive values depend on prevalence in the population tested. Sensitivity and specificity did not change at all."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lo",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "bad",
+            "title": "Prevalence 1 in 10,000",
+            "lines": [
+              "TP 99 · FN 1",
+              "FP 9,999 · TN 989,901",
+              "PPV ≈ 1%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hi",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 230,
+            "tone": "good",
+            "title": "Prevalence 10%",
+            "lines": [
+              "TP 99,000 · FP 9,000",
+              "Same sens/spec",
+              "PPV ≈ 92%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "src",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 480,
+            "w": 760,
+            "label": "Predictive values depend on prevalence",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 38.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 39.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Likelihood ratios and post-test probability",
+      "start": 104,
+      "end": 144,
+      "altText": "LR card (Deeks & Altman 2004): LR+ = sensitivity/(1 − specificity); LR− = (1 − sensitivity)/specificity. Post-test odds = pre-test odds × LR; probability = odds/(1 + odds). LRs allow probability estimates while adapting for varying prior probabilities. Worked: 99%/99% test → LR+ = 0.99/0.01 = 99. Pre-test probability 1/10,000 → odds ≈ 0.0001 → post-test odds ≈ 0.0099 → probability ≈ 1% (matches the table). Deeks example: pre-test 0.1 → odds 0.11; LR ≈ 20.4 → post-test odds 2.27 → probability ≈ 0.69. Trade-off token (Trevethan 2017): cell values depend on how stringent the test cutoff is; there are trade-offs between sensitivity and specificity. Back to the hook: “about a 1% chance” — confirm with a more specific test.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 113,
+          "text": "Likelihood ratios combine sensitivity and specificity. The positive likelihood ratio is sensitivity divided by one minus specificity; the negative is one minus sensitivity divided by specificity."
+        },
+        {
+          "id": "l2",
+          "start": 113,
+          "end": 122,
+          "text": "To use one, convert the pre-test probability to odds, multiply by the likelihood ratio, then convert the post-test odds back to a probability."
+        },
+        {
+          "id": "l3",
+          "start": 122,
+          "end": 130,
+          "text": "For our 99 percent test, LR-positive is 99. Starting odds of about 1 in 10,000 become about 1 in 100: roughly a 1 percent chance, the same answer as the table."
+        },
+        {
+          "id": "l4",
+          "start": 130,
+          "end": 137,
+          "text": "Results also depend on how stringent the cut-off is: there are trade-offs between sensitivity and specificity."
+        },
+        {
+          "id": "l5",
+          "start": 137,
+          "end": 144,
+          "text": "Back to the patient: a positive result means about a 1 percent chance of disease. Confirm it with a more specific test."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lr",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "a",
+            "title": "Likelihood ratios",
+            "lines": [
+              "LR+ = sens/(1 − spec)",
+              "LR− = (1 − sens)/spec",
+              "Post odds = pre odds × LR"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            },
+            {
+              "t": 17,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "wk",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "b",
+            "title": "99%/99% test",
+            "lines": [
+              "LR+ = 99",
+              "1/10,000 → ≈ 1%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22,
+              "highlight": 1
+            },
+            {
+              "t": 25,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "tr",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 400,
+            "w": 420,
+            "label": "Cut-off stringency → sens/spec trade-off",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 27.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 760,
+            "label": "Hook: ≈ 1% chance → confirm with a specific test",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 34.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “99% sensitive and specific means a positive is 99% likely true” (✓ PPV depends on prevalence — ≈ 1% at 1 in 10,000); “Sensitivity changes with prevalence” (✓ sensitivity/specificity are computed within disease groups; predictive values change with prevalence); “PPV = a/(a + c)” (✓ that is sensitivity; PPV = a/(a + b)).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a 99 percent sensitive and specific test means a positive is 99 percent likely to be true. No: positive predictive value depends on prevalence, and here it is about 1 percent."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: sensitivity changes with prevalence. Sensitivity and specificity are computed within the disease groups; it is the predictive values that move with prevalence."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: PPV is a over a plus c. That is sensitivity. PPV is a over a plus b, true positives over all positives."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “99%/99% → positive is 99% true.”",
+            "lines": [
+              "✓ PPV ≈ 1% at 1 in 10,000"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Sensitivity changes with prevalence.”",
+            "lines": [
+              "✓ Predictive values do"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “PPV = a/(a + c).”",
+            "lines": [
+              "✓ That is sensitivity; PPV = a/(a + b)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Columns vs rows",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Sens and spec live in the DISEASE columns; PPV and NPV live in the TEST rows — and rows move when prevalence moves.” Tokens: Sens = a/(a+c) · Spec = d/(b+d) · PPV = a/(a+b) · NPV = d/(c+d). A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: sensitivity and specificity live in the disease columns; predictive values live in the test rows, and the rows move whenever prevalence moves."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: sensitivity and specificity can also differ between populations with different disease severity or spectrum; the cut-off chosen changes them; and the table layout varies between textbooks, so check which cell is which."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Sens/spec = columns · PPV/NPV = rows",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Sens = a/(a+c)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "PPV = a/(a+b)",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Rows move with prevalence",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Spectrum/severity can shift sens/spec",
+              "Cut-off changes sens/spec",
+              "Table layouts vary — check cells"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Sens = a/(a+c) · Spec = d/(b+d) · PPV = a/(a+b) · NPV = d/(c+d)”, “PPV/NPV depend on prevalence (99%/99% at 1 in 10,000 → PPV ≈ 1%) · LR+ = sens/(1−spec) · post-odds = pre-odds × LR”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Sensitivity and specificity describe the test within diseased and healthy groups, but predictive values depend on prevalence, so even a 99 percent test gives a positive predictive value near 1 percent for a disease affecting 1 in 10,000."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Sens a/(a+c) · Spec d/(b+d) · PPV a/(a+b) · NPV d/(c+d)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "PPV depends on prevalence · LR+ = sens/(1−spec) · post-odds = pre-odds × LR",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: sensitivity is how well a test finds people who have a disease, specificity how well it clears people who don’t, and predictive values answer the patient’s question — “given my result, what is my chance?” — which depends on how common the disease is. Scientific terms: 2 × 2 table, true/false positive/negative, sensitivity, specificity, positive and negative predictive value, prevalence (pre-test probability), likelihood ratio, odds, post-test probability.",
+    "why": "Sensitivity and specificity are calculated within the diseased and non-diseased groups separately. Predictive values mix the two groups, so when disease is rare, even a small false-positive rate among many healthy people swamps the true positives.",
+    "measure": "Sensitivity = a/(a + c); specificity = d/(b + d); PPV = a/(a + b); NPV = d/(c + d) (Trevethan 2017). LR+ = sens/(1 − spec); LR− = (1 − sens)/spec; post-test odds = pre-test odds × LR; probability = odds/(1 + odds) (Deeks & Altman 2004). Worked: 99%/99% at 1 in 10,000 → PPV ≈ 1%; at 10% → ≈ 92%.",
+    "differs": "Sensitivity/specificity (properties within disease groups) vs predictive values (depend on prevalence); LR+ (rule in) vs LR− (rule out).",
+    "examAngle": "Expect: calculate a metric from a 2 × 2 table, explain a low PPV in screening, and convert pre-test probability with a likelihood ratio."
+  },
+  "comparisons": [
+    {
+      "id": "sens-vs-ppv",
+      "title": "Sensitivity vs positive predictive value",
+      "left": {
+        "label": "Sensitivity",
+        "points": [
+          "a/(a + c)",
+          "Among people with the disease"
+        ]
+      },
+      "right": {
+        "label": "PPV",
+        "points": [
+          "a/(a + b)",
+          "Among people who test positive; prevalence-dependent"
+        ]
+      },
+      "distinguisher": "Denominator: diseased people vs positive tests."
+    },
+    {
+      "id": "low-vs-high-prev",
+      "title": "Same test, different prevalence",
+      "left": {
+        "label": "1 in 10,000",
+        "points": [
+          "FP 9,999 vs TP 99",
+          "PPV ≈ 1%"
+        ]
+      },
+      "right": {
+        "label": "10%",
+        "points": [
+          "FP 9,000 vs TP 99,000",
+          "PPV ≈ 92%"
+        ]
+      },
+      "distinguisher": "Prevalence in the population tested."
+    }
+  ],
+  "mnemonic": {
+    "text": "Sens and spec live in the DISEASE columns; PPV and NPV live in the TEST rows — and rows move when prevalence moves.",
+    "explanation": "Sensitivity/specificity are column ratios; predictive values are row ratios that shift with prevalence.",
+    "limitation": "Disease spectrum and cut-off can also shift sensitivity/specificity; table layouts vary between sources."
+  },
+  "analogyLimitations": [
+    "Populations and tests are invented.",
+    "Figures in the worked example are arithmetic, rounded.",
+    "Spectrum effects are named as a limitation only."
+  ],
+  "takeaway": "Sensitivity and specificity describe the test within diseased and healthy groups, but predictive values depend on prevalence, so even a 99 percent test gives a positive predictive value near 1 percent for a disease affecting 1 in 10,000.",
+  "questions": [
+    {
+      "id": "ops-dx-q1",
+      "stem": "In a study, 90 of 100 diseased people test positive and 160 of 200 non-diseased people test negative. What are the sensitivity and specificity?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sensitivity 90%, specificity 80%",
+          "rationale": "Correct. Sens = 90/100; spec = 160/200."
+        },
+        {
+          "id": "b",
+          "text": "Sensitivity 80%, specificity 90%",
+          "rationale": "Incorrect. The values are swapped."
+        },
+        {
+          "id": "c",
+          "text": "Sensitivity 90%, specificity 20%",
+          "rationale": "Incorrect. 20% is the false-positive rate (1 − specificity)."
+        },
+        {
+          "id": "d",
+          "text": "Sensitivity 69%, specificity 94%",
+          "rationale": "Incorrect. These mix in predictive-value denominators."
+        }
+      ],
+      "answer": "a",
+      "skill": "Sensitivity/specificity",
+      "difficulty": "calculation"
+    },
+    {
+      "id": "ops-dx-q2",
+      "stem": "Using the same study (90 TP, 10 FN, 40 FP, 160 TN), what is the positive predictive value?",
+      "options": [
+        {
+          "id": "a",
+          "text": "69% (90/130)",
+          "rationale": "Correct. PPV = TP/(TP + FP) = 90/(90 + 40)."
+        },
+        {
+          "id": "b",
+          "text": "90%",
+          "rationale": "Incorrect. That is sensitivity."
+        },
+        {
+          "id": "c",
+          "text": "94% (160/170)",
+          "rationale": "Incorrect. That is the negative predictive value."
+        },
+        {
+          "id": "d",
+          "text": "80%",
+          "rationale": "Incorrect. That is specificity."
+        }
+      ],
+      "answer": "a",
+      "skill": "PPV calculation",
+      "difficulty": "calculation"
+    },
+    {
+      "id": "ops-dx-q3",
+      "stem": "A test with fixed sensitivity and specificity is moved from a specialist clinic (high prevalence) to population screening (low prevalence). What happens?",
+      "options": [
+        {
+          "id": "a",
+          "text": "PPV falls and NPV rises",
+          "rationale": "Correct. Predictive values depend on prevalence; rarer disease means more false positives relative to true positives."
+        },
+        {
+          "id": "b",
+          "text": "Sensitivity falls",
+          "rationale": "Incorrect. Sensitivity is calculated within diseased people and does not depend on prevalence in this way."
+        },
+        {
+          "id": "c",
+          "text": "PPV rises",
+          "rationale": "Incorrect. Lower prevalence lowers PPV."
+        },
+        {
+          "id": "d",
+          "text": "Nothing changes",
+          "rationale": "Incorrect. Predictive values change with prevalence."
+        }
+      ],
+      "answer": "a",
+      "skill": "Prevalence effect",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch8",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 8, After the Result: What Numbers Mean (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 8,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            3,
+            5
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "trevethan2017",
+      "kind": "external",
+      "citation": "Trevethan R. Sensitivity, Specificity, and Predictive Values: Foundations, Pliabilities, and Pitfalls in Research and Practice. Front Public Health. 2017;5:307.",
+      "doi": "10.3389/fpubh.2017.00307",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5701930/",
+      "consulted": true,
+      "usedFor": "2 × 2 table cells a–d; formulas for sensitivity, specificity, PPV, NPV; sensitivity uses only people with the condition, specificity only people without; PPV definition; values depend on test stringency and prevalence; sens/spec and PPV/NPV trade-offs."
+    },
+    {
+      "id": "deeks2004",
+      "kind": "external",
+      "citation": "Deeks JJ, Altman DG. Diagnostic tests 4: likelihood ratios. BMJ. 2004;329(7458):168-169.",
+      "doi": "10.1136/bmj.329.7458.168",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC478236/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. LR+ and LR− formulas; post-test odds = pre-test odds × LR; odds–probability conversion; worked example (0.1 → 0.69); predictive values depend on prevalence and rarely generalize; LRs adapt for varying prior probabilities."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-2x2",
+      "text": "2 × 2 table and formulas for sensitivity, specificity, PPV, NPV.",
+      "status": "checked",
+      "refs": [
+        "trevethan2017"
+      ]
+    },
+    {
+      "id": "cl-prev",
+      "text": "Predictive values depend on prevalence; worked example (arithmetic).",
+      "status": "checked",
+      "refs": [
+        "deeks2004",
+        "trevethan2017"
+      ]
+    },
+    {
+      "id": "cl-lr",
+      "text": "Likelihood ratio formulas and odds conversion.",
+      "status": "checked",
+      "refs": [
+        "deeks2004"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "ROC curves and AUC thresholds; explicit cut-off direction (lower cut-off → higher sensitivity); LRs “not affected by prevalence”; spectrum effects.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch8"
+      ],
+      "note": "Not taught as facts; Altman & Bland 1994 notes not readable (scanned)."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Populations invented.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Columns vs rows.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-lr-prev",
+      "issue": "The reviewer says likelihood ratios are “NOT affected by prevalence”. Deeks & Altman 2004 present LRs as adapting to varying prior probabilities; like sensitivity and specificity, they can still vary with disease spectrum between populations.",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; tables and cards only.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "3 claims checked against Trevethan 2017 and Deeks & Altman 2004; 1 pending (ROC/AUC, cut-off direction, LR prevalence independence, spectrum). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-10"
+}
