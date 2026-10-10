@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 102, teaching 532 of 1,932 concepts (about 27.5%).** All 102 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 103, teaching 534 of 1,932 concepts (about 27.6%).** All 103 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -19,6 +19,7 @@
   - Ch. 24 (14/26 concepts): `chem-drug-screen-confirmation-validity`, `chem-tdm-timing-kinetics`.
   - Ch. 25 (4/21 concepts): `chem-endocrine-dynamic-testing`.
   - Ch. 26 (7/22 concepts): `chem-hcg-pregnancy-unknown-location`, `chem-semen-hypogonadism`.
+  - Ch. 27 (2/22 concepts): `chem-wilson-disease-copper`.
   - Ch. 29 (11/27 concepts): `cm-urine-casts-localize`, `cm-urine-strip-chemistry`.
   - Ch. 30 (12/25 concepts): `cm-csf-synovial-interpretation`, `cm-serous-fluids-transudate-exudate`.
   - Ch. 31 (11/28 concepts): `heme-red-cell-indices-high-mchc`, `heme-spurious-cbc-corrections`.
@@ -51,7 +52,7 @@
   - Ch. 71 (6/23 concepts): `mdx-cytogenetic-test-choice`.
   - Ch. 72 (5/26 concepts): `mdx-repeat-expansions`.
 - **Reviewer accuracy register:** 89 flags (65 verified issues, 24 needing verification), plus scan results.
-- **Checks:** 678 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 684 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -101,7 +102,7 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 
 | 18 | ✅ Ch. 57 bacteria that cause disease (4th lesson: stool pathogens & STEC) | ✅ Ch. 66 specimen collection (4th lesson: urine culture) | ✅ Ch. 64 viral infections (3rd lesson: HIV/HCV algorithms) | ✅ Ch. 34 white cell disorders (3rd lesson: B-cell phenotypes) |
 
-**Round 19 — first lessons for chapters with none** (34 chapters had no lesson after round 18): ✅ Ch. 16 bone & mineral · Ch. 27 vitamins & trace elements · Ch. 28 how tests work · Ch. 73–79 molecular/genomics · Ch. 44–56 immunology · Ch. 4–14 lab operations.
+**Round 19 — first lessons for chapters with none** (34 chapters had no lesson after round 18): ✅ Ch. 16 bone & mineral · ✅ Ch. 27 vitamins & trace elements (Wilson disease) · Ch. 28 how tests work · Ch. 73–79 molecular/genomics · Ch. 44–56 immunology · Ch. 4–14 lab operations.
 
 Clinical Microscopy runs alongside rounds 14–15: **Ch. 29 urinalysis** (✅ core lesson, round 14) and **Ch. 30 body fluids** (✅ core lesson, round 15). Round 16 adds **Ch. 29 urinalysis (2nd lesson)** (✅ reagent-strip chemistry); round 17 adds **Ch. 30 body fluids (2nd lesson)** (✅ CSF and synovial fluid). Molecular Diagnostics (Ch. 67–72) follows round 17 (see the MDx round above); Ch. 29 still ranks third by simulator questions × untaught share.
 

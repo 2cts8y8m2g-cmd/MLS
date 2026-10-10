@@ -160,6 +160,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **HIV and HCV Testing Algorithms (Ch. 64):** 1 pending claim (HIV viral-load monitoring, HCV SVR12, HBV IgM anti-HBc, 2018 HIV update; not taught); 1 register flag (rv-hiv-earliest-marker).
 - **Mature B-Cell Neoplasm Phenotypes (Ch. 34):** 1 pending claim (del17p, HCL therapy, Burkitt/B-ALL, FL bcl-6; not taught); 2 open lesson flags (CLL definition missing duration/cytopenia rule; BRAF V600E not universal); no register flags.
 - **Hypercalcemia: PTH, PTHrP and Adjusted Calcium (Ch. 16):** 1 pending claim (80–90% share, urinary cAMP, PTHrP 50–90%, CKD secondary/tertiary HPT; not taught); 1 register flag (rv-calcium-ref-albumin).
+- **Wilson Disease (Ch. 27):** 1 pending claim (ceruloplasmin as acute-phase reactant, serum copper as poor screen, Menkes; not taught); 1 open lesson flag (ceruloplasmin cut-off context); no register flags.
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
