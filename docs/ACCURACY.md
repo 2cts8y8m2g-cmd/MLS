@@ -164,6 +164,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Wilson Disease (Ch. 27):** 1 pending claim (ceruloplasmin as acute-phase reactant, serum copper as poor screen, Menkes; not taught); 1 open lesson flag (ceruloplasmin cut-off context); no register flags.
 - **Pseudohyponatremia and Jaffe Creatinine (Ch. 28):** 1 pending claim (ultracentrifugation, Jaffe wavelength, mitigation chemistry, aminoglycosides, low-protein bias; not taught); 1 open lesson flag (manufacturer lipemia limits); no register flags.
 - **CML BCR-ABL1 on the International Scale (Ch. 77):** 1 pending claim (0.5–1 log rise trigger for mutation testing, isoforms, MRD range; not taught); 1 register flag (rv-cml-mr2).
+- **HER2 ISH Groups (Ch. 78):** 1 pending claim (primary ASCO/CAP 2018 text, 2023 update; not taught beyond secondary summaries); 2 open lesson flags (guideline read via secondary sources; Group 3 needs IHC); no register flags.
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
