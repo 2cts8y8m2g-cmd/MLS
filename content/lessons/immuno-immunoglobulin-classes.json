@@ -1,0 +1,1537 @@
+{
+  "schemaVersion": 1,
+  "id": "immuno-immunoglobulin-classes",
+  "title": "Immunoglobulin Classes: Structure, Function and Newborn Serology",
+  "summary": "Build the antibody from heavy and light chains, match each class (IgM, IgG, IgA, IgD, IgE) to its form and job, and use the fact that IgM cannot cross the placenta to read newborn serology.",
+  "domain": "p6-immuno",
+  "topic": "ch47",
+  "conceptIds": [
+    "ch47.hit1",
+    "ch47.hit2"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 47,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          2
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 47 Hit 1 and the relative order of Hit 2 (first lesson for Ch. 47). Checked against Schroeder & Cavacini 2010, Bonetti 2026 and Salomè 2024. Not taught as fact: molecular weights and S values, IgG placental transfer “from ~12 weeks”, IgE ~12% carbohydrate, numeric adult serum ranges (Hit 2), “strongest complement activator” as a ranking. Ch. 47 electrophoresis topics (MGUS, sFLC, IFE, oligoclonal bands, therapeutic-antibody M-spikes) are left for later lessons; SPEP basics are in chem-serum-protein-electrophoresis-m-spike."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Describe the basic antibody unit and the fragments made by papain and pepsin.",
+    "Match each immunoglobulin class to its structure and main function.",
+    "Interpret IgM and IgG results in a newborn."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Whose antibody is it?",
+      "start": 0,
+      "end": 20,
+      "altText": "Two invented newborn serology reports. Baby A (mother treated for syphilis in pregnancy): treponemal IgG POSITIVE, treponemal IgM negative. Baby B (mother seroconverted for Toxoplasma during pregnancy): Toxoplasma IgM POSITIVE. Question token: “Which baby made its own antibody?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Two newborns. Baby A’s mother was treated for syphilis in pregnancy; the baby’s treponemal IgG is positive, IgM negative."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Baby B’s mother caught toxoplasmosis in pregnancy, and the baby’s Toxoplasma IgM is positive."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which baby made its own antibody, and which one is carrying its mother’s?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Baby A",
+            "lines": [
+              "Treponemal IgG +",
+              "Treponemal IgM −"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Baby B",
+            "lines": [
+              "Toxoplasma IgM +"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 640,
+            "label": "Whose antibody is it?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "One blueprint, five heavy-chain classes",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic Y (Schroeder & Cavacini 2010): two heavy (H) and two light (L) chains; variable (V) domains bind antigen through three complementarity-determining regions (CDRs) per chain; constant (C) domains specify effector functions such as complement activation and Fc-receptor binding. Papain cuts IgG into two Fab fragments (each binds antigen) and one Fc; pepsin gives one F(ab′)₂ plus Fc. Five heavy-chain constant classes define the isotypes IgM, IgG, IgA, IgD and IgE; IgG has subclasses IgG1–4, numbered by serum level (IgG1 > IgG2 > IgG3 > IgG4); IgA has IgA1 and IgA2. Not to scale.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Every antibody is built from two heavy chains and two light chains. The tips, the variable domains, bind antigen through three loops called CDRs on each chain."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "The constant domains decide what happens next, such as activating complement or binding Fc receptors on cells."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Papain splits IgG into two antigen-binding Fab fragments and one Fc fragment. Pepsin leaves a single F(ab′)₂ that still cross-links antigen."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Five heavy-chain constant regions define five classes: IgM, IgG, IgA, IgD and IgE. IgG has four subclasses, numbered by how much of each is in serum."
+        }
+      ],
+      "objects": [
+        {
+          "id": "y",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 210,
+            "tone": "b",
+            "title": "Antibody unit (schematic)",
+            "lines": [
+              "2 heavy + 2 light chains",
+              "V domains: CDRs bind antigen",
+              "C domains: effector functions"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "highlight": 1
+            },
+            {
+              "t": 17,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "dig",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Enzyme fragments",
+            "lines": [
+              "Papain: 2 Fab + Fc",
+              "Pepsin: F(ab′)₂ + Fc"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "highlight": 1
+            },
+            {
+              "t": 28,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "cls",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 370,
+            "w": 420,
+            "label": "IgM · IgG · IgA · IgD · IgE",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sub",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "IgG1 > IgG2 > IgG3 > IgG4 (serum level)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 37.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What each class does",
+      "start": 60,
+      "end": 104,
+      "altText": "Five class cards (Schroeder & Cavacini 2010). IgM: first immunoglobulin made in B-cell development; secreted usually as a PENTAMER with a J chain; associated with the primary response; opsonizes and fixes complement very efficiently. IgG: the predominant isotype, longest serum half-life; the neonatal Fc receptor (FcRn) transports maternal IgG to the fetus and also maintains serum IgG levels. IgA: serum levels above IgM but well below IgG; mostly monomer in serum; at mucosae a DIMER with J chain plus secretory component (secretory IgA); far higher than IgG in saliva and breast milk; up to 50% of colostrum protein. IgD: on the membrane of mature naive B cells with IgM; very low serum level, short half-life. IgE: lowest serum level, shortest half-life; binds FcεRI on mast cells, basophils and eosinophils with very high affinity; allergy and responses to parasitic worms.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "IgM comes first. It is secreted as a pentamer held together with a J chain, it marks the primary response, and it fixes complement very efficiently."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 79,
+          "text": "IgG is the main antibody in the body and lasts longest. A receptor called FcRn carries maternal IgG across to the fetus."
+        },
+        {
+          "id": "c3",
+          "start": 79,
+          "end": 89,
+          "text": "IgA guards mucosal surfaces. In serum it is mostly a monomer; in secretions it is a dimer with a J chain and a secretory component. It is up to half the protein in colostrum."
+        },
+        {
+          "id": "c4",
+          "start": 89,
+          "end": 96,
+          "text": "IgD sits on naive B cells alongside IgM as part of the B-cell receptor, with very little in serum."
+        },
+        {
+          "id": "c5",
+          "start": 96,
+          "end": 104,
+          "text": "IgE is the scarcest in serum, but it binds mast cells and basophils tightly and triggers allergic reactions; it also responds to parasitic worms."
+        }
+      ],
+      "objects": [
+        {
+          "id": "m",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 170,
+            "w": 290,
+            "h": 150,
+            "tone": "b",
+            "title": "IgM",
+            "lines": [
+              "Pentamer + J chain",
+              "First · fixes complement"
+            ],
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "g",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 290,
+            "h": 150,
+            "tone": "good",
+            "title": "IgG",
+            "lines": [
+              "Predominant · longest t½",
+              "FcRn → fetus"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            },
+            {
+              "t": 18,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "a2",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 170,
+            "w": 290,
+            "h": 150,
+            "tone": "a",
+            "title": "IgA",
+            "lines": [
+              "Serum: monomer",
+              "Mucosa: dimer + J + SC"
+            ],
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19.5,
+              "opacity": 0
+            },
+            {
+              "t": 20,
+              "reveal": 0
+            },
+            {
+              "t": 20.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "type": "card",
+          "props": {
+            "x": 320,
+            "y": 390,
+            "w": 290,
+            "h": 150,
+            "tone": "b",
+            "title": "IgD",
+            "lines": [
+              "Naive B-cell membrane",
+              "Very low in serum"
+            ],
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29.5,
+              "opacity": 0
+            },
+            {
+              "t": 30,
+              "reveal": 0
+            },
+            {
+              "t": 30.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "e",
+          "type": "card",
+          "props": {
+            "x": 640,
+            "y": 390,
+            "w": 290,
+            "h": 150,
+            "tone": "warn",
+            "title": "IgE",
+            "lines": [
+              "Lowest serum level",
+              "FcεRI on mast cells"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36.5,
+              "opacity": 0
+            },
+            {
+              "t": 37,
+              "reveal": 0
+            },
+            {
+              "t": 37.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 42,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Reading IgM and IgG in a newborn",
+      "start": 104,
+      "end": 144,
+      "altText": "Serology card (Schroeder & Cavacini 2010): IgM antibodies are associated with the primary response and are frequently used to diagnose acute exposure. Newborn card (Bonetti 2026; Salomè 2024): IgM does not cross the placenta, so IgM in neonatal serum reflects a FETAL immune response (e.g. congenital toxoplasmosis; anti-treponemal IgM suggests congenital syphilis); maternal IgG is passively transferred, so neonatal IgG may simply be the mother’s; a nonreactive IgM does not exclude congenital syphilis, so paired maternal–newborn serology and follow-up are used. Hook answers: Baby B made its own Toxoplasma IgM; Baby A’s IgG may be maternal and needs follow-up.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 113,
+          "text": "In serology, IgM signals a primary response, so it is often used to diagnose a recent or acute infection."
+        },
+        {
+          "id": "l2",
+          "start": 113,
+          "end": 123,
+          "text": "In a newborn the rule is sharper. IgM does not cross the placenta, so IgM in the baby’s blood was made by the baby: evidence of fetal infection."
+        },
+        {
+          "id": "l3",
+          "start": 123,
+          "end": 134,
+          "text": "IgG is different: FcRn carries the mother’s IgG across, so a positive IgG in a newborn may be entirely maternal. And a negative IgM does not rule out congenital syphilis."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "So Baby B made its own antibody. Baby A’s IgG may be borrowed from its mother; compare with maternal serology and follow the baby over time."
+        }
+      ],
+      "objects": [
+        {
+          "id": "acute",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 150,
+            "w": 440,
+            "label": "IgM ≈ primary / acute response",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "nb",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 310,
+            "w": 440,
+            "h": 220,
+            "tone": "good",
+            "title": "Newborn serology",
+            "lines": [
+              "IgM: does not cross → fetal",
+              "IgG: maternal via FcRn",
+              "IgM − does not exclude"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "reveal": 0
+            },
+            {
+              "t": 10.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            },
+            {
+              "t": 28,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ansb",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 130,
+            "tone": "warn",
+            "title": "Baby B",
+            "lines": [
+              "Own IgM → fetal infection"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ansa",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 370,
+            "w": 420,
+            "h": 130,
+            "tone": "b",
+            "title": "Baby A",
+            "lines": [
+              "IgG may be maternal → follow up"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “A positive IgG in a newborn proves congenital infection” (✓ maternal IgG crosses via FcRn; IgM does not cross — neonatal IgM indicates fetal response); “Serum IgA is a dimer” (✓ serum IgA is mostly monomeric; secretory IgA is the dimer with J chain + secretory component); “Pepsin makes two Fab and an Fc” (✓ that is papain; pepsin gives one F(ab′)₂).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a positive IgG in a newborn proves congenital infection. No: maternal IgG crosses the placenta. It is IgM, which does not cross, that shows the baby’s own response."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: serum IgA is a dimer. No: in serum IgA is mostly a monomer. The dimer with J chain and secretory component is secretory IgA at mucosal surfaces."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: pepsin makes two Fab fragments and an Fc. No: that is papain. Pepsin leaves a single F(ab′)₂."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Newborn IgG+ proves infection.”",
+            "lines": [
+              "✓ IgG may be maternal · IgM = fetal"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Serum IgA is a dimer.”",
+            "lines": [
+              "✓ Serum monomer · secretory IgA dimer"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Pepsin → 2 Fab + Fc.”",
+            "lines": [
+              "✓ Papain does that · pepsin → F(ab′)₂"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "M-G-A-D-E",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “M is the Mega first responder (pentamer, primary); G Goes to the baby (FcRn); A guards the Airways and gut (secretory dimer); D Decorates the naive B cell; E Explodes mast cells (allergy).” Tokens: M first · G crosses · A mucosa · D on B cells · E allergy. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: M is the mega first responder, a pentamer. G goes to the baby. A guards the airways and gut. D decorates the naive B cell. E explodes mast cells."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: IgM is rarely hexameric, and IgA in serum is a monomer; IgG subclasses differ in their effector functions; and IgE also fights parasitic worms, not only allergens."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "M · G · A · D · E",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "M first · G crosses",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "A mucosa · D on B",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "E mast cells",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "IgM rarely hexamer · serum IgA monomer",
+              "IgG subclasses differ",
+              "IgE also targets worms"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “IgM pentamer, first and complement-fixing · IgG predominant, crosses via FcRn · secretory IgA dimer · IgD on naive B · IgE on mast cells”, “Newborn IgM = fetal response · newborn IgG may be maternal”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "IgM is the first, complement-fixing pentamer and does not cross the placenta, while maternal IgG is carried to the fetus by FcRn, so IgM in a newborn signals the baby’s own response but IgG may be the mother’s."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "IgM first pentamer · IgG via FcRn · sIgA dimer · IgD naive B · IgE mast",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Newborn IgM = fetal response · newborn IgG may be maternal",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: all antibodies share one blueprint, but five “models” differ in shape and job — first responder, long-lasting main antibody that reaches the baby, mucosal guard, B-cell receptor, and allergy trigger. Scientific terms: heavy and light chains, variable and constant domains, CDR, Fab, Fc, F(ab′)₂, isotype, IgG subclasses, J chain, secretory component, FcRn, FcεRI, primary response.",
+    "why": "The heavy-chain constant region decides polymer form and receptor binding: IgM and IgA polymerize with J chain; IgG binds FcRn, which carries it across the placenta and protects it from breakdown; IgE binds FcεRI on mast cells. Because IgM is not transported, IgM in a newborn must be fetal.",
+    "measure": "Class-specific serology (IgM vs IgG) for acute vs past exposure; in newborns, IgM indicates fetal response and IgG may be maternal (Bonetti 2026; Salomè 2024). Relative serum levels: IgG > IgA > IgM; IgD very low; IgE lowest (Schroeder & Cavacini 2010).",
+    "differs": "IgM (pentamer, first, does not cross placenta) vs IgG (monomer, predominant, crosses via FcRn); serum IgA (monomer) vs secretory IgA (dimer + J chain + secretory component); papain (2 Fab + Fc) vs pepsin (F(ab′)₂).",
+    "examAngle": "Expect: identify the class from a structural clue, explain why newborn IgM means congenital infection, and name the papain vs pepsin fragments."
+  },
+  "comparisons": [
+    {
+      "id": "igm-vs-igg",
+      "title": "IgM vs IgG",
+      "left": {
+        "label": "IgM",
+        "points": [
+          "Pentamer with J chain; first, primary response",
+          "Does not cross the placenta"
+        ]
+      },
+      "right": {
+        "label": "IgG",
+        "points": [
+          "Predominant; longest serum half-life",
+          "Maternal IgG crosses via FcRn"
+        ]
+      },
+      "distinguisher": "Placental transport via FcRn."
+    },
+    {
+      "id": "serum-vs-secretory-iga",
+      "title": "Serum IgA vs secretory IgA",
+      "left": {
+        "label": "Serum IgA",
+        "points": [
+          "Mostly monomer",
+          "Lower than IgG in serum"
+        ]
+      },
+      "right": {
+        "label": "Secretory IgA",
+        "points": [
+          "Dimer + J chain + secretory component",
+          "Dominant in saliva, milk, colostrum"
+        ]
+      },
+      "distinguisher": "Site: blood vs mucosal secretions."
+    }
+  ],
+  "mnemonic": {
+    "text": "M is the Mega first responder (pentamer, primary); G Goes to the baby (FcRn); A guards the Airways and gut (secretory dimer); D Decorates the naive B cell; E Explodes mast cells (allergy).",
+    "explanation": "One cue per class for form and job.",
+    "limitation": "IgM is rarely hexameric; serum IgA is a monomer; IgG subclasses differ; IgE also targets worms."
+  },
+  "analogyLimitations": [
+    "Newborns and reports are invented.",
+    "The antibody figure is schematic, not to scale.",
+    "Class roles are simplified."
+  ],
+  "takeaway": "IgM is the first, complement-fixing pentamer and does not cross the placenta, while maternal IgG is carried to the fetus by FcRn, so IgM in a newborn signals the baby’s own response but IgG may be the mother’s.",
+  "questions": [
+    {
+      "id": "immuno-ig-q1",
+      "stem": "A newborn has Toxoplasma IgG equal to the mother’s and no Toxoplasma IgM. What is the best interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The IgG may be maternal; follow serology over time rather than diagnose congenital infection from this result",
+          "rationale": "Correct. Maternal IgG crosses the placenta; IgM, which does not cross, is the marker of a fetal response."
+        },
+        {
+          "id": "b",
+          "text": "Congenital toxoplasmosis is confirmed by the IgG",
+          "rationale": "Incorrect. Neonatal IgG can be passively acquired from the mother."
+        },
+        {
+          "id": "c",
+          "text": "The baby’s IgM must have crossed back to the mother",
+          "rationale": "Incorrect. IgM does not cross the placenta."
+        },
+        {
+          "id": "d",
+          "text": "A negative IgM excludes congenital infection",
+          "rationale": "Incorrect. A nonreactive IgM does not exclude congenital infection (e.g. syphilis); follow-up is needed."
+        }
+      ],
+      "answer": "a",
+      "skill": "Newborn serology",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-ig-q2",
+      "stem": "An antibody in saliva is a dimer containing a J chain and a secretory component. Which class is it?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Secretory IgA",
+          "rationale": "Correct. Mucosal IgA is a dimer with J chain plus secretory component."
+        },
+        {
+          "id": "b",
+          "text": "IgM",
+          "rationale": "Incorrect. IgM is usually a pentamer."
+        },
+        {
+          "id": "c",
+          "text": "IgG",
+          "rationale": "Incorrect. IgG is a monomer without J chain."
+        },
+        {
+          "id": "d",
+          "text": "IgE",
+          "rationale": "Incorrect. IgE is a monomer that binds FcεRI on mast cells."
+        }
+      ],
+      "answer": "a",
+      "skill": "Ig structure",
+      "difficulty": "recognition"
+    },
+    {
+      "id": "immuno-ig-q3",
+      "stem": "Digestion of IgG produces two identical antigen-binding fragments and one crystallizable fragment. Which enzyme was used?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Papain",
+          "rationale": "Correct. Papain gives two Fab fragments and one Fc."
+        },
+        {
+          "id": "b",
+          "text": "Pepsin",
+          "rationale": "Incorrect. Pepsin gives a single F(ab′)₂ that can still cross-link antigen."
+        },
+        {
+          "id": "c",
+          "text": "Trypsin",
+          "rationale": "Incorrect. Trypsin is not the classic enzyme for producing Fab and Fc in this way."
+        },
+        {
+          "id": "d",
+          "text": "Neuraminidase",
+          "rationale": "Incorrect. Neuraminidase removes sialic acid; it does not split IgG into Fab and Fc."
+        }
+      ],
+      "answer": "a",
+      "skill": "Ig fragments",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch47",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 47, Antibodies and Humoral Immunity (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 47,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            2
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "schroeder2010",
+      "kind": "external",
+      "citation": "Schroeder HW, Cavacini L. Structure and function of immunoglobulins. J Allergy Clin Immunol. 2010;125(2 Suppl 2):S41-S52.",
+      "doi": "10.1016/j.jaci.2009.09.046",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3670108/",
+      "consulted": true,
+      "usedFor": "2H + 2L chains; V domains/CDRs and C domains; papain (2 Fab + Fc) and pepsin (F(ab′)₂); five isotypes; IgG1–4 numbered by serum level; IgA1/IgA2; IgM first, pentameric with J chain, primary response, opsonizes and fixes complement, used to diagnose acute exposure; IgG predominant, longest half-life, FcRn transcytosis of maternal IgG; IgA serum vs secretory dimer with J chain + SC, up to 50% of colostrum protein; IgD on B cells with IgM, very low serum level; IgE lowest level, shortest half-life, FcεRI on mast cells/basophils/eosinophils, allergy and worms."
+    },
+    {
+      "id": "bonetti2026",
+      "kind": "external",
+      "citation": "Bonetti A, Vola A, Lilleri D, et al. Comparative IgG-IgM Western Blot in the Diagnosis of Congenital Toxoplasmosis: A Valid Diagnostic Tool. Pathogens. 2026;15(2):225.",
+      "doi": "10.3390/pathogens15020225",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12943082/",
+      "consulted": true,
+      "usedFor": "IgM does not cross the placenta and therefore indicates a fetal immune response; paired maternal–neonatal comparison."
+    },
+    {
+      "id": "salome2024",
+      "kind": "external",
+      "citation": "Salomè S, Cambriglia MD, Montesano G, Capasso L, Raimondi F. Congenital Syphilis: A Re-Emerging but Preventable Infection. Pathogens. 2024;13(6):481.",
+      "doi": "10.3390/pathogens13060481",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11206692/",
+      "consulted": true,
+      "usedFor": "Anti-treponemal IgM does not cross the placenta; neonatal IgM suggests congenital infection but a nonreactive result does not exclude it; maternal treponemal antibodies are passively transferred; paired maternal–newborn serology."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-struct",
+      "text": "Antibody unit, V/C domains, papain and pepsin fragments, five isotypes, subclasses.",
+      "status": "checked",
+      "refs": [
+        "schroeder2010"
+      ]
+    },
+    {
+      "id": "cl-class",
+      "text": "Class-specific structure and function (IgM, IgG, IgA, IgD, IgE) and relative serum levels.",
+      "status": "checked",
+      "refs": [
+        "schroeder2010"
+      ]
+    },
+    {
+      "id": "cl-nb",
+      "text": "IgM does not cross the placenta (fetal response); maternal IgG transferred; negative IgM does not exclude congenital syphilis.",
+      "status": "checked",
+      "refs": [
+        "bonetti2026",
+        "salome2024",
+        "schroeder2010"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Molecular weights and S values; IgG transfer from ~12 weeks; IgE ~12% carbohydrate; numeric adult serum ranges; IgM as “strongest” complement activator.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch47"
+      ],
+      "note": "Not taught as facts; no open source read for these figures."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Newborns invented; antibody figure schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“M-G-A-D-E.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; antibody structure and classes are schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "3 claims checked against Schroeder & Cavacini 2010, Bonetti 2026 and Salomè 2024; 1 pending (molecular weights, timing of placental transfer, carbohydrate content, numeric ranges). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-10"
+}
