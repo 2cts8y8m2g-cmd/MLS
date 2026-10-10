@@ -1,0 +1,1552 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-qc-levey-jennings-rules",
+  "title": "Quality Control: Levey–Jennings Charts, Westgard Rules and QC Failure",
+  "summary": "Read a Levey–Jennings chart, apply 1₂s (warning), 1₃s and 2₂s (rejection) rules, match the multirule set to the sigma metric, and follow CLIA requirements for control frequency and corrective action after QC failure.",
+  "domain": "p1-ops",
+  "topic": "ch11",
+  "conceptIds": [
+    "ch11.hit2",
+    "ch11.hit6",
+    "ch11.hit8"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 11,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          6,
+          8
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 11 Hits 2, 6 and 8 (first lesson for Ch. 11). Checked against Peng 2022, Ramachandra 2025, Teshome 2021 and 42 CFR 493.1256, 493.1267 and 493.1282 (eCFR, current as of 2026-10-01). US rules only. Not taught: “1₂s as rejection gives ~10% false alerts” (Hit 2) and the reviewer’s exact failure sequence “new vial → recalibrate” (Hit 8, taught only as the general corrective-action workflow); CLSI C24 target-setting (Hit 4) and power-function figures (Hit 5) — not in the sources read."
+  },
+  "prerequisites": [
+    "ch2.hit4"
+  ],
+  "objectives": [
+    "Read a Levey–Jennings chart and apply 1₂s, 1₃s and 2₂s rules.",
+    "Relate the sigma metric to the choice of QC rules and number of controls.",
+    "Apply CLIA control frequency and corrective action after QC failure."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "One point outside 2 SD — stop the line?",
+      "start": 0,
+      "end": 20,
+      "altText": "An invented Levey–Jennings chart for glucose control level 1 (mean 100 mg/dL, SD 2): days 1–9 scatter around the mean; day 10 = 104.5 (+2.25 SD). A second chart for level 2 shows day 10 at +3.4 SD. Patient results from the morning run are waiting to be released. Question token: “Warning, reject — and what happens to the patients already run?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A glucose control chart: mean 100, standard deviation 2. Today the level 1 control reads 104.5, just over 2 SD above the mean."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "On another day, the level 2 control lands beyond 3 SD. Patient results from that run are waiting to be released."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Is each a warning or a rejection, and what happens to the patients already tested?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "lj",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 200,
+            "tone": "a",
+            "title": "Level 1 (mean 100, SD 2)",
+            "lines": [
+              "Days 1–9 near mean",
+              "Day 10: 104.5 (+2.25 SD)",
+              "Level 2: +3.4 SD"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            },
+            {
+              "t": 5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Patients waiting",
+            "lines": [
+              "Morning run, not yet released"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 560,
+            "label": "Warning or reject? What about patients?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 460,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The Levey–Jennings chart",
+      "start": 20,
+      "end": 60,
+      "altText": "Chart card (Peng 2022): control results are plotted over time against the mean with ±1, ±2 and ±3 SD lines; the mean and SD are calculated from initial runs (e.g., the first 20 batches). Requirement card (42 CFR 493.1256, US): for each quantitative procedure, run two control materials of different concentrations at least once each day patient specimens are assayed; statistical parameters (mean and SD) must be defined for each batch and lot of control material; control results must meet acceptability criteria BEFORE patient results are reported. Blood gases (42 CFR 493.1267): one control sample each 8 hours of testing, with low and high values each day.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "A Levey–Jennings chart plots control results day by day against their mean, with lines at 1, 2 and 3 standard deviations. The mean and SD come from an initial series of runs, such as the first 20."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "US CLIA rules require, for each quantitative test, two control levels of different concentrations at least once each day patients are tested, with a defined mean and SD for each control lot."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Controls must meet the acceptability criteria before any patient result is reported."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Blood gases are stricter: one control every 8 hours of testing, with low and high levels each day."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ch",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 220,
+            "tone": "b",
+            "title": "Levey–Jennings chart",
+            "lines": [
+              "Results over time",
+              "Mean, ±1/2/3 SD lines",
+              "Limits from initial runs"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "cf",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 230,
+            "tone": "a",
+            "title": "CLIA (42 CFR 493.1256)",
+            "lines": [
+              "2 levels, each testing day",
+              "Mean/SD per control lot",
+              "QC OK BEFORE reporting"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "bg",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 470,
+            "w": 420,
+            "label": "Blood gas: 1 control per 8 h",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Warning and rejection rules",
+      "start": 60,
+      "end": 104,
+      "altText": "Rule card (Peng 2022): 1₂s — one control more than 2 SD from the mean = WARNING, not out of control; 1₃s — one control beyond 3 SD = REJECT (random error); 2₂s — two consecutive controls beyond 2 SD on the same side = REJECT (systematic error). Multirule card (Ramachandra 2025; Teshome 2021): multirule procedures such as 1₃s/2₂s/R₄s/4₁s/10x combine rules; rule choice depends on the sigma metric — Sigma = (TEa − |bias|)/CV: ≥ 6σ → 1₃s with N = 2; 5–6σ → 1₃s/2₂s/R₄s; 4–5σ → add 4₁s, N = 4; 3–4σ → all rules including 10x, N = 6. Back to the hook: level 1 at +2.25 SD = 1₂s warning (check other rules); level 2 at +3.4 SD = 1₃s rejection.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 69,
+          "text": "One control beyond 2 SD, the 1-2s rule, is a warning, not an out-of-control run. It tells you to look harder."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 78,
+          "text": "One control beyond 3 SD, the 1-3s rule, rejects the run. Two consecutive controls beyond 2 SD on the same side, the 2-2s rule, also reject it."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 92,
+          "text": "Multirule procedures combine rules such as 1-3s, 2-2s, R-4s, 4-1s and 10x. How many you need depends on the method’s sigma metric: allowable error minus bias, divided by imprecision."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 98,
+          "text": "A six-sigma method can run on 1-3s alone; a 3 to 4 sigma method needs every rule and more controls."
+        },
+        {
+          "id": "c5",
+          "start": 98,
+          "end": 104,
+          "text": "Back to the chart: plus 2.25 SD is a 1-2s warning. Plus 3.4 SD breaks 1-3s: reject the run."
+        }
+      ],
+      "objects": [
+        {
+          "id": "w",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 170,
+            "w": 300,
+            "h": 150,
+            "tone": "warn",
+            "title": "1₂s = WARNING",
+            "lines": [
+              "One control > 2 SD"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "highlight": 1
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "r1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 300,
+            "h": 150,
+            "tone": "bad",
+            "title": "1₃s = REJECT",
+            "lines": [
+              "One control > 3 SD"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            },
+            {
+              "t": 10.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38.5,
+              "highlight": 0
+            },
+            {
+              "t": 40,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 170,
+            "w": 300,
+            "h": 150,
+            "tone": "bad",
+            "title": "2₂s = REJECT",
+            "lines": [
+              "Two in a row > 2 SD, same side"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13,
+              "opacity": 0
+            },
+            {
+              "t": 13.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sg",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 400,
+            "w": 780,
+            "h": 180,
+            "tone": "a",
+            "title": "Sigma = (TEa − |bias|) / CV",
+            "lines": [
+              "≥ 6σ: 1₃s, N = 2",
+              "4–5σ: 1₃s/2₂s/R₄s/4₁s, N = 4",
+              "3–4σ: all rules incl. 10x, N = 6"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "When QC fails",
+      "start": 104,
+      "end": 144,
+      "altText": "Corrective-action card (42 CFR 493.1282): when control or calibration results fail the laboratory’s acceptability criteria, all patient results obtained in the unacceptable run and since the last acceptable run must be evaluated to determine whether they were adversely affected, and corrective action must ensure accurate, reliable results. Combined with 493.1256(f): do not report patient results until QC is acceptable. Workflow (schematic): hold results → investigate cause (control material, reagent, calibration, instrument) → correct → rerun QC → rerun/review affected patients back to the last acceptable run → document. Back to the hook: level 2 at +3.4 SD → hold the morning results, fix, re-run QC, and re-evaluate patients back to the last good run.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "When controls fail, the rules are clear. Do not report patient results until the controls are acceptable."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Every patient result in the failed run, and since the last acceptable run, must be evaluated to see whether it was affected."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 132,
+          "text": "In practice: hold results, find the cause, such as the control material, reagent, calibration or instrument, correct it, and rerun the controls."
+        },
+        {
+          "id": "l4",
+          "start": 132,
+          "end": 138,
+          "text": "Then rerun or review the affected patient samples, and document everything."
+        },
+        {
+          "id": "l5",
+          "start": 138,
+          "end": 144,
+          "text": "Back to the hook: with level 2 beyond 3 SD, hold the morning results, fix the problem, and re-evaluate patients back to the last good run."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ca",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "bad",
+            "title": "QC failed (42 CFR 493.1282)",
+            "lines": [
+              "Don’t report until QC OK",
+              "Evaluate patients since last good run",
+              "Corrective action, document"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 28.5,
+              "highlight": 0
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s0",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 150,
+            "w": 420,
+            "label": "1 · Hold results",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s1",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 220,
+            "w": 420,
+            "label": "2 · Find and fix cause",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 290,
+            "w": 420,
+            "label": "3 · Rerun QC",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 25.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 360,
+            "w": 420,
+            "label": "4 · Re-evaluate patients",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 27.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 780,
+            "label": "Hook: hold, fix, re-run QC, recheck patients to last good run",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Any point beyond 2 SD rejects the run” (✓ 1₂s is a warning; 1₃s and 2₂s reject); “Fix the QC, then release the waiting results” (✓ evaluate all patient results since the last acceptable run); “One control level a day is enough” (✓ CLIA: two levels of different concentrations each testing day for quantitative tests).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: any point beyond 2 SD rejects the run. No: 1-2s is a warning. Rejection comes from rules such as 1-3s or 2-2s."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: once QC is fixed, release the waiting results. No: every patient result since the last acceptable run must be evaluated first."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: one control level a day is enough. US rules require two levels of different concentrations each testing day for quantitative tests."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “> 2 SD = reject.”",
+            "lines": [
+              "✓ 1₂s warns; 1₃s, 2₂s reject"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Fix QC, then release.”",
+            "lines": [
+              "✓ Re-evaluate patients since last good run"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “One control level daily.”",
+            "lines": [
+              "✓ Two levels each testing day"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Two warns, three stops",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Two warns, three stops; two twos in a row also stop.” Tokens: 1₂s = warn · 1₃s = stop · 2₂s = stop · sigma high → fewer rules. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: two warns, three stops, and two twos in a row also stop. A point beyond 2 SD warns; beyond 3 SD stops; two consecutive beyond 2 SD on the same side stops."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: some labs use 1-2s or other rules differently in their QC plan; R-4s, 4-1s and 10x add more stops; and the right rule set depends on the method’s sigma metric and local policy."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Two warns · three stops · 2₂s stops",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "1₂s = warn",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "1₃s = stop",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "High σ → fewer rules",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Local QC plans differ",
+              "R₄s, 4₁s, 10x add stops",
+              "Rule set depends on sigma"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Levey–Jennings: mean ± 1/2/3 SD · 1₂s warning · 1₃s and 2₂s reject · rule set by sigma = (TEa − |bias|)/CV”, “CLIA: 2 levels each testing day (blood gas 1 per 8 h) · QC acceptable before reporting · failed QC → evaluate patients since last good run”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "On a Levey–Jennings chart, 1₂s is a warning while 1₃s and 2₂s reject the run, and when QC fails no patient result is reported until the cause is corrected and every result since the last acceptable run has been evaluated."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "1₂s warn · 1₃s, 2₂s reject · rules by sigma = (TEa − |bias|)/CV",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "2 levels/day (gas 1 per 8 h) · QC OK before reporting · recheck since last good run",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: labs run samples of known value (controls) alongside patients and plot them on a chart; if a control drifts too far from its usual value, the run is held and fixed before patient results go out, and patients already tested are checked again. Scientific terms: internal quality control, Levey–Jennings chart, mean, standard deviation, Westgard rules (1₂s, 1₃s, 2₂s, R₄s, 4₁s, 10x), random vs systematic error, sigma metric, total allowable error (TEa), bias, CV, corrective action.",
+    "why": "Controls behave like patient samples in the measuring system, so a control far outside its expected distribution signals an error that could also affect patients. A single point beyond 3 SD suggests random error; repeated points beyond 2 SD on one side suggest systematic shift. Methods with large error margins (high sigma) need fewer rules to detect clinically important error.",
+    "measure": "Peng 2022: 1₃s out of control; 1₂s warning; 2₂s (two consecutive warnings) out of control; limits from initial runs (first 20 batches). Ramachandra 2025: Sigma = (TEa − Bias%)/CV%; ≥ 6σ → 1₃s N = 2; 5–6σ → 1₃s/2₂s/R₄s N = 2; 4–5σ → +4₁s N = 4; 3–4σ → all incl. 10x N = 6. 42 CFR 493.1256: two control levels each testing day for quantitative tests; mean/SD defined per lot; QC acceptable before reporting. 493.1267: blood gas one control each 8 h. 493.1282: evaluate patient results since last acceptable run; corrective action.",
+    "differs": "Warning (1₂s) vs rejection (1₃s, 2₂s); random error (single extreme point) vs systematic error (consecutive same-side shifts); high-sigma (simple QC) vs low-sigma (multirule, more controls) methods.",
+    "examAngle": "Expect: classify a Levey–Jennings pattern, choose warning vs reject, CLIA control frequency, and what to do with patient results after a QC failure."
+  },
+  "comparisons": [
+    {
+      "id": "warn-vs-reject",
+      "title": "Warning vs rejection rules",
+      "left": {
+        "label": "1₂s (warning)",
+        "points": [
+          "One control > 2 SD",
+          "Inspect; check other rules"
+        ]
+      },
+      "right": {
+        "label": "1₃s / 2₂s (reject)",
+        "points": [
+          "One > 3 SD, or two consecutive > 2 SD same side",
+          "Hold results, correct"
+        ]
+      },
+      "distinguisher": "Distance from the mean and repetition."
+    },
+    {
+      "id": "high-vs-low-sigma",
+      "title": "High-sigma vs low-sigma method",
+      "left": {
+        "label": "≥ 6σ",
+        "points": [
+          "1₃s alone",
+          "N = 2 controls"
+        ]
+      },
+      "right": {
+        "label": "3–4σ",
+        "points": [
+          "Full multirule incl. 10x",
+          "N = 6 controls"
+        ]
+      },
+      "distinguisher": "Sigma metric (TEa − |bias|)/CV."
+    }
+  ],
+  "mnemonic": {
+    "text": "Two warns, three stops; two twos in a row also stop.",
+    "explanation": "A point beyond 2 SD warns; beyond 3 SD rejects; two consecutive beyond 2 SD on the same side reject.",
+    "limitation": "Local QC plans may apply rules differently; R₄s, 4₁s and 10x add rejection rules; the right set depends on sigma and local policy."
+  },
+  "analogyLimitations": [
+    "Charts and values are invented.",
+    "The corrective-action workflow is a schematic summary of the regulatory requirement, not a laboratory SOP.",
+    "US CLIA rules only; other countries’ requirements were not checked."
+  ],
+  "takeaway": "On a Levey–Jennings chart, 1₂s is a warning while 1₃s and 2₂s reject the run, and when QC fails no patient result is reported until the cause is corrected and every result since the last acceptable run has been evaluated.",
+  "questions": [
+    {
+      "id": "ops-qc-q1",
+      "stem": "A glucose control (mean 100 mg/dL, SD 2) reads 107 mg/dL; the other control level is within 1 SD. Which rule is violated?",
+      "options": [
+        {
+          "id": "a",
+          "text": "1₃s — reject the run",
+          "rationale": "Correct. 107 is 3.5 SD above the mean, beyond the 3 SD limit."
+        },
+        {
+          "id": "b",
+          "text": "1₂s — warning only",
+          "rationale": "Incorrect. The value exceeds 3 SD, not just 2 SD."
+        },
+        {
+          "id": "c",
+          "text": "2₂s — systematic error",
+          "rationale": "Incorrect. 2₂s requires two consecutive controls beyond 2 SD on the same side."
+        },
+        {
+          "id": "d",
+          "text": "No violation",
+          "rationale": "Incorrect. A point beyond 3 SD is out of control."
+        }
+      ],
+      "answer": "a",
+      "skill": "Westgard rules",
+      "difficulty": "calculation"
+    },
+    {
+      "id": "ops-qc-q2",
+      "stem": "Two consecutive runs show the level 1 control at +2.3 SD and +2.6 SD. What is the interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "2₂s violation — reject; suspect systematic error",
+          "rationale": "Correct. Two consecutive controls beyond 2 SD on the same side reject the run."
+        },
+        {
+          "id": "b",
+          "text": "Two 1₂s warnings — no action needed",
+          "rationale": "Incorrect. Consecutive same-side warnings constitute a 2₂s rejection."
+        },
+        {
+          "id": "c",
+          "text": "1₃s violation",
+          "rationale": "Incorrect. Neither point exceeds 3 SD."
+        },
+        {
+          "id": "d",
+          "text": "Random error only",
+          "rationale": "Incorrect. Repeated same-side shifts point to systematic error."
+        }
+      ],
+      "answer": "a",
+      "skill": "Westgard rules",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-qc-q3",
+      "stem": "A run fails QC after 30 patient samples were analysed. Under 42 CFR 493.1282, what must be done with those patient results?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Evaluate all results in the failed run and since the last acceptable run for adverse effect",
+          "rationale": "Correct. Patient results back to the last acceptable run must be evaluated; corrective action must ensure accuracy."
+        },
+        {
+          "id": "b",
+          "text": "Release them once the next QC passes",
+          "rationale": "Incorrect. Results must not be reported until QC is acceptable and affected results are evaluated."
+        },
+        {
+          "id": "c",
+          "text": "Release them with a comment",
+          "rationale": "Incorrect. Commenting does not satisfy the requirement to evaluate and correct."
+        },
+        {
+          "id": "d",
+          "text": "Delete them from the LIS",
+          "rationale": "Incorrect. Results are evaluated and corrected, not deleted; all control procedures must be documented."
+        }
+      ],
+      "answer": "a",
+      "skill": "Corrective action",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch11",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 11, Quality Control That Catches Errors (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 11,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            6,
+            8
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "peng2022",
+      "kind": "external",
+      "citation": "Peng P, Peng X, Jiao X, Chen N. A unique Levey-Jennings control chart used for internal quality control in human papillomavirus detection. Virol J. 2022;19(1):125.",
+      "doi": "10.1186/s12985-022-01861-8",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9331565/",
+      "consulted": true,
+      "usedFor": "Levey–Jennings chart; mean and SD from the first 20 batches; 1₃s out of control; 1₂s warning, not out of control; 2₂s two consecutive warnings; random error beyond 3 SD."
+    },
+    {
+      "id": "ramachandra2025",
+      "kind": "external",
+      "citation": "Ramachandra SC, Shivashankar KK, Prashant A, Kempegowda SN. Enhancing Laboratory Quality: A Comprehensive Sigma Metric Analysis for Diverse Biochemical Parameters. EJIFCC. 2025;36(4):546-555.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12743343/",
+      "consulted": true,
+      "usedFor": "Sigma = (TEa − Bias%)/CV%; bias and CV as systematic and random error; sigma-based rule and N selection table."
+    },
+    {
+      "id": "teshome2021",
+      "kind": "external",
+      "citation": "Teshome M, Worede A, Asmelash D. Total Clinical Chemistry Laboratory Errors and Evaluation of the Analytical Quality Control Using Sigma Metric for Routine Clinical Chemistry Tests. J Multidiscip Healthc. 2021;14:125-136.",
+      "doi": "10.2147/JMDH.S286679",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7815085/",
+      "consulted": true,
+      "usedFor": "Sigma 3–4 requires multirule 1₃s/2₂s/R₄s/4₁s/10x with N = 4, R = 2 or N = 2, R = 4."
+    },
+    {
+      "id": "cfr1256",
+      "kind": "external",
+      "citation": "42 CFR 493.1256 — Standard: Control procedures (eCFR, current as of 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493/subpart-K/section-493.1256",
+      "consulted": true,
+      "usedFor": "Two control materials of different concentrations each day patients are assayed (quantitative); mean/SD per batch and lot; control results acceptable before reporting patient results; document all control procedures."
+    },
+    {
+      "id": "cfr1267",
+      "kind": "external",
+      "citation": "42 CFR 493.1267 — Standard: Routine chemistry (blood gas) (eCFR, current as of 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493/subpart-K/section-493.1267",
+      "consulted": true,
+      "usedFor": "Blood gas: one control sample each 8 hours of testing, with low and high values each day."
+    },
+    {
+      "id": "cfr1282",
+      "kind": "external",
+      "citation": "42 CFR 493.1282 — Standard: Corrective actions (eCFR, current as of 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493/subpart-K/section-493.1282",
+      "consulted": true,
+      "usedFor": "When control or calibration results fail acceptability, all patient results in the unacceptable run and since the last acceptable run must be evaluated; corrective action required."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-lj",
+      "text": "Levey–Jennings chart; 1₂s warning; 1₃s and 2₂s rejection; initial-run limits.",
+      "status": "checked",
+      "refs": [
+        "peng2022"
+      ]
+    },
+    {
+      "id": "cl-sigma",
+      "text": "Sigma formula and sigma-based rule selection.",
+      "status": "checked",
+      "refs": [
+        "ramachandra2025",
+        "teshome2021"
+      ]
+    },
+    {
+      "id": "cl-clia",
+      "text": "CLIA control frequency (2 levels daily; blood gas 8 h); acceptable QC before reporting.",
+      "status": "checked",
+      "refs": [
+        "cfr1256",
+        "cfr1267"
+      ]
+    },
+    {
+      "id": "cl-ca",
+      "text": "Corrective action and evaluation of patient results since last acceptable run.",
+      "status": "checked",
+      "refs": [
+        "cfr1282"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "1₂s rejection ≈ 10% false alerts; exact failure sequence (new vial, recalibrate); CLSI C24 target setting; power-function probabilities; R₄s/4₁s/10x definitions.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch11"
+      ],
+      "note": "Not taught as facts; not in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Charts invented; workflow schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Two warns, three stops.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-us",
+      "issue": "CLIA requirements are US federal rules; Philippine and other national QC requirements were not checked. Rule definitions beyond 1₂s/1₃s/2₂s (R₄s, 4₁s, 10x) are named but not defined from a checked source.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Levey–Jennings charts are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against Peng 2022, Ramachandra 2025, Teshome 2021 and 42 CFR 493.1256/1267/1282; 1 pending (false-alert rate, workflow detail, C24, power functions, other rule definitions). No human expert has reviewed this lesson. US rules only."
+  },
+  "revisedAt": "2026-10-10"
+}

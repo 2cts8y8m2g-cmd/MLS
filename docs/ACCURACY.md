@@ -169,6 +169,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Genotyping Before Treatment (Ch. 75):** 1 pending claim (DPD deficiency 3–5%, 25–50% range, FDA labels, HLA mechanism; not taught); 2 open lesson flags (TPMT guidance updated in CPIC 2025; abacavir guideline read via page fetch/abstract); no register flags.
 - **ANA by HEp-2 IIFA (Ch. 53):** 1 pending claim (specific list of IFA-missed antibodies, WHO 1:40/1:160 reporting, solid-phase assays; not taught); no flags.
 - **Immunoassay Formats and Hook Effect (Ch. 45):** 1 pending claim (homogeneous vs heterogeneous, EMIT/FPIA/RIA; not taught); 1 open lesson flag (hook is sandwich-specific); no register flags.
+- **QC: Levey–Jennings and Westgard Rules (Ch. 11):** 1 pending claim (1₂s false-alert rate, detailed failure sequence, CLSI C24, power functions, other rule definitions; not taught); 1 open lesson flag (US CLIA only); no register flags.
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
