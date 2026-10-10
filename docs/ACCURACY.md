@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 89 flags: 65 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 90 flags: 66 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -82,6 +82,7 @@ Verified:
 - **Ch. 57 Hit 40:** Shiga toxin detected “directly in stool by EIA” (Humphries 2015; CDC 2009: EIA on enrichment broth; direct stool ~70% sensitivity).
 - **Ch. 64 Hit 14:** p24 antigen called “the earliest detectable HIV marker” (CDC 2014: HIV-1 RNA appears first; p24 4–10 days later).
 - **Ch. 16 Hit 4:** corrected calcium with a 4.4 g/dL reference albumin; simulator calls 4.0 “outdated” (Desgagnés 2025; Mirrakhimov 2015: the commonly used simplified Payne formula uses 4.0 g/dL).
+- **Ch. 77 Hit 2:** “MR2 = 10%” (ELN 2020: 1% IS = 2 logs; 10% = 1 log).
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -162,6 +163,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Hypercalcemia: PTH, PTHrP and Adjusted Calcium (Ch. 16):** 1 pending claim (80–90% share, urinary cAMP, PTHrP 50–90%, CKD secondary/tertiary HPT; not taught); 1 register flag (rv-calcium-ref-albumin).
 - **Wilson Disease (Ch. 27):** 1 pending claim (ceruloplasmin as acute-phase reactant, serum copper as poor screen, Menkes; not taught); 1 open lesson flag (ceruloplasmin cut-off context); no register flags.
 - **Pseudohyponatremia and Jaffe Creatinine (Ch. 28):** 1 pending claim (ultracentrifugation, Jaffe wavelength, mitigation chemistry, aminoglycosides, low-protein bias; not taught); 1 open lesson flag (manufacturer lipemia limits); no register flags.
+- **CML BCR-ABL1 on the International Scale (Ch. 77):** 1 pending claim (0.5–1 log rise trigger for mutation testing, isoforms, MRD range; not taught); 1 register flag (rv-cml-mr2).
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.

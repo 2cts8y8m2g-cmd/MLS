@@ -1,0 +1,1466 @@
+{
+  "schemaVersion": 1,
+  "id": "mdx-cml-bcr-abl1-international-scale",
+  "title": "CML Monitoring: BCR-ABL1 on the International Scale",
+  "summary": "Read BCR-ABL1 results on the International Scale as a log ladder (MMR = 0.1%), apply the ELN 2020 milestones at 3, 6 and 12 months, and judge whether an undetectable result has enough control transcripts to score deep response.",
+  "domain": "p8-mdx",
+  "topic": "ch77",
+  "conceptIds": [
+    "ch77.hit2"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 77,
+        "section": "High-Yield Hits",
+        "items": [
+          2
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 77 Hit 2 (first lesson for Ch. 77), with the ELN milestone table as context. Checked against Hochhaus 2020 (ELN) and Cross 2015 (deep molecular response scoring). Correction: the reviewer’s “MR2 = 10%” — ELN defines 1% IS as 2 logs below baseline (MR²); 10% is 1 log (rv-cml-mr2). Not taught: the reviewer’s “0.5–1 log rise on two consecutive samples triggers kinase-domain mutation testing” and the p210/p190/p230 isoforms (Hit 4) — not in the sources read."
+  },
+  "prerequisites": [
+    "ch69.hit1"
+  ],
+  "objectives": [
+    "Convert BCR-ABL1 IS percentages to log reductions and response categories.",
+    "Apply ELN 2020 milestones at 3, 6 and 12 months.",
+    "Judge whether an undetectable result has adequate sensitivity."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Is 0.08% good news?",
+      "start": 0,
+      "end": 20,
+      "altText": "An invented CML patient on a tyrosine kinase inhibitor (TKI). BCR-ABL1 results on the International Scale (IS): 3 months 6%, 6 months 0.6%, 12 months 0.08%. A second report: “BCR-ABL1 not detected” with only 4,000 ABL1 control transcripts. Question token: “Which milestones were met — and does ‘not detected’ mean MR4.5?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A patient with chronic myeloid leukemia is on a tyrosine kinase inhibitor. BCR-ABL1 on the International Scale is 6 percent at 3 months, 0.6 percent at 6 months, and 0.08 percent at 12 months."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Another sample reports BCR-ABL1 not detected, but with only 4,000 ABL1 control transcripts."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Were the milestones met, and does not detected mean a deep molecular response?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "tl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 200,
+            "tone": "a",
+            "title": "BCR-ABL1 (IS)",
+            "lines": [
+              "3 mo: 6%",
+              "6 mo: 0.6%",
+              "12 mo: 0.08%"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "nd",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "“Not detected”",
+            "lines": [
+              "ABL1 transcripts: 4,000"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 560,
+            "label": "Milestones met? Is “not detected” deep?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 460,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The International Scale is a log ladder",
+      "start": 20,
+      "end": 60,
+      "altText": "IS card (ELN 2020): molecular response is the ratio of BCR-ABL1 to a control gene (ABL1, or GUSB in some settings), expressed as % on the IS — a log scale anchored to the standardized IRIS baseline (100%). Ladder: 10% = 1 log below baseline; 1% = 2 logs (MR²; ≈ complete cytogenetic remission); 0.1% = 3 logs = major molecular response (MMR, MR³); 0.01% = 4 logs (MR⁴); 0.0032% = 4.5 logs (MR⁴·⁵); 0.001% = 5 logs (MR⁵). Schematic staircase, each step one log (×10) lower.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Response is measured as BCR-ABL1 transcripts divided by a control gene, usually ABL1, and reported as a percentage on the International Scale."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "The scale is logarithmic and anchored to a standardized baseline of 100 percent. Ten percent is one log below it; 1 percent is two logs, about equal to complete cytogenetic remission."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Zero point one percent is three logs: the major molecular response, MMR, also called MR3. Zero point zero one percent is MR4."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Zero point zero zero three two percent is MR4.5, and zero point zero zero one percent is MR5. Each whole step is a tenfold fall."
+        }
+      ],
+      "objects": [
+        {
+          "id": "is",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 160,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "International Scale",
+            "lines": [
+              "BCR-ABL1 / ABL1 (or GUSB) %",
+              "Log scale from IRIS baseline"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ld",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 260,
+            "w": 420,
+            "h": 320,
+            "tone": "a",
+            "title": "Log ladder",
+            "lines": [
+              "10% = 1 log",
+              "1% = 2 logs (MR²) ≈ CCyR",
+              "0.1% = MMR (MR³)",
+              "0.01% = MR⁴",
+              "0.0032% = MR⁴·⁵",
+              "0.001% = MR⁵"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            },
+            {
+              "t": 29,
+              "highlight": 0
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            },
+            {
+              "t": 37,
+              "reveal": 6,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Milestones that decide treatment",
+      "start": 60,
+      "end": 104,
+      "altText": "Milestone table (ELN 2020, BCR-ABL1 IS): 3 months — optimal ≤ 10%; warning > 10%; failure > 10% if confirmed within 1–3 months. 6 months — optimal ≤ 1%; warning > 1–10%; failure > 10%. 12 months — optimal ≤ 0.1% (MMR); warning > 0.1–1%; failure > 1%. Any time — optimal ≤ 0.1%; warning > 0.1–1% or loss of MMR; failure > 1%, resistance mutations, high-risk additional chromosome abnormalities. Back to the hook: 6% → 0.6% → 0.08% = optimal at every milestone.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "The 2020 European LeukemiaNet milestones decide whether treatment continues. At 3 months, 10 percent or less is optimal; above 10 percent, if confirmed, is failure."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 80,
+          "text": "At 6 months, 1 percent or less is optimal; above 10 percent is failure."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 90,
+          "text": "At 12 months, the target is major molecular response, 0.1 percent or less; above 1 percent is failure."
+        },
+        {
+          "id": "c4",
+          "start": 90,
+          "end": 98,
+          "text": "At any time, resistance mutations or high-risk additional chromosome abnormalities count as failure."
+        },
+        {
+          "id": "c5",
+          "start": 98,
+          "end": 104,
+          "text": "Our patient: 6, then 0.6, then 0.08 percent. Optimal at every milestone."
+        }
+      ],
+      "objects": [
+        {
+          "id": "m3",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 170,
+            "w": 300,
+            "h": 170,
+            "tone": "a",
+            "title": "3 months",
+            "lines": [
+              "Optimal ≤ 10%",
+              "Failure > 10% (confirmed)"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "highlight": 1
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 0
+            }
+          ]
+        },
+        {
+          "id": "m6",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 300,
+            "h": 170,
+            "tone": "b",
+            "title": "6 months",
+            "lines": [
+              "Optimal ≤ 1%",
+              "Failure > 10%"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20,
+              "highlight": 0
+            }
+          ]
+        },
+        {
+          "id": "m12",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 170,
+            "w": 300,
+            "h": 170,
+            "tone": "good",
+            "title": "12 months",
+            "lines": [
+              "Optimal ≤ 0.1% (MMR)",
+              "Failure > 1%"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "highlight": 0
+            }
+          ]
+        },
+        {
+          "id": "any",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 360,
+            "w": 760,
+            "label": "Any time: resistance mutations / high-risk ACA = failure",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "pt",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 760,
+            "label": "6% → 0.6% → 0.08%: optimal throughout",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 38.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 39.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "“Not detected” needs a denominator",
+      "start": 104,
+      "end": 144,
+      "altText": "Sensitivity card (ELN 2020; Cross 2015): deep responses can only be scored if enough control transcripts were measured. Minimum control transcripts: MMR — 10,000 ABL1 (24,000 GUSB); MR⁴ — 10,000 ABL1; MR⁴·⁵ — 32,000 ABL1 (77,000 GUSB); MR⁵ — 100,000 ABL1 (240,000 GUSB). “Complete molecular response” should be replaced by “molecularly undetectable leukemia” with the number of control transcripts stated. Atypical transcripts card: 2–4% of patients have atypical BCR-ABL1 transcripts (e.g., e13a3, e14a3, e1a2, e19a2) that routine primers may miss → characterize the transcript at diagnosis; FISH monitoring may be needed. Back to the hook: “not detected” with 4,000 ABL1 transcripts cannot be called MR⁴ or MR⁴·⁵ — sensitivity is inadequate.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 113,
+          "text": "A result of not detected only means something if enough control transcripts were counted. Scoring MR4 needs at least 10,000 ABL1 transcripts; MR4.5 needs 32,000; MR5 needs 100,000."
+        },
+        {
+          "id": "l2",
+          "start": 113,
+          "end": 121,
+          "text": "So the old term complete molecular response is replaced by molecularly undetectable leukemia, with the number of control transcripts stated."
+        },
+        {
+          "id": "l3",
+          "start": 121,
+          "end": 130,
+          "text": "Also, 2 to 4 percent of patients carry atypical BCR-ABL1 transcripts that routine primers can miss. Characterize the transcript at diagnosis; otherwise a false negative can look like a deep response."
+        },
+        {
+          "id": "l4",
+          "start": 130,
+          "end": 137,
+          "text": "For those patients, FISH monitoring may be needed."
+        },
+        {
+          "id": "l5",
+          "start": 137,
+          "end": 144,
+          "text": "Back to the second report: not detected with only 4,000 ABL1 transcripts cannot be scored as MR4 or MR4.5. The test was not sensitive enough."
+        }
+      ],
+      "objects": [
+        {
+          "id": "sn",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 220,
+            "tone": "b",
+            "title": "Minimum ABL1 transcripts",
+            "lines": [
+              "MR⁴: ≥ 10,000",
+              "MR⁴·⁵: ≥ 32,000",
+              "MR⁵: ≥ 100,000"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "mu",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 380,
+            "w": 440,
+            "label": "Say “molecularly undetectable” + transcripts",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "at",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Atypical transcripts (2–4%)",
+            "lines": [
+              "Routine primers may miss",
+              "Characterize at diagnosis; FISH"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.5,
+              "opacity": 0
+            },
+            {
+              "t": 18,
+              "reveal": 0
+            },
+            {
+              "t": 18.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "label": "4,000 ABL1 → too few to score MR⁴",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 34.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “MR² = 10%” (✓ 1% IS is 2 logs below baseline; 10% is 1 log); “Undetectable BCR-ABL1 = complete molecular response” (✓ report as molecularly undetectable with the number of control transcripts; scoring depth needs ≥ 10,000/32,000/100,000 ABL1); “Any 3-month value above 10% is failure” (✓ > 10% at 3 months is failure only if confirmed within 1–3 months; otherwise a warning).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: MR2 means 10 percent. No: on the International Scale, 1 percent is two logs below baseline; 10 percent is only one log."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: undetectable BCR-ABL1 means complete molecular response. Report it as molecularly undetectable, with the number of control transcripts, because depth depends on sensitivity."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: any 3-month result above 10 percent is failure. It is failure only when confirmed within 1 to 3 months; a single value is a warning."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “MR² = 10%.”",
+            "lines": [
+              "✓ 1% = 2 logs; 10% = 1 log"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Undetectable = complete response.”",
+            "lines": [
+              "✓ State control transcripts"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “> 10% at 3 months = failure.”",
+            "lines": [
+              "✓ Only if confirmed in 1–3 months"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "The CML clock: 10–1–0.1",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “The CML clock reads 10–1–0.1 at 3–6–12.” And “MR-number = logs down: MR² = 1%, MR³ = 0.1%, MR⁴ = 0.01%.” Tokens: 3 mo ≤ 10% · 6 mo ≤ 1% · 12 mo ≤ 0.1%. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: the CML clock reads 10, 1, 0.1 at 3, 6 and 12 months. And the MR number equals the logs down: MR2 is 1 percent, MR3 is 0.1, MR4 is 0.01."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: MR4.5 is 0.0032 percent, not a whole log; warning zones sit between optimal and failure; and treatment-free remission and advanced phases have their own rules."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "CML clock: 10 – 1 – 0.1 at 3 – 6 – 12",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "3 mo ≤ 10%",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "6 mo ≤ 1%",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "12 mo ≤ 0.1% (MMR)",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "MR⁴·⁵ = 0.0032%, half a log",
+              "Warning zones between optimal and failure",
+              "TFR and advanced phase have own rules"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “IS log ladder: 1% = MR² · 0.1% = MMR (MR³) · 0.01% = MR⁴ · 0.0032% = MR⁴·⁵ · milestones ≤ 10% / ≤ 1% / ≤ 0.1% at 3 / 6 / 12 months”, “Undetectable needs ≥ 10,000 / 32,000 / 100,000 ABL1 to score MR⁴ / MR⁴·⁵ / MR⁵ · atypical transcripts 2–4%”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "BCR-ABL1 on the International Scale is a log ladder where 0.1 percent is major molecular response, milestones are 10, 1 and 0.1 percent at 3, 6 and 12 months, and an undetectable result is only as deep as its control-transcript count allows."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "1% = MR² · 0.1% = MMR · 0.01% = MR⁴ · milestones 10/1/0.1% at 3/6/12 mo",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Undetectable: ≥ 10k / 32k / 100k ABL1 for MR⁴ / MR⁴·⁵ / MR⁵ · atypical 2–4%",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: in chronic myeloid leukemia, a blood PCR test measures how much of the cancer’s fusion gene message remains compared with a normal control gene; results are on a shared international scale where each tenfold drop is one step, and treatment decisions depend on reaching set levels by set times. Scientific terms: BCR-ABL1, International Scale (IS), control gene (ABL1, GUSB), log reduction, major molecular response (MMR, MR³), deep molecular response (MR⁴, MR⁴·⁵, MR⁵), ELN milestones, atypical transcripts, molecularly undetectable leukemia.",
+    "why": "Standardizing results to the IRIS baseline lets laboratories report comparable values. Because the scale is logarithmic, each response level is a tenfold change. Undetectable results depend on how many control transcripts were measured, which sets the lowest level that could have been detected.",
+    "measure": "ELN 2020: 1%, 0.1%, 0.01%, 0.0032%, 0.001% = 2, 3, 4, 4.5, 5 logs below baseline; ≤ 1% ≈ CCyR; ≤ 0.1% = MMR (MR³). Milestones: 3 mo ≤ 10% optimal (> 10% failure if confirmed within 1–3 months); 6 mo ≤ 1% (> 10% failure); 12 mo ≤ 0.1% (> 1% failure). Minimum control transcripts: MMR/MR⁴ 10,000 ABL1; MR⁴·⁵ 32,000; MR⁵ 100,000. Atypical transcripts in 2–4%.",
+    "differs": "MMR (0.1%, 3 logs) vs deep molecular response (MR⁴ and below); optimal vs warning vs failure; detectable result vs molecularly undetectable with adequate or inadequate sensitivity.",
+    "examAngle": "Expect: the BCR-ABL1 % that defines MMR, log conversions, 3/6/12-month milestones, and whether an undetectable result can be scored as deep response."
+  },
+  "comparisons": [
+    {
+      "id": "mmr-vs-mr45",
+      "title": "MMR vs MR⁴·⁵",
+      "left": {
+        "label": "MMR (MR³)",
+        "points": [
+          "≤ 0.1% IS",
+          "3 logs; 12-month target"
+        ]
+      },
+      "right": {
+        "label": "MR⁴·⁵",
+        "points": [
+          "≤ 0.0032% IS",
+          "Needs ≥ 32,000 ABL1 transcripts if undetectable"
+        ]
+      },
+      "distinguisher": "Depth of log reduction and the sensitivity needed to score it."
+    },
+    {
+      "id": "warning-vs-failure",
+      "title": "Warning vs failure at 12 months",
+      "left": {
+        "label": "Warning",
+        "points": [
+          "> 0.1–1% IS",
+          "Monitor more closely"
+        ]
+      },
+      "right": {
+        "label": "Failure",
+        "points": [
+          "> 1% IS",
+          "Change treatment"
+        ]
+      },
+      "distinguisher": "Whether BCR-ABL1 exceeds 1% at 12 months."
+    }
+  ],
+  "mnemonic": {
+    "text": "The CML clock reads 10–1–0.1 at 3–6–12; the MR number is the logs down.",
+    "explanation": "Optimal: ≤ 10% at 3 months, ≤ 1% at 6, ≤ 0.1% at 12. MR² = 1%, MR³ = 0.1%, MR⁴ = 0.01%.",
+    "limitation": "MR⁴·⁵ (0.0032%) is half a log; warning zones lie between optimal and failure; TFR and advanced phases have separate rules."
+  },
+  "analogyLimitations": [
+    "The patient and values are invented.",
+    "The log staircase is schematic.",
+    "ELN 2020 is one guideline; other bodies’ milestones may differ."
+  ],
+  "takeaway": "BCR-ABL1 on the International Scale is a log ladder where 0.1 percent is major molecular response, milestones are 10, 1 and 0.1 percent at 3, 6 and 12 months, and an undetectable result is only as deep as its control-transcript count allows.",
+  "questions": [
+    {
+      "id": "mdx-cml-q1",
+      "stem": "Which BCR-ABL1 level on the International Scale defines major molecular response (MMR)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "≤ 0.1% (a 3-log reduction)",
+          "rationale": "Correct. MMR = MR³ = ≤ 0.1% IS."
+        },
+        {
+          "id": "b",
+          "text": "≤ 1%",
+          "rationale": "Incorrect. ≤ 1% (2 logs) approximates complete cytogenetic remission."
+        },
+        {
+          "id": "c",
+          "text": "≤ 10%",
+          "rationale": "Incorrect. ≤ 10% is the optimal 3-month milestone (1 log)."
+        },
+        {
+          "id": "d",
+          "text": "≤ 0.0032%",
+          "rationale": "Incorrect. That is MR⁴·⁵."
+        }
+      ],
+      "answer": "a",
+      "skill": "IS definitions",
+      "difficulty": "recall"
+    },
+    {
+      "id": "mdx-cml-q2",
+      "stem": "At 12 months of TKI therapy, BCR-ABL1 is 2% IS. How does ELN 2020 classify this?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Failure (> 1% at 12 months)",
+          "rationale": "Correct. At 12 months, > 1% is failure; > 0.1–1% is warning."
+        },
+        {
+          "id": "b",
+          "text": "Optimal",
+          "rationale": "Incorrect. Optimal at 12 months is ≤ 0.1%."
+        },
+        {
+          "id": "c",
+          "text": "Warning",
+          "rationale": "Incorrect. Warning at 12 months is > 0.1–1%."
+        },
+        {
+          "id": "d",
+          "text": "Cannot be classified without a bone marrow",
+          "rationale": "Incorrect. Milestones are defined on blood qPCR results on the IS."
+        }
+      ],
+      "answer": "a",
+      "skill": "ELN milestones",
+      "difficulty": "application"
+    },
+    {
+      "id": "mdx-cml-q3",
+      "stem": "BCR-ABL1 is not detected in a sample in which 8,000 ABL1 transcripts were measured. What can be concluded?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The sample is not sensitive enough to score MR⁴ or deeper",
+          "rationale": "Correct. MR⁴ requires ≥ 10,000 ABL1, MR⁴·⁵ ≥ 32,000."
+        },
+        {
+          "id": "b",
+          "text": "Complete molecular response",
+          "rationale": "Incorrect. That term should be avoided; depth depends on control-transcript count."
+        },
+        {
+          "id": "c",
+          "text": "MR⁵",
+          "rationale": "Incorrect. MR⁵ needs ≥ 100,000 ABL1 transcripts."
+        },
+        {
+          "id": "d",
+          "text": "The patient has an atypical transcript",
+          "rationale": "Incorrect. That is possible but cannot be concluded from this result; transcripts should be characterized at diagnosis."
+        }
+      ],
+      "answer": "a",
+      "skill": "Assay sensitivity",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch77",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 77, Molecular Testing in Blood Cancers (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 77,
+          "section": "High-Yield Hits",
+          "items": [
+            2
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "hochhaus2020",
+      "kind": "external",
+      "citation": "Hochhaus A, Baccarani M, Silver RT, et al. European LeukemiaNet 2020 recommendations for treating chronic myeloid leukemia. Leukemia. 2020;34(4):966-984.",
+      "doi": "10.1038/s41375-020-0776-2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7214240/",
+      "consulted": true,
+      "usedFor": "IS definition and log ladder (1%, 0.1%, 0.01%, 0.0032%, 0.001% = 2, 3, 4, 4.5, 5 logs); CCyR ≈ 1%; MMR; minimum control transcripts table; milestones table; “molecularly undetectable leukemia”; atypical transcripts 2–4%; FISH monitoring."
+    },
+    {
+      "id": "cross2015",
+      "kind": "external",
+      "citation": "Cross NC, White HE, Colomer D, et al. Laboratory recommendations for scoring deep molecular responses following treatment for chronic myeloid leukemia. Leukemia. 2015;29(5):999-1003.",
+      "doi": "10.1038/leu.2015.29",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4430701/",
+      "consulted": true,
+      "usedFor": "Deep MR definitions (MR⁴, MR⁴·⁵) endorsed by ELN; 10,000 ABL1 transcripts equivalent to 24,000 GUSB (median GUSB/ABL1 ratio 2.4)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-is",
+      "text": "IS log ladder and response definitions.",
+      "status": "checked",
+      "refs": [
+        "hochhaus2020"
+      ]
+    },
+    {
+      "id": "cl-ms",
+      "text": "ELN 2020 milestones at 3, 6, 12 months and any time.",
+      "status": "checked",
+      "refs": [
+        "hochhaus2020"
+      ]
+    },
+    {
+      "id": "cl-sens",
+      "text": "Minimum control transcripts to score MMR/MR⁴/MR⁴·⁵/MR⁵; terminology.",
+      "status": "checked",
+      "refs": [
+        "hochhaus2020",
+        "cross2015"
+      ]
+    },
+    {
+      "id": "cl-atyp",
+      "text": "Atypical transcripts 2–4%; characterize at diagnosis; FISH.",
+      "status": "checked",
+      "refs": [
+        "hochhaus2020"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "0.5–1 log rise on two samples triggers kinase-domain mutation testing; p210/p190/p230 isoforms; MRD 10⁻⁴–10⁻⁶.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch77"
+      ],
+      "note": "Not taught; not in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Patient invented; ladder schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“The CML clock reads 10–1–0.1.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-mr2",
+      "issue": "The reviewer states “MR2 = 10%” (and calls the ladder ~1.5 logs per step). ELN 2020 defines 1% IS as 2 logs below baseline and 10% as 1 log, and names MR³, MR⁴ and MR⁴·⁵ by their log reductions — so MR² is 1%, not 10%. See register flag rv-cml-mr2.",
+      "kind": "contradiction",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; schematic ladder and tables.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against Hochhaus 2020 (ELN) and Cross 2015; 1 pending (mutation-testing trigger, isoforms, MRD range). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-10"
+}
