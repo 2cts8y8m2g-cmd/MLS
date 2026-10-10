@@ -1,0 +1,1430 @@
+{
+  "schemaVersion": 1,
+  "id": "immuno-competitive-sandwich-hook",
+  "title": "Immunoassay Formats: Competitive vs Sandwich and the Hook Effect",
+  "summary": "Explain why competitive immunoassay signal falls as analyte rises while sandwich signal rises, match each format to small or large analytes, and recognize and resolve the high-dose hook effect by dilution.",
+  "domain": "p6-immuno",
+  "topic": "ch45",
+  "conceptIds": [
+    "ch45.hit1",
+    "ch45.hit3",
+    "ch45.trap1",
+    "ch45.trap2"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 45,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          3
+        ]
+      },
+      {
+        "chapter": 45,
+        "section": "Traps",
+        "items": [
+          1,
+          2
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 45 Hits 1 and 3 and Traps 1 and 2 (first lesson for Ch. 45). Checked against Ghazal 2022, Agarwal 2010 and Hunsaker 2024. Nuance: the reviewer ties the hook to “one-step assays with limited antibody”; Ghazal 2022 describes it as specific to the sandwich (excess-reagent) format, reduced by excess antibody or smaller sample volume. Not taught: homogeneous vs heterogeneous sensitivity (Hit 2, Trap 3), EMIT, FPIA, RIA history — not in the sources read."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Explain signal–concentration direction in competitive and sandwich immunoassays.",
+    "Match assay format to analyte size.",
+    "Recognize and resolve the high-dose hook effect."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "More signal — more hormone?",
+      "start": 0,
+      "end": 20,
+      "altText": "Two invented immunoassay printouts. Cortisol (competitive format): sample A signal 80,000 counts, sample B 20,000 counts. Prolactin (sandwich format): a man with a 4-cm pituitary mass, prolactin reported only 85 ng/mL. Question token: “Which cortisol is higher — and is that prolactin real?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Two cortisol samples run on a competitive immunoassay: sample A gives 80,000 signal counts, sample B only 20,000."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Meanwhile, a man with a 4-centimetre pituitary tumour has a prolactin of only 85 on a sandwich immunoassay."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which cortisol is higher? And can that prolactin be trusted?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "cs",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 170,
+            "tone": "a",
+            "title": "Cortisol (competitive)",
+            "lines": [
+              "A: 80,000 counts",
+              "B: 20,000 counts"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "pr",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "bad",
+            "title": "Prolactin (sandwich)",
+            "lines": [
+              "4-cm pituitary mass",
+              "Result: 85 ng/mL"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8,
+              "reveal": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 560,
+            "label": "Higher cortisol? Real prolactin?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 450,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Competitive: patient and tracer fight for antibody",
+      "start": 20,
+      "end": 60,
+      "altText": "Competitive card (Ghazal 2022): limited antibody; the analyte in the sample competes with a labeled analyte (tracer) for antibody binding sites. After washing, bound signal is measured — signal is INVERSELY related to analyte concentration. Competitive immunoassays are mandatory for small molecules (e.g., steroids, thyroid hormones) and are susceptible to cross-reactions with precursors, metabolites or drugs. Schematic: few antibody seats; more patient analyte → fewer tracer molecules seated → less signal.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "In a competitive immunoassay, the antibody is limited. The patient’s analyte competes with a labelled copy, the tracer, for the same binding sites."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "After washing, the bound tracer signal is measured. The more patient analyte, the less tracer binds, so signal is inversely related to concentration."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Competitive formats are required for small molecules, such as steroids and thyroid hormones."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Their weakness is cross-reaction with precursors, metabolites or drugs that resemble the analyte."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cp",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "a",
+            "title": "Competitive",
+            "lines": [
+              "Limited antibody",
+              "Analyte vs tracer",
+              "Signal INVERSE to analyte"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "sm",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Used for small molecules",
+            "lines": [
+              "Steroids, thyroid hormones",
+              "Risk: cross-reactivity"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Sandwich: two antibodies, two epitopes",
+      "start": 60,
+      "end": 104,
+      "altText": "Sandwich card (Ghazal 2022): a capture antibody on the solid phase and a labeled detection antibody bind DIFFERENT epitopes on the analyte (excess reagent, “two-site”). After washing, signal is DIRECTLY related to analyte concentration. Suited to larger molecules — polypeptide and pituitary hormones, PTH, thyroglobulin, insulin, C-peptide, AMH — with higher specificity and a lower limit of quantification; prone to endogenous antibodies, biotin, and the hook effect. Back to the cortisol: competitive format → sample B (20,000 counts) has the HIGHER cortisol.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "In a sandwich, or two-site, immunoassay, a capture antibody on the solid phase and a labelled detection antibody grab two different epitopes on the analyte."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 80,
+          "text": "After washing, the signal comes from the sandwich, so it rises directly with the analyte concentration."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 92,
+          "text": "Sandwiches suit larger molecules: pituitary and polypeptide hormones, PTH, insulin, C-peptide, thyroglobulin. They are more specific, but vulnerable to interfering antibodies, biotin and the hook effect."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "Back to cortisol, a competitive assay: lower signal means more cortisol. Sample B, with 20,000 counts, has the higher level."
+        }
+      ],
+      "objects": [
+        {
+          "id": "sw",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "good",
+            "title": "Sandwich (two-site)",
+            "lines": [
+              "Capture + detection antibody",
+              "Two different epitopes",
+              "Signal DIRECT to analyte"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "lg",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "b",
+            "title": "Used for larger molecules",
+            "lines": [
+              "PTH, insulin, pituitary hormones",
+              "Risk: hook, biotin, antibodies"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "highlight": 1
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "label": "Competitive: B (less signal) = more cortisol",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "The hook effect",
+      "start": 104,
+      "end": 144,
+      "altText": "Hook card (Ghazal 2022; Agarwal 2010): antigen–antibody complex formation depends on the relative proportions of antigen and antibody; a relative excess impairs immune-complex formation, so the sandwich signal falls — a falsely LOW result. It affects sandwich immunoassays, especially in tumours where concentrations rise enormously (e.g., macroprolactinoma). Detection: dilute the sample — with serial dilutions the calculated concentration rises until two successive dilutions agree. Manufacturers minimize it with excess antibody or smaller sample volumes. Example (Hunsaker 2024): urine myoglobin run on a serum assay risks a hook effect in severe muscle injury. Back to the prolactin: suspect hook — repeat on dilution.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 113,
+          "text": "Sandwich assays have a trap. When the analyte is hugely in excess, the excess impairs formation of the antibody–analyte–antibody complex, so the signal falls. This is the high-dose hook effect, a falsely low result."
+        },
+        {
+          "id": "l2",
+          "start": 113,
+          "end": 121,
+          "text": "It happens in tumours that make enormous amounts of hormone, such as a large prolactinoma. A falsely low prolactin can lead to the wrong treatment."
+        },
+        {
+          "id": "l3",
+          "start": 121,
+          "end": 130,
+          "text": "The fix is dilution. With serial dilutions, the calculated concentration rises until two successive dilutions agree."
+        },
+        {
+          "id": "l4",
+          "start": 130,
+          "end": 137,
+          "text": "Manufacturers reduce the risk with excess antibody or smaller sample volumes, but it can still happen, for example with urine myoglobin run on a serum assay."
+        },
+        {
+          "id": "l5",
+          "start": 137,
+          "end": 144,
+          "text": "Back to our patient: a 4-centimetre mass with prolactin of only 85 should be repeated after dilution."
+        }
+      ],
+      "objects": [
+        {
+          "id": "hk",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "bad",
+            "title": "High-dose hook",
+            "lines": [
+              "Huge analyte excess",
+              "Excess impairs complex formation",
+              "Falsely LOW result"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            },
+            {
+              "t": 16,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "dl",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "Detect by dilution",
+            "lines": [
+              "Result rises on dilution",
+              "Until two dilutions agree"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.5,
+              "opacity": 0
+            },
+            {
+              "t": 18,
+              "reveal": 0
+            },
+            {
+              "t": 18.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            },
+            {
+              "t": 25,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "mf",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 400,
+            "w": 420,
+            "label": "Excess antibody reduces, not removes, risk",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 27.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 760,
+            "label": "Prolactin 85 with 4-cm mass → repeat diluted",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 34.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “High signal always means high analyte” (✓ only in sandwich assays; competitive signal is inverse); “A normal result rules out a hormone-secreting tumour” (✓ suspect hook effect when the result clashes with the clinical picture — dilute); “The hook effect affects competitive assays too” (✓ it is specific to the sandwich format).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: high signal always means high analyte. Only in sandwich assays; in competitive assays, signal falls as analyte rises."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a modest result rules out a hormone-secreting tumour. When the result clashes with a large tumour, suspect the hook effect and dilute."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the hook effect affects competitive assays too. It is specific to the sandwich format."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “High signal = high analyte.”",
+            "lines": [
+              "✓ Only sandwich; competitive is inverse"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Modest result excludes tumour.”",
+            "lines": [
+              "✓ Suspect hook → dilute"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Hook affects competitive assays.”",
+            "lines": [
+              "✓ Specific to sandwich format"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Seesaw vs sandwich",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Competitive is a SEESAW (patient up, signal down); sandwich is a SANDWICH (more filling, more sandwich) — until there’s so much filling the bread can’t close (hook).” Tokens: Seesaw = inverse · Sandwich = direct · Too much filling = hook. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: a competitive assay is a seesaw; as patient analyte goes up, signal goes down. A sandwich assay is a sandwich; more filling, more sandwiches, until there is so much filling the bread cannot close. That is the hook."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: some competitive formats measure unbound label, so direction depends on design; the hook is reduced but not abolished by assay design; and other interferences, such as biotin or heterophile antibodies, can mimic either error."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Seesaw (inverse) vs sandwich (direct) — hook",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Seesaw = inverse",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Sandwich = direct",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Too much filling = hook",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Direction depends on what is measured",
+              "Design reduces, not abolishes, hook",
+              "Biotin/antibodies mimic errors"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Competitive: analyte vs tracer for limited antibody → signal INVERSE · small molecules (steroids) · cross-reactivity risk”, “Sandwich: two antibodies, two epitopes → signal DIRECT · larger molecules · high-dose hook → falsely low → dilute”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Competitive immunoassays give a signal that falls as analyte rises and suit small molecules, while sandwich assays give a signal that rises with analyte but can be falsely low in huge excess, the hook effect, revealed by dilution."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Competitive: signal INVERSE · small molecules · cross-reactivity",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Sandwich: signal DIRECT · larger molecules · hook → falsely low → dilute",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: immunoassays measure substances by letting antibodies grab them and counting a label; in one design the patient’s substance pushes the label off (less signal = more substance), in the other it holds the label on (more signal = more substance), and enormous amounts can paradoxically lower the result. Scientific terms: competitive (limited-reagent) immunoassay, tracer, sandwich (two-site, non-competitive, excess-reagent) immunoassay, capture and detection antibody, epitope, cross-reactivity, high-dose hook effect, serial dilution.",
+    "why": "In competitive assays, analyte and tracer compete for limited antibody, so bound tracer falls as analyte rises. In sandwich assays, signal comes from antibody–analyte–antibody complexes; a large relative excess of analyte impairs complex formation (high-dose hook).",
+    "measure": "Competitive: signal inversely correlated with analyte; mandatory for small molecules; cross-reactions with precursors, metabolites, drugs (Ghazal 2022). Sandwich: two antibodies, different epitopes; signal directly correlated; for larger molecules (pituitary hormones, PTH, insulin, C-peptide, Tg, AMH); prone to endogenous antibodies, biotin, hook effect. Hook: sandwich-specific; dilution reveals it — concentration rises until two successive dilutions agree; excess antibody or smaller sample volume reduces it (Ghazal 2022; Agarwal 2010; Hunsaker 2024).",
+    "differs": "Competitive (inverse signal; small molecules) vs sandwich (direct signal; larger molecules; hook-prone).",
+    "examAngle": "Expect: which format gives inverse signal, which analytes need competitive assays, and the next step when a sandwich result is unexpectedly low with a large tumour."
+  },
+  "comparisons": [
+    {
+      "id": "comp-vs-sandwich",
+      "title": "Competitive vs sandwich immunoassay",
+      "left": {
+        "label": "Competitive",
+        "points": [
+          "Analyte vs tracer for limited antibody",
+          "Signal inverse; small molecules"
+        ]
+      },
+      "right": {
+        "label": "Sandwich",
+        "points": [
+          "Capture + detection antibodies",
+          "Signal direct; larger molecules"
+        ]
+      },
+      "distinguisher": "Whether analyte competes with label or bridges two antibodies."
+    },
+    {
+      "id": "hook-vs-true-low",
+      "title": "Hook effect vs truly low result",
+      "left": {
+        "label": "Hook effect",
+        "points": [
+          "Result rises on dilution",
+          "Huge excess in sandwich assay"
+        ]
+      },
+      "right": {
+        "label": "Truly low",
+        "points": [
+          "Dilution gives proportionally lower result",
+          "Matches clinical picture"
+        ]
+      },
+      "distinguisher": "Behaviour on serial dilution."
+    }
+  ],
+  "mnemonic": {
+    "text": "Competitive is a SEESAW; sandwich is a SANDWICH — until too much filling stops the bread closing (hook).",
+    "explanation": "Competitive signal goes down as analyte goes up; sandwich signal goes up with analyte until extreme excess causes the hook.",
+    "limitation": "Signal direction depends on what fraction a design measures; design reduces but does not abolish the hook; biotin and interfering antibodies can mimic either error."
+  },
+  "analogyLimitations": [
+    "Patients and counts are invented.",
+    "Antibody “seats” and sandwiches are schematic.",
+    "Biotin and heterophile interference are named as limits only (see the biotin interference lesson)."
+  ],
+  "takeaway": "Competitive immunoassays give a signal that falls as analyte rises and suit small molecules, while sandwich assays give a signal that rises with analyte but can be falsely low in huge excess, the hook effect, revealed by dilution.",
+  "questions": [
+    {
+      "id": "immuno-fmt-q1",
+      "stem": "In a competitive immunoassay for cortisol, sample X gives a much lower signal than sample Y. Which sample has more cortisol?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sample X",
+          "rationale": "Correct. In competitive assays, more analyte displaces more tracer, so signal is lower."
+        },
+        {
+          "id": "b",
+          "text": "Sample Y",
+          "rationale": "Incorrect. Higher signal means less analyte in a competitive format."
+        },
+        {
+          "id": "c",
+          "text": "They are equal",
+          "rationale": "Incorrect. Different signals reflect different concentrations."
+        },
+        {
+          "id": "d",
+          "text": "Cannot tell without a hook-effect check",
+          "rationale": "Incorrect. The hook effect is specific to sandwich assays."
+        }
+      ],
+      "answer": "a",
+      "skill": "Competitive signal",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-fmt-q2",
+      "stem": "A patient with a very large pituitary macroadenoma has a modestly raised prolactin on a sandwich immunoassay. What should the laboratory do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Repeat the measurement on serial dilutions to check for a hook effect",
+          "rationale": "Correct. Huge prolactin excess can give a falsely low sandwich result; dilution reveals it."
+        },
+        {
+          "id": "b",
+          "text": "Report as is; the tumour is non-secreting",
+          "rationale": "Incorrect. The result may be falsely low."
+        },
+        {
+          "id": "c",
+          "text": "Switch to a competitive assay because sandwich assays cannot measure prolactin",
+          "rationale": "Incorrect. Sandwich formats are standard for pituitary hormones; dilution is the fix."
+        },
+        {
+          "id": "d",
+          "text": "Add biotin to the sample",
+          "rationale": "Incorrect. Biotin is an interferent, not a correction."
+        }
+      ],
+      "answer": "a",
+      "skill": "Hook effect",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-fmt-q3",
+      "stem": "Which analyte is most likely measured by a competitive immunoassay?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cortisol (a steroid)",
+          "rationale": "Correct. Competitive immunoassays are mandatory for small molecules such as steroids."
+        },
+        {
+          "id": "b",
+          "text": "Parathyroid hormone",
+          "rationale": "Incorrect. PTH is a larger polypeptide suited to sandwich assays."
+        },
+        {
+          "id": "c",
+          "text": "Insulin",
+          "rationale": "Incorrect. Insulin is typically measured by sandwich immunoassay."
+        },
+        {
+          "id": "d",
+          "text": "Thyroglobulin",
+          "rationale": "Incorrect. Thyroglobulin is a large protein measured by sandwich immunoassay."
+        }
+      ],
+      "answer": "a",
+      "skill": "Format selection",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch45",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 45, Immunoassays: Antibodies as Tools (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 45,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            3
+          ]
+        },
+        {
+          "chapter": 45,
+          "section": "Traps",
+          "items": [
+            1,
+            2
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "ghazal2022",
+      "kind": "external",
+      "citation": "Ghazal K, Brabant S, Prie D, Piketty ML. Hormone Immunoassay Interference: A 2021 Update. Ann Lab Med. 2022;42(1):3-23.",
+      "doi": "10.3343/alm.2022.42.1.3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8368230/",
+      "consulted": true,
+      "usedFor": "Competitive (limited reagent): analyte vs tracer, signal inversely correlated, mandatory for small molecules, cross-reactions; sandwich (excess reagent): two antibodies, different epitopes, signal directly correlated, larger molecules, prone to endogenous antibodies, biotin and hook; hook specific to sandwich, dilution reveals it, excess antibody or smaller volumes minimize it."
+    },
+    {
+      "id": "agarwal2010",
+      "kind": "external",
+      "citation": "Agarwal M, Das A, Singh AS. High-dose hook effect in prolactin macroadenomas: A diagnostic concern. J Hum Reprod Sci. 2010;3(3):160-161.",
+      "doi": "10.4103/0974-1208.74164",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3017337/",
+      "consulted": true,
+      "usedFor": "Immune complex formation depends on relative antigen/antibody proportions; relative excess impairs complex formation (high-dose hook) in prolactin macroadenomas."
+    },
+    {
+      "id": "hunsaker2024",
+      "kind": "external",
+      "citation": "Hunsaker JJH, La’ulu SL, Zupan E, et al. Detection of a High-Dose Hook Effect and Evaluation of Dilutions of Urine Myoglobin Specimens Using a Serum Myoglobin Assay. Ann Lab Med. 2024;44(4):367-370.",
+      "doi": "10.3343/alm.2023.0427",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10961618/",
+      "consulted": true,
+      "usedFor": "High myoglobin can induce a high-dose hook effect; risk when urine is run on a serum assay in severe muscle injury."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-comp",
+      "text": "Competitive principle, inverse signal, small molecules, cross-reactivity.",
+      "status": "checked",
+      "refs": [
+        "ghazal2022"
+      ]
+    },
+    {
+      "id": "cl-sand",
+      "text": "Sandwich principle, direct signal, larger molecules, interferences.",
+      "status": "checked",
+      "refs": [
+        "ghazal2022"
+      ]
+    },
+    {
+      "id": "cl-hook",
+      "text": "Hook effect mechanism, sandwich specificity, dilution detection, mitigation, examples.",
+      "status": "checked",
+      "refs": [
+        "ghazal2022",
+        "agarwal2010",
+        "hunsaker2024"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Homogeneous vs heterogeneous sensitivity; EMIT, FPIA, RIA history; designs measuring unbound label.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch45"
+      ],
+      "note": "Not taught; not in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Patients and counts invented; schematics.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Seesaw vs sandwich.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-hook-format",
+      "issue": "The reviewer attributes the hook to “one-step assays with limited antibody”; Ghazal 2022 describes the hook as specific to sandwich (excess-reagent) immunoassays and reduced by using excess antibody.",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; antibody diagrams are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "3 claims checked against Ghazal 2022, Agarwal 2010 and Hunsaker 2024; 1 pending (homogeneous/heterogeneous, EMIT/FPIA/RIA). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-10"
+}
