@@ -102,6 +102,8 @@ FLAG_RULES = [
      'Open sources (Nopoulos 2016; Chintalaphani 2021) classify HTT 36–39 CAG as reduced penetrance, not intermediate; 27–35 is the non-disease range that may expand. Expansion is more likely in male transmission, so the answer’s parent-of-origin point stands.'),
     ('rv-dm1-maternal', r'transmitted maternally only',
      'Congenital DM1 is characteristically maternal, but paternal transmission is reported (Wenninger 2018). The answer is the best choice here; “only” is an overstatement.'),
+    ('rv-hiv-earliest-marker', r'p24 antigen is the earliest detectable',
+     'CDC 2014: HIV-1 RNA (by NAT) is detectable about 4–10 days before p24 antigen. Among the options offered here p24 is still the earliest, so the answer stands; the explanation overstates it.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',

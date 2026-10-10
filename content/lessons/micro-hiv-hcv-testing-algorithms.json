@@ -1,0 +1,1430 @@
+{
+  "schemaVersion": 1,
+  "id": "micro-hiv-hcv-testing-algorithms",
+  "title": "HIV and Hepatitis C Testing Algorithms: Acute HIV and Confirming HCV",
+  "summary": "Apply the CDC HIV laboratory algorithm (Ag/Ab combination → differentiation → HIV-1 NAT), place RNA, p24 and antibody on the infection timeline, and confirm a reactive HCV antibody with HCV RNA.",
+  "domain": "p7-micro",
+  "topic": "ch64",
+  "conceptIds": [
+    "ch64.hit13",
+    "ch64.hit14",
+    "ch64.trap3"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 64,
+        "section": "High-Yield Hits",
+        "items": [
+          13,
+          14
+        ]
+      },
+      {
+        "chapter": 64,
+        "section": "Traps",
+        "items": [
+          3
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 64 Hits 13 and 14 and Trap 3. Checked against CDC 2014 HIV laboratory testing recommendations (full PDF) and CDC 2013 HCV testing update (read via page fetch). Correction: HIV-1 RNA is detectable before p24 antigen (rv-hiv-earliest-marker). Hit 4 (HBV IgM anti-HBc, HCV SVR12) and Hit 6 (HIV viral-load monitoring; DHHS page not accessible) are not taught here."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Order the appearance of HIV RNA, p24 antigen and antibodies.",
+    "Apply and interpret the CDC HIV laboratory testing algorithm.",
+    "Interpret anti-HCV and HCV RNA results together."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Reactive screen, negative confirmation",
+      "start": 0,
+      "end": 20,
+      "altText": "Two invented reports. HIV: a patient with a high-risk exposure 2 weeks ago — 4th-generation HIV-1/2 Ag/Ab combination immunoassay REACTIVE; HIV-1/HIV-2 antibody differentiation immunoassay NONREACTIVE. HCV: a blood donor — anti-HCV REACTIVE. Question token: “False positive? Or infection the antibody test cannot see yet — and what about the HCV result?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Two weeks after a high-risk exposure, a patient’s fourth-generation HIV antigen-antibody screen is reactive, but the antibody differentiation test is nonreactive."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Separately, a blood donor has a reactive hepatitis C antibody test."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Is the HIV result a false positive, or an infection too early for antibodies? And does the donor have hepatitis C now?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "hv",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 170,
+            "tone": "bad",
+            "title": "HIV, exposure 2 weeks ago",
+            "lines": [
+              "Ag/Ab combo: REACTIVE",
+              "Differentiation: NONREACTIVE"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hc",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Blood donor",
+            "lines": [
+              "Anti-HCV: REACTIVE"
+            ],
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 560,
+            "label": "False positive — or too early? Current HCV?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 450,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The order HIV markers appear",
+      "start": 20,
+      "end": 60,
+      "altText": "A timeline (CDC 2014; schematic, not to scale): eclipse period — no marker consistently detectable; ~10 days after infection, HIV-1 RNA becomes detectable by NAT and rises to very high levels; p24 antigen becomes detectable by 4th-generation assays 4–10 days after RNA; antibodies follow. Definitions: seroconversion window = infection → first antibody detection; acute HIV infection = RNA detectable → antibodies detectable; established infection = fully developed IgG response.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Right after infection comes the eclipse period, when no laboratory marker is consistently detectable."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "About 10 days after infection, HIV-1 RNA becomes detectable by nucleic acid testing, and it climbs to very high levels."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Next, p24 antigen rises to levels that fourth-generation assays detect, 4 to 10 days after RNA first appears. Antibodies come after that."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Acute HIV infection is the interval from detectable RNA to detectable antibodies. During it, antibody-only tests are negative."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tl",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 200,
+            "w": 780,
+            "h": 240,
+            "tone": "a",
+            "title": "Marker order (schematic)",
+            "lines": [
+              "Eclipse: nothing reliable",
+              "~Day 10: HIV-1 RNA (NAT) — FIRST",
+              "+4–10 days: p24 antigen (4th gen)",
+              "Then antibodies"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            },
+            {
+              "t": 29,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ac",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 410,
+            "w": 640,
+            "label": "Acute HIV = RNA + but antibody −",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "The CDC laboratory algorithm",
+      "start": 60,
+      "end": 104,
+      "altText": "Algorithm card (CDC 2014): Step 1 — HIV-1/2 antigen/antibody combination immunoassay (detects HIV-1 and HIV-2 antibodies and HIV-1 p24 antigen); nonreactive → no further testing. Step 2 — reactive → HIV-1/HIV-2 antibody differentiation immunoassay; HIV-1 or HIV-2 antibody positive → infection confirmed. Step 3 — differentiation nonreactive or indeterminate → HIV-1 NAT. Interpretation: NAT reactive + differentiation nonreactive → acute HIV-1 infection; NAT reactive + indeterminate → HIV-1 infection confirmed by NAT; NAT negative + differentiation nonreactive/indeterminate → false-positive initial immunoassay. The HIV-1 Western blot is no longer part of the algorithm.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 69,
+          "text": "Step one: an antigen-antibody combination immunoassay detects HIV-1 and HIV-2 antibodies plus HIV-1 p24 antigen. If it is nonreactive, testing stops."
+        },
+        {
+          "id": "c2",
+          "start": 69,
+          "end": 78,
+          "text": "Step two: a reactive screen goes to an antibody differentiation immunoassay, which separates HIV-1 from HIV-2 antibodies."
+        },
+        {
+          "id": "c3",
+          "start": 78,
+          "end": 87,
+          "text": "Step three: if differentiation is nonreactive or indeterminate, run an HIV-1 nucleic acid test."
+        },
+        {
+          "id": "c4",
+          "start": 87,
+          "end": 96,
+          "text": "A reactive NAT with nonreactive differentiation is acute HIV-1 infection. A reactive NAT with an indeterminate differentiation confirms HIV-1 infection."
+        },
+        {
+          "id": "c5",
+          "start": 96,
+          "end": 104,
+          "text": "Only a negative NAT with nonreactive or indeterminate differentiation means the screen was a false positive. The Western blot is no longer used in this algorithm."
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 170,
+            "w": 300,
+            "h": 150,
+            "tone": "a",
+            "title": "1 · Ag/Ab combo",
+            "lines": [
+              "Nonreactive → stop"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "highlight": 1
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "highlight": 0
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 300,
+            "h": 150,
+            "tone": "b",
+            "title": "2 · Differentiation",
+            "lines": [
+              "HIV-1 vs HIV-2 antibody"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            },
+            {
+              "t": 10.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "highlight": 0
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 170,
+            "w": 300,
+            "h": 150,
+            "tone": "good",
+            "title": "3 · HIV-1 NAT",
+            "lines": [
+              "If 2 is − or indeterminate"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "in",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 400,
+            "w": 780,
+            "h": 180,
+            "tone": "warn",
+            "title": "Interpretation",
+            "lines": [
+              "NAT + / diff − → ACUTE HIV-1",
+              "NAT + / diff indeterminate → HIV-1 confirmed",
+              "NAT − / diff − or ind. → false-positive screen"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 27.5,
+              "opacity": 0
+            },
+            {
+              "t": 28,
+              "reveal": 0
+            },
+            {
+              "t": 28.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "highlight": 1
+            },
+            {
+              "t": 40,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Hepatitis C: antibody, then RNA",
+      "start": 104,
+      "end": 144,
+      "altText": "HCV card (CDC 2013): begin with an HCV antibody test; a reactive result must be followed by NAT for HCV RNA. A reactive antibody alone means current infection, past resolved infection, or a false positive. Anti-HCV reactive + RNA detected → current HCV infection. Anti-HCV reactive + RNA not detected → past resolved infection or false-positive antibody; usually no further action, but repeat RNA if exposure within the past 6 months is suspected, if there is clinical evidence of HCV disease, or concern about specimen handling; another antibody assay can be considered to separate resolved infection from biologic false positivity. Back to the hook: HIV → acute HIV-1 infection is possible; run HIV-1 NAT now (do not call it a false positive). Donor → order HCV RNA before saying “infected”.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 113,
+          "text": "For hepatitis C, start with an antibody test. A reactive antibody must be followed by a test for HCV RNA."
+        },
+        {
+          "id": "l2",
+          "start": 113,
+          "end": 121,
+          "text": "A reactive antibody alone could mean current infection, past infection that has resolved, or a false positive. Only RNA tells you which."
+        },
+        {
+          "id": "l3",
+          "start": 121,
+          "end": 129,
+          "text": "Antibody reactive and RNA detected means current infection. Antibody reactive but RNA not detected means resolved infection or a false-positive antibody."
+        },
+        {
+          "id": "l4",
+          "start": 129,
+          "end": 136,
+          "text": "Repeat the RNA test if exposure in the last 6 months is suspected, or if there are signs of disease or doubts about specimen handling."
+        },
+        {
+          "id": "l5",
+          "start": 136,
+          "end": 144,
+          "text": "Back to the reports: the HIV pattern may be acute infection, so an HIV-1 NAT is needed now. The donor needs an HCV RNA test before anyone says infected."
+        }
+      ],
+      "objects": [
+        {
+          "id": "hc",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 240,
+            "tone": "warn",
+            "title": "HCV (CDC 2013)",
+            "lines": [
+              "Anti-HCV → reflex HCV RNA",
+              "Ab alone: current, resolved, or false +",
+              "Ab + / RNA + → CURRENT",
+              "Ab + / RNA − → resolved or false +"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            },
+            {
+              "t": 16,
+              "highlight": 0
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            },
+            {
+              "t": 23,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "rp",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "label": "Repeat RNA: exposure < 6 mo, disease, handling",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 26.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "a1",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 300,
+            "w": 420,
+            "label": "HIV: NAT now — possible acute",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "a2",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 380,
+            "w": 420,
+            "label": "Donor: HCV RNA before “infected”",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 37.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Reactive combo + nonreactive differentiation = false positive” (✓ run HIV-1 NAT; NAT + = acute HIV-1); “p24 antigen is the earliest HIV marker” (✓ HIV-1 RNA is detectable first; p24 is earliest among antigen/antibody markers); “Reactive anti-HCV = active hepatitis C” (✓ confirm with HCV RNA).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a reactive screen with a nonreactive differentiation assay is a false positive. Not until an HIV-1 NAT is negative; a reactive NAT means acute HIV-1 infection."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: p24 antigen is the earliest HIV marker. HIV-1 RNA appears first, about 4 to 10 days before p24; p24 is the earliest of the antigen and antibody markers."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: a reactive hepatitis C antibody means active hepatitis C. It may be resolved infection or a false positive; only HCV RNA confirms current infection."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Combo + / differentiation − = false +.”",
+            "lines": [
+              "✓ Run HIV-1 NAT: + = acute HIV-1"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “p24 is the earliest HIV marker.”",
+            "lines": [
+              "✓ RNA first; p24 4–10 days later"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Anti-HCV + = active HCV.”",
+            "lines": [
+              "✓ Confirm with HCV RNA"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "R-A-A: RNA, Antigen, Antibody",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “R-A-A — RNA, then Antigen, then Antibody: the alphabet of HIV infection.” And “Antibody says ever; RNA says now” for hepatitis C. Tokens: RNA ~day 10 · p24 +4–10 d · antibody last; HCV Ab = ever · RNA = now. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: R, A, A. RNA, then antigen, then antibody, the order HIV markers appear. And for hepatitis C: the antibody says ever infected, the RNA says infected now."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: timings vary by person and assay; HIV-2 is detected by the antibody steps, not the HIV-1 NAT; and a false-positive HCV antibody is never “ever infected”."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "R → A → A: RNA, Antigen, Antibody",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "RNA ~day 10",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "p24 +4–10 days",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "HCV: Ab ever · RNA now",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Timings vary by person and assay",
+              "HIV-2 found by antibody steps, not HIV-1 NAT",
+              "False-positive Ab ≠ “ever infected”"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “HIV: combo Ag/Ab → differentiation → HIV-1 NAT if − or indeterminate · NAT + / diff − = acute HIV-1 · RNA first, p24 4–10 d later”, “HCV: antibody → RNA · Ab + / RNA − = resolved or false + · repeat RNA if exposure < 6 months”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "A reactive HIV screen with a nonreactive differentiation assay needs an HIV-1 NAT because RNA appears before antibodies, and a reactive HCV antibody needs an HCV RNA test before calling infection current."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "HIV: combo → differentiation → NAT · NAT + / diff − = acute · RNA before p24",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "HCV: antibody → RNA · Ab + / RNA − = resolved or false + · repeat if exposure < 6 mo",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: early in HIV infection the virus itself is detectable before the body makes antibodies, so the lab uses a screen that sees both and then confirms in steps; for hepatitis C, the antibody shows exposure, and a viral RNA test shows whether infection is current. Scientific terms: eclipse period, seroconversion window, acute HIV infection, antigen/antibody combination (4th-generation) immunoassay, p24 antigen, HIV-1/HIV-2 antibody differentiation immunoassay, nucleic acid test (NAT), anti-HCV, HCV RNA.",
+    "why": "After infection, HIV-1 RNA rises first, p24 antigen follows, and antibodies appear last. An antibody-only confirmatory step therefore misses acute infection detected by the p24 component of a combination screen; NAT resolves it. HCV antibodies persist after resolved infection and can be falsely reactive, so current infection requires RNA.",
+    "measure": "CDC 2014: RNA detectable ~10 days after infection; p24 detectable by 4th-generation assays 4–10 days after RNA; algorithm: Ag/Ab combo → HIV-1/HIV-2 differentiation → HIV-1 NAT if nonreactive/indeterminate; NAT + / diff − = acute HIV-1; NAT − = false-positive screen. CDC 2013: anti-HCV → HCV RNA; Ab + / RNA − = resolved or false positive; repeat RNA if exposure within 6 months, clinical disease or handling concerns.",
+    "differs": "Acute HIV (RNA/p24 +, antibody −) vs established HIV (antibody +) vs false-positive screen (NAT −); current HCV (RNA +) vs resolved/false-positive (RNA −).",
+    "examAngle": "Expect: next step after reactive combo + nonreactive differentiation, order of HIV markers, and what a reactive anti-HCV alone means."
+  },
+  "comparisons": [
+    {
+      "id": "acute-vs-falsepos",
+      "title": "Reactive combo + nonreactive differentiation: acute HIV vs false positive",
+      "left": {
+        "label": "Acute HIV-1",
+        "points": [
+          "HIV-1 NAT reactive",
+          "Antibodies not yet formed"
+        ]
+      },
+      "right": {
+        "label": "False-positive screen",
+        "points": [
+          "HIV-1 NAT negative",
+          "No infection evidence"
+        ]
+      },
+      "distinguisher": "HIV-1 NAT result."
+    },
+    {
+      "id": "hcv-current-vs-not",
+      "title": "Reactive anti-HCV: current vs not current",
+      "left": {
+        "label": "Current infection",
+        "points": [
+          "HCV RNA detected",
+          "Evaluate and treat"
+        ]
+      },
+      "right": {
+        "label": "Resolved or false positive",
+        "points": [
+          "HCV RNA not detected",
+          "Repeat RNA only if recent exposure or doubt"
+        ]
+      },
+      "distinguisher": "HCV RNA."
+    }
+  ],
+  "mnemonic": {
+    "text": "R-A-A: RNA, then Antigen, then Antibody. For HCV: antibody says ever, RNA says now.",
+    "explanation": "HIV markers appear in the order RNA → p24 antigen → antibody; HCV antibody reflects exposure, RNA reflects current infection.",
+    "limitation": "Timings vary by person and assay; HIV-2 is detected by the antibody steps; a false-positive HCV antibody does not mean past infection."
+  },
+  "analogyLimitations": [
+    "Timeline is schematic and not to scale.",
+    "The patients are invented.",
+    "US CDC algorithms; other countries may use different algorithms."
+  ],
+  "takeaway": "A reactive HIV screen with a nonreactive differentiation assay needs an HIV-1 NAT because RNA appears before antibodies, and a reactive HCV antibody needs an HCV RNA test before calling infection current.",
+  "questions": [
+    {
+      "id": "micro-hiv-q1",
+      "stem": "A 4th-generation HIV-1/2 Ag/Ab immunoassay is reactive and the HIV-1/HIV-2 differentiation immunoassay is nonreactive. HIV-1 NAT is reactive. What is the interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Acute HIV-1 infection",
+          "rationale": "Correct. RNA (and p24) are present before antibodies develop."
+        },
+        {
+          "id": "b",
+          "text": "False-positive screening result",
+          "rationale": "Incorrect. A false positive requires a negative HIV-1 NAT."
+        },
+        {
+          "id": "c",
+          "text": "HIV-2 infection",
+          "rationale": "Incorrect. HIV-2 would be identified by antibodies on the differentiation assay; the HIV-1 NAT is reactive."
+        },
+        {
+          "id": "d",
+          "text": "Indeterminate; repeat in 6 months",
+          "rationale": "Incorrect. The algorithm gives a definitive interpretation; delay risks missing acute infection."
+        }
+      ],
+      "answer": "a",
+      "skill": "HIV algorithm interpretation",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-hiv-q2",
+      "stem": "Which marker is detectable earliest after HIV-1 infection?",
+      "options": [
+        {
+          "id": "a",
+          "text": "HIV-1 RNA by nucleic acid test",
+          "rationale": "Correct. RNA becomes detectable about 10 days after infection, 4–10 days before p24 antigen."
+        },
+        {
+          "id": "b",
+          "text": "p24 antigen",
+          "rationale": "Incorrect. p24 follows RNA; it is the earliest of the antigen/antibody markers."
+        },
+        {
+          "id": "c",
+          "text": "IgG antibody",
+          "rationale": "Incorrect. IgG appears late, marking established infection."
+        },
+        {
+          "id": "d",
+          "text": "IgM antibody",
+          "rationale": "Incorrect. Antibodies appear after RNA and p24."
+        }
+      ],
+      "answer": "a",
+      "skill": "HIV marker timeline",
+      "difficulty": "recall"
+    },
+    {
+      "id": "micro-hcv-q3",
+      "stem": "A patient has a reactive anti-HCV and HCV RNA not detected, with no recent exposure. What is the interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "No current HCV infection: past resolved infection or false-positive antibody",
+          "rationale": "Correct. Without detectable RNA, infection is not current; usually no further action."
+        },
+        {
+          "id": "b",
+          "text": "Current chronic hepatitis C",
+          "rationale": "Incorrect. Current infection requires detectable HCV RNA."
+        },
+        {
+          "id": "c",
+          "text": "Acute hepatitis C in the window period",
+          "rationale": "Incorrect. Repeat RNA testing is reserved for suspected exposure within the past 6 months or clinical evidence of disease; neither is present."
+        },
+        {
+          "id": "d",
+          "text": "Hepatitis B infection",
+          "rationale": "Incorrect. Anti-HCV and HCV RNA test for hepatitis C only."
+        }
+      ],
+      "answer": "a",
+      "skill": "HCV interpretation",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch64",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 64, Viral Infections (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 64,
+          "section": "High-Yield Hits",
+          "items": [
+            13,
+            14
+          ]
+        },
+        {
+          "chapter": 64,
+          "section": "Traps",
+          "items": [
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "cdc2014hiv",
+      "kind": "external",
+      "citation": "Centers for Disease Control and Prevention and Association of Public Health Laboratories. Laboratory Testing for the Diagnosis of HIV Infection: Updated Recommendations. June 27, 2014.",
+      "url": "https://stacks.cdc.gov/view/cdc/23447",
+      "consulted": true,
+      "usedFor": "Full PDF read. Eclipse, window, acute and established stages; RNA ~10 days, p24 4–10 days after RNA; algorithm steps and interpretations; Western blot/IFA no longer recommended. Note: some aspects updated in a 2018 quick reference guide (not read)."
+    },
+    {
+      "id": "cdc2013hcv",
+      "kind": "external",
+      "citation": "Centers for Disease Control and Prevention. Testing for HCV infection: an update of guidance for clinicians and laboratorians. MMWR Morb Mortal Wkly Rep. 2013;62(18):362-365.",
+      "url": "https://www.cdc.gov/mmwr/preview/mmwrhtml/mm6218a5.htm",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. Anti-HCV then HCV RNA; reactive antibody = current, resolved or false positive; RNA not detected = resolved or false positive; repeat RNA if exposure within 6 months, clinical disease or handling concern; second antibody assay optional."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-timeline",
+      "text": "HIV marker order: RNA ~day 10, p24 4–10 days later, then antibodies; stage definitions.",
+      "status": "checked",
+      "refs": [
+        "cdc2014hiv"
+      ]
+    },
+    {
+      "id": "cl-alg",
+      "text": "CDC HIV algorithm steps and interpretations.",
+      "status": "checked",
+      "refs": [
+        "cdc2014hiv"
+      ]
+    },
+    {
+      "id": "cl-hcv",
+      "text": "HCV antibody → RNA; interpretations; repeat RNA indications.",
+      "status": "checked",
+      "refs": [
+        "cdc2013hcv"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "HIV viral-load monitoring schedule and resistance-testing threshold (Hit 6); HCV SVR12 and HBV IgM anti-HBc (Hit 4); 2018 HIV algorithm updates.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch64"
+      ],
+      "note": "Not taught; DHHS guideline page not accessible; 2018 update not read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Timeline schematic; patients invented.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“R-A-A: RNA, Antigen, Antibody.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-earliest",
+      "issue": "The reviewer calls p24 antigen “the earliest detectable HIV marker”. CDC 2014: HIV-1 RNA becomes detectable first; p24 follows 4–10 days later. See register flag rv-hiv-earliest-marker.",
+      "kind": "contradiction",
+      "status": "open"
+    },
+    {
+      "id": "f-dated",
+      "issue": "CDC 2014 (HIV) and 2013 (HCV) guidance were used; the 2018 HIV quick-reference update and later HCV recommendations were not read.",
+      "kind": "outdated",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "Timeline and algorithm boxes are schematic.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "3 claims checked against CDC 2014 HIV recommendations (full text) and CDC 2013 HCV update (page fetch); 1 pending (monitoring, SVR, HBV, 2018 update). No human expert has reviewed this lesson. US algorithms only."
+  },
+  "revisedAt": "2026-10-10"
+}
