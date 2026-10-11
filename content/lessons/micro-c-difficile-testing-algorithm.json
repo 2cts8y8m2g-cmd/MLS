@@ -1,0 +1,1484 @@
+{
+  "schemaVersion": 1,
+  "id": "micro-c-difficile-testing-algorithm",
+  "title": "C. difficile Testing: GDH, Toxin and NAAT in a Multistep Algorithm",
+  "summary": "Learn what GDH antigen, toxin immunoassay and NAAT each detect, who should be tested for C. difficile, and how to read a GDH-plus-toxin algorithm arbitrated by NAAT, including the discordant result.",
+  "domain": "p7-micro",
+  "topic": "ch57",
+  "conceptIds": [
+    "ch57.hit14"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 57,
+        "section": "High-Yield Hits",
+        "items": [
+          14
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 57 Hit 14 (C. difficile 2–3-step algorithm; no formed stool or neonates), checked against the IDSA/SHEA 2017 guideline (McDonald 2018; read via a page-fetch tool) and Lee 2021. The reviewer’s “~50% of neonates are colonized” is given in the guideline as asymptomatic infant colonisation that “can exceed 40%”; the lesson uses the guideline wording. The formed-stool rule is taught in micro-specimen-acceptability-transport. Not taught: treatment, typing, the 2021 focused update."
+  },
+  "prerequisites": [
+    "ch8.hit1"
+  ],
+  "objectives": [
+    "State what GDH antigen, toxin A/B immunoassay and NAAT each detect.",
+    "Apply the IDSA/SHEA 2017 rules on who should and should not be tested for C. difficile.",
+    "Interpret results of a GDH-plus-toxin algorithm arbitrated by NAAT."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three stools, one question",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three stool specimens arrive for C. difficile testing — (1) an adult inpatient with new, unexplained diarrhoea, 4 watery stools in 24 hours; (2) a 6-month-old infant with loose stools; (3) a patient whose first test was negative 3 days ago, same diarrhoeal episode. The lab’s first result on specimen 1: GDH antigen positive, toxin A/B immunoassay negative. Question token: “Infection, carrier, or don’t test?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Three stools arrive for C. difficile testing: an adult with new, unexplained watery diarrhoea; a six-month-old infant; and a repeat test three days after a negative one."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "On the adult’s stool, the screening antigen is positive but the toxin test is negative."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Is that infection, a carrier, or a test that should never have been run?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Adult inpatient",
+            "lines": [
+              "≥ 3 watery stools/24 h",
+              "GDH + · toxin −"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "2 Infant, 6 months",
+            "lines": [
+              "Loose stools"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "3 Repeat test",
+            "lines": [
+              "Negative 3 days ago",
+              "Same episode"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.5,
+              "opacity": 0
+            },
+            {
+              "t": 6.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "res",
+          "type": "token",
+          "props": {
+            "x": 170,
+            "y": 420,
+            "w": 290,
+            "label": "GDH + · toxin −",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 640,
+            "label": "Infection, carrier, or don’t test?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "What each test detects",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic: a C. difficile cell and its toxins. Four test cards. GDH (glutamate dehydrogenase) antigen EIA detects a conserved enzyme found in BOTH toxigenic and non-toxigenic strains — sensitive screen, cannot show toxin. Toxin A/B EIA detects free toxin in stool — the marker of active toxin production, but less sensitive (about 51–63% in one review’s summary). NAAT (PCR) detects toxin GENES (tcdA/tcdB) — highly sensitive (about 92–97%), but cannot tell carriage from active toxin production. Toxigenic culture and the cell cytotoxicity neutralisation assay are reference methods, too slow for routine use.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Each test sees a different part of the organism. The GDH antigen test detects an enzyme that every C. difficile strain makes, toxin-producing or not."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "The toxin A and B immunoassay detects free toxin in the stool. It shows active toxin production, but misses many cases."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Nucleic acid amplification, NAAT, detects the toxin genes. It is very sensitive, but a gene is not a toxin: it cannot separate a carrier from an infection."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Toxigenic culture and the cytotoxicity assay are reference methods, too slow for routine use."
+        }
+      ],
+      "objects": [
+        {
+          "id": "gdh",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "GDH antigen",
+            "lines": [
+              "All strains, toxigenic or not",
+              "Sensitive screen"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tox",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "Toxin A/B EIA",
+            "lines": [
+              "Free toxin = active disease",
+              "Misses many (~51–63%)"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "naat",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "NAAT (tcdA/tcdB)",
+            "lines": [
+              "Toxin genes, ~92–97% sensitive",
+              "Carrier or infection?"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ref",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Reference methods",
+            "lines": [
+              "Toxigenic culture · CCNA",
+              "Too slow for routine"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Who to test, and the multistep algorithm",
+      "start": 60,
+      "end": 104,
+      "altText": "Who-to-test card (IDSA/SHEA 2017): the preferred target population is patients with unexplained, new-onset ≥3 unformed stools in 24 hours; do not repeat testing within 7 days in the same episode; do not test asymptomatic patients (except epidemiological studies); never routinely test neonates or infants ≤12 months (asymptomatic colonisation can exceed 40%); avoid routinely testing after a laxative within 48 hours. Algorithm card: without preagreed institutional criteria for stool submission, use a stool toxin test as part of a multistep algorithm — GDH + toxin; GDH + toxin arbitrated by NAAT; or NAAT + toxin — rather than NAAT alone. With preagreed criteria, NAAT alone or a multistep algorithm, rather than toxin alone.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Testing starts with the patient. The 2017 IDSA and SHEA guideline targets unexplained, new-onset diarrhoea: three or more unformed stools in twenty-four hours. No repeat testing within seven days of the same episode, and no testing of people without symptoms."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "Infants up to twelve months are never routinely tested: asymptomatic colonisation in infants can exceed forty percent. And stool taken within forty-eight hours of a laxative should not be tested routinely."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "Without agreed criteria for which stools are sent, use a multistep algorithm that includes a toxin test: GDH plus toxin, GDH plus toxin with NAAT to settle disagreements, or NAAT plus toxin."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "If the institution enforces strict submission criteria, NAAT alone or a multistep algorithm is acceptable. Toxin alone is not recommended."
+        }
+      ],
+      "objects": [
+        {
+          "id": "who",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 230,
+            "w": 440,
+            "h": 260,
+            "tone": "b",
+            "title": "Who to test",
+            "lines": [
+              "New ≥ 3 unformed stools/24 h",
+              "No repeat within 7 days",
+              "Not infants ≤ 12 months",
+              "Not within 48 h of laxative"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "alg",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "good",
+            "title": "No submission criteria",
+            "lines": [
+              "GDH + toxin",
+              "GDH + toxin → NAAT if discordant",
+              "NAAT + toxin"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "crit",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 470,
+            "w": 420,
+            "label": "Strict criteria: NAAT alone OK",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Reading the algorithm",
+      "start": 104,
+      "end": 144,
+      "altText": "Result table (GDH + toxin, arbitrated by NAAT). GDH − → negative. GDH + / toxin + → toxigenic C. difficile with free toxin: consistent with CDI. GDH + / toxin − → discordant → NAAT: NAAT − → no toxigenic strain detected (negative); NAAT + → toxigenic strain present but no detectable toxin: colonisation or CDI with toxin below detection — interpret with the clinical picture. Hook answers: (1) adult: run NAAT on the discordant specimen and interpret clinically; (2) infant ≤12 months: do not test routinely; (3) repeat within 7 days, same episode: do not test.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Read the algorithm. GDH negative: no C. difficile, report negative. GDH and toxin both positive: toxin-producing C. difficile is active, consistent with infection."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 126,
+          "text": "GDH positive but toxin negative is discordant, so NAAT decides. NAAT negative: no toxin-producing strain. NAAT positive: a toxin-producing strain is present but no toxin was found. That may be colonisation, or infection with toxin below detection, so the clinical picture decides."
+        },
+        {
+          "id": "l3",
+          "start": 126,
+          "end": 136,
+          "text": "Back to the hook. The adult’s specimen goes to NAAT, and the result is interpreted with the clinical picture."
+        },
+        {
+          "id": "l4",
+          "start": 136,
+          "end": 144,
+          "text": "The six-month-old should not be tested routinely, and the repeat test three days into the same episode should not be run."
+        }
+      ],
+      "objects": [
+        {
+          "id": "neg",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 180,
+            "w": 270,
+            "h": 140,
+            "tone": "good",
+            "title": "GDH −",
+            "lines": [
+              "Negative"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pos",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 270,
+            "h": 140,
+            "tone": "bad",
+            "title": "GDH + / toxin +",
+            "lines": [
+              "Consistent with CDI"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dis",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 200,
+            "w": 270,
+            "h": 180,
+            "tone": "warn",
+            "title": "GDH + / toxin −",
+            "lines": [
+              "NAAT − → negative",
+              "NAAT + → carrier or CDI?"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 760,
+            "h": 150,
+            "tone": "a",
+            "title": "Hook answers",
+            "lines": [
+              "1 Adult: NAAT, then clinical judgement",
+              "2 Infant ≤ 12 months: don’t test",
+              "3 Repeat within 7 days: don’t test"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “A positive NAAT proves C. difficile infection” (✓ NAAT detects toxin genes; carriers test positive — interpret with symptoms and, in a multistep algorithm, toxin); “GDH positive = toxigenic strain” (✓ GDH is made by toxigenic and non-toxigenic strains; it screens, it does not confirm); “Repeat a negative test to be sure” (✓ no repeat within 7 days in the same episode).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a positive NAAT proves infection. No: NAAT detects toxin genes, and carriers have them too."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a positive GDH means a toxin-producing strain. No: non-toxigenic strains make GDH too. It is a screen, not a confirmation."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: repeat a negative test to be sure. No: do not repeat within seven days during the same episode."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “NAAT + = infection.”",
+            "lines": [
+              "✓ Genes ≠ toxin; carriers are positive"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “GDH + = toxigenic.”",
+            "lines": [
+              "✓ All strains make GDH"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Repeat a negative to be sure.”",
+            "lines": [
+              "✓ No repeat within 7 days"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Badge, blueprint, weapon",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “GDH is the BADGE every C. difficile wears; NAAT finds the BLUEPRINT for the weapon (toxin genes); the toxin EIA finds the WEAPON being fired. Only a fired weapon in a patient with diarrhoea makes a clear case.” Tokens: badge = GDH · blueprint = NAAT · weapon = toxin. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: GDH is the badge every C. difficile wears. NAAT finds the blueprint for the weapon, the toxin genes. The toxin test finds the weapon being fired. Only a fired weapon in a patient with real diarrhoea makes a clear case."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: the toxin test misses many true infections, so a negative toxin does not rule out disease; institutions with strict submission rules may use NAAT alone; and test performance varies by kit."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Badge, blueprint, weapon",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Badge = GDH",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Blueprint = NAAT",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Weapon = toxin",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Toxin EIA misses many true cases",
+              "Strict criteria: NAAT alone allowed",
+              "Performance varies by kit"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Test only new, unexplained ≥3 unformed stools/24 h · no repeat within 7 days · not infants ≤12 months”, “GDH = all strains · NAAT = toxin genes · toxin EIA = active toxin → multistep algorithm with a toxin step”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Test for Clostridioides difficile only in new, unexplained diarrhoea, not in infants or as a repeat within a week, and use a multistep algorithm with a toxin step, because GDH marks every strain and NAAT finds toxin genes in carriers too."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "New ≥3 unformed/24 h · no repeat < 7 d · not infants ≤ 12 mo",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "GDH = all strains · NAAT = genes · toxin = active → multistep",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: C. difficile can live in the gut harmlessly; it causes disease when it makes toxin. Some tests find the bug, some find the toxin genes, and one finds the toxin itself, so labs combine them and only test people with real new diarrhoea. Scientific terms: glutamate dehydrogenase (GDH) antigen, toxin A/B enzyme immunoassay (EIA), nucleic acid amplification test (NAAT; tcdA/tcdB), toxigenic culture, cell cytotoxicity neutralisation assay (CCNA), colonisation, multistep algorithm, preagreed submission criteria.",
+    "why": "Carriage is common, especially in infants, and highly sensitive tests detect carriers. Restricting testing to likely disease and requiring evidence of toxin (or strict submission criteria) raises the positive predictive value and limits overdiagnosis.",
+    "measure": "Target: unexplained, new-onset ≥3 unformed stools in 24 h. No repeat within 7 days in the same episode; no testing of asymptomatic patients; never routinely test infants ≤12 months; avoid routine testing within 48 h of a laxative. Without submission criteria: toxin test within a multistep algorithm (GDH + toxin; GDH + toxin arbitrated by NAAT; NAAT + toxin), not NAAT alone. With criteria: NAAT alone or multistep, not toxin alone.",
+    "differs": "GDH (all strains) vs NAAT (toxin genes) vs toxin EIA (free toxin); colonisation vs infection; GDH+/toxin+ (consistent with CDI) vs GDH+/toxin−/NAAT+ (carrier or CDI below toxin detection).",
+    "examAngle": "Expect: pick the next step after GDH+/toxin−, recognise which specimen should be rejected (infant, repeat, formed stool, after laxatives), or identify which test detects genes rather than toxin."
+  },
+  "comparisons": [
+    {
+      "id": "gdh-naat-toxin",
+      "title": "GDH vs NAAT vs toxin EIA",
+      "left": {
+        "label": "GDH / NAAT",
+        "points": [
+          "GDH: enzyme in all strains",
+          "NAAT: toxin genes, very sensitive"
+        ]
+      },
+      "right": {
+        "label": "Toxin EIA",
+        "points": [
+          "Free toxin: active production",
+          "Less sensitive"
+        ]
+      },
+      "distinguisher": "Organism or gene present vs toxin actually produced."
+    },
+    {
+      "id": "carrier-vs-cdi",
+      "title": "Colonisation vs infection",
+      "left": {
+        "label": "Colonisation",
+        "points": [
+          "No new diarrhoea, or infant carrier",
+          "NAAT may be positive, toxin often negative"
+        ]
+      },
+      "right": {
+        "label": "Infection",
+        "points": [
+          "New ≥3 unformed stools/24 h",
+          "Toxigenic strain, toxin often detected"
+        ]
+      },
+      "distinguisher": "Clinical picture plus evidence of toxin."
+    }
+  ],
+  "mnemonic": {
+    "text": "GDH is the BADGE every C. difficile wears; NAAT finds the BLUEPRINT for the weapon (toxin genes); the toxin EIA finds the WEAPON being fired. Only a fired weapon in a patient with diarrhoea makes a clear case.",
+    "explanation": "Separates organism, gene and toxin detection.",
+    "limitation": "Toxin EIA misses many true infections; NAAT alone is acceptable with strict submission criteria; performance varies by kit."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Organism and toxin drawing is schematic.",
+    "Sensitivity ranges are one review’s summary; kits differ."
+  ],
+  "takeaway": "Test for Clostridioides difficile only in new, unexplained diarrhoea, not in infants or as a repeat within a week, and use a multistep algorithm with a toxin step, because GDH marks every strain and NAAT finds toxin genes in carriers too.",
+  "questions": [
+    {
+      "id": "micro-cd-q1",
+      "stem": "An adult with new-onset watery diarrhoea has a stool that is GDH antigen positive and toxin A/B EIA negative. In a GDH-plus-toxin algorithm arbitrated by NAAT, what is the next step?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Test the specimen by NAAT for the toxin genes",
+          "rationale": "Correct. Discordant GDH+/toxin− specimens are arbitrated by NAAT."
+        },
+        {
+          "id": "b",
+          "text": "Report as C. difficile infection",
+          "rationale": "Incorrect. GDH is made by non-toxigenic strains too, and no toxin was found."
+        },
+        {
+          "id": "c",
+          "text": "Report as negative without further testing",
+          "rationale": "Incorrect. The toxin EIA is insensitive; a toxigenic strain may be present."
+        },
+        {
+          "id": "d",
+          "text": "Repeat the toxin EIA on a new stool tomorrow",
+          "rationale": "Incorrect. Repeat testing within 7 days in the same episode is not recommended."
+        }
+      ],
+      "answer": "a",
+      "skill": "Algorithm interpretation",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-cd-q2",
+      "stem": "Which C. difficile test detects the toxin genes rather than the toxin itself?",
+      "options": [
+        {
+          "id": "a",
+          "text": "NAAT (PCR for tcdA/tcdB)",
+          "rationale": "Correct. NAAT amplifies the toxin genes and cannot show active toxin production."
+        },
+        {
+          "id": "b",
+          "text": "Toxin A/B EIA",
+          "rationale": "Incorrect. This detects free toxin protein."
+        },
+        {
+          "id": "c",
+          "text": "GDH antigen EIA",
+          "rationale": "Incorrect. This detects a common enzyme of all strains."
+        },
+        {
+          "id": "d",
+          "text": "Cell cytotoxicity neutralisation assay",
+          "rationale": "Incorrect. This detects toxin activity in cell culture."
+        }
+      ],
+      "answer": "a",
+      "skill": "Test targets",
+      "difficulty": "recall"
+    },
+    {
+      "id": "micro-cd-q3",
+      "stem": "Which request for C. difficile testing is most appropriate to accept under the IDSA/SHEA 2017 guideline?",
+      "options": [
+        {
+          "id": "a",
+          "text": "An adult inpatient with unexplained, new-onset ≥3 unformed stools in 24 hours",
+          "rationale": "Correct. This is the preferred target population."
+        },
+        {
+          "id": "b",
+          "text": "An 8-month-old infant with loose stools",
+          "rationale": "Incorrect. Testing should never be routinely recommended for infants ≤12 months because asymptomatic colonisation is common."
+        },
+        {
+          "id": "c",
+          "text": "A repeat test 3 days after a negative, same episode",
+          "rationale": "Incorrect. Do not repeat within 7 days during the same episode."
+        },
+        {
+          "id": "d",
+          "text": "A patient without diarrhoea, to check for carriage",
+          "rationale": "Incorrect. Do not test asymptomatic patients except for epidemiological studies."
+        }
+      ],
+      "answer": "a",
+      "skill": "Who to test",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch57",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 57, Bacteria That Cause Disease (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 57,
+          "section": "High-Yield Hits",
+          "items": [
+            14
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "mcdonald2018",
+      "kind": "external",
+      "citation": "McDonald LC, Gerding DN, Johnson S, et al. Clinical Practice Guidelines for Clostridium difficile Infection in Adults and Children: 2017 Update by the Infectious Diseases Society of America (IDSA) and Society for Healthcare Epidemiology of America (SHEA). Clin Infect Dis. 2018;66(7):e1-e48. doi:10.1093/cid/cix1085",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6018983/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (diagnosis sections). Target population; multistep algorithm options with and without preagreed criteria; no repeat within 7 days; no testing of asymptomatic patients; never routinely test neonates/infants ≤12 months (colonisation can exceed 40%); avoid routine testing within 48 h of a laxative; 2–3-stage testing increases PPV."
+    },
+    {
+      "id": "lee2021",
+      "kind": "external",
+      "citation": "Lee HS, Plechot K, Gohil S, Le J. Clostridium difficile: Diagnosis and the Consequence of Over Diagnosis. Infect Dis Ther. 2021;10(2):687-697. doi:10.1007/s40121-021-00417-7",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8116462/",
+      "consulted": true,
+      "usedFor": "GDH present in toxigenic and non-toxigenic strains; NAAT detects tcdA/tcdB and cannot distinguish presence from active toxin production; toxin EIA detects active toxin with lower sensitivity; sensitivity ranges (Table 1); NAAT-alone overdiagnosis; toxigenic culture as reference method."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-targets",
+      "text": "What GDH, toxin EIA and NAAT detect; sensitivity ranges.",
+      "status": "checked",
+      "refs": [
+        "lee2021"
+      ]
+    },
+    {
+      "id": "cl-who",
+      "text": "Who to test; no repeat within 7 days; infants; laxatives.",
+      "status": "checked",
+      "refs": [
+        "mcdonald2018"
+      ]
+    },
+    {
+      "id": "cl-alg",
+      "text": "Multistep algorithm options with and without preagreed submission criteria.",
+      "status": "checked",
+      "refs": [
+        "mcdonald2018",
+        "lee2021"
+      ]
+    },
+    {
+      "id": "cl-disc",
+      "text": "GDH+/toxin−/NAAT+ = toxigenic strain without detectable toxin; colonisation or CDI, interpret clinically.",
+      "status": "checked",
+      "refs": [
+        "lee2021",
+        "mcdonald2018"
+      ],
+      "note": "The guideline describes arbitration and cites studies treating NAAT-only positives as possible excretors; it does not give a single interpretation rule."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; organism drawing schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Badge, blueprint, weapon.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No micrographs; tests shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "source-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "All 4 factual claims checked against the IDSA/SHEA 2017 guideline (read via a page-fetch tool) and Lee 2021. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
