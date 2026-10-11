@@ -1,0 +1,1561 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-lis-audit-trail-ngs-files",
+  "title": "Lab Data That Never Forgets: Audit Trails, ACID and NGS Files",
+  "summary": "See why laboratory databases correct errors by inactivating rows and keeping an audit trail, what the ACID properties of a transaction mean, how a reference-interval change is stored, and how sequencing data move from FASTQ to BAM to VCF.",
+  "domain": "p1-ops",
+  "topic": "ch12",
+  "conceptIds": [
+    "ch12.hit1",
+    "ch12.hit2",
+    "ch12.hit3",
+    "ch12.hit8",
+    "ch12.hit9",
+    "ch12.trap1"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 12,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          2,
+          3,
+          8,
+          9
+        ]
+      },
+      {
+        "chapter": 12,
+        "section": "Exam Traps",
+        "items": [
+          1
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 12 Hits 1, 2, 3, 8 and 9 and Trap 1 (first lesson for Ch. 12). Regulatory points from the CLIA text (42 CFR 493.1291(k), 493.1105; eCFR version 2026-10-01); ACID definitions from the PostgreSQL documentation glossary; file formats from the FASTQ, SAM/BAM and VCF format papers. The reviewer’s Isolation definition (“concurrent transactions behave as sequential”) describes only the strictest (serializable) level; see register flag rv-acid-isolation. Not taught as fact: 2D-barcode misread rates, Auto-14 label layout, the ULI, wrong-blood-in-tube statistics, cognitive limits and data-scale figures, LIS selection, schema ownership, network numbers."
+  },
+  "prerequisites": [
+    "ch6.hit5"
+  ],
+  "objectives": [
+    "Explain why laboratory databases inactivate rather than delete rows, and what CLIA requires when a reported result is corrected.",
+    "State the four ACID properties of a database transaction.",
+    "Order the NGS data files FASTQ, BAM and VCF and state what each holds."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "The wrong-patient row",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: two patients’ records were merged in error, so a potassium result now sits under the wrong patient. A colleague proposes (1) deleting the bad row “to clean up the database” and (2) editing the potassium reference interval in place, because the lab has just changed it. Question token: “Delete, or keep a trail?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Two patient records were merged by mistake, and a potassium result now sits under the wrong patient."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "A colleague wants to delete the bad row to clean up the database, and to overwrite the old potassium reference interval with the new one."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Should the lab delete, or keep a trail?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "rec",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "bad",
+            "title": "Merged in error",
+            "lines": [
+              "K⁺ 5.9 under wrong patient",
+              "Two records, one chart"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "plan",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Proposed fix",
+            "lines": [
+              "1 Delete the bad row",
+              "2 Overwrite reference interval"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 640,
+            "label": "Delete, or keep a trail?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Rows, keys and transactions",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic table diagram. Rows live in tables; tables are linked by keys (a unique key in the master table, referenced by a foreign key in a subordinate table); the tables plus their key links form the schema. The four basic operations, CRUD (create, read, update, delete), map to the SQL verbs INSERT, SELECT, UPDATE and DELETE. Changes are grouped into TRANSACTIONS. ACID card: Atomicity (all operations complete as a unit, or none do), Consistency (data comply with integrity constraints after commit), Isolation (a transaction’s effects are not visible to concurrent transactions before it commits), Durability (committed changes survive a crash).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "A laboratory database stores rows in tables. Tables are linked by keys: a unique key in one table is referenced by a foreign key in another. The tables and their links make up the schema."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 38,
+          "text": "The four basic operations, create, read, update and delete, match the SQL verbs insert, select, update and delete."
+        },
+        {
+          "id": "n3",
+          "start": 38,
+          "end": 52,
+          "text": "Changes are grouped into transactions, which should pass the ACID test: atomic, all or nothing; consistent with the database rules; isolated, so other users do not see a half-finished change; and durable, surviving a crash once committed."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "Isolation comes in levels. Only the strictest makes concurrent transactions behave as if they ran one after another."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tbl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 200,
+            "tone": "b",
+            "title": "Schema (schematic)",
+            "lines": [
+              "Patient table: unique key",
+              "Result table: foreign key → patient",
+              "Tables + key links = schema"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "crud",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 450,
+            "w": 440,
+            "label": "CRUD = INSERT · SELECT · UPDATE · DELETE",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "acid",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 240,
+            "tone": "good",
+            "title": "ACID transaction",
+            "lines": [
+              "Atomic: all or none",
+              "Consistent: rules hold",
+              "Isolated: unseen until commit",
+              "Durable: survives a crash"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "iso",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 500,
+            "w": 420,
+            "label": "Isolation has levels",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Correct by adding, never by erasing",
+      "start": 60,
+      "end": 104,
+      "altText": "Correction card (US CLIA, 42 CFR 493.1291(k)): when an error in a reported result is detected, the laboratory must promptly notify the ordering provider, promptly issue a corrected report, and maintain duplicates of BOTH the original and the corrected report. Retention card (493.1105(a)(6)): retain or be able to retrieve original, preliminary and corrected reports for at least 2 years (pathology reports 10 years). Design card (reviewer’s design principle): rows are INACTIVATED with a status flag rather than deleted, and changes are logged with who/when/what, so an erroneous merge can be rolled back and look-backs remain possible. Reference-interval change: add a NEW active interval row and inactivate the old one, so results reported earlier keep the interval they were reported with.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Under US CLIA, when a reported result is found to be wrong, the lab must promptly notify the ordering provider, issue a corrected report, and keep copies of both the original and the corrected report."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 80,
+          "text": "Reports, including corrected ones, must be kept or retrievable for at least two years."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 92,
+          "text": "So the database design follows the same idea: inactivate the bad row with a status flag and log who changed what and when. Nothing vanishes, so a mistaken merge can be rolled back."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "A new reference interval is added as a new active row, and the old one is inactivated, so earlier results keep the interval they were reported with."
+        }
+      ],
+      "objects": [
+        {
+          "id": "corr",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 200,
+            "tone": "b",
+            "title": "Corrected report (493.1291(k))",
+            "lines": [
+              "Notify ordering provider",
+              "Issue corrected report",
+              "Keep original + corrected"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ret",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 450,
+            "w": 440,
+            "label": "Retain reports ≥ 2 years (493.1105)",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "flag",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 160,
+            "tone": "good",
+            "title": "Inactivate + audit log",
+            "lines": [
+              "Status flag, not DELETE",
+              "Who · when · what"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ri",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 400,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "New reference interval",
+            "lines": [
+              "Add new active row",
+              "Old row inactive, still linked"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Where the data flow: the NGS pipeline",
+      "start": 104,
+      "end": 144,
+      "altText": "Schematic pipeline: sequencer → FASTQ (reads: sequence plus a per-base quality score; unaligned) → alignment to a reference → SAM/BAM (read alignments; BAM is the compressed binary form of SAM, holding the same information) → variant calling → VCF (variant calls such as SNPs, indels and structural variants, with annotations). Each step condenses the data. Hook answer card: do not delete; inactivate the misfiled row, roll back the merge, issue a corrected report and keep the original; add the new reference interval as a new row.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Data integrity matters most where the data are biggest. In next-generation sequencing, the sequencer writes FASTQ files: each read with a quality score for every base, not yet placed on the genome."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Alignment places the reads on a reference genome, giving SAM, or its compressed binary twin BAM, which holds the same information."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 132,
+          "text": "Variant calling then condenses the alignments into a VCF file: the list of variants, such as single-nucleotide changes, insertions and deletions."
+        },
+        {
+          "id": "l4",
+          "start": 132,
+          "end": 144,
+          "text": "Back to the hook: do not delete. Inactivate the misfiled row, undo the merge, issue a corrected report and keep the original, and add the new reference interval as a new row."
+        }
+      ],
+      "objects": [
+        {
+          "id": "fq",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 190,
+            "w": 270,
+            "h": 160,
+            "tone": "b",
+            "title": "FASTQ",
+            "lines": [
+              "Reads + base qualities",
+              "Unaligned"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bam",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 270,
+            "h": 160,
+            "tone": "a",
+            "title": "SAM / BAM",
+            "lines": [
+              "Aligned reads",
+              "BAM = binary SAM"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "vcf",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 190,
+            "w": 270,
+            "h": 160,
+            "tone": "good",
+            "title": "VCF",
+            "lines": [
+              "Variant calls",
+              "SNPs · indels · SVs"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 430,
+            "w": 760,
+            "h": 150,
+            "tone": "warn",
+            "title": "Hook answer: keep a trail",
+            "lines": [
+              "Inactivate the row · roll back the merge",
+              "Corrected report, original kept",
+              "New interval = new row"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28.5,
+              "opacity": 0
+            },
+            {
+              "t": 29,
+              "reveal": 0
+            },
+            {
+              "t": 29.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Delete erroneous rows to clean up the LIS” (✓ inactivate with a status flag and keep an audit trail; CLIA requires keeping original and corrected reports); “Edit the reference interval in place” (✓ add a new row and inactivate the old one, so earlier reports keep their original interval); “A BAM file lists the patient’s variants” (✓ BAM holds aligned reads; variants are in the VCF).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: delete wrong rows to clean up the database. No: inactivate them and keep an audit trail; the original and corrected reports must both be kept."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: overwrite the reference interval. No: add a new interval row, so earlier results keep the interval they were reported with."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the BAM file is the variant list. No: BAM holds aligned reads; the variant calls are in the VCF."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Delete bad rows.”",
+            "lines": [
+              "✓ Inactivate + audit trail"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Overwrite the interval.”",
+            "lines": [
+              "✓ New row; old reports keep theirs"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “BAM = variant list.”",
+            "lines": [
+              "✓ BAM = aligned reads; VCF = variants"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "A ledger, not a whiteboard",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “A lab database is a LEDGER, not a WHITEBOARD: you never wipe an entry, you add a correcting line and initial it. And NGS files go Q → B → V: Quality reads, Bound to the genome, Variants called.” Tokens: ledger, not whiteboard · ACID · Q → B → V. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: a lab database is a ledger, not a whiteboard. You never wipe an entry; you add a correcting line and initial it. And sequencing files go Q, B, V: quality reads, bound to the genome, variants called."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: records can be purged after their legal retention period; privacy laws may require some deletion; and real systems differ in how they inactivate and audit data."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "A ledger, not a whiteboard",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Inactivate, don’t erase",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "ACID transactions",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "FASTQ → BAM → VCF",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Purging after retention periods is allowed",
+              "Privacy laws may require deletion",
+              "Systems differ in how they audit"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Correct by adding: inactivate + audit trail; keep original and corrected reports (CLIA 493.1291(k)); new reference interval = new row”, “ACID transactions · NGS: FASTQ (reads) → BAM (aligned) → VCF (variants)”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Lab data are corrected by adding, not erasing: inactivate wrong rows with an audit trail, keep both original and corrected reports, add new reference intervals as new rows, and remember that sequencing data flow from FASTQ reads to BAM alignments to VCF variants."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Inactivate + audit · keep original & corrected · new interval = new row",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "ACID · FASTQ (reads) → BAM (aligned) → VCF (variants)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: lab computers should never quietly erase a mistake; they mark it as no longer valid, write down who changed what, and keep the old version. Database changes should be all-or-nothing and crash-proof. Sequencing data pass from raw reads to aligned reads to a variant list. Scientific terms: table, key, schema, CRUD, SQL, transaction, ACID, inactivation (status flag), audit trail, corrected report, FASTQ, SAM/BAM, VCF.",
+    "why": "Deleting data destroys the evidence needed for look-backs, rollbacks and regulatory record-keeping; overwriting a reference interval would silently change the context of results already reported. ACID transactions stop half-finished or lost changes. Each NGS step condenses the data into a more interpreted form.",
+    "measure": "CLIA: notify, issue a corrected report, keep original and corrected (493.1291(k)); keep or retrieve reports ≥2 years, pathology 10 years (493.1105(a)(6)). ACID: atomicity, consistency, isolation, durability. NGS: FASTQ (sequence + per-base quality) → alignment → SAM/BAM (BAM = binary SAM) → variant calling → VCF.",
+    "differs": "Inactivate vs delete; new reference-interval row vs in-place edit; serializable isolation (as if sequential) vs weaker default isolation levels; FASTQ vs BAM vs VCF content.",
+    "examAngle": "Expect: choose “inactivate/retain” over “delete”, define an ACID letter, decide how a reference-interval change is stored, or name the file format at a pipeline step."
+  },
+  "comparisons": [
+    {
+      "id": "inactivate-vs-delete",
+      "title": "Inactivate vs delete",
+      "left": {
+        "label": "Inactivate",
+        "points": [
+          "Status flag; row kept",
+          "Audit trail allows rollback and look-back"
+        ]
+      },
+      "right": {
+        "label": "Delete",
+        "points": [
+          "Row gone",
+          "No rollback; record-keeping broken"
+        ]
+      },
+      "distinguisher": "Whether the earlier state can still be retrieved."
+    },
+    {
+      "id": "ngs-files",
+      "title": "FASTQ vs BAM vs VCF",
+      "left": {
+        "label": "FASTQ",
+        "points": [
+          "Reads with per-base quality scores",
+          "Not yet aligned"
+        ]
+      },
+      "right": {
+        "label": "BAM → VCF",
+        "points": [
+          "BAM: reads aligned to a reference",
+          "VCF: variant calls with annotations"
+        ]
+      },
+      "distinguisher": "Raw reads → aligned reads → variants."
+    }
+  ],
+  "mnemonic": {
+    "text": "A lab database is a LEDGER, not a WHITEBOARD: you never wipe an entry, you add a correcting line and initial it. And NGS files go Q → B → V: Quality reads, Bound to the genome, Variants called.",
+    "explanation": "Ledger = inactivate + audit trail; Q → B → V = FASTQ → BAM → VCF.",
+    "limitation": "Records may be purged after retention periods; privacy laws can require deletion; systems differ in how they audit."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Table diagram is schematic; real LIS schemas are vendor-specific.",
+    "Regulatory text paraphrased (US CLIA only); read the current regulation for exact wording."
+  ],
+  "takeaway": "Lab data are corrected by adding, not erasing: inactivate wrong rows with an audit trail, keep both original and corrected reports, add new reference intervals as new rows, and remember that sequencing data flow from FASTQ reads to BAM alignments to VCF variants.",
+  "questions": [
+    {
+      "id": "ops-lis-q1",
+      "stem": "A result was posted to the wrong patient after an erroneous record merge. What is the most appropriate database action?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Inactivate the misfiled entry, keep an audit trail, and issue a corrected report while keeping the original",
+          "rationale": "Correct. Inactivation preserves rollback and look-back; CLIA 493.1291(k) requires keeping duplicates of the original and corrected reports."
+        },
+        {
+          "id": "b",
+          "text": "Delete the row so the error no longer appears",
+          "rationale": "Incorrect. Deletion destroys the audit trail and the original report record."
+        },
+        {
+          "id": "c",
+          "text": "Overwrite the value with the correct patient’s name and tell no one",
+          "rationale": "Incorrect. The ordering provider must be notified promptly and a corrected report issued."
+        },
+        {
+          "id": "d",
+          "text": "Leave it, because merges cannot be undone",
+          "rationale": "Incorrect. With inactivation and audit logs, an erroneous merge can be rolled back."
+        }
+      ],
+      "answer": "a",
+      "skill": "Audit trail",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-lis-q2",
+      "stem": "Which ACID property means that if a crash occurs mid-transaction, either all of its changes are applied or none are?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Atomicity",
+          "rationale": "Correct. All operations complete as a unit or none do; no partial results are visible after recovery."
+        },
+        {
+          "id": "b",
+          "text": "Consistency",
+          "rationale": "Incorrect. Consistency means data comply with integrity constraints after the transaction."
+        },
+        {
+          "id": "c",
+          "text": "Isolation",
+          "rationale": "Incorrect. Isolation concerns visibility to concurrent transactions before commit."
+        },
+        {
+          "id": "d",
+          "text": "Durability",
+          "rationale": "Incorrect. Durability means committed changes survive a crash; it does not address partially completed transactions."
+        }
+      ],
+      "answer": "a",
+      "skill": "ACID",
+      "difficulty": "recognition"
+    },
+    {
+      "id": "ops-lis-q3",
+      "stem": "After sequencing reads are aligned to the reference genome, which file format holds the aligned reads?",
+      "options": [
+        {
+          "id": "a",
+          "text": "BAM",
+          "rationale": "Correct. BAM is the binary form of SAM, which stores read alignments against a reference."
+        },
+        {
+          "id": "b",
+          "text": "FASTQ",
+          "rationale": "Incorrect. FASTQ holds the unaligned reads with per-base quality scores."
+        },
+        {
+          "id": "c",
+          "text": "VCF",
+          "rationale": "Incorrect. VCF holds variant calls made after alignment."
+        },
+        {
+          "id": "d",
+          "text": "A spreadsheet of reference intervals",
+          "rationale": "Incorrect. Unrelated to the sequencing pipeline."
+        }
+      ],
+      "answer": "a",
+      "skill": "NGS formats",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch12",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 12, Lab Computers and Data (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 12,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            2,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "chapter": 12,
+          "section": "Exam Traps",
+          "items": [
+            1
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope, inactivation and reference-interval design principles, exam framing. Not used as verification."
+    },
+    {
+      "id": "cfr493-1291",
+      "kind": "external",
+      "citation": "42 CFR § 493.1291 — Standard: Test report (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493/subpart-K/section-493.1291",
+      "consulted": true,
+      "usedFor": "Paragraph (k): on detecting errors in reported results, promptly notify, issue corrected reports, maintain duplicates of the original and corrected reports."
+    },
+    {
+      "id": "cfr493-1105",
+      "kind": "external",
+      "citation": "42 CFR § 493.1105 — Standard: Retention requirements (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-D/part-493/subpart-J/section-493.1105",
+      "consulted": true,
+      "usedFor": "Retain or be able to retrieve original, preliminary and corrected reports for at least 2 years; pathology reports 10 years."
+    },
+    {
+      "id": "pg-glossary",
+      "kind": "external",
+      "citation": "PostgreSQL Global Development Group. PostgreSQL Documentation (current): Appendix M, Glossary; and Section 13.2, Transaction Isolation.",
+      "url": "https://www.postgresql.org/docs/current/glossary.html",
+      "consulted": true,
+      "usedFor": "Definitions of ACID, atomicity, consistency, isolation, durability; Read Committed as the PostgreSQL default and Serializable as the strictest level that emulates serial execution."
+    },
+    {
+      "id": "cock2010",
+      "kind": "external",
+      "citation": "Cock PJ, Fields CJ, Goto N, Heuer ML, Rice PM. The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. Nucleic Acids Res. 2010;38(6):1767-1771. doi:10.1093/nar/gkp1137",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2847217/",
+      "consulted": true,
+      "usedFor": "FASTQ stores sequencing reads with a per-base quality score."
+    },
+    {
+      "id": "li2009",
+      "kind": "external",
+      "citation": "Li H, Handsaker B, Wysoker A, et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics. 2009;25(16):2078-2079. doi:10.1093/bioinformatics/btp352",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2723002/",
+      "consulted": true,
+      "usedFor": "SAM stores read alignments against reference sequences; BAM is the binary representation of SAM with the same information."
+    },
+    {
+      "id": "danecek2011",
+      "kind": "external",
+      "citation": "Danecek P, Auton A, Abecasis G, et al. The variant call format and VCFtools. Bioinformatics. 2011;27(15):2156-2158. doi:10.1093/bioinformatics/btr330",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3137218/",
+      "consulted": true,
+      "usedFor": "VCF stores DNA polymorphism data (SNPs, insertions, deletions, structural variants) with annotations."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-corr",
+      "text": "Corrected-report duties and report retention under CLIA.",
+      "status": "checked",
+      "refs": [
+        "cfr493-1291",
+        "cfr493-1105"
+      ]
+    },
+    {
+      "id": "cl-acid",
+      "text": "ACID definitions; isolation levels.",
+      "status": "checked",
+      "refs": [
+        "pg-glossary"
+      ]
+    },
+    {
+      "id": "cl-ngs",
+      "text": "FASTQ, SAM/BAM and VCF contents.",
+      "status": "checked",
+      "refs": [
+        "cock2010",
+        "li2009",
+        "danecek2011"
+      ]
+    },
+    {
+      "id": "cl-design",
+      "text": "Inactivation by status flag with who/when/what logs; reference-interval change as new active row plus inactivated old row; CRUD-to-SQL mapping; keys and schema.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch12"
+      ],
+      "note": "Taught as the reviewer’s design principles; consistent with the CLIA record-keeping duties but not verified against an informatics standard."
+    },
+    {
+      "id": "cl-pend",
+      "text": "2D-barcode misread rate; Auto-14 layout; ULI; WBIT; cognitive limit; data-scale ladder; LIS selection; schema ownership; network figures.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch12"
+      ],
+      "note": "Not taught as facts in this lesson."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; table diagram schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“A ledger, not a whiteboard.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-us-only-lis",
+      "issue": "The corrected-report and retention rules taught here are US federal (CLIA) requirements. Philippine record-keeping rules are not covered; MTLE candidates should check local requirements.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; tables and files shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "3 claims checked (CLIA regulation text, PostgreSQL documentation, three file-format papers); 2 pending (reviewer’s database-design principles; barcode, cognition and LIS-selection details). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

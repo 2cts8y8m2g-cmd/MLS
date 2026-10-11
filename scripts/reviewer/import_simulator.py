@@ -112,6 +112,8 @@ FLAG_RULES = [
      'The explanation’s added claim that ACE inhibition is a risk factor for AD is not established: a 2025 meta-analysis found only observational support and a non-significant RCT comparison (Belachew 2025). The ACE Aβ42→Aβ40 claims in this question were not verified by the app.'),
     ('rv-cdc-absolute', r'an absolute contraindication to renal transplantation',
      'For an IgG donor-specific HLA antibody this is the classic answer. But not every positive CDC crossmatch is a veto: positives that disappear with DTT (IgM, often autoreactive) are standard risk, and lupus immune complexes can cause false-positive B-cell results (Althaf 2017). Check antibody class and specificity.'),
+    ('rv-acid-isolation', r'Isolation makes concurrent transactions behave as if executed sequentially',
+     'The answer (Isolation) stands: the report saw part of an unfinished edit. But “behave as if executed sequentially” describes only the strictest (serializable) isolation level; databases offer weaker levels, and PostgreSQL defaults to Read Committed. In general, isolation means a transaction’s changes are not visible to others before it commits.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
