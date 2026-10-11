@@ -1,0 +1,1495 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-total-testing-process-automation",
+  "title": "Automation and the Total Testing Process: Where Errors Happen",
+  "summary": "Map the total testing process from order to clinical action, see that most errors occur outside the analyzer, and learn what total laboratory automation and middleware autoverification can and cannot fix.",
+  "domain": "p1-ops",
+  "topic": "ch6",
+  "conceptIds": [
+    "ch6.hit2",
+    "ch6.hit5",
+    "ch6.hit8",
+    "ch6.trap3",
+    "ch6.trap6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 6,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          5,
+          8
+        ]
+      },
+      {
+        "chapter": 6,
+        "section": "Exam Traps",
+        "items": [
+          3,
+          6
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 6 Hits 2, 5 and 8 and Traps 3 and 6 (first lesson for Ch. 6). Checked against Hawkins 2012 (compiling Plebani), Ellison 2018 and Jin 2021. Nuance: Plebani’s taxonomy puts collection and transport in a “pre-pre-analytical” phase, so “pre-analytical” alone is only 3–5%; post-post-analytical errors (25–46%) are also large. Not taught as fact: the RFP TAT targets (Hit 1), TLA origin in Japan, workstation/workcell/virtual vs physical workcell definitions, open vs closed reagents, master lots, carryover methods, MALDI-TOF figures, immunoassay throughput, the TLA planning sequence, and the middleware vs process-control distinction."
+  },
+  "prerequisites": [
+    "ch11.hit1"
+  ],
+  "objectives": [
+    "Name the phases of the total testing process.",
+    "State where most laboratory errors occur and why classification affects reported rates.",
+    "Describe what middleware autoverification does and how STAT overuse can affect an automated track."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "A new track, the same mistakes?",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a hospital laboratory is buying a total laboratory automation (TLA) line. The business case says: “Automation will remove most laboratory errors, and marking more tests STAT will make results faster.” Question token: “Where do laboratory errors actually happen — and do more STATs speed up a track?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A hospital lab is buying a total laboratory automation line."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The business case claims it will remove most errors, and that marking more tests as stat will make results faster."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Where do laboratory errors really happen? And do more stats speed up an automated track?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "tla",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "New TLA line",
+            "lines": [
+              "Track + analyzers + middleware"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "claim",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Business case",
+            "lines": [
+              "“Removes most errors”",
+              "“More STATs = faster”"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8,
+              "reveal": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 12,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 640,
+            "label": "Where are the errors? Do STATs help?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The total testing process",
+      "start": 20,
+      "end": 60,
+      "altText": "Process strip (Hawkins 2012, compiling Plebani): PRE-PRE-ANALYTICAL (test request, order entry, patient/specimen identification, collection, container, handling, transport) → PRE-ANALYTICAL (sorting, routing, aliquoting, labeling, centrifugation) → ANALYTICAL (measurement) → POST-ANALYTICAL (validation, reporting, critical values, turnaround time) → POST-POST-ANALYTICAL (clinician reaction, interpretation, follow-up). Accreditation bodies (e.g. JCI, CAP) require procedures for patient/sample identification and communication of critical results.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "A test result is the end of a long chain called the total testing process. It starts before the sample reaches the lab: the order, patient identification, collection and transport."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Inside the lab, samples are sorted, labelled, centrifuged and aliquoted before the analytical step, the measurement itself."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Then results are validated and reported, including critical values, and the clinician must act on them correctly."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Accreditation bodies now expect labs to manage the ends of the chain too, such as patient identification and critical-result communication."
+        }
+      ],
+      "objects": [
+        {
+          "id": "p0",
+          "type": "card",
+          "props": {
+            "x": 150,
+            "y": 200,
+            "w": 230,
+            "h": 150,
+            "tone": "bad",
+            "title": "Pre-pre",
+            "lines": [
+              "Order · ID · collect"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "p1",
+          "type": "card",
+          "props": {
+            "x": 330,
+            "y": 380,
+            "w": 230,
+            "h": 150,
+            "tone": "warn",
+            "title": "Pre",
+            "lines": [
+              "Sort · spin · aliquot"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 200,
+            "w": 230,
+            "h": 150,
+            "tone": "b",
+            "title": "Analytical",
+            "lines": [
+              "Measure"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16,
+              "opacity": 0
+            },
+            {
+              "t": 16.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "type": "card",
+          "props": {
+            "x": 630,
+            "y": 380,
+            "w": 230,
+            "h": 150,
+            "tone": "a",
+            "title": "Post",
+            "lines": [
+              "Validate · report"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "p4",
+          "type": "card",
+          "props": {
+            "x": 810,
+            "y": 200,
+            "w": 230,
+            "h": 150,
+            "tone": "good",
+            "title": "Post-post",
+            "lines": [
+              "Act · interpret"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25,
+              "opacity": 0
+            },
+            {
+              "t": 25.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "acc",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 500,
+            "w": 700,
+            "label": "Accreditation: ID + critical-result procedures",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Where errors happen",
+      "start": 60,
+      "end": 104,
+      "altText": "Error-distribution card (Plebani, compiled by Hawkins 2012): pre-pre-analytical 46–68% (inappropriate request, misidentification, collection from an infusion route, haemolysis, clotting, insufficient volume, wrong container, handling, transport); pre-analytical 3–5%; ANALYTICAL 7–13% (equipment malfunction, sample mix-ups, interference, undetected QC failure); post-analytical 13–20% (erroneous validation, reporting failures, excessive turnaround time, transcription errors, delayed critical values); post-post-analytical 25–46% (missed reaction, incorrect interpretation, inadequate follow-up). Caveat (Hawkins 2012): the taxonomy is not standardised, which explains some variation in reported error rates.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "When errors in the whole chain are tallied, the biggest share, roughly half to two thirds, occurs before the sample reaches the lab: wrong tests, misidentified patients, haemolysed or clotted or short samples."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "The analytical step, the part the analyzer does, accounts for only about 7 to 13 percent."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "After the result, a large share, about a quarter to almost half, happens when clinicians miss, misread or fail to follow up results."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "These ranges vary between studies, partly because labs classify errors differently. But the message holds: most errors lie outside the analyzer."
+        }
+      ],
+      "objects": [
+        {
+          "id": "bars",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 760,
+            "h": 310,
+            "tone": "b",
+            "title": "Share of errors (Plebani, via Hawkins 2012)",
+            "lines": [
+              "Pre-pre-analytical 46–68%",
+              "Pre-analytical 3–5%",
+              "Analytical 7–13%",
+              "Post-analytical 13–20%",
+              "Post-post-analytical 25–46%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            },
+            {
+              "t": 24,
+              "highlight": 0
+            },
+            {
+              "t": 32,
+              "highlight": 1
+            },
+            {
+              "t": 34,
+              "reveal": 5,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "cav",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 700,
+            "label": "Taxonomy not standardised — ranges vary",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "What automation and middleware can do",
+      "start": 104,
+      "end": 144,
+      "altText": "TLA card (Ellison 2018): a TLA encompassing preanalytical processing, automated chemistry, immunoassay, serology and postanalytical storage, connected through middleware to the hospital information system; overall TAT fell 32% (2016 vs 2012), median random-glucose TAT 70.1 → 55.7 min; contract consolidation and staffing reductions cut costs. Middleware card (Ellison 2018; Jin 2021): middleware/LIS logic rules — limit (range) checks, delta checks (comparison with the patient’s previous result using a set cut-off), sample-quality flags (haemolysis, lipaemia), QC checks and reflex testing — enable AUTOVERIFICATION, the automatic release of results that pass the rules; rules must themselves be validated (Jin 2021: 782 of 833 rules verified, 51 deleted for execution errors). STAT card (Ellison 2018): on the TLA, reclassifying 11 STAT kits to routine REDUCED troponin-T TAT (75th percentile −27%, median −20%). Hook answers: automation mainly helps inside the lab; most errors are pre-pre- and post-post-analytical; more STATs can slow a track.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "In one hospital, a total automation line linked pre-analytical processing, analyzers and storage through middleware. Overall turnaround time fell by about a third."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 126,
+          "text": "Middleware rules, such as range checks, delta checks against the patient’s previous result, haemolysis flags and QC checks, let results that pass be released automatically: autoverification. The rules themselves must be validated."
+        },
+        {
+          "id": "l3",
+          "start": 126,
+          "end": 136,
+          "text": "Surprisingly, when eleven stat assays on the track were switched to routine, troponin turnaround fell: by 27 percent at the 75th percentile."
+        },
+        {
+          "id": "l4",
+          "start": 136,
+          "end": 144,
+          "text": "So automation helps most inside the lab, but most errors start before the sample arrives or after the result leaves. And more stats can slow a track down."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "TLA (Ellison 2018)",
+            "lines": [
+              "Overall TAT −32%",
+              "Glucose median 70.1 → 55.7 min"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "highlight": 1
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "mw",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "good",
+            "title": "Middleware → autoverification",
+            "lines": [
+              "Range · delta · HIL · QC rules",
+              "Pass → auto-release",
+              "Validate the rules"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20,
+              "highlight": 1
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "stat",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "h": 140,
+            "tone": "warn",
+            "title": "STATs on a track",
+            "lines": [
+              "STAT → routine: TAT p75 −27%"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 500,
+            "w": 420,
+            "label": "Hook: errors mostly outside the analyzer",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Most laboratory errors are analytical” (✓ most occur in the pre-pre-analytical phase; analytical ≈ 7–13%); “Autoverification releases every result without checks” (✓ it releases only results passing validated rules such as range, delta, HIL and QC checks); “More STAT priority always means faster results on a TLA” (✓ in one TLA, reclassifying STAT kits to routine reduced TAT).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: most laboratory errors are analytical. No: most occur before the sample reaches the lab. The analytical step is only about 7 to 13 percent."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: autoverification releases everything without checks. No: it releases only results that pass validated rules, such as range, delta and haemolysis checks."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: more stat priority always means faster results on a track. No: in one hospital, moving stat assays to routine made troponin faster."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Most errors are analytical.”",
+            "lines": [
+              "✓ Mostly pre-pre-analytical"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Autoverification = no checks.”",
+            "lines": [
+              "✓ Only results passing validated rules"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “More STATs = faster on TLA.”",
+            "lines": [
+              "✓ STAT → routine cut TAT in one TLA"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "The analyzer is the middle of the sandwich",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “The analyzer is only the FILLING of the sandwich — most mistakes are in the BREAD: the order and collection before, and the reading and action after.” Tokens: pre-pre ≈ half or more · analytical ≈ 7–13% · post-post ≈ quarter or more. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: the analyzer is only the filling of the sandwich. Most mistakes are in the bread: the order and collection before, and the reading and acting on results after."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: error shares vary between studies and depend on how phases are defined; analytical errors are fewer but still occur, for example an undetected QC failure; and automation can add new failure points, such as rules that were never validated."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Analyzer = filling, errors = bread",
+            "size": 26,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Pre-pre ≈ ½ or more",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Analytical ≈ 7–13%",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Post-post ≈ ¼ or more",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Shares vary with definitions",
+              "Analytical errors still occur (QC failure)",
+              "Unvalidated rules add new risks"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Total testing process: most errors pre-pre-analytical (46–68%) and post-post-analytical (25–46%); analytical 7–13%”, “TLA + middleware → validated autoverification rules (range, delta, HIL, QC) · STAT overuse can slow a track”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Most laboratory errors happen before samples arrive or after results leave, so automation and middleware autoverification help mainly inside the lab, and even there priority settings such as excess stat requests can slow the track."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Errors: pre-pre 46–68% · analytical 7–13% · post-post 25–46%",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Middleware: validated rules → autoverification · STAT overuse slows TLA",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a lab result passes through many hands, from the doctor’s order to the doctor’s action; the analyzer is a small part, and most mistakes happen at the ends. Automation and software rules mostly improve the middle. Scientific terms: total testing process, pre-pre-analytical, pre-analytical, analytical, post-analytical, post-post-analytical, total laboratory automation (TLA), middleware, autoverification, delta check, reflex testing, turnaround time (TAT), percentile.",
+    "why": "Many steps in the extra-analytical phases lie outside the laboratory’s immediate control (Hawkins 2012), so laboratory-only improvements cannot remove them. Rules-based autoverification removes manual review of results that pass validated checks; in one TLA, STAT assays slowed overall performance (Ellison 2018).",
+    "measure": "Error shares: pre-pre 46–68%, pre 3–5%, analytical 7–13%, post 13–20%, post-post 25–46% (Plebani via Hawkins 2012). TLA outcome: overall TAT −32%; STAT → routine reclassification: troponin-T TAT p75 −27%, median −20% (Ellison 2018). Autoverification rules: range, delta, HIL, QC, reflex; validate rules (Jin 2021).",
+    "differs": "Pre-pre-analytical (outside lab, most errors) vs analytical (inside analyzer, fewer errors); autoverification (rules-based auto-release) vs manual verification; STAT priority vs routine flow on a TLA.",
+    "examAngle": "Expect: identify the phase where most errors occur, classify an error by phase, define autoverification and delta checks, and recognize limitations of TLA such as STAT handling."
+  },
+  "comparisons": [
+    {
+      "id": "preanal-vs-anal",
+      "title": "Pre-pre-analytical vs analytical errors",
+      "left": {
+        "label": "Pre-pre-analytical",
+        "points": [
+          "46–68% of errors",
+          "Orders, ID, collection, transport"
+        ]
+      },
+      "right": {
+        "label": "Analytical",
+        "points": [
+          "7–13% of errors",
+          "Instrument, interference, QC failure"
+        ]
+      },
+      "distinguisher": "Outside vs inside the measurement step."
+    },
+    {
+      "id": "auto-vs-manual",
+      "title": "Autoverification vs manual verification",
+      "left": {
+        "label": "Autoverification",
+        "points": [
+          "Validated rules (range, delta, HIL, QC)",
+          "Passing results released automatically"
+        ]
+      },
+      "right": {
+        "label": "Manual verification",
+        "points": [
+          "Technologist reviews each result",
+          "Flagged results still need review"
+        ]
+      },
+      "distinguisher": "Who (or what) approves release."
+    }
+  ],
+  "mnemonic": {
+    "text": "The analyzer is only the FILLING of the sandwich — most mistakes are in the BREAD: the order and collection before, and the reading and action after.",
+    "explanation": "Places the analytical phase in the middle of a chain whose ends carry most errors.",
+    "limitation": "Shares vary with definitions; analytical errors still occur; unvalidated rules add new risks."
+  },
+  "analogyLimitations": [
+    "The hospital scenario is invented.",
+    "Process strip is schematic.",
+    "TAT effects are from one hospital’s implementation."
+  ],
+  "takeaway": "Most laboratory errors happen before samples arrive or after results leave, so automation and middleware autoverification help mainly inside the lab, and even there priority settings such as excess stat requests can slow the track.",
+  "questions": [
+    {
+      "id": "ops-ttp-q1",
+      "stem": "In Plebani’s classification, which phase accounts for the largest share of errors in the total testing process?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pre-pre-analytical (46–68%)",
+          "rationale": "Correct. Ordering, identification, collection and transport errors dominate."
+        },
+        {
+          "id": "b",
+          "text": "Analytical (7–13%)",
+          "rationale": "Incorrect. The analytical phase has a relatively small share."
+        },
+        {
+          "id": "c",
+          "text": "Pre-analytical (3–5%)",
+          "rationale": "Incorrect. In this taxonomy, in-lab pre-analytical steps are a small share."
+        },
+        {
+          "id": "d",
+          "text": "Post-analytical (13–20%)",
+          "rationale": "Incorrect. Significant but smaller than pre-pre-analytical."
+        }
+      ],
+      "answer": "a",
+      "skill": "Error distribution",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ops-ttp-q2",
+      "stem": "A potassium result differs from the same patient’s result 6 hours earlier by more than a set cut-off and is held for review. Which middleware rule triggered this?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A delta check",
+          "rationale": "Correct. Delta checks compare current and previous results from the same patient using a cut-off."
+        },
+        {
+          "id": "b",
+          "text": "A reflex test",
+          "rationale": "Incorrect. Reflex testing adds another test; it does not compare with prior results."
+        },
+        {
+          "id": "c",
+          "text": "A QC rule",
+          "rationale": "Incorrect. QC rules evaluate control materials, not patient history."
+        },
+        {
+          "id": "d",
+          "text": "Autodilution",
+          "rationale": "Incorrect. Autodilution handles results above the measuring range."
+        }
+      ],
+      "answer": "a",
+      "skill": "Autoverification rules",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-ttp-q3",
+      "stem": "A laboratory with total automation finds troponin turnaround times are long. Many assays are flagged STAT. What did one published TLA implementation find?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Reclassifying STAT kits to routine reduced turnaround time",
+          "rationale": "Correct. Troponin-T TAT fell 27% at the 75th percentile after the change (Ellison 2018)."
+        },
+        {
+          "id": "b",
+          "text": "Adding more STAT flags always shortens TAT",
+          "rationale": "Incorrect. The opposite was observed."
+        },
+        {
+          "id": "c",
+          "text": "STAT status has no effect on a TLA",
+          "rationale": "Incorrect. It measurably affected TAT."
+        },
+        {
+          "id": "d",
+          "text": "TLA cannot process troponin",
+          "rationale": "Incorrect. Troponin was a sentinel test on the TLA."
+        }
+      ],
+      "answer": "a",
+      "skill": "TLA workflow",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch6",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 6, Automation and the Total Testing Process (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 6,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            5,
+            8
+          ]
+        },
+        {
+          "chapter": 6,
+          "section": "Exam Traps",
+          "items": [
+            3,
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "hawkins2012",
+      "kind": "external",
+      "citation": "Hawkins R. Managing the pre- and post-analytical phases of the total testing process. Ann Lab Med. 2012;32(1):5-16.",
+      "doi": "10.3343/alm.2012.32.1.5",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3255486/",
+      "consulted": true,
+      "usedFor": "TTP phases; Plebani’s error distribution (pre-pre 46–68%, pre 3–5%, analytical 7–13%, post 13–20%, post-post 25–46%) with examples; taxonomy not standardised; JCI/CAP require patient/sample ID and critical-result procedures; extra-analytical activities lie outside the laboratory’s immediate control."
+    },
+    {
+      "id": "ellison2018",
+      "kind": "external",
+      "citation": "Ellison TL, Alharbi M, Alkaf M, et al. Implementation of total laboratory automation at a tertiary care hospital in Saudi Arabia: effect on turnaround time and cost efficiency. Ann Saudi Med. 2018;38(5):352-357.",
+      "doi": "10.5144/0256-4947.2018.352",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6180219/",
+      "consulted": true,
+      "usedFor": "TLA spanning preanalytical processing to postanalytical storage with middleware interfaced to the HIS; overall TAT −32%; glucose median 70.1 → 55.7 min; cost and staffing reductions; middleware delta checks (defined) and reflex rules enabling autoverification; STAT → routine reclassification reduced troponin-T TAT (p75 −27%, median −20%)."
+    },
+    {
+      "id": "jin2021",
+      "kind": "external",
+      "citation": "Jin D, Wang Q, Peng D, et al. Development and implementation of an LIS-based validation system for autoverification toward zero defects in the automated reporting of laboratory test results. BMC Med Inform Decis Mak. 2021;21(1):174.",
+      "doi": "10.1186/s12911-021-01545-3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8170738/",
+      "consulted": true,
+      "usedFor": "Autoverification rule categories (limited range check, delta check, sampling time validity, hemolysis/lipemia, QC check); rule validation — 782 of 833 rules verified, 51 deleted for execution errors."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-ttp",
+      "text": "TTP phases and Plebani error distribution; taxonomy variation; accreditation requirements.",
+      "status": "checked",
+      "refs": [
+        "hawkins2012"
+      ]
+    },
+    {
+      "id": "cl-tla",
+      "text": "TLA scope, middleware, TAT and cost outcomes; STAT reclassification effect.",
+      "status": "checked",
+      "refs": [
+        "ellison2018"
+      ]
+    },
+    {
+      "id": "cl-av",
+      "text": "Autoverification rule types and the need to validate rules; delta check definition.",
+      "status": "checked",
+      "refs": [
+        "jin2021",
+        "ellison2018"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "RFP TAT targets; TLA origin; workcell definitions; open/closed reagents; master lots; carryover; MALDI-TOF figures; immunoassay throughput; planning steps; middleware vs process-control software.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch6"
+      ],
+      "note": "Not taught as facts in this lesson."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; process strip schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Analyzer is the filling.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; process and rules shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "3 claims checked against Hawkins 2012, Ellison 2018 and Jin 2021; 1 pending (automation definitions and figures). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-10"
+}
