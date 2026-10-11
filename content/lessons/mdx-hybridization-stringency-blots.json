@@ -1,0 +1,1595 @@
+{
+  "schemaVersion": 1,
+  "id": "mdx-hybridization-stringency-blots",
+  "title": "Hybridization Stringency, Southern and Northern Blots, and Microarray Labeling",
+  "summary": "Learn what the melting temperature means, how salt, temperature and formamide set hybridization stringency, why short oligonucleotide probes are specific, and how Southern blots, northern blots and microarrays differ in what is labeled and what is probed.",
+  "domain": "p8-mdx",
+  "topic": "ch68",
+  "conceptIds": [
+    "ch68.hit4",
+    "ch68.hit6",
+    "ch68.hit9",
+    "ch68.hit10",
+    "ch68.hit11",
+    "ch68.trap1",
+    "ch68.trap3"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 68,
+        "section": "High-Yield Hits",
+        "items": [
+          4,
+          6,
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "chapter": 68,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          3
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 68 Hits 4, 6, 9, 10 and 11 and Traps 1 and 3. Checked against Young 2020, Hendling 2019, Yilmaz 2012, Gresham 2008, Kubota 2013, Yang 2022, Rossetti 2011, Croning 2010 and Pandelache 2021. Context added: the reviewer says Southern and northern blots are “largely replaced by amplification methods”; Yang 2022 says northern blotting is still used as a gold standard for validating high-throughput expression data and uniquely gives transcript size and level, Rossetti 2011 calls Southern blot still the reference method for hemophilia A intron 22 inversion genotyping, and Pandelache 2021 reports Southern blot detecting fragile X full mutations missed by two PCR assays (rv-blots-still-used). Not taught: the 15–45-base oligonucleotide length range (sources read describe short probes as roughly 20–50 nucleotides or under 50 bp) and “northern = no digestion” (not stated in the sources read). The NCBI Bookshelf was blocked by a captcha and was not used."
+  },
+  "prerequisites": [
+    "ch67.hit5"
+  ],
+  "objectives": [
+    "Define the melting temperature and explain why a mismatched duplex is less stable.",
+    "Predict how salt, temperature and formamide change hybridization stringency.",
+    "Distinguish Southern blots, northern blots and microarrays by nucleic acid and by which component is labeled."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two lanes that should differ",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a short labeled oligonucleotide probe is designed to match a normal sequence exactly and a variant sequence with one mismatch. After hybridization and a wash in high-salt buffer at room temperature, both the perfect-match lane and the one-mismatch lane give strong signal. Question token: “Which knobs make the probe picky?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Invented scenario: a short labeled probe should bind the normal sequence perfectly and the variant with one mismatch."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "After a wash in salty buffer at room temperature, both lanes light up equally."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which conditions would make the probe picky enough to tell them apart?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "p1",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 420,
+            "h": 160,
+            "tone": "good",
+            "title": "Lane 1 · perfect match",
+            "lines": [
+              "Probe fits every base"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 160,
+            "tone": "warn",
+            "title": "Lane 2 · one mismatch",
+            "lines": [
+              "Probe fits all but one base"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0
+            },
+            {
+              "t": 4.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "res",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 640,
+            "label": "High salt · room temperature → both lanes bright",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "Which knobs make the probe picky?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "How a probe finds its target",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic: a labeled single-stranded probe pairs with a complementary target strand. Card 1: hybridization = labeled probe base-pairs with its complementary target. Card 2: Tm = the temperature at which half of the probe molecules are paired with their complement; it depends on sequence (GC content) and salt. Card 3: a mismatched duplex is less stable and comes apart first as conditions get harsher. Card 4: short oligonucleotide probes are less tolerant of mismatches (higher specificity) but, carrying few labels, give less signal than long multiply labeled probes; in RNA FISH, a cocktail of many short probes spanning the target is commonly used.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Hybridization is a labeled single-stranded probe pairing with its complementary target sequence."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "The melting temperature, Tm, is the temperature at which half of the probe molecules are paired with their complement. Sequence, GC content and salt all shift it."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "A duplex with a mismatch is less stable, so it falls apart first as conditions get harsher. That gap is what lets a probe tell variants apart."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Short oligonucleotide probes tolerate mismatches poorly, which makes them specific, but they carry few labels and give weaker signal. In RNA FISH, labs commonly use a cocktail of many short probes spanning the target."
+        }
+      ],
+      "objects": [
+        {
+          "id": "hyb",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Hybridization",
+            "lines": [
+              "Labeled probe + complementary target",
+              "Base pairing"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tm",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Tm",
+            "lines": [
+              "Half of probes paired",
+              "Set by sequence and salt"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mm",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "warn",
+            "title": "Mismatch = weaker duplex",
+            "lines": [
+              "Comes apart first",
+              "Basis of variant discrimination"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "oligo",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Short oligo probes",
+            "lines": [
+              "Specific: mismatch-intolerant",
+              "Less signal; FISH uses cocktails"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Turning the stringency knobs",
+      "start": 60,
+      "end": 104,
+      "altText": "Stringency card: highly stringent conditions allow only highly stable hybrids; less stringent conditions allow nonspecific hybrids. Lower salt = more stringent; higher temperature = more stringent; formamide lowers the melting temperature and is used to raise stringency without extra heat. Example wash card (one published northern protocol): low stringency 2× SSC at room temperature; high stringency 0.5× SSC at 62 °C (1× SSC = 0.15 mol/L NaCl, 0.015 mol/L sodium citrate, pH 7.0). Warning token: too stringent strips partly matched probe and can weaken the true signal too.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Stringency is how picky the conditions are. Highly stringent conditions let only the most stable hybrids form; permissive conditions also allow nonspecific hybrids."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "Two main knobs: lower salt is more stringent, and higher temperature is more stringent. Formamide lowers the melting temperature, so it raises stringency without extra heat."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "One published northern protocol shows the pattern: a low-stringency wash in two-times SSC at room temperature, then a high-stringency wash in half-strength SSC at sixty-two degrees."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "But stringency is a trade-off. Washes that are too harsh strip partly matched probe quickly and can weaken the real signal as well."
+        }
+      ],
+      "objects": [
+        {
+          "id": "def",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Stringency",
+            "lines": [
+              "High: only stable hybrids",
+              "Low: nonspecific hybrids too"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "knobs",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "good",
+            "title": "More stringent when…",
+            "lines": [
+              "↓ salt",
+              "↑ temperature",
+              "+ formamide (lowers Tm)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "reveal": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "wash",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "h": 180,
+            "tone": "a",
+            "title": "Example washes",
+            "lines": [
+              "Low: 2× SSC, room temp",
+              "High: 0.5× SSC, 62 °C",
+              "1× SSC = 0.15 M NaCl + citrate"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 32,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "warn",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 470,
+            "w": 420,
+            "label": "Too harsh → true signal fades too",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Blots, arrays and the hook answer",
+      "start": 104,
+      "end": 144,
+      "altText": "Three cards. Southern blot: DNA cut with a restriction enzyme, separated by size on a gel, transferred to a membrane; the LABELED probe is added in solution; band sizes are read in kilobases. Northern blot: RNA separated by size under denaturing (formaldehyde) conditions, transferred and probed; it shows transcript size and expression level. Microarray: the probes are ATTACHED to the array and the SAMPLE is labeled and added in solution, the reverse of a blot. Hook answer token: lower the salt and raise the wash temperature (or add formamide) until the one-mismatch lane drops out while the perfect-match lane stays bright.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Southern blot: DNA is cut with a restriction enzyme, separated by size, and transferred to a membrane. A labeled probe in solution finds the matching fragments, read as band sizes."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Northern blot: RNA is separated by size under denaturing conditions, transferred and probed. It shows the transcript’s size and how much is there."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "A microarray flips the arrangement. The probes are fixed to the array, and the sample is the labeled part, added in solution."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook: lower the salt and raise the wash temperature, or add formamide, until the mismatch lane fades while the perfect match stays bright."
+        }
+      ],
+      "objects": [
+        {
+          "id": "sb",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 200,
+            "w": 280,
+            "h": 180,
+            "tone": "b",
+            "title": "Southern = DNA",
+            "lines": [
+              "Restriction digest",
+              "Labeled probe in solution"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "nb",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 200,
+            "w": 280,
+            "h": 180,
+            "tone": "a",
+            "title": "Northern = RNA",
+            "lines": [
+              "Denaturing gel",
+              "Transcript size + amount"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ma",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 200,
+            "w": 280,
+            "h": 180,
+            "tone": "warn",
+            "title": "Microarray",
+            "lines": [
+              "Probes fixed on array",
+              "SAMPLE is labeled"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 430,
+            "w": 760,
+            "h": 150,
+            "tone": "good",
+            "title": "Hook answer",
+            "lines": [
+              "↓ salt · ↑ temperature · or + formamide",
+              "Mismatch lane fades; perfect match stays"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Low salt is gentle, so mismatches survive” (✓ low salt is MORE stringent; mismatches survive under high salt and low temperature); “A Southern blot can start from RNA” (✓ Southern = DNA; RNA needs a northern blot); “On a microarray the spotted probes carry the label” (✓ the sample is labeled; the probes are attached to the array).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: low salt sounds gentle, so mismatches must survive. No: lower salt is more stringent. Mismatches survive in high salt at low temperature."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a Southern blot can start from RNA. No: Southern blots probe DNA; RNA calls for a northern blot."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: on a microarray the spotted probes carry the label. No: the sample is labeled, and the probes sit on the array."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Low salt is gentle.”",
+            "lines": [
+              "✓ Low salt + heat = HIGH stringency"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Southern blot for RNA.”",
+            "lines": [
+              "✓ Southern = DNA · northern = RNA"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Array probes are labeled.”",
+            "lines": [
+              "✓ The SAMPLE is labeled on arrays"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "The picky party",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Hybridization is a party in a hot room with no snacks: turn up the heat, take away the salt, pour in formamide, and only best friends (perfect matches) stay holding hands. A cool room with a full snack table keeps everyone, mismatched pairs included.” Tokens: heat ↑ · salt ↓ · formamide + = picky. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: hybridization is a party in a hot room with no snacks. Turn up the heat, take away the salt, add formamide, and only best friends, the perfect matches, keep holding hands."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: formamide works by lowering the melting temperature, not by adding heat; a party that is too harsh sends even best friends home; and exact salt and temperature settings depend on the probe and protocol."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "The picky party",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Heat ↑",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Salt ↓",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Formamide +",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Formamide lowers Tm; it is not heat",
+              "Too harsh loses true signal",
+              "Settings are probe- and protocol-specific"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Lower salt · higher temperature · formamide = higher stringency, only well-matched duplexes stay”, “Southern = DNA · northern = RNA · microarray: sample labeled, probes fixed”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Lower salt, higher temperature and formamide raise hybridization stringency so only well-matched duplexes stay, a Southern blot probes DNA while a northern blot probes RNA, and on a microarray the sample carries the label while the probes are fixed to the array."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "↓ salt · ↑ temperature · + formamide = high stringency",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Southern = DNA · northern = RNA · array: sample labeled",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a probe is a labeled strand that sticks to its matching sequence. How strict the conditions are decides whether near-matches also stick. Scientific terms: nucleic acid hybridization, probe, target, melting temperature (Tm), stringency, saline-sodium citrate (SSC) buffer, formamide, oligonucleotide versus polynucleotide probe, Southern blot, northern blot, microarray.",
+    "why": "Mismatched duplexes are less stable than perfect matches, so raising stringency removes them first. Stringency is set by lowering salt, raising temperature or adding formamide (which lowers Tm). Too much stringency also strips true hybrids, so conditions are a trade-off between specificity and signal.",
+    "measure": "Tm: temperature at which 50% of probe molecules are paired with their complement; depends on sequence (GC content), nearest-neighbor interactions and salt. Example washes from one northern protocol: low stringency 2× SSC at room temperature; high stringency 0.5× SSC at 62 °C. 1× SSC = 0.15 mol/L NaCl, 0.015 mol/L sodium citrate, pH 7.0.",
+    "differs": "Low stringency (high salt, low temperature) vs high stringency (low salt, high temperature, formamide); oligonucleotide probes (higher specificity, lower signal) vs polynucleotide probes (more labels, lower specificity); Southern (restriction-digested DNA) vs northern (RNA on a denaturing gel); blot (sample on membrane, probe labeled) vs microarray (probe fixed, sample labeled).",
+    "examAngle": "Expect: pick the most stringent wash, predict which duplexes survive, match a starting nucleic acid to the right blot, or identify which component is labeled on a microarray."
+  },
+  "comparisons": [
+    {
+      "id": "low-vs-high-stringency",
+      "title": "Low vs high stringency",
+      "left": {
+        "label": "Low stringency",
+        "points": [
+          "Higher salt, lower temperature",
+          "Nonspecific and mismatched hybrids remain"
+        ]
+      },
+      "right": {
+        "label": "High stringency",
+        "points": [
+          "Lower salt, higher temperature, formamide",
+          "Only stable, well-matched hybrids remain"
+        ]
+      },
+      "distinguisher": "Salt down and heat up make conditions pickier."
+    },
+    {
+      "id": "southern-northern-array",
+      "title": "Southern and northern blot vs microarray",
+      "left": {
+        "label": "Blots",
+        "points": [
+          "Southern: restriction-digested DNA; northern: RNA on a denaturing gel",
+          "Sample on membrane, labeled probe in solution"
+        ]
+      },
+      "right": {
+        "label": "Microarray",
+        "points": [
+          "Probes attached to the array",
+          "Labeled sample added in solution"
+        ]
+      },
+      "distinguisher": "Which component is immobilized and which is labeled."
+    }
+  ],
+  "mnemonic": {
+    "text": "Hybridization is a party in a hot room with no snacks: turn up the heat, take away the salt, pour in formamide, and only best friends (perfect matches) stay holding hands. A cool room with a full snack table keeps everyone, mismatched pairs included.",
+    "explanation": "Links higher temperature, lower salt and formamide to higher stringency.",
+    "limitation": "Formamide acts by lowering the melting temperature, not by adding heat; overly stringent conditions also remove true hybrids; exact settings are probe- and protocol-specific."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Probe and blot drawings are schematic.",
+    "Wash conditions are one published protocol’s example, not a universal recipe."
+  ],
+  "takeaway": "Lower salt, higher temperature and formamide raise hybridization stringency so only well-matched duplexes stay, a Southern blot probes DNA while a northern blot probes RNA, and on a microarray the sample carries the label while the probes are fixed to the array.",
+  "questions": [
+    {
+      "id": "mdx-hyb-q1",
+      "stem": "A probe must distinguish a perfectly matched target from a target with one mismatch. Which post-hybridization wash change most increases stringency?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Lower the salt concentration and raise the wash temperature",
+          "rationale": "Correct. Lower salt and higher temperature are both more stringent, so the less stable mismatched duplex dissociates first."
+        },
+        {
+          "id": "b",
+          "text": "Raise the salt concentration and lower the wash temperature",
+          "rationale": "Incorrect. This lowers stringency and lets mismatched and nonspecific hybrids remain."
+        },
+        {
+          "id": "c",
+          "text": "Raise the salt concentration and keep the temperature unchanged",
+          "rationale": "Incorrect. Higher salt stabilizes duplexes and lowers stringency."
+        },
+        {
+          "id": "d",
+          "text": "Remove formamide and cool the wash to room temperature",
+          "rationale": "Incorrect. Formamide lowers Tm and raises stringency; removing it and cooling makes conditions more permissive."
+        }
+      ],
+      "answer": "a",
+      "skill": "Stringency",
+      "difficulty": "application"
+    },
+    {
+      "id": "mdx-hyb-q2",
+      "stem": "A laboratory wants to confirm the size of an mRNA transcript and estimate how much is present, using a labeled probe on a membrane. Which method fits?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Northern blot",
+          "rationale": "Correct. RNA is size-separated under denaturing conditions, transferred and probed, giving transcript size and level."
+        },
+        {
+          "id": "b",
+          "text": "Southern blot",
+          "rationale": "Incorrect. A Southern blot analyzes restriction-digested DNA, not RNA."
+        },
+        {
+          "id": "c",
+          "text": "Microarray with labeled spotted probes",
+          "rationale": "Incorrect. On a microarray the sample, not the spotted probe, is labeled, and an array does not show transcript size."
+        },
+        {
+          "id": "d",
+          "text": "Southern blot run on undigested RNA",
+          "rationale": "Incorrect. Southern blots start from DNA; RNA calls for a northern blot."
+        }
+      ],
+      "answer": "a",
+      "skill": "Blot selection",
+      "difficulty": "application"
+    },
+    {
+      "id": "mdx-hyb-q3",
+      "stem": "By the usual microarray convention, which component carries the label?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The sample nucleic acid added in solution",
+          "rationale": "Correct. On a microarray the probes are attached to the array and the labeled sample is hybridized to them."
+        },
+        {
+          "id": "b",
+          "text": "The probes attached to the array surface",
+          "rationale": "Incorrect. That is the blot arrangement reversed: on an array the fixed probes are unlabeled."
+        },
+        {
+          "id": "c",
+          "text": "The glass slide itself",
+          "rationale": "Incorrect. The slide is only the solid support."
+        },
+        {
+          "id": "d",
+          "text": "Neither; arrays detect unlabeled hybrids by size",
+          "rationale": "Incorrect. Arrays measure the label signal at each feature, not fragment size."
+        }
+      ],
+      "answer": "a",
+      "skill": "Microarray format",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch68",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 68, How Molecular Tests Work (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 68,
+          "section": "High-Yield Hits",
+          "items": [
+            4,
+            6,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "chapter": 68,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "young2020",
+      "kind": "external",
+      "citation": "Young AP, Jackson DJ, Wyeth RC. A technical review and guide to RNA fluorescence in situ hybridization. PeerJ. 2020;8:e8806. doi:10.7717/peerj.8806",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7085896/",
+      "consulted": true,
+      "usedFor": "Definition of highly vs less stringent conditions; lower salt and higher temperature are more stringent; formamide lowers DNA melting temperature; increasingly stringent washes by reducing salt; oligonucleotide probes less tolerant of mismatches; short oligonucleotide probes (20–50 nucleotides) used as cocktails spanning the target."
+    },
+    {
+      "id": "hendling2019",
+      "kind": "external",
+      "citation": "Hendling M, Barišić I. In-silico Design of DNA Oligonucleotides: Challenges and Approaches. Comput Struct Biotechnol J. 2019;17:1056-1065. doi:10.1016/j.csbj.2019.07.008",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6700205/",
+      "consulted": true,
+      "usedFor": "Tm defined as the temperature at which 50% of oligonucleotides are paired with their complement; Tm estimation depends on GC content, salt and nearest-neighbor interactions; microarray detection based on hybridization of labeled target DNA to spots."
+    },
+    {
+      "id": "yilmaz2012",
+      "kind": "external",
+      "citation": "Yilmaz LS, Loy A, Wright ES, Wagner M, Noguera DR. Modeling formamide denaturation of probe-target hybrids for improved microarray probe design in microbial diagnostics. PLoS One. 2012;7(8):e43862. doi:10.1371/journal.pone.0043862",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3428302/",
+      "consulted": true,
+      "usedFor": "Formamide routinely used to adjust stringency; mismatched duplexes denature more readily than perfect matches, giving a window for mismatch discrimination; higher stringency also lowers perfect-match signal; labeled target hybridized to arrayed probes."
+    },
+    {
+      "id": "gresham2008",
+      "kind": "external",
+      "citation": "Gresham D, Dunham MJ, Botstein D. Comparing whole genomes using DNA microarrays. Nat Rev Genet. 2008;9(4):291-302. doi:10.1038/nrg2335",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7097741/",
+      "consulted": true,
+      "usedFor": "Glossary: on microarrays the probe is attached to the array to probe a labeled sample in solution; in Southern blotting the labeled probe is added in solution to genomic DNA immobilized on a membrane; short probes are acutely sensitive to single mismatches; perfect-match vs mismatch Tm difference."
+    },
+    {
+      "id": "kubota2013",
+      "kind": "external",
+      "citation": "Kubota K. CARD-FISH for environmental microorganisms: technical advancement and future applications. Microbes Environ. 2013;28(1):3-12. doi:10.1264/jsme2.me12107",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4070690/",
+      "consulted": true,
+      "usedFor": "Oligonucleotide probes: higher specificity and lower sensitivity than multiply labeled polynucleotide probes; oligonucleotide probes can distinguish single-base mismatches depending on sequence and position."
+    },
+    {
+      "id": "yang2022",
+      "kind": "external",
+      "citation": "Yang T, Zhang M, Zhang N. Modified Northern blot protocol for easy detection of mRNAs in total RNA using radiolabeled probes. BMC Genomics. 2022;23(1):66. doi:10.1186/s12864-021-08275-w",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8772191/",
+      "consulted": true,
+      "usedFor": "Northern blot: RNA size-separated on denaturing formaldehyde-agarose gels, transferred and probed; gives transcript size and expression level and is still used as a gold standard for validating high-throughput expression data; qPCR now often used; SSC composition; example low (2× SSC, room temperature) and high (0.5× SSC, 62 °C) stringency washes; high-stringency washes quickly strip partly matched probes."
+    },
+    {
+      "id": "rossetti2011",
+      "kind": "external",
+      "citation": "Rossetti LC, Radic CP, Abelleyro MM, Larripa IB, De Brasi CD. Eighteen years of molecular genotyping the hemophilia inversion hotspot: from southern blot to inverse shifting-PCR. Int J Mol Sci. 2011;12(10):7271-7285. doi:10.3390/ijms12107271",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3211038/",
+      "consulted": true,
+      "usedFor": "Southern blot uses restriction-enzyme digestion and a labeled probe, read as restriction fragment sizes (kb); Southern blot is still considered the reference method for intron 22 inversion genotyping, although PCR-based methods followed."
+    },
+    {
+      "id": "pandelache2021",
+      "kind": "external",
+      "citation": "Pandelache A, Francis D, Oertel R, et al. Detection of Cryptic Fragile X Full Mutation Alleles by Southern Blot in a Female and Her Foetal DNA via Chorionic Villus Sampling, Complicated by Mosaicism for 45,X0/46,XX/47,XXX. Genes (Basel). 2021;12(6):798. doi:10.3390/genes12060798",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8225079/",
+      "consulted": true,
+      "usedFor": "Abstract and discussion read in Europe PMC full text: Southern blot detected fragile X full-mutation alleles that AmplideX triplet-primed PCR and long-range methylation-sensitive PCR missed; used only for the context that Southern blotting retains a clinical role."
+    },
+    {
+      "id": "croning2010",
+      "kind": "external",
+      "citation": "Croning MD, Fricker DG, Komiyama NH, Grant SG. Automated design of genomic Southern blot probes. BMC Genomics. 2010;11:74. doi:10.1186/1471-2164-11-74",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2830989/",
+      "consulted": true,
+      "usedFor": "Southern blotting: restriction-digested DNA is size-separated by gel electrophoresis, transferred (blotted) to a solid support and detected with a labeled probe."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-tm",
+      "text": "Tm = temperature at which half of probe molecules are paired; depends on sequence and salt; mismatched duplexes are less stable.",
+      "status": "checked",
+      "refs": [
+        "hendling2019",
+        "yilmaz2012",
+        "gresham2008"
+      ]
+    },
+    {
+      "id": "cl-string",
+      "text": "Lower salt, higher temperature and formamide increase stringency; too much stringency also strips true hybrids; example SSC washes.",
+      "status": "checked",
+      "refs": [
+        "young2020",
+        "yilmaz2012",
+        "yang2022"
+      ]
+    },
+    {
+      "id": "cl-oligo",
+      "text": "Short oligonucleotide probes are mismatch-intolerant and specific but give less signal than multiply labeled polynucleotide probes; in RNA FISH, cocktails of many short probes spanning the target are common.",
+      "status": "checked",
+      "refs": [
+        "kubota2013",
+        "young2020",
+        "gresham2008"
+      ]
+    },
+    {
+      "id": "cl-blots",
+      "text": "Southern blot = restriction-digested DNA with a labeled probe; northern blot = RNA on a denaturing gel, giving transcript size and level.",
+      "status": "checked",
+      "refs": [
+        "croning2010",
+        "rossetti2011",
+        "gresham2008",
+        "yang2022"
+      ]
+    },
+    {
+      "id": "cl-array",
+      "text": "On microarrays the probes are attached and the sample is labeled.",
+      "status": "checked",
+      "refs": [
+        "gresham2008",
+        "hendling2019"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Oligonucleotide probe length of exactly 15–45 bases; northern blot RNA undergoes no digestion.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch68"
+      ],
+      "note": "Not taught. Sources read describe short probes as about 20–50 nucleotides (Young 2020) or under 50 bp (Gresham 2008)."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; probe and blot drawings schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“The picky party.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-blots-still-used",
+      "issue": "Ch. 68 Hit 9 says Southern and northern blots are “largely replaced by amplification methods”. Yang 2022 says northern blotting is still used as a gold standard for validating high-throughput expression data and uniquely gives transcript size and level, Rossetti 2011 calls Southern blot still the reference method for hemophilia A intron 22 inversion genotyping, and Pandelache 2021 reports Southern blot detecting fragile X full-mutation alleles missed by triplet-primed PCR and methylation-sensitive PCR, so blots keep specific clinical and reference roles (register flag rv-blots-still-used).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; probes, blots and arrays shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Young 2020, Hendling 2019, Yilmaz 2012, Gresham 2008, Kubota 2013, Yang 2022, Rossetti 2011, Croning 2010 and Pandelache 2021; 1 pending (15–45-base probe length; no digestion for northern blots), not taught. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
