@@ -1,0 +1,1558 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-mass-spectrometry-mrm-internal-standard",
+  "title": "Mass Spectrometry in the Lab: Ionization, MRM and Internal Standards",
+  "summary": "Follow a molecule through ion source, mass analyzer and detector, choose soft ionization for fragile molecules, see how triple-quadrupole MRM gives specificity, and why stable-isotope internal standards make LC-MS/MS quantitative.",
+  "domain": "p1-ops",
+  "topic": "ch5",
+  "conceptIds": [
+    "ch5.hit2",
+    "ch5.hit3",
+    "ch5.hit4",
+    "ch5.hit6",
+    "ch5.hit7",
+    "ch5.hit8",
+    "ch5.hit9",
+    "ch5.trap1",
+    "ch5.trap2",
+    "ch5.trap4"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 5,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "chapter": 5,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          2,
+          4
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 5 Hits 2–4 and 6–9 and Traps 1, 2 and 4 (first lesson for Ch. 5). Checked against Banerjee 2012 and Pitt 2009 (read via a page-fetch tool, first 100,000 characters). Not taught as fact: the USS Nimitz history and immunoassay-screen/MS-confirm model (Hit 1; drug confirmation is taught in chem-drug-screen-confirmation-validity), Orbitrap details, tacrolimus/sirolimus ranges and run time, PKU Phe/Tyr ratio, 2-HG, ambient MS devices, resolution formula, precursor vs product ion scans and ion-trap MSn (Traps 3, 5)."
+  },
+  "prerequisites": [
+    "ch4.hit1"
+  ],
+  "objectives": [
+    "Name the three components of a mass spectrometer and explain soft ionization.",
+    "Describe triple-quadrupole MRM and the role of the collision cell.",
+    "Explain how stable-isotope internal standards correct for losses and ion suppression."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Weighing molecules",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a transplant clinic asks the lab to measure tacrolimus by LC-MS/MS; the newborn-screening section runs amino acids and acylcarnitines from dried blood spots; a technologist asks why every LC-MS/MS sample gets a “labelled twin” of the drug added before extraction. Question token: “How does a mass spectrometer measure — and why the labelled twin?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "The transplant clinic wants tacrolimus levels by LC-MS/MS. Newborn screening measures amino acids and acylcarnitines from blood spots."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "And every sample gets a labelled twin of the drug added before extraction."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "How does a mass spectrometer measure, and why add the labelled twin?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "tac",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 160,
+            "tone": "b",
+            "title": "Requests",
+            "lines": [
+              "Tacrolimus (LC-MS/MS)",
+              "Newborn amino acids, acylcarnitines"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "twin",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 160,
+            "tone": "warn",
+            "title": "Every sample",
+            "lines": [
+              "+ labelled “twin” of the analyte"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 640,
+            "label": "How does MS measure? Why the twin?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 860,
+            "y": 470,
+            "expression": "curious",
+            "scale": 0.42,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9,
+              "opacity": 0
+            },
+            {
+              "t": 10,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "expression": "thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Ion source → mass analyzer → detector",
+      "start": 20,
+      "end": 60,
+      "altText": "Architecture card (Banerjee 2012): every mass spectrometer has three basic components — ION SOURCE (makes gas-phase ions), MASS ANALYZER (separates ions by mass-to-charge ratio, m/z), DETECTOR (counts them). Ionization card (Banerjee 2012): proteins are polar, non-volatile and thermally labile, so harsh ionization destroys them; SOFT ionization techniques — electrospray ionization (ESI) and MALDI — produce intact molecular ions with little fragmentation. Front-end card (Pitt 2009): GC-MS of urinary steroids requires enzymatic hydrolysis and derivatization, whereas LC-MS can profile intact conjugates. Schematic, not to scale.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Every mass spectrometer has three parts: an ion source that turns molecules into charged gas-phase ions, a mass analyzer that sorts them by mass-to-charge ratio, and a detector that counts them."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Big biomolecules such as proteins are polar, non-volatile and heat-sensitive, so they need soft ionization, such as electrospray or MALDI, which keeps them intact."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 52,
+          "text": "The front end matters too. Gas chromatography needs molecules it can vaporize; urinary steroids, for example, must be hydrolyzed and derivatized first."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "Liquid chromatography with electrospray can measure many such molecules intact, which is why LC-MS has spread through clinical chemistry."
+        }
+      ],
+      "objects": [
+        {
+          "id": "src",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 190,
+            "w": 270,
+            "h": 140,
+            "tone": "b",
+            "title": "1 Ion source",
+            "lines": [
+              "Makes gas-phase ions"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ana",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 270,
+            "h": 140,
+            "tone": "a",
+            "title": "2 Mass analyzer",
+            "lines": [
+              "Sorts by m/z"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "det",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 190,
+            "w": 270,
+            "h": 140,
+            "tone": "good",
+            "title": "3 Detector",
+            "lines": [
+              "Counts ions"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.5,
+              "opacity": 0
+            },
+            {
+              "t": 7.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "soft",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "h": 150,
+            "tone": "warn",
+            "title": "Soft ionization",
+            "lines": [
+              "ESI · MALDI",
+              "Proteins stay intact"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            },
+            {
+              "t": 18,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "gc",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "GC-MS vs LC-MS",
+            "lines": [
+              "GC: steroids need derivatization",
+              "LC: intact conjugates"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            },
+            {
+              "t": 36,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Tandem MS and multiple reaction monitoring",
+      "start": 60,
+      "end": 104,
+      "altText": "Triple-quadrupole schematic (Pitt 2009): Q1 selects the PRECURSOR ion (the analyte’s m/z) → Q2 is a COLLISION CELL containing a low-pressure inert gas (nitrogen or argon), where collisions fragment the ion (collision-induced dissociation) → Q3 selects one PRODUCT ion. Monitoring chosen precursor → product pairs is MULTIPLE REACTION MONITORING (MRM), commonly used in LC-MS assays; fast switching lets many compounds be measured in one run (multiplexing). Interference card (Pitt 2009): ION SUPPRESSION — when more than one component enters the ion source at once, they compete for ionization, which can lower the analyte signal.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "Tandem mass spectrometry puts filters in series. The first quadrupole lets through only the analyte’s parent ion, the precursor."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 80,
+          "text": "The middle quadrupole is a collision cell filled with an inert gas such as nitrogen or argon. Collisions break the precursor into fragments."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 92,
+          "text": "The third quadrupole lets through one chosen fragment, the product ion. Watching that precursor-to-product pair is multiple reaction monitoring, and many pairs can be watched in one run."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "One weakness: if other compounds reach the ion source at the same time, they compete for charge and can suppress the analyte’s signal."
+        }
+      ],
+      "objects": [
+        {
+          "id": "q1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 190,
+            "w": 270,
+            "h": 140,
+            "tone": "b",
+            "title": "Q1 · precursor",
+            "lines": [
+              "Select analyte m/z"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 270,
+            "h": 140,
+            "tone": "warn",
+            "title": "Q2 · collision cell",
+            "lines": [
+              "Inert gas → fragments"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 190,
+            "w": 270,
+            "h": 140,
+            "tone": "good",
+            "title": "Q3 · product",
+            "lines": [
+              "Select one fragment"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mrm",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 700,
+            "label": "Precursor → product pairs = MRM · many per run",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 27.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sup",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 700,
+            "h": 110,
+            "tone": "bad",
+            "title": "Ion suppression",
+            "lines": [
+              "Co-eluting compounds compete for ionization"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "The labelled twin and what MS measures",
+      "start": 104,
+      "end": 144,
+      "altText": "Internal-standard card (Pitt 2009): STABLE-ISOTOPE-LABELLED internal standards — the analyte with heavy isotopes, chemically almost identical but with a different mass — are added to each sample; they correct for losses or inefficiencies in sample preparation and correct for ion suppression; with tandem MS they allow highly sensitive and accurate assays. Quantitation = analyte signal ÷ internal-standard signal, read against a calibration curve. Applications card (Pitt 2009): newborn screening of marker amino acids and acylcarnitines in dried blood spots; immunosuppressants such as cyclosporin and tacrolimus; steroids; vitamin D. Hook answer: the twin is the internal standard.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "The labelled twin is a stable-isotope internal standard: the same molecule built with heavier isotopes, so it behaves almost identically but weighs a little more."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Added at the start, it suffers the same extraction losses and the same ion suppression as the analyte. So the ratio of analyte to twin stays true."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "The lab reads that ratio against a calibration curve to report a concentration. Without an internal standard, accurate quantitation is much harder."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "This is how laboratories measure newborn amino acids and acylcarnitines, immunosuppressants such as tacrolimus, steroids and vitamin D."
+        }
+      ],
+      "objects": [
+        {
+          "id": "is",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "good",
+            "title": "Stable-isotope internal standard",
+            "lines": [
+              "Same molecule, heavier mass",
+              "Corrects preparation losses",
+              "Corrects ion suppression"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "ratio",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 490,
+            "w": 440,
+            "label": "Analyte ÷ IS → calibration curve",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "apps",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 420,
+            "h": 250,
+            "tone": "b",
+            "title": "Clinical uses (Pitt 2009)",
+            "lines": [
+              "Newborn amino acids, acylcarnitines",
+              "Tacrolimus, cyclosporin",
+              "Steroids",
+              "Vitamin D"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “GC-MS is best for large, heat-sensitive molecules” (✓ such molecules need soft ionization — ESI/LC-MS or MALDI; GC needs vaporizable analytes, e.g. derivatized steroids); “Any MS run is quantitative” (✓ quantitation needs an internal standard and a calibration curve); “Ion suppression is fixed by the mass analyzer” (✓ it happens in the ion source; stable-isotope internal standards correct for it and method optimization minimizes it).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: GC-MS is best for large, heat-sensitive molecules. No: those need soft ionization such as electrospray or MALDI; GC needs molecules it can vaporize."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: any mass-spec run is quantitative. No: accurate quantitation needs an internal standard and a calibration curve."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the mass analyzer removes ion suppression. No: suppression happens in the ion source. Internal standards correct for it, and method optimization reduces it."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “GC-MS for big, labile molecules.”",
+            "lines": [
+              "✓ Soft ionization: ESI/LC-MS, MALDI"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Any MS run is quantitative.”",
+            "lines": [
+              "✓ Internal standard + calibration"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Analyzer fixes ion suppression.”",
+            "lines": [
+              "✓ Source effect — IS corrects it"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Make, sort, count — with a twin",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “MAKE ions, SORT them, COUNT them — and bring a heavy TWIN along so every loss is shared.” Tokens: source → analyzer → detector · Q1 → collision → Q3 = MRM · twin = stable-isotope IS. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 182,
+          "text": "Memory aid: make ions, sort them, count them, and bring a heavy twin along so every loss is shared."
+        },
+        {
+          "id": "m2",
+          "start": 182,
+          "end": 194,
+          "text": "Where it breaks: the twin must not share a mass with the analyte or interfere with it; method optimization is still needed to minimize ion suppression; and each assay still needs validation."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Make · sort · count — with a twin",
+            "size": 26,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Source → analyzer → detector",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Q1 → collision → Q3",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Twin = isotope IS",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Twin must have a distinct mass",
+              "Still optimize to minimize suppression",
+              "Every assay needs validation"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Ion source → mass analyzer → detector · soft ionization (ESI, MALDI) for labile molecules · MRM: Q1 precursor → collision cell → Q3 product”, “Stable-isotope internal standard corrects losses and ion suppression · newborn screening, tacrolimus, steroids, vitamin D”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "A mass spectrometer makes ions, sorts them by mass-to-charge and counts them; tandem MS with multiple reaction monitoring gives specificity, and a stable-isotope internal standard corrects for preparation losses and ion suppression so the result is quantitative."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Source → analyzer → detector · ESI/MALDI · MRM (Q1 → Q2 → Q3)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Isotope IS corrects losses + suppression · NBS, tacrolimus, steroids, vit D",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a mass spectrometer weighs molecules by turning them into charged particles, sorting them by weight-to-charge, and counting them; adding a slightly heavier copy of each target molecule lets the lab correct for anything lost along the way. Scientific terms: ion source, mass analyzer, detector, m/z, electrospray ionization (ESI), MALDI, GC-MS, LC-MS/MS, derivatization, triple quadrupole, precursor and product ions, collision-induced dissociation, multiple reaction monitoring (MRM), ion suppression, stable-isotope-labelled internal standard, calibration curve.",
+    "why": "Separation by m/z plus a characteristic fragmentation gives high specificity. A co-processed isotopic twin experiences the same extraction losses and ionization competition as the analyte, so their ratio remains accurate.",
+    "measure": "LC-MS/MS in MRM mode: Q1 precursor → Q2 collision cell (N₂/Ar) → Q3 product (Pitt 2009). Quantitation: analyte/IS ratio against calibrators; stable-isotope IS corrects preparation losses and ion suppression (Pitt 2009). Applications: newborn amino acids and acylcarnitines, immunosuppressants, steroids, vitamin D (Pitt 2009).",
+    "differs": "GC-MS (vaporizable, often derivatized analytes) vs LC-MS (intact polar/labile molecules); hard vs soft ionization; identification vs quantitation (needs IS + calibration).",
+    "examAngle": "Expect: order the MS components, pick LC-MS or MALDI for large labile molecules, describe MRM, and name the internal standard as the key to quantitation and suppression correction."
+  },
+  "comparisons": [
+    {
+      "id": "gc-vs-lc",
+      "title": "GC-MS vs LC-MS",
+      "left": {
+        "label": "GC-MS",
+        "points": [
+          "Needs vaporizable analytes",
+          "Steroids: hydrolysis + derivatization"
+        ]
+      },
+      "right": {
+        "label": "LC-MS (ESI)",
+        "points": [
+          "Handles polar, labile molecules",
+          "Can profile intact conjugates"
+        ]
+      },
+      "distinguisher": "Whether the molecule must be vaporized."
+    },
+    {
+      "id": "id-vs-quant",
+      "title": "Identification vs quantitation",
+      "left": {
+        "label": "Identification",
+        "points": [
+          "m/z and fragments",
+          "Which molecule is present"
+        ]
+      },
+      "right": {
+        "label": "Quantitation",
+        "points": [
+          "Stable-isotope IS + calibration",
+          "How much is present"
+        ]
+      },
+      "distinguisher": "Internal standard and calibrators."
+    }
+  ],
+  "mnemonic": {
+    "text": "MAKE ions, SORT them, COUNT them — and bring a heavy TWIN along so every loss is shared.",
+    "explanation": "Orders the components and explains the internal standard.",
+    "limitation": "The twin must have a distinct mass; methods must still be optimized to minimize ion suppression; every assay needs validation."
+  },
+  "analogyLimitations": [
+    "The clinic scenario is invented.",
+    "Instrument diagrams are schematic.",
+    "Applications are examples, not a complete list."
+  ],
+  "takeaway": "A mass spectrometer makes ions, sorts them by mass-to-charge and counts them; tandem MS with multiple reaction monitoring gives specificity, and a stable-isotope internal standard corrects for preparation losses and ion suppression so the result is quantitative.",
+  "questions": [
+    {
+      "id": "ops-ms-q1",
+      "stem": "In a triple-quadrupole LC-MS/MS assay, what happens in the second quadrupole (Q2)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Precursor ions collide with an inert gas and fragment",
+          "rationale": "Correct. Q2 is a collision cell with low-pressure nitrogen or argon."
+        },
+        {
+          "id": "b",
+          "text": "Molecules are ionized",
+          "rationale": "Incorrect. Ionization occurs in the ion source before Q1."
+        },
+        {
+          "id": "c",
+          "text": "Ions are counted",
+          "rationale": "Incorrect. Counting happens at the detector."
+        },
+        {
+          "id": "d",
+          "text": "Analytes are separated by retention time",
+          "rationale": "Incorrect. That is the liquid chromatography step."
+        }
+      ],
+      "answer": "a",
+      "skill": "Tandem MS",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ops-ms-q2",
+      "stem": "Why is a stable-isotope-labelled tacrolimus added to every sample before extraction?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It corrects for extraction losses and ion suppression, enabling accurate quantitation",
+          "rationale": "Correct. The IS behaves like the analyte, so the ratio remains accurate."
+        },
+        {
+          "id": "b",
+          "text": "It increases the patient’s tacrolimus concentration to detectable levels",
+          "rationale": "Incorrect. It is measured separately by its different mass."
+        },
+        {
+          "id": "c",
+          "text": "It acts as the calibrator for the mass analyzer only",
+          "rationale": "Incorrect. Calibrators are separate; the IS normalizes each sample."
+        },
+        {
+          "id": "d",
+          "text": "It prevents ionization of other compounds",
+          "rationale": "Incorrect. It does not block ionization."
+        }
+      ],
+      "answer": "a",
+      "skill": "Internal standard",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-ms-q3",
+      "stem": "A laboratory wants to analyse intact proteins. Which ionization approach is suitable?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A soft ionization technique such as electrospray or MALDI",
+          "rationale": "Correct. Proteins are polar, non-volatile and thermally labile; soft ionization keeps them intact."
+        },
+        {
+          "id": "b",
+          "text": "GC-MS without derivatization",
+          "rationale": "Incorrect. Proteins cannot be vaporized intact for GC."
+        },
+        {
+          "id": "c",
+          "text": "Flame photometry",
+          "rationale": "Incorrect. Not a mass-spectrometric ionization method for proteins."
+        },
+        {
+          "id": "d",
+          "text": "Any harsh ionization that fragments them completely",
+          "rationale": "Incorrect. That destroys the intact molecule."
+        }
+      ],
+      "answer": "a",
+      "skill": "Ionization choice",
+      "difficulty": "recognition"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch5",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 5, Mass Spectrometry in the Lab (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 5,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            3,
+            4,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "chapter": 5,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            2,
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "banerjee2012",
+      "kind": "external",
+      "citation": "Banerjee S, Mazumdar S. Electrospray ionization mass spectrometry: a technique to access the information beyond the molecular weight of the analyte. Int J Anal Chem. 2012;2012:282574.",
+      "doi": "10.1155/2012/282574",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3348530/",
+      "consulted": true,
+      "usedFor": "Three basic components (ion source, mass analyzer, detector); proteins polar, non-volatile and thermally labile; soft ionization (ESI, MALDI) gives intact ions with little fragmentation."
+    },
+    {
+      "id": "pitt2009",
+      "kind": "external",
+      "citation": "Pitt JJ. Principles and applications of liquid chromatography-mass spectrometry in clinical biochemistry. Clin Biochem Rev. 2009;30(1):19-34.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2643089/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (first 100,000 characters; quoted passages). Fragmentation by collision with inert gas (nitrogen or argon); Q2 collision cell; MRM commonly used in LC-MS; ion suppression from competition in the ion source; stable-isotope internal standards correct for preparation losses and ion suppression; GC-MS of urinary steroids needs hydrolysis and derivatization vs LC-MS of intact conjugates; applications: newborn amino acids and acylcarnitines, cyclosporin and tacrolimus, steroids, vitamin D."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-arch",
+      "text": "Three MS components; soft ionization for labile proteins.",
+      "status": "checked",
+      "refs": [
+        "banerjee2012"
+      ]
+    },
+    {
+      "id": "cl-mrm",
+      "text": "Collision cell fragmentation; MRM; ion suppression.",
+      "status": "checked",
+      "refs": [
+        "pitt2009"
+      ]
+    },
+    {
+      "id": "cl-is",
+      "text": "Stable-isotope internal standards correct losses and ion suppression.",
+      "status": "checked",
+      "refs": [
+        "pitt2009"
+      ]
+    },
+    {
+      "id": "cl-front",
+      "text": "GC-MS steroids need derivatization; LC-MS profiles intact conjugates.",
+      "status": "checked",
+      "refs": [
+        "pitt2009"
+      ]
+    },
+    {
+      "id": "cl-apps",
+      "text": "Applications: newborn screening, immunosuppressants, steroids, vitamin D.",
+      "status": "checked",
+      "refs": [
+        "pitt2009"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Nimitz history; Orbitrap; tacrolimus/sirolimus ranges and run time; PKU ratio; 2-HG; ambient MS; resolution formula; scan modes; ion-trap MSn.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch5"
+      ],
+      "note": "Not taught as facts in this lesson."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; diagrams schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Make, sort, count — with a twin.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; instrument stages shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Banerjee 2012 and Pitt 2009 (page fetch); 1 pending (instrument details and figures). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
