@@ -1,0 +1,1505 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-test-cost-breakeven-npv",
+  "title": "What a Test Costs: Contribution Margin, Break-Even and NPV",
+  "summary": "Work through invented lab numbers to separate variable, fixed and fully loaded cost, calculate contribution margin and break-even volume, and decide on an analyzer purchase with NPV and IRR rather than payback alone.",
+  "domain": "p1-ops",
+  "topic": "ch13",
+  "conceptIds": [
+    "ch13.hit3",
+    "ch13.hit7",
+    "ch13.hit8",
+    "ch13.hit14",
+    "ch13.trap4"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 13,
+        "section": "High-Yield Hits",
+        "items": [
+          3,
+          7,
+          8,
+          14
+        ]
+      },
+      {
+        "chapter": 13,
+        "section": "Exam Traps",
+        "items": [
+          4
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 13 Hits 3, 7, 8 and 14 and Trap 4 (first lesson for Ch. 13) with invented numbers, using the OpenStax Principles of Accounting, Volume 2: Managerial Accounting definitions. Two reviewer statements are flagged: Hit 3 defines contribution margin as price minus fully loaded cost (rv-contribution-margin), and Trap 4 says a positive NPV still needs a separate IRR check (rv-npv-irr). Not taught as fact: the textbook PSA and analyzer figures, Medicare 72-hour/3-day rule, DRG and APC payment, coding (CPT/HCPCS), up-coding and unbundling, capitation and carve-outs, medical necessity and ABN, leases and reagent rental, budgeting types, productivity targets, CLIA competency schedule."
+  },
+  "prerequisites": [
+    "ch6.hit1"
+  ],
+  "objectives": [
+    "Distinguish variable, fixed and fully loaded cost per test, and calculate contribution margin.",
+    "Calculate a break-even test volume.",
+    "Decide on a capital purchase with NPV and IRR, and explain why payback alone is insufficient."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Should the lab buy the analyzer?",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented example with round numbers: a new analyzer costs $100,000 and is expected to save $30,000 a year for 4 years. A manager says: “It pays for itself in about 3.3 years, well inside its 4-year life, so buy it.” A second card: a send-out test is paid $20 per test. Question token: “Is paying back enough?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "A new analyzer costs one hundred thousand dollars and should save thirty thousand dollars a year for four years."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "The manager says it pays for itself in about three point three years, inside its four-year life, so buy it."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Is paying back the money enough to make it a good investment?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "an",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "b",
+            "title": "New analyzer",
+            "lines": [
+              "Cost $100,000",
+              "Saves $30,000/yr × 4 yr"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pb",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Manager",
+            "lines": [
+              "“Pays back in 3.3 years”"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 640,
+            "label": "Is paying back enough?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "What one test costs",
+      "start": 20,
+      "end": 60,
+      "altText": "Cost cards (invented numbers). VARIABLE cost rises with every test: reagents and consumables, $6 per test. FIXED cost does not change with volume: e.g. instrument lease and service, $70,000 a year. CONTRIBUTION MARGIN per test = price − variable cost = $20 − $6 = $14: what each test contributes toward fixed costs, then profit. FULLY LOADED cost per test = variable cost + share of fixed (and allocated indirect) costs; at 5,000 tests a year it is $6 + $70,000/5,000 = $20, at 10,000 tests it is $13.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Every test has variable costs, which rise with each test run, such as reagents and consumables. In this invented example, six dollars per test."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 38,
+          "text": "Fixed costs, such as the instrument lease and service contract, stay the same whatever the volume: here seventy thousand dollars a year."
+        },
+        {
+          "id": "n3",
+          "start": 38,
+          "end": 50,
+          "text": "The contribution margin is the price minus the variable cost: twenty minus six, fourteen dollars. It is what each test contributes toward the fixed costs, and then toward profit."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "The fully loaded cost adds each test’s share of the fixed and overhead costs, so it falls as volume rises: twenty dollars at five thousand tests a year, thirteen at ten thousand."
+        }
+      ],
+      "objects": [
+        {
+          "id": "var",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 140,
+            "tone": "b",
+            "title": "Variable cost",
+            "lines": [
+              "Reagents + consumables: $6/test"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fix",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 370,
+            "w": 440,
+            "h": 140,
+            "tone": "a",
+            "title": "Fixed cost",
+            "lines": [
+              "Lease + service: $70,000/yr"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cm",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 160,
+            "tone": "good",
+            "title": "Contribution margin",
+            "lines": [
+              "Price − variable cost",
+              "$20 − $6 = $14/test"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fl",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Fully loaded cost",
+            "lines": [
+              "5,000 tests/yr → $20",
+              "10,000 tests/yr → $13"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Break-even and the time value of money",
+      "start": 60,
+      "end": 104,
+      "altText": "Break-even card: the volume at which total revenue = total cost (fixed + variable), so profit is zero; break-even volume = fixed cost ÷ contribution margin per test = $70,000 ÷ $14 = 5,000 tests a year. Below it the test loses money; above it each test adds $14 of profit. Time-value card: money received later is worth less than money now, so future cash flows are DISCOUNTED to present value at the required rate of return. NPV = present value of future cash flows − initial investment. IRR = the discount rate at which NPV = 0. Payback period = time to recover the investment, ignoring the time value of money.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Break-even is the volume where total revenue equals total cost, so profit is zero. Divide the fixed cost by the contribution margin: seventy thousand over fourteen, five thousand tests a year."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 80,
+          "text": "Below break-even the test loses money; above it, each extra test adds fourteen dollars of profit."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 92,
+          "text": "For a purchase, money received later is worth less than money now. Net present value discounts each future cash flow at the required rate of return, then subtracts the initial cost."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "The internal rate of return is the discount rate at which net present value is zero. The payback period only counts how long it takes to get the money back, and ignores the time value of money."
+        }
+      ],
+      "objects": [
+        {
+          "id": "be",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 210,
+            "tone": "good",
+            "title": "Break-even",
+            "lines": [
+              "Revenue = total cost",
+              "Fixed ÷ margin per test",
+              "$70,000 ÷ $14 = 5,000/yr"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ab",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 470,
+            "w": 440,
+            "label": "Above break-even: +$14 per test",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tv",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 230,
+            "tone": "b",
+            "title": "Capital decisions",
+            "lines": [
+              "NPV = PV(inflows) − cost",
+              "IRR: rate where NPV = 0",
+              "Payback ignores timing"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Run the numbers on the analyzer",
+      "start": 104,
+      "end": 144,
+      "altText": "Worked example (invented numbers; required return 10% a year): present value of $30,000 a year for 4 years at 10% = $30,000 × 3.170 ≈ $95,100. NPV ≈ $95,100 − $100,000 ≈ −$4,900. IRR ≈ 7.7%, below the 10% required return. Payback = $100,000 ÷ $30,000 ≈ 3.3 years. Decision card: reject (or renegotiate the price) even though it pays back within its life. Consistency card: for a project like this (one outflow, then inflows), NPV > 0 at the required rate and IRR > the required rate are the same test; NPV and IRR can disagree when RANKING mutually exclusive projects, and then the higher NPV is generally preferred.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 116,
+          "text": "Run the analyzer numbers with a required return of ten percent. Thirty thousand dollars a year for four years is worth about ninety-five thousand one hundred dollars today."
+        },
+        {
+          "id": "l2",
+          "start": 116,
+          "end": 124,
+          "text": "So the net present value is about minus four thousand nine hundred dollars, and the internal rate of return is about seven point seven percent, below the required ten."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "It pays back in three point three years, yet it does not earn the required return. Reject it, or negotiate a lower price."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "For a simple project like this, a positive net present value and an internal rate of return above the required rate are the same test. They can disagree only when ranking competing projects, and then the higher net present value usually wins."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pv",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 160,
+            "tone": "b",
+            "title": "Present value at 10%",
+            "lines": [
+              "$30,000 × 3.170",
+              "≈ $95,100"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "npv",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 160,
+            "tone": "bad",
+            "title": "Result",
+            "lines": [
+              "NPV ≈ −$4,900",
+              "IRR ≈ 7.7% < 10%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "reveal": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dec",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "h": 140,
+            "tone": "warn",
+            "title": "Decision",
+            "lines": [
+              "Pays back in 3.3 yr — still reject"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "eq",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 400,
+            "w": 420,
+            "h": 140,
+            "tone": "good",
+            "title": "Same test here",
+            "lines": [
+              "NPV > 0 ⇔ IRR > required rate",
+              "Ranking: prefer higher NPV"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Contribution margin = price − fully loaded cost” (✓ in standard cost accounting, contribution margin = price − VARIABLE cost; price − fully loaded cost is the profit per test); “It pays back within its life, so buy it” (✓ payback ignores the time value of money; check NPV at the required rate); “Break-even = where the price covers the reagents” (✓ break-even is where total revenue covers fixed + variable costs).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: contribution margin is price minus fully loaded cost. In standard cost accounting it is price minus variable cost; price minus fully loaded cost is the profit per test."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: it pays back within its life, so buy it. No: payback ignores the time value of money. Check the net present value at the required rate."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: break-even is where the price covers the reagents. No: it is where total revenue covers both fixed and variable costs."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Margin = price − fully loaded cost.”",
+            "lines": [
+              "✓ Contribution margin = price − variable cost"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Pays back, so buy it.”",
+            "lines": [
+              "✓ Check NPV at the required rate"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Break-even = reagents covered.”",
+            "lines": [
+              "✓ Revenue covers fixed + variable"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Pay the rent first",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Each test drops its MARGIN (price minus reagents) into a jar. The jar must first pay the RENT (fixed costs); the test count where the rent is paid is BREAK-EVEN. A purchase is worth it only if tomorrow’s dollars, shrunk to today’s value, still beat the price tag (NPV > 0).” Tokens: margin = price − variable · break-even = fixed ÷ margin · NPV > 0. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: each test drops its margin, price minus reagents, into a jar. The jar must pay the rent, the fixed costs, first. The number of tests that pays the rent is break-even. And a purchase is worth it only if tomorrow’s dollars, shrunk to today’s value, still beat the price tag."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: real fixed costs jump in steps, such as a second analyzer; prices vary by payer; and cash-flow forecasts and the required rate are estimates, so test a range of values."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Pay the rent first",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Margin = price − variable",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Break-even = fixed ÷ margin",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Buy only if NPV > 0",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Fixed costs jump in steps",
+              "Prices differ by payer",
+              "Forecasts and rates are estimates"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Contribution margin = price − variable cost · fully loaded cost = variable + share of fixed · break-even = fixed ÷ margin”, “NPV = PV(inflows) − cost; buy if NPV > 0 (IRR > required rate) · payback ignores time value”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Contribution margin is price minus variable cost, break-even volume is fixed cost divided by that margin, and a purchase is justified when its net present value at the required rate is positive, which payback alone cannot show."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Margin = price − variable · break-even = fixed ÷ margin",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Buy if NPV > 0 (IRR > required rate) · payback ignores time value",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: each test costs some money every time it runs (reagents) plus a share of costs that do not change with volume (the analyzer, service). What a test earns above its reagent cost helps pay the fixed costs; once enough tests are run, the lab breaks even. For big purchases, future savings are worth less than money today, so they are discounted before being compared with the price. Scientific terms: variable cost, fixed cost, fully loaded cost, contribution margin, break-even point, time value of money, present value, net present value (NPV), internal rate of return (IRR), required (hurdle) rate, payback period.",
+    "why": "Separating variable from fixed cost shows how volume changes cost per test and where the test stops losing money. Discounting matters because money tied up in equipment could have earned a return elsewhere.",
+    "measure": "Contribution margin = price − variable cost per unit. Break-even volume = fixed cost ÷ contribution margin per unit (total revenue = total cost). NPV = present value of future cash flows − initial investment; IRR = discount rate where NPV = 0; accept when IRR meets or exceeds the required rate. Payback = time to recover the investment, ignoring time value.",
+    "differs": "Contribution margin (price − variable) vs profit per test (price − fully loaded); payback (undiscounted) vs NPV/IRR (discounted); NPV and IRR agree on accept/reject for conventional projects but can rank mutually exclusive projects differently.",
+    "examAngle": "Expect: compute a contribution margin or break-even volume, interpret a negative NPV or an IRR below the required rate, and spot payback used as the sole criterion. Note the reviewer’s own definition of contribution margin differs (see flag)."
+  },
+  "comparisons": [
+    {
+      "id": "cm-vs-profit",
+      "title": "Contribution margin vs profit per test",
+      "left": {
+        "label": "Contribution margin",
+        "points": [
+          "Price − variable cost",
+          "Same at any volume"
+        ]
+      },
+      "right": {
+        "label": "Profit per test",
+        "points": [
+          "Price − fully loaded cost",
+          "Rises as volume spreads fixed costs"
+        ]
+      },
+      "distinguisher": "Whether fixed costs are subtracted."
+    },
+    {
+      "id": "payback-vs-npv",
+      "title": "Payback vs NPV",
+      "left": {
+        "label": "Payback",
+        "points": [
+          "Years to recover the cost",
+          "Ignores time value and later cash"
+        ]
+      },
+      "right": {
+        "label": "NPV",
+        "points": [
+          "Discounts all cash flows",
+          "Accept if > 0 at the required rate"
+        ]
+      },
+      "distinguisher": "Whether the time value of money is counted."
+    }
+  ],
+  "mnemonic": {
+    "text": "Each test drops its MARGIN (price minus reagents) into a jar. The jar must first pay the RENT (fixed costs); the test count where the rent is paid is BREAK-EVEN. A purchase is worth it only if tomorrow’s dollars, shrunk to today’s value, still beat the price tag (NPV > 0).",
+    "explanation": "Margin, break-even and NPV in one picture.",
+    "limitation": "Fixed costs jump in steps; prices differ by payer; forecasts and the required rate are estimates."
+  },
+  "analogyLimitations": [
+    "All prices, costs and cash flows are invented round numbers.",
+    "Real lab budgets include allocated overhead, step-fixed costs and payer-specific prices.",
+    "Financial definitions follow one open accounting textbook; terminology varies between texts."
+  ],
+  "takeaway": "Contribution margin is price minus variable cost, break-even volume is fixed cost divided by that margin, and a purchase is justified when its net present value at the required rate is positive, which payback alone cannot show.",
+  "questions": [
+    {
+      "id": "ops-cost-q1",
+      "stem": "A test is paid $25. Reagents and consumables cost $5 per test, and the analyzer’s fixed costs are $40,000 a year. What is the break-even volume?",
+      "options": [
+        {
+          "id": "a",
+          "text": "2,000 tests a year",
+          "rationale": "Correct. Contribution margin = $25 − $5 = $20; $40,000 ÷ $20 = 2,000."
+        },
+        {
+          "id": "b",
+          "text": "1,600 tests a year",
+          "rationale": "Incorrect. This divides by the price ($25) and ignores the variable cost."
+        },
+        {
+          "id": "c",
+          "text": "8,000 tests a year",
+          "rationale": "Incorrect. This divides by the variable cost ($5)."
+        },
+        {
+          "id": "d",
+          "text": "Any volume, because the price exceeds the reagent cost",
+          "rationale": "Incorrect. Fixed costs must also be covered."
+        }
+      ],
+      "answer": "a",
+      "skill": "Break-even",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-cost-q2",
+      "stem": "An instrument pays back its cost in 3 years of a 5-year life, but its NPV at the lab’s 10% required return is negative. What should the lab conclude?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It does not earn the required return; reject it or renegotiate",
+          "rationale": "Correct. A negative NPV at the required rate means the IRR is below that rate; payback ignores the time value of money."
+        },
+        {
+          "id": "b",
+          "text": "Buy it, because payback is shorter than its life",
+          "rationale": "Incorrect. Payback alone ignores discounting."
+        },
+        {
+          "id": "c",
+          "text": "Its IRR must be above 10%",
+          "rationale": "Incorrect. For a conventional project, negative NPV at 10% means IRR is below 10%."
+        },
+        {
+          "id": "d",
+          "text": "NPV is irrelevant for laboratory equipment",
+          "rationale": "Incorrect. NPV applies to any capital investment."
+        }
+      ],
+      "answer": "a",
+      "skill": "NPV",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-cost-q3",
+      "stem": "In standard cost accounting, the contribution margin per test is:",
+      "options": [
+        {
+          "id": "a",
+          "text": "Price minus variable cost per test",
+          "rationale": "Correct. It is each test’s contribution toward fixed costs, then profit."
+        },
+        {
+          "id": "b",
+          "text": "Price minus fully loaded cost per test",
+          "rationale": "Incorrect in standard usage: that is profit per test. The reviewer’s Ch. 13 uses this definition (see flag)."
+        },
+        {
+          "id": "c",
+          "text": "Fixed cost divided by volume",
+          "rationale": "Incorrect. That is the fixed cost per test."
+        },
+        {
+          "id": "d",
+          "text": "The discount rate at which NPV is zero",
+          "rationale": "Incorrect. That is the IRR."
+        }
+      ],
+      "answer": "a",
+      "skill": "Contribution margin",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch13",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 13, The Business Side of the Lab (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 13,
+          "section": "High-Yield Hits",
+          "items": [
+            3,
+            7,
+            8,
+            14
+          ]
+        },
+        {
+          "chapter": 13,
+          "section": "Exam Traps",
+          "items": [
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "os-cm",
+      "kind": "external",
+      "citation": "Franklin M, Graybeal P, Cooper D. Principles of Accounting, Volume 2: Managerial Accounting. Houston (TX): OpenStax; 2019. Section 3.1, Explain Contribution Margin and Calculate Contribution Margin per Unit, Contribution Margin Ratio, and Total Contribution Margin.",
+      "url": "https://openstax.org/books/principles-managerial-accounting/pages/3-1-explain-contribution-margin-and-calculate-contribution-margin-per-unit-contribution-margin-ratio-and-total-contribution-margin",
+      "consulted": true,
+      "usedFor": "Contribution margin = amount by which selling price exceeds total variable cost per unit; contributes first to fixed costs, then profit."
+    },
+    {
+      "id": "os-be",
+      "kind": "external",
+      "citation": "Franklin M, Graybeal P, Cooper D. Principles of Accounting, Volume 2: Managerial Accounting. Houston (TX): OpenStax; 2019. Section 3.2, Calculate a Break-Even Point in Units and Dollars.",
+      "url": "https://openstax.org/books/principles-managerial-accounting/pages/3-2-calculate-a-break-even-point-in-units-and-dollars",
+      "consulted": true,
+      "usedFor": "Break-even point: all variable and fixed costs recovered; total cost = total revenue; no profit or loss."
+    },
+    {
+      "id": "os-dcf",
+      "kind": "external",
+      "citation": "Franklin M, Graybeal P, Cooper D. Principles of Accounting, Volume 2: Managerial Accounting. Houston (TX): OpenStax; 2019. Section 11.4, Use Discounted Cash Flow Models to Make Capital Investment Decisions; Section 11.2, Evaluate the Payback and Accounting Rate of Return in Capital Investment Decisions.",
+      "url": "https://openstax.org/books/principles-managerial-accounting/pages/11-4-use-discounted-cash-flow-models-to-make-capital-investment-decisions",
+      "consulted": true,
+      "usedFor": "NPV discounts future cash flows at the expected rate of return and compares with the initial investment; positive NPV a potentially good investment; IRR = rate at which NPV = 0, must meet or exceed the required rate; payback computes time to recover the investment without time value (11.2); hurdle rate definition (11.2)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-cm",
+      "text": "Contribution margin = price − variable cost.",
+      "status": "checked",
+      "refs": [
+        "os-cm"
+      ]
+    },
+    {
+      "id": "cl-be",
+      "text": "Break-even definition; volume = fixed ÷ unit contribution margin.",
+      "status": "checked",
+      "refs": [
+        "os-be",
+        "os-cm"
+      ]
+    },
+    {
+      "id": "cl-npv",
+      "text": "NPV, IRR, required rate and payback definitions.",
+      "status": "checked",
+      "refs": [
+        "os-dcf"
+      ]
+    },
+    {
+      "id": "cl-math",
+      "text": "Worked numbers (PV ≈ $95,100, NPV ≈ −$4,900, IRR ≈ 7.7%, payback 3.3 yr; break-even 5,000; fully loaded $20/$13).",
+      "status": "analogy",
+      "note": "Invented example; arithmetic computed by the app author."
+    },
+    {
+      "id": "cl-rank",
+      "text": "NPV > 0 and IRR > required rate agree for conventional projects; ranking conflicts resolved by higher NPV.",
+      "status": "pending",
+      "refs": [
+        "os-dcf"
+      ],
+      "note": "Follows from the IRR definition for a single outflow followed by inflows; the ranking rule is standard finance teaching but not stated in the section consulted."
+    },
+    {
+      "id": "cl-pend",
+      "text": "PSA and analyzer textbook figures; 72-hour rule; DRG/APC; CPT/HCPCS; fraud; capitation; medical necessity/ABN; leases; budgeting; productivity; CLIA competency.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch13"
+      ],
+      "note": "Not taught as facts in this lesson."
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Pay the rent first.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-cm-definition",
+      "issue": "The reviewer (Ch. 13 Hit 3, Number Vault) defines contribution margin as price minus FULLY LOADED cost. Standard managerial accounting defines it as price minus VARIABLE cost; price minus fully loaded cost is profit per test. The lesson teaches the standard definition. See register flag rv-contribution-margin.",
+      "kind": "contradiction",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; costs shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "3 claims checked against the OpenStax Principles of Accounting, Volume 2 (Managerial Accounting) text; 2 pending (NPV/IRR ranking rule; reimbursement and coding content not taught). Worked numbers are invented. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

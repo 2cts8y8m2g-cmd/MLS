@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 99 flags: 75 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 101 flags: 77 verified issues and 24 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -92,6 +92,8 @@ Verified:
 - **Ch. 51 Hit 11:** “relative risk = (a×d)/(b×c)” (that is the odds ratio).
 - **Ch. 51 Hit 6:** HFE penetrance “1–10%” (definition-dependent; eMERGE 24.4% men, 14.0% women diagnosed).
 - **Ch. 12 Hit 2:** ACID Isolation defined as “concurrent transactions behave as sequential” (that is only the serializable level; PostgreSQL defaults to Read Committed).
+- **Ch. 13 Hit 3:** contribution margin defined as price − fully loaded cost (standard definition: price − variable cost).
+- **Ch. 13 Trap 4:** positive NPV said to need a separate IRR check (for a conventional project the two tests agree).
 - **Ch. 25 Hit 1:** acromegaly said to be “diagnosed by” OGTT GH non-suppression (Giustina 2024 consensus: IGF-I > 1.3 × ULN plus clinical signs confirms it; the OGTT is for equivocal results).
 - **Ch. 62 Hit 3:** chlamydiae “can’t make ATP” (Mandel 2024; Cheong 2023: RBs scavenge host ATP, but EBs and C. trachomatis can generate ATP).
 - **Ch. 62 Trap 4:** azithromycin and doxycycline presented as equal first-line chlamydia treatment (CDC 2021: doxycycline recommended; azithromycin alternative).
@@ -201,6 +203,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Mass Spectrometry: Ionization, MRM and Internal Standards (Ch. 5):** 1 pending claim (instrument details, drug ranges, PKU ratio, ambient MS, scan modes; not taught); no open lesson flags; no register flags. Pitt 2009 read via a page-fetch tool.
 - **Testing at the Bedside: Waived Tests, Proficiency Testing and Site Comparisons (Ch. 7):** 1 pending claim (named devices, FDA proposals, POCT connectivity, assay-specific details; not taught); 1 open lesson flag (f-us-only-poct: US CLIA only, Philippine rules not covered); no register flags. Rules checked against eCFR 42 CFR 493.15, 493.35, 493.801 and 493.1281 (2026-10-01 version).
 - **Lab Data That Never Forgets: Audit Trails, ACID and NGS Files (Ch. 12):** 2 pending claims (reviewer’s database-design principles: inactivation, status transformation, CRUD/keys; barcode, cognition and LIS-selection details, not taught); 1 open lesson flag (f-us-only-lis: US CLIA record rules only); 1 register flag (rv-acid-isolation). Checked against 42 CFR 493.1291(k) and 493.1105, the PostgreSQL documentation, and the FASTQ (Cock 2010), SAM/BAM (Li 2009) and VCF (Danecek 2011) papers.
+- **What a Test Costs: Contribution Margin, Break-Even and NPV (Ch. 13):** 2 pending claims (NPV/IRR ranking rule; reimbursement, coding, leases and budgeting, not taught); 1 open lesson flag (f-cm-definition, contradiction); 2 register flags (rv-contribution-margin, rv-npv-irr). Definitions checked against OpenStax Principles of Accounting, Volume 2 (Managerial Accounting), Sections 3.1, 3.2, 11.2 and 11.4; worked numbers are invented.
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
