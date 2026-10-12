@@ -1,0 +1,1578 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-protein-separation-sec-sds-ief",
+  "title": "Separating Proteins: Size-Exclusion, SDS-PAGE and Isoelectric Focusing",
+  "summary": "Learn why large molecules elute first in size-exclusion chromatography, how SDS gives proteins a uniform negative charge so the gel sorts them by mass, and how isoelectric focusing stops each protein at its isoelectric point, including CSF oligoclonal bands.",
+  "domain": "p1-ops",
+  "topic": "ch4",
+  "conceptIds": [
+    "ch4.hit15",
+    "ch4.hit16",
+    "ch4.hit17",
+    "ch4.trap4",
+    "ch4.trap5"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 4,
+        "section": "High-Yield Hits",
+        "items": [
+          15,
+          16,
+          17
+        ]
+      },
+      {
+        "chapter": 4,
+        "section": "Exam Traps",
+        "items": [
+          4,
+          5
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 4 Hits 15, 16 and 17 and Traps 4 and 5. Checked against Hong 2012 (SEC review), Lepedda 2008 (2-DE: IEF by pI, SDS uniform negative charge density, SDS-PAGE by Mr), Mahmood 2012 (smaller proteins travel faster in the gel), Rath 2009 (read via a page-fetch tool; ~1.4 g SDS/g protein, anomalous gel shifting from altered detergent binding), Guan 2015 (acidic proteins appear larger), Frömmel 2018 (IEF: migration to zero net charge; Hb newborn screening) and Schwenkenbecher 2018 (CSF oligoclonal bands by IEF; McDonald 2017). Qualification: the reviewer says SDS-PAGE separates by molecular mass “alone”; the sources show this assumes consistent SDS binding and that some proteins migrate anomalously (register flag rv-sds-page-mass-anomalies). Not taught: HPLC pressure and HbA1c run time (Hit 18), the IEF 0.02 pH-unit resolution figure, OCB pattern types."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Predict the elution order of proteins in size-exclusion chromatography and explain why large molecules elute first.",
+    "Explain how SDS removes charge differences so that SDS-PAGE separates proteins by mass, and name its limits.",
+    "Define the isoelectric point and describe how isoelectric focusing is used for CSF oligoclonal bands."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three separations, one mix-up",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a trainee runs the same protein mixture three ways — (1) a size-exclusion column, (2) an SDS-PAGE gel, (3) an isoelectric focusing gel — and writes in her notes: “Small proteins come off the column first, SDS-PAGE sorts by charge, and in IEF proteins stop where they carry the most charge.” Question token: “Which notes are wrong?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "A trainee runs one protein mixture three ways: a size-exclusion column, an SDS gel, and an isoelectric focusing gel."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "Her notes say: small proteins leave the column first, the SDS gel sorts by charge, and focusing stops proteins where they carry the most charge."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which of those three notes are wrong?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Size-exclusion",
+            "lines": [
+              "“Small first”"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "2 SDS-PAGE",
+            "lines": [
+              "“Sorts by charge”"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "3 Isoelectric focusing",
+            "lines": [
+              "“Stops at most charge”"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.5,
+              "opacity": 0
+            },
+            {
+              "t": 6.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 460,
+            "w": 640,
+            "label": "Which notes are wrong?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Size-exclusion: big ones skip the pores",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic column of porous beads (Hong 2012). Molecules too large to enter the pores travel only through the space between beads and elute first; smaller molecules enter the pores, spend longer in the column and elute later, in order of decreasing size. Retention factor K_D runs from 0 (fully excluded) to 1 (full access to the pores). The column sorts by size in solution (Stokes radius), which does not track molecular weight exactly, because protein shapes differ. Example elution order from the review’s figure: thyroglobulin → IgG → albumin → myoglobin → uracil.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Size-exclusion chromatography, also called gel filtration, packs a column with porous beads. Molecules too big to enter the pores flow around the beads and come out first."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Smaller molecules wander into the pores, take a longer path, and come out later, so proteins elute in order of decreasing size."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "One example run: thyroglobulin first, then IgG, then albumin, then myoglobin, and the tiny molecule uracil last."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Strictly, the column sorts by size in solution, the Stokes radius. Because proteins differ in shape, that size does not match molecular weight exactly."
+        }
+      ],
+      "objects": [
+        {
+          "id": "col",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 440,
+            "h": 230,
+            "tone": "b",
+            "title": "Porous-bead column (schematic)",
+            "lines": [
+              "Too big for pores → elutes first",
+              "Small: enters pores → elutes last",
+              "K_D 0 = excluded · 1 = full access"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ord",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 180,
+            "tone": "good",
+            "title": "Example elution order",
+            "lines": [
+              "Thyroglobulin → IgG → albumin",
+              "→ myoglobin → uracil"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "stokes",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 450,
+            "w": 420,
+            "label": "Sorts by Stokes radius, not exact MW",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "SDS-PAGE: same sign, sorted by size",
+      "start": 60,
+      "end": 104,
+      "altText": "SDS-PAGE card. Sample is heated in buffer containing sodium dodecyl sulfate (SDS), an anionic detergent; protocols may add a reducing agent such as DTT. SDS binds the unfolded protein (maximum binding is commonly quoted at about 1.4 g SDS per g protein) and gives a uniform negative charge density, so every protein migrates toward the positive electrode. The polyacrylamide gel acts as a sieve: smaller proteins travel more easily and faster; separation is by relative mass. Contrast arrow: on an SEC column big molecules leave first, in a gel small molecules run farthest. Caveat card: mass estimation assumes consistent SDS binding; membrane proteins, very acidic proteins and glycoproteins can migrate anomalously.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "In SDS-PAGE the sample is heated with sodium dodecyl sulfate, a negatively charged detergent, and protocols may add a reducing agent such as DTT."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "SDS coats the unfolded protein, with maximum binding commonly quoted at about one point four grams per gram of protein, giving every protein a uniform negative charge density. All of them move toward the positive electrode."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 92,
+          "text": "Charge no longer separates them. The gel mesh does: smaller proteins slip through faster, so the gel sorts by mass. Notice the flip: on a size column big ones finish first, in a gel small ones run farthest."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "The mass reading assumes every protein binds SDS the same way. Membrane proteins, very acidic proteins and glycoproteins can run at an apparent size that differs from their true mass."
+        }
+      ],
+      "objects": [
+        {
+          "id": "sds",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "b",
+            "title": "SDS + heat + reducing agent",
+            "lines": [
+              "Anionic detergent unfolds protein",
+              "Up to ~1.4 g SDS/g (often quoted)",
+              "Uniform negative charge → anode"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "gel",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "Gel = sieve",
+            "lines": [
+              "Small proteins run farthest",
+              "Separation by relative mass"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "flip",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "label": "Column: big first · Gel: small farthest",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 26,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 27.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cav",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Assumes equal SDS binding",
+            "lines": [
+              "Membrane / acidic proteins shift",
+              "Glycoproteins can run slower"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Isoelectric focusing and the CSF gel",
+      "start": 104,
+      "end": 144,
+      "altText": "IEF card: a pH gradient is set up in the gel; each protein migrates until it reaches the pH at which its net charge is zero — its isoelectric point (pI) — and stops there, focusing into a sharp band. Two-dimensional electrophoresis card: IEF by pI first, then SDS-PAGE by relative mass at right angles. Clinical uses card: hemoglobin variants in newborn screening; CSF oligoclonal bands — paired CSF and serum are run, and bands found only in CSF indicate intrathecal IgG synthesis, the gold-standard marker that the 2017 McDonald criteria accept as a substitute for dissemination in time in multiple sclerosis. Hook answer card: all three notes are wrong.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Isoelectric focusing builds a pH gradient across the gel. Each protein moves until it reaches the pH where its net charge is zero, its isoelectric point, and there it stops in a sharp band."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 122,
+          "text": "Two-dimensional electrophoresis chains the two methods: focusing by isoelectric point first, then SDS-PAGE by mass at right angles."
+        },
+        {
+          "id": "l3",
+          "start": 122,
+          "end": 134,
+          "text": "Clinical labs use focusing for hemoglobin variants in newborn screening and for cerebrospinal fluid. Paired CSF and serum are run side by side, and bands found only in the CSF show IgG made inside the nervous system, supporting multiple sclerosis."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook: all three notes were wrong. Big proteins leave the column first, SDS-PAGE sorts by mass, and focusing stops proteins where their net charge is zero."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ief",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Isoelectric focusing",
+            "lines": [
+              "pH gradient in the gel",
+              "Stops at pI: net charge zero"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "twod",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 410,
+            "w": 440,
+            "label": "2-D: pI first, then mass",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "csf",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "Clinical uses",
+            "lines": [
+              "Hemoglobin variants (newborns)",
+              "CSF-only bands = intrathecal IgG"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Hook answer: all wrong",
+            "lines": [
+              "SEC: big first",
+              "SDS-PAGE: by mass",
+              "IEF: stops at zero charge"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “In size-exclusion chromatography small molecules elute first because they are faster” (✓ small molecules enter the pores and are delayed; large ones elute first); “SDS-PAGE separates proteins by charge” (✓ SDS gives a uniform negative charge density; the gel sieves by mass); “At its isoelectric point a protein migrates fastest” (✓ at the pI net charge is zero, so it stops).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: in size-exclusion, small molecules come out first because they are faster. No: they get lost in the pores. Large molecules elute first."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: SDS-PAGE separates by charge. No: SDS gives every protein the same negative charge density, so the gel sorts by mass."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: at its isoelectric point a protein moves fastest. No: its net charge is zero there, so it stops moving."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “SEC: small molecules elute first.”",
+            "lines": [
+              "✓ Small enter pores; large elute first"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “SDS-PAGE separates by charge.”",
+            "lines": [
+              "✓ Uniform negative charge; sorted by mass"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “At its pI a protein moves fastest.”",
+            "lines": [
+              "✓ Net charge zero: it stops"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Highway, mesh, parking spot",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “The SEC column is a town with side streets: big trucks can’t turn in, so they take the highway and arrive first. The SDS gel is a mesh fence: everyone wears the same negative jersey, and the small runners slip through farthest. IEF is a parking garage on a pH slope: each protein parks where its charge is zero.” Tokens: highway = SEC · mesh = SDS-PAGE · parking spot = pI. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: the size column is a town with side streets. Big trucks cannot turn in, take the highway, and arrive first. The SDS gel is a mesh fence where everyone wears the same negative jersey, and small runners slip through farthest. Focusing is a sloping car park: each protein parks where its charge is zero."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: the column sorts by shape-dependent size, not exact weight, and charge interactions with the beads can shift peaks; SDS binding is not equal for every protein; and modifications such as phosphorylation can shift the isoelectric point or the apparent mass."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Highway, mesh, parking spot",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Highway = SEC, big first",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Mesh = SDS gel, small far",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Parking = pI, charge 0",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "SEC sorts by Stokes radius; bead charge shifts peaks",
+              "SDS binding is not equal for every protein",
+              "Modifications can shift pI or apparent mass"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Size-exclusion: large molecules excluded from pores elute first · SDS-PAGE: uniform negative charge, gel sieves by mass, small run farthest”, “IEF: protein stops at its pI (net charge zero) · CSF-only bands = intrathecal IgG synthesis”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "In size-exclusion chromatography the largest molecules elute first, in SDS-PAGE a uniform negative coat of detergent leaves the gel to sort proteins by mass, and in isoelectric focusing each protein stops at the pH where its net charge is zero."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "SEC: large first · SDS-PAGE: same charge, sorted by mass",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "IEF: stops at pI (net charge 0) · CSF-only bands = intrathecal IgG",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: three ways to sort proteins. A size column lets big molecules through first because they cannot enter the beads’ pores. An SDS gel coats every protein with the same negative detergent, so only size decides how far it runs, with small ones running farthest. A focusing gel has a pH slope, and each protein stops where its charge is zero. Scientific terms: size-exclusion chromatography (SEC, gel filtration), retention factor K_D, Stokes radius, sodium dodecyl sulfate (SDS), polyacrylamide gel electrophoresis (PAGE), reducing agent (DTT), relative mass (Mr), isoelectric point (pI), isoelectric focusing (IEF), two-dimensional electrophoresis (2-DE), oligoclonal bands (OCB), intrathecal IgG synthesis.",
+    "why": "Each method exploits a different property: size in solution (SEC), mass after charge is equalised (SDS-PAGE), and intrinsic charge versus pH (IEF). Knowing which property is used predicts the order of separation and explains common pitfalls.",
+    "measure": "SEC: K_D from 0 (excluded, elutes first) to 1 (full pore access, elutes last); example order thyroglobulin, IgG, albumin, myoglobin, uracil. SDS-PAGE: maximum SDS binding commonly quoted at about 1.4 g SDS per g protein, uniform negative charge density, smaller proteins migrate faster. IEF: protein stops at the pH where net charge is zero. CSF: paired CSF and serum; CSF-specific bands indicate intrathecal IgG synthesis.",
+    "differs": "SEC (big first, no gel mesh, sorts by Stokes radius) vs SDS-PAGE (small farthest, sorts by mass after SDS) vs IEF (sorts by pI, native charge); 2-DE combines IEF then SDS-PAGE.",
+    "examAngle": "Expect: which protein elutes first from a size-exclusion column, what SDS does, what happens to a protein at its pI, or which method detects CSF oligoclonal bands."
+  },
+  "comparisons": [
+    {
+      "id": "sec-vs-sdspage",
+      "title": "Size-exclusion column vs SDS-PAGE gel",
+      "left": {
+        "label": "Size-exclusion",
+        "points": [
+          "Large molecules excluded from pores, elute first",
+          "Sorts by size in solution (Stokes radius)"
+        ]
+      },
+      "right": {
+        "label": "SDS-PAGE",
+        "points": [
+          "Small proteins run farthest through the gel mesh",
+          "SDS equalises charge, so sorts by mass"
+        ]
+      },
+      "distinguisher": "Pores the molecule can enter (column) vs a mesh it must push through (gel)."
+    },
+    {
+      "id": "sds-vs-ief",
+      "title": "SDS-PAGE vs isoelectric focusing",
+      "left": {
+        "label": "SDS-PAGE",
+        "points": [
+          "Charge masked by SDS",
+          "Separation by relative mass"
+        ]
+      },
+      "right": {
+        "label": "IEF",
+        "points": [
+          "Native charge used in a pH gradient",
+          "Protein stops at its pI"
+        ]
+      },
+      "distinguisher": "Charge removed (SDS) vs charge exploited (IEF)."
+    }
+  ],
+  "mnemonic": {
+    "text": "The SEC column is a town with side streets: big trucks can’t turn in, so they take the highway and arrive first. The SDS gel is a mesh fence: everyone wears the same negative jersey, and the small runners slip through farthest. IEF is a parking garage on a pH slope: each protein parks where its charge is zero.",
+    "explanation": "Highway = large first in SEC; mesh = SDS-PAGE by mass; parking spot = pI.",
+    "limitation": "SEC sorts by shape-dependent Stokes radius and bead charge interactions can shift peaks; SDS binding is not equal for every protein; post-translational modifications can shift pI or apparent mass."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Column and gel drawings are schematic.",
+    "The example elution order comes from one review figure; real runs depend on the column."
+  ],
+  "takeaway": "In size-exclusion chromatography the largest molecules elute first, in SDS-PAGE a uniform negative coat of detergent leaves the gel to sort proteins by mass, and in isoelectric focusing each protein stops at the pH where its net charge is zero.",
+  "questions": [
+    {
+      "id": "ops-psep-q1",
+      "stem": "A mixture of thyroglobulin, IgG and myoglobin is run on a size-exclusion column. Which elutes first?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Thyroglobulin",
+          "rationale": "Correct. It is the largest, is excluded from the pores and travels only between the beads."
+        },
+        {
+          "id": "b",
+          "text": "Myoglobin",
+          "rationale": "Incorrect. The smallest protein enters the pores and elutes last of the three."
+        },
+        {
+          "id": "c",
+          "text": "IgG",
+          "rationale": "Incorrect. IgG is intermediate in size and elutes between thyroglobulin and myoglobin."
+        },
+        {
+          "id": "d",
+          "text": "All three together, because SEC separates by charge",
+          "rationale": "Incorrect. SEC separates by size in solution, not by charge."
+        }
+      ],
+      "answer": "a",
+      "skill": "SEC elution order",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-psep-q2",
+      "stem": "What is the main role of sodium dodecyl sulfate (SDS) in SDS-PAGE?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It unfolds proteins and gives them a uniform negative charge density, so the gel separates them by mass",
+          "rationale": "Correct. With charge differences masked, migration through the gel mesh depends on size."
+        },
+        {
+          "id": "b",
+          "text": "It gives each protein a positive charge so it moves to the negative electrode",
+          "rationale": "Incorrect. SDS is anionic; coated proteins move toward the positive electrode."
+        },
+        {
+          "id": "c",
+          "text": "It creates the pH gradient used to separate proteins by isoelectric point",
+          "rationale": "Incorrect. That is isoelectric focusing, which uses a pH gradient."
+        },
+        {
+          "id": "d",
+          "text": "It makes large proteins migrate fastest",
+          "rationale": "Incorrect. In the gel, smaller proteins travel faster than larger ones."
+        }
+      ],
+      "answer": "a",
+      "skill": "SDS-PAGE principle",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ops-psep-q3",
+      "stem": "During isoelectric focusing, what happens when a protein reaches the pH equal to its isoelectric point?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Its net charge is zero, so it stops migrating and focuses into a band",
+          "rationale": "Correct. The isoelectric point is the pH at which the net charge is zero."
+        },
+        {
+          "id": "b",
+          "text": "It carries maximum charge and migrates fastest",
+          "rationale": "Incorrect. Charge is zero at the pI, so migration stops."
+        },
+        {
+          "id": "c",
+          "text": "It binds SDS and moves to the anode",
+          "rationale": "Incorrect. SDS is used in SDS-PAGE, not in the focusing step."
+        },
+        {
+          "id": "d",
+          "text": "It enters the pores of the beads and is delayed",
+          "rationale": "Incorrect. That describes small molecules in size-exclusion chromatography."
+        }
+      ],
+      "answer": "a",
+      "skill": "Isoelectric point",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch4",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 4, How Analyzers Work (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 4,
+          "section": "High-Yield Hits",
+          "items": [
+            15,
+            16,
+            17
+          ]
+        },
+        {
+          "chapter": 4,
+          "section": "Exam Traps",
+          "items": [
+            4,
+            5
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "hong2012",
+      "kind": "external",
+      "citation": "Hong P, Koza S, Bouvier ES. Size-Exclusion Chromatography for the Analysis of Protein Biotherapeutics and their Aggregates. J Liq Chromatogr Relat Technol. 2012;35(20):2923-2950. doi:10.1080/10826076.2012.743724",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3556795/",
+      "consulted": true,
+      "usedFor": "Largest proteins excluded from the pores elute first, then in order of decreasing size; K_D 0 (excluded) to 1 (full access); separation by Stokes radius, which does not correlate exactly with MW; example elution order (thyroglobulin, IgG, BSA, myoglobin, uracil); ion exclusion causes earlier and adsorption later elution than predicted; gel-filtration as a synonym."
+    },
+    {
+      "id": "lepedda2008",
+      "kind": "external",
+      "citation": "Lepedda AJ, Formato M. Applications of Two-Dimensional Electrophoresis Technology to the Study of Atherosclerosis. EJIFCC. 2008;19(3):146-159.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4975261/",
+      "consulted": true,
+      "usedFor": "2-DE: IEF separates by isoelectric point in a pH gradient, then SDS-PAGE by relative mass; anionic detergent SDS gives a uniform negative charge density; DTT added to reduce (and iodoacetamide to alkylate) sulfhydryl groups; post-translational modifications shift pI or Mr."
+    },
+    {
+      "id": "mahmood2012",
+      "kind": "external",
+      "citation": "Mahmood T, Yang PC. Western blot: technique, theory, and trouble shooting. N Am J Med Sci. 2012;4(9):429-434. doi:10.4103/1947-2714.100998",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3456489/",
+      "consulted": true,
+      "usedFor": "Denatured proteins carry a negative charge and travel toward the positive electrode; samples heated (100 °C, 5 min) before loading; in the resolving gel smaller proteins travel more easily and rapidly than larger ones; separation by molecular weight."
+    },
+    {
+      "id": "rath2009",
+      "kind": "external",
+      "citation": "Rath A, Glibowicka M, Nadeau VG, Chen G, Deber CM. Detergent binding explains anomalous SDS-PAGE migration of membrane proteins. Proc Natl Acad Sci U S A. 2009;106(6):1760-1765. doi:10.1073/pnas.0813167106",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2644111/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (Europe PMC full text unavailable). Maximum SDS binding generally quoted at 1.4 g SDS/g protein; MW estimation requires a consistent amount of detergent binding among proteins; full-length membrane proteins show gel shifts of about −46% to +48%; in CFTR hairpin models gel shifts tracked altered SDS loading, indicating anomalous migration can arise from altered detergent binding."
+    },
+    {
+      "id": "guan2015",
+      "kind": "external",
+      "citation": "Guan Y, Zhu Q, Huang D, Zhao S, Jan Lo L, Peng J. An equation to estimate the difference between theoretically predicted and SDS PAGE-displayed molecular weights for an acidic peptide. Sci Rep. 2015;5:13370. doi:10.1038/srep13370",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4550835/",
+      "consulted": true,
+      "usedFor": "Acidic proteins can display an SDS-PAGE MW larger than predicted (difference correlates with acidic amino acid content); glycoproteins migrate faster after glycosidase treatment (glycosylation slows migration)."
+    },
+    {
+      "id": "frommel2018",
+      "kind": "external",
+      "citation": "Frömmel C. Newborn Screening for Sickle Cell Disease and Other Hemoglobinopathies: A Short Review on Classical Laboratory Methods-Isoelectric Focusing, HPLC, and Capillary Electrophoresis. Int J Neonatal Screen. 2018;4(4):39. doi:10.3390/ijns4040039",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7548892/",
+      "consulted": true,
+      "usedFor": "IEF separates hemoglobin species by isoelectric point; variants migrate in a pH gradient to the point where their net charge becomes zero; IEF used in newborn hemoglobinopathy screening."
+    },
+    {
+      "id": "schwenkenbecher2018",
+      "kind": "external",
+      "citation": "Schwenkenbecher P, Konen FF, Wurster U, et al. The Persisting Significance of Oligoclonal Bands in the Dawning Era of Kappa Free Light Chains for the Diagnosis of Multiple Sclerosis. Int J Mol Sci. 2018;19(12):E3796. doi:10.3390/ijms19123796",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6320811/",
+      "consulted": true,
+      "usedFor": "CSF-specific oligoclonal bands detected by IEF of paired CSF and serum; OCB as gold standard for intrathecal IgG synthesis; McDonald 2017 accepts OCB as a substitute for dissemination in time."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-sec",
+      "text": "SEC: large molecules excluded from pores elute first, smaller later; K_D range; Stokes radius vs MW; example order; charge interactions shift elution.",
+      "status": "checked",
+      "refs": [
+        "hong2012"
+      ]
+    },
+    {
+      "id": "cl-sds",
+      "text": "SDS is anionic, gives a uniform negative charge density, proteins move to the anode, a reducing agent such as DTT may be added; gel separates by relative mass with smaller proteins faster; maximum binding commonly quoted at ~1.4 g SDS/g protein; sample heated before loading.",
+      "status": "checked",
+      "refs": [
+        "lepedda2008",
+        "mahmood2012",
+        "rath2009"
+      ]
+    },
+    {
+      "id": "cl-sds-anom",
+      "text": "Mass estimation assumes consistent SDS binding; membrane, very acidic and glycosylated proteins can migrate anomalously.",
+      "status": "checked",
+      "refs": [
+        "rath2009",
+        "guan2015"
+      ]
+    },
+    {
+      "id": "cl-ief",
+      "text": "IEF: protein stops at the pH where net charge is zero (pI); 2-DE combines IEF and SDS-PAGE; modifications can shift pI or Mr; Hb variants in newborn screening.",
+      "status": "checked",
+      "refs": [
+        "frommel2018",
+        "lepedda2008"
+      ]
+    },
+    {
+      "id": "cl-ocb",
+      "text": "CSF oligoclonal bands by IEF of paired CSF and serum; CSF-specific bands indicate intrathecal IgG synthesis; McDonald 2017 dissemination-in-time substitute.",
+      "status": "checked",
+      "refs": [
+        "schwenkenbecher2018"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "HPLC ~6000 PSI and HbA1c in <5 min (Hit 18); IEF pI resolution 0.02 pH units; electrophoresis voltage and serum load figures; OCB pattern types.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch4"
+      ],
+      "note": "Not taught in this lesson."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; column and gel drawings schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Highway, mesh, parking spot.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-sds-mass-alone",
+      "issue": "The reviewer states SDS-PAGE separates by molecular mass “alone”. Open sources show this assumes a consistent amount of SDS binding: membrane proteins (gel shifts of roughly −46% to +48% for full-length proteins), highly acidic proteins and glycoproteins can migrate at an apparent mass different from their true mass. The lesson teaches mass-based separation with this caveat.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-sec-stokes",
+      "issue": "Size-exclusion separates by size in solution (Stokes radius), which does not correlate exactly with molecular weight, and ionic or hydrophobic interactions with the beads can make proteins elute earlier or later than size predicts. The reviewer’s “large molecules elute first” is correct as the ideal rule.",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No gel or chromatogram images; methods shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 factual claims checked against Hong 2012, Lepedda 2008, Mahmood 2012, Rath 2009 (read via a page-fetch tool), Guan 2015, Frömmel 2018 and Schwenkenbecher 2018; 1 pending (HPLC pressure, IEF resolution and other figures not taught). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
