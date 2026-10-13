@@ -1,0 +1,1579 @@
+{
+  "schemaVersion": 1,
+  "id": "chem-glucose-340nm-poct-pitfalls",
+  "title": "Glucose at 340 nm vs the Bedside Meter: Haematocrit and Other Strip Pitfalls",
+  "summary": "Learn why NADH absorbance at 340 nm tracks the hexokinase glucose method, how bedside meters differ, and how haematocrit, oxygen, other sugars, triglycerides, uric acid and acetaminophen push meter readings high or low.",
+  "domain": "p2-chem",
+  "topic": "ch28",
+  "conceptIds": [
+    "ch28.hit3",
+    "ch28.hit9",
+    "ch28.trap4"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 28,
+        "section": "High-Yield Hits",
+        "items": [
+          3,
+          9
+        ]
+      },
+      {
+        "chapter": 28,
+        "section": "Exam Traps",
+        "items": [
+          4
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 28 Hits 3 and 9 and Trap 4. Checked against Wolfe 2024 (NADH vs NAD+ absorbance), Lacorn 2025 (hexokinase/G6PD reaction read at 340 nm), Finfer 2013, Ashar 2026, Erbach 2016 and Ginsberg 2009 (the last two read via a page-fetch tool) and Calhoun 2018. Qualifications: oxygen interference applies to glucose oxidase strips (rv-ch28-poct-oxygen-enzyme); acetaminophen interference is system-dependent and a newer CGM was designed to resist it (rv-ch28-cgm-acetaminophen); the reviewer’s mechanism for the haematocrit effect is simplified (rv-ch28-hct-mechanism). Not taught as fact: NADPH at 340 nm, 340 nm-decrease assays (ammonia, urea, ALT, AST), CK, lactate and triglyceride variants, tetrazolium/formazan, and calibrating personal meters against lab values. The NCBI Bookshelf StatPearls “Hexokinase Method” page was blocked (browser check / 403) and was not read."
+  },
+  "prerequisites": [
+    "ch4.hit1",
+    "ch17.hit7"
+  ],
+  "objectives": [
+    "Explain why the hexokinase glucose method is read as an absorbance increase at 340 nm.",
+    "Predict the direction of the haematocrit effect on a bedside glucose meter.",
+    "Match oxygen, other sugars, triglycerides, uric acid and acetaminophen interference to the strip chemistry and direction of error."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "A meter reads 300",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a severely anaemic inpatient (haematocrit 22%) has a bedside fingerstick glucose of 300 mg/dL. Two pathways on screen: the meter strip (whole blood, enzyme electrode) and the central laboratory analyser (plasma, hexokinase, light at 340 nm). Question token: “Treat now, or confirm first?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Invented case: a severely anaemic patient, haematocrit twenty-two percent, has a bedside glucose meter reading of three hundred."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "Two very different measurements could answer the question: the meter strip at the bedside, and the laboratory analyser reading light at three hundred and forty nanometres."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Should you treat the number now, or confirm it first?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 150,
+            "tone": "warn",
+            "title": "Anaemic inpatient",
+            "lines": [
+              "Haematocrit 22%",
+              "Meter: 300 mg/dL"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "meter",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "h": 130,
+            "tone": "b",
+            "title": "Bedside meter",
+            "lines": [
+              "Whole blood · enzyme strip"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lab",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 400,
+            "w": 420,
+            "h": 130,
+            "tone": "a",
+            "title": "Laboratory analyser",
+            "lines": [
+              "Plasma · hexokinase · 340 nm"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "label": "Treat now, or confirm first?",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The laboratory reads glucose at 340 nm",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic spectrum card: the reduced cofactor NADH absorbs strongly at 340 nm; the oxidised form NAD+ does not absorb at 340 nm (both absorb at 260 nm). Reaction card: glucose + ATP → glucose-6-phosphate (hexokinase); glucose-6-phosphate + NAD+ → 6-phosphogluconate + NADH (glucose-6-phosphate dehydrogenase). NADH formed is equimolar to glucose converted, so absorbance at 340 nm RISES in proportion to glucose. Reference card: a central-laboratory hexokinase method on plasma is one of the reference methods bedside meters are checked against.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Start with the light. The reduced cofactor, NADH, absorbs strongly at three hundred and forty nanometres. Its oxidised form, NAD plus, does not absorb there."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 42,
+          "text": "In the hexokinase method, hexokinase and ATP turn glucose into glucose-6-phosphate. Then glucose-6-phosphate dehydrogenase oxidises it, reducing the cofactor to NADH."
+        },
+        {
+          "id": "n3",
+          "start": 42,
+          "end": 50,
+          "text": "One NADH is made for each glucose converted, so absorbance at three hundred and forty rises in proportion to the glucose."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "A central-laboratory hexokinase method is one of the reference methods that bedside meters are checked against."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cof",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "340 nm",
+            "lines": [
+              "NADH absorbs strongly",
+              "NAD+ does not"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rx",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "Hexokinase method",
+            "lines": [
+              "Glucose + ATP → G6P (hexokinase)",
+              "G6P + NAD+ → NADH (G6PD)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rise",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "label": "1 glucose → 1 NADH → A340 rises",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ref",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "h": 130,
+            "tone": "warn",
+            "title": "Reference method",
+            "lines": [
+              "Meters checked against it"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "The meter reads whole blood",
+      "start": 60,
+      "end": 104,
+      "altText": "Meter card: a strip enzyme (glucose oxidase or glucose dehydrogenase) passes electrons to an electrode; the sample is capillary whole blood. Plasma card: venous plasma glucose is about 10–15% higher than whole-blood glucose, so most meters convert to a plasma-equivalent value using correction factors; many meters are still affected by haematocrit. Haematocrit card: low haematocrit (below about 35%) tends to give falsely HIGH readings; high haematocrit gives falsely LOW readings. Red cells carry their own glucose and can block the electrode or enzyme. Example: true glucose 80 mg/dL at haematocrit 0.25 → positive bias up to about 18 mg/dL. Meters that correct for haematocrit are less susceptible.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "The meter works differently. A strip enzyme, glucose oxidase or glucose dehydrogenase, passes electrons from glucose to an electrode, and the sample is whole blood, not plasma."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 80,
+          "text": "Plasma glucose runs about ten to fifteen percent higher than whole-blood glucose, so meters convert to a plasma-equivalent value using correction factors."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 94,
+          "text": "Even so, many meters are still affected by haematocrit. Low haematocrit, below about thirty-five percent, tends to read falsely high; high haematocrit reads falsely low. Red cells carry glucose of their own, and they can block the electrode or the enzyme."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "One consensus review gives an example: at a true glucose of eighty and a haematocrit of zero point two five, the bias can reach about plus eighteen. Meters that correct for haematocrit are less susceptible."
+        }
+      ],
+      "objects": [
+        {
+          "id": "strip",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Meter strip",
+            "lines": [
+              "GOx or GDH → electrode",
+              "Whole blood"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pl",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Plasma vs whole blood",
+            "lines": [
+              "Plasma ~10–15% higher",
+              "Meter converts"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hct",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 410,
+            "w": 440,
+            "h": 190,
+            "tone": "warn",
+            "title": "Haematocrit effect",
+            "lines": [
+              "Low Hct → falsely HIGH",
+              "High Hct → falsely LOW",
+              "RBC glucose; cells block electrode"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 32,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ex",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "label": "80 mg/dL at Hct 0.25 → up to +18",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "What else fools a strip",
+      "start": 104,
+      "end": 144,
+      "altText": "Interference table. Glucose oxidase strips: oxygen competes with the mediator for electrons — high pO2 (patient on oxygen) → falsely low; low pO2 → falsely high. Glucose dehydrogenase strips: little affected by oxygen, but other sugars (galactose, xylose, maltose) can compete. Icodextrin from peritoneal dialysis can raise readings by more than 100 mg/dL and has been reported with both strip types. Any electrochemical strip: very high triglycerides take up volume → falsely low; very high uric acid oxidised at the electrode → falsely high; acetaminophen can give falsely high readings in some electrochemical meters and older continuous glucose monitors; hypotension with poor perfusion can lower capillary glucose. Hook answer card: anaemia pushes a meter high — confirm with a laboratory plasma glucose before acting; one evaluation concludes point-of-care glucose suits monitoring rather than definitive diagnosis.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Glucose oxidase strips are sensitive to oxygen, which competes for the electrons. A patient on oxygen can read falsely low; a very low oxygen tension can read falsely high."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Glucose dehydrogenase strips are little affected by oxygen, but other sugars such as galactose, xylose and maltose can compete. Icodextrin from peritoneal dialysis can raise readings by more than one hundred, and has been reported with both strip types."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Across strip types: very high triglycerides take up volume and read low; very high uric acid is oxidised at the electrode and reads high; acetaminophen reads high in some systems; and poor perfusion lowers capillary glucose."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook. Anaemia pushes the meter high, so confirm with a laboratory plasma glucose before treating. Bedside glucose is mainly a monitoring tool, not a definitive diagnosis."
+        }
+      ],
+      "objects": [
+        {
+          "id": "gox",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Glucose oxidase",
+            "lines": [
+              "High O₂ → falsely low",
+              "Low O₂ → falsely high"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "gdh",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Glucose dehydrogenase",
+            "lines": [
+              "Little O₂ effect",
+              "Other sugars compete"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "any",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "h": 210,
+            "tone": "warn",
+            "title": "Any strip",
+            "lines": [
+              "Triglycerides → low",
+              "Uric acid → high",
+              "Acetaminophen → high (some)",
+              "Poor perfusion → low"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Hook answer",
+            "lines": [
+              "Anaemia → meter reads high",
+              "Confirm in the laboratory"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “An anaemic patient’s meter reading of 300 is true hyperglycaemia” (✓ low haematocrit tends to read falsely high — confirm with a laboratory plasma glucose); “Supplemental oxygen affects every meter” (✓ oxygen interferes with glucose oxidase strips; dehydrogenase strips are little affected); “Lipaemia makes a meter read high” (✓ very high triglycerides take up volume and give falsely LOW meter readings).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: an anaemic patient’s meter reading of three hundred is true hyperglycaemia. No: low haematocrit tends to read falsely high, so confirm in the laboratory."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: supplemental oxygen affects every meter. No: oxygen interferes with glucose oxidase strips; dehydrogenase strips are little affected."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: lipaemia makes the meter read high. No: very high triglycerides take up volume and give falsely low readings."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Anaemic + meter 300 = true high.”",
+            "lines": [
+              "✓ Low Hct reads high; confirm in lab"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Oxygen affects every meter.”",
+            "lines": [
+              "✓ Glucose oxidase strips, not GDH"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Lipaemia makes a meter read high.”",
+            "lines": [
+              "✓ Triglycerides take volume → low"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Crowded strip, quiet signal",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Crowded strip, quiet signal; empty strip, loud signal” — many red cells (high haematocrit) → meter reads LOW; few red cells (anaemia) → meter reads HIGH. Second token: “340 lights up when NADH is made” for the hexokinase method. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: crowded strip, quiet signal; empty strip, loud signal. Many red cells, the meter reads low. Few red cells, the meter reads high. And in the laboratory, three-forty lights up when NADH is made."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: red cells act through several mechanisms, not just crowding; haematocrit-correcting meters shrink the effect; and oxygen, sugars and drugs push readings either way regardless of haematocrit."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Crowded strip, quiet signal",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "High Hct → low",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Low Hct → high",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "340 up = NADH made",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Several mechanisms, not just crowding",
+              "Hct-correcting meters reduce it",
+              "O₂, sugars, drugs act independently"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Laboratory: hexokinase makes NADH → absorbance rises at 340 nm”, “Meter: low haematocrit reads high, high haematocrit reads low → confirm in the laboratory”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "The laboratory measures glucose as a rise in NADH absorbance at 340 nanometres, while a bedside meter reads whole blood and can be fooled by haematocrit, oxygen, sugars and drugs, so confirm a surprising meter value in the laboratory."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Lab: hexokinase → NADH → A340 rises",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Meter: low Hct high · high Hct low → confirm in lab",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: the laboratory turns glucose into a light-absorbance signal — each glucose molecule makes one molecule that absorbs ultraviolet light at 340 nm. A bedside meter instead runs whole blood over an enzyme strip that makes a tiny current, and the number of red cells, the oxygen level and some sugars and drugs can push that current up or down. Scientific terms: NADH/NAD+, absorbance at 340 nm, hexokinase, glucose-6-phosphate dehydrogenase (G6PD), glucose oxidase (GOx), glucose dehydrogenase (GDH), electrochemical biosensor, haematocrit (Hct), plasma-equivalent glucose, icodextrin, continuous glucose monitor (CGM).",
+    "why": "NADH absorbs at 340 nm and NAD+ does not, so the NADH made in the coupled hexokinase/G6PD reaction measures glucose directly. Meters measure whole blood and convert to plasma-equivalent values, yet many remain affected by haematocrit; red cells contain glucose and can block the electrode or enzyme. Oxygen competes with the mediator on glucose oxidase strips; other sugars can react on dehydrogenase strips; triglycerides take up volume; uric acid and acetaminophen can be oxidised at the electrode.",
+    "measure": "Hexokinase method: NADH formed is equimolar to glucose, read at 340 nm. Plasma glucose is about 10–15% higher than whole-blood glucose. Haematocrit below about 35% tends to give too-high meter readings; high haematocrit too-low readings (example: up to +18 mg/dL at true 80 mg/dL and Hct 0.25). GOx strips: high pO2 → low, low pO2 → high. Icodextrin can raise readings by more than 100 mg/dL.",
+    "differs": "Laboratory hexokinase (plasma, absorbance rise at 340 nm, a reference method) vs bedside meter (whole blood, electrochemical, interference-prone); glucose oxidase (oxygen-sensitive) vs glucose dehydrogenase (little oxygen effect, other-sugar interference).",
+    "examAngle": "Expect: the direction of meter error in anaemia or polycythaemia, which strip chemistry is oxygen-sensitive, whether NADH rises or falls at 340 nm in the hexokinase method, and the next step for a surprising bedside value (confirm with a laboratory plasma glucose)."
+  },
+  "comparisons": [
+    {
+      "id": "lab-vs-meter",
+      "title": "Laboratory hexokinase vs bedside meter",
+      "left": {
+        "label": "Laboratory hexokinase",
+        "points": [
+          "Plasma sample",
+          "NADH absorbance rise at 340 nm",
+          "A reference method for meters"
+        ]
+      },
+      "right": {
+        "label": "Bedside meter",
+        "points": [
+          "Capillary whole blood",
+          "Enzyme strip → electrode current",
+          "Haematocrit and other interferences"
+        ]
+      },
+      "distinguisher": "Plasma photometry vs whole-blood electrochemistry."
+    },
+    {
+      "id": "gox-vs-gdh",
+      "title": "Glucose oxidase vs glucose dehydrogenase strips",
+      "left": {
+        "label": "Glucose oxidase",
+        "points": [
+          "Oxygen competes for electrons",
+          "High O₂ low, low O₂ high"
+        ]
+      },
+      "right": {
+        "label": "Glucose dehydrogenase",
+        "points": [
+          "Little oxygen effect",
+          "Other sugars can compete (galactose, xylose, maltose)"
+        ]
+      },
+      "distinguisher": "Oxygen sensitivity vs other-sugar interference."
+    }
+  ],
+  "mnemonic": {
+    "text": "Crowded strip, quiet signal; empty strip, loud signal — many red cells read low, few red cells read high. In the laboratory, 340 lights up when NADH is made.",
+    "explanation": "Fixes the direction of the haematocrit effect and the direction of the 340 nm change in the hexokinase method.",
+    "limitation": "Red cells act through several mechanisms, not just crowding; haematocrit-correcting meters reduce the effect; oxygen, other sugars and drugs push readings either way independently of haematocrit."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Spectrum and strip drawings are schematic.",
+    "The size of interferences differs between meter models."
+  ],
+  "takeaway": "The laboratory measures glucose as a rise in NADH absorbance at 340 nanometres, while a bedside meter reads whole blood and can be fooled by haematocrit, oxygen, sugars and drugs, so confirm a surprising meter value in the laboratory.",
+  "questions": [
+    {
+      "id": "chem-glu340-q1",
+      "stem": "In the hexokinase/glucose-6-phosphate dehydrogenase method for glucose, what is measured at 340 nm as glucose concentration increases?",
+      "options": [
+        {
+          "id": "a",
+          "text": "An increase in absorbance as NADH is formed",
+          "rationale": "Correct. One NADH is formed per glucose converted, and NADH absorbs at 340 nm."
+        },
+        {
+          "id": "b",
+          "text": "A decrease in absorbance as NADH is consumed",
+          "rationale": "Incorrect. In this method the cofactor is reduced, not oxidised, so absorbance rises."
+        },
+        {
+          "id": "c",
+          "text": "An increase in absorbance as NAD+ is formed",
+          "rationale": "Incorrect. NAD+ does not absorb at 340 nm."
+        },
+        {
+          "id": "d",
+          "text": "A change in electrode current from hydrogen peroxide",
+          "rationale": "Incorrect. The hexokinase method is photometric: it is read as light absorbance at 340 nm, not as an electrode current."
+        }
+      ],
+      "answer": "a",
+      "skill": "Method principle",
+      "difficulty": "recall"
+    },
+    {
+      "id": "chem-glu340-q2",
+      "stem": "A patient with polycythaemia (haematocrit 62%) has a bedside meter glucose and a simultaneous laboratory plasma glucose. On a meter without haematocrit correction, the meter result is most likely:",
+      "options": [
+        {
+          "id": "a",
+          "text": "Falsely low compared with the laboratory value",
+          "rationale": "Correct. High haematocrit is associated with lower meter readings."
+        },
+        {
+          "id": "b",
+          "text": "Falsely high compared with the laboratory value",
+          "rationale": "Incorrect. Falsely high readings are associated with low haematocrit (anaemia)."
+        },
+        {
+          "id": "c",
+          "text": "Identical, because meters report plasma-equivalent values",
+          "rationale": "Incorrect. Many meters remain affected by haematocrit despite reporting plasma-equivalent values."
+        },
+        {
+          "id": "d",
+          "text": "Unaffected, because haematocrit only affects photometric methods",
+          "rationale": "Incorrect. The haematocrit effect is a whole-blood meter problem."
+        }
+      ],
+      "answer": "a",
+      "skill": "Interference direction",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-glu340-q3",
+      "stem": "A patient on high-flow oxygen is monitored with a glucose oxidase-based meter. Which error is most likely from the oxygen?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Falsely low readings, because oxygen competes with the mediator for electrons",
+          "rationale": "Correct. On glucose oxidase strips, high oxygen can give falsely low results."
+        },
+        {
+          "id": "b",
+          "text": "Falsely high readings, because oxygen is oxidised at the electrode",
+          "rationale": "Incorrect. Falsely high readings are linked to low oxygen tension on these strips."
+        },
+        {
+          "id": "c",
+          "text": "No error, because oxygen affects only glucose dehydrogenase strips",
+          "rationale": "Incorrect. It is the reverse: dehydrogenase strips are little affected by oxygen."
+        },
+        {
+          "id": "d",
+          "text": "Falsely high readings from maltose cross-reactivity",
+          "rationale": "Incorrect. Maltose interference is mainly a glucose dehydrogenase strip problem and is unrelated to oxygen."
+        }
+      ],
+      "answer": "a",
+      "skill": "Strip chemistry",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch28",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 28, How Tests Work and What Fools Them (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 28,
+          "section": "High-Yield Hits",
+          "items": [
+            3,
+            9
+          ]
+        },
+        {
+          "chapter": 28,
+          "section": "Exam Traps",
+          "items": [
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "wolfe2024",
+      "kind": "external",
+      "citation": "Wolfe KD, Alahuhta M, Himmel ME, Bomble YJ, Jennings GK, Cliffel DE. Long-Term Stability of Nicotinamide Cofactors in Common Aqueous Buffers: Implications for Cell-Free Biocatalysis. Molecules. 2024;29(22):5453. doi:10.3390/molecules29225453",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11597533/",
+      "consulted": true,
+      "usedFor": "NADH (dihydropyridine ring) absorbs strongly at 260 and 340 nm; NAD+ absorbs at 260 nm and does not absorb at 340 nm."
+    },
+    {
+      "id": "lacorn2025",
+      "kind": "external",
+      "citation": "Lacorn M, Hektor T. Validation of Enzytec™ Liquid D-Glucose for Enzymatic Determination of D-Glucose in Selected Foods and Beverages: Official Method 2024.03 First Action. J AOAC Int. 2025;108(5):677-691. doi:10.1093/jaoacint/qsaf045",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12418176/",
+      "consulted": true,
+      "usedFor": "Hexokinase + ATP → glucose-6-phosphate; G6PD with NAD → NADH, equimolar to glucose converted, measured at 340 nm (food-analysis kit; same reaction principle)."
+    },
+    {
+      "id": "finfer2013",
+      "kind": "external",
+      "citation": "Finfer S, Wernerman J, Preiser JC, et al. Clinical review: Consensus recommendations on measurement of blood glucose and reporting glycemic control in critically ill adults. Crit Care. 2013;17(3):229. doi:10.1186/cc12537",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3706766/",
+      "consulted": true,
+      "usedFor": "Central-laboratory hexokinase method as a reference measurement for meters; many meters still affected by haematocrit and by reducing substances such as ascorbic acid and acetaminophen; example positive bias up to 18 mg/dL at true glucose 80 mg/dL and haematocrit 0.25."
+    },
+    {
+      "id": "ashar2026",
+      "kind": "external",
+      "citation": "Ashar A, Aulia FA, Marpaung FR, Fuadi MR, Puspitasari Y. Comparative Performance Analysis of Three Point-of-Care Glucose Testing Devices against a Central Laboratory Reference Method. EJIFCC. 2026;37(3):459-467.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13543465/",
+      "consulted": true,
+      "usedFor": "Venous plasma glucose about 10–15% higher than whole blood; most POCT devices convert to plasma-equivalent values using correction factors that account for haematocrit; hexokinase-based laboratory reference; supports POCT primarily for monitoring rather than definitive diagnosis."
+    },
+    {
+      "id": "erbach2016",
+      "kind": "external",
+      "citation": "Erbach M, Freckmann G, Hinzmann R, Kulzer B, Ziegler R, Heinemann L, Schnell O. Interferences and Limitations in Blood Glucose Self-Testing: An Overview of the Current Knowledge. J Diabetes Sci Technol. 2016;10(5):1161-1168. doi:10.1177/1932296816641433",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5032951/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. Haematocrit <35% → too-high readings, higher haematocrit → lower readings; haematocrit-correcting systems less susceptible; oxygen competes with mediator on glucose oxidase strips (high O2 low, low O2 high), GDH strips not significantly affected; triglycerides take up volume → falsely low; very high uric acid oxidised at electrode → falsely high; acetaminophen high in certain electrochemical systems; icodextrin metabolites interfere with both GO- and GD-based strips; hypoperfusion lowers capillary glucose."
+    },
+    {
+      "id": "ginsberg2009",
+      "kind": "external",
+      "citation": "Ginsberg BH. Factors affecting blood glucose monitoring: sources of errors in measurement. J Diabetes Sci Technol. 2009;3(4):903-913. doi:10.1177/193229680900300438",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2769960/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. Red cells contain glucose; cells can block the electrode or enzyme; glucose oxidase strips oxygen-sensitive, dehydrogenase strips less so; galactose, xylose and maltose compete on GDH; icodextrin can raise values by more than 100 mg/dL; uric acid at the electrode."
+    },
+    {
+      "id": "calhoun2018",
+      "kind": "external",
+      "citation": "Calhoun P, Johnson TK, Hughes J, Price D, Balo AK. Resistance to Acetaminophen Interference in a Novel Continuous Glucose Monitoring System. J Diabetes Sci Technol. 2018;12(2):393-396. doi:10.1177/1932296818755797",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5851234/",
+      "consulted": true,
+      "usedFor": "Acetaminophen can cause erroneously high readings in real-time CGM; a newer CGM (G6) with a permselective membrane showed mean interference 3.1 mg/dL after 1 g, below the 10 mg/dL clinically meaningful threshold (manufacturer-affiliated study)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-340",
+      "text": "NADH absorbs at 340 nm; NAD+ does not.",
+      "status": "checked",
+      "refs": [
+        "wolfe2024"
+      ]
+    },
+    {
+      "id": "cl-hk",
+      "text": "Hexokinase/G6PD reaction forms NADH equimolar to glucose, read as a 340 nm increase; central-laboratory hexokinase as a reference method for meters.",
+      "status": "checked",
+      "refs": [
+        "lacorn2025",
+        "finfer2013",
+        "ashar2026"
+      ]
+    },
+    {
+      "id": "cl-plasma",
+      "text": "Plasma ~10–15% higher than whole blood; most meters convert to plasma-equivalent values; POCT primarily for monitoring rather than definitive diagnosis (one evaluation).",
+      "status": "checked",
+      "refs": [
+        "ashar2026"
+      ]
+    },
+    {
+      "id": "cl-hct",
+      "text": "Low haematocrit → falsely high, high haematocrit → falsely low; RBC glucose and electrode blocking; +18 mg/dL example; correcting meters less susceptible.",
+      "status": "checked",
+      "refs": [
+        "erbach2016",
+        "ginsberg2009",
+        "finfer2013"
+      ]
+    },
+    {
+      "id": "cl-o2",
+      "text": "Oxygen interference on glucose oxidase strips (high O2 low, low O2 high); GDH little affected; other sugars compete on GDH; icodextrin raises readings (both strip types reported).",
+      "status": "checked",
+      "refs": [
+        "erbach2016",
+        "ginsberg2009"
+      ]
+    },
+    {
+      "id": "cl-other",
+      "text": "Triglycerides → low; very high uric acid → high; acetaminophen → high in some systems and older CGMs; hypoperfusion → low.",
+      "status": "checked",
+      "refs": [
+        "erbach2016",
+        "ginsberg2009",
+        "calhoun2018"
+      ]
+    },
+    {
+      "id": "cl-pending",
+      "text": "Reviewer items not taught: NADPH at 340 nm; 340 nm-decrease assays (ammonia, urea, ALT, AST); lactate, triglyceride and CK variants; tetrazolium/formazan at ~500 nm; calibrating personal meters against simultaneous lab values.",
+      "status": "pending",
+      "note": "No open source read in this session supports these specific statements."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; spectrum and strip drawings schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Crowded strip, quiet signal.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-o2-enzyme",
+      "issue": "The reviewer lists high O2 as giving falsely low POCT glucose without naming the strip chemistry. Erbach 2016 and Ginsberg 2009 attribute oxygen interference to glucose oxidase strips; glucose dehydrogenase strips are little affected.",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-cgm-apap",
+      "issue": "The reviewer states acetaminophen causes markedly false-positive CGM readings. Interference is system-dependent: a newer CGM with a permselective membrane showed a mean effect of 3.1 mg/dL after 1 g (Calhoun 2018, manufacturer-affiliated).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-hct-mechanism",
+      "issue": "The reviewer explains the haematocrit effect as RBCs occluding the strip and anaemia letting extra plasma through. Sources read support the direction of error but describe several mechanisms (red cell glucose content, cells blocking the electrode or enzyme, among others) and do not state the reviewer’s plasma-flow explanation.",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; spectrum, reactions and strips shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 factual claims checked against Wolfe 2024, Lacorn 2025, Finfer 2013, Ashar 2026, Erbach 2016 and Ginsberg 2009 (both read via a page-fetch tool) and Calhoun 2018; 1 pending claim groups reviewer statements not supported by sources read. The StatPearls Hexokinase Method page (NCBI Bookshelf) was blocked and not read. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

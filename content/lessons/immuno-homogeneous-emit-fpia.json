@@ -1,0 +1,1477 @@
+{
+  "schemaVersion": 1,
+  "id": "immuno-homogeneous-emit-fpia",
+  "title": "Homogeneous Immunoassays: EMIT, FPIA and Time-Resolved Fluorescence",
+  "summary": "Learn what makes an immunoassay homogeneous or heterogeneous, why skipping the wash costs sensitivity, how EMIT and FPIA turn antibody binding into a signal (and in which direction), and how time-resolved lanthanide fluorescence beats background.",
+  "domain": "p6-immuno",
+  "topic": "ch45",
+  "conceptIds": [
+    "ch45.hit2",
+    "ch45.hit7",
+    "ch45.hit8",
+    "ch45.hit15",
+    "ch45.trap3"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 45,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          7,
+          8,
+          15
+        ]
+      },
+      {
+        "chapter": 45,
+        "section": "Exam Traps",
+        "items": [
+          3
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 45 Hits 2, 7, 8 and 15 and Exam Trap 3, checked against Darwish 2006, Sanavio 2015, Maragos 2009, Mukhametova 2026, Hagan 2011 and Qriouet 2019. Not taught: lysozyme as an EMIT label and the “>160 kDa” size of the bound FPIA complex (not found in sources read; Maragos gives intact IgG as about 150 kDa, flag f-fpia-complex-size); the reviewer’s “~50–100 µs” lanthanide decay is narrower than the “µs to ms” range in Hagan 2011 (flag f-trf-decay-range). Prerequisite: competitive vs sandwich signal direction (Hit 1)."
+  },
+  "prerequisites": [
+    "ch45.hit1"
+  ],
+  "objectives": [
+    "Define homogeneous and heterogeneous immunoassays by the presence or absence of a bound/free separation step, and explain why homogeneous formats are generally less sensitive.",
+    "Explain how EMIT and FPIA convert antibody binding into a signal, and predict the direction of each signal as drug concentration rises.",
+    "Explain how time-resolved lanthanide fluorescence suppresses short-lived background fluorescence."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Mix and read, or wash first?",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three requests reach the immunoassay bench — (1) a serum theophylline level for drug monitoring; (2) a urine benzodiazepine screen; (3) a protein marker that circulates at very low concentration. The analyzer offers one-tube “mix-and-read” methods and solid-phase methods with wash steps. Question token: “Which can skip the wash?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Three requests reach the immunoassay bench: a theophylline drug level, a urine benzodiazepine screen, and a protein marker present at very low concentration."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "The analyzer offers one-tube methods that are read straight from the reaction mixture, and solid-phase methods with wash steps."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which requests can skip the wash, and which one is better served by it?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Theophylline",
+            "lines": [
+              "Drug monitoring",
+              "Serum"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "2 Benzodiazepines",
+            "lines": [
+              "Urine screen"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "3 Protein marker",
+            "lines": [
+              "Very low concentration"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.5,
+              "opacity": 0
+            },
+            {
+              "t": 6.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "opt",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 640,
+            "label": "One tube, no wash · or · solid phase + wash",
+            "tone": "b",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 640,
+            "label": "Which can skip the wash?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The separation step decides",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic: two reaction tubes. Heterogeneous: antibody or antigen on a solid phase; after incubation the unbound (free) label is washed away and the bound label is measured. Homogeneous: no separation; binding itself changes the label’s signal (enzyme activity, fluorescence polarization), so the signal is read directly from the mixture. Sensitivity card: without a wash, background and matrix interferences (autofluorescence, light scattering, viscosity) stay in the tube, so homogeneous assays are generally harder to make highly sensitive; heterogeneous assays can wash interferences out.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Immunoassays split on one question: is bound label separated from free label before reading? If yes, the assay is heterogeneous; if no, it is homogeneous."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "In a heterogeneous assay, one reagent sits on a solid phase, and a wash removes the free label before the bound label is measured."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "A homogeneous assay is read straight from the mixture. It only works because antibody binding itself changes the label’s signal, for example its enzyme activity or its fluorescence polarization."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "The cost: with no wash, background and sample interferences stay in the tube. Homogeneous assays win on speed and simplicity; heterogeneous assays are generally the more sensitive."
+        }
+      ],
+      "objects": [
+        {
+          "id": "het",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Heterogeneous",
+            "lines": [
+              "Solid phase + wash",
+              "Free label removed"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hom",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "Homogeneous",
+            "lines": [
+              "No separation",
+              "Binding changes the signal"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5,
+              "opacity": 0
+            },
+            {
+              "t": 5.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sens",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 400,
+            "w": 860,
+            "h": 130,
+            "tone": "warn",
+            "title": "Sensitivity",
+            "lines": [
+              "No wash: background and matrix stay",
+              "Heterogeneous generally more sensitive"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "EMIT and FPIA: two ways binding changes the signal",
+      "start": 60,
+      "end": 104,
+      "altText": "EMIT panel: drug labeled with an enzyme (for example glucose-6-phosphate dehydrogenase) competes with patient drug for a limited amount of antibody. Antibody-bound label is inactive; free label converts NAD to NADH, read as absorbance at 340 nm. More patient drug → more free label → more activity: signal DIRECTLY proportional to drug. FPIA panel: fluorescein-labeled drug (tracer, under 1 kDa) competes with patient drug. Free tracer rotates fast during its nanosecond fluorescence lifetime, so emitted light is depolarized; tracer bound to IgG (about 150 kDa) rotates slowly and polarization rises. More patient drug → less tracer bound → LOWER polarization: inversely proportional.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "EMIT, the enzyme multiplied immunoassay technique, labels the drug with an enzyme such as glucose-6-phosphate dehydrogenase. Labeled drug and patient drug compete for a limited amount of antibody."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "When antibody binds the labeled drug, the enzyme is inactivated. Free label stays active and converts NAD to NADH, read at 340 nanometres. So more patient drug means more free enzyme: the signal rises with drug, even though the assay is competitive."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "FPIA, fluorescence polarization immunoassay, labels the drug with a fluorophore such as fluorescein. Excited by polarized light, a small free tracer tumbles fast and its emission is depolarized; bound to a large antibody it tumbles slowly and stays polarized."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "More patient drug pushes tracer off the antibody, so polarization falls: the FPIA signal is inversely proportional to drug. Because the signal depends on a big change in size, competitive FPIA suits small molecules such as drugs and hormones."
+        }
+      ],
+      "objects": [
+        {
+          "id": "emit",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 230,
+            "w": 440,
+            "h": 260,
+            "tone": "good",
+            "title": "EMIT (enzyme label)",
+            "lines": [
+              "Bound label: enzyme inactive",
+              "Free label: NAD → NADH, 340 nm",
+              "Signal ↑ with drug"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fpia",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 420,
+            "h": 260,
+            "tone": "a",
+            "title": "FPIA (fluorescent label)",
+            "lines": [
+              "Free tracer: fast, depolarized",
+              "Bound (IgG ~150 kDa): polarized",
+              "Polarization ↓ with drug"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 43,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 43,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Beating background, and the hook answers",
+      "start": 104,
+      "end": 144,
+      "altText": "Time-resolved fluorescence card: lanthanide chelates (for example europium) have very long-lived luminescence (microseconds to milliseconds), whereas ordinary dyes and sample autofluorescence decay within nanoseconds. Measuring only after a delay (time-gating) lets the background die away first — one way to rescue sensitivity, valuable in homogeneous formats where background is high. Hook answers: (1) theophylline — homogeneous (EMIT or FPIA) is suitable: drug-monitoring concentrations are relatively high; (2) urine benzodiazepine screen — homogeneous competitive screening immunoassay; a positive screen needs confirmation by an independent method such as chromatography; (3) very-low-concentration protein — better served by a heterogeneous assay with washing.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 115,
+          "text": "Background is the enemy of a no-wash assay. Lanthanide chelates such as europium glow for microseconds to milliseconds, while ordinary dyes and sample autofluorescence fade within nanoseconds."
+        },
+        {
+          "id": "l2",
+          "start": 115,
+          "end": 124,
+          "text": "So time-resolved fluorescence waits, then measures: the background has died before the reading starts. That matters especially in homogeneous assays, where background is not washed away."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 135,
+          "text": "Back to the hook. Theophylline monitoring and the urine benzodiazepine screen suit homogeneous competitive assays such as EMIT or FPIA. A positive drug screen still needs confirmation by an independent method such as chromatography."
+        },
+        {
+          "id": "l4",
+          "start": 135,
+          "end": 144,
+          "text": "The protein at very low concentration is better served by a heterogeneous assay with washing, which removes background and interferences before the signal is read."
+        }
+      ],
+      "objects": [
+        {
+          "id": "trf",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 230,
+            "tone": "b",
+            "title": "Time-resolved fluorescence",
+            "lines": [
+              "Lanthanide: µs to ms glow",
+              "Background: nanoseconds",
+              "Delay, then measure"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 230,
+            "tone": "a",
+            "title": "Hook answers",
+            "lines": [
+              "1 Theophylline: EMIT or FPIA",
+              "2 Urine screen: homogeneous, confirm +",
+              "3 Low-level protein: wash format"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Homogeneous assays are more sensitive because nothing is washed away” (✓ washing removes background and interferences; heterogeneous assays are generally more sensitive); “In EMIT, signal falls as drug rises, like other competitive assays” (✓ free enzyme-labeled drug is the active form, so activity rises with drug); “FPIA is best for large proteins” (✓ the tracer must be small; competitive FPIA suits drugs and hormones).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: homogeneous assays are more sensitive because nothing is washed away. No: the wash removes background, so heterogeneous assays are generally more sensitive."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: EMIT is competitive, so its signal must fall as drug rises. No: free enzyme-labeled drug is the active form, so activity rises with drug."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: FPIA is best for large proteins. No: it relies on a small tracer becoming big when bound, so competitive FPIA suits drugs and hormones."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “No wash = more sensitive.”",
+            "lines": [
+              "✓ Wash removes background"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “EMIT signal falls with drug.”",
+            "lines": [
+              "✓ Free label is active: signal rises"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “FPIA is best for big proteins.”",
+            "lines": [
+              "✓ Small tracer, small analytes"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Gag and spinning top",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “In EMIT the antibody is a GAG on the enzyme — patient drug pulls the gag off and the enzyme shouts, so signal rises with drug. In FPIA the tracer is a SPINNING TOP — held by a big antibody it stands steady (polarized); patient drug sets it spinning (depolarized), so polarization falls with drug.” Tokens: gag = EMIT · top = FPIA. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: in EMIT, the antibody is a gag on the enzyme. Patient drug pulls the gag off and the enzyme shouts, so signal rises. In FPIA, the tracer is a spinning top: held by a big antibody it stands steady and polarized; set free by patient drug, it spins and depolarizes."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: a bound tracer still rotates, just more slowly within its brief fluorescence lifetime; results are read from a calibration curve; and both assays can be affected by the sample matrix and by cross-reacting compounds."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Gag and spinning top",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Gag = EMIT antibody",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Top = FPIA tracer",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "No wash = background",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Bound tracer still rotates, only slower",
+              "Results read from a calibration curve",
+              "Matrix and cross-reactivity still matter"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Homogeneous = no wash · fast · generally less sensitive”, “EMIT signal rises with drug · FPIA polarization falls with drug”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Homogeneous immunoassays skip the wash because antibody binding itself changes the label signal, which makes them fast but generally less sensitive, and in EMIT the signal rises with drug while in FPIA the polarization falls."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Homogeneous = no wash · fast · generally less sensitive",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "EMIT signal ↑ with drug · FPIA polarization ↓ with drug",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: some immunoassays wash away the unbound label before reading; others are read straight from the tube because antibody binding itself switches the label’s signal on or off. Scientific terms: heterogeneous vs homogeneous immunoassay, bound/free separation, enzyme multiplied immunoassay technique (EMIT), glucose-6-phosphate dehydrogenase label, NAD/NADH at 340 nm, fluorescence polarization immunoassay (FPIA), tracer, rotational motion, polarization (mP), time-resolved fluorescence, lanthanide (europium) chelate, time-gating.",
+    "why": "A homogeneous assay is possible only if binding changes the label: antibody binding inactivates the EMIT enzyme, and slows the rotation of the FPIA tracer. Without a wash, background and matrix interferences stay in the reaction, which limits sensitivity; time-gated lanthanide detection is one way to reduce background.",
+    "measure": "EMIT: absorbance change at 340 nm from NADH formation, directly proportional to drug. FPIA: polarization P = (IV − IH)/(IV + IH), often in mP, inversely proportional to drug. Time-resolved fluorescence: lanthanide emission lasts microseconds to milliseconds versus nanoseconds for background, so the reading starts after a delay.",
+    "differs": "Heterogeneous (wash; generally more sensitive) vs homogeneous (no wash; faster, simpler). EMIT (enzyme label; signal rises with drug) vs FPIA (fluorescent label; polarization falls with drug) — both competitive. FPIA suits small molecules; large proteins give only a small polarization change.",
+    "examAngle": "Expect: identify the format with no separation step, predict the EMIT or FPIA signal for a high-drug sample, explain why a no-wash assay is less sensitive, or name why europium chelates are used in time-resolved assays."
+  },
+  "comparisons": [
+    {
+      "id": "het-vs-hom",
+      "title": "Heterogeneous vs homogeneous",
+      "left": {
+        "label": "Heterogeneous",
+        "points": [
+          "Bound and free label separated (wash)",
+          "Generally more sensitive"
+        ]
+      },
+      "right": {
+        "label": "Homogeneous",
+        "points": [
+          "No separation; read in the mixture",
+          "Faster and simpler; background stays"
+        ]
+      },
+      "distinguisher": "Is free label removed before the signal is read?"
+    },
+    {
+      "id": "emit-vs-fpia",
+      "title": "EMIT vs FPIA",
+      "left": {
+        "label": "EMIT",
+        "points": [
+          "Enzyme label (e.g. G6PD), NADH at 340 nm",
+          "Signal rises with drug"
+        ]
+      },
+      "right": {
+        "label": "FPIA",
+        "points": [
+          "Fluorescent tracer, polarized light",
+          "Polarization falls with drug"
+        ]
+      },
+      "distinguisher": "Free label is the active signal in EMIT; bound tracer gives the high signal in FPIA."
+    }
+  ],
+  "mnemonic": {
+    "text": "In EMIT the antibody is a GAG on the enzyme — patient drug pulls the gag off and the enzyme shouts, so signal rises with drug. In FPIA the tracer is a SPINNING TOP — held by a big antibody it stands steady (polarized); patient drug sets it spinning (depolarized), so polarization falls with drug.",
+    "explanation": "Fixes the opposite signal directions of the two homogeneous competitive assays.",
+    "limitation": "A bound tracer still rotates, only more slowly within its brief fluorescence lifetime; results are read from a calibration curve; matrix effects and cross-reacting compounds still affect both assays."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Tubes, tracers and antibodies are drawn schematically.",
+    "Gag and spinning-top images simplify enzyme inhibition and rotational diffusion."
+  ],
+  "takeaway": "Homogeneous immunoassays skip the wash because antibody binding itself changes the label signal, which makes them fast but generally less sensitive, and in EMIT the signal rises with drug while in FPIA the polarization falls.",
+  "questions": [
+    {
+      "id": "immuno-hom-q1",
+      "stem": "In an EMIT assay for a drug using a glucose-6-phosphate dehydrogenase label, a patient sample contains a high drug concentration. What happens to the rate of absorbance increase at 340 nm compared with a drug-free sample?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It increases, because more enzyme-labeled drug stays free and active",
+          "rationale": "Correct. Patient drug occupies the antibody, leaving labeled drug free; free label converts NAD to NADH, so activity rises with drug."
+        },
+        {
+          "id": "b",
+          "text": "It decreases, because signal is always inverse in competitive assays",
+          "rationale": "Incorrect. EMIT is competitive, but the free label is the active one, so its signal rises with drug."
+        },
+        {
+          "id": "c",
+          "text": "It is unchanged, because the enzyme is not affected by antibody binding",
+          "rationale": "Incorrect. The method depends on antibody binding inactivating the enzyme label."
+        },
+        {
+          "id": "d",
+          "text": "It cannot be read until bound and free label are washed apart",
+          "rationale": "Incorrect. EMIT is homogeneous; it is read without a separation step."
+        }
+      ],
+      "answer": "a",
+      "skill": "EMIT signal direction",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-hom-q2",
+      "stem": "In a competitive fluorescence polarization immunoassay, which sample gives the LOWEST polarization?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A sample with a high concentration of the drug",
+          "rationale": "Correct. Patient drug displaces tracer from the antibody; free tracer rotates fast and its emission is depolarized."
+        },
+        {
+          "id": "b",
+          "text": "A drug-free sample",
+          "rationale": "Incorrect. With no competing drug, most tracer is antibody-bound and rotates slowly, giving high polarization."
+        },
+        {
+          "id": "c",
+          "text": "A sample with a low concentration of the drug",
+          "rationale": "Incorrect. Little tracer is displaced, so polarization stays relatively high."
+        },
+        {
+          "id": "d",
+          "text": "Polarization is the same for all samples; only intensity changes",
+          "rationale": "Incorrect. Polarization is the measured signal and depends on the fraction of tracer bound; it does not depend on absolute intensity."
+        }
+      ],
+      "answer": "a",
+      "skill": "FPIA signal direction",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-hom-q3",
+      "stem": "A one-tube immunoassay is read directly from the reaction mixture with no wash step. Which statement about this format is most accurate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It is homogeneous and is generally less sensitive than a heterogeneous assay, because background and interferences are not washed away",
+          "rationale": "Correct. Homogeneous assays trade sensitivity for speed and simplicity."
+        },
+        {
+          "id": "b",
+          "text": "It is heterogeneous, because the antibody and label are in one phase",
+          "rationale": "Incorrect. No separation step defines a homogeneous assay."
+        },
+        {
+          "id": "c",
+          "text": "It is more sensitive than a wash-based assay, because no analyte is lost in washing",
+          "rationale": "Incorrect. Washing removes background and interferences; heterogeneous assays are generally more sensitive."
+        },
+        {
+          "id": "d",
+          "text": "It can only measure large proteins, because small molecules do not bind antibody in solution",
+          "rationale": "Incorrect. Homogeneous competitive assays such as EMIT and FPIA are widely used for small molecules such as drugs."
+        }
+      ],
+      "answer": "a",
+      "skill": "Assay format",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch45",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 45, Immunoassays: Antibodies as Tools (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 45,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            7,
+            8,
+            15
+          ]
+        },
+        {
+          "chapter": 45,
+          "section": "Exam Traps",
+          "items": [
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "darwish2006",
+      "kind": "external",
+      "citation": "Darwish IA. Immunoassay Methods and their Applications in Pharmaceutical Analysis: Basic Methodology and Recent Advances. Int J Biomed Sci. 2006;2(3):217-235. doi:10.59566/ijbs.2006.2217",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3614608/",
+      "consulted": true,
+      "usedFor": "Heterogeneous vs homogeneous defined by whether a separation step is required; homogeneous EIA exemplified by the enzyme multiplied immunoassay, applied to drug monitoring (aminoglycosides, theophylline, cyclosporine); homogeneous FIA mostly competitive; fluorescence polarization principle (small molecules rotate fast and lower polarization, antibody binding slows rotation and raises polarization); lanthanide chelates as TRFIA labels; unknown concentrations read from a calibration (standard) curve; homogeneous enzyme immunoassays developed for theophylline."
+    },
+    {
+      "id": "sanavio2015",
+      "kind": "external",
+      "citation": "Sanavio B, Krol S. On the Slow Diffusion of Point-of-Care Systems in Therapeutic Drug Monitoring. Front Bioeng Biotechnol. 2015;3:20. doi:10.3389/fbioe.2015.00020",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4341557/",
+      "consulted": true,
+      "usedFor": "EMIT: enzyme-labeled analyte (e.g. glucose-6-phosphate dehydrogenase) competes with analyte; antibody-bound label is inactive; free label reduces NAD to NADH, monitored at 340 nm; signal directly proportional to analyte. FPIA: measured without separation; signal inversely proportional to analyte. Both described as homogeneous competitive assays used in drug monitoring; co-medications may cross-react with assay antibodies."
+    },
+    {
+      "id": "maragos2009",
+      "kind": "external",
+      "citation": "Maragos C. Fluorescence polarization immunoassay of mycotoxins: a review. Toxins (Basel). 2009;1(2):196-207. doi:10.3390/toxins1020196",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3202780/",
+      "consulted": true,
+      "usedFor": "Homogeneous assays do not require separation of free and bound tracer (no wash steps); faster fluorophore motion gives more depolarized emission; P = (IV − IH)/(IV + IH), expressed in mP and independent of absolute intensity; intact IgG about 150 kDa binding a tracer under 1 kDa slows tumbling and raises polarization; polarization inversely related to analyte; FPIA can still be affected by the sample matrix and by cross-reactivity; calibration curves and logit-log data treatment."
+    },
+    {
+      "id": "mukhametova2026",
+      "kind": "external",
+      "citation": "Mukhametova LI, Eremin SA, Tsakalof AK. Disease Biomarker Detection Using Fluorescence Polarization Assays: Principles and Clinical Applications. Diagnostics (Basel). 2026;16(18):3050. doi:10.3390/diagnostics16183050",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13605484/",
+      "consulted": true,
+      "usedFor": "FP is homogeneous (no washing or separation); rotation depends on fluorescence lifetime and molecular size; small molecules detected by competitive displacement with signal inversely proportional to analyte; competitive FPIA for small molecules (drugs, hormones) is the routine application, and large analytes give only a small polarization change; FP sensitivity sufficient for drug monitoring concentrations; FP more prone to matrix interferences (viscosity, autofluorescence, light scattering) than heterogeneous ELISA/CLIA, which wash interferences out."
+    },
+    {
+      "id": "hagan2011",
+      "kind": "external",
+      "citation": "Hagan AK, Zuchner T. Lanthanide-based time-resolved luminescence immunoassays. Anal Bioanal Chem. 2011;400(9):2847-2864. doi:10.1007/s00216-011-5047-7",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3102841/",
+      "consulted": true,
+      "usedFor": "Lanthanide luminescence is long-lived (µs to ms range) while conventional dyes and sample interferences emit on a nanosecond scale; time-gating measures after background decays; homogeneous assays typically have high background from autofluorescence and sensitive homogeneous assays are much harder to achieve than heterogeneous ones; example chelate lifetimes of 0.44–0.76 ms."
+    },
+    {
+      "id": "qriouet2019",
+      "kind": "external",
+      "citation": "Qriouet Z, Qmichou Z, Bouchoutrouch N, Mahi H, Cherrah Y, Sefrioui H. Analytical Methods Used for the Detection and Quantification of Benzodiazepines. J Anal Methods Chem. 2019;2019:2035492. doi:10.1155/2019/2035492",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6748181/",
+      "consulted": true,
+      "usedFor": "Benzodiazepine screening immunoassays (including CEDIA, FPIA and KIMS) are competitive; a positive screen is followed by confirmation with chromatographic or spectroscopic methods because of cross-reactivity; FPIA sensitivity comparable to EMIT."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-format",
+      "text": "Homogeneous vs heterogeneous defined by the separation step; homogeneous assays work because binding changes the label signal.",
+      "status": "checked",
+      "refs": [
+        "darwish2006",
+        "maragos2009",
+        "mukhametova2026"
+      ]
+    },
+    {
+      "id": "cl-sens",
+      "text": "Homogeneous assays are generally less sensitive because background and matrix interferences are not washed away.",
+      "status": "checked",
+      "refs": [
+        "hagan2011",
+        "mukhametova2026"
+      ],
+      "note": "Hagan 2011 states this for lanthanide-based assays; Mukhametova 2026 states it for FP vs ELISA/CLIA. Taught as a general tendency, not a rule for every assay."
+    },
+    {
+      "id": "cl-emit",
+      "text": "EMIT mechanism: enzyme-labeled drug (e.g. G6PD) competes; bound label inactive; free label NAD→NADH at 340 nm; signal directly proportional to drug; used in drug monitoring.",
+      "status": "checked",
+      "refs": [
+        "sanavio2015",
+        "darwish2006"
+      ]
+    },
+    {
+      "id": "cl-fpia",
+      "text": "FPIA mechanism: small free tracer rotates fast (depolarized), antibody-bound tracer (IgG ~150 kDa) polarized; polarization inversely proportional to drug; suited to small molecules.",
+      "status": "checked",
+      "refs": [
+        "maragos2009",
+        "mukhametova2026",
+        "darwish2006",
+        "sanavio2015"
+      ]
+    },
+    {
+      "id": "cl-trf",
+      "text": "Lanthanide chelates (e.g. europium) have µs–ms luminescence vs ns background; time-gated detection reduces background, useful in homogeneous assays.",
+      "status": "checked",
+      "refs": [
+        "hagan2011",
+        "darwish2006"
+      ]
+    },
+    {
+      "id": "cl-hook",
+      "text": "Hook answers: drug monitoring and drug screens suit homogeneous competitive assays; positive screens need confirmation by an independent method such as chromatography; a very-low-concentration protein is better served by a washed (heterogeneous) format.",
+      "status": "checked",
+      "refs": [
+        "mukhametova2026",
+        "qriouet2019",
+        "darwish2006",
+        "hagan2011"
+      ]
+    },
+    {
+      "id": "cl-limits",
+      "text": "Limits of the memory aid: bound tracer still rotates, only more slowly, within the fluorescence lifetime; results are read from a calibration curve; matrix effects and cross-reacting compounds can affect these immunoassays.",
+      "status": "checked",
+      "refs": [
+        "mukhametova2026",
+        "darwish2006",
+        "maragos2009",
+        "sanavio2015"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Lysozyme as an EMIT label; “>160 kDa” bound FPIA complex; lanthanide decay of “~50–100 µs” and background “<10 ns”.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch45"
+      ],
+      "note": "Not taught. No source read in this session names lysozyme as an EMIT label or gives a 160 kDa complex size (Maragos 2009 gives intact IgG as about 150 kDa). Hagan 2011 gives lanthanide luminescence as µs to ms and background as nanosecond-scale, with example chelate lifetimes of 0.44–0.76 ms, so the lesson teaches the broader range."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; tubes and molecules schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Gag and spinning top.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-fpia-complex-size",
+      "issue": "Ch. 45 Hit 8 gives the antibody-bound FPIA complex as “>160 kDa”. Maragos 2009 describes intact IgG as about 150 kDa binding a tracer under 1 kDa; no source read gives 160 kDa. The lesson says “IgG about 150 kDa” (register flag rv-fpia-complex-size).",
+      "kind": "uncertain",
+      "status": "open"
+    },
+    {
+      "id": "f-trf-decay-range",
+      "issue": "Ch. 45 Hit 15 gives rare-earth chelate decay as “~50–100 µs” versus background “<10 ns”. Hagan 2011 gives lanthanide luminescence as µs to ms (example chelates 0.44–0.76 ms) and background on a nanosecond scale; the reviewer’s figure is narrower than the source. The lesson teaches the source range (register flag rv-trf-decay-range).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; assays shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "All 7 taught factual claims checked against Darwish 2006, Sanavio 2015, Maragos 2009, Mukhametova 2026, Hagan 2011 and Qriouet 2019 (full text via Europe PMC). One pending claim (lysozyme label, 160 kDa complex, reviewer decay figures) is not taught. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

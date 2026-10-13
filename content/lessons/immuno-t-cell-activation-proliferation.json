@@ -1,0 +1,1659 @@
+{
+  "schemaVersion": 1,
+  "id": "immuno-t-cell-activation-proliferation",
+  "title": "T-Cell Activation and the Lymphocyte Proliferation Assay",
+  "summary": "Learn the two-signal model of T-cell activation (TCR plus CD28–B7 costimulation, anergy without it), how stimulated lymphocytes leave G0 and cycle, how tritiated-thymidine proliferation is expressed as a stimulation index, and why it is a bulk measure that cannot identify the responding subset.",
+  "domain": "p6-immuno",
+  "topic": "ch46",
+  "conceptIds": [
+    "ch46.hit1",
+    "ch46.hit6",
+    "ch46.hit7",
+    "ch46.trap3"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 46,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          6,
+          7
+        ]
+      },
+      {
+        "chapter": 46,
+        "section": "Exam Traps",
+        "items": [
+          3
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 46 Hits 1 (two-signal model), 6 (resting lymphocytes in G0; DNA content by phase) and 7 (stimulation index; bulk assay) and Exam Trap 3 (normal stimulation index does not clear every subset). Checked against Beyersdorf 2015, van der Merwe 1997, Choi 2025, Richman 1980, Lee 2022 and Ganesan 2023 (all read as Europe PMC full text). Qualifications: the reviewer names only CD80 for signal 2, while the CD28 review gives CD80 and CD86; the reviewer gives SI as cpm(stimulated)/cpm(control), while open sources show laboratories also subtract background, so the formula and cutoffs are laboratory-defined. Not taught (no open source read): the reviewer’s figure that fewer than 5% of peripheral blood lymphocytes are in S phase; the 4–24 h thymidine pulse; the reviewer’s 5–10 day antigen culture range (the lesson cites one protocol’s 3 and 7 days)."
+  },
+  "prerequisites": [
+    "ch46.hit2"
+  ],
+  "objectives": [
+    "Describe signal 1 and signal 2 of T-cell activation and the result of signal 1 without costimulation.",
+    "Relate the resting G0 state and the DNA content of each cell-cycle phase to proliferation assays.",
+    "Calculate and interpret a stimulation index and state why tritiated-thymidine uptake cannot identify the responding subset."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "One big number",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a lymphocyte proliferation report for a child with recurrent infections. Card 1: unstimulated well 300 cpm. Card 2: phytohaemagglutinin (PHA)-stimulated well 30,000 cpm. Token: stimulation index 100. Question token: “Are the T cells fine?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Invented scenario: a child with repeated infections has a lymphocyte proliferation test. The unstimulated well counts three hundred counts per minute."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "The well stimulated with the mitogen PHA counts thirty thousand. That is a stimulation index of one hundred."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "A big number. But does it prove that every T-cell subset is working?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "c1",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 400,
+            "h": 150,
+            "tone": "b",
+            "title": "Unstimulated well",
+            "lines": [
+              "300 cpm"
+            ],
+            "highlight": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 220,
+            "w": 400,
+            "h": 150,
+            "tone": "a",
+            "title": "PHA-stimulated well",
+            "lines": [
+              "30,000 cpm"
+            ],
+            "highlight": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.4,
+              "opacity": 0
+            },
+            {
+              "t": 8.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "si",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 420,
+            "label": "Stimulation index = 100",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "Are all the T cells fine?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Two signals wake a resting T cell",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic: a resting T cell (G0, diploid DNA) meets an antigen-presenting cell. Signal 1 card: the T-cell receptor recognises peptide on an MHC molecule. Signal 2 card: CD28 on the T cell binds CD80 or CD86 (the B7 molecules) on the antigen-presenting cell. Outcome cards: both signals → full activation, IL-2 made and used in an autocrine loop via the high-affinity IL-2 receptor (including CD25), proliferation; signal 1 without costimulation → anergy (refractory to further stimulation) or apoptosis.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 29,
+          "text": "Naive and memory T cells at rest are quiescent. They sit in G0, out of the cell cycle, but they actively maintain that state and stay poised to respond."
+        },
+        {
+          "id": "n2",
+          "start": 29,
+          "end": 39,
+          "text": "Signal one: the T-cell receptor recognises its peptide on an MHC molecule of an antigen-presenting cell."
+        },
+        {
+          "id": "n3",
+          "start": 39,
+          "end": 49,
+          "text": "Signal two is costimulation: CD28 on the T cell binds CD80 or CD86, the B7 molecules on the antigen-presenting cell. With both signals, the T cell makes IL-2, which drives its own proliferation through the IL-2 receptor."
+        },
+        {
+          "id": "n4",
+          "start": 49,
+          "end": 60,
+          "text": "Signal one without costimulation does not activate the cell. It becomes refractory to further stimulation, a state called anergy, or it may die by apoptosis."
+        }
+      ],
+      "objects": [
+        {
+          "id": "rest",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 150,
+            "w": 440,
+            "h": 120,
+            "tone": "b",
+            "title": "Resting T cell",
+            "lines": [
+              "G0: quiescent, diploid DNA"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 150,
+            "w": 420,
+            "h": 120,
+            "tone": "a",
+            "title": "Signal 1",
+            "lines": [
+              "TCR + peptide–MHC"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 300,
+            "w": 420,
+            "h": 120,
+            "tone": "a",
+            "title": "Signal 2",
+            "lines": [
+              "CD28 + CD80 / CD86 (B7)"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19.5,
+              "opacity": 0
+            },
+            {
+              "t": 20.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "act",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 300,
+            "w": 440,
+            "h": 120,
+            "tone": "good",
+            "title": "Both signals",
+            "lines": [
+              "IL-2 → proliferation"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "an",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 860,
+            "h": 110,
+            "tone": "bad",
+            "title": "Signal 1 alone",
+            "lines": [
+              "Anergy (or apoptosis)"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 29.5,
+              "opacity": 0
+            },
+            {
+              "t": 30.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "From G0 to the counter",
+      "start": 60,
+      "end": 104,
+      "altText": "Cell-cycle strip: G0 (2N DNA) → G1 → S (DNA being copied, between 2N and 4N) → G2/M (4N, twice the G0 DNA content). In culture, lectin-stimulated lymphocytes progress through these phases during the first 3 days. Assay card: peripheral blood mononuclear cells are cultured with a mitogen (PHA, concanavalin A, pokeweed mitogen; 3 days in one laboratory’s protocol) or an antigen (Candida, BCG; 7 days in the same protocol); tritiated (³H) thymidine is added and incorporated into newly made DNA; radioactivity is counted (counts per minute, cpm).",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Once activated, the cell leaves G0 and enters G1. In S phase it copies its DNA, so its content climbs from the resting diploid amount toward double. In G2 and mitosis it holds twice the resting DNA."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "Stimulated blood lymphocytes in culture march through G1, S and G2 to mitosis over roughly the first three days."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "The classic proliferation test exploits this. Mononuclear cells are cultured with a mitogen such as PHA, concanavalin A or pokeweed mitogen, or with an antigen such as Candida, which needs longer culture. In one laboratory’s protocol, mitogens ran three days and antigens seven."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "Tritiated thymidine is added. Dividing cells build it into new DNA, and a radioactivity counter reports counts per minute for the whole well."
+        }
+      ],
+      "objects": [
+        {
+          "id": "g0",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 150,
+            "w": 180,
+            "label": "G0 · 2N",
+            "tone": "b",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "g1",
+          "type": "token",
+          "props": {
+            "x": 350,
+            "y": 150,
+            "w": 180,
+            "label": "G1 · 2N",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "sp",
+          "type": "token",
+          "props": {
+            "x": 550,
+            "y": 150,
+            "w": 180,
+            "label": "S · 2N→4N",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5,
+              "opacity": 0
+            },
+            {
+              "t": 5.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "g2",
+          "type": "token",
+          "props": {
+            "x": 750,
+            "y": 150,
+            "w": 180,
+            "label": "G2/M · 4N",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8,
+              "opacity": 0
+            },
+            {
+              "t": 8.6,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ar",
+          "type": "arrow",
+          "props": {
+            "x": 150,
+            "y": 210,
+            "dx": 600,
+            "dy": 0,
+            "draw": 0,
+            "label": "About 3 days in culture"
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "draw": 0
+            },
+            {
+              "t": 14.0,
+              "draw": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "draw": 1
+            }
+          ]
+        },
+        {
+          "id": "cult",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 380,
+            "w": 440,
+            "h": 180,
+            "tone": "b",
+            "title": "Culture",
+            "lines": [
+              "Mitogen: PHA, ConA, PWM",
+              "Antigen: Candida, BCG (longer)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 32,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "thy",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 380,
+            "w": 420,
+            "h": 180,
+            "tone": "a",
+            "title": "³H-thymidine",
+            "lines": [
+              "Built into new DNA",
+              "Counter: cpm for the well"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Reading the stimulation index",
+      "start": 104,
+      "end": 144,
+      "altText": "Formula card: stimulation index (SI) = mean cpm of stimulated wells ÷ mean cpm of unstimulated wells; some laboratories subtract background first, so the formula is laboratory-defined. Hook answer: 30,000 ÷ 300 = 100. Range card: one laboratory’s normal PHA SI range was 15–267, very wide; profound T-cell deficiency was defined as <10% of normal proliferation, and for that threshold parallel healthy controls were more reliable than historical ranges. Bulk card: the counter sums every dividing cell in the well, so the SI cannot say which subset divided; a dye such as CFSE halves with each division and, combined with CD markers on a flow cytometer, shows which subsets proliferated.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "The stimulation index compares the two wells: stimulated counts divided by unstimulated counts. For the hook, thirty thousand over three hundred gives one hundred. Some laboratories subtract the background first, so use your laboratory’s formula."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 125,
+          "text": "Normal ranges are wide. In one laboratory, the normal index for PHA ran from fifteen to two hundred sixty-seven. Profound T-cell deficiency was defined as less than ten percent of normal proliferation, and for that threshold a parallel healthy control was more reliable than a historical range."
+        },
+        {
+          "id": "l3",
+          "start": 125,
+          "end": 135,
+          "text": "Now the catch. The counter adds up every dividing cell in the well. A high index says something proliferated, not which subset did."
+        },
+        {
+          "id": "l4",
+          "start": 135,
+          "end": 144,
+          "text": "A dye such as CFSE halves with each division. Read on a flow cytometer with CD markers, it shows which subsets divided. So the hook’s index of one hundred sits inside that laboratory’s PHA range, but it is not a subset analysis."
+        }
+      ],
+      "objects": [
+        {
+          "id": "f",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Stimulation index",
+            "lines": [
+              "Stimulated cpm ÷ unstimulated cpm",
+              "30,000 ÷ 300 = 100"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rng",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 190,
+            "tone": "warn",
+            "title": "Interpreting",
+            "lines": [
+              "Normal range is wide",
+              "Run a parallel healthy control",
+              "Profound defect: < 10% of normal"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 20,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bulk",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "h": 150,
+            "tone": "bad",
+            "title": "³H-thymidine is bulk",
+            "lines": [
+              "Sums all dividing cells",
+              "Which subset? Unknown"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 22.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cfse",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "CFSE + CD markers",
+            "lines": [
+              "Dye halves per division",
+              "Shows which subset divided"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “A normal stimulation index means every T-cell subset is fine” (✓ ³H-thymidine measures bulk proliferation of the whole culture; it gives no subset information); “TCR engagement alone activates the T cell” (✓ without CD28 costimulation the cell becomes anergic or dies); “The stimulation index has one universal formula and cutoff” (✓ formula, normal range and cutoffs vary between laboratories; compare with a parallel control).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a normal stimulation index means every T-cell subset is fine. No: thymidine uptake is a bulk measure with no subset information."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: the T-cell receptor signal alone activates the cell. No: without CD28 costimulation it becomes anergic, or dies."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the index has one universal formula and cutoff. No: formula, ranges and cutoffs vary between laboratories, so compare with a parallel control."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Normal SI = all subsets fine.”",
+            "lines": [
+              "✓ Bulk assay: no subset information"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Signal 1 alone activates.”",
+            "lines": [
+              "✓ No CD28 costimulation → anergy"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “One universal SI cutoff.”",
+            "lines": [
+              "✓ Varies by laboratory; use a parallel control"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Key, pedal, fuel gauge",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “The TCR is the KEY in the ignition (signal 1); CD28 is the GAS PEDAL (signal 2). Key without gas: the engine stalls (anergy). ³H-thymidine is the FUEL GAUGE for the whole fleet: it shows how much fuel was burned, not which car drove.” Tokens: key = TCR · pedal = CD28–B7 · gauge = SI. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: the T-cell receptor is the key in the ignition, and CD28 is the gas pedal. Key without gas, the engine stalls: anergy. Thymidine is the fuel gauge for the whole fleet: it shows how much fuel was burned, not which car drove."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: without the pedal the cell may die by apoptosis, not just stall; cytokine signals also shape what the activated cell becomes; and the gauge reads every dividing cell in the culture, B cells included."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Key, pedal, fuel gauge",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Key = TCR",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Pedal = CD28–B7",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Gauge = SI",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "No pedal can also mean apoptosis",
+              "Cytokines also shape the response",
+              "The gauge counts dividing B cells too"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “TCR + CD28–CD80/CD86 → IL-2 → G0 exits to proliferate · TCR alone → anergy”, “SI = stimulated ÷ unstimulated cpm · bulk, no subset information”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "A resting T cell leaves G0 and proliferates only when its receptor signal is joined by CD28 costimulation, and the thymidine stimulation index then tells you how much the whole culture divided but never which subset did."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "TCR + CD28–B7 → IL-2 → proliferation · TCR alone → anergy",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "SI = stimulated ÷ unstimulated cpm · bulk, no subset",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a resting T cell needs two handshakes from an antigen-presenting cell before it divides: one that recognises the antigen and one that confirms “this is a real alarm”. With only the first, it shuts down. Labs test this ability by stimulating blood cells in a dish and measuring how much new DNA they make. Scientific terms: T-cell receptor (TCR), peptide–MHC, costimulation, CD28, CD80/CD86 (B7), IL-2 and IL-2 receptor (CD25), anergy, quiescence (G0), G1, S, G2/M, mitogen (PHA, concanavalin A, pokeweed mitogen), tritiated (³H) thymidine, counts per minute (cpm), stimulation index (SI), CFSE dye dilution.",
+    "why": "Antigen-presenting cells such as dendritic cells raise CD80 and CD86 when the antigen they carry comes from an infectious agent, so requiring costimulation as well as antigen recognition ties full T-cell activation to that signal. Measuring proliferation tests whether the whole activation pathway works; a profound failure to proliferate to PHA supports a severe T-cell defect.",
+    "measure": "Culture mononuclear cells with and without a mitogen or antigen (one protocol: mitogens 3 days, antigens 7 days), add ³H-thymidine, count incorporated radioactivity. SI = stimulated cpm ÷ unstimulated cpm (some laboratories subtract background first). Normal ranges are wide and laboratory-specific; compare with a parallel healthy control. CFSE dilution with CD markers on a flow cytometer shows which subsets divided.",
+    "differs": "Signal 1 (TCR–peptide–MHC) vs signal 2 (CD28–CD80/CD86); full activation vs anergy; G0/G1 (2N) vs S (2N→4N) vs G2/M (4N); bulk ³H-thymidine uptake vs subset-resolved CFSE flow cytometry.",
+    "examAngle": "Expect: predict the outcome of TCR signalling without CD28 (anergy), compute a stimulation index from two cpm values, or recognise that a normal index does not show which subset responded."
+  },
+  "comparisons": [
+    {
+      "id": "signal1-vs-signal2",
+      "title": "Signal 1 vs signal 2",
+      "left": {
+        "label": "Signal 1",
+        "points": [
+          "TCR recognises peptide–MHC",
+          "Alone: anergy or apoptosis"
+        ]
+      },
+      "right": {
+        "label": "Signal 2",
+        "points": [
+          "CD28 binds CD80/CD86 (B7)",
+          "With signal 1: IL-2, proliferation"
+        ]
+      },
+      "distinguisher": "Antigen recognition vs costimulation; activation needs both."
+    },
+    {
+      "id": "thymidine-vs-cfse",
+      "title": "³H-thymidine vs CFSE",
+      "left": {
+        "label": "³H-thymidine",
+        "points": [
+          "Counts DNA synthesis in the whole well",
+          "No subset or phenotype information"
+        ]
+      },
+      "right": {
+        "label": "CFSE flow cytometry",
+        "points": [
+          "Dye halves with each division",
+          "Combined with CD markers: which subset divided"
+        ]
+      },
+      "distinguisher": "Bulk total vs single-cell, subset-resolved proliferation."
+    }
+  ],
+  "mnemonic": {
+    "text": "The TCR is the KEY in the ignition (signal 1); CD28 is the GAS PEDAL (signal 2). Key without gas: the engine stalls (anergy). ³H-thymidine is the FUEL GAUGE for the whole fleet: it shows how much fuel was burned, not which car drove.",
+    "explanation": "Links the two-signal requirement with the bulk nature of the stimulation index.",
+    "limitation": "Without costimulation the T cell may undergo apoptosis rather than just stall; cytokine signals also shape what the activated cell becomes; the bulk count includes every dividing cell in the culture, B cells included, not only T cells."
+  },
+  "analogyLimitations": [
+    "Scenario and cpm values are invented.",
+    "Cell and cycle drawings are schematic.",
+    "Culture times and normal ranges are from one laboratory’s protocol; laboratories differ."
+  ],
+  "takeaway": "A resting T cell leaves G0 and proliferates only when its receptor signal is joined by CD28 costimulation, and the thymidine stimulation index then tells you how much the whole culture divided but never which subset did.",
+  "questions": [
+    {
+      "id": "immuno-tcp-q1",
+      "stem": "A T cell’s receptor binds its peptide–MHC complex on an antigen-presenting cell, but CD28 on the T cell is not engaged by CD80 or CD86. What is the most likely outcome?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Anergy: the T cell becomes refractory to further stimulation",
+          "rationale": "Correct. Antigen recognition without CD28 costimulation leads to anergy, or sometimes apoptosis."
+        },
+        {
+          "id": "b",
+          "text": "Full activation with IL-2 production and proliferation",
+          "rationale": "Incorrect. Full activation needs both the TCR signal and CD28 costimulation."
+        },
+        {
+          "id": "c",
+          "text": "Conversion into a B cell that secretes antibody",
+          "rationale": "Incorrect. T cells do not become B cells; lack of costimulation shuts the T cell down."
+        },
+        {
+          "id": "d",
+          "text": "Immediate entry into S phase without IL-2",
+          "rationale": "Incorrect. Proliferation depends on costimulation and IL-2; the cell does not proceed to S phase."
+        }
+      ],
+      "answer": "a",
+      "skill": "Two-signal model",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-tcp-q2",
+      "stem": "In a tritiated-thymidine proliferation assay, unstimulated wells average 400 cpm and PHA-stimulated wells average 20,000 cpm. Using SI = stimulated cpm ÷ unstimulated cpm, what is the stimulation index?",
+      "options": [
+        {
+          "id": "a",
+          "text": "50",
+          "rationale": "Correct. 20,000 ÷ 400 = 50."
+        },
+        {
+          "id": "b",
+          "text": "0.02",
+          "rationale": "Incorrect. This divides unstimulated by stimulated counts, the inverse of the index."
+        },
+        {
+          "id": "c",
+          "text": "19,600",
+          "rationale": "Incorrect. This is the background-subtracted difference, not a ratio."
+        },
+        {
+          "id": "d",
+          "text": "5",
+          "rationale": "Incorrect. This is an arithmetic slip by a factor of ten."
+        }
+      ],
+      "answer": "a",
+      "skill": "Stimulation index",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-tcp-q3",
+      "stem": "A patient’s PHA stimulation index is within the laboratory’s normal range, but the clinician wants to know whether the CD8 T cells specifically proliferated. Which approach answers that question?",
+      "options": [
+        {
+          "id": "a",
+          "text": "CFSE dye dilution analysed by flow cytometry with CD markers",
+          "rationale": "Correct. The dye halves with each division, and gating on CD markers shows which subsets divided."
+        },
+        {
+          "id": "b",
+          "text": "Repeating the tritiated-thymidine assay with a longer pulse",
+          "rationale": "Incorrect. Thymidine uptake is a bulk count of the whole well and still gives no subset information."
+        },
+        {
+          "id": "c",
+          "text": "Recalculating the stimulation index with background subtraction",
+          "rationale": "Incorrect. A different formula changes the number, not the bulk nature of the measurement."
+        },
+        {
+          "id": "d",
+          "text": "Accepting the normal index as proof that all subsets responded",
+          "rationale": "Incorrect. A normal bulk response can hide a subset that failed to proliferate."
+        }
+      ],
+      "answer": "a",
+      "skill": "Bulk vs subset assays",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch46",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 46, Testing Cellular Immunity (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 46,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            6,
+            7
+          ]
+        },
+        {
+          "chapter": 46,
+          "section": "Exam Traps",
+          "items": [
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "beyersdorf2015",
+      "kind": "external",
+      "citation": "Beyersdorf N, Kerkau T, Hünig T. CD28 co-stimulation in T-cell homeostasis: a recent perspective. Immunotargets Ther. 2015;4:111-122. doi:10.2147/itt.s61647",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4918251/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. Activation needs TCR recognition of antigen–MHC plus CD28 costimulation via CD80/CD86 on APCs; without costimulation T cells become refractory (anergy) or undergo apoptosis; CD28 promotes IL-2 production; IL-2 acts in an autocrine fashion via the high-affinity receptor including CD25."
+    },
+    {
+      "id": "choi2025",
+      "kind": "external",
+      "citation": "Choi JO, Seo Y, Hwang SS. Guardians of silence: transcriptional networks in T cell quiescence. Exp Mol Med. 2025;57(8):1663-1672. doi:10.1038/s12276-025-01516-y",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12411625/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. Quiescent cells exit the cell cycle into G0; naive and memory T cells actively maintain quiescence and exit it after cognate antigen plus costimulation."
+    },
+    {
+      "id": "richman1980",
+      "kind": "external",
+      "citation": "Richman DP. Lymphocyte cell-cycle analysis by flow cytometry. Evidence for a specific postmitotic phase before return to G0. J Cell Biol. 1980;85(2):459-465. doi:10.1083/jcb.85.2.459",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2110606/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. Resting lymphocytes are G0 cells with diploid DNA; lectin-stimulated lymphocytes progress G0 → G1 → S → G2/mitosis in the first 3 days of culture; G2/mitosis cells have twice the G0 DNA content; thymidine uptake correlated closely with the number of cells in a late postmitotic phase; only a small proportion of circulating lymphocytes divide spontaneously in vitro."
+    },
+    {
+      "id": "lee2022",
+      "kind": "external",
+      "citation": "Lee HJ, Gau CC, Lee WF, et al. Comparison of [3H]-Thymidine, Carboxyfluorescein Diacetate Succinimidyl Ester and Ki-67 in Lymphocyte Proliferation. Front Pediatr. 2022;10:638549. doi:10.3389/fped.2022.638549",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9082031/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. ³H-thymidine incorporation as the traditional gold standard; mitogens (PHA, ConA, PWM) 3 days and antigens (Candida, BCG) 7 days in this protocol; methods define SI as (stimulated cpm − unstimulated cpm) ÷ unstimulated cpm × 100, a background-subtracted variant; wide normal PHA (5 μg/ml) SI range 15–267; <10% of normal proliferation defines profound T-cell deficiency; for that threshold, parallel controls were more reliable than previously established normal references."
+    },
+    {
+      "id": "vandermerwe1997",
+      "kind": "external",
+      "citation": "van der Merwe PA, Bodian DL, Daenke S, Linsley P, Davis SJ. CD80 (B7-1) binds both CD28 and CTLA-4 with a low affinity and very fast kinetics. J Exp Med. 1997;185(3):393-403. doi:10.1084/jem.185.3.393",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2196039/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. CD28 and CTLA-4 interact with the ligands CD80 (B7-1) and CD86 (B7-2) expressed on antigen-presenting cells; CD28 ligation enhances T-cell activation through the TCR. Used only for the B7 naming of CD80 and CD86."
+    },
+    {
+      "id": "ganesan2023",
+      "kind": "external",
+      "citation": "Ganesan N, Ronsmans S, Hoet P. Comparing [3H] thymidine LPT and CFSE assay to assess lymphocyte proliferation in beryllium-exposed sarcoidosis patients. Heliyon. 2023;9(9):e19242. doi:10.1016/j.heliyon.2023.e19242",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10471999/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. ³H-thymidine LPT does not provide phenotype or subset information about proliferating cells; CFSE flow cytometry identifies which subsets proliferated; dye fluorescence divides equally per daughter generation; SI defined as mean stimulated ÷ mean unstimulated response."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-two-signal",
+      "text": "Signal 1 = TCR–peptide–MHC; signal 2 = CD28 binding CD80/CD86; both → IL-2 and proliferation; signal 1 alone → anergy or apoptosis.",
+      "status": "checked",
+      "refs": [
+        "beyersdorf2015",
+        "vandermerwe1997"
+      ]
+    },
+    {
+      "id": "cl-g0",
+      "text": "Resting T cells are quiescent in G0 and actively maintain quiescence; they exit it after antigen plus costimulation.",
+      "status": "checked",
+      "refs": [
+        "choi2025",
+        "richman1980"
+      ]
+    },
+    {
+      "id": "cl-cycle",
+      "text": "G0/G1 diploid (2N); S between 2N and 4N; G2/M twice G0 DNA; stimulated lymphocytes progress through the cycle in the first 3 days of culture.",
+      "status": "checked",
+      "refs": [
+        "richman1980"
+      ]
+    },
+    {
+      "id": "cl-assay",
+      "text": "Mitogen or antigen culture, ³H-thymidine incorporated into new DNA, counted as cpm; one protocol’s 3-day mitogen and 7-day antigen culture.",
+      "status": "checked",
+      "refs": [
+        "lee2022",
+        "richman1980"
+      ]
+    },
+    {
+      "id": "cl-si",
+      "text": "SI = stimulated ÷ unstimulated cpm, with laboratory variants; wide normal range; parallel controls; <10% of normal in profound T-cell deficiency.",
+      "status": "checked",
+      "refs": [
+        "lee2022",
+        "ganesan2023"
+      ]
+    },
+    {
+      "id": "cl-bulk",
+      "text": "³H-thymidine uptake gives no subset information; CFSE with CD markers identifies proliferating subsets; dye halves per division.",
+      "status": "checked",
+      "refs": [
+        "ganesan2023",
+        "lee2022"
+      ]
+    },
+    {
+      "id": "cl-sphase5",
+      "text": "Reviewer: fewer than 5% of peripheral blood lymphocytes are in S phase; 4–24 h thymidine pulse; 5–10 day antigen culture.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch46"
+      ],
+      "note": "No open source read in this session gives these figures; not taught."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario and cpm values invented; drawings schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Key, pedal, fuel gauge.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-b7-cd86",
+      "issue": "The reviewer’s Hit 1 names signal 2 as CD28 binding “B7 (CD80)”. The CD28 review gives both CD80 and CD86 as CD28 ligands on antigen-presenting cells, and van der Merwe 1997 names them B7-1 and B7-2. The lesson teaches CD80/CD86.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-si-formula",
+      "issue": "The reviewer’s Hit 7 gives the stimulation index as cpm(stimulated)/cpm(control). Open sources show the ratio form, but one laboratory’s methods subtract unstimulated counts before dividing (and multiply by 100), normal ranges are very wide (PHA SI 15–267 in that laboratory), and parallel controls were more reliable than historical ranges for its <10%-of-normal threshold. The lesson teaches the ratio as the common form and says the formula and cutoffs are laboratory-defined.",
+      "kind": "method-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No micrographs; cells, cell-cycle phases and assays shown as schematic cards and tokens.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 claims checked against Beyersdorf 2015, van der Merwe 1997, Choi 2025, Richman 1980, Lee 2022 and Ganesan 2023 (all read as Europe PMC full text); 1 pending (reviewer’s <5% S-phase figure, thymidine pulse length and 5–10 day antigen culture; no open source read; not taught). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

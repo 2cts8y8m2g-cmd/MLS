@@ -1,0 +1,1652 @@
+{
+  "schemaVersion": 1,
+  "id": "mdx-parentage-pi-cpe-probability",
+  "title": "Parentage Statistics: Paternity Index, Exclusion Probability and W",
+  "summary": "Learn how locus paternity indexes combine into a CPI, how combined exclusion probability is calculated, how Bayes’ rule turns a CPI into a probability of paternity, and why one or two mismatching loci may be mutations rather than exclusions.",
+  "domain": "p8-mdx",
+  "topic": "ch74",
+  "conceptIds": [
+    "ch74.hit2",
+    "ch74.hit6",
+    "ch74.hit7",
+    "ch74.hit13",
+    "ch74.trap4",
+    "ch74.trap6",
+    "ch74.special1"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 74,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          6,
+          7,
+          13
+        ]
+      },
+      {
+        "chapter": 74,
+        "section": "Exam Traps",
+        "items": [
+          4,
+          6
+        ]
+      },
+      {
+        "chapter": 74,
+        "section": "Calculation Check: From Paternity Index to Probability"
+      }
+    ],
+    "note": "Teaches Ch. 74 Hits 2, 6, 7 and 13, Exam Traps 4 and 6, and the Calculation Check (PI to probability). Checked against Thompson 2013 (prior probability, PI as likelihood ratio), Thelingwani 2024 (CPI as product; PP = CPI/(CPI+1); isolated-mutation PI = μ/PE as recommended by AABB; mutation rates), Ge & Budowle 2020 (2013 AABB annual report of LR thresholds), Gao 2019 (China CPI ≥ 10,000; mismatches may be mutations), De Kock 2021 (1–2 mismatches not excluded; duo false inclusions), Vandeputte 2012 (combined exclusion formula), Aşicioglu 2004 (STR mutation rates) and Lee 2013 (relatives). The AABB Standards text itself was not available openly and was not read: the reviewer’s “AABB requires PI ≥ 100” is taught as the threshold most AABB-accredited labs reported using in 2013, not as a verified Standards requirement. The reviewer’s “PI 100 = odds 99:1” is corrected (odds 100:1, probability ≈ 99.0%). The reviewer’s “exclusions in ≥2 independent systems are generally sufficient” is not taught; sources read describe 1–2 mismatches as possible mutations. Not taught: “CPE ≥ 0.995 easily achieved” and “>99.9% of falsely accused excluded” (no source read)."
+  },
+  "prerequisites": [
+    "ch74.hit1"
+  ],
+  "objectives": [
+    "Calculate a combined paternity index and a combined exclusion probability from locus values.",
+    "Convert a CPI to a probability of paternity with Bayes’ rule and explain the role of the prior.",
+    "Interpret one or two mismatching loci as possible mutations rather than an automatic exclusion."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "One locus that does not fit",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a trio paternity case (mother, child, alleged father) typed at 20 autosomal STR loci. Nineteen loci are consistent with the alleged father; at one locus the child carries a paternal allele one repeat unit away from either of his alleles. A card asks two questions: “Is he excluded?” and “Has paternity been proven?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Invented case: a mother, a child and an alleged father are typed at twenty STR loci."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Nineteen loci fit. At one locus, the child’s paternal allele is one repeat unit away from both of his alleles."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Is he excluded? And if not, has the lab proven he is the father?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "m",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 150,
+            "tone": "b",
+            "title": "Mother",
+            "lines": [
+              "Typed: 20 STR loci"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 150,
+            "tone": "a",
+            "title": "Child",
+            "lines": [
+              "One maternal + one paternal allele"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "f",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 150,
+            "tone": "warn",
+            "title": "Alleged father",
+            "lines": [
+              "19 loci consistent"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.6,
+              "opacity": 0
+            },
+            {
+              "t": 3.4000000000000004,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mis",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 410,
+            "w": 640,
+            "label": "1 locus: off by one repeat unit",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 640,
+            "label": "Excluded? Proven?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Paternity index and exclusion probability",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic with four cards. Paternity index (PI) at one locus: a likelihood ratio, the probability of the child’s genotype if the alleged father is the father divided by its probability if a random unrelated man is the father. Combined paternity index (CPI): the product of the locus PIs. Exclusion probability (PE): the chance a locus excludes a random non-father; combined exclusion probability = 1 − the product of each locus’s non-exclusion probability (1 − PE). Worked example: three loci with PE 0.5, 0.6 and 0.7 give 1 − (0.5 × 0.4 × 0.3) = 0.94. A note says testing the mother matters: without her, some true non-fathers are falsely included.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "At each locus, the paternity index is a likelihood ratio: how much more likely the child’s type is if the alleged father is the father than if a random unrelated man is."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 38,
+          "text": "Loci are combined by multiplication. The combined paternity index is the product of the locus indexes."
+        },
+        {
+          "id": "n3",
+          "start": 38,
+          "end": 52,
+          "text": "Exclusion works the other way. Each locus has a chance of excluding a random non-father. Multiply the chances that each locus fails to exclude, and subtract from one. Three loci at 0.5, 0.6 and 0.7 give one minus 0.06, or 0.94."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "Test the mother when you can. Without her, some men who would have been excluded are falsely included."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pi",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "PI (one locus)",
+            "lines": [
+              "P(child | AF is father)",
+              "÷ P(child | random man)"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cpi",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "CPI",
+            "lines": [
+              "PI₁ × PI₂ × … × PIₙ"
+            ],
+            "highlight": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cpe",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "good",
+            "title": "Combined exclusion",
+            "lines": [
+              "1 − (1−PE₁)(1−PE₂)…(1−PEₙ)",
+              "0.5, 0.6, 0.7 → 1 − 0.06 = 0.94"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "duo",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Test the mother",
+            "lines": [
+              "Duo: some false inclusions"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "From index to probability",
+      "start": 60,
+      "end": 104,
+      "altText": "Bayes card: posterior odds = prior odds × CPI. With a prior probability of 0.5 (prior odds 1:1), posterior odds equal the CPI, and the probability of paternity W = CPI/(CPI + 1); the general form is W = p·CPI / [p·CPI + (1 − p)]. Worked table: CPI 10 → 90.9%; CPI 100 → odds 100:1, W = 100/101 ≈ 99.0%; CPI 1000 → 99.9%. Threshold card: inclusion thresholds are laboratory policy — the 2013 AABB relationship-testing annual report found 65% of accredited labs used a likelihood ratio of 100 for trios, and other thresholds such as 1000 may be used depending on the relationship; China’s specification uses CPI ≥ 10,000.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "The index is not yet a probability. Bayes’ rule says posterior odds equal prior odds times the combined index. With a neutral prior of one half, the odds equal the index, and the probability of paternity is the index divided by the index plus one."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 84,
+          "text": "So an index of ten gives about ninety-one percent. An index of one hundred gives odds of one hundred to one, or about ninety-nine percent. One thousand gives ninety-nine point nine."
+        },
+        {
+          "id": "c3",
+          "start": 84,
+          "end": 94,
+          "text": "Where is the line for inclusion? It is laboratory policy. In a 2013 AABB report, most accredited labs used an index of one hundred for trios, and other thresholds, such as one thousand, are also used."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "Other systems set it higher: China’s parentage specification uses a combined index of at least ten thousand."
+        }
+      ],
+      "objects": [
+        {
+          "id": "bayes",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 440,
+            "h": 230,
+            "tone": "b",
+            "title": "Bayes",
+            "lines": [
+              "Posterior odds = prior odds × CPI",
+              "Prior 0.5 → W = CPI/(CPI+1)",
+              "General: pCPI / [pCPI + (1−p)]"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tab",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "good",
+            "title": "Prior 0.5",
+            "lines": [
+              "CPI 10 → 90.9%",
+              "CPI 100 → 100:1 → 99.0%",
+              "CPI 1000 → 99.9%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "reveal": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 23,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "thr",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 450,
+            "w": 420,
+            "label": "AABB 2013 report: most labs LR 100",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 25.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cn",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 510,
+            "w": 420,
+            "label": "China: CPI ≥ 10,000",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Mismatch or mutation?",
+      "start": 104,
+      "end": 144,
+      "altText": "Mutation card: STR loci mutate, mostly by replication slippage; rates are often quoted around 10⁻³ to 10⁻⁴ per locus per generation; most observed mutations are single-step and more come from fathers than mothers. Policy card: one or two mismatching loci are not treated as exclusion; for an isolated inconsistency the locus PI is calculated as μ/PE (mutation rate over exclusion probability, as AABB recommends per one laboratory’s methods). One laboratory reported exclusion only with 4 or more excluding loci and a CPI below 10,000. Hook answer (invented numbers): the 19 consistent loci give CPI 2,000,000; the mismatch locus PI = 0.002/0.5 = 0.004; CPI = 8,000; W ≈ 99.99% — not excluded, and still a statistic, not proof.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "STR loci mutate, mostly by slippage during replication. Rates are often quoted around one in a thousand to one in ten thousand per locus per generation. Most mutations are one repeat step, and more come from fathers."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "So one or two mismatching loci are not called an exclusion. For an isolated mismatch, the locus index is the mutation rate divided by the exclusion probability. One laboratory excluded only with four or more mismatching loci and a low combined index."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 136,
+          "text": "Back to the hook, with invented numbers. Nineteen loci give a combined index of two million. The mismatch locus gives 0.002 over 0.5, or 0.004. The total is eight thousand: about 99.99 percent."
+        },
+        {
+          "id": "l4",
+          "start": 136,
+          "end": 144,
+          "text": "He is not excluded. But the result is still a statistical weight that depends on a prior, not proof."
+        }
+      ],
+      "objects": [
+        {
+          "id": "mut",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 210,
+            "tone": "bad",
+            "title": "STR mutation",
+            "lines": [
+              "Replication slippage",
+              "~10⁻³–10⁻⁴ per locus/generation",
+              "Mostly 1 step; more paternal"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pol",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "warn",
+            "title": "Lab policy",
+            "lines": [
+              "1–2 mismatches ≠ exclusion",
+              "Isolated: PI = μ / PE",
+              "One lab: ≥ 4 loci + low CPI"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 760,
+            "h": 150,
+            "tone": "a",
+            "title": "Hook answer (invented numbers)",
+            "lines": [
+              "19 loci: CPI 2,000,000",
+              "Mismatch: 0.002 / 0.5 = 0.004",
+              "CPI 8,000 → W ≈ 99.99% · not proof"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “One mismatching locus excludes the alleged father” (✓ a single inconsistency may be a mutation; calculate the locus PI with the mutation rate); “W of 99.99% proves paternity” (✓ W depends on an assumed prior; the lab reports a statistical weight, the court decides); “PI 100 means odds of 99:1” (✓ with prior 0.5, PI 100 gives odds of 100:1, probability 100/101 ≈ 99.0%).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: one mismatching locus excludes him. No: a single mismatch may be a mutation, so the lab calculates that locus with the mutation rate."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: ninety-nine point nine nine percent proves paternity. No: the probability rests on an assumed prior. The lab reports weight; the court decides."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: an index of one hundred means odds of ninety-nine to one. No: with a neutral prior the odds are one hundred to one, which is about ninety-nine percent."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “One mismatch = excluded.”",
+            "lines": [
+              "✓ Possible mutation: PI = μ / PE"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “W 99.99% = proven.”",
+            "lines": [
+              "✓ Assumed prior; court decides"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “PI 100 = odds 99:1.”",
+            "lines": [
+              "✓ 100:1 odds ≈ 99.0% probability"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Multiply the hits, multiply the misses",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Multiply the hits, multiply the misses, then add one.” Tokens: hits = locus PIs multiply into the CPI · misses = (1 − PE) values multiply, and 1 minus that product is the combined exclusion · add one = W = CPI/(CPI + 1) at a 0.5 prior. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: multiply the hits, multiply the misses, then add one. Locus indexes multiply into the combined index. The chances of failing to exclude multiply, and one minus that is combined exclusion. Then probability is the index over the index plus one."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: multiplying assumes independent loci and unrelated alternative fathers, since a brother is much harder to exclude; the plus-one shortcut holds only for a prior of one half; and mutations need their own locus formula."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Multiply the hits, multiply the misses",
+            "size": 26,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Hits: ×PI → CPI",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Misses: 1 − ×(1−PE)",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Add one: CPI/(CPI+1)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Assumes independent loci, unrelated alternative man",
+              "CPI/(CPI+1) only at prior 0.5",
+              "Mutations need PI = μ / PE"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “CPI = product of locus PIs · W = CPI/(CPI+1) at prior 0.5 · threshold is lab policy”, “1–2 mismatches may be mutation → PI = μ/PE · a statistic, not proof”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Multiply locus paternity indexes into a combined index, convert it to a probability only through an assumed prior, treat one or two mismatching loci as possible mutations, and report the result as statistical weight rather than proof."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "CPI = ×PI · W = CPI/(CPI+1) at prior 0.5 · threshold = lab policy",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "1–2 mismatches: possible mutation → PI = μ/PE · weight, not proof",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: at each DNA marker the lab asks how much better the alleged father explains the child’s DNA than a random man. Those ratios are multiplied together. Turning that into a percentage needs a starting assumption, and a single mismatching marker can be a new mutation. Scientific terms: paternity index (PI, a likelihood ratio), combined paternity index (CPI), probability of exclusion (PE), combined exclusion probability, probability of paternity (W), prior probability, posterior odds, germline STR mutation, trio vs duo testing.",
+    "why": "Independent loci let likelihood ratios multiply and non-exclusion probabilities multiply. Bayes’ rule says posterior odds equal prior odds times the likelihood ratio, so a probability of paternity exists only once a prior is assumed. STR loci mutate (mostly single-step, more often paternal), so an isolated inconsistency is weighed with the mutation rate instead of being called an exclusion.",
+    "measure": "CPI = PI₁ × PI₂ × … × PIₙ. Combined exclusion = 1 − (1 − PE₁)(1 − PE₂)…(1 − PEₙ). With prior 0.5, W = CPI/(CPI + 1); general W = p·CPI / [p·CPI + (1 − p)]. CPI 10 → 90.9%; CPI 100 → odds 100:1, ≈ 99.0%; CPI 1000 → 99.9%. Isolated inconsistency: locus PI = μ/PE. Thresholds are laboratory or national policy (2013 AABB annual report: most labs LR 100 for trios; other thresholds such as 1000 also used; China: CPI ≥ 10,000).",
+    "differs": "PI (likelihood ratio of the evidence) vs W (probability of the hypothesis, needs a prior); odds (100:1) vs probability (≈ 99%); PE (chance to exclude a random man) vs PI (weight of a non-exclusion); mutation (1–2 mismatches, often one step) vs exclusion (multiple mismatching loci); trio vs duo.",
+    "examAngle": "Expect: compute W from a CPI at prior 0.5, compute a combined exclusion probability from locus PEs, choose the next step after a single mismatching locus, or reject “the test proves paternity”."
+  },
+  "comparisons": [
+    {
+      "id": "pi-vs-w",
+      "title": "Paternity index vs probability of paternity",
+      "left": {
+        "label": "PI / CPI",
+        "points": [
+          "Likelihood ratio of the DNA findings",
+          "Loci multiply; no prior needed"
+        ]
+      },
+      "right": {
+        "label": "W",
+        "points": [
+          "Probability that he is the father",
+          "Needs a prior; at 0.5, CPI/(CPI+1)"
+        ]
+      },
+      "distinguisher": "Weight of the evidence vs probability of the hypothesis."
+    },
+    {
+      "id": "mutation-vs-exclusion",
+      "title": "Mutation vs exclusion",
+      "left": {
+        "label": "Possible mutation",
+        "points": [
+          "One or two mismatching loci",
+          "Often one repeat step; PI = μ/PE"
+        ]
+      },
+      "right": {
+        "label": "Exclusion",
+        "points": [
+          "Several mismatching loci",
+          "Low CPI under lab policy"
+        ]
+      },
+      "distinguisher": "How many loci mismatch, and what the remaining loci say."
+    }
+  ],
+  "mnemonic": {
+    "text": "Multiply the hits, multiply the misses, then add one: locus PIs multiply into the CPI; (1 − PE) values multiply and 1 minus that product is the combined exclusion; at a 0.5 prior, W = CPI/(CPI + 1).",
+    "explanation": "One phrase for CPI, combined exclusion and the prior-0.5 probability.",
+    "limitation": "Multiplication assumes independent loci and an unrelated alternative man (relatives are harder to exclude); CPI/(CPI + 1) holds only at a 0.5 prior; mutations need their own locus formula."
+  },
+  "analogyLimitations": [
+    "Scenario and all case numbers (CPI 2,000,000; μ 0.002; PE 0.5) are invented for illustration.",
+    "Family cards are schematic; no real STR profiles are shown.",
+    "Inclusion thresholds and exclusion rules vary by laboratory and country."
+  ],
+  "takeaway": "Multiply locus paternity indexes into a combined index, convert it to a probability only through an assumed prior, treat one or two mismatching loci as possible mutations, and report the result as statistical weight rather than proof.",
+  "questions": [
+    {
+      "id": "mdx-par-q1",
+      "stem": "A trio case gives a combined paternity index of 1000. Assuming a prior probability of 0.5, what is the probability of paternity (W)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "About 99.9%",
+          "rationale": "Correct. At a 0.5 prior, W = CPI/(CPI + 1) = 1000/1001 ≈ 99.9%."
+        },
+        {
+          "id": "b",
+          "text": "100%",
+          "rationale": "Incorrect. W approaches but never reaches 100% for a finite CPI."
+        },
+        {
+          "id": "c",
+          "text": "99.0%",
+          "rationale": "Incorrect. That is the value for a CPI of 100 (100/101)."
+        },
+        {
+          "id": "d",
+          "text": "0.1%",
+          "rationale": "Incorrect. This confuses 1/CPI with the probability of paternity."
+        }
+      ],
+      "answer": "a",
+      "skill": "Calculate W",
+      "difficulty": "application"
+    },
+    {
+      "id": "mdx-par-q2",
+      "stem": "In a trio, 19 of 20 STR loci are consistent with the alleged father and give a very high combined index. At one locus the child’s paternal allele differs by one repeat unit from both of his alleles. What is the best interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Possible germline mutation: calculate that locus with the mutation rate (PI = μ/PE) and recombine",
+          "rationale": "Correct. One or two mismatches can be single-step mutations, which are weighed with the mutation rate rather than called an exclusion."
+        },
+        {
+          "id": "b",
+          "text": "He is excluded because one locus is inconsistent",
+          "rationale": "Incorrect. A single inconsistency is not treated as an exclusion because STR loci mutate."
+        },
+        {
+          "id": "c",
+          "text": "Ignore the locus and report the 19-locus CPI",
+          "rationale": "Incorrect. The mismatch is weighed, not dropped; it lowers the CPI."
+        },
+        {
+          "id": "d",
+          "text": "Paternity is proven because 19 loci match",
+          "rationale": "Incorrect. DNA results give statistical weight that depends on a prior; they do not prove paternity."
+        }
+      ],
+      "answer": "a",
+      "skill": "Mutation vs exclusion",
+      "difficulty": "application"
+    },
+    {
+      "id": "mdx-par-q3",
+      "stem": "Three independent loci have exclusion probabilities of 0.5, 0.6 and 0.7. What is their combined probability of exclusion?",
+      "options": [
+        {
+          "id": "a",
+          "text": "0.94",
+          "rationale": "Correct. 1 − (0.5 × 0.4 × 0.3) = 1 − 0.06 = 0.94."
+        },
+        {
+          "id": "b",
+          "text": "0.21",
+          "rationale": "Incorrect. This multiplies the PE values themselves instead of the non-exclusion values."
+        },
+        {
+          "id": "c",
+          "text": "1.8",
+          "rationale": "Incorrect. Probabilities are not added; a probability cannot exceed 1."
+        },
+        {
+          "id": "d",
+          "text": "0.06",
+          "rationale": "Incorrect. This is the combined probability of NOT excluding; subtract it from 1."
+        }
+      ],
+      "answer": "a",
+      "skill": "Calculate combined exclusion",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch74",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 74, DNA Identity and Forensics (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 74,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            6,
+            7,
+            13
+          ]
+        },
+        {
+          "chapter": 74,
+          "section": "Exam Traps",
+          "items": [
+            4,
+            6
+          ]
+        },
+        {
+          "chapter": 74,
+          "section": "Calculation Check: From Paternity Index to Probability"
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "thompson2013",
+      "kind": "external",
+      "citation": "Thompson WC, Vuille J, Biedermann A, Taroni F. The role of prior probability in forensic assessments. Front Genet. 2013;4:220. doi:10.3389/fgene.2013.00220",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3809556/",
+      "consulted": true,
+      "usedFor": "Paternity index as a likelihood ratio of the child’s genotype under the two hypotheses; equal prior odds multiplied by the PI give posterior odds restated as a probability (LR 1 million → 0.999999); likelihood ratio is not a source probability; prior assumption contested and generally not allowed in US criminal cases; fact-finder, not expert, assesses priors."
+    },
+    {
+      "id": "thelingwani2024",
+      "kind": "external",
+      "citation": "Thelingwani RS, Jonhera CA, Masimirembwa C. Analysis of data and common mutations encountered during routine parentage testing in Zimbabwe. Sci Rep. 2024;14(1):1385. doi:10.1038/s41598-024-51987-8",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10791675/",
+      "consulted": true,
+      "usedFor": "Locus PI as likelihood ratio; CPI = product of locus PIs; PP = CPI/(CPI + 1); isolated-mutation PI = μ/PE as recommended by AABB; that lab’s exclusion rule (≥4 excluding loci and CPI < 10,000); mutations mostly single-step; paternal rate higher than maternal; mutations considered when 1–2 loci fail to match."
+    },
+    {
+      "id": "ge2020",
+      "kind": "external",
+      "citation": "Ge J, Budowle B. How many familial relationship testing results could be wrong? PLoS Genet. 2020;16(8):e1008929. doi:10.1371/journal.pgen.1008929",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7425842/",
+      "consulted": true,
+      "usedFor": "LR thresholds are laboratory choices and vary; 2013 AABB annual report: 65% of accredited labs used LR 100 for trios, and other thresholds (such as 10 and 1,000) may be used depending on the relationship; binary thresholds carry false inclusion and exclusion rates."
+    },
+    {
+      "id": "gao2019",
+      "kind": "external",
+      "citation": "Gao H, Wang C, Zhang R, Wu H, Sun S, Xiao D, Wang Y, Zhang M. Application of CPI cutoff value based on parentage testing of duos and trios typed by four autosomal kits. PLoS One. 2019;14(11):e0225174. doi:10.1371/journal.pone.0225174",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6853303/",
+      "consulted": true,
+      "usedFor": "China’s parentage specification CPI cutoff ≥ 10,000; STR mutation lowers the CPI and can make results inconclusive; one or two mismatches may be due to mutation."
+    },
+    {
+      "id": "dekock2021",
+      "kind": "external",
+      "citation": "De Kock AA, Kloppers JJ. The impact of motherless paternity testing in a South African population. Afr Health Sci. 2021;21(1):379-384. doi:10.4314/ahs.v21i1.48",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8356597/",
+      "consulted": true,
+      "usedFor": "Putative fathers not excluded on one or two STR mismatches (consensus: more than two mismatches usually excludes); without the mother, 2.5% of excluded trio cases would have been falsely included."
+    },
+    {
+      "id": "vandeputte2012",
+      "kind": "external",
+      "citation": "Vandeputte M. An accurate formula to calculate exclusion power of marker sets in parentage assignment. Genet Sel Evol. 2012;44:36. doi:10.1186/1297-9686-44-36",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3523974/",
+      "consulted": true,
+      "usedFor": "Combined exclusion probability = 1 − product over loci of (1 − locus exclusion probability); a single locus is generally not enough; the formula assumes the alternative parents are unrelated, and linkage between markers or relatives as candidate parents lower real exclusion power. (Animal-genetics paper; the formula is general.)"
+    },
+    {
+      "id": "asicioglu2004",
+      "kind": "external",
+      "citation": "Aşicioglu F, Oguz-Savran F, Ozbek U. Mutation rate at commonly used forensic STR loci: paternity testing experience. Dis Markers. 2004;20(6):313-315. doi:10.1155/2004/643086",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3839336/",
+      "consulted": true,
+      "usedFor": "STR mutation by polymerase slippage; rates often quoted 10⁻³ to 10⁻⁴ per locus per generation; mutations single-repeat; mostly male origin; mutations must be considered with a seeming paternal exclusion."
+    },
+    {
+      "id": "lee2013",
+      "kind": "external",
+      "citation": "Lee JC, Tsai LC, Chu PC, Lin YY, Lin CY, Huang TY, Yu YJ, Linacre A, Hsieh HM. The risk of false inclusion of a relative in parentage testing - an in silico population study. Croat Med J. 2013;54(3):257-262. doi:10.3325/cmj.2013.54.257",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3692333/",
+      "consulted": true,
+      "usedFor": "Probability of paternity calculated as LR/(LR + 1); close relatives (especially full siblings) carry a real risk of false inclusion."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-pi",
+      "text": "Locus PI is a likelihood ratio; CPI is the product of locus PIs.",
+      "status": "checked",
+      "refs": [
+        "thompson2013",
+        "thelingwani2024"
+      ]
+    },
+    {
+      "id": "cl-cpe",
+      "text": "Combined exclusion = 1 − product of (1 − PE); worked example 0.94.",
+      "status": "checked",
+      "refs": [
+        "vandeputte2012"
+      ],
+      "note": "Worked numbers are arithmetic on the cited formula. The independence/unrelated-alternative limitation is from Vandeputte 2012 and Lee 2013."
+    },
+    {
+      "id": "cl-w",
+      "text": "Posterior odds = prior odds × CPI; at prior 0.5, W = CPI/(CPI + 1); CPI 10/100/1000 → 90.9/99.0/99.9%; PI 100 = odds 100:1.",
+      "status": "checked",
+      "refs": [
+        "thompson2013",
+        "thelingwani2024",
+        "lee2013"
+      ],
+      "note": "The general-prior form p·CPI/[p·CPI + (1 − p)] is Bayes’ rule rewritten from the odds form described by Thompson 2013."
+    },
+    {
+      "id": "cl-threshold",
+      "text": "Inclusion thresholds are lab/national policy: 2013 AABB annual report most labs LR 100 for trios, other thresholds such as 1000 also used; China CPI ≥ 10,000.",
+      "status": "checked",
+      "refs": [
+        "ge2020",
+        "gao2019"
+      ]
+    },
+    {
+      "id": "cl-aabb-standard",
+      "text": "AABB Standards (2019) require PI ≥ 100 for parentage determination.",
+      "status": "pending",
+      "note": "AABB Standards text not openly available; not read. Not taught as a Standards requirement."
+    },
+    {
+      "id": "cl-mutation",
+      "text": "STR mutation rates ~10⁻³–10⁻⁴ per locus per generation, mostly single-step and paternal; 1–2 mismatches not called exclusion; isolated mismatch PI = μ/PE.",
+      "status": "checked",
+      "refs": [
+        "asicioglu2004",
+        "thelingwani2024",
+        "dekock2021",
+        "gao2019"
+      ]
+    },
+    {
+      "id": "cl-two-systems",
+      "text": "Indirect exclusions in ≥2 independent systems are generally sufficient for exclusion.",
+      "status": "pending",
+      "note": "Not taught. Sources read describe 1–2 mismatches as possible mutations (De Kock 2021; Gao 2019), and one lab required ≥4 excluding loci (Thelingwani 2024)."
+    },
+    {
+      "id": "cl-cpe-0995",
+      "text": "CPE ≥ 0.995 is easily achieved; >99.9% of falsely accused are excluded.",
+      "status": "pending",
+      "note": "Not taught; no source read."
+    },
+    {
+      "id": "cl-proof",
+      "text": "DNA parentage results are statistical weight dependent on a prior, not proof; the fact-finder decides.",
+      "status": "checked",
+      "refs": [
+        "thompson2013",
+        "ge2020"
+      ]
+    },
+    {
+      "id": "cl-duo",
+      "text": "Without the mother, some non-fathers are falsely included; relatives are harder to exclude.",
+      "status": "checked",
+      "refs": [
+        "dekock2021",
+        "lee2013"
+      ]
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario and case numbers invented; family cards schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Multiply the hits, multiply the misses, then add one.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-pi100-odds",
+      "issue": "Ch. 74 Hit 2 and its Memory Hook equate PI ≥ 100 with “odds of 99:1”. With a 0.5 prior, posterior odds equal the PI (100:1) and the probability is 100/101 ≈ 99.0% (Thompson 2013; Thelingwani 2024). The lesson teaches 100:1 odds ≈ 99% (register flag rv-ch74-pi100-odds).",
+      "kind": "contradiction",
+      "status": "open"
+    },
+    {
+      "id": "f-pi-threshold",
+      "issue": "Ch. 74 Hit 2 states AABB Standards (2019) require PI ≥ 100. The Standards text was not available to read; Ge & Budowle 2020 describe LR 100 as the threshold most AABB-accredited labs reported in 2013 (other thresholds such as 1,000 may be used depending on the relationship), and China uses CPI ≥ 10,000 (Gao 2019). This is US/AABB practice; Philippine parentage-testing rules are not covered (register flag rv-ch74-pi-threshold).",
+      "kind": "guideline-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-two-exclusions",
+      "issue": "Ch. 74 Hit 13 and Trap 4 say indirect exclusions in ≥2 independent systems are generally sufficient. Sources read state that one or two STR mismatches may be mutations and are not excluded (De Kock 2021; Gao 2019), and one lab required ≥4 excluding loci (Thelingwani 2024). The lesson teaches only that 1–2 mismatches are not an automatic exclusion (register flag rv-ch74-two-exclusions).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No real STR profiles or electropherograms; family members and calculations shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "7 of 10 factual claims checked against open sources (Thompson 2013, Thelingwani 2024, Ge & Budowle 2020, Gao 2019, De Kock 2021, Vandeputte 2012, Aşicioglu 2004, Lee 2013); 3 reviewer claims pending and not taught (AABB Standards PI ≥ 100 wording, ≥2-system exclusion rule, CPE ≥ 0.995 / >99.9% exclusion). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

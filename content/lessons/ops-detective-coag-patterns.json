@@ -1,0 +1,1550 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-detective-coag-patterns",
+  "title": "Reading Coagulation Patterns: Heparin, INR, Mixing Studies and DIC",
+  "summary": "Match heparin and warfarin to their monitoring tests and the INR formula, read a mixing study (including incubation for time-dependent inhibitors), and diagnose DIC with the ISTH score instead of a single D-dimer.",
+  "domain": "p1-ops",
+  "topic": "ch9",
+  "conceptIds": [
+    "ch9.hit7",
+    "ch9.hit8",
+    "ch9.hit11",
+    "ch9.trap4"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 9,
+        "section": "High-Yield Hits",
+        "items": [
+          7,
+          8,
+          11
+        ]
+      },
+      {
+        "chapter": 9,
+        "section": "Exam Traps",
+        "items": [
+          4
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 9 Hits 7 (heparin/aPTT, warfarin/PT, INR targets), 8 (mixing study) and 11 (DIC labs), and Trap 4 (no correction = inhibitor). Checked against Barouqa 2026, Santoro 2023, van der Helm 2026, Roskell 2013, Langenaeken 2023, Johansson 2024, Iba 2023, Toh 2016 and Wada 2014. Discrepancies: the reviewer gives INR 3–4 for valve replacements (open sources describe 2.5–3.5 for a mechanical mitral valve or added risk; the 2021 ESC/EACTS guideline table could not be read in the page fetch, so the flag needs verification); “D-dimer confirms DIC” conflicts with guideline summaries that no single marker diagnoses DIC; the mixing-study rule omits incubation for time-dependent inhibitors and exclusion of anticoagulant in the sample. Not taught (unsourced here): “INR >4 = back off the Coumadin”, “Coumadin does not prolong the APTT”, and D-dimer replacing the FSP assay."
+  },
+  "prerequisites": [
+    "ch36.hit1",
+    "ch36.hit2"
+  ],
+  "objectives": [
+    "Match unfractionated heparin and warfarin to their monitoring tests and calculate the INR.",
+    "Interpret a 1:1 mixing study, including the incubated mix and lupus anticoagulant.",
+    "Explain why DIC is diagnosed with the ISTH score rather than a single D-dimer."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three long clotting times",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three coagulation results arrive. (1) A ward patient on an unfractionated heparin infusion: aPTT long, PT normal. (2) An outpatient with no anticoagulant: aPTT long, PT normal; the 1:1 mix with normal pooled plasma does not correct. (3) A septic ICU patient: platelets falling, PT prolonged, D-dimer high. Question token: “Drug, deficiency, inhibitor, or DIC?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Three long clotting times. A ward patient on a heparin drip with a long aPTT and a normal PT."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "An outpatient on no anticoagulant whose long aPTT does not correct when mixed with normal plasma."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "And a septic patient with falling platelets, a long PT and a high D-dimer. Drug, deficiency, inhibitor, or DIC?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 On heparin drip",
+            "lines": [
+              "aPTT long",
+              "PT normal"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "2 No anticoagulant",
+            "lines": [
+              "aPTT long, PT normal",
+              "1:1 mix: no correction"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "bad",
+            "title": "3 Septic, ICU",
+            "lines": [
+              "Platelets falling",
+              "PT long · D-dimer high"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.3,
+              "opacity": 0
+            },
+            {
+              "t": 15.100000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "Drug, deficiency, inhibitor, or DIC?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 18.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Which test follows which drug",
+      "start": 20,
+      "end": 60,
+      "altText": "Two drug cards. Unfractionated heparin (UFH): monitored by the aPTT (historically, since 1970) or by the anti-factor Xa assay (therapeutic about 0.3–0.7 U/mL); aPTT is affected by reagent, instrument, lupus anticoagulant and high factor VIII. Vitamin K antagonist (warfarin): monitored by the PT, reported as the INR. INR card: INR = (PT patient / MNPT) raised to the power ISI; MNPT = geometric mean PT of healthy adults (at least 20 fresh samples is a reliable approximation); ISI corrects for the sensitivity of each thromboplastin. Target card: atrial fibrillation INR 2.0–3.0; higher ranges such as 2.5–3.5 are used for a mechanical mitral valve or added risk factors.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Each anticoagulant has its own test. Unfractionated heparin is followed with the aPTT, or with an anti-factor Xa assay, which is more specific than the aPTT."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Warfarin, a vitamin K antagonist, is followed with the prothrombin time. Thromboplastin reagents differ in sensitivity, so the PT is reported as an INR."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "The INR is the patient PT divided by the mean normal PT, raised to the power of the reagent’s international sensitivity index."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Targets depend on the indication: two to three for atrial fibrillation, and higher ranges, such as two and a half to three and a half, for a mechanical mitral valve."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ufh",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Unfractionated heparin",
+            "lines": [
+              "aPTT, or anti-Xa",
+              "Anti-Xa ~0.3–0.7 U/mL"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "vka",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Warfarin (VKA)",
+            "lines": [
+              "PT, reported as INR",
+              "Reagents differ in sensitivity"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "inr",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "warn",
+            "title": "INR",
+            "lines": [
+              "(PT patient ÷ MNPT) ^ ISI",
+              "MNPT: healthy-adult geometric mean"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tgt",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Targets",
+            "lines": [
+              "Atrial fibrillation: 2.0–3.0",
+              "Mechanical mitral: 2.5–3.5"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "The mixing study",
+      "start": 60,
+      "end": 104,
+      "altText": "Mixing-study card: first exclude anticoagulant contamination of the sample (heparin, DOACs). Mix patient plasma 1:1 with normal pooled plasma (NPP, pooled from at least 20 healthy adults, factor levels averaging about 100 U/dL, so a deficient factor reaches roughly 50 U/dL, near what a normal aPTT needs). Correction = factor deficiency (VIII, IX, XI, XII and other contact factors); next step = specific factor assays. No correction = circulating inhibitor (antibody against a factor, or lupus anticoagulant). Incubation card: some inhibitors, typically factor VIII autoantibodies in acquired haemophilia A, are usually time-dependent and need 2 hours at 37 °C (high-titre antibodies can act immediately); lupus anticoagulant usually fails to correct on both the immediate and the incubated mix, and excess phospholipid corrects it.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "A long aPTT with no anticoagulant in the sample goes to a mixing study: patient plasma mixed one to one with normal pooled plasma. Normal pooled plasma averages about one hundred percent of each factor, so the mix usually has enough of a missing factor."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "If the mix corrects, a factor was missing: a deficiency, confirmed with specific factor assays. If it does not correct, something in the patient’s plasma is blocking clotting: an inhibitor."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "Timing matters. Factor eight autoantibodies in acquired haemophilia are often time-dependent: the immediate mix may look corrected, then prolong after two hours at thirty-seven degrees."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "Lupus anticoagulant usually fails to correct on both the immediate and the incubated mix, but the clotting time corrects when excess phospholipid is added."
+        }
+      ],
+      "objects": [
+        {
+          "id": "mix",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 230,
+            "w": 440,
+            "h": 260,
+            "tone": "b",
+            "title": "1:1 mix with normal plasma",
+            "lines": [
+              "Exclude drug in sample first",
+              "NPP factors ~100 U/dL",
+              "Corrects → deficiency",
+              "No correction → inhibitor"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "inc",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "warn",
+            "title": "Incubate 2 h at 37 °C",
+            "lines": [
+              "Immediate mix corrects…",
+              "…then prolongs again",
+              "→ time-dependent FVIII inhibitor"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "la",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 470,
+            "w": 420,
+            "label": "Lupus anticoagulant: phospholipid corrects",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "DIC is a score, not one test",
+      "start": 104,
+      "end": 144,
+      "altText": "ISTH overt DIC score card: platelet count (<50 = 2, 50–<100 = 1), fibrin-related marker such as D-dimer (strong increase = 3, moderate = 2), PT prolongation (≥6 s = 2, 3–<6 s = 1), fibrinogen <1 g/L (100 mg/dL) = 1; total ≥5 = compatible with overt DIC. Caution card: no single marker diagnoses DIC; D-dimer and FDP also rise with venous thromboembolism and after surgery; low fibrinogen is not seen in most septic DIC. Hook answers: (1) heparin effect, monitored by aPTT or anti-Xa; (2) inhibitor, next lupus anticoagulant testing and specific factor assays; (3) calculate the ISTH score.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "DIC is diagnosed with a score. The ISTH overt DIC score adds points for a low platelet count, a raised fibrin-related marker such as D-dimer, a prolonged PT, and a fibrinogen below one gram per litre."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 126,
+          "text": "A total of five or more is compatible with overt DIC. No single marker diagnoses DIC: D-dimer also rises with venous thrombosis and after surgery, and fibrinogen is not low in most septic DIC."
+        },
+        {
+          "id": "l3",
+          "start": 126,
+          "end": 136,
+          "text": "Back to the hook. The first patient’s long aPTT is the heparin being monitored. The second points to an inhibitor, so the next steps are lupus anticoagulant testing and specific factor assays."
+        },
+        {
+          "id": "l4",
+          "start": 136,
+          "end": 144,
+          "text": "For the septic patient, score the platelets, D-dimer, PT and fibrinogen together before calling it DIC."
+        }
+      ],
+      "objects": [
+        {
+          "id": "sc",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 210,
+            "tone": "b",
+            "title": "ISTH overt DIC score",
+            "lines": [
+              "Platelets <50: 2 · 50–<100: 1",
+              "D-dimer strong: 3 · moderate: 2",
+              "PT ≥6 s: 2 · 3–<6 s: 1",
+              "Fibrinogen <1 g/L (100 mg/dL): 1"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tot",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 320,
+            "w": 440,
+            "label": "Total ≥ 5 = compatible with overt DIC",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cau",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "No single marker",
+            "lines": [
+              "D-dimer up in VTE, surgery",
+              "Low fibrinogen: absent in most septic DIC"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14,
+              "opacity": 0
+            },
+            {
+              "t": 14.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 760,
+            "h": 150,
+            "tone": "a",
+            "title": "Hook answers",
+            "lines": [
+              "1 Heparin effect: aPTT or anti-Xa",
+              "2 Inhibitor: LA tests, factor assays",
+              "3 Septic: calculate the ISTH score"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Immediate mix corrected, so no inhibitor” (✓ factor VIII autoantibodies can be time-dependent; repeat after 2 h at 37 °C); “A high D-dimer confirms DIC” (✓ no single marker diagnoses DIC; D-dimer also rises in VTE and after surgery; use the ISTH score); “Every mechanical valve needs INR 3–4” (✓ targets depend on valve and risk; 2.5–3.5 is used for a mechanical mitral valve).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: the immediate mix corrected, so there is no inhibitor. Not always: factor eight autoantibodies can need two hours at thirty-seven degrees to show."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a high D-dimer confirms DIC. No: D-dimer also rises with thrombosis and surgery. Use the scoring system."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: every mechanical valve needs an INR of three to four. No: the target depends on the valve and the patient; two and a half to three and a half is used for a mechanical mitral valve."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Immediate mix corrected = no inhibitor.”",
+            "lines": [
+              "✓ Repeat after 2 h at 37 °C"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “High D-dimer confirms DIC.”",
+            "lines": [
+              "✓ No single marker: use the ISTH score"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Every mechanical valve: INR 3–4.”",
+            "lines": [
+              "✓ Depends on valve; mitral 2.5–3.5"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Missing or fighting?",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Top up the tank: if adding normal plasma fixes the clot, something was MISSING; if it still fails, something is FIGHTING.” Tokens: fixed = missing factor · still long = inhibitor fighting. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: top up the tank. If adding normal plasma fixes the clotting time, something was missing. If it still fails, something is fighting."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: a time-dependent inhibitor can look fixed at first; anticoagulant left in the sample also looks like fighting; and borderline results need a laboratory-specific cut-off."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Missing or fighting?",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 300,
+            "y": 170,
+            "w": 320,
+            "label": "Fixed = missing factor",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 660,
+            "y": 170,
+            "w": 320,
+            "label": "Still long = inhibitor",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Time-dependent inhibitor looks fixed at first",
+              "Drug in the sample also “fights”",
+              "Borderline: lab-specific cut-off"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Heparin → aPTT or anti-Xa · warfarin → PT reported as INR · mix corrects = deficiency, no correction = inhibitor (incubate 2 h)”, “DIC = ISTH score ≥5, never D-dimer alone”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Follow heparin with the aPTT and warfarin with the INR, read a mix that corrects as a missing factor and one that does not as an inhibitor, and diagnose DIC with a score rather than a D-dimer alone."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Heparin → aPTT · warfarin → INR · mix fixed = deficiency",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "No correction = inhibitor · DIC = ISTH score, not D-dimer alone",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: each blood thinner shows up on a particular clotting test; mixing a patient’s plasma with normal plasma tells you whether a clotting factor is missing or something is blocking it; and DIC is recognised from a pattern of several results, not one. Scientific terms: unfractionated heparin (UFH), activated partial thromboplastin time (aPTT), anti-factor Xa assay, vitamin K antagonist (VKA), prothrombin time (PT), international normalized ratio (INR), mean normal prothrombin time (MNPT), international sensitivity index (ISI), normal pooled plasma (NPP), time-dependent inhibitor, lupus anticoagulant, ISTH overt DIC score, fibrin-related markers.",
+    "why": "PT reagents differ in sensitivity to VKA-induced factor deficiency, so the INR standardises results. Normal pooled plasma averages about 100 U/dL of each factor, so a 1:1 mix corrects a deficiency but not an inhibitor; some factor VIII antibodies act slowly and need incubation. DIC markers each have other causes, so guidelines use a score.",
+    "measure": "INR = (PT patient / MNPT)^ISI. Anti-Xa for UFH about 0.3–0.7 U/mL. INR targets: atrial fibrillation 2.0–3.0; 2.5–3.5 used for a mechanical mitral valve or added risk. Mixing: immediate 1:1 mix and a mix incubated 2 h at 37 °C. ISTH overt DIC: platelets, fibrin-related marker, PT prolongation, fibrinogen <1 g/L (100 mg/dL); total ≥5 compatible with overt DIC.",
+    "differs": "Heparin (aPTT, anti-Xa) vs warfarin (PT/INR); factor deficiency (corrects) vs inhibitor (does not); time-dependent factor VIII inhibitor (may correct immediately, prolongs after incubation) vs lupus anticoagulant (usually uncorrected on immediate and incubated mix; excess phospholipid corrects); overt DIC (score ≥5) vs isolated raised D-dimer.",
+    "examAngle": "Expect: name the test for heparin or warfarin, pick the INR formula, interpret corrected vs uncorrected and incubated mixes, or recognise that a raised D-dimer alone does not prove DIC."
+  },
+  "comparisons": [
+    {
+      "id": "deficiency-vs-inhibitor",
+      "title": "Factor deficiency vs inhibitor on mixing",
+      "left": {
+        "label": "Deficiency",
+        "points": [
+          "Immediate mix corrects",
+          "Next: specific factor assays"
+        ]
+      },
+      "right": {
+        "label": "Inhibitor",
+        "points": [
+          "No correction, or prolongs after 2 h at 37 °C",
+          "Lupus anticoagulant: phospholipid corrects"
+        ]
+      },
+      "distinguisher": "Whether added normal plasma restores the clotting time, immediately and after incubation."
+    },
+    {
+      "id": "heparin-vs-warfarin",
+      "title": "Heparin vs warfarin monitoring",
+      "left": {
+        "label": "Unfractionated heparin",
+        "points": [
+          "aPTT",
+          "Anti-Xa ~0.3–0.7 U/mL"
+        ]
+      },
+      "right": {
+        "label": "Warfarin",
+        "points": [
+          "PT reported as INR",
+          "AF target 2.0–3.0"
+        ]
+      },
+      "distinguisher": "aPTT/anti-Xa for heparin; PT/INR for vitamin K antagonists."
+    }
+  ],
+  "mnemonic": {
+    "text": "Top up the tank: if adding normal plasma fixes the clot, something was MISSING; if it still fails, something is FIGHTING.",
+    "explanation": "Separates factor deficiency (corrects on mixing) from inhibitors (do not correct).",
+    "limitation": "A time-dependent factor VIII inhibitor can look fixed on the immediate mix; anticoagulant left in the sample also fails to correct; borderline results need a laboratory-specific cut-off such as the Rosner index."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Test cards are schematic.",
+    "INR targets are individual and guideline-dependent; check the current guideline for each indication."
+  ],
+  "takeaway": "Follow heparin with the aPTT and warfarin with the INR, read a mix that corrects as a missing factor and one that does not as an inhibitor, and diagnose DIC with a score rather than a D-dimer alone.",
+  "questions": [
+    {
+      "id": "ops-cp-q1",
+      "stem": "A prolonged aPTT corrects on an immediate 1:1 mix with normal pooled plasma but is prolonged again after the mix is incubated for 2 hours at 37 °C. What does this suggest?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A time-dependent inhibitor, such as a factor VIII autoantibody",
+          "rationale": "Correct. Factor VIII autoantibodies in acquired haemophilia A are usually time-dependent and need about 2 hours at 37 °C to show their effect."
+        },
+        {
+          "id": "b",
+          "text": "A simple factor deficiency",
+          "rationale": "Incorrect. A simple deficiency corrects on the immediate mix; a mix that prolongs again only after incubation points to a time-dependent inhibitor."
+        },
+        {
+          "id": "c",
+          "text": "Lupus anticoagulant",
+          "rationale": "Incorrect. Lupus anticoagulant usually fails to correct on the immediate mix as well as the incubated mix."
+        },
+        {
+          "id": "d",
+          "text": "Heparin contamination of the sample",
+          "rationale": "Incorrect. Anticoagulant in the sample would prolong the immediate mix too; it should be excluded before mixing."
+        }
+      ],
+      "answer": "a",
+      "skill": "Mixing-study interpretation",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-cp-q2",
+      "stem": "How is the international normalized ratio (INR) calculated?",
+      "options": [
+        {
+          "id": "a",
+          "text": "(Patient PT ÷ mean normal PT) raised to the power ISI",
+          "rationale": "Correct. The ISI corrects for each thromboplastin’s sensitivity."
+        },
+        {
+          "id": "b",
+          "text": "Patient PT ÷ mean normal PT, multiplied by ISI",
+          "rationale": "Incorrect. ISI is an exponent, not a multiplier."
+        },
+        {
+          "id": "c",
+          "text": "Patient aPTT ÷ mean normal aPTT",
+          "rationale": "Incorrect. The INR is based on the PT, not the aPTT."
+        },
+        {
+          "id": "d",
+          "text": "Patient PT minus mean normal PT",
+          "rationale": "Incorrect. The INR is a ratio raised to the ISI, not a difference."
+        }
+      ],
+      "answer": "a",
+      "skill": "INR calculation",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ops-cp-q3",
+      "stem": "A septic patient has a markedly raised D-dimer. Which statement about diagnosing DIC is most accurate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Use a scoring system that combines platelet count, a fibrin-related marker, PT and fibrinogen",
+          "rationale": "Correct. The ISTH overt DIC score combines these; a total of 5 or more is compatible with overt DIC."
+        },
+        {
+          "id": "b",
+          "text": "The raised D-dimer alone confirms DIC",
+          "rationale": "Incorrect. No single marker diagnoses DIC; D-dimer also rises with venous thromboembolism and after surgery."
+        },
+        {
+          "id": "c",
+          "text": "A normal fibrinogen excludes DIC",
+          "rationale": "Incorrect. Low fibrinogen is not seen in most septic DIC."
+        },
+        {
+          "id": "d",
+          "text": "DIC is excluded if the aPTT is normal",
+          "rationale": "Incorrect. The ISTH score uses the PT, not the aPTT, and a single normal test does not exclude DIC."
+        }
+      ],
+      "answer": "a",
+      "skill": "DIC diagnosis",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch9",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 9, Reading Results Like a Detective (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 9,
+          "section": "High-Yield Hits",
+          "items": [
+            7,
+            8,
+            11
+          ]
+        },
+        {
+          "chapter": 9,
+          "section": "Exam Traps",
+          "items": [
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "barouqa2026",
+      "kind": "external",
+      "citation": "Barouqa M, Yassa ME, Dela Cruz N, Babker M. Anticoagulants, Their Laboratory Monitoring, and Reversal. Hematol Rep. 2026;18(5):67. doi:10.3390/hematolrep18050067",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13600188/",
+      "consulted": true,
+      "usedFor": "UFH monitored by aPTT (since 1970) or anti-Xa (0.3–0.7 U/mL); aPTT limitations (reagent, instrument, lupus anticoagulant, high factor VIII); VKA monitored by PT; INR introduced because thromboplastins differ in sensitivity."
+    },
+    {
+      "id": "vanderhelm2026",
+      "kind": "external",
+      "citation": "van der Helm MP, van Rijn CJJ, Baktawar SS, et al. International collaborative study for the calibration of a proposed World Health Organization International Standard for thromboplastin, human, recombinant: a report from the International Federation of Clinical Chemistry and Laboratory Medicine (IFCC)-Scientific and Standardization Committee (SSC)/ISTH working group on prothrombin time/international normalized ratio standardization. Res Pract Thromb Haemost. 2026;10(4):106793. doi:10.1016/j.rpth.2026.106793",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13380524/",
+      "consulted": true,
+      "usedFor": "INR = (PT patient / MNPT)^ISI; MNPT as the geometric mean PT of healthy adults, approximated from at least 20 fresh samples."
+    },
+    {
+      "id": "roskell2013",
+      "kind": "external",
+      "citation": "Roskell NS, Samuel M, Noack H, Monz BU. Major bleeding in patients with atrial fibrillation receiving vitamin K antagonists: a systematic review of randomized and observational studies. Europace. 2013;15(6):787-797. doi:10.1093/europace/eut001",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3663334/",
+      "consulted": true,
+      "usedFor": "Narrow therapeutic INR range 2.0–3.0 for atrial fibrillation."
+    },
+    {
+      "id": "langenaeken2023",
+      "kind": "external",
+      "citation": "Langenaeken T, Vanoppen A, Janssens F, et al. DOACs in the Anticoagulation of Mechanical Valves: A Systematic Review and Future Perspectives. J Clin Med. 2023;12(15):4984. doi:10.3390/jcm12154984",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10419922/",
+      "consulted": true,
+      "usedFor": "Warfarin INR 2–3 without additional risk factors and 2.5–3.5 with an additional risk factor or a mitral mechanical valve (as used in a reviewed trial); 2.0–3.0 as the most common standard; On-X valve approved for a lower range."
+    },
+    {
+      "id": "johansson2024",
+      "kind": "external",
+      "citation": "Johansson I, Benz AP, Kovalova T, et al. Outcomes of Patients with a Mechanical Heart Valve and Poor Anticoagulation Control on Warfarin. Thromb Haemost. 2024;124(7):613-624. doi:10.1055/s-0043-1777827",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11199045/",
+      "consulted": true,
+      "usedFor": "Mechanical-valve INR ranges set from guideline recommendations and risk factors: most patients 2.0–3.0, a minority 2.5–3.5, and only one patient 3.0–4.0."
+    },
+    {
+      "id": "santoro2023",
+      "kind": "external",
+      "citation": "Santoro RC, Molinari AC, Leotta M, Martini T. Isolated Prolongation of Activated Partial Thromboplastin Time: Not Just Bleeding Risk! Medicina (Kaunas). 2023;59(6):1169. doi:10.3390/medicina59061169",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10305031/",
+      "consulted": true,
+      "usedFor": "Heparin as a cause of isolated long aPTT; exclude anticoagulant contamination before mixing; NPP from at least 20 healthy adults with factor levels between 50 and 200 U/dL, averaging about 100 U/dL; correction = deficiency, no correction = inhibitor; factor VIII autoantibodies need 2 h incubation at 37 °C (high titres can act immediately); Table 3: FVIII inhibitor immediate mix may be corrected, incubated usually uncorrected; lupus anticoagulant uncorrected on immediate and incubated mix, and correction by excess phospholipid; uncorrected mix with heparin; inhibitor work-up with lupus anticoagulant tests and specific factor assays; Rosner index cut-off lab-specific; specific factor assays after a corrected mix."
+    },
+    {
+      "id": "iba2023",
+      "kind": "external",
+      "citation": "Iba T, Helms J, Connors JM, Levy JH. The pathophysiology, diagnosis, and management of sepsis-associated disseminated intravascular coagulation. J Intensive Care. 2023;11(1):24. doi:10.1186/s40560-023-00672-5",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10202753/",
+      "consulted": true,
+      "usedFor": "ISTH overt DIC criteria (thrombocytopenia, PT prolongation, fibrin-related markers, decreased fibrinogen) and the Table 1 point values with total ≥5 (the table prints the fibrinogen unit as g/mL; the threshold unit is taken from Toh 2016)."
+    },
+    {
+      "id": "toh2016",
+      "kind": "external",
+      "citation": "Toh CH, Alhamdi Y, Abrams ST. Current Pathological and Laboratory Considerations in the Diagnosis of Disseminated Intravascular Coagulation. Ann Lab Med. 2016;36(6):505-512. doi:10.3343/alm.2016.36.6.505",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5011102/",
+      "consulted": true,
+      "usedFor": "ISTH scoring criteria (Table 1): platelets <100 = 1, <50 = 2; fibrin-related marker moderate = 2, strong = 3; PT 3–<6 s = 1, ≥6 s = 2; fibrinogen <1 g/L = 1; score ≥5 compatible with overt DIC."
+    },
+    {
+      "id": "wada2014",
+      "kind": "external",
+      "citation": "Wada H, Matsumoto T, Yamashita Y. Diagnosis and treatment of disseminated intravascular coagulation (DIC) according to four DIC guidelines. J Intensive Care. 2014;2(1):15. doi:10.1186/2052-0492-2-15",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4267589/",
+      "consulted": true,
+      "usedFor": "No single marker can diagnose DIC alone; FDP/D-dimer also rise with venous thromboembolism and surgery; reduced fibrinogen not observed in most septic DIC; guidelines recommend a scoring system."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-monitor",
+      "text": "UFH monitored by aPTT or anti-Xa; VKA by PT reported as INR.",
+      "status": "checked",
+      "refs": [
+        "barouqa2026",
+        "santoro2023"
+      ]
+    },
+    {
+      "id": "cl-inr",
+      "text": "INR = (PT patient / MNPT)^ISI; MNPT from healthy adults.",
+      "status": "checked",
+      "refs": [
+        "vanderhelm2026",
+        "barouqa2026"
+      ]
+    },
+    {
+      "id": "cl-targets",
+      "text": "INR 2.0–3.0 for atrial fibrillation; 2.5–3.5 for a mechanical mitral valve or added risk.",
+      "status": "checked",
+      "refs": [
+        "roskell2013",
+        "langenaeken2023",
+        "johansson2024"
+      ],
+      "note": "Valve ranges come from a systematic review and a cohort describing guideline-based ranges; the guideline table itself was not readable in the page fetch."
+    },
+    {
+      "id": "cl-mix",
+      "text": "Mixing-study logic, incubation for time-dependent inhibitors, lupus anticoagulant and phospholipid correction.",
+      "status": "checked",
+      "refs": [
+        "santoro2023"
+      ]
+    },
+    {
+      "id": "cl-dic",
+      "text": "ISTH overt DIC score (≥5 compatible with overt DIC); no single marker diagnoses DIC; D-dimer other causes; low fibrinogen absent in most septic DIC.",
+      "status": "checked",
+      "refs": [
+        "iba2023",
+        "toh2016",
+        "wada2014"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "INR >4 means reduce or stop warfarin; warfarin does not prolong the aPTT; D-dimer largely replaced the FSP assay.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch9"
+      ],
+      "note": "Not taught; no open source read in this session supported them as stated."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; cards schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Top up the tank: missing or fighting.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-inr-valve-ch9",
+      "issue": "Ch. 9 Hit 7 gives INR 3–4 for valve replacements. Open sources describe 2.0–3.0 as the common mechanical-valve range and 2.5–3.5 for a mechanical mitral valve or added risk factors (Langenaeken 2023; Johansson 2024); the reviewer’s own Ch. 39 Number Vault uses 2.5–3.5 for mechanical mitral valves (register rv-inr-valve-ch9).",
+      "kind": "outdated",
+      "status": "open"
+    },
+    {
+      "id": "f-dic-ddimer-ch9",
+      "issue": "Ch. 9 Hit 11 says D-dimer “confirms” DIC and lists low fibrinogen. Guideline summaries state no single marker diagnoses DIC (D-dimer also rises in VTE and after surgery), DIC is diagnosed with a score (ISTH overt DIC ≥5), and low fibrinogen is absent in most septic DIC (Wada 2014; Iba 2023; register rv-dic-ddimer-ch9).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-mix-incubation-ch9",
+      "issue": "Ch. 9 Hit 8 and Trap 4 read mixing studies from the correction alone. Santoro 2023: anticoagulant in the sample must be excluded first, and time-dependent factor VIII inhibitors may correct on the immediate mix and need 2 h incubation at 37 °C (register rv-mix-incubation-ch9).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; tests shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Barouqa 2026, van der Helm 2026, Roskell 2013, Langenaeken 2023, Johansson 2024, Santoro 2023, Iba 2023, Toh 2016 and Wada 2014; 1 pending (INR >4 action; warfarin and aPTT; D-dimer vs FSP). The 2021 ESC/EACTS valve guideline was fetched with a page-fetch tool but its INR table was not readable. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
