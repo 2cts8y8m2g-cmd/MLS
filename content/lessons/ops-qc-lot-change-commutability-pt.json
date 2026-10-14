@@ -1,0 +1,1610 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-qc-lot-change-commutability-pt",
+  "title": "New Reagent Lots, Commutability and PT Peer Grading",
+  "summary": "Learn why noncommutable control and proficiency materials mislead, how to verify a new reagent lot with patient samples before resetting QC targets, and how to read a peer-graded PT result and its SDI.",
+  "domain": "p1-ops",
+  "topic": "ch11",
+  "conceptIds": [
+    "ch11.hit3",
+    "ch11.hit7",
+    "ch11.hit10",
+    "ch11.hit11",
+    "ch11.trap1",
+    "ch11.trap2",
+    "ch11.trap3",
+    "ch11.trap5"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 11,
+        "section": "High-Yield Hits",
+        "items": [
+          3,
+          7,
+          10,
+          11
+        ]
+      },
+      {
+        "chapter": 11,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          2,
+          3,
+          5
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 11 Hits 3 (commutability), 7 (new reagent lot), 10 (PT peer-group grading) and 11 (SDI) and Exam Traps 1, 2, 3 and 5. Checked against Thompson and Chesher 2018 (read via a page-fetch tool), Chen 2019, Gruber 2024, Gosselin 2024 (ICSH), Kristensen and Meijer 2017, Coucke and Soumali 2017, Kim 2021 (KEQAS), Ricós 2022 and Vierbaum 2024. Qualified: the reviewer’s “>~2.5 SDI, 0.6% inlier probability” (Hit 11, Trap 3) is taught as the common EQA convention of |z| 2–3 = warning and >3 = unsatisfactory (register flag rv-pt-sdi-warning-zone); the reviewer’s absolute “never change the SD” (Hit 3, Trap 1) is taught as “reset the QC target after patient samples agree” (register flag rv-lot-change-qc-sd). Not taught as fact: the reviewer’s Deming example (slope 1.00, intercept −3 mg/dL), the count of 1483 QC–lot combinations, the duPont Dimension cholesterol example."
+  },
+  "prerequisites": [
+    "ch11.hit2"
+  ],
+  "objectives": [
+    "Define commutability and explain how noncommutable QC can cause false alarms and missed errors after a reagent lot change.",
+    "Verify a new reagent lot with patient samples first and decide when to reject the lot or reset QC targets.",
+    "Calculate an SDI, interpret it, and explain why peer-group PT grading does not prove true accuracy."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two new lots and a passing PT result",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a chemistry lab changes reagent lots on two analytes. Lot X: both QC levels move up by about 1.5 SD, but 20 patient samples run on old and new lot agree. Lot Y: QC is unchanged, but the same patient comparison reads about 30% higher on the new lot. Meanwhile a proficiency-testing (PT) result for a third analyte “passed” with an SDI of +2.6. Question token: “Which lot is safe, and is the PT result really fine?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "A lab changes reagent lots. On lot X, both controls jump up, but patient samples agree between the old and new lot."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "On lot Y, the controls look perfect, but patient samples read about thirty percent higher."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "And a proficiency test result passed at an SDI of plus 2.6. Which lot is safe, and is that result really fine?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "lx",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "Lot X",
+            "lines": [
+              "QC up ~1.5 SD",
+              "Patients agree"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ly",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "bad",
+            "title": "Lot Y",
+            "lines": [
+              "QC unchanged",
+              "Patients ~30% higher"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.4,
+              "opacity": 0
+            },
+            {
+              "t": 9.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "PT result",
+            "lines": [
+              "“Passed”",
+              "SDI +2.6"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.4,
+              "opacity": 0
+            },
+            {
+              "t": 15.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 700,
+            "label": "Which lot is safe? Is the PT result fine?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 18.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Commutability: does the material act like a patient?",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic: a patient-sample cloud and a control-material point on a method-A versus method-B plot. Definition card: a commutable material behaves like native patient samples, giving the same numeric relationship between measurement procedures as a panel of patient samples. Noncommutable card: processed control and PT materials can carry a matrix-related bias that appears only in the material, not in patient samples. Consequence card: with noncommutable QC, QC can show a bias that patients do not have (false alarm, needless lot rejection), or show no bias while patient results are biased (missed error).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 32,
+          "text": "Commutability asks one question: does this material behave like a real patient sample? A commutable material shows the same relationship between two methods, or two reagent lots, as patient samples do."
+        },
+        {
+          "id": "n2",
+          "start": 32,
+          "end": 42,
+          "text": "Control and proficiency materials are processed and stabilised, so they often are not commutable. They can carry a matrix bias that exists only in the material."
+        },
+        {
+          "id": "n3",
+          "start": 42,
+          "end": 52,
+          "text": "That cuts both ways. Quality control can shift when patients have not, a false alarm that may reject a good lot."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "Or quality control can stay flat while patient results are biased, a missed error."
+        }
+      ],
+      "objects": [
+        {
+          "id": "def",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 170,
+            "tone": "good",
+            "title": "Commutable",
+            "lines": [
+              "Acts like native patient samples",
+              "Same method-to-method relation"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "non",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 410,
+            "w": 440,
+            "h": 170,
+            "tone": "bad",
+            "title": "Noncommutable",
+            "lines": [
+              "Processed, stabilised matrix",
+              "Bias only in the material"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "reveal": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 20,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fa",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "False alarm",
+            "lines": [
+              "QC shifts, patients do not",
+              "Good lot wrongly rejected"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "me",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 410,
+            "w": 420,
+            "h": 170,
+            "tone": "bad",
+            "title": "Missed error",
+            "lines": [
+              "QC flat, patients biased",
+              "Bad lot wrongly accepted"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "New reagent lot: patients first, controls second",
+      "start": 60,
+      "end": 104,
+      "altText": "Workflow card: run patient samples on the current and new lot on the same day, instrument and operator, and compare against predefined acceptance criteria. CLSI EP26 sets a minimum of three samples across the assay range; one review’s lab uses at least 5 and ideally 20 (more samples give more statistical power), and the ICSH coagulation guidance prefers patient samples to avoid commutability problems with controls. Decision card: patients disagree → do not use the lot until troubleshooting; reject it if the cause cannot be fixed. Patients agree but QC shifts → the QC targets can be safely changed for the new lot; a large QC shift with no patient difference should first prompt a check that the patient comparison was not underpowered. Evidence token: a QC-versus-patient discrepancy occurred in about 41% of reagent lot changes in one multi-platform study (as reported by Thompson and Chesher 2018).",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "So a new reagent lot is judged on patient samples first. Run the same patient samples on the old and new lot, on the same day and instrument, and compare them against acceptance criteria set in advance."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "The CLSI EP26 minimum is three samples across the assay range, but more samples give more statistical power; one review’s lab uses at least five, ideally twenty."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "If patient results disagree, the lot is not used until the cause is found, and it is rejected if the cause cannot be fixed. If patients agree but controls shift, the control targets can safely be reset for the new lot."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "This is common, not rare: in one multi-platform study, controls and patient samples disagreed in about forty-one percent of reagent lot changes."
+        }
+      ],
+      "objects": [
+        {
+          "id": "wf",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 200,
+            "tone": "b",
+            "title": "Patient comparison",
+            "lines": [
+              "Same patients, old vs new lot",
+              "Same day, instrument, operator",
+              "Criteria set in advance"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "n",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 450,
+            "w": 440,
+            "label": "EP26 minimum: 3 · one lab: ≥5, ideally 20",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dec",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 200,
+            "tone": "good",
+            "title": "Decision",
+            "lines": [
+              "Patients disagree → hold or reject",
+              "Patients agree, QC shifts → reset QC target"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ev",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 450,
+            "w": 420,
+            "label": "~41% of lot changes: QC ≠ patients",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Reading a PT report: peer groups and SDI",
+      "start": 104,
+      "end": 144,
+      "altText": "PT card: when PT material is not shown to be commutable, results are graded against the consensus of a peer group, laboratories using the same or very similar technology that are expected to share the same matrix-related bias. Peer agreement shows the lab uses its method as the manufacturer intends and matches others on that technology; it cannot assess true accuracy. Accuracy-based PT needs commutable material with a reference-method target. SDI card: SDI = (lab result − peer mean) / peer SD; |SDI| ≤ 2 acceptable, 2–3 questionable (warning signal), 3 or more unsatisfactory under the ISO/IEC 17043 z-score convention; cut-offs vary by scheme (KEQAS treats SDI > 3 as unacceptable). Hook answers: lot X is usable after resetting QC targets; lot Y is rejected (a real 2019 creatinine case had exactly this pattern: QC unchanged, patients 34% higher on average); SDI +2.6 is a warning, so look for bias or a trend.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Proficiency material usually is not proven commutable, so it is graded against a peer group: labs using the same technology, which should share the same matrix bias."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 122,
+          "text": "Peer agreement shows you run your method as the manufacturer intends. It cannot prove true accuracy; that needs commutable material with a reference-method target."
+        },
+        {
+          "id": "l3",
+          "start": 122,
+          "end": 132,
+          "text": "The score is the SDI: your result minus the peer mean, divided by the peer SD. In many schemes, within two is acceptable, two to three is a warning, and three or more is unsatisfactory."
+        },
+        {
+          "id": "l4",
+          "start": 132,
+          "end": 144,
+          "text": "Back to the hook. Lot X is usable once the control targets are reset. Lot Y is rejected; a published creatinine case showed exactly this, flat controls with patients thirty-four percent higher. And plus 2.6 is a warning: look for bias or a trend."
+        }
+      ],
+      "objects": [
+        {
+          "id": "peer",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 230,
+            "tone": "b",
+            "title": "Peer-group grading",
+            "lines": [
+              "Same technology, same matrix bias",
+              "Checks method conformance",
+              "Not true accuracy"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sdi",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 230,
+            "tone": "a",
+            "title": "SDI = (result − peer mean) / peer SD",
+            "lines": [
+              "|SDI| ≤ 2: acceptable",
+              "2–3: warning",
+              "≥ 3: unsatisfactory"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 455,
+            "w": 760,
+            "h": 140,
+            "tone": "warn",
+            "title": "Hook answers",
+            "lines": [
+              "Lot X: reset QC targets · Lot Y: reject",
+              "SDI +2.6: warning, look for bias or trend"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28.5,
+              "opacity": 0
+            },
+            {
+              "t": 29,
+              "reveal": 0
+            },
+            {
+              "t": 29.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “QC passed after the lot change, so approve the lot” (✓ noncommutable QC can miss a patient shift; compare patient samples first); “Two methods disagree on a PT sample, so one is inaccurate” (✓ with noncommutable material the difference may be matrix bias in the PT sample only; accuracy needs commutable material with a reference target); “The PT result passed, so no follow-up” (✓ an SDI between 2 and 3 is a warning signal; review for bias and trends across events).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: controls passed after the lot change, so approve the lot. No: noncommutable controls can miss a patient shift. Compare patient samples first."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: two methods disagree on a proficiency sample, so one is inaccurate. No: the gap may be matrix bias in the material only."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the result passed, so no follow-up. No: an SDI between two and three is a warning. Look for bias and trends."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “QC passed, approve the lot.”",
+            "lines": [
+              "✓ Patient samples first"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Methods disagree on PT, one is wrong.”",
+            "lines": [
+              "✓ Could be matrix bias only"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Passed PT needs no follow-up.”",
+            "lines": [
+              "✓ SDI 2–3 = warning; check trends"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Patients judge, peers compare",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Patients are the JUDGE, controls are the WITNESS, and peers are CLASSMATES, not the ANSWER KEY.” A new lot is judged on patient samples; controls only testify about stability; peer grading tells you whether you match classmates on the same technology, not whether the class is right. Tokens: judge = patients · witness = QC · classmates = peer group. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: patients are the judge, controls are the witness, and peers are classmates, not the answer key. The lot is judged on patients; peer grading only says you match your classmates."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: commutable controls can act as a judge; a small patient comparison has low power and can miss a real shift; and commutable PT with a reference target does test true accuracy."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Patients judge, peers compare",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Judge = patients",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Witness = QC",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Classmates = peers",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Commutable controls can judge",
+              "Few patient samples = low power",
+              "Commutable PT tests accuracy"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “New lot: patient samples first · patients disagree → hold or reject · patients agree, QC shifts → reset QC target”, “PT: peer group = same technology, not true accuracy · SDI = (result − peer mean) / peer SD · 2–3 = warning”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Because control and proficiency materials are often noncommutable, judge a new reagent lot on patient samples before trusting its controls, and read peer-graded proficiency results as method conformance rather than true accuracy, treating an SDI between two and three as a warning."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "New lot: patients first · disagree → hold · agree + QC shift → reset target",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "PT peer group ≠ true accuracy · SDI 2–3 = warning, ≥ 3 = unsatisfactory",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: control and proficiency samples are processed materials that do not always behave like real patient blood. So a new reagent lot is judged by running real patient samples on old and new lot; and proficiency scores mostly tell you whether you match other labs using the same analyzer, not whether everyone is right. Scientific terms: commutability, matrix-related bias, reagent lot-to-lot variation, CLSI EP26, Deming regression, peer group, consensus target, accuracy-based PT/EQA, standard deviation index (SDI, z-score).",
+    "why": "Stabilised materials often have a matrix that reacts differently from native samples with a given reagent. A lot change can therefore move QC without moving patients (false alarm) or move patients without moving QC (missed error). For the same reason PT providers grade within peer groups that should share the same matrix bias, which limits what the grade can prove.",
+    "measure": "Lot verification: patient samples on old and new lot, same day and instrument, against predefined criteria; CLSI EP26 minimum three samples across the range, more samples for more power (one review’s lab at least 5, ideally 20); patients disagree → do not use until resolved, reject if unresolved; patients agree but QC shifts → reset QC targets. SDI = (lab result − peer mean) / peer SD; ISO/IEC 17043 z-score convention: |SDI| ≤ 2 acceptable, 2–3 questionable (warning), 3 or more unsatisfactory; cut-offs vary by scheme (KEQAS: SDI > 3 unacceptable).",
+    "differs": "Commutable vs noncommutable material; patient-sample comparison vs QC-only check; peer-group (consensus) grading vs accuracy-based grading with a reference-method target on commutable material; SDI warning zone vs failure.",
+    "examAngle": "Expect: what to do when QC shifts but patients agree (or the reverse) after a lot change, an SDI calculation, and why two methods disagreeing on PT material does not prove one inaccurate."
+  },
+  "comparisons": [
+    {
+      "id": "commutable-vs-not",
+      "title": "Commutable vs noncommutable material",
+      "left": {
+        "label": "Commutable",
+        "points": [
+          "Behaves like native patient samples",
+          "Can reveal true method bias and accuracy"
+        ]
+      },
+      "right": {
+        "label": "Noncommutable",
+        "points": [
+          "Matrix bias found only in the material",
+          "False alarms or missed patient shifts"
+        ]
+      },
+      "distinguisher": "Whether the material keeps the same method-to-method relationship as patient samples."
+    },
+    {
+      "id": "peer-vs-accuracy",
+      "title": "Peer-group vs accuracy-based PT",
+      "left": {
+        "label": "Peer group",
+        "points": [
+          "Consensus of same-technology labs",
+          "Checks conformance, not accuracy"
+        ]
+      },
+      "right": {
+        "label": "Accuracy-based",
+        "points": [
+          "Commutable material",
+          "Reference-method target value"
+        ]
+      },
+      "distinguisher": "Commutable material with a reference-method target."
+    }
+  ],
+  "mnemonic": {
+    "text": "Patients are the JUDGE, controls are the WITNESS, and peers are CLASSMATES, not the ANSWER KEY.",
+    "explanation": "A new lot is judged on patient samples; QC testifies about stability; peer grading shows agreement with labs on the same technology, not true accuracy.",
+    "limitation": "Commutable controls can act as a judge; a small patient comparison has low statistical power; commutable PT with a reference-method target does assess true accuracy."
+  },
+  "analogyLimitations": [
+    "Scenario is invented; the creatinine case cited is real (Chen 2019).",
+    "Scatter and card visuals are schematic.",
+    "SDI cut-offs and lot acceptance criteria vary between EQA schemes and laboratories."
+  ],
+  "takeaway": "Because control and proficiency materials are often noncommutable, judge a new reagent lot on patient samples before trusting its controls, and read peer-graded proficiency results as method conformance rather than true accuracy, treating an SDI between two and three as a warning.",
+  "questions": [
+    {
+      "id": "ops-lot-q1",
+      "stem": "After a reagent lot change, both QC levels shift upward, but 20 patient samples run on the old and new lot agree within the lab’s predefined criteria. What is the most appropriate action?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Accept the lot and reset the QC target values for the new lot",
+          "rationale": "Correct. When patient samples show no meaningful difference, the QC shift reflects material behaviour, and the QC targets can safely be changed for the new lot. A very large QC shift with no patient change should first prompt a check that the comparison had enough statistical power."
+        },
+        {
+          "id": "b",
+          "text": "Reject the lot because QC shifted",
+          "rationale": "Incorrect. Noncommutable QC can shift without any patient change; rejecting on QC alone discards a good lot."
+        },
+        {
+          "id": "c",
+          "text": "Recalibrate repeatedly until QC returns to the old mean",
+          "rationale": "Incorrect. Forcing QC back would bias patient results, which already agree with the old lot."
+        },
+        {
+          "id": "d",
+          "text": "Stop running QC for this analyte",
+          "rationale": "Incorrect. QC is still needed to monitor stability; it simply needs new targets for this lot."
+        }
+      ],
+      "answer": "a",
+      "skill": "Lot verification",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-lot-q2",
+      "stem": "A PT glucose result is 105 mg/dL. The peer-group mean is 100 mg/dL and the peer SD is 2 mg/dL. What is the SDI and its usual interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "+2.5: questionable, a warning signal to review for bias or a trend",
+          "rationale": "Correct. (105 − 100) / 2 = +2.5, which falls in the common 2–3 warning zone."
+        },
+        {
+          "id": "b",
+          "text": "+5.0: unsatisfactory",
+          "rationale": "Incorrect. This is the raw difference; it has not been divided by the peer SD."
+        },
+        {
+          "id": "c",
+          "text": "+0.4: acceptable",
+          "rationale": "Incorrect. This divides the SD by the difference instead of the difference by the SD."
+        },
+        {
+          "id": "d",
+          "text": "−2.5: questionable, low bias",
+          "rationale": "Incorrect. The result is above the peer mean, so the SDI is positive."
+        }
+      ],
+      "answer": "a",
+      "skill": "SDI calculation",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-lot-q3",
+      "stem": "On a PT sample of unknown commutability, method A’s peer mean is 9% lower than method B’s. What is the best conclusion?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Neither method can be called inaccurate from this sample; the gap may be matrix bias in the PT material only",
+          "rationale": "Correct. A noncommutable sample can carry method-specific matrix bias, so it gives no reliable information about method differences in patient samples."
+        },
+        {
+          "id": "b",
+          "text": "Method A is inaccurate because it reads lower",
+          "rationale": "Incorrect. Without commutable material and a reference-method target, accuracy cannot be judged."
+        },
+        {
+          "id": "c",
+          "text": "Method B is inaccurate because peer means should match",
+          "rationale": "Incorrect. Different technologies are graded in separate peer groups precisely because their matrix bias can differ."
+        },
+        {
+          "id": "d",
+          "text": "Both labs failed PT",
+          "rationale": "Incorrect. Each lab is graded against its own peer group, not against the other method."
+        }
+      ],
+      "answer": "a",
+      "skill": "Peer-group grading",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch11",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 11, Quality Control That Catches Errors (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 11,
+          "section": "High-Yield Hits",
+          "items": [
+            3,
+            7,
+            10,
+            11
+          ]
+        },
+        {
+          "chapter": 11,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            2,
+            3,
+            5
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "thompson2018",
+      "kind": "external",
+      "citation": "Thompson S, Chesher D. Lot-to-Lot Variation. Clin Biochem Rev. 2018;39(2):51-60.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6223607/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. Poor commutability of IQC/EQA material in lot evaluation (change in IQC may be absent in patient serum; patient changes missed with IQC only); same day/instrument/operator comparison against acceptance criteria; CLSI EP26 minimum of three samples across the range; more samples increase power (their lab ≥5, ideally 20); fresh patient serum; failed lot must not be used until troubleshooting and is rejected if unresolved; IQC targets can be safely altered when patient data show no difference, but a large IQC difference without a patient difference should prompt scrutiny of a possibly underpowered evaluation; 40.9% of reagent lot change events with IQC-vs-patient differences (citing Miller 2011)."
+    },
+    {
+      "id": "chen2019",
+      "kind": "external",
+      "citation": "Chen X, Wang J, Zhang W, Xie E, Zhang B, Xu HG. Failure of internal quality control in detecting significant reagent lot shift in serum creatinine measurement. J Clin Lab Anal. 2019;33(9):e22991. doi:10.1002/jcla.22991",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6868421/",
+      "consulted": true,
+      "usedFor": "Real case: IQC consistent across lots while 20 patient creatinine results were higher on the new lot (mean difference 34%; Deming y = 0.9394x + 45.66; lot rejected); IQC alone insufficient."
+    },
+    {
+      "id": "gruber2024",
+      "kind": "external",
+      "citation": "Gruber L, Hausch A, Mueller T. Internal Quality Controls in the Medical Laboratory: A Narrative Review of the Basic Principles of an Appropriate Quality Control Plan. Diagnostics (Basel). 2024;14(19):2223. doi:10.3390/diagnostics14192223",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11475633/",
+      "consulted": true,
+      "usedFor": "Noncommutable IQC can show bias that patients do not have (false rejection) or no bias while patient results are biased; false alarms and missed errors."
+    },
+    {
+      "id": "gosselin2024",
+      "kind": "external",
+      "citation": "Gosselin RC, Castellone D, Dorgalaleh A, et al. International Council for Standardization in Haematology Guidance for New Lot Verification of Coagulation Reagents, Calibrators, and Controls. Semin Thromb Hemost. 2024;50(8):1091-1102. doi:10.1055/s-0043-1776405",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11469916/",
+      "consulted": true,
+      "usedFor": "Patient samples preferred when comparing reagent lots to avoid IQC commutability issues; IQC values (targets and limits) to be assessed for new reagent lots; for a new lot of unassayed control material, acceptability limits as recalculated mean ± 2 SD or mean ± 2 × previously determined SD (used in accuracy flag only)."
+    },
+    {
+      "id": "kristensen2017",
+      "kind": "external",
+      "citation": "Kristensen GB, Meijer P. Interpretation of EQA results and EQA-based trouble shooting. Biochem Med (Zagreb). 2017;27(1):49-62. doi:10.11613/bm.2017.007",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5382861/",
+      "consulted": true,
+      "usedFor": "Definition of a commutable EQA sample; noncommutable sample carries matrix-related bias and gives no meaningful information about method differences; peer groups share expected matrix bias; reference target only with commutable material; z-score criteria (|z| ≤ 2 acceptable, 2–3 questionable warning, > 3 unsatisfactory); look for bias and trends."
+    },
+    {
+      "id": "coucke2017",
+      "kind": "external",
+      "citation": "Coucke W, Soumali MR. Demystifying EQA statistics and reports. Biochem Med (Zagreb). 2017;27(1):37-48. doi:10.11613/bm.2017.006",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5382862/",
+      "consulted": true,
+      "usedFor": "Peer-group evaluation verifies use of the method per manufacturer specifications and agreement with same-technology labs but cannot assess accuracy; z-score definition and the 2/3 cut-offs (4.6% and 0.27% beyond under normality)."
+    },
+    {
+      "id": "kim2021",
+      "kind": "external",
+      "citation": "Kim S, Lee K, Park HD, Lee YW, Chun S, Min WK. Schemes and Performance Evaluation Criteria of Korean Association of External Quality Assessment (KEQAS) for Improving Laboratory Testing. Ann Lab Med. 2021;41(2):230-239. doi:10.3343/alm.2021.41.2.230",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7591290/",
+      "consulted": true,
+      "usedFor": "SDI = (lab result − peer mean) / peer SD; peer groups of same analyzer/method share matrix bias; SDI > 3 unacceptable in KEQAS; accuracy-based EQA uses commutable materials with target values; Miller EQA categories."
+    },
+    {
+      "id": "ricos2022",
+      "kind": "external",
+      "citation": "Ricós C, Fernández-Calle P, Perich C, Sandberg S. External quality control in laboratory medicine. Progresses and future. Adv Lab Med. 2022;3(3):221-242. doi:10.1515/almed-2022-0058",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10197337/",
+      "consulted": true,
+      "usedFor": "Commutable controls with reference-method values reveal true inaccuracy; noncommutable controls only show agreement with labs using the same method; EQA categories 1–6."
+    },
+    {
+      "id": "vierbaum2024",
+      "kind": "external",
+      "citation": "Vierbaum L, Kaiser P, Spannagl M, Wenzel F, Thevis M, Schellenberg I. Experiences and challenges for EQA providers in assessing the commutability of control materials in accuracy-based EQA programs. Front Med (Lausanne). 2024;11:1416642. doi:10.3389/fmed.2024.1416642",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11324535/",
+      "consulted": true,
+      "usedFor": "Control materials are usually processed; consensus (peer) vs accuracy-based evaluation with a reference value; bias can come from lack of commutability; commutability depends on study design."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-comm",
+      "text": "Commutability definition; noncommutable matrix bias; false alarms and missed errors with noncommutable QC.",
+      "status": "checked",
+      "refs": [
+        "kristensen2017",
+        "gruber2024",
+        "thompson2018",
+        "vierbaum2024"
+      ]
+    },
+    {
+      "id": "cl-lot",
+      "text": "New-lot verification with patient samples first; EP26 minimum three samples, more samples for more power; hold or reject if patients disagree; reset QC targets if patients agree (scrutinise power if the QC shift is large); ~41% of lot changes with QC-vs-patient discrepancy.",
+      "status": "checked",
+      "refs": [
+        "thompson2018",
+        "gosselin2024",
+        "chen2019"
+      ],
+      "note": "The 41% figure is taken from Thompson and Chesher’s report of Miller 2011, which was not read directly."
+    },
+    {
+      "id": "cl-case",
+      "text": "Chen 2019 creatinine case: QC flat, patients 34% higher, lot rejected.",
+      "status": "checked",
+      "refs": [
+        "chen2019"
+      ]
+    },
+    {
+      "id": "cl-peer",
+      "text": "Peer-group grading for noncommutable PT; conformance not accuracy; accuracy-based PT needs commutable material and a reference target; method disagreement on noncommutable PT does not prove inaccuracy.",
+      "status": "checked",
+      "refs": [
+        "coucke2017",
+        "kristensen2017",
+        "kim2021",
+        "ricos2022"
+      ]
+    },
+    {
+      "id": "cl-sdi",
+      "text": "SDI formula; |SDI| ≤ 2 acceptable, 2–3 warning, 3 or more unsatisfactory (ISO/IEC 17043 convention; scheme-dependent); review for bias and trends.",
+      "status": "checked",
+      "refs": [
+        "kim2021",
+        "kristensen2017",
+        "coucke2017"
+      ],
+      "note": "Reviewer’s 2.5 SDI threshold not taught; see register flag rv-pt-sdi-warning-zone."
+    },
+    {
+      "id": "cl-pend",
+      "text": "Reviewer’s absolute “never change the SD” after a lot change; Deming example slope 1.00, intercept −3 mg/dL; 1483 QC–lot combinations; duPont Dimension cholesterol PT bias −9.5% vs patient 0.2%; 0.6% inlier probability at 2.5 SDI.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch11"
+      ],
+      "note": "Not taught as facts; primary sources (Miller 2011, CLSI EP26, C24) not read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; visuals schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Patients judge, controls witness, peers are classmates.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-sdi-threshold",
+      "issue": "Ch. 11 Hit 11 and Trap 3 set the investigation threshold at >~2.5 SDI with a “0.6% inlier probability”. The EQA sources read use |z| 2–3 as questionable (warning) and >3 as unsatisfactory (KEQAS: SDI >3 unacceptable); 0.6% is the one-tailed normal probability beyond 2.5 SD, while the two-sided probability is about 1.2%. Cut-offs are scheme-dependent (register flag rv-pt-sdi-warning-zone).",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-lot-sd",
+      "issue": "Ch. 11 Hit 3 and Trap 1 state the QC SD must never change after a lot change. Thompson and Chesher 2018 note the running mean and/or SD may differ and allow IQC targets to be altered when patient data agree; ICSH 2024, for a new lot of unassayed control material, lists both recalculated mean ± 2 SD and mean ± 2 × previously determined SD, and for new coagulation reagent lots says IQC targets and limits should be assessed. The absolute rule is not supported as stated (register flag rv-lot-change-qc-sd).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; materials, workflows and scores shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 factual claims checked against Thompson and Chesher 2018 (read via a page-fetch tool), Chen 2019, Gruber 2024, Gosselin 2024, Kristensen and Meijer 2017, Coucke and Soumali 2017, Kim 2021, Ricós 2022 and Vierbaum 2024; 1 pending (reviewer-specific figures not taught). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

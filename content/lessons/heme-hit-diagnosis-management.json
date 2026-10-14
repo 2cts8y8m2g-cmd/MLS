@@ -1,0 +1,1506 @@
+{
+  "schemaVersion": 1,
+  "id": "heme-hit-diagnosis-management",
+  "title": "Heparin-Induced Thrombocytopenia: 4Ts, PF4 Assays and the Switch",
+  "summary": "Learn how PF4/heparin antibodies cause clotting, how the 4Ts score decides who gets tested, why a sensitive PF4 immunoassay needs a functional assay to confirm, and how to manage HIT: stop all heparin, avoid LMWH, and switch to a non-heparin anticoagulant such as argatroban.",
+  "domain": "p4-heme",
+  "topic": "ch39",
+  "conceptIds": [
+    "ch39.hit2",
+    "ch39.hit11",
+    "ch39.hit12",
+    "ch39.trap4",
+    "ch39.hit5"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 39,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          5,
+          11,
+          12
+        ]
+      },
+      {
+        "chapter": 39,
+        "section": "Exam Traps",
+        "items": [
+          4
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 39 Hit 2 (stop all heparin/LMWH; non-heparin anticoagulant; 4Ts), Hit 11 (immunoassay vs functional assay), Hit 12 (argatroban/bivalirudin half-lives, APTT target), Trap 4 (LMWH in HIT) and the argatroban–INR part of Hit 5. Checked against the ASH 2018 HIT guideline (Cuker 2018; read via a page-fetch tool), Warkentin and Greinacher 2023, Marchetti 2021 and Patriarcheas 2020. Corrections: Hit 2’s “low 4T score = 0–3% HIT probability” conflates the 0–3-point range with a probability (register flag rv-hit-4t-low-points); Hit 11’s specificity figure is assay- and threshold-dependent (rv-hit-eia-specificity); fondaparinux “does not cross-react in vivo” is given more cautiously by sources (rv-hit-fondaparinux-context). Pending: Hit 5’s heparin neutralisation to isolate the warfarin effect; Hit 11’s EIA excess-heparin confirmatory step; the exact 98.1/89.4% figures; Hit 12’s heparin-resistance figure (>35,000 U/day)."
+  },
+  "prerequisites": [
+    "ch39.hit3",
+    "ch36.hit2"
+  ],
+  "objectives": [
+    "Explain how PF4/heparin IgG immune complexes activate platelets and cause thrombosis, and state the typical timing of HIT.",
+    "Use the 4Ts score to decide who should have HIT laboratory testing, and interpret PF4 immunoassay and functional assay results.",
+    "Outline acute HIT management: stop all heparin, avoid LMWH, choose a non-heparin anticoagulant, and delay warfarin until platelet recovery."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Day 7 on heparin",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a post-operative patient on unfractionated heparin (UFH). Platelet count 250 ×10⁹/L before surgery, 95 ×10⁹/L on day 7 (a 62% fall); a new deep-vein thrombosis appears the same day. A ward note suggests: “switch to enoxaparin, it is a different heparin.” Question token: “HIT? And is LMWH safe?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Invented case: a patient on unfractionated heparin after surgery. The platelet count falls from two hundred fifty to ninety-five on day seven."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "On the same day a new deep-vein clot appears. Someone suggests switching to enoxaparin, because it is a different heparin."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Is this heparin-induced thrombocytopenia, and is the low-molecular-weight heparin safe?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "plt",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 400,
+            "h": 170,
+            "tone": "b",
+            "title": "Platelets",
+            "lines": [
+              "Pre-op 250 ×10⁹/L",
+              "Day 7: 95 ×10⁹/L (−62%)"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dvt",
+          "type": "card",
+          "props": {
+            "x": 690,
+            "y": 220,
+            "w": 400,
+            "h": 170,
+            "tone": "bad",
+            "title": "Day 7",
+            "lines": [
+              "New DVT",
+              "“Switch to enoxaparin?”"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 640,
+            "label": "HIT? And is LMWH safe?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Why heparin can cause clots",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic: cationic platelet factor 4 (PF4) tetramers bound to anionic heparin form complexes that expose new antigen sites. IgG antibodies bind the PF4/heparin complexes; the immune complexes cross-link platelet FcγIIa receptors → strong platelet activation → thrombin generation and thrombosis. Timing card: typical onset 5–10 days after starting heparin; rapid onset (within about a day) if heparin was given in the previous ~100 days. Risk card: UFH carries roughly 10-fold the HIT risk of LMWH; thrombosis is frequent (classic HIT absolute risk about 50–70%).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Platelet factor four is a positively charged platelet protein. Heparin is negatively charged, so the two bind, and the complex exposes new antigen sites on platelet factor four."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Some patients make IgG against these complexes. The immune complexes engage platelet Fc gamma two A receptors and strongly activate platelets, so the result is clotting, not bleeding."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "The platelet fall typically begins five to ten days after heparin starts. If the patient had heparin within roughly the last hundred days, it can fall within a day."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Unfractionated heparin carries roughly ten times the risk of low-molecular-weight heparin, and thrombosis is common in classic HIT."
+        }
+      ],
+      "objects": [
+        {
+          "id": "mech",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 840,
+            "h": 200,
+            "tone": "b",
+            "title": "Mechanism (schematic)",
+            "lines": [
+              "PF4 (+) binds heparin (−) → new antigens",
+              "IgG + PF4/heparin → immune complexes",
+              "FcγIIa cross-linking → platelet activation → thrombosis"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "time",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 410,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Timing",
+            "lines": [
+              "Typical: day 5–10",
+              "Heparin in last ~100 d: rapid"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "risk",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 410,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "Risk",
+            "lines": [
+              "UFH ~10× LMWH",
+              "Thrombosis common"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "4Ts first, then the right test",
+      "start": 60,
+      "end": 104,
+      "altText": "4Ts card: Thrombocytopenia, Timing, Thrombosis, oTher causes; each 0–2 points, total 0–8. Low 0–3 points: negative predictive value about 99.8% → ASH 2018 recommends against HIT laboratory testing and against empiric HIT treatment (caveat: HIT has been reported with a score of 3). Intermediate 4–5 / high 6–8 points: positive predictive value about 14% and 64%. Testing pathway card: intermediate/high → immunoassay (PF4-dependent EIA; sensitivity >99%, lower specificity); positive → functional (platelet activation) assay such as the serotonin-release assay (SRA) or heparin-induced platelet activation (HIPA) test, which are more specific.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Start with the four T’s: thrombocytopenia, timing, thrombosis, and other causes. Each scores zero to two points, for a total of zero to eight."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "A low score is zero to three points, not a percentage. Its negative predictive value is about ninety-nine point eight percent, so the 2018 ASH guideline advises no HIT testing and no empiric HIT treatment. A few cases have been reported with a score of three."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 92,
+          "text": "Intermediate scores, four to five, and high scores, six to eight, have positive predictive values of only about fourteen and sixty-four percent. So these patients get an immunoassay."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "The PF4 immunoassay is very sensitive, over ninety-nine percent, but less specific. If it is positive, a functional platelet activation assay, such as the serotonin-release assay, is the more specific confirmation."
+        }
+      ],
+      "objects": [
+        {
+          "id": "fourt",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 200,
+            "tone": "b",
+            "title": "4Ts score",
+            "lines": [
+              "Thrombocytopenia · Timing",
+              "Thrombosis · oTher causes",
+              "Each 0–2 → total 0–8"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "low",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "h": 150,
+            "tone": "good",
+            "title": "Low: 0–3 points",
+            "lines": [
+              "NPV ~99.8%",
+              "No test, no empiric treatment"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mid",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Intermediate 4–5 · High 6–8",
+            "lines": [
+              "PPV ~14% · ~64%",
+              "→ immunoassay"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "path",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Testing pathway",
+            "lines": [
+              "EIA: >99% sensitive, less specific",
+              "EIA + → functional assay (SRA/HIPA)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Managing the hook patient",
+      "start": 104,
+      "end": 144,
+      "altText": "Management card (high-probability or confirmed HIT): stop ALL heparin from every source, including flushes and heparin-coated catheters; do not substitute LMWH (HIT antibodies react with it); start a therapeutic non-heparin anticoagulant: argatroban (direct thrombin inhibitor, half-life ~45 min, hepatobiliary clearance, APTT target 1.5–3× baseline), bivalirudin (direct thrombin inhibitor, half-life ~25 min, proteolytic and renal clearance), danaparoid or fondaparinux (antithrombin-dependent anti-Xa agents), or a DOAC (ASH 2018, conditional). Warfarin card: do not start a vitamin K antagonist until platelets recover (usually ≥150 ×10⁹/L); argatroban itself raises the INR, so the overlap is tricky. No routine platelet transfusion unless bleeding or high bleeding risk.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "The hook patient has a high-probability picture: a large fall on day seven with a new clot. Stop every heparin source now, including flushes and heparin-coated catheters, without waiting for the test."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Do not switch to low-molecular-weight heparin: HIT antibodies react with it too. Start a non-heparin anticoagulant: argatroban, bivalirudin, danaparoid, fondaparinux, or in some cases a direct oral anticoagulant."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Argatroban is a direct thrombin inhibitor with a half-life of about forty-five minutes, cleared by the liver and often adjusted to an APTT of one and a half to three times baseline. Bivalirudin lasts about twenty-five minutes and is cleared by enzymes and the kidneys."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Hold warfarin until the platelet count recovers, and remember argatroban itself raises the INR, which complicates the switch. Platelet transfusion is not routine; it may be considered with bleeding or a high bleeding risk."
+        }
+      ],
+      "objects": [
+        {
+          "id": "stop",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "bad",
+            "title": "Stop every source",
+            "lines": [
+              "Infusions, flushes, coated lines",
+              "Do not wait for the test"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "alt",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Switch (not LMWH)",
+            "lines": [
+              "Argatroban · bivalirudin",
+              "Danaparoid · fondaparinux · DOAC"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dti",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "h": 170,
+            "tone": "a",
+            "title": "Direct thrombin inhibitors",
+            "lines": [
+              "Argatroban ~45 min, liver; APTT 1.5–3×",
+              "Bivalirudin ~25 min, enzymes/kidney"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "vka",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 400,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Warfarin and platelets",
+            "lines": [
+              "No VKA until platelets recover",
+              "Argatroban raises INR",
+              "No routine platelet transfusion"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “LMWH is a different heparin, so it is safe in HIT” (✓ HIT antibodies react with LMWH; use a non-heparin anticoagulant); “A positive PF4 immunoassay confirms HIT” (✓ the EIA is sensitive but less specific; confirm with a functional assay and the clinical picture); “A low 4Ts score means a 0–3% chance” (✓ 0–3 is the point range out of 8 of the low category; its negative predictive value is ~99.8%).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: low-molecular-weight heparin is a different heparin, so it is safe. No: HIT antibodies react with it. Switch to a non-heparin drug."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a positive PF4 immunoassay confirms HIT. No: it is sensitive but less specific. Confirm with a functional assay and the clinical picture."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: reading the low 4Ts band as zero to three percent. Zero to three is the point range, out of eight. The low category has a negative predictive value near ninety-nine point eight percent."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “LMWH is a different heparin.”",
+            "lines": [
+              "✓ HIT antibodies react with LMWH"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Positive PF4 EIA = HIT.”",
+            "lines": [
+              "✓ Sensitive, less specific → functional assay"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Low 4Ts = 0–3% chance.”",
+            "lines": [
+              "✓ 0–3 points; NPV ~99.8%"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Every drop, the cousin, a stranger",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Stop EVERY DROP (infusions, flushes, coated lines), shun the COUSIN (LMWH), switch to a STRANGER (a non-heparin anticoagulant).” Tokens: every drop · cousin · stranger. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: stop every drop of heparin, including flushes. Shun the cousin, low-molecular-weight heparin. Switch to a stranger, a non-heparin anticoagulant."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: fondaparinux is a heparin-like pentasaccharide yet is a guideline-suggested option, because it only rarely causes HIT; warfarin is a stranger too but must wait for platelet recovery; and a low 4Ts score means you should not test or treat at all."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Every drop, the cousin, a stranger",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Stop every drop",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Shun the cousin",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Switch to a stranger",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Fondaparinux: heparin-like but suggested",
+              "Warfarin waits for platelet recovery",
+              "Low 4Ts: do not test or treat"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “4Ts first · low 0–3 points = no test · intermediate/high → EIA → functional assay”, “Stop every heparin source · no LMWH · switch to a non-heparin anticoagulant · warfarin after platelet recovery”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "In suspected heparin-induced thrombocytopenia, score the 4Ts first, test only intermediate or high scores with a sensitive immunoassay backed by a more specific functional assay, and treat by stopping every heparin source, including low-molecular-weight heparin, and switching to a non-heparin anticoagulant."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "4Ts first · low = no test · EIA → functional assay",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Stop all heparin · no LMWH · non-heparin drug · VKA later",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: in a few people on heparin, the immune system makes antibodies against a platelet protein stuck to heparin. Those antibodies switch platelets on, so the platelet count drops while dangerous clots form. Doctors first score how likely this is, then test with a sensitive antibody test and, if positive, a more specific platelet test. Treatment is to stop all heparin and use a different kind of blood thinner. Scientific terms: heparin-induced thrombocytopenia (HIT), platelet factor 4 (PF4), FcγIIa receptor, 4Ts score, negative and positive predictive value, PF4-dependent enzyme immunoassay (EIA), serotonin-release assay (SRA), heparin-induced platelet activation (HIPA) test, direct thrombin inhibitor (argatroban, bivalirudin), danaparoid, fondaparinux, vitamin K antagonist (VKA).",
+    "why": "Heparin binding exposes new antigens on PF4; IgG/PF4/heparin immune complexes cross-link platelet FcγIIa receptors and drive platelet activation and thrombin generation. Many heparin-exposed patients make non-pathogenic anti-PF4 antibodies, which is why immunoassays are sensitive but less specific, and why functional assays that detect platelet activation (and its inhibition by high heparin concentrations) are more specific.",
+    "measure": "4Ts: 4 items, 0–2 each, total 0–8; low 0–3 points (NPV ~99.8%: no testing, no empiric treatment), intermediate 4–5 and high 6–8 (PPV ~14% and ~64%: immunoassay, then functional assay if positive). PF4 EIA sensitivity >99%; washed-platelet functional assays ~95% sensitivity and specificity with careful technique (selected donors, weak-positive controls). Argatroban half-life ~45 min, APTT 1.5–3× baseline; bivalirudin ~25 min. No VKA until platelets recover (usually ≥150 ×10⁹/L).",
+    "differs": "Immunoassay (antibody binding, sensitive) vs functional assay (platelet activation, specific); UFH (higher HIT risk) vs LMWH (lower risk but cross-reacts, so still avoided); argatroban (hepatobiliary clearance) vs bivalirudin (proteolytic and renal clearance).",
+    "examAngle": "Expect: the first action in a high-probability case (stop all heparin and start a non-heparin anticoagulant, not LMWH), whether to test a low 4Ts score, which assay is most specific, argatroban’s half-life and APTT target, and why warfarin waits."
+  },
+  "comparisons": [
+    {
+      "id": "eia-vs-functional",
+      "title": "PF4 immunoassay vs functional assay",
+      "left": {
+        "label": "PF4 EIA",
+        "points": [
+          "Detects anti-PF4/polyanion antibodies",
+          "Sensitivity >99%, lower specificity"
+        ]
+      },
+      "right": {
+        "label": "Functional (SRA, HIPA)",
+        "points": [
+          "Detects platelet activation by patient serum",
+          "More specific; technically demanding"
+        ]
+      },
+      "distinguisher": "Antibody present vs antibody that activates platelets."
+    },
+    {
+      "id": "argatroban-vs-bivalirudin",
+      "title": "Argatroban vs bivalirudin",
+      "left": {
+        "label": "Argatroban",
+        "points": [
+          "Half-life ~45 min",
+          "Hepatobiliary clearance; raises INR"
+        ]
+      },
+      "right": {
+        "label": "Bivalirudin",
+        "points": [
+          "Half-life ~25 min",
+          "Proteolytic and renal clearance"
+        ]
+      },
+      "distinguisher": "Route of clearance and half-life."
+    }
+  ],
+  "mnemonic": {
+    "text": "Stop EVERY DROP (infusions, flushes, coated lines), shun the COUSIN (LMWH), switch to a STRANGER (a non-heparin anticoagulant).",
+    "explanation": "Encodes the three management steps of acute HIT.",
+    "limitation": "Fondaparinux is heparin-like but is a guideline-suggested option because it only rarely causes HIT; warfarin is a non-heparin drug but must wait for platelet recovery; with a low 4Ts score, do not test or treat for HIT at all."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "PF4/heparin complex drawing is schematic.",
+    "Assay performance figures vary by kit, threshold and laboratory."
+  ],
+  "takeaway": "In suspected heparin-induced thrombocytopenia, score the 4Ts first, test only intermediate or high scores with a sensitive immunoassay backed by a more specific functional assay, and treat by stopping every heparin source, including low-molecular-weight heparin, and switching to a non-heparin anticoagulant.",
+  "questions": [
+    {
+      "id": "heme-hit-q1",
+      "stem": "A patient on heparin with thrombocytopenia has a definite alternative cause, and the 4Ts score is 2 points. According to the ASH 2018 guideline, what is the most appropriate approach?",
+      "options": [
+        {
+          "id": "a",
+          "text": "No HIT laboratory testing and no empiric HIT treatment; look for the other cause",
+          "rationale": "Correct. A low 4Ts score (0–3 points) has a negative predictive value of about 99.8%; ASH recommends against testing and against empiric treatment."
+        },
+        {
+          "id": "b",
+          "text": "Order a serotonin-release assay first",
+          "rationale": "Incorrect. Functional assays follow a positive immunoassay in intermediate- or high-probability patients."
+        },
+        {
+          "id": "c",
+          "text": "Stop heparin and start argatroban",
+          "rationale": "Incorrect. Empiric HIT treatment is not recommended with a low-probability score."
+        },
+        {
+          "id": "d",
+          "text": "Switch to low-molecular-weight heparin as a precaution",
+          "rationale": "Incorrect. This is not a HIT strategy, and LMWH is avoided when HIT is likely."
+        }
+      ],
+      "answer": "a",
+      "skill": "4Ts score",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-hit-q2",
+      "stem": "Day 7 of unfractionated heparin: platelets fall 60% and a new DVT appears; the PF4 immunoassay is strongly positive. Which management is correct?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Stop all heparin, including flushes, and start a non-heparin anticoagulant such as argatroban",
+          "rationale": "Correct. Stop every heparin source and anticoagulate with a non-heparin drug at therapeutic intensity."
+        },
+        {
+          "id": "b",
+          "text": "Switch to enoxaparin, a low-molecular-weight heparin",
+          "rationale": "Incorrect. HIT antibodies react with LMWH; it is excluded in HIT."
+        },
+        {
+          "id": "c",
+          "text": "Start warfarin immediately to cover the DVT",
+          "rationale": "Incorrect. A vitamin K antagonist should not be started until the platelet count recovers."
+        },
+        {
+          "id": "d",
+          "text": "Give a prophylactic platelet transfusion",
+          "rationale": "Incorrect. Routine platelet transfusion is not suggested; it may be considered only with bleeding or high bleeding risk."
+        }
+      ],
+      "answer": "a",
+      "skill": "HIT management",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-hit-q3",
+      "stem": "Which test is the more specific confirmation of HIT antibodies after a positive PF4 immunoassay?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A washed-platelet functional assay, such as the serotonin-release assay",
+          "rationale": "Correct. Functional assays detect platelet-activating antibodies, and inhibition by high heparin concentrations adds specificity."
+        },
+        {
+          "id": "b",
+          "text": "A repeat polyspecific PF4 ELISA",
+          "rationale": "Incorrect. Immunoassays also detect antibodies that do not activate platelets, so they are the least specific test type; the guideline next step after a positive immunoassay is a functional assay."
+        },
+        {
+          "id": "c",
+          "text": "A repeat 4Ts score",
+          "rationale": "Incorrect. The 4Ts score estimates pretest probability; it is not a confirmatory test."
+        },
+        {
+          "id": "d",
+          "text": "A prothrombin time",
+          "rationale": "Incorrect. The PT does not detect HIT antibodies."
+        }
+      ],
+      "answer": "a",
+      "skill": "HIT assays",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch39",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 39, Blood Thinners and Their Monitoring (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 39,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            5,
+            11,
+            12
+          ]
+        },
+        {
+          "chapter": 39,
+          "section": "Exam Traps",
+          "items": [
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "cuker2018",
+      "kind": "external",
+      "citation": "Cuker A, Arepally GM, Chong BH, et al. American Society of Hematology 2018 guidelines for management of venous thromboembolism: heparin-induced thrombocytopenia. Blood Adv. 2018;2(22):3360-3392. doi:10.1182/bloodadvances.2018024489",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6258919/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (Europe PMC full text unavailable; the first 200,000 of about 285,000 characters were read, the remainder not read). 4Ts score instead of gestalt; against testing and empiric treatment with a low-probability score; immunoassay for intermediate/high probability, then functional assay if positive; discontinue heparin and start a non-heparin anticoagulant (argatroban, bivalirudin, danaparoid, fondaparinux or a DOAC; conditional); no VKA before platelet recovery (usually ≥150 ×10⁹/L); against routine platelet transfusion; UFH about 10-fold the HIT risk of LMWH; fondaparinux risk negligible; high-probability score → stop heparin and start a non-heparin anticoagulant at therapeutic intensity before results; argatroban half-life 40–50 min, hepatobiliary; non-heparin agent rather than UFH or LMWH in remote HIT."
+    },
+    {
+      "id": "warkentin2023",
+      "kind": "external",
+      "citation": "Warkentin TE, Greinacher A. Laboratory Testing for Heparin-Induced Thrombocytopenia and Vaccine-Induced Immune Thrombotic Thrombocytopenia Antibodies: A Narrative Review. Semin Thromb Hemost. 2023;49(6):621-633. doi:10.1055/s-0042-1758818",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10421650/",
+      "consulted": true,
+      "usedFor": "PF4/heparin antigen formation; IgG immune complexes cross-linking platelet FcγIIa receptors; typical onset 5–10 days and rapid onset in sensitised patients; classic HIT thrombosis risk 50–70%; PF4-dependent EIA sensitivity >99%; specificity highest for platelet activation assays and lowest for EIAs; IgG-specific EIAs more specific; washed-platelet SRA/HIPA ~95% sensitivity and specificity; high heparin concentrations inhibit platelet activation, giving specificity; iceberg model of non-pathogenic antibodies; HIT reported with heparin flushes alone."
+    },
+    {
+      "id": "marchetti2021",
+      "kind": "external",
+      "citation": "Marchetti M, Zermatten MG, Bertaggia Calderara D, Aliotta A, Alberio L. Heparin-Induced Thrombocytopenia: A Review of New Concepts in Pathogenesis, Diagnosis, and Management. J Clin Med. 2021;10(4):683. doi:10.3390/jcm10040683",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7916628/",
+      "consulted": true,
+      "usedFor": "4Ts components and point bands (low 0–3, intermediate 4–5, high 6–8); HIT cases reported with a score of 3; functional assays as gold standard, used after a positive immunoassay; ELISA sensitive but unspecific; immediate cessation of any heparin and non-heparin anticoagulation; argatroban half-life 45 min, hepatobiliary; bivalirudin 25 min, proteolytic and renal; danaparoid and fondaparinux as indirect anti-Xa agents; fondaparinux immunogenic but only rarely reported as a cause of HIT; functional assays technically demanding and not widely available; platelet and monocyte activation drive thrombin generation."
+    },
+    {
+      "id": "patriarcheas2020",
+      "kind": "external",
+      "citation": "Patriarcheas V, Pikoulas A, Kostis M, Charpidou A, Dimakakos E. Heparin-induced Thrombocytopenia: Pathophysiology, Diagnosis and Management. Cureus. 2020;12(3):e7385. doi:10.7759/cureus.7385",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7179984/",
+      "consulted": true,
+      "usedFor": "4Ts table; low 0–3 points with <5% probability; NPV 99.8% for low, PPV 14% and 64% for intermediate and high; rapid onset with heparin in the previous 100 days; HIT antibodies have high affinity for LMWH, so LMWH is excluded; avoid heparin from any source including heparin-coated catheters; argatroban APTT target 1.5–3× baseline; argatroban raises the INR, complicating the VKA transition; warfarin only after platelet recovery; fondaparinux is a synthetic antithrombin-binding pentasaccharide analog, not approved for HIT; immunoassay specificity 40–70%."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-mech",
+      "text": "PF4/heparin antigen, IgG immune complexes, FcγIIa platelet activation, thrombosis risk; timing and rapid onset; UFH vs LMWH risk.",
+      "status": "checked",
+      "refs": [
+        "warkentin2023",
+        "patriarcheas2020",
+        "cuker2018"
+      ]
+    },
+    {
+      "id": "cl-4ts",
+      "text": "4Ts components, point bands, NPV ~99.8%, PPV ~14%/64%; no testing or empiric treatment for low scores; caveat about a score of 3.",
+      "status": "checked",
+      "refs": [
+        "patriarcheas2020",
+        "marchetti2021",
+        "cuker2018"
+      ]
+    },
+    {
+      "id": "cl-assay",
+      "text": "EIA sensitivity >99% with lower specificity; IgG-specific more specific; functional assays more specific and used after a positive immunoassay; high-heparin inhibition.",
+      "status": "checked",
+      "refs": [
+        "warkentin2023",
+        "marchetti2021",
+        "cuker2018"
+      ]
+    },
+    {
+      "id": "cl-mgmt",
+      "text": "Stop all heparin sources; avoid LMWH; non-heparin options; argatroban and bivalirudin half-lives, clearance and APTT target; argatroban raises INR; no VKA until platelet recovery; no routine platelet transfusion.",
+      "status": "checked",
+      "refs": [
+        "cuker2018",
+        "marchetti2021",
+        "patriarcheas2020",
+        "warkentin2023"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Heparin neutralisation to isolate the warfarin effect (Hit 5); EIA excess-heparin confirmatory step and the 98.1/89.4% figures (Hit 11); heparin resistance >35,000 U/day (Hit 12).",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch39"
+      ],
+      "note": "Not taught as facts in this lesson."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; PF4/heparin drawing schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Every drop, the cousin, a stranger.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-4t-low-points",
+      "issue": "Ch. 39 Hit 2 (and the Number Vault) gives “low 4T score = 0–3% HIT probability”. In the sources, 0–3 is the point range of the low-probability category; its probability is given as <5% with a negative predictive value of about 99.8%, and HIT has been reported with a score of 3 (register flag rv-hit-4t-low-points).",
+      "kind": "contradiction",
+      "status": "open"
+    },
+    {
+      "id": "f-eia-specificity",
+      "issue": "Ch. 39 Hit 11 gives PF4-ELISA sensitivity ~98% and specificity ~89% as fixed values. Sources describe EIA sensitivity >99% and specificity that depends on the assay (IgG-specific vs polyspecific), threshold and clinical context, with reported ranges as low as 40–70% (register flag rv-hit-eia-specificity).",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-fondaparinux",
+      "issue": "Ch. 39 Hit 2 states fondaparinux “does not cross-react in vivo”. Sources say fondaparinux is immunogenic but only rarely reported as a cause of HIT, call its risk negligible, and list it among conditional (very low certainty) options with danaparoid and DOACs (register flag rv-hit-fondaparinux-context).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; mechanism and tests shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against the ASH 2018 guideline (read via a page-fetch tool, partially), Warkentin and Greinacher 2023, Marchetti 2021 and Patriarcheas 2020; 1 pending (heparin neutralisation for warfarin monitoring; EIA confirmatory step and exact figures; heparin-resistance threshold). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

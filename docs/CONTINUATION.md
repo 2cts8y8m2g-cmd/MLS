@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 170, teaching 855 of 1,932 concepts (about 44.3%).** All 170 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 182, teaching 912 of 1,932 concepts (about 47.2%).** All 182 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -14,7 +14,7 @@
   - Ch. 8 (9/23 concepts): `ops-reference-interval-delta-check-individuality`, `ops-sensitivity-specificity-predictive-values`.
   - Ch. 9 (8/21 concepts): `ops-detective-coag-patterns`, `ops-detective-low-anion-gap-proteins`.
   - Ch. 10 (6/22 concepts): `ops-reference-intervals-method-comparison`.
-  - Ch. 11 (3/20 concepts): `ops-qc-levey-jennings-rules`.
+  - Ch. 11 (11/20 concepts): `ops-qc-levey-jennings-rules`, `ops-qc-lot-change-commutability-pt`.
   - Ch. 12 (6/20 concepts): `ops-lis-audit-trail-ngs-files`.
   - Ch. 13 (13/25 concepts): `ops-coding-panels-medical-necessity-abn`, `ops-test-cost-breakeven-npv`.
   - Ch. 14 (8/18 concepts): `ops-ethics-belmont-irb-research`.
@@ -28,21 +28,21 @@
   - Ch. 22 (10/26 concepts): `chem-hepatitis-b-serology-window`, `chem-liver-panel-patterns`.
   - Ch. 23 (8/23 concepts): `chem-malabsorption-elastase-celiac`, `chem-pancreatic-enzymes-pancreatitis`.
   - Ch. 24 (14/26 concepts): `chem-drug-screen-confirmation-validity`, `chem-tdm-timing-kinetics`.
-  - Ch. 25 (4/21 concepts): `chem-endocrine-dynamic-testing`.
-  - Ch. 26 (7/22 concepts): `chem-hcg-pregnancy-unknown-location`, `chem-semen-hypogonadism`.
+  - Ch. 25 (8/21 concepts): `chem-endocrine-dynamic-testing`, `chem-thyroid-patterns-graves-iodine`.
+  - Ch. 26 (11/22 concepts): `chem-hcg-pregnancy-unknown-location`, `chem-prenatal-afp-down-screening`, `chem-semen-hypogonadism`.
   - Ch. 27 (7/22 concepts): `chem-wilson-disease-copper`, `chem-zinc-copper-status-menkes`.
   - Ch. 28 (7/22 concepts): `chem-glucose-340nm-poct-pitfalls`, `chem-pseudohyponatremia-jaffe`.
   - Ch. 29 (11/27 concepts): `cm-urine-casts-localize`, `cm-urine-strip-chemistry`.
   - Ch. 30 (12/25 concepts): `cm-csf-synovial-interpretation`, `cm-serous-fluids-transudate-exudate`.
   - Ch. 31 (14/28 concepts): `heme-esr-westergren-interpretation`, `heme-red-cell-indices-high-mchc`, `heme-spurious-cbc-corrections`.
-  - Ch. 32 (8/23 concepts): `heme-erythropoiesis-reticulocyte-index`.
+  - Ch. 32 (11/23 concepts): `heme-erythropoiesis-reticulocyte-index`, `heme-heme-synthesis-bilirubin-urobilinogen`.
   - Ch. 33 (16/27 concepts): `heme-anemia-second-clues`, `heme-hemolytic-anemia-workup`, `heme-microcytic-anemia-ferritin-mentzer`.
-  - Ch. 34 (9/25 concepts): `heme-bcell-neoplasm-phenotypes`, `heme-cml-vs-leukemoid-reaction`, `heme-mpn-pv-et-pmf`.
-  - Ch. 35 (7/23 concepts): `heme-flow-cytometry-gating`.
+  - Ch. 34 (14/25 concepts): `heme-bcell-neoplasm-phenotypes`, `heme-blast-count-aml-mds-apl`, `heme-cml-vs-leukemoid-reaction`, `heme-mpn-pv-et-pmf`.
+  - Ch. 35 (12/23 concepts): `heme-b-cell-clonality-mbl-hematogones`, `heme-flow-cytometry-gating`.
   - Ch. 36 (18/29 concepts): `heme-dic-liver-fibrinolysis`, `heme-hemophilia-factor-inhibitor-lab`, `heme-mixing-study-pt-aptt`.
   - Ch. 37 (13/24 concepts): `heme-glanzmann-bernard-soulier`, `heme-vwd-typing-ratios`.
   - Ch. 38 (19/22 concepts): `heme-lupus-anticoagulant-aps`, `heme-thrombophilia-testing-timing`.
-  - Ch. 39 (6/23 concepts): `heme-anticoagulant-test-selection`.
+  - Ch. 39 (11/23 concepts): `heme-anticoagulant-test-selection`, `heme-hit-diagnosis-management`.
   - Ch. 40 (25/36 concepts): `bb-dat-aiha-workup`, `ih-abo-discrepancy-types-workup`, `ih-abo-forward-reverse`, `ih-antibody-id-dosage-kidd`, `ih-hdfn-titers-rhig`, `ih-weak-d-partial-d-del`.
   - Ch. 41 (26/35 concepts): `bb-acute-hemolytic-reaction-abo-compatibility`, `bb-component-choice-thresholds`, `bb-component-storage-irradiation`, `bb-trali-vs-taco`, `ih-component-dating-processing`, `ih-dhtr-lookback-windows`.
   - Ch. 42 (21/29 concepts): `bb-donor-eligibility-criteria`, `ih-apheresis-citrate-asfa-rce`, `ih-hpc-mobilization-ecp`, `ih-plasma-exchange-tpe`.
@@ -53,14 +53,14 @@
   - Ch. 47 (7/28 concepts): `immuno-csf-oligoclonal-band-patterns`, `immuno-immunoglobulin-classes`.
   - Ch. 48 (7/22 concepts): `immuno-complement-ch50-ah50`.
   - Ch. 49 (8/22 concepts): `immuno-leukocyte-trafficking-chemokines`.
-  - Ch. 50 (5/22 concepts): `immuno-hla-crossmatch-pra`.
+  - Ch. 50 (11/22 concepts): `immuno-hla-crossmatch-pra`, `immuno-hla-typing-resolution-matching`.
   - Ch. 51 (6/22 concepts): `immuno-hla-disease-association`.
   - Ch. 52 (10/23 concepts): `immuno-pid-trec-dhr-cvid`, `immuno-xla-hyper-igm-vaccine-titers`.
   - Ch. 53 (10/23 concepts): `immuno-ana-hep2-patterns`, `immuno-myositis-autoantibodies`.
   - Ch. 54 (8/23 concepts): `immuno-anca-cryoglobulin-testing`.
   - Ch. 55 (10/23 concepts): `immuno-celiac-serology-pbc-ama`, `immuno-glomerular-if-pla2r`.
-  - Ch. 56 (8/24 concepts): `immuno-allergy-sige-tryptase`.
-  - Ch. 57 (33/57 concepts): `micro-c-difficile-testing-algorithm`, `micro-enteric-pathogens-stec`, `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-listeria-nocardia-gpr`, `micro-rapid-id-maldi-panels-16s`, `micro-strep-enterococcus-id`.
+  - Ch. 56 (14/24 concepts): `immuno-allergy-sige-tryptase`, `immuno-ige-switch-mast-cell-mediators`.
+  - Ch. 57 (37/57 concepts): `micro-c-difficile-testing-algorithm`, `micro-enteric-pathogens-stec`, `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-listeria-nocardia-gpr`, `micro-pseudomonas-ampc-wound-culture`, `micro-rapid-id-maldi-panels-16s`, `micro-strep-enterococcus-id`.
   - Ch. 58 (16/30 concepts): `micro-ast-mic-breakpoints-dtest`, `micro-beta-lactamases-esbl-cpe`, `micro-gram-positive-resistance-mec-van-hlar`.
   - Ch. 59 (13/26 concepts): `micro-afb-smear-decontamination`, `micro-tb-xpert-dst-ripe`, `micro-tst-igra-bcg`.
   - Ch. 60 (13/25 concepts): `micro-dimorphic-fungi`, `micro-invasive-mold-markers`.
@@ -69,22 +69,22 @@
   - Ch. 63 (9/19 concepts): `micro-rickettsial-tickborne-diagnosis`.
   - Ch. 64 (10/24 concepts): `micro-ebv-cmv-serology`, `micro-hiv-hcv-testing-algorithms`, `micro-respiratory-virus-naat-antigen-culture`.
   - Ch. 65 (11/24 concepts): `micro-entamoeba-coccidia-stool-protozoa`, `micro-malaria-thick-thin-films`.
-  - Ch. 66 (29/54 concepts): `micro-antigen-tests-negatives`, `micro-blood-culture-volume-contamination`, `micro-endocarditis-blood-cultures-duke`, `micro-result-reporting-critical-calls`, `micro-specimen-acceptability-transport`, `micro-urine-culture-interpretation`.
+  - Ch. 66 (33/54 concepts): `micro-antigen-tests-negatives`, `micro-blood-culture-volume-contamination`, `micro-direct-smears-sterile-fluids-bal`, `micro-endocarditis-blood-cultures-duke`, `micro-result-reporting-critical-calls`, `micro-specimen-acceptability-transport`, `micro-urine-culture-interpretation`.
   - Ch. 67 (8/20 concepts): `mdx-molecular-context-fish-cftr-snp`, `mdx-pharmacogenomics`.
   - Ch. 68 (11/25 concepts): `mdx-hybridization-stringency-blots`, `mdx-sanger-pyrosequencing`.
   - Ch. 69 (8/24 concepts): `mdx-qpcr-quantification`.
   - Ch. 70 (10/23 concepts): `mdx-array-normalization-dasl`, `mdx-hybridization-arrays`.
   - Ch. 71 (11/23 concepts): `mdx-cytogenetic-test-choice`, `mdx-monosomy-x-robertsonian`.
   - Ch. 72 (8/26 concepts): `mdx-fvl-hfe-mthfr-genotyping`, `mdx-repeat-expansions`.
-  - Ch. 73 (4/20 concepts): `mdx-apoe-alzheimer-amyloid`.
+  - Ch. 73 (7/20 concepts): `mdx-apoe-alzheimer-amyloid`, `mdx-psychiatric-pgx-alcohol-lithium`.
   - Ch. 74 (12/25 concepts): `mdx-forensic-str-ystr-mtdna`, `mdx-parentage-pi-cpe-probability`.
   - Ch. 75 (10/27 concepts): `mdx-pgx-toxicity-screening`, `mdx-targeted-therapy-egfr-ras-alk`.
   - Ch. 76 (6/21 concepts): `mdx-oncoproteins-ras-p53-markers`.
   - Ch. 77 (7/23 concepts): `mdx-bcell-lymphoma-molecular-markers`, `mdx-cml-bcr-abl1-international-scale`.
   - Ch. 78 (5/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`.
   - Ch. 79 (6/20 concepts): `mdx-expression-profiling-overfitting`.
-- **Reviewer accuracy register:** 176 flags (128 verified issues, 48 needing verification), plus scan results.
-- **Checks:** 1086 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Reviewer accuracy register:** 210 flags (157 verified issues, 53 needing verification), plus scan results.
+- **Checks:** 1158 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
@@ -136,7 +136,7 @@ Round 5 (chapters in the heavy areas with no lesson yet, by simulator-question c
 
 **Round 19 — first lessons for chapters with none** (✅ complete: every chapter 1–79 now has at least one lesson) (34 chapters had no lesson after round 18): ✅ Ch. 16 bone & mineral · ✅ Ch. 27 vitamins & trace elements (Wilson disease) · ✅ Ch. 28 how tests work (ISE, Jaffe) · Ch. 73–79 molecular/genomics (✅ Ch. 73 APOE/Alzheimer, ✅ Ch. 74 STR/Y/mtDNA, ✅ Ch. 76 RAS/p53/NMP22, ✅ Ch. 75 toxicity genotyping, ✅ Ch. 77 CML IS, ✅ Ch. 78 HER2 ISH, ✅ Ch. 79 overfitting/validation) · Ch. 44–56 immunology (✅ Ch. 44 hypersensitivity types, ✅ Ch. 45 assay formats, ✅ Ch. 46 IGRA, ✅ Ch. 47 Ig classes, ✅ Ch. 48 complement, ✅ Ch. 49 leukocyte trafficking, ✅ Ch. 50 HLA crossmatch, ✅ Ch. 51 HLA–disease association, ✅ Ch. 52 PID screening, ✅ Ch. 53 ANA, ✅ Ch. 54 ANCA/cryoglobulins, ✅ Ch. 55 coeliac/PBC, ✅ Ch. 56 allergy testing) · Ch. 4–14 lab operations (✅ Ch. 4 photometry, ✅ Ch. 5 mass spectrometry, ✅ Ch. 6 total testing process, ✅ Ch. 7 POCT/CLIA waived & PT, ✅ Ch. 8 diagnostic accuracy, ✅ Ch. 9 low anion gap/protein effects, ✅ Ch. 10 reference intervals/method comparison, ✅ Ch. 11 QC, ✅ Ch. 12 audit trails/ACID/NGS files, ✅ Ch. 13 contribution margin/break-even/NPV, ✅ Ch. 14 Belmont/IRB).
 
-**Round 20 — deeper lessons in the chapters with the most untaught High-Yield Hits** (Ch. 57: 30, Ch. 66: 28, Ch. 58/59: 15, Ch. 18: 14, Ch. 27/31/65/68: 13): ✅ Ch. 57 C. difficile testing algorithm, ✅ Ch. 57 Listeria/Nocardia, ✅ Ch. 66/57 endocarditis & Duke-ISCVID, ✅ Ch. 58 mec/van/HLAR, ✅ Ch. 59 Xpert/DST/RIPE/bovis, ✅ Ch. 68 stringency/blots/arrays, ✅ Ch. 18 apolipoproteins/type 3, ✅ Ch. 65 Entamoeba/coccidia, ✅ Ch. 31 ESR Westergren, ✅ Ch. 27 zinc/copper/Menkes, ✅ Ch. 72 FVL/HFE/MTHFR (batch 1 via parallel workflow: one writer + one independent fact-checker per lesson), ✅ Ch. 57 MALDI/panels/16S, ✅ Ch. 66 micro reporting, ✅ Ch. 4 SEC/SDS-PAGE/IEF, ✅ Ch. 47 CSF oligoclonal bands, ✅ Ch. 75 EGFR/RAS/ALK, ✅ Ch. 77 B-cell markers, ✅ Ch. 8 RI/delta/II, ✅ Ch. 53 myositis antibodies, ✅ Ch. 23 FE-1/coeliac IgA, ✅ Ch. 21 macroenzymes/artefacts, ✅ Ch. 78 glioma 1p/19q/MGMT, ✅ Ch. 13 coding/ABN, ✅ Ch. 55 kidney IF/PLA2R, ✅ Ch. 67 FISH/CFTR/SNP context, ✅ Ch. 52 XLA/HIGM/titres, ✅ Ch. 46 T-cell activation/SI, ✅ Ch. 45 EMIT/FPIA/TRF, ✅ Ch. 44 lymphocyte subsets, ✅ Ch. 28 glucose 340 nm/POCT, ✅ Ch. 9 coag patterns, ✅ Ch. 74 PI/CPE/W parentage, ✅ Ch. 71 45,X/Robertsonian, ✅ Ch. 70 normalization/DASL, ✅ Ch. 59 TST/IGRA/BCG
+**Round 20 — deeper lessons in the chapters with the most untaught High-Yield Hits** (Ch. 57: 30, Ch. 66: 28, Ch. 58/59: 15, Ch. 18: 14, Ch. 27/31/65/68: 13): ✅ Ch. 57 C. difficile testing algorithm, ✅ Ch. 57 Listeria/Nocardia, ✅ Ch. 66/57 endocarditis & Duke-ISCVID, ✅ Ch. 58 mec/van/HLAR, ✅ Ch. 59 Xpert/DST/RIPE/bovis, ✅ Ch. 68 stringency/blots/arrays, ✅ Ch. 18 apolipoproteins/type 3, ✅ Ch. 65 Entamoeba/coccidia, ✅ Ch. 31 ESR Westergren, ✅ Ch. 27 zinc/copper/Menkes, ✅ Ch. 72 FVL/HFE/MTHFR (batch 1 via parallel workflow: one writer + one independent fact-checker per lesson), ✅ Ch. 57 MALDI/panels/16S, ✅ Ch. 66 micro reporting, ✅ Ch. 4 SEC/SDS-PAGE/IEF, ✅ Ch. 47 CSF oligoclonal bands, ✅ Ch. 75 EGFR/RAS/ALK, ✅ Ch. 77 B-cell markers, ✅ Ch. 8 RI/delta/II, ✅ Ch. 53 myositis antibodies, ✅ Ch. 23 FE-1/coeliac IgA, ✅ Ch. 21 macroenzymes/artefacts, ✅ Ch. 78 glioma 1p/19q/MGMT, ✅ Ch. 13 coding/ABN, ✅ Ch. 55 kidney IF/PLA2R, ✅ Ch. 67 FISH/CFTR/SNP context, ✅ Ch. 52 XLA/HIGM/titres, ✅ Ch. 46 T-cell activation/SI, ✅ Ch. 45 EMIT/FPIA/TRF, ✅ Ch. 44 lymphocyte subsets, ✅ Ch. 28 glucose 340 nm/POCT, ✅ Ch. 9 coag patterns, ✅ Ch. 74 PI/CPE/W parentage, ✅ Ch. 71 45,X/Robertsonian, ✅ Ch. 70 normalization/DASL, ✅ Ch. 59 TST/IGRA/BCG, ✅ Ch. 66 smears/16S/BAL, ✅ Ch. 57 wound culture / AmpC, ✅ Ch. 50 HLA typing/matching, ✅ Ch. 39 HIT 4Ts/PF4/argatroban, ✅ Ch. 35 B-cell clonality/MBL/hematogones, ✅ Ch. 34 blasts/MDS/APL, ✅ Ch. 25 thyroid TSH/T3/Graves/iodine, ✅ Ch. 11 lot change/PT SDI, ✅ Ch. 73 ADH/ALDH2, CYP antidepressants, DGKH, ✅ Ch. 56 IgE switch/mast cell, ✅ Ch. 32 heme synthesis/bilirubin, ✅ Ch. 26 MSAFP/Down screen
 
 Clinical Microscopy runs alongside rounds 14–15: **Ch. 29 urinalysis** (✅ core lesson, round 14) and **Ch. 30 body fluids** (✅ core lesson, round 15). Round 16 adds **Ch. 29 urinalysis (2nd lesson)** (✅ reagent-strip chemistry); round 17 adds **Ch. 30 body fluids (2nd lesson)** (✅ CSF and synovial fluid). Molecular Diagnostics (Ch. 67–72) follows round 17 (see the MDx round above); Ch. 29 still ranks third by simulator questions × untaught share.
 

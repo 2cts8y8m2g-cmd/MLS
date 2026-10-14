@@ -1,0 +1,1499 @@
+{
+  "schemaVersion": 1,
+  "id": "heme-heme-synthesis-bilirubin-urobilinogen",
+  "title": "Heme In, Pigment Out: ALA Synthase, Porphyria Testing and Urobilinogen",
+  "summary": "Follow heme from synthesis to excretion: heme feedback on ALA synthase, the PBG deaminase defect of acute intermittent porphyria and how it is tested today, zinc protoporphyrin, and the bilirubin-to-urobilinogen route that explains why low fecal urobilinogen does not mean low red cell destruction.",
+  "domain": "p4-heme",
+  "topic": "ch32",
+  "conceptIds": [
+    "ch32.hit7",
+    "ch32.hit10",
+    "ch32.trap2"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 32,
+        "section": "High-Yield Hits",
+        "items": [
+          7,
+          10
+        ]
+      },
+      {
+        "chapter": 32,
+        "section": "Exam Traps",
+        "items": [
+          2
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 32 Hit 7 (heme feedback on ALA synthase; PBG deaminase defect in AIP; Ehrlich screening; protoporphyrin in lead poisoning and iron deficiency), Hit 10 (bilirubin pathway) and Trap 2 (low fecal urobilinogen). Checked against Bissell and Wang 2015, Wang 2023 (AGA expert review), Aarsand 2025, Hennig 2016, Kipp 2025, Hall 2024, Su 2024 and McMaster and Elman 1925. Qualifications: current recommendations quantify urine PBG and ALA normalised to creatinine rather than relying on a qualitative Ehrlich-reagent screen (5-Second Recall Q4 also names the Watson-Schwartz screen); the protoporphyrin that rises in lead poisoning and iron deficiency is zinc-chelated rather than metal-free; the antibiotic half of Trap 2 was not found measured in an open human source and is kept as pending. Not taught: Number Vault 80–90% fecal urobilinogen figure, lead’s enzyme targets, porphyria treatment detail."
+  },
+  "prerequisites": [
+    "ch32.hit2"
+  ],
+  "objectives": [
+    "Explain how heme regulates its own synthesis through ALA synthase and name the enzyme deficient in acute intermittent porphyria.",
+    "Choose the recommended first-line laboratory test for a suspected acute porphyria attack.",
+    "Trace heme breakdown to bilirubin and urobilinogen and explain why low fecal urobilinogen can occur without low red cell destruction."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two pigment puzzles",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: two requests reach the lab. (1) A young adult with severe abdominal pain; the emergency team asks for a quick porphyria screen. (2) A jaundiced patient with pale stools whose fecal urobilinogen is low; a note asks “low red cell destruction?”. Question token: “What does each pigment really tell you?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Two requests arrive. A young adult with severe abdominal pain, and the emergency team wants a quick porphyria screen."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "And a jaundiced patient with pale stools whose fecal urobilinogen is low. Someone asks: does that mean few red cells are being destroyed?"
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "To answer both, follow heme from the moment it is built to the moment its pigment leaves the body."
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 420,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Abdominal pain",
+            "lines": [
+              "Young adult, severe pain",
+              "“Quick porphyria screen?”"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 220,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "2 Jaundice, pale stools",
+            "lines": [
+              "Fecal urobilinogen low",
+              "“Low destruction?”"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 430,
+            "w": 700,
+            "label": "What does each pigment really tell you?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Building heme, with a brake",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic assembly line: succinyl CoA + glycine → ALA (ALA synthase, ALAS: first committed and rate-limiting step) → porphobilinogen (PBG) → (hydroxymethylbilane synthase, HMBS, also called PBG deaminase) → … → protoporphyrin IX → iron inserted → heme. A dashed feedback arrow runs from heme back to ALAS. Side card: two ALAS genes, ALAS1 (liver and other tissues) and ALAS2 (erythroid, X chromosome). Bottom card: if iron is unavailable, zinc is inserted instead, giving zinc protoporphyrin.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Heme is built from succinyl coenzyme A and glycine. The first committed product is aminolevulinic acid, ALA, made by ALA synthase. That step is rate-limiting for the whole pathway."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Two ALA molecules become porphobilinogen, PBG. The next enzyme, hydroxymethylbilane synthase, is also called PBG deaminase. Remember both names."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Heme itself is the brake: it feeds back to inhibit ALA synthase. In the liver this is the ALAS1 gene; red cell precursors use a separate gene, ALAS2."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "The last step inserts iron into protoporphyrin. When iron is short, zinc goes in instead, and zinc protoporphyrin stays in the red cell for its lifetime."
+        }
+      ],
+      "objects": [
+        {
+          "id": "line",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 230,
+            "w": 440,
+            "h": 230,
+            "tone": "b",
+            "title": "Heme assembly line",
+            "lines": [
+              "Succinyl CoA + glycine → ALA (ALAS)",
+              "ALA → PBG",
+              "PBG → HMBS (PBG deaminase) → …"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "brake",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "bad",
+            "title": "Heme = the brake",
+            "lines": [
+              "Feedback inhibits ALAS",
+              "Liver ALAS1 · erythroid ALAS2"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "zn",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 760,
+            "h": 140,
+            "tone": "warn",
+            "title": "Last step: insert iron",
+            "lines": [
+              "No iron available → zinc protoporphyrin"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Breaking heme down to pigment",
+      "start": 60,
+      "end": 104,
+      "altText": "Schematic route of heme breakdown: heme → (heme oxygenase) → biliverdin + carbon monoxide + ferrous iron → (biliverdin reductase) → unconjugated bilirubin, carried on albumin → liver: UGT1A1 adds glucuronic acid → conjugated bilirubin into bile → intestine: human or bacterial β-glucuronidases deconjugate it and the gut-bacterial enzyme BilR reduces bilirubin to urobilinogen → stercobilin (stool colour) or reabsorption, with urobilin giving urine its yellow colour.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "Now the exit route. Heme oxygenase opens the heme ring, giving biliverdin, carbon monoxide and iron. Biliverdin reductase then makes bilirubin."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "Unconjugated bilirubin travels in blood bound to albumin. In the liver, the enzyme UGT1A1 attaches glucuronic acid, and the conjugated bilirubin leaves in bile."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "In the gut, the glucuronide is removed by human or bacterial enzymes. Then a gut-bacterial enzyme called BilR reduces bilirubin to urobilinogen."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "Urobilinogen goes on to stercobilin, the pigment that colours stool. Some is reabsorbed, and its oxidised form, urobilin, gives urine its yellow colour."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ho",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Heme oxygenase",
+            "lines": [
+              "→ biliverdin + CO + Fe²⁺",
+              "Biliverdin reductase → bilirubin"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "liver",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Blood → liver → bile",
+            "lines": [
+              "Albumin carries it",
+              "UGT1A1 glucuronidation"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "gut",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "good",
+            "title": "In the gut",
+            "lines": [
+              "Glucuronide removed",
+              "Bacterial BilR → urobilinogen"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "out",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Exit colours",
+            "lines": [
+              "Stercobilin → stool colour",
+              "Urobilin → yellow urine"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Reading the pigments",
+      "start": 104,
+      "end": 144,
+      "altText": "Left card, acute porphyria testing (AGA 2023; Aarsand 2025): random urine PBG, ALA and creatinine, normalised to creatinine; during an attack both are at least 5 times the upper reference limit; collect before hemin; a qualitative PBG screen must be followed by a quantitative assay; genetic testing confirms the type afterwards. Right card, low fecal urobilinogen: bile must reach the gut (total bile obstruction abolished fecal urobilin in dogs) and bacteria must reduce bilirubin (germ-free rats make no stercobilinogen; many newborns lack BilR). Hook answers token.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 116,
+          "text": "Case one. The test of choice is a random urine for PBG and ALA, normalised to creatinine and collected before hemin is given. During an attack, both are at least five times the upper reference limit."
+        },
+        {
+          "id": "l2",
+          "start": 116,
+          "end": 124,
+          "text": "A rapid qualitative PBG screen exists, but current recommendations say it must be followed by a quantitative assay. Genetic testing then confirms the type."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 136,
+          "text": "Case two. Urobilinogen needs two things: bile reaching the gut, and bacteria to reduce bilirubin. Blocked bile flow made fecal urobilin disappear in classic animal studies, and germ-free rats make no stercobilinogen."
+        },
+        {
+          "id": "l4",
+          "start": 136,
+          "end": 144,
+          "text": "So pale stools with low urobilinogen point to bile not reaching the gut, not to low red cell destruction."
+        }
+      ],
+      "objects": [
+        {
+          "id": "aip",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 240,
+            "w": 440,
+            "h": 270,
+            "tone": "b",
+            "title": "1 Acute porphyria?",
+            "lines": [
+              "Random urine PBG, ALA, creatinine",
+              "Attack: ≥ 5 × upper limit",
+              "Collect before hemin",
+              "Qualitative screen → quantify"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "uro",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 420,
+            "h": 250,
+            "tone": "a",
+            "title": "2 Low fecal urobilinogen",
+            "lines": [
+              "Needs bile in the gut",
+              "Needs reducing bacteria",
+              "Pale stool = bile blocked"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 760,
+            "label": "Low urobilinogen ≠ low destruction",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “A quick Ehrlich-reagent PBG screen settles acute porphyria” (✓ quantify PBG and ALA normalised to creatinine); “Low fecal urobilinogen means low red cell destruction” (✓ bile delivery and gut bacteria are required); “Raised erythrocyte protoporphyrin means porphyria” (✓ zinc protoporphyrin also rises in iron deficiency and lead poisoning).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a quick Ehrlich-reagent screen settles acute porphyria. No: follow it with quantitative urine PBG and ALA, normalised to creatinine."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: low fecal urobilinogen means low red cell destruction. No: without bile reaching the gut, or without the right bacteria, little urobilinogen is made."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: raised red cell protoporphyrin means porphyria. No: zinc protoporphyrin also rises in iron deficiency and in lead poisoning."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “A quick Ehrlich screen settles it.”",
+            "lines": [
+              "✓ Quantify PBG and ALA per creatinine"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Low urobilinogen = low destruction.”",
+            "lines": [
+              "✓ Needs bile in the gut and bacteria"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “High red cell protoporphyrin = porphyria.”",
+            "lines": [
+              "✓ Zinc protoporphyrin: iron deficiency, lead"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Brake in, bugs out",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Heme hits the BRAKE on the way in; BUGS paint the pigment on the way out.” Tokens: brake = heme inhibits ALA synthase · bugs = gut bacteria make urobilinogen · bile = the road to the gut. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: heme hits the brake on the way in, and bugs paint the pigment on the way out. The brake is heme inhibiting ALA synthase. The bugs are gut bacteria making urobilinogen, and bile is the road that gets bilirubin to them."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: the brake story is the liver’s ALAS1, and red cell precursors use a separate gene. Bacteria are not the only step: some bilirubin is deconjugated and reabsorbed, and some urobilinogen returns to the blood and reaches urine."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Brake in, bugs out",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Brake = heme on ALAS",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Bugs = urobilinogen",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Bile = the road",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Brake = liver ALAS1; erythroid ALAS2 is separate",
+              "Some bilirubin is deconjugated and reabsorbed",
+              "Some urobilinogen reaches urine"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Heme brakes ALA synthase · AIP = PBG deaminase (HMBS) · quantify urine PBG and ALA per creatinine”, “Heme → biliverdin → bilirubin → UGT1A1 → bile → bacteria → urobilinogen: low urobilinogen can mean blocked bile”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Heme brakes its own first enzyme, an acute porphyria attack is detected with quantitative urine porphobilinogen, and fecal urobilinogen depends on bile and gut bacteria, so a low value does not prove low red cell destruction."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Heme brakes ALAS · AIP = PBG deaminase · quantify urine PBG/ALA",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Bilirubin → bile → bacteria → urobilinogen · low ≠ low destruction",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: heme is built on an assembly line whose first machine is switched down by heme itself, and it is broken down into a yellow pigment that the liver packages into bile and gut bacteria turn into the pigments that colour stool and urine. Scientific terms: δ-aminolevulinic acid (ALA), ALA synthase (ALAS1 hepatic, ALAS2 erythroid), porphobilinogen (PBG), hydroxymethylbilane synthase (HMBS, PBG deaminase), acute intermittent porphyria (AIP), zinc protoporphyrin, heme oxygenase, biliverdin reductase, UGT1A1, conjugated bilirubin, bilirubin reductase (BilR), urobilinogen, stercobilin, urobilin.",
+    "why": "In AIP, HMBS activity is reduced (on average about half normal); when ALAS1 is induced (for example by cytochrome P450-inducing drugs or fasting), ALA and PBG accumulate. Hemin works by expanding the regulatory heme pool and switching ALAS1 down. On the exit side, urobilinogen formation requires conjugated bilirubin to reach the gut in bile and bacteria able to reduce it.",
+    "measure": "Suspected acute porphyria: random urine PBG, ALA and creatinine, normalised to creatinine, collected before hemin; during an attack ALA and PBG are at least 5 times the upper reference limit; a qualitative PBG screen should be followed by a quantitative assay; urinary total porphyrins are not a helpful first-line test; protect porphyrin samples from light; genetic testing confirms the type. Zinc protoporphyrin rises in iron deficiency and lead poisoning; ALA also rises in lead poisoning.",
+    "differs": "ALAS (rate-limiting, feedback-inhibited) vs HMBS/PBG deaminase (deficient in AIP); PBG (more specific for acute porphyria) vs ALA (also raised in lead poisoning and tyrosinemia); zinc protoporphyrin (iron deficiency, lead) vs metal-free protoporphyrin (erythropoietic protoporphyria); unconjugated (albumin-bound) vs conjugated (glucuronidated) bilirubin; urobilinogen production (bile delivery plus bacteria) vs red cell destruction.",
+    "examAngle": "Expect: name the enzyme heme inhibits or the enzyme deficient in AIP, pick the first-line test for an acute attack, order the bilirubin pathway, or explain low or absent urobilinogen with pale stools."
+  },
+  "comparisons": [
+    {
+      "id": "alas-vs-hmbs",
+      "title": "ALA synthase vs PBG deaminase",
+      "left": {
+        "label": "ALA synthase",
+        "points": [
+          "First, rate-limiting step",
+          "Feedback-inhibited by heme"
+        ]
+      },
+      "right": {
+        "label": "PBG deaminase (HMBS)",
+        "points": [
+          "Converts PBG further down the line",
+          "Reduced in AIP: ALA and PBG pile up"
+        ]
+      },
+      "distinguisher": "The regulated step vs the deficient step in AIP."
+    },
+    {
+      "id": "uro-low-causes",
+      "title": "Why fecal urobilinogen can be low",
+      "left": {
+        "label": "Bile does not reach gut",
+        "points": [
+          "Obstructed bile flow",
+          "Pale stools"
+        ]
+      },
+      "right": {
+        "label": "No reducing bacteria",
+        "points": [
+          "Germ-free animals make none",
+          "Many newborns lack BilR"
+        ]
+      },
+      "distinguisher": "Both lower urobilinogen without any change in red cell destruction."
+    }
+  ],
+  "mnemonic": {
+    "text": "Heme hits the BRAKE on the way in; BUGS paint the pigment on the way out, and BILE is the road to the bugs.",
+    "explanation": "Links heme feedback on ALA synthase with the bacterial step that makes urobilinogen.",
+    "limitation": "The brake describes hepatic ALAS1; erythroid ALAS2 is a separate gene. Some bilirubin is deconjugated and reabsorbed, and some urobilinogen returns to the blood and reaches urine."
+  },
+  "analogyLimitations": [
+    "Scenarios are invented.",
+    "Pathway drawings are schematic and skip intermediate steps.",
+    "The obstruction evidence for fecal urobilin comes from classic animal studies."
+  ],
+  "takeaway": "Heme brakes its own first enzyme, an acute porphyria attack is detected with quantitative urine porphobilinogen, and fecal urobilinogen depends on bile and gut bacteria, so a low value does not prove low red cell destruction.",
+  "questions": [
+    {
+      "id": "heme-pig-q1",
+      "stem": "Which enzyme catalyses the rate-limiting step of heme synthesis and is feedback-inhibited by heme?",
+      "options": [
+        {
+          "id": "a",
+          "text": "δ-Aminolevulinic acid synthase",
+          "rationale": "Correct. ALA formation by ALAS is rate-limiting, and heme feeds back on it; hemin therapy uses this brake."
+        },
+        {
+          "id": "b",
+          "text": "Hydroxymethylbilane synthase (PBG deaminase)",
+          "rationale": "Incorrect. This is the enzyme with reduced activity in acute intermittent porphyria, not the feedback-regulated step."
+        },
+        {
+          "id": "c",
+          "text": "Heme oxygenase",
+          "rationale": "Incorrect. Heme oxygenase breaks heme down to biliverdin, carbon monoxide and iron."
+        },
+        {
+          "id": "d",
+          "text": "UGT1A1",
+          "rationale": "Incorrect. UGT1A1 conjugates bilirubin with glucuronic acid in the liver."
+        }
+      ],
+      "answer": "a",
+      "skill": "Heme regulation",
+      "difficulty": "recall"
+    },
+    {
+      "id": "heme-pig-q2",
+      "stem": "A patient is suspected of having an acute porphyria attack. Which first-line laboratory test is recommended?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Random urine PBG and ALA, normalised to creatinine, collected before hemin",
+          "rationale": "Correct. This is the recommended initial biochemical test; during an attack, ALA and PBG are at least 5 times the upper limit."
+        },
+        {
+          "id": "b",
+          "text": "Urinary total porphyrins alone",
+          "rationale": "Incorrect. Urine porphyrins should not be used alone to screen; as a first-line test they are unhelpful and may mislead."
+        },
+        {
+          "id": "c",
+          "text": "Gene sequencing before any biochemical test",
+          "rationale": "Incorrect. Genetic testing confirms the type after biochemical evidence; pathogenic variants have low penetrance and do not prove an attack."
+        },
+        {
+          "id": "d",
+          "text": "A qualitative Ehrlich-reagent PBG screen with no further testing",
+          "rationale": "Incorrect. A qualitative screen should be followed by a quantitative, more sensitive assay."
+        }
+      ],
+      "answer": "a",
+      "skill": "Test selection",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-pig-q3",
+      "stem": "A jaundiced patient has pale stools and a low fecal urobilinogen. What is the best explanation for the low urobilinogen?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Conjugated bilirubin is not reaching the intestine in bile",
+          "rationale": "Correct. Gut bacteria can make urobilinogen only from bilirubin delivered in bile; obstructed bile flow removes the substrate."
+        },
+        {
+          "id": "b",
+          "text": "Red cell destruction has fallen to very low levels",
+          "rationale": "Incorrect. Low urobilinogen with pale stools reflects failed delivery to the gut, not reduced heme breakdown."
+        },
+        {
+          "id": "c",
+          "text": "Increased hemolysis",
+          "rationale": "Incorrect. Hemolysis adds heme to the breakdown route; it does not explain pale stools or low urobilinogen."
+        },
+        {
+          "id": "d",
+          "text": "A UGT1A1 promoter polymorphism (Gilbert syndrome)",
+          "rationale": "Incorrect. Gilbert syndrome reduces glucuronidation and raises unconjugated bilirubin; it does not block bile flow."
+        }
+      ],
+      "answer": "a",
+      "skill": "Bilirubin pathway",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch32",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 32, How Blood Cells Are Made (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 32,
+          "section": "High-Yield Hits",
+          "items": [
+            7,
+            10
+          ]
+        },
+        {
+          "chapter": 32,
+          "section": "Exam Traps",
+          "items": [
+            2
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "bissell2015",
+      "kind": "external",
+      "citation": "Bissell DM, Wang B. Acute Hepatic Porphyria. J Clin Transl Hepatol. 2015;3(1):17-26. doi:10.14218/jcth.2014.00039",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4542079/",
+      "consulted": true,
+      "usedFor": "ALAS as the initial, rate-limiting enzyme under heme feedback; ALAS1 (liver) and ALAS2 (erythroid, X chromosome); hemin expands the regulatory heme pool; HMBS also known as PBG deaminase; AIP enzyme activity on average about 50% of normal; Ehrlich-reagent qualitative PBG tests developed in the 1940s; ALA measured to detect lead poisoning, which mimics acute porphyria."
+    },
+    {
+      "id": "wang2023",
+      "kind": "external",
+      "citation": "Wang B, Bonkovsky HL, Lim JK, Balwani M. AGA Clinical Practice Update on Diagnosis and Management of Acute Hepatic Porphyrias: Expert Review. Gastroenterology. 2023;164(3):484-491. doi:10.1053/j.gastro.2022.11.034",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10335308/",
+      "consulted": true,
+      "usedFor": "Random urine ALA, PBG and creatinine as initial test, normalised to creatinine; ALA and PBG at least 5-fold the upper limit during attacks; collect before hemin; rapid qualitative Hoesch/Watson-Schwartz tests have seen limited clinical use; genetic confirmation (HMBS for AIP); ALAS1 induction by cytochrome P450-inducing drugs and fasting; hemin down-regulates ALAS1."
+    },
+    {
+      "id": "aarsand2025",
+      "kind": "external",
+      "citation": "Aarsand AK, To-Figueras J, Whatley S, Sandberg S, Schmitt C. Practical recommendations for biochemical and genetic diagnosis of the porphyrias. Liver Int. 2025;45(3):e16012. doi:10.1111/liv.16012",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11815605/",
+      "consulted": true,
+      "usedFor": "Qualitative PBG screen should be followed by a quantitative, more sensitive assay; urinary total porphyrins unhelpful first-line for suspected acute porphyria; ALA less specific than PBG and raised in lead intoxication and tyrosinemia; erythrocyte zinc-chelated protoporphyrin increases in iron deficiency and lead intoxication; metal-free vs zinc protoporphyrin; protect porphyrin samples from light; low penetrance limits genetic testing alone."
+    },
+    {
+      "id": "hennig2016",
+      "kind": "external",
+      "citation": "Hennig G, Homann C, Teksan I, et al. Non-invasive detection of iron deficiency by fluorescence measurement of erythrocyte zinc protoporphyrin in the lip. Nat Commun. 2016;7:10776. doi:10.1038/ncomms10776",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4757790/",
+      "consulted": true,
+      "usedFor": "Iron insertion into protoporphyrin IX as the final step of heme synthesis; zinc incorporated when iron is unavailable, and zinc protoporphyrin persists for the red cell’s life; lead exposure also raises zinc protoporphyrin."
+    },
+    {
+      "id": "kipp2025",
+      "kind": "external",
+      "citation": "Kipp ZA, Pauss SN, Martinez GJ, Hinds TD, Lee WH. Bilirubin Hepatic and Intestinal Transport and Catabolism: Physiology, Pathophysiology, and Benefits. Antioxidants (Basel). 2025;14(11):1326. doi:10.3390/antiox14111326",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12649357/",
+      "consulted": true,
+      "usedFor": "Heme oxygenase yields biliverdin, carbon monoxide and ferrous iron; biliverdin reductase; albumin transport; UGT1A1 glucuronidation; conjugated bilirubin into bile; deconjugation by human and microbial β-glucuronidases and reabsorption; BilR; stercobilin colours stool; urobilin colours urine; some urobilinogen reaches urine; Gilbert syndrome as a UGT1A1 promoter polymorphism."
+    },
+    {
+      "id": "hall2024",
+      "kind": "external",
+      "citation": "Hall B, Levy S, Dufault-Thompson K, et al. BilR is a gut microbial enzyme that reduces bilirubin to urobilinogen. Nat Microbiol. 2024;9(1):173-184. doi:10.1038/s41564-023-01549-x",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10769871/",
+      "consulted": true,
+      "usedFor": "Conjugated bilirubin secreted into the gut; deconjugation by human or bacterial β-glucuronidases, reabsorption of unconjugated bilirubin, and microbial reduction to urobilinogen; BilR identified as the bilirubin reductase; BilR nearly ubiquitous in healthy adults but often absent in neonates."
+    },
+    {
+      "id": "su2024",
+      "kind": "external",
+      "citation": "Su H, Yang S, Chen S, et al. What Happens in the Gut during the Formation of Neonatal Jaundice-Underhand Manipulation of Gut Microbiota? Int J Mol Sci. 2024;25(16):8582. doi:10.3390/ijms25168582",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11354725/",
+      "consulted": true,
+      "usedFor": "Germ-free rats excrete no stercobilinogen; colonisation with bilirubin-reducing clostridia restores it."
+    },
+    {
+      "id": "mcmaster1925",
+      "kind": "external",
+      "citation": "McMaster PD, Elman R. Studies on urobilin physiology and pathology: II. Derivation of urobilin. Relation of the bile to the presence of urobilin in the body. J Exp Med. 1925;41(4):513-534. doi:10.1084/jem.41.4.513",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2130956/",
+      "consulted": true,
+      "usedFor": "Abstract read only (Europe PMC offers the full text as a PDF only, which was not read). In dogs, urobilin in feces depended on bile pigment reaching the intestine; total bile obstruction or complete bile loss made urobilin disappear from stool."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-synth",
+      "text": "ALAS is the first, rate-limiting enzyme and is feedback-inhibited by heme; ALAS1 vs ALAS2; hemin expands the regulatory heme pool.",
+      "status": "checked",
+      "refs": [
+        "bissell2015",
+        "wang2023"
+      ]
+    },
+    {
+      "id": "cl-aip",
+      "text": "AIP: HMBS (PBG deaminase) activity reduced, on average about half; ALAS1 induction by drugs or fasting raises ALA and PBG.",
+      "status": "checked",
+      "refs": [
+        "bissell2015",
+        "wang2023"
+      ]
+    },
+    {
+      "id": "cl-test",
+      "text": "Random urine PBG, ALA and creatinine before hemin; at least 5 × ULN during attacks; qualitative screen must be followed by quantitative assay; total porphyrins unhelpful first-line; genetic confirmation afterwards; light protection.",
+      "status": "checked",
+      "refs": [
+        "wang2023",
+        "aarsand2025",
+        "bissell2015"
+      ]
+    },
+    {
+      "id": "cl-zpp",
+      "text": "Zinc inserted when iron is unavailable; zinc protoporphyrin rises in iron deficiency and lead poisoning; ALA rises in lead poisoning.",
+      "status": "checked",
+      "refs": [
+        "hennig2016",
+        "aarsand2025",
+        "bissell2015"
+      ]
+    },
+    {
+      "id": "cl-bili",
+      "text": "Heme oxygenase → biliverdin + CO + Fe²⁺ → bilirubin → albumin → UGT1A1 → bile → deconjugation (human or bacterial β-glucuronidases) and bacterial BilR reduction → urobilinogen → stercobilin and urobilin.",
+      "status": "checked",
+      "refs": [
+        "kipp2025",
+        "hall2024"
+      ]
+    },
+    {
+      "id": "cl-uro-low",
+      "text": "Urobilinogen requires bile delivery to the gut and reducing bacteria: obstruction abolished fecal urobilin in dogs; germ-free rats make no stercobilinogen; neonates often lack BilR.",
+      "status": "checked",
+      "refs": [
+        "mcmaster1925",
+        "su2024",
+        "hall2024"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Antibiotics cause falsely low fecal urobilinogen in patients (Trap 2); Number Vault 80–90% fecal urobilinogen from senescent red cells; lead’s enzyme targets; Ehrlich aldehyde as the named AIP screen.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch32"
+      ],
+      "note": "Not taught as facts. Kipp 2025 only says antibiotic effects on bilirubin metabolism are worth considering; no open human measurement was read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenarios invented; pathway drawings schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Brake in, bugs out.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-pbg-qualitative-screen",
+      "issue": "Ch. 32 Hit 7 and 5-Second Recall Q4 present Ehrlich’s aldehyde (Watson-Schwartz) screening as the AIP test. The AGA 2023 expert review recommends random urine PBG, ALA and creatinine (normalised to creatinine) as the initial test and notes rapid qualitative Hoesch/Watson-Schwartz tests have seen limited clinical use; Aarsand 2025 says a qualitative screen should be followed by a quantitative assay (register flag rv-ch32-pbg-quantitative).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-zinc-protoporphyrin",
+      "issue": "Ch. 32 Hit 7 says “free erythrocyte protoporphyrin” rises in lead poisoning and iron deficiency. Aarsand 2025 and Hennig 2016 describe the rise as zinc-chelated protoporphyrin; metal-free protoporphyrin characterises erythropoietic protoporphyria, and some “total protoporphyrin” assays omit the metal-free form (register flag rv-ch32-zinc-protoporphyrin).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-urobilinogen-antibiotics",
+      "issue": "Ch. 32 Trap 2 says antibiotics give falsely low fecal urobilinogen. The mechanism fits (germ-free rats make no stercobilinogen; urobilinogen is made by gut bacteria), but no open source read in this session measured the effect of antibiotics on human fecal urobilinogen; the obstruction half is supported by classic animal work (register flag rv-ch32-urobilinogen-antibiotics).",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; pathways shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 factual claims checked against Bissell and Wang 2015, Wang 2023 (AGA), Aarsand 2025, Hennig 2016, Kipp 2025, Hall 2024, Su 2024 and McMaster and Elman 1925 (abstract only); 1 pending (antibiotic effect on fecal urobilinogen, Number Vault urobilinogen percentage, lead enzyme targets; not taught). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
