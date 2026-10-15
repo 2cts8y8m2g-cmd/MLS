@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 243 flags: 183 verified issues and 60 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 246 flags: 186 verified issues and 60 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -249,6 +249,9 @@ Needs verification:
 - **Ch. 76 Hit 9:** The reviewer gives pancreatic K-ras ctDNA ~10% and CA 19-9 ~30% sensitivity, combining to >60% (~65% with HGF/OPN/CEA). (`rv-ctdna-pancreas-sens`, verified-issue).
 - **Ch. 76 Hit 6:** The reviewer states 25–50% of stage III/IV breast cancers have serum HER2 40- to 190-fold above normal; this figure was not found in the sources read. (`rv-her2-serum-ecd`, needs-verification).
 - **Ch. 76 Hit 8:** The reviewer's three receptor-oncogenesis mechanisms are structural routes only; reviews list four principal mechanisms of RTK activation (gain-of-function mutation, genomic amplification, chromosomal rearrangement, autocrine activation). (`rv-receptor-activation-routes`, verified-issue).
+- **Ch. 75 Hit 15:** Hit 15 states 'CYP2D6*10 (Asians ~50%)'. (`rv-ch75-cyp2d6-10-asian`, verified-issue).
+- **Ch. 75 Hit 6:** Hit 6 and Trap 5 present CYP2D6/tamoxifen management (alternative hormonal therapy; tamoxifen 40 mg/day fallback) as the rule, but this reflects US/international CPIC 2018 guidance and FDA-labeled dosing; Philippine regulatory, formulary and reimbursement practice is not… (`rv-ch75-tamoxifen-us-guideline`, verified-issue).
+- **Ch. 75 Hit 15:** Hit 15 treats CYP2D6*10 only as a poor-conversion allele without noting that its activity-score assignment changed: the CPIC/DPWG consensus created an activity value of 0.25 and assigned it to *10, so *10/*10 now scores 0.5 and falls in the intermediate-metabolizer range,… (`rv-ch75-cyp2d6-10-phenotype`, verified-issue).
 - Ch. 40 Hit 7: enzymes said to destroy S/s (Manduzio 2024: variable).
 - Ch. 1 Hit 4: breath tests "not regulated by CLIA".
 - Ch. 40 Vault #2: ">62 Rh antigens".
@@ -270,7 +273,7 @@ Automated scan: **23** dated-guideline statements and **134** High-Yield Hits wi
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 96 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 97 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
@@ -406,7 +409,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **P Values, Type I and II Errors, and the Multiple-Testing Trap (Ch. 10):** 1 pending claim (reviewer's "highly significant: p < 0.001" label and "journals want two-sided tests", not taught); 2 open lesson flags (Hit 6/Trap 2 "always" forced by inflating n needs the non-zero-effect qualifier; Hit 7/Trap 3 Bonferroni presented without its conservative/Type II caveat); register flags rv-large-n-significance, rv-bonferroni-conservative. Checked against Greenland 2016, Banerjee 2009, Sullivan and Feinn 2012 (read via a page-fetch tool), Ranganathan 2016 and Andrade 2019; the reviewer's own mnemonic was replaced with an original memory aid.
 - **Oncogenes Stuck ON: Receptor Activation, HER2, MYC and ctDNA (Ch. 76):** 1 pending claim group (c-myc "75-kDa", anti–c-myc antibody rates, ctDNA "1 in 10,000" limit, HER2 "25–50% at 40- to 190-fold", <15 ng/mL survival claim; none taught); lesson flags f-ctdna-pancreas (contradiction), f-her2-serum (missing-context), f-receptor-routes (missing-context); register flags rv-ctdna-pancreas-sens, rv-her2-serum-ecd, rv-receptor-activation-routes proposed. Checked against Du & Lovly 2018, Mishra 2017, Nahta 2012, An 2018, Wu 2022, Lee 2014, Reix 2016, Aquino 2013, Woroniecka 2022 (Europe PMC full text), and Kinde 2011 and Cohen 2017 (read via a page-fetch tool; Cohen read for the first ~100,000 characters). Independent fact-check pass: all 11 citations matched Europe PMC metadata; one unsupported link (MYC "downstream"), a tumour-burden generalisation and an unsourced BCR-ABL1 distractor were removed or reworded.
 - **Waived Molecular POCT: Influenza, Strep A and the Culture-Backup Question (Ch. 7):** written and source-referenced, but the independent fact-check has NOT yet been completed; treat as unverified until this line is updated.
-- **CYP2D6 and Tamoxifen: Star Alleles, Activity Score and the Switch (Ch. 75):** written and source-referenced, but the independent fact-check has NOT yet been completed; treat as unverified until this line is updated.
+- **CYP2D6 and Tamoxifen (Ch. 75):** 0 pending claims (9 checked, 2 analogy); missing-context flag (reviewer's "CYP2D6*10, Asians ~50%" is a 58.7% East-Asian *minor allele* frequency, almost exclusive to African/South Asian/East Asian populations, and is an allele frequency rather than metabolizer-phenotype prevalence) and guideline-dependent flag (US/international CPIC plus FDA-labeled dosing; Philippine practice not covered). Fact-check corrected the endoxifen variability figure to Schroth's median 34–52%, reattributed the CYP2D6*10 activity value of 0.25 and the intermediate classification to the 2019 CPIC/DPWG consensus (Caudle 2020) rather than Gaedigk 2018, which records that downgrade as not yet adopted, dropped an unsupported "two large studies dispute it" claim, and qualified the 40 mg dose-escalation evidence. Checked against CPIC 2018 tamoxifen recommendations (quoted in Olivera 2019), Schroth 2017, Gaedigk 2018, Caudle 2017, Caudle 2020, Taylor 2020, Zhou 2017 and Thorén 2021, all read via Europe PMC full text.
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
