@@ -1,0 +1,1634 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-electrochem-ise-coulter-coulometry",
+  "title": "Electrodes and Apertures: ISE, the pCO₂ Electrode, Coulter Counting and Coulometric Chloride",
+  "summary": "Learn how ion-selective electrodes and the pCO₂ electrode turn ion activity into voltage, why indirect ISE can report pseudohyponatremia, how the Coulter impedance principle counts and sizes cells, and how coulometric titration measures sweat chloride.",
+  "domain": "p1-ops",
+  "topic": "ch4",
+  "conceptIds": [
+    "ch4.hit12",
+    "ch4.hit13",
+    "ch4.hit14"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 4,
+        "section": "High-Yield Hits",
+        "items": [
+          12,
+          13,
+          14
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 4 High-Yield Hits 12 (ISE potentiometry follows the Nernst equation; pCO₂ electrode), 13 (Coulter principle) and 14 (coulometric chloride titration with silver electrodes; sweat chloride), checked against open sources. Added context: ISEs sense activity in the water phase, and indirect (diluting) ISE gives pseudohyponatremia with very high lipids or proteins (Aziz 2023). The reviewer’s size windows (platelets 2–20 fL, RBCs >36 fL, WBCs >35 fL after lysis) are analyser-specific: an open source confirms 2–20 fL for platelets on one Beckman Coulter analyser only, and the RBC/WBC thresholds were not verified, so they are not taught as fixed numbers. Taylor 1988 was read as an abstract only (full text available only as a PDF). Not taught: Faraday-constant calculations, flow-cytometry particle sizes, other Ch. 4 Number Vault figures."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Explain how an ion-selective electrode and the Severinghaus pCO₂ electrode convert ion activity into a voltage.",
+    "Explain why indirect ISE, but not direct ISE, reports a falsely low sodium when lipids or proteins are very high.",
+    "Describe the Coulter impedance principle and the coulometric chloride titration, including how each can be fooled."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three electrical readings, one morning",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three results reach the bench in one morning — (1) a milky, lipemic serum: sodium 127 mmol/L on the chemistry analyser (indirect ISE) but 139 mmol/L on the blood gas analyser (direct ISE); (2) an impedance platelet count of 310 × 10⁹/L on a sample whose smear shows many red-cell fragments; (3) a sweat conductivity of 62 mmol/L that a trainee wants to report as “cystic fibrosis confirmed”. Question token: “Which reading can you trust as it stands?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Three results reach the bench in one morning. A milky, lipemic serum has a sodium of 127 on the chemistry analyser but 139 on the blood gas analyser."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "An impedance platelet count looks normal, but the smear is full of red-cell fragments. And a sweat conductivity of 62 is about to be reported as confirmed cystic fibrosis."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which of these readings can you trust as it stands?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Lipemic serum",
+            "lines": [
+              "Indirect ISE Na 127",
+              "Direct ISE Na 139"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "2 Impedance platelets",
+            "lines": [
+              "310 × 10⁹/L",
+              "Smear: RBC fragments"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.4,
+              "opacity": 0
+            },
+            {
+              "t": 9.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "3 Sweat conductivity",
+            "lines": [
+              "62 mmol/L",
+              "“CF confirmed”?"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 460,
+            "w": 640,
+            "label": "Which reading can you trust as it stands?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Potentiometry: a voltage that tracks ion activity",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic ion-selective electrode (ISE) cell. Card 1: an indicator electrode with an ion-selective membrane and a reference electrode with a constant half-cell potential; the potential difference is read while almost no current flows. Card 2: Nernst equation — the potential changes with the logarithm of ion activity; the theoretical slope for a singly charged ion is about 59 mV per tenfold change in activity (59.16 mV/decade is the value quoted in an electrode review). Card 3: the electrode senses ion activity in the water part of the sample; analysers are calibrated to convert it to a concentration. Token: blood gas analysers measure pH and pCO₂ by potentiometry, pO₂ by amperometry.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "An ion-selective electrode pairs an indicator electrode, whose membrane responds to one ion, with a reference electrode that holds a constant potential. The analyser reads the voltage between them while almost no current flows."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "The Nernst equation links that voltage to the logarithm of ion activity. For a singly charged ion, the theoretical slope is about fifty-nine millivolts for every tenfold change."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Notice the word activity. The electrode senses free ions in the water part of the sample, and the analyser is calibrated to convert that into a reported concentration."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Blood gas analysers use the same idea: pH and carbon dioxide tension are measured by potentiometry, while oxygen tension is measured by amperometry, a current."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cell",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "b",
+            "title": "ISE cell (schematic)",
+            "lines": [
+              "Indicator: ion-selective membrane",
+              "Reference: constant potential",
+              "Voltage read at ~zero current"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "nern",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "Nernst: E tracks log(activity)",
+            "lines": [
+              "~59 mV per tenfold change",
+              "(singly charged ion, theoretical)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "act",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "label": "Senses activity in sample water",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bg",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Blood gas analyser",
+            "lines": [
+              "pH, pCO₂: potentiometry",
+              "pO₂: amperometry"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "The pCO₂ electrode, and direct vs indirect ISE",
+      "start": 60,
+      "end": 104,
+      "altText": "Left card: Severinghaus pCO₂ electrode (schematic) — a pH glass electrode behind a CO₂-permeable membrane, with a bicarbonate solution between them. CO₂ from the blood diffuses through the membrane, CO₂ + H₂O → H₂CO₃ → H⁺ + HCO₃⁻, and the H⁺ produced is proportional to dissolved CO₂, so the pH change tracks pCO₂. Right card: direct vs indirect ISE. Serum is normally about 93% water and 7% solids (proteins, lipids), and sodium lives only in the water. Both methods sense sodium in the water phase; both are calibrated assuming 93% water. Direct ISE reads undiluted sample and is not affected by abnormal solids. Indirect ISE dilutes the sample first, so when proteins or lipids are very high it reports a falsely low sodium (pseudohyponatremia, the electrolyte exclusion effect).",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "The carbon dioxide electrode is a pH electrode in disguise. A pH glass electrode sits behind a membrane that lets carbon dioxide through, with a bicarbonate solution trapped in between."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "Carbon dioxide diffuses in, forms carbonic acid, and releases hydrogen ions in proportion to the dissolved gas. The pH electrode feels that change, which tracks the carbon dioxide tension."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "Now sodium. Serum is normally about ninety-three percent water, and sodium lives only in the water. Analysers are calibrated on that assumption. A direct electrode reads undiluted sample, so extra protein or lipid does not fool it."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "An indirect electrode dilutes the sample first. When proteins or lipids are very high, the water fraction is smaller, and the indirect method reports a falsely low sodium: pseudohyponatremia."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pco2",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 440,
+            "h": 230,
+            "tone": "b",
+            "title": "Severinghaus pCO₂ electrode",
+            "lines": [
+              "pH glass electrode inside",
+              "CO₂-permeable membrane",
+              "Bicarbonate solution between"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 20,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rx",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "label": "CO₂ + H₂O → H⁺ + HCO₃⁻ → pH falls",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dir",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "Direct ISE (undiluted)",
+            "lines": [
+              "Serum ≈ 93% water, 7% solids",
+              "Not fooled by high protein/lipid"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ind",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Indirect ISE (diluted)",
+            "lines": [
+              "High protein or lipid →",
+              "falsely low Na (pseudo)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34,
+              "reveal": 0
+            },
+            {
+              "t": 34.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Counting pulses, spending silver",
+      "start": 104,
+      "end": 144,
+      "altText": "Left card: Coulter (impedance) principle, schematic — a constant direct current flows between two electrodes on either side of a small aperture in an electrolyte solution; each cell passing through raises the impedance and briefly lowers the current, producing a pulse. Pulse count gives concentration; pulse amplitude is proportional to cell volume. Size windows are analyser-specific (one Beckman Coulter analyser classifies platelets as 2–20 fL pulses). Errors: two cells in the aperture at once (coincidence), particles of platelet size (red-cell fragments, very small red cells) counted as platelets, and large platelets missed. Right card: coulometric chloride titration — current through a silver anode releases Ag⁺, which precipitates chloride as AgCl; once chloride is used up, free Ag⁺ appears and the sensing electrodes detect a sudden change in conductivity or current, ending the titration. Used for sweat chloride; the CLSI sweat-testing guideline describes coulometry.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "The Coulter principle counts cells by impedance. A constant current flows through a tiny aperture. Each cell that passes raises the impedance and makes a brief pulse."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "The number of pulses gives the count, and the pulse height is proportional to cell volume. Size windows are set by each analyser; one Beckman Coulter model counts pulses of two to twenty femtolitres as platelets."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "A coulometric chloridometer works differently. Current through a silver electrode releases silver ions, which grab chloride and fall out as silver chloride."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "When the chloride runs out, free silver ions appear, the sensing electrodes detect a sudden change, and the instrument calculates chloride. Coulometry is a widely used method for sweat chloride."
+        }
+      ],
+      "objects": [
+        {
+          "id": "coul",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 440,
+            "h": 230,
+            "tone": "b",
+            "title": "Impedance aperture (schematic)",
+            "lines": [
+              "Cell in aperture → impedance ↑",
+              "Pulse count = cell count",
+              "Pulse height ∝ cell volume"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "win",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "label": "Size windows are analyser-specific",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 14.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ag",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 420,
+            "h": 230,
+            "tone": "good",
+            "title": "Coulometric chloride",
+            "lines": [
+              "Ag anode → Ag⁺ (by current)",
+              "Ag⁺ + Cl⁻ → AgCl ↓",
+              "Free Ag⁺ appears → endpoint"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards that also answer the hook: “Direct and indirect ISE always agree” (✓ with very high lipids or proteins, the diluting indirect ISE gives a falsely low sodium; the direct ISE 139 is the better estimate); “An impedance platelet count cannot be fooled” (✓ red-cell fragments and very small red cells can be counted as platelets, giant platelets can be missed; recheck on an optical or fluorescence channel and review the smear); “Sweat conductivity confirms cystic fibrosis” (✓ conductivity is a screen; a value above 50 needs quantitative sweat chloride, and ≥60 mmol/L chloride is the diagnostic range).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: direct and indirect electrodes always agree. No. With very high lipids or proteins, the diluting indirect method reads falsely low, so the direct result of 139 is the better estimate."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: an impedance platelet count cannot be fooled. No. Red-cell fragments and tiny red cells can be counted as platelets. Recheck on an optical or fluorescence channel and look at the smear."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: sweat conductivity confirms cystic fibrosis. No. Conductivity is a screen; a value above fifty needs a quantitative sweat chloride, where sixty or more is the diagnostic range."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Direct and indirect ISE always agree.”",
+            "lines": [
+              "✓ High lipid/protein: indirect reads falsely low"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Impedance platelets can’t be fooled.”",
+            "lines": [
+              "✓ RBC fragments counted; recheck optically + smear"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Sweat conductivity confirms CF.”",
+            "lines": [
+              "✓ Screen only; confirm by sweat chloride (≥ 60)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Volts vote, pulses count, silver spends",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “VOLTS VOTE, PULSES COUNT, SILVER SPENDS.” An ISE lets the ions vote with a voltage at near-zero current; a Coulter counter counts pulses and sizes them; a chloridometer spends silver, made by current, until the chloride is gone. Tokens: ISE = volts · Coulter = pulses · coulometry = silver. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: volts vote, pulses count, silver spends. In an ion electrode, the ions vote with a voltage. In a Coulter counter, every cell is a pulse. In a chloridometer, silver is spent until the chloride is gone."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: the electrode votes on activity in the water, not on total concentration; the pulse windows differ between analysers; and the chloridometer stops on a change detected by its sensing electrodes, not by eye."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Volts vote, pulses count, silver spends",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "ISE = volts",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Coulter = pulses",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Coulometry = silver",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "ISE reads activity in water, not total",
+              "Pulse size windows differ by analyser",
+              "Endpoint sensed electrically, not by eye"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “ISE = voltage tracks log activity · pCO₂ = pH electrode behind a CO₂ membrane · indirect ISE falsely low with high lipid/protein”, “Coulter = pulses (count) and pulse height (volume) · coulometry = Ag⁺ titrates Cl⁻ · conductivity only screens”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "An ion-selective electrode turns ion activity into a voltage, an impedance counter turns each cell into a pulse sized by its volume, and a coulometric chloridometer titrates chloride with silver ions made by current, so know where each one can be fooled."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "ISE: volts track log activity · pCO₂ = pH electrode + CO₂ membrane",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Coulter: pulses ∝ volume · coulometry: Ag⁺ titrates Cl⁻",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: some analysers measure with electricity rather than light. An ion electrode reads a voltage that rises and falls with how many free ions are present; a cell counter watches the current dip each time a cell squeezes through a tiny hole; a chloride meter makes silver ions with an electric current and counts how much silver the chloride uses up. Scientific terms: potentiometry, ion-selective electrode (ISE), indicator and reference electrodes, Nernst equation, ion activity, Severinghaus pCO₂ electrode, amperometry (pO₂), direct vs indirect ISE, electrolyte exclusion effect, pseudohyponatremia, Coulter (impedance) principle, coincidence, coulometric titration, chloridometer, sweat conductivity.",
+    "why": "Each method measures one physical quantity and infers another. Voltage tracks ion activity in water, not total concentration; pulse height tracks particle volume, not cell identity; and the coulometric endpoint is an electrical signal that appears when free silver ions build up. Knowing what is truly measured explains the classic errors.",
+    "measure": "ISE: voltage between indicator and reference electrode at near-zero current; theoretical slope about 59 mV per tenfold activity change for a singly charged ion. pCO₂: pH glass electrode behind a CO₂-permeable membrane with bicarbonate solution. pH and pCO₂ by potentiometry, pO₂ by amperometry. Coulter: pulse count = concentration; pulse amplitude ∝ volume; analyser-specific size windows. Coulometry: silver anode generates Ag⁺, Ag⁺ + Cl⁻ → AgCl; free Ag⁺ at the endpoint changes conductivity/current. Sweat chloride: ≥60 mmol/L diagnostic range, 30–59 intermediate, <30 unlikely; conductivity >50 mmol/L must be confirmed by quantitative chloride.",
+    "differs": "Direct ISE (undiluted, unaffected by solids) vs indirect ISE (diluted, falsely low Na with high lipid/protein); potentiometry (voltage at near-zero current) vs amperometry (current, pO₂) vs coulometry (charge generates titrant); impedance counting (size only) vs optical/fluorescence counting; sweat conductivity (screen) vs sweat chloride (diagnostic).",
+    "examAngle": "Expect: identify the pCO₂ electrode design, explain a discrepant sodium in a lipemic sample, name the false-high cause of an impedance platelet count, recognise that pulse height reflects cell volume, or state what ends a coulometric chloride titration."
+  },
+  "comparisons": [
+    {
+      "id": "direct-vs-indirect-ise",
+      "title": "Direct vs indirect ISE",
+      "left": {
+        "label": "Direct ISE",
+        "points": [
+          "Undiluted serum or whole blood",
+          "Not affected by high lipid or protein"
+        ]
+      },
+      "right": {
+        "label": "Indirect ISE",
+        "points": [
+          "Sample diluted before measurement",
+          "Falsely low Na when solids are high"
+        ]
+      },
+      "distinguisher": "Whether the sample is diluted before the electrode reads it."
+    },
+    {
+      "id": "potentiometry-vs-coulometry",
+      "title": "Potentiometry vs coulometric titration",
+      "left": {
+        "label": "Potentiometry (ISE)",
+        "points": [
+          "Voltage read at ~zero current",
+          "Voltage tracks log of ion activity"
+        ]
+      },
+      "right": {
+        "label": "Coulometry (chloride)",
+        "points": [
+          "Current generates Ag⁺ titrant",
+          "Endpoint when free Ag⁺ appears"
+        ]
+      },
+      "distinguisher": "Measuring a voltage passively vs using current to make a reagent."
+    }
+  ],
+  "mnemonic": {
+    "text": "VOLTS VOTE, PULSES COUNT, SILVER SPENDS: in an ion electrode the ions vote with a voltage; in a Coulter counter every cell is a pulse; in a chloridometer silver is spent until the chloride is gone.",
+    "explanation": "Links each instrument to the electrical quantity it actually measures.",
+    "limitation": "The electrode responds to ion activity in the water phase, not total concentration; pulse size windows differ between analysers; the chloridometer endpoint is detected electrically by sensing electrodes."
+  },
+  "analogyLimitations": [
+    "Scenario and numbers in the hook are invented.",
+    "Electrode and aperture drawings are schematic.",
+    "The 2–20 fL platelet window is from one analyser; other analysers use different windows."
+  ],
+  "takeaway": "An ion-selective electrode turns ion activity into a voltage, an impedance counter turns each cell into a pulse sized by its volume, and a coulometric chloridometer titrates chloride with silver ions made by current, so know where each one can be fooled.",
+  "questions": [
+    {
+      "id": "ops-elec-q1",
+      "stem": "Which design describes the Severinghaus pCO₂ electrode used in blood gas analysers?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A pH glass electrode behind a CO₂-permeable membrane with a bicarbonate solution between them",
+          "rationale": "Correct. CO₂ diffuses into the bicarbonate solution, forms carbonic acid and releases H⁺, and the pH electrode senses the change."
+        },
+        {
+          "id": "b",
+          "text": "An amperometric electrode that reduces the gas and measures the current",
+          "rationale": "Incorrect. Amperometry is used for pO₂; pCO₂ is measured by potentiometry."
+        },
+        {
+          "id": "c",
+          "text": "Two silver electrodes that generate silver ions at a constant current",
+          "rationale": "Incorrect. That describes a coulometric chloridometer."
+        },
+        {
+          "id": "d",
+          "text": "An aperture through which a constant current flows, producing pulses",
+          "rationale": "Incorrect. That is the Coulter impedance principle for counting cells."
+        }
+      ],
+      "answer": "a",
+      "skill": "Instrument principles",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ops-elec-q2",
+      "stem": "A grossly lipemic serum gives sodium 126 mmol/L on the chemistry analyser (indirect ISE) and 140 mmol/L on the blood gas analyser (direct ISE). What best explains the difference?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The indirect method dilutes the sample, so the reduced water fraction makes sodium read falsely low",
+          "rationale": "Correct. This electrolyte exclusion effect causes pseudohyponatremia with indirect ISE; direct ISE on undiluted sample is not affected."
+        },
+        {
+          "id": "b",
+          "text": "The direct method reads falsely high because lipids carry sodium",
+          "rationale": "Incorrect. Proteins and lipids contain no sodium; sodium is carried only in the water."
+        },
+        {
+          "id": "c",
+          "text": "Both methods are equally affected, so the difference must be a calibration error",
+          "rationale": "Incorrect. Only methods that dilute the sample are affected by abnormal solids."
+        },
+        {
+          "id": "d",
+          "text": "Lipids change the Nernst slope of the sodium electrode",
+          "rationale": "Incorrect. The discrepancy comes from sample dilution and water fraction, not a change in electrode slope."
+        }
+      ],
+      "answer": "a",
+      "skill": "Interference recognition",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-elec-q3",
+      "stem": "An impedance analyser reports a normal platelet count, but the smear shows many red-cell fragments. Why might the count be falsely high, and what should be done?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Fragments of platelet size make pulses in the platelet window; recheck on an optical or fluorescence channel and review the smear",
+          "rationale": "Correct. Impedance sorts particles by size only, so platelet-sized fragments are counted as platelets."
+        },
+        {
+          "id": "b",
+          "text": "Fragments make pulses larger than red cells; no action is needed",
+          "rationale": "Incorrect. Fragments are small; pulse height is proportional to volume."
+        },
+        {
+          "id": "c",
+          "text": "Impedance counters identify platelets by their granules, so fragments cannot interfere",
+          "rationale": "Incorrect. Impedance measures volume, not internal structure."
+        },
+        {
+          "id": "d",
+          "text": "The pulse is inversely proportional to cell size, so fragments look like white cells",
+          "rationale": "Incorrect. Pulse amplitude rises with cell volume."
+        }
+      ],
+      "answer": "a",
+      "skill": "Error recognition",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch4",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 4, How Analyzers Work (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 4,
+          "section": "High-Yield Hits",
+          "items": [
+            12,
+            13,
+            14
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "wang2008",
+      "kind": "external",
+      "citation": "Wang Y, Xu H, Zhang J, Li G. Electrochemical Sensors for Clinic Analysis. Sensors (Basel). 2008;8(4):2043-2081. doi:10.3390/s8042043",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3673406/",
+      "consulted": true,
+      "usedFor": "Potentiometry with an indicator and a constant-potential reference electrode at very small current; potential related logarithmically to activity (Nernst equation); pCO₂ sensing via CO₂ + H₂O → H₂CO₃ → H⁺ + HCO₃⁻ with sodium bicarbonate buffer, so pH change relates to pCO₂; i-STAT CO₂ sensor of Severinghaus design."
+    },
+    {
+      "id": "wardak2023",
+      "kind": "external",
+      "citation": "Wardak C, Morawska K, Pietrzak K. New Materials Used for the Development of Anion-Selective Electrodes-A Review. Materials (Basel). 2023;16(17):5779. doi:10.3390/ma16175779",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10488487/",
+      "consulted": true,
+      "usedFor": "Theoretical Nernstian slope of 59.16 mV per decade (negative sign for a singly charged anion), and real electrodes deviating from it."
+    },
+    {
+      "id": "dukic2016",
+      "kind": "external",
+      "citation": "Dukić L, Kopčinović LM, Dorotić A, Baršić I. Blood gas testing and related measurements: National recommendations on behalf of the Croatian Society of Medical Biochemistry and Laboratory Medicine. Biochem Med (Zagreb). 2016;26(3):318-336. doi:10.11613/bm.2016.036",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5082214/",
+      "consulted": true,
+      "usedFor": "pH and pCO₂ measured by potentiometry; pO₂ by amperometry; bicarbonate and related values calculated."
+    },
+    {
+      "id": "umeda2021",
+      "kind": "external",
+      "citation": "Umeda A, Ishizaka M, Ikeda A, et al. Recent Insights into the Measurement of Carbon Dioxide Concentrations for Clinical Practice in Respiratory Medicine. Sensors (Basel). 2021;21(16):5636. doi:10.3390/s21165636",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8402333/",
+      "consulted": true,
+      "usedFor": "Severinghaus pCO₂ electrode: CO₂-permeable membrane, pH-sensitive glass electrode, CO₂ diffusing into a bicarbonate solution and producing H⁺ in proportion to dissolved CO₂."
+    },
+    {
+      "id": "aziz2023",
+      "kind": "external",
+      "citation": "Aziz F, Sam R, Lew SQ, et al. Pseudohyponatremia: Mechanism, Diagnosis, Clinical Associations and Management. J Clin Med. 2023;12(12):4076. doi:10.3390/jcm12124076",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10299669/",
+      "consulted": true,
+      "usedFor": "Serum ≈ 93% water and 7% solids; sodium only in serum water; ISEs measure sodium activity in serum water and are calibrated with a 0.93 water ratio; direct ISE (undiluted) vs indirect ISE (pre-diluted); electrolyte exclusion effect causing pseudohyponatremia with indirect ISE when proteins or lipids are high; direct ISE unaffected."
+    },
+    {
+      "id": "bryan2012",
+      "kind": "external",
+      "citation": "Bryan AK, Engler A, Gulati A, Manalis SR. Continuous and long-term volume measurements with a commercial Coulter counter. PLoS One. 2012;7(1):e29866. doi:10.1371/journal.pone.0029866",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3260162/",
+      "consulted": true,
+      "usedFor": "Coulter principle: a cell transiting an aperture changes its electrical conductivity in proportion to cell volume; output directly proportional to volume; errors from several particles in the aperture at once, off-centre paths and debris occluding the aperture."
+    },
+    {
+      "id": "baccini2020",
+      "kind": "external",
+      "citation": "Baccini V, Geneviève F, Jacqmin H, et al. Platelet Counting: Ugly Traps and Good Advice. Proposals from the French-Speaking Cellular Hematology Group (GFHC). J Clin Med. 2020;9(3):808. doi:10.3390/jcm9030808",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7141345/",
+      "consulted": true,
+      "usedFor": "Impedance counting: constant direct current between two electrodes; a cell passing the aperture changes impedance and lowers current, recorded as a pulse; pulse number = concentration, pulse amplitude = size; brands differ in size range; false increase from fragmented RBC and other platelet-sized particles, false decrease from large platelets; recheck on an optical or fluorimetric channel and review the smear."
+    },
+    {
+      "id": "saran2022",
+      "kind": "external",
+      "citation": "Saran K, Vidya K, Seema K, Prasad A, Prakash J. Study of platelet indices and their role in evaluation of thrombocytopenia. J Family Med Prim Care. 2022;11(10):6236-6242. doi:10.4103/jfmpc.jfmpc_460_22",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9810959/",
+      "consulted": true,
+      "usedFor": "Beckman Coulter LH 780 measures RBC and platelets by impedance and classifies platelets as pulses of 2–20 fL (one analyser’s window)."
+    },
+    {
+      "id": "taylor1988",
+      "kind": "external",
+      "citation": "Taylor PJ, Bouska RA. Automated serum chloride analysis using the Apple computer. J Automat Chem. 1988;10(1):10-14. doi:10.1155/s1463924688000057",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2547731/",
+      "consulted": true,
+      "usedFor": "Abstract only, read via Europe PMC (the full text is available only as a PDF and was not read). Coulometric chloride: current through a silver anode releases Ag⁺ (platinum cathode); Ag⁺ + Cl⁻ → AgCl; when chloride is used up, free Ag⁺ rises and increases the current between two silver microelectrodes, ending the titration."
+    },
+    {
+      "id": "jose2025",
+      "kind": "external",
+      "citation": "Jose A, Medhi P, Varkki SD, Loganathan T, Christudoss P, Karuppusami R. Sweat conductivity test - can it be a cheaper alternative to sweat chloride analysis for diagnosis of cystic fibrosis in low resource setting? Indian J Med Res. 2025;161(3):207-214. doi:10.25259/ijmr_1754_2024",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12066134/",
+      "consulted": true,
+      "usedFor": "Coulometric sweat chloride analyser: constant current between two silver electrodes generates Ag⁺, which forms AgCl; free Ag⁺ after chloride is consumed causes a sudden conductivity change detected by sensing electrodes. Sweat chloride ≥60 mmol/L diagnostic, 30–59 borderline, <30 excluded; NCCLS and CFF classify sweat conductivity as a screening test, with values >50 mmol/L to be confirmed by quantitative sweat chloride."
+    },
+    {
+      "id": "marvelli2020",
+      "kind": "external",
+      "citation": "Marvelli A, Campi B, Mergni G, et al. Sweat chloride assay by inductively coupled plasma mass spectrometry: a confirmation test for cystic fibrosis diagnosis. Anal Bioanal Chem. 2020;412(25):6909-6916. doi:10.1007/s00216-020-02821-3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7495987/",
+      "consulted": true,
+      "usedFor": "Coulometry is probably the most widespread sweat chloride method and the only one described in the CLSI sweat-testing guideline; pilocarpine iontophoresis for sweat stimulation; CF unlikely below 30 mmol/L in all age groups."
+    },
+    {
+      "id": "pagaduan2018",
+      "kind": "external",
+      "citation": "Pagaduan JV, Ali M, Dowlin M, et al. Revisiting sweat chloride test results based on recent guidelines for diagnosis of cystic fibrosis. Pract Lab Med. 2018;10:34-37. doi:10.1016/j.plabm.2018.01.001",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5760465/",
+      "consulted": true,
+      "usedFor": "Cystic Fibrosis Foundation guidelines changed the intermediate sweat chloride range to 30–59 mmol/L for all populations (previously 40–59 for age >6 months)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-ise",
+      "text": "ISE = indicator plus reference electrode, voltage at near-zero current, logarithmic (Nernst) relation to activity, ~59 mV per decade theoretical for a singly charged ion.",
+      "status": "checked",
+      "refs": [
+        "wang2008",
+        "wardak2023"
+      ]
+    },
+    {
+      "id": "cl-bg",
+      "text": "pH and pCO₂ by potentiometry; pO₂ by amperometry.",
+      "status": "checked",
+      "refs": [
+        "dukic2016"
+      ]
+    },
+    {
+      "id": "cl-pco2",
+      "text": "Severinghaus pCO₂ electrode design and chemistry.",
+      "status": "checked",
+      "refs": [
+        "umeda2021",
+        "wang2008"
+      ]
+    },
+    {
+      "id": "cl-indirect",
+      "text": "Serum water ~93%; ISE senses activity in water; indirect ISE pseudohyponatremia with high lipid/protein; direct ISE unaffected.",
+      "status": "checked",
+      "refs": [
+        "aziz2023"
+      ]
+    },
+    {
+      "id": "cl-coulter",
+      "text": "Coulter principle: pulse per cell, count = concentration, amplitude ∝ volume; coincidence; false-high platelets from fragments, false-low from large platelets; recheck optically and on smear.",
+      "status": "checked",
+      "refs": [
+        "bryan2012",
+        "baccini2020"
+      ]
+    },
+    {
+      "id": "cl-plt-window",
+      "text": "Platelets classified as 2–20 fL pulses on one Beckman Coulter analyser; windows differ between brands.",
+      "status": "checked",
+      "refs": [
+        "saran2022",
+        "baccini2020"
+      ],
+      "note": "Method-dependent; taught as one analyser’s window."
+    },
+    {
+      "id": "cl-coulometry",
+      "text": "Coulometric chloride: current generates Ag⁺ at a silver anode, AgCl precipitates, free Ag⁺ at the endpoint changes conductivity/current; used for sweat chloride and described in the CLSI guideline.",
+      "status": "checked",
+      "refs": [
+        "taylor1988",
+        "jose2025",
+        "marvelli2020"
+      ]
+    },
+    {
+      "id": "cl-sweat",
+      "text": "Sweat chloride ≥60 diagnostic range, 30–59 intermediate, <30 unlikely; conductivity is a screen and >50 needs quantitative chloride.",
+      "status": "checked",
+      "refs": [
+        "jose2025",
+        "pagaduan2018",
+        "marvelli2020"
+      ],
+      "note": "The CFF 2017 guideline itself was not read (not open access); cutoffs are as reported by these papers."
+    },
+    {
+      "id": "cl-pend",
+      "text": "RBC >36 fL and WBC >35 fL (after lysis) impedance thresholds; “Ag⁺ released at a constant rate equals Cl⁻ consumed” as a time-based calculation; Faraday-constant arithmetic.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch4"
+      ],
+      "note": "Not taught as facts in this lesson; no open source read in this session states these figures."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; electrode and aperture drawings schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Volts vote, pulses count, silver spends.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-coulter-size-windows",
+      "issue": "The reviewer gives fixed impedance size windows (platelets 2–20 fL, RBCs >36 fL, WBCs >35 fL after lysis). Open sources show these windows are analyser-specific: 2–20 fL is documented for one Beckman Coulter analyser, brands differ in their size ranges, and platelet counts can be fitted/extrapolated from the histogram. The RBC and WBC thresholds were not verified. The lesson teaches the principle and labels 2–20 fL as one analyser’s window.",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-ise-activity-indirect",
+      "issue": "The reviewer states ISE potentiometry follows the Nernst equation without noting that electrodes sense ion activity in the water phase and that indirect (diluting) ISE reports falsely low sodium when lipids or proteins are very high (pseudohyponatremia), while direct ISE does not. The lesson adds this context.",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No instrument photographs; electrodes and the aperture are shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "8 factual claims checked against Wang 2008, Wardak 2023, Dukić 2016, Umeda 2021, Aziz 2023, Bryan 2012, Baccini 2020, Saran 2022, Taylor 1988 (abstract only), Jose 2025, Marvelli 2020 and Pagaduan 2018; 1 pending (RBC/WBC impedance thresholds, time-based coulometric calculation, Faraday arithmetic; not taught). The CFF 2017 guideline was not read directly. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

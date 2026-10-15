@@ -1,0 +1,1545 @@
+{
+  "schemaVersion": 1,
+  "id": "chem-cirrhosis-scores-meld-child-pugh-afp",
+  "title": "Cirrhosis Scores and AFP: Child-Pugh, MELD, the INR Caveat and HCC",
+  "summary": "Score cirrhosis severity with Child-Pugh and MELD, see why the INR inside both scores is not calibrated for liver disease, and learn why AFP supports liver cancer surveillance but no longer diagnoses it.",
+  "domain": "p2-chem",
+  "topic": "ch22",
+  "conceptIds": [
+    "ch22.hit7",
+    "ch22.hit12",
+    "ch22.trap6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 22,
+        "section": "High-Yield Hits",
+        "items": [
+          7,
+          12
+        ]
+      },
+      {
+        "chapter": 22,
+        "section": "Exam Traps",
+        "items": [
+          6
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 22 Hit 7 (MELD and Child-Pugh), Hit 12 (AFP and HCC) and Exam Trap 6 (INR not standardised for liver disease). Checked against Guo 2025, Pinter 2016, Endale Simegn 2022, Peng 2016, Laubham 2018, the AASLD 2023 HCC guidance (Singal 2023; read via a page-fetch tool, first part of the page only), Zhang 2020 and the APASL 2017 guideline (Omata 2017). Differences: the reviewer gives the lab-only MELD (rounded coefficients) as the transplant-priority score, but US allocation moved to MELD-Na (2016) and MELD 3.0 (2023); the reviewer’s Child-Pugh 2-year survival figures (85/57/35%) were not found, so the lesson gives one review’s 1-year figures; the reviewer calls AFP >400 ng/mL “highly probable HCC”, but AASLD 2023 no longer recommends AFP for diagnosis; the 20 ng/mL surveillance cut-off is guideline-dependent (APASL 2017 prefers 200 ng/mL with ultrasound). US allocation policy only; Philippine transplant allocation rules are not covered. An NCBI Bookshelf page on Child-Pugh was blocked by a browser check and was not read. Not taught: MELD 3-month mortality bands, TIPS cut-offs, the low-ISI reagent direction, HCV-to-cirrhosis-to-HCC percentages."
+  },
+  "prerequisites": [
+    "ch22.hit11"
+  ],
+  "objectives": [
+    "Calculate a Child-Pugh score and class from bilirubin, albumin, INR, ascites and encephalopathy.",
+    "Name the laboratory inputs of the lab-only MELD score and the variables added by MELD-Na and MELD 3.0.",
+    "Explain why the INR is a weak link when used to score liver disease.",
+    "State the current role of AFP in HCC surveillance and why it is no longer used to diagnose HCC."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "One cirrhotic patient, three numbers",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a patient with known cirrhosis attends a surveillance visit. Card 1 (liver labs): total bilirubin 2.5 mg/dL, albumin 3.0 g/dL, INR 1.5, creatinine 1.2 mg/dL. Card 2 (clinical): mild ascites, no encephalopathy. Card 3 (surveillance): AFP 450 ng/mL and a new 3-cm liver nodule on ultrasound. Question token: “How sick is the liver, and does the AFP prove cancer?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Invented case: a patient with cirrhosis has bilirubin 2.5, albumin 3.0, INR 1.5 and creatinine 1.2, with mild ascites and no encephalopathy."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "Surveillance ultrasound shows a new three-centimetre nodule, and the AFP is 450 nanograms per millilitre."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Two questions: how severe is the liver disease, and does that AFP prove liver cancer?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "labs",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 190,
+            "tone": "b",
+            "title": "Liver labs",
+            "lines": [
+              "Bilirubin 2.5 mg/dL",
+              "Albumin 3.0 g/dL",
+              "INR 1.5 · Creat 1.2"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "clin",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 190,
+            "tone": "a",
+            "title": "Clinical",
+            "lines": [
+              "Mild ascites",
+              "No encephalopathy"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "surv",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 190,
+            "tone": "bad",
+            "title": "Surveillance",
+            "lines": [
+              "New 3-cm nodule",
+              "AFP 450 ng/mL"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 700,
+            "label": "How severe? Does AFP prove cancer?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Child-Pugh: a five-item report card",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic table of the Child-Pugh score. Each of five items scores 1, 2 or 3 points: total bilirubin <2 / 2–3 / >3 mg/dL; albumin >3.5 / 2.8–3.5 / <2.8 g/dL; INR <1.7 / 1.7–2.3 / >2.3; ascites none / mild / moderate-to-severe; hepatic encephalopathy none / grade I–II / grade III–IV. Class card: 5–6 points = A, 7–9 = B, 10–15 = C; one review’s table gives 1-year survival of about 95%, 80% and 44%. Limitation token: ascites and encephalopathy are subjective judgements.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "The Child-Pugh score is a report card with five items: bilirubin, albumin, INR, ascites and hepatic encephalopathy. Each item earns one, two or three points."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "One point is the healthy range: bilirubin under 2, albumin over 3.5, INR under 1.7, and no ascites or encephalopathy. Three points: bilirubin over 3, albumin under 2.8, INR over 2.3."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Add the points. Five to six is class A, seven to nine is class B, ten to fifteen is class C. In one review’s table, one-year survival falls from about 95 percent in A to about 44 percent in C."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Its weak spot: ascites and encephalopathy are judged at the bedside, and the laboratory cut-offs were chosen empirically."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tab",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 250,
+            "w": 440,
+            "h": 300,
+            "tone": "b",
+            "title": "1 · 2 · 3 points",
+            "lines": [
+              "Bilirubin <2 · 2–3 · >3 mg/dL",
+              "Albumin >3.5 · 2.8–3.5 · <2.8 g/dL",
+              "INR <1.7 · 1.7–2.3 · >2.3",
+              "Ascites none · mild · mod–severe",
+              "Enceph. none · I–II · III–IV"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 5,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cls",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 210,
+            "tone": "good",
+            "title": "Add the points",
+            "lines": [
+              "A = 5–6 (1-yr ~95%)",
+              "B = 7–9 (1-yr ~80%)",
+              "C = 10–15 (1-yr ~44%)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lim",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 470,
+            "w": 420,
+            "label": "Ascites + encephalopathy = subjective",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "MELD: a lab-only meter, and its INR",
+      "start": 60,
+      "end": 104,
+      "altText": "MELD card: lab-only MELD (the simplified form without the original cause-of-cirrhosis term) = 9.57·ln(creatinine) + 3.78·ln(bilirubin) + 11.20·ln(INR) + 6.43; values below 1.0 are set to 1.0, creatinine is capped at 4.0 mg/dL, and the score runs 6–40. First built to predict outcome after TIPS, then used to rank transplant urgency. Version timeline token: MELD-Na (adds sodium) adopted by the US OPTN in 2016; MELD 3.0 (adds sex and albumin, creatinine cap 3.0) approved in 2023. INR caveat card: the INR was devised and validated for patients on vitamin K antagonists; in cirrhosis different PT reagents and instruments gave about a 26% difference in INR for the same patients in one study cited by a review, and the INR reflects only the procoagulant side of a rebalanced system.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "MELD is a lab-based meter. Its listing formula combines the natural logs of creatinine, bilirubin and INR, with INR carrying the largest coefficient, 11.2; an earlier version also had a cause-of-cirrhosis term, later dropped. It was built to predict outcome after a TIPS shunt and then used to rank transplant urgency."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "Values below one are counted as one, creatinine is capped at four, and the score runs from six to forty. United States allocation later moved to MELD-Na in 2016 and to MELD 3.0, approved in 2023, which adds sex and albumin."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "Now the weak link. The INR was devised and validated for patients on vitamin K antagonists, not for liver disease."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "In cirrhosis, different PT reagents and instruments gave the same patients INR values differing by about a quarter, so a MELD score can shift with the laboratory’s method."
+        }
+      ],
+      "objects": [
+        {
+          "id": "meld",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 250,
+            "w": 440,
+            "h": 290,
+            "tone": "b",
+            "title": "MELD (lab-only form)",
+            "lines": [
+              "9.57·ln Cr + 3.78·ln Bili",
+              "+ 11.20·ln INR + 6.43",
+              "Values <1.0 → 1.0 · Cr cap 4.0",
+              "Range 6–40"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ver",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 470,
+            "w": 440,
+            "label": "US: MELD-Na 2016 → MELD 3.0 2023",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "inr",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 250,
+            "w": 420,
+            "h": 260,
+            "tone": "warn",
+            "title": "INR caveat",
+            "lines": [
+              "Built for vitamin K antagonists",
+              "Reagent/instrument differences",
+              "~26% INR spread in cirrhosis"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Scoring the hook patient, then the AFP",
+      "start": 104,
+      "end": 144,
+      "altText": "Worked example card: bilirubin 2.5 → 2 points; albumin 3.0 → 2; INR 1.5 → 1; mild ascites → 2; no encephalopathy → 1; total 8 = Child-Pugh B. MELD card: 3.78·ln 2.5 + 11.20·ln 1.5 + 9.57·ln 1.2 + 6.43 ≈ 16 (lab-only formula). AFP card (AASLD 2023): AFP is used with ultrasound for surveillance about every 6 months; at 20 ng/mL it is about 60% sensitive and 90% specific; it is no longer recommended for diagnosing HCC (400 ng/mL was a former diagnostic threshold); more than 40% of HCCs have normal AFP; a new solid lesion of 1 cm or more goes to multiphase CT or contrast-enhanced MRI; diagnosis rests on noninvasive imaging criteria (LI-RADS) or pathology. Meta-analysis token: at 400 ng/mL AFP pooled sensitivity was about 32% with specificity about 99%.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Score the hook patient. Bilirubin 2.5 is two points, albumin 3.0 is two, INR 1.5 is one, mild ascites is two, no encephalopathy is one. Total eight: Child-Pugh class B."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 122,
+          "text": "The lab-only MELD formula gives about sixteen."
+        },
+        {
+          "id": "l3",
+          "start": 122,
+          "end": 134,
+          "text": "Now the AFP. The 2023 AASLD guidance pairs AFP with ultrasound for surveillance about every six months, but says AFP is no longer recommended to diagnose liver cancer. Four hundred was a former diagnostic threshold."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "A very high AFP is highly specific but insensitive, and more than forty percent of these cancers have a normal AFP. The new nodule goes to multiphase CT or contrast-enhanced MRI, read with LI-RADS; pathology is the other route to a diagnosis."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cp",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 210,
+            "tone": "good",
+            "title": "Child-Pugh = 8 → B",
+            "lines": [
+              "Bili 2 + Alb 2 + INR 1",
+              "Ascites 2 + Enceph. 1",
+              "Total 8 = class B"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ms",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 460,
+            "w": 440,
+            "label": "Lab-only MELD ≈ 16",
+            "tone": "b",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "afp",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 250,
+            "w": 420,
+            "h": 300,
+            "tone": "bad",
+            "title": "AFP 450 ng/mL",
+            "lines": [
+              "Surveillance: US + AFP ~6-monthly",
+              "Not diagnostic (400 = old cutoff)",
+              ">40% of HCCs: normal AFP",
+              "Next: multiphase CT/MRI (LI-RADS)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “The INR is fully standardised for liver disease” (✓ it was calibrated for vitamin K antagonists; values vary with reagent and instrument in cirrhosis); “AFP above 400 diagnoses HCC” (✓ AASLD 2023 no longer recommends AFP for diagnosis; image the lesion); “A normal AFP excludes HCC” (✓ more than 40% of HCCs have normal AFP).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: the INR is fully standardised, so MELD is the same everywhere. No: the INR was calibrated for vitamin K antagonists, and in cirrhosis it varies with the reagent."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: an AFP over 400 diagnoses liver cancer. No: current AASLD guidance diagnoses it by imaging criteria or pathology, not AFP."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: a normal AFP rules out liver cancer. No: more than forty percent of these tumours have a normal AFP."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “INR is standardised for liver disease.”",
+            "lines": [
+              "✓ Calibrated for vitamin K antagonists; reagent-dependent"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “AFP > 400 = HCC diagnosed.”",
+            "lines": [
+              "✓ Diagnose by imaging criteria or pathology"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Normal AFP rules out HCC.”",
+            "lines": [
+              "✓ More than 40% of HCCs have normal AFP"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Report card, meter, doorbell",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Child-Pugh is a REPORT CARD (five items, 1–3 points each, 5 to 15); MELD is a lab-only METER (bilirubin, INR, creatinine); AFP is a DOORBELL that says look, and imaging opens the door.” Tokens: report card = Child-Pugh · meter = MELD · doorbell = AFP. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: Child-Pugh is a report card, five items scored one to three. MELD is a lab-only meter built from bilirubin, INR and creatinine. AFP is a doorbell: it says look, and imaging opens the door."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: newer MELD versions also use sodium, albumin and sex; the meter’s INR is not calibrated for liver disease; and many cancers never ring the AFP doorbell at all."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Report card, meter, doorbell",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Report card = Child-Pugh",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Meter = MELD",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Doorbell = AFP",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "MELD-Na and MELD 3.0 add Na, albumin, sex",
+              "INR not calibrated for liver disease",
+              ">40% of HCCs have normal AFP"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Child-Pugh: 5 items, A 5–6 · B 7–9 · C 10–15 · MELD: bilirubin, INR, creatinine (INR built for vitamin K antagonists)”, “AFP: surveillance with ultrasound, not diagnosis → imaging or pathology”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Child-Pugh grades cirrhosis from five items scored 5 to 15, MELD turns bilirubin, INR and creatinine into a lab-only urgency score whose INR was never calibrated for liver disease, and AFP supports liver cancer surveillance but no longer diagnoses it."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Child-Pugh A 5–6 · B 7–9 · C 10–15 · MELD = Bili, INR, Creat",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "AFP = surveillance with ultrasound · diagnosis = imaging/pathology",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: two scores describe how sick a cirrhotic liver is. Child-Pugh adds points from five items, two of them bedside judgements; MELD, in the form used for transplant listing, uses only blood tests and ranks transplant urgency. AFP is a blood marker that can raise suspicion of liver cancer during surveillance, but the diagnosis is made by imaging or biopsy. Scientific terms: Child-Pugh (Child-Turcotte-Pugh) score and class, Model for End-Stage Liver Disease (MELD), MELD-Na, MELD 3.0, international normalised ratio (INR), vitamin K antagonist (VKA), alpha-fetoprotein (AFP), hepatocellular carcinoma (HCC), LI-RADS.",
+    "why": "Child-Pugh mixes laboratory values (bilirubin, albumin, INR) with two bedside clinical signs (ascites, encephalopathy); MELD uses bilirubin, INR and a kidney marker, creatinine. The INR was calibrated for VKA therapy, so in liver disease it varies with the PT reagent and instrument. AFP is made by some, but not all, HCCs, so it is specific at very high levels but insensitive.",
+    "measure": "Child-Pugh: bilirubin <2 / 2–3 / >3 mg/dL; albumin >3.5 / 2.8–3.5 / <2.8 g/dL; INR <1.7 / 1.7–2.3 / >2.3; ascites none / mild / moderate–severe; encephalopathy none / I–II / III–IV; A 5–6, B 7–9, C 10–15. Lab-only MELD = 9.57·ln(creatinine) + 3.78·ln(bilirubin) + 11.20·ln(INR) + 6.43; bilirubin, creatinine and INR floored at 1.0, creatinine capped at 4.0 mg/dL; range 6–40. AFP (AASLD 2023): with ultrasound about every 6 months; 20 ng/mL cut-off about 60% sensitive and 90% specific; not used for diagnosis.",
+    "differs": "Child-Pugh (five items, subjective clinical variables, three classes) vs MELD (three objective labs, continuous score, transplant urgency). Lab-only MELD vs MELD-Na (adds sodium) vs MELD 3.0 (adds sex and albumin, creatinine cap 3.0). AFP for surveillance vs imaging or pathology for diagnosis.",
+    "examAngle": "Expect: calculate a Child-Pugh class from a case, name the MELD inputs, recognise the INR limitation, or choose imaging rather than AFP as the diagnostic step for a new nodule in cirrhosis."
+  },
+  "comparisons": [
+    {
+      "id": "cp-vs-meld",
+      "title": "Child-Pugh vs MELD",
+      "left": {
+        "label": "Child-Pugh",
+        "points": [
+          "Five items, 1–3 points each",
+          "Includes subjective ascites and encephalopathy",
+          "Classes A, B, C"
+        ]
+      },
+      "right": {
+        "label": "MELD",
+        "points": [
+          "Bilirubin, INR, creatinine only",
+          "Continuous score 6–40",
+          "Ranks transplant urgency"
+        ]
+      },
+      "distinguisher": "Bedside items and classes vs lab-only continuous score."
+    },
+    {
+      "id": "afp-surv-vs-dx",
+      "title": "AFP in surveillance vs diagnosis",
+      "left": {
+        "label": "Surveillance",
+        "points": [
+          "With ultrasound about every 6 months",
+          "Rising or high AFP prompts imaging"
+        ]
+      },
+      "right": {
+        "label": "Diagnosis",
+        "points": [
+          "Multiphase imaging criteria (LI-RADS)",
+          "Or pathology; AFP not used"
+        ]
+      },
+      "distinguisher": "AFP raises suspicion; imaging or pathology makes the diagnosis."
+    }
+  ],
+  "mnemonic": {
+    "text": "Child-Pugh is a REPORT CARD (five items, 1–3 points each, 5 to 15); MELD is a lab-only METER (bilirubin, INR, creatinine); AFP is a DOORBELL that says look, and imaging opens the door.",
+    "explanation": "Separates the point-based class, the lab-only score and the surveillance marker.",
+    "limitation": "MELD-Na and MELD 3.0 add sodium, albumin and sex; the INR inside both scores is not calibrated for liver disease; more than 40% of HCCs have a normal AFP, so the doorbell often stays silent."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Score tables are drawn schematically.",
+    "The 1-year survival figures come from one review’s table; other cohorts differ."
+  ],
+  "takeaway": "Child-Pugh grades cirrhosis from five items scored 5 to 15, MELD turns bilirubin, INR and creatinine into a lab-only urgency score whose INR was never calibrated for liver disease, and AFP supports liver cancer surveillance but no longer diagnoses it.",
+  "questions": [
+    {
+      "id": "chem-cps-q1",
+      "stem": "A patient with cirrhosis has total bilirubin 2.5 mg/dL, albumin 3.0 g/dL, INR 1.5, mild ascites and no encephalopathy. What is the Child-Pugh class?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Class B (8 points)",
+          "rationale": "Correct. Bilirubin 2, albumin 2, INR 1, ascites 2, encephalopathy 1 = 8 points, which falls in 7–9 (class B)."
+        },
+        {
+          "id": "b",
+          "text": "Class A (6 points)",
+          "rationale": "Incorrect. Bilirubin 2–3 mg/dL, albumin 2.8–3.5 g/dL and mild ascites each score 2, so the total exceeds 6."
+        },
+        {
+          "id": "c",
+          "text": "Class C (10 points)",
+          "rationale": "Incorrect. An INR under 1.7 and no encephalopathy each score only 1 point; the total is 8."
+        },
+        {
+          "id": "d",
+          "text": "It cannot be scored without creatinine",
+          "rationale": "Incorrect. Creatinine is a MELD input, not a Child-Pugh item."
+        }
+      ],
+      "answer": "a",
+      "skill": "Score calculation",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-cps-q2",
+      "stem": "A patient in cirrhosis surveillance has a new 3-cm liver nodule on ultrasound and an AFP of 450 ng/mL. According to the 2023 AASLD guidance, what is the appropriate next step?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Characterise the nodule with multiphase CT or contrast-enhanced MRI",
+          "rationale": "Correct. AASLD 2023 sends a new solid lesion of 1 cm or more to multiphase CT or contrast-enhanced MRI and bases HCC diagnosis on noninvasive imaging criteria or pathology, not on AFP."
+        },
+        {
+          "id": "b",
+          "text": "Report HCC as diagnosed because AFP exceeds 400 ng/mL",
+          "rationale": "Incorrect. 400 ng/mL was a former diagnostic threshold; AFP is no longer recommended for diagnosis."
+        },
+        {
+          "id": "c",
+          "text": "Repeat the AFP in 6 months and take no other action",
+          "rationale": "Incorrect. A new nodule with a high AFP needs diagnostic imaging now, not routine surveillance."
+        },
+        {
+          "id": "d",
+          "text": "Discard the result because AFP is only useful in pregnancy",
+          "rationale": "Incorrect. AFP is used alongside ultrasound in HCC surveillance."
+        }
+      ],
+      "answer": "a",
+      "skill": "Tumour marker interpretation",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-cps-q3",
+      "stem": "Which statement about the INR used in MELD and Child-Pugh scoring is correct?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It was devised and validated for patients on vitamin K antagonists, and in cirrhosis it varies with the PT reagent and instrument",
+          "rationale": "Correct. A review notes the INR was validated for VKA patients and cites about a 26% interlaboratory INR difference in the same cirrhotic patients."
+        },
+        {
+          "id": "b",
+          "text": "It is fully standardised for liver disease, so every laboratory gives the same MELD",
+          "rationale": "Incorrect. Reagent and instrument differences change INR values in cirrhosis."
+        },
+        {
+          "id": "c",
+          "text": "It measures both procoagulant and anticoagulant factors, so it predicts bleeding well",
+          "rationale": "Incorrect. The PT/INR reflects only the procoagulant side and does not reliably predict bleeding in cirrhosis."
+        },
+        {
+          "id": "d",
+          "text": "It is not part of either score",
+          "rationale": "Incorrect. The INR is an input to both Child-Pugh and MELD."
+        }
+      ],
+      "answer": "a",
+      "skill": "Method limitations",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch22",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 22, Liver Function Testing (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 22,
+          "section": "High-Yield Hits",
+          "items": [
+            7,
+            12
+          ]
+        },
+        {
+          "chapter": 22,
+          "section": "Exam Traps",
+          "items": [
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "guo2025",
+      "kind": "external",
+      "citation": "Guo G, Yang W, Li J, Yang Z, Liang J, Sun C. The Development and Appraisal of MELD 3.0 in Liver Diseases: Good Things Never Come Easy. J Clin Transl Hepatol. 2025;13(1):62-68. doi:10.14218/JCTH.2024.00303",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11712091/",
+      "consulted": true,
+      "usedFor": "MELD formula (Table 1; the original carried a cause-of-cirrhosis term), three laboratory inputs and TIPS origin; value limits (bilirubin and INR floor 1.0, creatinine cap 4.0 mg/dL; MELD 3.0 cap 3.0) and score range 6–40 (Table 2); MELD-Na implemented by OPTN in 2016; MELD 3.0 adds sex and albumin and was approved by UNOS in 2023."
+    },
+    {
+      "id": "pinter2016",
+      "kind": "external",
+      "citation": "Pinter M, Trauner M, Peck-Radosavljevic M, Sieghart W. Cancer and liver cirrhosis: implications on prognosis and management. ESMO Open. 2016;1(2):e000042. doi:10.1136/esmoopen-2016-000042",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5070280/",
+      "consulted": true,
+      "usedFor": "Child-Pugh table: class A 5–6, B 7–9, C 10–15 points with 1-year survival 95%, 80%, 44%; bilirubin and albumin thresholds; limitations (empirical cut-offs, subjective encephalopathy and ascites); simplified MELD without the cause-of-cirrhosis variable, formula 9.57/3.78/11.20/6.43, values below 1 rounded to 1, creatinine maximum 4 mg/dL, range 6–40."
+    },
+    {
+      "id": "endale2022",
+      "kind": "external",
+      "citation": "Endale Simegn A, Yaregal Melesse D, Belay Bizuneh Y, Mekonnen Alemu W. Perioperative management of patients with liver disease for non-hepatic surgery: A systematic review. Ann Med Surg (Lond). 2022;75:103397. doi:10.1016/j.amsu.2022.103397",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8886011/",
+      "consulted": true,
+      "usedFor": "Child-Turcotte-Pugh point table with INR <1.7 / 1.7–2.3 / >2.3, albumin >3.5 / 2.8–3.5 / <2.8 g/dL, bilirubin <2 / 2–3 / >3 mg/dL, ascites and encephalopathy grades (Table 3). Its class B range is printed as 7–10, so the B range is taken from Pinter 2016."
+    },
+    {
+      "id": "peng2016",
+      "kind": "external",
+      "citation": "Peng Y, Qi X, Guo X. Child-Pugh Versus MELD Score for the Assessment of Prognosis in Liver Cirrhosis: A Systematic Review and Meta-Analysis of Observational Studies. Medicine (Baltimore). 2016;95(8):e2877. doi:10.1097/MD.0000000000002877",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4779019/",
+      "consulted": true,
+      "usedFor": "Child-Pugh components and origin; ascites and encephalopathy are subjective; INR does not sufficiently reflect coagulopathy in cirrhosis and shows interlaboratory variation."
+    },
+    {
+      "id": "laubham2018",
+      "kind": "external",
+      "citation": "Laubham M, Kallwitz E. Coagulation in chronic liver disease and the use of prothrombin complex concentrate for an emergent procedure: a case report and review of literature. J Community Hosp Intern Med Perspect. 2018;8(3):138-141. doi:10.1080/20009666.2018.1466600",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5998277/",
+      "consulted": true,
+      "usedFor": "INR devised and validated for patients on vitamin K antagonists; different PT reagents and equipment accounted for a 26% difference in INR in the same cirrhotic patients (cited study); INR reflects only the procoagulant side and does not necessarily predict bleeding."
+    },
+    {
+      "id": "singal2023",
+      "kind": "external",
+      "citation": "Singal AG, Llovet JM, Yarchoan M, et al. AASLD Practice Guidance on prevention, diagnosis, and treatment of hepatocellular carcinoma. Hepatology. 2023;78(6):1922-1965. doi:10.1097/HEP.0000000000000466",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10663390/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (first ~100,000 characters of the page only). Semiannual surveillance with ultrasound plus AFP; AFP 20 ng/mL cut-off about 60% sensitive and 90% specific; AFP no longer recommended for HCC diagnosis; 400 ng/mL previously a diagnostic criterion; more than 40% of HCCs have normal AFP; diagnosis by noninvasive imaging criteria (LI-RADS) or pathology."
+    },
+    {
+      "id": "zhang2020",
+      "kind": "external",
+      "citation": "Zhang J, Chen G, Zhang P, et al. The threshold of alpha-fetoprotein (AFP) for the diagnosis of hepatocellular carcinoma: A systematic review and meta-analysis. PLoS One. 2020;15(2):e0228857. doi:10.1371/journal.pone.0228857",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7018038/",
+      "consulted": true,
+      "usedFor": "At an AFP threshold of 400 ng/mL, pooled sensitivity 0.32 and specificity 0.99; 20–100 ng/mL thresholds more sensitive but less specific."
+    },
+    {
+      "id": "omata2017",
+      "kind": "external",
+      "citation": "Omata M, Cheng AL, Kokudo N, et al. Asia-Pacific clinical practice guidelines on the management of hepatocellular carcinoma: a 2017 update. Hepatol Int. 2017;11(4):317-370. doi:10.1007/s12072-017-9799-9",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5491694/",
+      "consulted": true,
+      "usedFor": "Alternative surveillance cut-off: APASL recommends AFP 200 ng/mL rather than 20 ng/mL when combined with ultrasound; AFP alone not recommended for surveillance of high-risk patients; biannual ultrasound with AFP."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-cp",
+      "text": "Child-Pugh items, point thresholds, classes A 5–6, B 7–9, C 10–15, 1-year survival in one review, subjective items.",
+      "status": "checked",
+      "refs": [
+        "pinter2016",
+        "endale2022",
+        "peng2016"
+      ]
+    },
+    {
+      "id": "cl-meld",
+      "text": "Lab-only MELD formula (cause-of-cirrhosis term dropped), inputs, floors and caps, range 6–40, TIPS origin and transplant use.",
+      "status": "checked",
+      "refs": [
+        "guo2025",
+        "pinter2016"
+      ]
+    },
+    {
+      "id": "cl-meld-ver",
+      "text": "MELD-Na adopted by OPTN in 2016; MELD 3.0 adds sex and albumin, creatinine cap 3.0, approved in 2023.",
+      "status": "checked",
+      "refs": [
+        "guo2025"
+      ],
+      "note": "US allocation policy; Philippine rules not covered."
+    },
+    {
+      "id": "cl-inr",
+      "text": "INR devised for VKA patients; reagent and instrument dependence in cirrhosis (~26%); reflects only procoagulant side.",
+      "status": "checked",
+      "refs": [
+        "laubham2018",
+        "peng2016"
+      ]
+    },
+    {
+      "id": "cl-afp",
+      "text": "AFP for surveillance with ultrasound ~6-monthly; 20 ng/mL performance; no longer used for diagnosis; >40% normal AFP; imaging or pathology diagnoses; 400 ng/mL low sensitivity, high specificity.",
+      "status": "checked",
+      "refs": [
+        "singal2023",
+        "zhang2020",
+        "omata2017"
+      ]
+    },
+    {
+      "id": "cl-calc",
+      "text": "Worked example: Child-Pugh 8 (class B) and lab-only MELD about 16 for the invented patient.",
+      "status": "checked",
+      "refs": [
+        "pinter2016",
+        "endale2022",
+        "guo2025"
+      ],
+      "note": "Arithmetic from the published tables and formula."
+    },
+    {
+      "id": "cl-pend",
+      "text": "Child-Pugh 2-year survival 85/57/35%; MELD 3-month mortality bands and TIPS cut-offs; PT rises less with low-ISI reagents in liver disease; ~20% of chronic HCV reach cirrhosis and ~20% of those HCC; HCC arising essentially only in cirrhosis.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch22"
+      ],
+      "note": "Not taught; not confirmed in the sources read. The INR-liver calibration papers (Tripodi 2007) had no open full text."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; tables drawn schematically.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Report card, meter, doorbell.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-meld-version",
+      "issue": "Ch. 22 Hit 7 gives the lab-only MELD (rounded coefficients 3.8/11.2/9.6/6.4) as the transplant-priority score. Guo 2025 reports US allocation moved to MELD-Na in 2016 and MELD 3.0 (adding sex and albumin) was approved in 2023; the lesson teaches the lab-only MELD formula with the published coefficients (Pinter 2016) and names the newer versions (register flag rv-meld-version-allocation).",
+      "kind": "outdated",
+      "status": "open"
+    },
+    {
+      "id": "f-meld-us-only",
+      "issue": "MELD-based allocation described in the lesson is US OPTN/UNOS policy; Philippine transplant allocation rules are not covered.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-cp-survival",
+      "issue": "Ch. 22 Hit 7 gives Child-Pugh A/B/C 2-year survival of 85%/57%/35%. These figures were not found in the sources read; Pinter 2016 gives 1-year survival of 95%/80%/44%, which the lesson uses (register flag rv-child-pugh-survival).",
+      "kind": "uncertain",
+      "status": "open"
+    },
+    {
+      "id": "f-afp-diagnosis",
+      "issue": "Ch. 22 Hit 12 says AFP >400 ng/mL is “highly probable” HCC. AASLD 2023 states 400 ng/mL was previously a diagnostic criterion but AFP is no longer recommended for HCC diagnosis, which rests on imaging criteria or pathology, and more than 40% of HCCs have normal AFP (register flag rv-afp-400-diagnosis).",
+      "kind": "outdated",
+      "status": "open"
+    },
+    {
+      "id": "f-afp-cutoff",
+      "issue": "Ch. 22 Hit 12 gives 20 ng/mL as the cirrhosis screening cut-off. AASLD 2023 describes 20 ng/mL performance in surveillance with ultrasound, while APASL 2017 recommends 200 ng/mL with ultrasound; the cut-off depends on the guideline (register flag rv-afp-surveillance-cutoff).",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; scores shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 factual claims checked against Guo 2025, Pinter 2016, Endale Simegn 2022, Peng 2016, Laubham 2018, Singal 2023 (AASLD; read via a page-fetch tool, partial page), Zhang 2020 and Omata 2017; 1 pending (2-year survival, MELD mortality bands, low-ISI direction, HCV progression percentages). An NCBI Bookshelf page was blocked by a browser check and not read. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

@@ -1,0 +1,1557 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-open-reagents-middleware-tat",
+  "title": "Open Reagents, Middleware and Local Turnaround Goals",
+  "summary": "Learn what separates open from closed reagent systems and what validation an adapted assay needs, how process-control software and middleware divide (and share) the work of an automated line, and why turnaround-time goals are set by each laboratory rather than by a universal standard.",
+  "domain": "p1-ops",
+  "topic": "ch6",
+  "conceptIds": [
+    "ch6.hit6",
+    "ch6.trap2",
+    "ch6.trap4",
+    "ch6.trap7"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 6,
+        "section": "High-Yield Hits",
+        "items": [
+          6
+        ]
+      },
+      {
+        "chapter": 6,
+        "section": "Exam Traps",
+        "items": [
+          2,
+          4,
+          7
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 6 Hit 6 and Traps 2, 4 and 7 (second lesson for Ch. 6). Checked against Armbruster 2014 (open/closed reagent systems, validation of adapted assays, LAS functions, middleware, vendor TAT figures), Nam & Park 2025 (open/closed TLA tracks), Krasowski 2014 (autoverification in LIS and/or middleware), Hawkins 2007 (TAT measures and locally set goals; full text read from the PMC article page) and 42 CFR 493.1253 (eCFR version 2026-10-01). Nuances: the reviewer’s middleware vs process-control split is a simplification because the sources list autoverification, repeats/dilutions and QC rules for process-control software as well (register flag rv-ch6-middleware-las-overlap); the reviewer omits that the lab must validate every assay adapted to an open system and that open/closed also describes tracks (rv-ch6-open-system-validation). Not taught as fact: the specific RFP TAT numbers of Hit 1 (shown only as the reviewer’s example in the hook scenario), workcell definitions, master lots, direct tube sampling and carryover methods, MALDI-TOF figures, immunoassay throughput, the TLA planning sequence."
+  },
+  "prerequisites": [
+    "ch6.hit5",
+    "ch6.hit2"
+  ],
+  "objectives": [
+    "Distinguish open from closed reagent systems and state who validates an assay adapted to an open analyzer.",
+    "Contrast verification and establishment of performance specifications under US CLIA (42 CFR 493.1253).",
+    "Describe the jobs of process-control software and middleware, including where they overlap, and explain why turnaround-time goals are set locally."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Cheaper reagent, faster promise",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a lab director wants to run a cheaper third-party creatinine reagent on the chemistry analyzer. In the same week a vendor’s automation proposal promises a 90th-percentile chemistry turnaround of 45 minutes, and a colleague says “45 fails the standard 30-minute goal.” Question token: “Which system, which software, whose goal?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Invented scenario: a lab director wants to run a cheaper creatinine reagent from another company on the chemistry analyzer."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "The same week, a vendor promises a chemistry turnaround of 45 minutes, and a colleague says that fails the standard 30-minute goal."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which kind of analyzer allows the swap, which software runs the line, and whose turnaround goal counts?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "reag",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Reagent swap",
+            "lines": [
+              "Third-party creatinine reagent",
+              "On the current analyzer?"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bid",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "bad",
+            "title": "Vendor proposal",
+            "lines": [
+              "Chemistry TAT 45 min",
+              "“Fails the standard 30”?"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 640,
+            "label": "Which system, which software, whose goal?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Open and closed systems",
+      "start": 20,
+      "end": 60,
+      "altText": "Two cards. Closed reagent system: only the instrument manufacturer’s proprietary reagents are suitable; the manufacturer optimises and verifies the assay applications. Open reagent system: reagents from many vendors can be adapted to the analyzer; open-system capability is usually considered desirable, and open channels for assays the instrument maker does not offer are also desirable (Armbruster 2014). Token: the same words are also used for automation tracks: an open track connects instruments from many companies, a closed track connects only specific devices, generally the same company’s (Nam & Park 2025).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 32,
+          "text": "A closed reagent system accepts only the instrument maker’s own reagents. Those assay applications are optimised for the analyzer and verified by the manufacturer."
+        },
+        {
+          "id": "n2",
+          "start": 32,
+          "end": 44,
+          "text": "An open reagent system lets the lab adapt reagents from many vendors. That flexibility is usually considered desirable, for example to run assays the instrument maker does not offer."
+        },
+        {
+          "id": "n3",
+          "start": 44,
+          "end": 60,
+          "text": "Careful with the words: open and closed are also used for automation tracks. An open track connects instruments from many companies; a closed track connects only specific devices, usually from the same company."
+        }
+      ],
+      "objects": [
+        {
+          "id": "closed",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 190,
+            "tone": "b",
+            "title": "Closed reagent system",
+            "lines": [
+              "Manufacturer’s reagents only",
+              "Optimised + verified by maker"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "open",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 190,
+            "tone": "good",
+            "title": "Open reagent system",
+            "lines": [
+              "Other vendors’ reagents adapted",
+              "Usually considered desirable"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "reveal": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 22,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "track",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 860,
+            "h": 140,
+            "tone": "warn",
+            "title": "Same words, second meaning: tracks",
+            "lines": [
+              "Open track: many companies’ instruments",
+              "Closed track: specific (usually same-brand) devices"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 37,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Open means the lab does the homework",
+      "start": 60,
+      "end": 104,
+      "altText": "Validation card (Armbruster 2014): laboratories need to perform method validation for every assay they adapt to an open system. CLIA card (US, 42 CFR 493.1253): an unmodified FDA-cleared or approved test system needs VERIFICATION before patient results: accuracy, precision and reportable range comparable to the manufacturer’s, plus checking that the manufacturer’s reference intervals fit the population. A modified FDA-cleared system, or one not subject to FDA clearance, needs ESTABLISHMENT: accuracy, precision, analytical sensitivity, analytical specificity including interferences, reportable range, reference intervals and any other needed characteristic. Calibration and control procedures are then based on these, and everything is documented. Token: US rule only; Philippine requirements not covered.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "Here is the price of openness. When a lab adapts another company’s reagent to an open analyzer, the lab must validate that assay itself."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 82,
+          "text": "Under US CLIA, an unmodified, FDA-cleared test system needs verification: show accuracy, precision and reportable range comparable to the manufacturer’s, and check that its reference intervals fit your patients."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 96,
+          "text": "A modified cleared system, or one not subject to FDA clearance, needs more: the lab must establish accuracy, precision, analytical sensitivity, analytical specificity including interferences, reportable range and reference intervals."
+        },
+        {
+          "id": "c4",
+          "start": 96,
+          "end": 104,
+          "text": "Calibration and control procedures are then built on those results, and all of it is documented. This is a US rule; Philippine requirements are not covered here."
+        }
+      ],
+      "objects": [
+        {
+          "id": "val",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 440,
+            "h": 170,
+            "tone": "warn",
+            "title": "Adapted assay = lab validates",
+            "lines": [
+              "Every assay put on an open system",
+              "Lab’s job, not the maker’s"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 8,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ver",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 190,
+            "tone": "b",
+            "title": "Verify (unmodified, cleared)",
+            "lines": [
+              "Accuracy · precision",
+              "Reportable range",
+              "Reference intervals fit?"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "est",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "h": 190,
+            "tone": "bad",
+            "title": "Establish (modified / not cleared)",
+            "lines": [
+              "+ Analytical sensitivity",
+              "+ Specificity incl. interferences",
+              "All specs, then cal + QC plan"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 34,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "us",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "label": "42 CFR 493.1253 · US only",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 37.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Two software layers and one goal",
+      "start": 104,
+      "end": 144,
+      "altText": "Left card, process-control software (laboratory automation system, LAS; Armbruster 2014): reads the specimen ID and pulls orders from the LIS, decides centrifugation, decapping, number and volume of aliquots and the route through the line, recaps and stores tubes, checks sample level and HIL; the same review also lists rule-based accept/reject, autoverification, repeats, dilutions and QC rules among its jobs. Right card, middleware: began as a simple interface engine between analyzers and the LIS and is now a process control and management tool with rule engines (autoverification), Average-of-Normals and QC integration. Krasowski 2014 notes autoverification is commonly done in the LIS and/or middleware. Bottom card, turnaround time (Hawkins 2007): TAT distributions are skewed, so the median plus the tail (an outlier rate or a 90% completion time) are the preferred measures; there is little agreement among clinicians on acceptable TAT and a universal evidence-based goal is hard to recommend, so goals are set locally, informed by published data and local expectations, and negotiated with users; vendor TAT and throughput figures are ballpark estimates under the maker’s conditions (Armbruster 2014).",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 116,
+          "text": "Two software layers run an automated line. Process-control software, often called the laboratory automation system, reads each tube’s ID, pulls the orders, and decides spinning, decapping, aliquots, the route, recapping and storage."
+        },
+        {
+          "id": "l2",
+          "start": 116,
+          "end": 126,
+          "text": "Middleware began as a simple link between analyzers and the LIS and is now a management tool with rule engines. But the jobs overlap: autoverification, repeats and dilutions are listed for both, and autoverification can also run in the LIS."
+        },
+        {
+          "id": "l3",
+          "start": 126,
+          "end": 136,
+          "text": "Now turnaround time. Its distribution is skewed, so the preferred measures are the median plus the tail, such as the time by which 90 percent of results are done. There is no agreed universal goal; each lab sets its own with its users."
+        },
+        {
+          "id": "l4",
+          "start": 136,
+          "end": 144,
+          "text": "And a vendor’s turnaround or throughput figure is a ballpark estimate under the maker’s conditions, so judge it against your own stated target."
+        }
+      ],
+      "objects": [
+        {
+          "id": "las",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 175,
+            "w": 440,
+            "h": 190,
+            "tone": "b",
+            "title": "Process control (LAS)",
+            "lines": [
+              "ID → orders from LIS",
+              "Spin · decap · aliquot · route",
+              "Recap · store · HIL check"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mw",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 175,
+            "w": 420,
+            "h": 190,
+            "tone": "a",
+            "title": "Middleware",
+            "lines": [
+              "Analyzers ↔ LIS hub",
+              "Rule engines · QC tools",
+              "Overlap: autoverify, repeats"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "reveal": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 20,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tat",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 410,
+            "w": 860,
+            "h": 130,
+            "tone": "warn",
+            "title": "TAT = median + tail (90% completion)",
+            "lines": [
+              "No universal goal: set locally",
+              "Vendor figures = ballpark"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "judge",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 505,
+            "w": 640,
+            "label": "Judge a bid against YOUR stated target",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Third-party reagents need a closed system” (✓ open system, and the lab validates every adapted assay); “Middleware and process-control software never share jobs” (✓ the reviewer’s split is a useful simplification; sources list autoverification, repeats and dilutions for both); “A 45-minute chemistry TAT fails the standard 30-minute goal” (✓ there is no agreed universal goal; compare with the lab’s own stated 90th-percentile target).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: third-party reagents need a closed system. No: they need an open system, and the lab must validate every assay it adapts."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: middleware and process-control software never share jobs. No: the split is a simplification; both can carry rules such as autoverification."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: 45 minutes fails the standard 30-minute goal. No: there is no agreed universal goal. Compare the bid with the lab’s own stated target."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Third-party reagents → closed system.”",
+            "lines": [
+              "✓ Open system + lab validates each assay"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Middleware and LAS never overlap.”",
+            "lines": [
+              "✓ Both can autoverify, repeat, dilute"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “45 min fails the standard 30.”",
+            "lines": [
+              "✓ No agreed universal goal; use the lab’s own"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Open door, own homework",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “OPEN door, OWN homework: an open analyzer lets other vendors’ reagents in, but the lab checks every guest. The LAS drives the train; the middleware runs the station; both can stamp results. TAT goals are HOUSE rules, not laws.” Tokens: open = own validation · LAS train, middleware station · house rules. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: open door, own homework. An open analyzer lets other vendors’ reagents in, but the lab checks every guest. The automation system drives the train, the middleware runs the station, and both can stamp results. Turnaround goals are house rules, not laws."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: open and closed also describe tracks; how jobs split between automation software, middleware and the LIS varies by product and lab; and house goals should still be informed by published data and by what clinicians need."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Open door, own homework",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Open = own validation",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "LAS train · MW station",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "TAT = house rules",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Open/closed also describes tracks",
+              "Software job split varies by product",
+              "House goals still need evidence + users"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Open reagent system = other vendors’ reagents + lab validates each adapted assay (US: verify vs establish, 42 CFR 493.1253)”, “LAS and middleware overlap · TAT goals set locally (median + 90% completion)”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Open reagent systems accept other vendors’ reagents but make the lab validate each adapted assay, process-control software and middleware share overlapping rule-based jobs such as autoverification, and turnaround goals are set locally rather than by a universal standard."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Open system = other vendors’ reagents + lab validates each assay",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "LAS and middleware overlap · TAT goals are local (median + 90% tail)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a closed analyzer only takes its maker’s reagents; an open one lets you bring reagents from other companies, but then your lab has to prove each test works. Two software layers run an automated line: one physically steers tubes, the other is the hub between instruments and the LIS, and both can hold result-release rules. Turnaround-time targets are each lab’s own choice. Scientific terms: open vs closed reagent system, method validation, verification vs establishment of performance specifications, laboratory automation system (process-control software), middleware, autoverification, median and 90% completion turnaround time.",
+    "why": "Closed-system assay applications are optimised and verified by the manufacturer, so moving a different vendor’s reagent onto an analyzer shifts that proof onto the lab. Sources describe rule-based decisions (accept, reject, repeat, dilute, release) in more than one software layer, so the same function may live in the automation software, the middleware or the LIS. TAT distributions are skewed and clinicians show little agreement on what is acceptable, so a single universal evidence-based goal is hard to recommend.",
+    "measure": "US CLIA 493.1253: verification (unmodified FDA-cleared/approved): accuracy, precision, reportable range, manufacturer reference intervals appropriate; establishment (modified, or not subject to FDA clearance): accuracy, precision, analytical sensitivity, analytical specificity including interfering substances, reportable range, reference intervals, any other needed characteristic; then calibration and control procedures; document everything. TAT: report median plus tail (outlier rate or 90% completion time).",
+    "differs": "Open vs closed reagent system; open vs closed track (connectivity); verify vs establish; process-control software (routing, aliquots, recapping, storage) vs middleware (user-facing hub, rule engines), with overlapping autoverification; vendor ballpark TAT vs the lab’s own stated target.",
+    "examAngle": "Expect: pick “open reagent system” for third-party reagents, recognise that the lab must validate adapted assays, choose middleware as the hub for autoverification, and judge a vendor’s TAT against the lab’s stated target rather than a supposed universal standard."
+  },
+  "comparisons": [
+    {
+      "id": "open-vs-closed",
+      "title": "Open vs closed reagent system",
+      "left": {
+        "label": "Closed",
+        "points": [
+          "Manufacturer’s proprietary reagents only",
+          "Assay applications optimised and verified by the maker"
+        ]
+      },
+      "right": {
+        "label": "Open",
+        "points": [
+          "Reagents from many vendors can be adapted",
+          "Lab must validate every adapted assay"
+        ]
+      },
+      "distinguisher": "Whose reagents can run, and who carries the burden of proving the assay works."
+    },
+    {
+      "id": "las-vs-middleware",
+      "title": "Process-control software vs middleware",
+      "left": {
+        "label": "Process control (LAS)",
+        "points": [
+          "Reads ID, pulls orders, decides spin/decap/aliquot and route",
+          "Recaps, stores, checks sample level and HIL"
+        ]
+      },
+      "right": {
+        "label": "Middleware",
+        "points": [
+          "Hub between analyzers and the LIS",
+          "Rule engines for autoverification, QC tools, Average-of-Normals"
+        ]
+      },
+      "distinguisher": "LAS steers the physical line; middleware is the data hub. Both can carry release, repeat and dilution rules."
+    }
+  ],
+  "mnemonic": {
+    "text": "OPEN door, OWN homework: an open analyzer lets other vendors’ reagents in, but the lab checks every guest. The LAS drives the train; the middleware runs the station; both can stamp results. TAT goals are HOUSE rules, not laws.",
+    "explanation": "Open door = open reagent system; own homework = the lab validates adapted assays; train vs station = LAS vs middleware with shared release rules; house rules = locally set TAT goals.",
+    "limitation": "Open/closed also describes track connectivity; the job split between LAS, middleware and LIS varies by product and laboratory; local TAT goals should still be informed by published data and clinician needs."
+  },
+  "analogyLimitations": [
+    "Scenario is invented; the 45-minute and 30-minute figures are illustrative only.",
+    "Software diagram is schematic; real products combine these layers differently.",
+    "Regulatory text paraphrased (US CLIA only); read the current regulation for exact wording."
+  ],
+  "takeaway": "Open reagent systems accept other vendors’ reagents but make the lab validate each adapted assay, process-control software and middleware share overlapping rule-based jobs such as autoverification, and turnaround goals are set locally rather than by a universal standard.",
+  "questions": [
+    {
+      "id": "ops-orm-q1",
+      "stem": "A laboratory wants to run a less expensive creatinine reagent from a third-party company on its chemistry analyzer. Which statement is most accurate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The analyzer must be an open reagent system, and the laboratory must validate the adapted assay before reporting patient results",
+          "rationale": "Correct. Open systems allow reagents from other vendors to be adapted, and labs need to validate every assay they adapt (Armbruster 2014); in the US, if the combination counts as a modified FDA-cleared system or one not subject to FDA clearance, the lab must establish its performance specifications before reporting patient results (42 CFR 493.1253(b)(2))."
+        },
+        {
+          "id": "b",
+          "text": "The analyzer must be a closed reagent system",
+          "rationale": "Incorrect. A closed system accepts only the instrument manufacturer’s proprietary reagents."
+        },
+        {
+          "id": "c",
+          "text": "An open system is required, but no laboratory validation is needed because the analyzer manufacturer has verified the instrument",
+          "rationale": "Incorrect. Manufacturer verification covers the maker’s own assay applications; an adapted third-party assay must be validated by the laboratory."
+        },
+        {
+          "id": "d",
+          "text": "Any analyzer can use any reagent, as long as the reagent is bar-coded",
+          "rationale": "Incorrect. A bar code does not make a reagent suitable for an analyzer; closed systems accept only proprietary reagents, and adapted assays need validation."
+        }
+      ],
+      "answer": "a",
+      "skill": "Open vs closed systems",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-orm-q2",
+      "stem": "Under US CLIA, which performance characteristic must a laboratory establish for a modified FDA-cleared test system that it would NOT need to check when introducing the same system unmodified?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Analytical specificity, including interfering substances",
+          "rationale": "Correct. 493.1253(b)(2) adds analytical sensitivity and analytical specificity (including interfering substances) for modified or non-cleared systems; verification of an unmodified system covers accuracy, precision, reportable range and reference intervals."
+        },
+        {
+          "id": "b",
+          "text": "Precision",
+          "rationale": "Incorrect. Precision is required in both verification and establishment."
+        },
+        {
+          "id": "c",
+          "text": "Accuracy",
+          "rationale": "Incorrect. Accuracy is required in both verification and establishment."
+        },
+        {
+          "id": "d",
+          "text": "Reportable range",
+          "rationale": "Incorrect. The reportable range is required in both verification and establishment."
+        }
+      ],
+      "answer": "a",
+      "skill": "Verification vs establishment",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ops-orm-q3",
+      "stem": "A laboratory’s own request for proposal sets its chemistry turnaround target. A vendor promises a 90th-percentile chemistry turnaround that is longer than a colleague’s “standard” figure but within the laboratory’s stated target. How should the proposal be judged?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Against the laboratory’s own stated target, because there is no agreed universal evidence-based turnaround goal",
+          "rationale": "Correct. Hawkins 2007 notes little agreement among clinicians on acceptable turnaround, finds universal evidence-based goals hard to recommend, and proposes goals set locally and negotiated with users; vendor figures are ballpark estimates to be compared with the lab’s requirement."
+        },
+        {
+          "id": "b",
+          "text": "Rejected, because the colleague’s standard figure is a universal requirement",
+          "rationale": "Incorrect. Hawkins 2007 found it difficult to recommend any universal evidence-based turnaround goal; goals are set locally and negotiated with users."
+        },
+        {
+          "id": "c",
+          "text": "Accepted without testing, because vendor figures are guaranteed in every laboratory",
+          "rationale": "Incorrect. Vendor turnaround and throughput figures are ballpark estimates under the manufacturer’s conditions and depend on the lab’s actual test mix and volume."
+        },
+        {
+          "id": "d",
+          "text": "Judged on the mean turnaround alone, because turnaround times follow a normal (Gaussian) distribution",
+          "rationale": "Incorrect. Turnaround distributions are skewed to the right, not Gaussian, so the median plus a tail measure, such as a 90% completion time, is preferred (Hawkins 2007)."
+        }
+      ],
+      "answer": "a",
+      "skill": "Turnaround-time goals",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch6",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 6, Automation and the Total Testing Process (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 6,
+          "section": "High-Yield Hits",
+          "items": [
+            6
+          ]
+        },
+        {
+          "chapter": 6,
+          "section": "Exam Traps",
+          "items": [
+            2,
+            4,
+            7
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope, exam framing and the middleware vs process-control trap. Not used as verification."
+    },
+    {
+      "id": "armbruster2014",
+      "kind": "external",
+      "citation": "Armbruster DA, Overcash DR, Reyes J. Clinical Chemistry Laboratory Automation in the 21st Century - Amat Victoria curam (Victory loves careful preparation). Clin Biochem Rev. 2014;35(3):143-153. PMID: 25336760; PMCID: PMC4204236",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4204236/",
+      "consulted": true,
+      "usedFor": "Full text read from the PMC article page (the Europe PMC full-text endpoint returned an error). Closed system = only the manufacturer’s proprietary reagents, applications optimised and verified by the maker; open system = reagents from many vendors adapted; labs must validate every adapted assay; open capability usually desirable; LAS functions (ID, orders, aliquots, routing, recapping, storage, sample level, HIL) and the overlap of autoverification, repeats, dilutions and QC rules between process-control software and middleware; middleware history; vendor TAT/throughput figures are ballpark estimates; aim for desired TAT about 90% of the time. Authors are Abbott Diagnostics employees (declared competing interest)."
+    },
+    {
+      "id": "nam2025",
+      "kind": "external",
+      "citation": "Nam Y, Park HD. Revolutionizing Laboratory Practices: Pioneering Trends in Total Laboratory Automation. Ann Lab Med. 2025;45(5):472-483. doi:10.3343/alm.2024.0581",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12370808/",
+      "consulted": true,
+      "usedFor": "TLA systems classified by connectivity: open systems connect heterogeneous instruments from numerous companies; closed systems connect only specific devices, generally the company’s own."
+    },
+    {
+      "id": "krasowski2014",
+      "kind": "external",
+      "citation": "Krasowski MD, Davis SR, Drees D, et al. Autoverification in a core clinical chemistry laboratory at an academic medical center. J Pathol Inform. 2014;5(1):13. doi:10.4103/2153-3539.129450",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4023033/",
+      "consulted": true,
+      "usedFor": "Autoverification is commonly performed in the LIS and/or middleware that sits between instruments and the LIS; in this lab the autoverification rate rose from 40% in 2000 (rudimentary LIS rules) to 95% by 2007 and 99.0% by 2010 after middleware rules were introduced (context only; these rates are not taught)."
+    },
+    {
+      "id": "hawkins2007",
+      "kind": "external",
+      "citation": "Hawkins RC. Laboratory turnaround time. Clin Biochem Rev. 2007;28(4):179-194. PMCID: PMC2282400",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2282400/",
+      "consulted": true,
+      "usedFor": "Full text read from the PMC article page (the Europe PMC full-text endpoint returned no text). Positively skewed TAT distributions, so median and tail size (outlier rate or 90% completion time) are the preferred measures and means/SDs are inappropriate descriptors; little agreement among clinicians on acceptable TAT; difficulty recommending any universal evidence-based goals; pragmatic approach is to set goals locally, informed by published literature and local expectations, and negotiated with users; a 90% completion time of <60 min for common tests suggested as a starting point for discussion (not taught)."
+    },
+    {
+      "id": "cfr493-1253",
+      "kind": "external",
+      "citation": "42 CFR § 493.1253 — Standard: Establishment and verification of performance specifications (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493/subpart-K/section-493.1253",
+      "consulted": true,
+      "usedFor": "Verification for unmodified FDA-cleared/approved systems (accuracy, precision, reportable range, reference intervals appropriate); establishment for modified or non-cleared systems (adds analytical sensitivity, analytical specificity including interfering substances, reference intervals, other characteristics); calibration and control procedures based on these; documentation."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-openclosed",
+      "text": "Open vs closed reagent systems; validation of adapted assays; open/closed track connectivity.",
+      "status": "checked",
+      "refs": [
+        "armbruster2014",
+        "nam2025"
+      ]
+    },
+    {
+      "id": "cl-clia",
+      "text": "CLIA verification vs establishment of performance specifications.",
+      "status": "checked",
+      "refs": [
+        "cfr493-1253"
+      ]
+    },
+    {
+      "id": "cl-software",
+      "text": "Process-control software (LAS) and middleware functions, their overlap, and autoverification in LIS and/or middleware.",
+      "status": "checked",
+      "refs": [
+        "armbruster2014",
+        "krasowski2014"
+      ]
+    },
+    {
+      "id": "cl-tat",
+      "text": "TAT measured by median plus tail (90% completion); no universal goal, set locally; vendor figures are ballpark estimates.",
+      "status": "checked",
+      "refs": [
+        "hawkins2007",
+        "armbruster2014"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "The reviewer’s example RFP TAT maximums (30/45/20/30 min); workcell definitions; master lots; direct tube sampling and carryover methods; MALDI-TOF figures; immunoassay throughput; TLA planning sequence.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch6"
+      ],
+      "note": "Not taught as facts in this lesson; the 45- and 30-minute figures in the hook are illustrative only."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; software diagram schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Open door, own homework.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-ch6-las-mw-overlap",
+      "issue": "The reviewer presents middleware (autoverification, load balancing, reruns) and process-control software (physical chores) as distinct roles. Armbruster 2014 lists autoverification, repeats, dilutions and QC rules among process-control software functions and describes modern middleware as a process control and management tool; Krasowski 2014 notes autoverification runs in the LIS and/or middleware. The lesson teaches the split as a simplification.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-ch6-open-validation",
+      "issue": "The reviewer’s open vs closed reagent item omits that the laboratory must validate every assay adapted to an open system (Armbruster 2014), and that “open/closed” is also used for TLA track connectivity (Nam & Park 2025).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-ch6-us-only",
+      "issue": "The verification vs establishment rules taught here are US federal (CLIA, 42 CFR 493.1253) requirements. Philippine method-validation requirements are not covered; MTLE candidates should check local rules.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; systems and software shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked (Armbruster 2014, Nam & Park 2025, Krasowski 2014, Hawkins 2007, and the CLIA regulation text); 1 pending (reviewer’s example RFP numbers and other Ch. 6 items not taught). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

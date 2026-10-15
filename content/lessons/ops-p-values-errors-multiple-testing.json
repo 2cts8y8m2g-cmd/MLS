@@ -1,0 +1,1591 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-p-values-errors-multiple-testing",
+  "title": "P Values, Type I and II Errors, and the Multiple-Testing Trap",
+  "summary": "Learn what a P value does and does not mean, how Type I and Type II errors and power relate, why a huge sample can make a trivial difference significant, and how the Bonferroni correction handles many comparisons.",
+  "domain": "p1-ops",
+  "topic": "ch10",
+  "conceptIds": [
+    "ch10.hit3",
+    "ch10.hit4",
+    "ch10.hit6",
+    "ch10.hit7",
+    "ch10.trap2",
+    "ch10.trap3"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 10,
+        "section": "High-Yield Hits",
+        "items": [
+          3,
+          4,
+          6,
+          7
+        ]
+      },
+      {
+        "chapter": 10,
+        "section": "Exam Traps",
+        "items": [
+          2,
+          3
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 10 Hits 3, 4, 6 and 7 and Traps 2 and 3. Checked against Greenland 2016, Banerjee 2009, Sullivan and Feinn 2012 (read via a page-fetch tool), Ranganathan 2016 and Andrade 2019. Hit 6 (repeated in Trap 2) says significance can “always” be forced by inflating n; Sullivan and Feinn qualify this: almost always, unless the true effect is exactly zero, and Greenland notes that a true null is rejected only at the alpha rate (register flag rv-large-n-significance). Hit 7 and Trap 3 present Bonferroni without its caveats; Ranganathan and Andrade describe it as conservative, raising Type II risk, with Holm, Hochberg and false-discovery-rate alternatives (register flag rv-bonferroni-conservative). Not taught as fact: the reviewer’s “highly significant: p < 0.001” label and “journals want two-sided tests”."
+  },
+  "prerequisites": [
+    "ch10.hit5"
+  ],
+  "objectives": [
+    "State what a P value means and why failing to reject the null hypothesis is not proof of no effect.",
+    "Define Type I and Type II errors, alpha, beta and power, and the usual conventional values.",
+    "Explain why a very large sample can make a trivial effect significant, and apply the Bonferroni correction to multiple comparisons."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two “significant” results",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: two reports land on the lab manager’s desk. (1) A vendor study of 40,000 patients finds its new assay reads 0.3 units lower than the old one, P = 0.0001. (2) A small in-house study compared two tube types on 20 different analytes and found one difference at P = 0.04. Question token: “Real and important, or noise?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Two reports arrive. A vendor study of forty thousand patients finds its new assay reads a tiny bit lower than the old one, with a P value of 0.0001."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "An in-house study compared two tube types on twenty analytes and found one difference, at P equals 0.04."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Are these real and important, or noise?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 420,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Vendor study (invented)",
+            "lines": [
+              "n = 40,000 · difference 0.3 units",
+              "P = 0.0001"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "2 Tube study (invented)",
+            "lines": [
+              "20 analytes compared",
+              "One at P = 0.04"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 12,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 640,
+            "label": "Real and important, or noise?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "What a P value is, and is not",
+      "start": 20,
+      "end": 60,
+      "altText": "Courtroom card: the null hypothesis (no difference) is presumed, like innocence; the test asks whether the data give enough evidence to reject it. P value card: the probability of data at least as extreme as those observed IF the null hypothesis and all the model’s other assumptions were true; it is NOT the probability that the null hypothesis is true. Alpha card: the cut-off is chosen in advance, conventionally 0.05; P at or below it is called “statistically significant”, and the dichotomy is an arbitrary convention. Verdict token: P above alpha = “fail to reject”, not proof of no effect.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Hypothesis testing works like a courtroom. The null hypothesis, no difference, is presumed true, like innocence, and the data must give enough evidence to reject it."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 42,
+          "text": "The P value is the chance of seeing data at least this extreme if the null hypothesis, and every other assumption of the test, were true. It is not the chance that the null hypothesis is true."
+        },
+        {
+          "id": "n3",
+          "start": 42,
+          "end": 52,
+          "text": "The cut-off, alpha, is chosen before the study, usually 0.05. A P value at or below it is called statistically significant, but the cut-off itself is a convention."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "A P value above alpha means fail to reject. It does not prove there is no effect."
+        }
+      ],
+      "objects": [
+        {
+          "id": "court",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Null hypothesis = innocence",
+            "lines": [
+              "Presumed: no difference",
+              "Data must justify rejecting it"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pv",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "P value",
+            "lines": [
+              "P(data this extreme | null + model)",
+              "NOT P(null is true)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "alpha",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "h": 150,
+            "tone": "warn",
+            "title": "Alpha, set in advance",
+            "lines": [
+              "Usually 0.05",
+              "A convention, not a law"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "verdict",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "label": "P > α → “fail to reject”, not “no effect”",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Two errors, power and sample size",
+      "start": 60,
+      "end": 104,
+      "altText": "Two-by-two card: truth (null true / null false) against decision (reject / fail to reject). Reject a true null = Type I error (false positive), probability alpha. Fail to reject a false null = Type II error (false negative), probability beta. Power = 1 − beta. Convention card: many studies set alpha 0.05 and beta 0.20 (power 0.80); these are somewhat arbitrary. Sample-size card: larger samples reduce both errors, but significance depends on BOTH sample size and effect size: with a large enough sample, almost any non-zero difference becomes significant. Example card (Sullivan and Feinn 2012): an aspirin trial of more than 22,000 subjects found P < 0.00001 for myocardial infarction, yet the risk difference was 0.77%.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "A test can be wrong in two ways. Rejecting a null hypothesis that is actually true is a Type one error, a false positive; its probability is alpha. Failing to reject a false null is a Type two error, a false negative; its probability is beta."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "Power is one minus beta: the chance of detecting an effect of a given size if it exists. Many studies set alpha at 0.05 and beta at 0.20, a power of eighty percent; these values are conventions."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 92,
+          "text": "Bigger samples reduce both errors. But significance depends on sample size as well as effect size: with a large enough sample, almost any difference that is not exactly zero becomes significant."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "In one aspirin trial of more than twenty-two thousand people, the reduction in heart attacks had a P value below 0.00001, yet the absolute risk difference was under one percent. Always ask how big the effect is."
+        }
+      ],
+      "objects": [
+        {
+          "id": "grid",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 210,
+            "tone": "b",
+            "title": "Truth vs decision",
+            "lines": [
+              "Reject true null = Type I (α)",
+              "Miss false null = Type II (β)",
+              "False positive · false negative"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pow",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 470,
+            "w": 440,
+            "label": "Power = 1 − β · often α 0.05, β 0.20",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "n",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 160,
+            "tone": "warn",
+            "title": "Sample size cuts both ways",
+            "lines": [
+              "Larger n: fewer α and β errors",
+              "Huge n: tiny effects “significant”"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "asp",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 400,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "Aspirin trial, > 22,000 people",
+            "lines": [
+              "P < 0.00001",
+              "Risk difference 0.77%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Many tests, one false alarm",
+      "start": 104,
+      "end": 144,
+      "altText": "Multiplicity card: each test at alpha 0.05 has a 5% false-positive chance when there is truly no difference; the chance of at least one false positive grows with the number of tests: about 23% for 5 comparisons, 64% for 20. Arithmetic token: 20 true-null tests × 0.05 = about 1 false positive expected. Bonferroni card: divide alpha by the number of comparisons (0.05/20 = 0.0025; 0.05/5 = 0.01). Caveat card: Bonferroni is simple but conservative (raises Type II risk, especially for correlated tests); Holm and Hochberg step methods and false-discovery-rate control are alternatives; prespecify comparisons and a single primary endpoint. Hook answers card.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "When there is truly no difference, each test at 0.05 has a five percent chance of a false positive. Run more tests and the chance of at least one false alarm climbs: about twenty-three percent for five comparisons, sixty-four percent for twenty."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Twenty tests of true null hypotheses produce, on average, about one false positive. The Bonferroni correction divides alpha by the number of comparisons: 0.05 divided by twenty is 0.0025."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Bonferroni is simple but conservative, so it raises the risk of a Type two error. Holm and Hochberg step methods, and false discovery rate control, are alternatives. Sources also advise naming a single primary endpoint in advance."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook. The vendor’s tiny difference is significant because the study is huge, so judge whether 0.3 units matters clinically. The tube study’s P of 0.04 fails a Bonferroni cut-off of 0.0025, so treat it as a possible chance finding."
+        }
+      ],
+      "objects": [
+        {
+          "id": "mult",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "P(≥ 1 false positive)",
+            "lines": [
+              "5 comparisons ≈ 23%",
+              "20 comparisons ≈ 64%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bonf",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "Bonferroni",
+            "lines": [
+              "20 × 0.05 ≈ 1 false positive",
+              "α per test = 0.05 / 20 = 0.0025"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cav",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "label": "Conservative · Holm, Hochberg, FDR exist",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Hook answers",
+            "lines": [
+              "1 Huge n: is 0.3 units clinically real?",
+              "2 P 0.04 > 0.0025: possible chance"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “P = 0.001 proves an important clinical effect” (✓ a small P can come from a trivial effect in a very large study; check effect size and confidence interval); “P > 0.05 proves the methods are the same” (✓ fail to reject is not proof; small studies can miss large effects); “One of 20 tests at P = 0.04 is a discovery” (✓ about 64% chance of at least one false positive across 20 tests; Bonferroni threshold 0.0025).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: P equals 0.001 proves an important effect. No: in a very large study a trivial effect can give a tiny P. Check the effect size and its confidence interval."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: P above 0.05 proves no difference. No: you only fail to reject. A small study can miss even a large effect."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: one of twenty tests at P equals 0.04 is a discovery. No: twenty tests carry about a sixty-four percent chance of at least one false alarm. Correct alpha first."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “P = 0.001 = important effect.”",
+            "lines": [
+              "✓ Huge n makes tiny effects significant"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “P > 0.05 = no difference.”",
+            "lines": [
+              "✓ Fail to reject ≠ proof of no effect"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “1 of 20 at P = 0.04 is real.”",
+            "lines": [
+              "✓ Bonferroni: 0.05 / 20 = 0.0025"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "One cries wolf, Two sleeps",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Type One cries wolf: an alarm when there is no wolf (alpha, false positive). Type Two sleeps through the wolf: a real wolf missed (beta, false negative). A crowd of watchers spots even a puppy, so ask whether it is dangerous; when many watchers shout, raise the bar by dividing alpha.” Tokens: α = cries wolf · β = sleeps through it · many tests → divide α. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: Type one cries wolf when there is no wolf, a false positive. Type two sleeps through a real wolf, a false negative. A huge crowd of watchers spots even a puppy, so ask if it is dangerous, and when many watchers shout, divide alpha."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: the boy in the fable lied, but a Type one error is pure chance; a P value is not the probability that a wolf exists and depends on every model assumption; Bonferroni is only one, rather strict, correction; and 0.05 is a convention."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "One cries wolf, Two sleeps",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "α = cries wolf",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "β = sleeps through it",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Many tests → divide α",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Type I is chance, not a lie",
+              "P is not the probability a wolf exists",
+              "Bonferroni is one strict option; 0.05 is a convention"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Type I = reject a true null (α) · Type II = miss a false null (β) · power = 1 − β”, “Huge n → tiny effects significant: check effect size · many tests → divide α (Bonferroni)”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "A significant P value means the data would be unusual if there were no effect, not that the effect is real or important, so check the effect size when samples are huge and tighten alpha when many tests are run."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Type I = reject true null (α) · Type II = miss false null (β) · power = 1 − β",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Huge n → check effect size · many tests → Bonferroni α / k",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a statistical test asks whether the data would be surprising if nothing were going on. It can raise a false alarm or miss a real effect, a huge study can find differences too small to matter, and running many tests makes a false alarm likely unless the bar is raised. Scientific terms: null hypothesis, P value, significance level (alpha), Type I error (false positive), Type II error (false negative), beta, power (1 − beta), effect size, confidence interval, multiplicity, family-wise error rate, Bonferroni correction, Holm and Hochberg procedures, false discovery rate.",
+    "why": "Method comparisons, reference-interval studies and validation reports in the laboratory are judged with these tests. Misreading a small P value as an important effect, or a large one as proof of equivalence, can lead to accepting a biased method or rejecting a good one.",
+    "measure": "Alpha is set in advance, conventionally 0.05; many studies set beta at 0.20 (power 0.80). The P value assumes the null hypothesis and the model are true; it is not the probability that the null is true. Statistical significance depends on both sample size and effect size. With k tests of true nulls at 0.05, about 0.05 × k false positives are expected; the chance of at least one is about 23% for 5 and 64% for 20 comparisons. Bonferroni: alpha per test = 0.05 / k (0.0025 for 20).",
+    "differs": "Type I (reject a true null, alpha) vs Type II (fail to reject a false null, beta); statistical significance vs clinical importance (effect size); fail to reject vs proof of no effect; Bonferroni (simple, conservative) vs Holm/Hochberg step methods and false-discovery-rate control.",
+    "examAngle": "Expect: define Type I or Type II error or power, compute a Bonferroni threshold, explain why a tiny P from a huge study may not matter clinically, or recognise that one significant result among many tests may be chance."
+  },
+  "comparisons": [
+    {
+      "id": "type1-vs-type2",
+      "title": "Type I vs Type II error",
+      "left": {
+        "label": "Type I (α)",
+        "points": [
+          "Rejects a true null hypothesis",
+          "False positive"
+        ]
+      },
+      "right": {
+        "label": "Type II (β)",
+        "points": [
+          "Fails to reject a false null",
+          "False negative; power = 1 − β"
+        ]
+      },
+      "distinguisher": "Whether the null hypothesis was actually true or false."
+    },
+    {
+      "id": "stat-vs-clinical",
+      "title": "Statistical vs clinical significance",
+      "left": {
+        "label": "Statistical",
+        "points": [
+          "P at or below alpha",
+          "Depends on sample size and effect size"
+        ]
+      },
+      "right": {
+        "label": "Clinical",
+        "points": [
+          "Is the effect big enough to matter?",
+          "Judged from effect size and confidence interval"
+        ]
+      },
+      "distinguisher": "A P value shows the data are unusual under the null, not how large the effect is."
+    }
+  ],
+  "mnemonic": {
+    "text": "Type One cries wolf: an alarm when there is no wolf (alpha, false positive). Type Two sleeps through the wolf: a real wolf missed (beta, false negative). A huge crowd of watchers spots even a puppy, so ask whether it is dangerous; when many watchers shout, divide alpha.",
+    "explanation": "Links each error type to its number, symbol and direction, and reminds you about sample size (clinical importance) and multiplicity.",
+    "limitation": "The boy in the fable lied on purpose, but a Type I error is chance; a P value is not the probability that the wolf exists and depends on all model assumptions; Bonferroni is only one, conservative, correction; 0.05 is a convention."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "The courtroom analogy breaks: a P value is not the probability that the null hypothesis is true.",
+    "Cards are schematic."
+  ],
+  "takeaway": "A significant P value means the data would be unusual if there were no effect, not that the effect is real or important, so check the effect size when samples are huge and tighten alpha when many tests are run.",
+  "questions": [
+    {
+      "id": "ops-pv-q1",
+      "stem": "An investigator concludes that a new assay differs from the old one, but in reality the two methods give the same results. Which error has been made?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Type I error (alpha)",
+          "rationale": "Correct. Rejecting a null hypothesis that is actually true is a Type I, false-positive, error."
+        },
+        {
+          "id": "b",
+          "text": "Type II error (beta)",
+          "rationale": "Incorrect. A Type II error is failing to reject a null hypothesis that is false, a false negative."
+        },
+        {
+          "id": "c",
+          "text": "Insufficient power",
+          "rationale": "Incorrect. Low power raises the risk of missing a real effect (Type II), not of a false positive."
+        },
+        {
+          "id": "d",
+          "text": "No error, because P was below 0.05",
+          "rationale": "Incorrect. A P value below alpha can still occur by chance when the null is true; that is exactly a Type I error."
+        }
+      ],
+      "answer": "a",
+      "skill": "Error types",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-pv-q2",
+      "stem": "A study compares 20 analytes between two tube types and finds one difference at P = 0.04. Using the Bonferroni correction with an overall alpha of 0.05, what is the per-test significance threshold?",
+      "options": [
+        {
+          "id": "a",
+          "text": "0.0025",
+          "rationale": "Correct. Bonferroni divides alpha by the number of comparisons: 0.05 / 20 = 0.0025, so P = 0.04 is not significant."
+        },
+        {
+          "id": "b",
+          "text": "0.05",
+          "rationale": "Incorrect. Using 0.05 for each of 20 tests gives about a 64% chance of at least one false positive."
+        },
+        {
+          "id": "c",
+          "text": "0.01",
+          "rationale": "Incorrect. 0.01 is the Bonferroni threshold for 5 comparisons, not 20."
+        },
+        {
+          "id": "d",
+          "text": "1.0",
+          "rationale": "Incorrect. Multiplying alpha by 20 makes the threshold looser, the opposite of the correction."
+        }
+      ],
+      "answer": "a",
+      "skill": "Bonferroni calculation",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-pv-q3",
+      "stem": "A trial of more than 20,000 subjects reports P < 0.00001 for a treatment effect. What is the best interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The data are unlikely under no effect, but the effect may still be too small to matter; check the effect size",
+          "rationale": "Correct. Significance depends on sample size as well as effect size; very large studies can make trivial effects significant."
+        },
+        {
+          "id": "b",
+          "text": "The effect is proven to be clinically important",
+          "rationale": "Incorrect. A tiny P value says nothing about the size or clinical importance of the effect."
+        },
+        {
+          "id": "c",
+          "text": "There is less than a 0.001% chance that the null hypothesis is true",
+          "rationale": "Incorrect. The P value assumes the null is true; it is not the probability that the null is true."
+        },
+        {
+          "id": "d",
+          "text": "The study had too little power to be trusted",
+          "rationale": "Incorrect. Power rises with sample size, so a very large study has ample power; the concern is that even trivial effects become significant."
+        }
+      ],
+      "answer": "a",
+      "skill": "Statistical vs clinical significance",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch10",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 10, Statistics for the Lab (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 10,
+          "section": "High-Yield Hits",
+          "items": [
+            3,
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "chapter": 10,
+          "section": "Exam Traps",
+          "items": [
+            2,
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "greenland2016",
+      "kind": "external",
+      "citation": "Greenland S, Senn SJ, Rothman KJ, Carlin JB, Poole C, Goodman SN, Altman DG. Statistical tests, P values, confidence intervals, and power: a guide to misinterpretations. Eur J Epidemiol. 2016;31(4):337-350. doi:10.1007/s10654-016-0149-3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4877414/",
+      "consulted": true,
+      "usedFor": "P value assumes the test hypothesis and model are true and is not a hypothesis probability; 0.05 cut-off and the significant/nonsignificant dichotomy are arbitrary conventions; P > 0.05 does not show absence of an effect; in large studies very minor effects can be significant; small studies can miss large effects; look at the confidence interval; under a true null, rejection occurs at the alpha rate."
+    },
+    {
+      "id": "banerjee2009",
+      "kind": "external",
+      "citation": "Banerjee A, Chitnis UB, Jadhav SL, Bhawalkar JS, Chaudhury S. Hypothesis testing, type I and type II errors. Ind Psychiatry J. 2009;18(2):127-131. doi:10.4103/0972-6748.62274",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2996198/",
+      "consulted": true,
+      "usedFor": "Courtroom analogy; null and alternative hypotheses; Type I (false positive, alpha) and Type II (false negative, beta) definitions; power = 1 − beta; many studies set alpha 0.05 and beta 0.20 (somewhat arbitrary); larger samples reduce both errors; nonsignificant results do not imply no association; hypothesis tests cannot prove."
+    },
+    {
+      "id": "sullivan2012",
+      "kind": "external",
+      "citation": "Sullivan GM, Feinn R. Using Effect Size-or Why the P Value Is Not Enough. J Grad Med Educ. 2012;4(3):279-282. doi:10.4300/jgme-d-12-00156.1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3444174/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. Statistical significance depends on sample size and effect size; with a sufficiently large sample a test almost always shows significance unless the effect is exactly zero; the P value does not reveal effect size; aspirin and myocardial infarction example (more than 22,000 subjects, P < 0.00001, risk difference 0.77%); report effect sizes."
+    },
+    {
+      "id": "ranganathan2016",
+      "kind": "external",
+      "citation": "Ranganathan P, Pramesh CS, Buyse M. Common pitfalls in statistical analysis: The perils of multiple testing. Perspect Clin Res. 2016;7(2):106-107. doi:10.4103/2229-3485.179436",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4840791/",
+      "consulted": true,
+      "usedFor": "Type I and Type II errors; multiple testing inflates false positives (5 comparisons about 23%, 20 comparisons 64%); Bonferroni divides alpha by the number of comparisons (0.05/20 = 0.0025) and is criticised as too conservative, especially for correlated tests; Holm, Hochberg and false-discovery-rate alternatives; prespecify comparisons and a primary endpoint; adjustment raises Type II risk."
+    },
+    {
+      "id": "andrade2019",
+      "kind": "external",
+      "citation": "Andrade C. Multiple Testing and Protection Against a Type 1 (False Positive) Error Using the Bonferroni and Hochberg Corrections. Indian J Psychol Med. 2019;41(1):99-100. doi:10.4103/ijpsym.ijpsym_499_18",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6337927/",
+      "consulted": true,
+      "usedFor": "With no true difference, a single test has a 5% chance of significance; 5 related outcomes give a 23% chance of a chance finding; Bonferroni example 0.05/5 = 0.01; Bonferroni is conservative and magnifies Type II risk; Hochberg procedure; correction mainly for many tests of the same construct."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-pvalue",
+      "text": "Meaning of the P value; alpha set in advance, usually 0.05, as a convention; fail to reject is not proof of no effect.",
+      "status": "checked",
+      "refs": [
+        "greenland2016",
+        "banerjee2009"
+      ]
+    },
+    {
+      "id": "cl-errors",
+      "text": "Type I and Type II definitions; power = 1 − beta; conventional alpha 0.05 and beta 0.20; larger samples reduce both errors.",
+      "status": "checked",
+      "refs": [
+        "banerjee2009",
+        "ranganathan2016"
+      ]
+    },
+    {
+      "id": "cl-largen",
+      "text": "Significance depends on sample size and effect size; huge samples make tiny non-zero effects significant; aspirin example.",
+      "status": "checked",
+      "refs": [
+        "sullivan2012",
+        "greenland2016"
+      ]
+    },
+    {
+      "id": "cl-mult",
+      "text": "Multiple testing: 23% (5) and 64% (20) chance of at least one false positive; about 0.05 × k expected false positives; Bonferroni 0.05/k; conservative; alternatives.",
+      "status": "checked",
+      "refs": [
+        "ranganathan2016",
+        "andrade2019"
+      ],
+      "note": "The expected count of about one in 20 is arithmetic from the 5% per-test rate stated by Andrade, assuming all nulls are true."
+    },
+    {
+      "id": "cl-pend",
+      "text": "Reviewer’s “highly significant: p < 0.001” label and “journals want two-sided tests”.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch10"
+      ],
+      "note": "Not found in the sources read; not taught."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; cards schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“One cries wolf, Two sleeps” memory aid (original; replaces the reviewer’s own mnemonic).",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-large-n-always",
+      "issue": "Ch. 10 Hit 6 and Trap 2 say significance can “always” be forced by inflating n. Sullivan and Feinn 2012 say a large enough sample almost always gives significance unless the effect is exactly zero, and Greenland 2016 notes that a true null is rejected only at the alpha rate; the lesson teaches the qualified form (register flag rv-large-n-significance).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-bonferroni-caveats",
+      "issue": "Ch. 10 Hit 7 and Trap 3 present Bonferroni as the remedy without caveats. Ranganathan 2016 and Andrade 2019 describe it as conservative, raising Type II risk (especially with correlated tests), and list Holm, Hochberg and false-discovery-rate alternatives (register flag rv-bonferroni-conservative).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; concepts shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 factual claims checked against Greenland 2016, Banerjee 2009, Sullivan and Feinn 2012 (read via a page-fetch tool), Ranganathan 2016 and Andrade 2019; 1 pending (reviewer’s “highly significant” label and two-sided-test remark, not taught). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

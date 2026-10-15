@@ -1,0 +1,1683 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-poct-lockouts-traceability-connectivity",
+  "title": "POCT Lockouts, Traceability and Connectivity",
+  "summary": "Learn what point-of-care testing is, why every bedside result must trace to its operator, device and reagent or QC lot, how QC, operator and patient-ID lockouts block unsafe testing, and how a data manager carries results to the patient record.",
+  "domain": "p1-ops",
+  "topic": "ch7",
+  "conceptIds": [
+    "ch7.hit2",
+    "ch7.hit4",
+    "ch7.hit5",
+    "ch7.hit12"
+  ],
+  "tracks": [
+    "ascp"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 7,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          4,
+          5,
+          12
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 7 Hits 2 (POCT definition), 4 (lockouts), 5 (operator/device/lot traceability) and 12 (POCT connectivity), checked against Fung 2020, Shaw 2016, Khan 2019, Larsson 2015, Erasmus 2021, the CLSI POCT01 catalogue page (read via a page-fetch tool) and 42 CFR 493.1251 and 493.1283 (eCFR version 2026-10-01). Not taught as fact: the named POCT01-A2 “device interface” and “observation reporting interface” (no open source read in this session states them; see register flag rv-ch7-poct01-archived), central-lab volume and iatrogenic anaemia from inpatient glucose testing (Hit 2, second half), and annual procedure review signed by the director “or designee” (Hit 5, second half; the CLIA text read requires approval, signature and date by the current laboratory director before use; see register flag rv-ch7-procedure-signoff). US-only regulatory content; Philippine rules are not covered."
+  },
+  "prerequisites": [
+    "ch7.hit1"
+  ],
+  "objectives": [
+    "Define point-of-care testing and state what every POCT result must be traceable to.",
+    "Explain what QC, operator and patient-identification lockouts prevent.",
+    "Describe how a data management system connects POCT devices to the LIS and patient record, and why patient identification still matters."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "The meter that says no",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: 2 a.m. on a ward. A nurse picks up a bedside glucose meter. Her POCT certification expired last week, the meter’s scheduled QC has not been run, and the patient’s wristband barcode will not scan, so she wants to type the patient number in by hand. The meter refuses to start a patient test. Question token: “Fault, or the system doing its job?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Two in the morning. A nurse needs a bedside glucose, but her meter certification expired last week and the scheduled quality control was never run."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "The wristband will not scan, so she tries to type the patient number in by hand. The meter refuses to test."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Is the meter faulty, or is the system doing exactly its job?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "op",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "bad",
+            "title": "Operator",
+            "lines": [
+              "Certification expired"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "qc",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "Quality control",
+            "lines": [
+              "Scheduled QC not run"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "id",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "Patient ID",
+            "lines": [
+              "Barcode will not scan",
+              "Typed in by hand"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "res",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 410,
+            "w": 420,
+            "label": "Meter: patient test blocked",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 640,
+            "label": "Fault, or the system doing its job?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Testing near the patient, traced to its source",
+      "start": 20,
+      "end": 60,
+      "altText": "Definition card: point-of-care testing (POCT) = testing at or near the site of patient care, usually outside the central laboratory and often by non-laboratory staff, chosen for a fast turnaround that supports rapid clinical decisions. Traceability card: each POCT result is documented with its units, reference interval and date/time, and must be traceable to the device serial number, the operator identification number, the reagent lot number and the QC results; POCT results should be clearly marked as POCT, separate from central-laboratory results. US CLIA card (42 CFR 493.1283): the record system must include the identity of the personnel who performed each test. Schematic: one result token with three branches (operator · device · reagent/QC lot).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Point-of-care testing is testing at or near the patient, usually outside the central laboratory and often by staff who are not laboratory professionals. Its main appeal is speed: a result in time for the clinical decision."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 42,
+          "text": "Because so many people and devices are involved, every result must be traceable: to the operator who ran it, the device serial number, and the reagent lot and quality control results behind it."
+        },
+        {
+          "id": "n3",
+          "start": 42,
+          "end": 52,
+          "text": "The result also carries its units, reference interval, and date and time, and it should be clearly marked as a point-of-care result, so it is not confused or trended with central laboratory results."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "In the United States, the CLIA rules also require test records to show who performed each test."
+        }
+      ],
+      "objects": [
+        {
+          "id": "def",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 210,
+            "tone": "b",
+            "title": "POCT",
+            "lines": [
+              "At or near the patient",
+              "Outside the central lab",
+              "Fast result for the decision"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tr",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "good",
+            "title": "Every result traces to",
+            "lines": [
+              "Operator ID",
+              "Device serial number",
+              "Reagent lot + QC results"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lab",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 760,
+            "label": "Units · reference interval · date/time · marked “POCT”",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cfr",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 510,
+            "w": 760,
+            "label": "US CLIA 493.1283: record who performed the test",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Three locks on the device",
+      "start": 60,
+      "end": 104,
+      "altText": "Lockout cards. QC lockout: the device locks and alerts the operator when the QC frequency interval has been exceeded or a QC result is outside acceptable limits (one hospital set every meter to QC lock at 8 a.m. until two QC levels passed). Operator lockout: only valid operators with up-to-date certification can run patient tests; expired training locks the user out, and some systems update lockout lists remotely. Patient-ID control: some programs require a patient barcode scan and do not allow manual entry; manual entry raises the risk of transcription errors and invalid patient identification. Bidirectional connectivity card: the data manager can push valid operator lists and activate/inactivate reagent and QC lots on the devices.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Lockouts turn rules into hard stops. A quality control lockout blocks patient testing when the control interval has run out or a control result falls outside its limits. One hospital locked every meter each morning until two levels of control had passed."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "An operator lockout lets only certified operators with current training run patient tests. When certification expires, that operator is locked out until recertified."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 92,
+          "text": "Patient identification can be locked down too: some programs require the wristband barcode to be scanned and do not allow manual entry, because typing in numbers invites transcription errors and wrong-patient results."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "These locks work best with two-way connectivity: the data manager can send updated operator lists to the devices, and switch reagent and control lots on or off remotely."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lqc",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 440,
+            "h": 150,
+            "tone": "bad",
+            "title": "QC lockout",
+            "lines": [
+              "QC overdue → locked",
+              "QC out of limits → locked"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lop",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 340,
+            "w": 440,
+            "h": 130,
+            "tone": "warn",
+            "title": "Operator lockout",
+            "lines": [
+              "Expired certification → locked"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lid",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Patient ID control",
+            "lines": [
+              "Scan the wristband barcode",
+              "No manual entry"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bi",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 360,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Two-way connectivity",
+            "lines": [
+              "Push valid operator lists",
+              "Activate / inactivate lots"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "From meter to chart",
+      "start": 104,
+      "end": 144,
+      "altText": "Schematic data path: POCT device → data management system (DMS, middleware) → LIS / HIS / electronic medical record. Connectivity standard card: CLSI POCT01-A2, Point-of-Care Connectivity, Approved Standard, Second Edition (2006), aimed at plug-and-play connection so one data manager can serve devices from many manufacturers; CLSI now lists it as archived but technically valid. Manual-entry card: hand transcription of POC glucose results showed about 3–5% transcription errors in an inpatient setting. Patient-ID card: because results flow immediately, an identification error lands in the wrong chart; one audit found patient-ID errors in 18% of POC glucose results; a DMS can hold results with suspicious or unregistered numbers for review. Hook answer card: three locks fired as designed — expired certification, overdue QC, unscannable wristband with no manual entry allowed.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Connectivity means the device sends its result, through a data management system, often called middleware, to the laboratory or hospital information system and the patient’s electronic record."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "The CLSI connectivity standard, POCT01-A2, published in 2006, aimed at plug-and-play links, so one data manager can serve devices from many makers. CLSI now lists it as archived but still technically valid."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Why bother? In published inpatient ward data, hand entry of glucose results had an average transcription error rate of about three to five percent. But automatic transfer is only as good as patient identification: a wrong scan goes straight into the wrong chart."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook: nothing was broken. Three locks fired as designed: expired certification, overdue quality control, and a patient number that could not be scanned."
+        }
+      ],
+      "objects": [
+        {
+          "id": "dev",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 180,
+            "w": 270,
+            "h": 130,
+            "tone": "b",
+            "title": "POCT device",
+            "lines": [
+              "Result + operator + lot"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dms",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 270,
+            "h": 130,
+            "tone": "a",
+            "title": "Data manager",
+            "lines": [
+              "Middleware (DMS)"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lis",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 180,
+            "w": 270,
+            "h": 130,
+            "tone": "good",
+            "title": "LIS · HIS · EMR",
+            "lines": [
+              "Patient record"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.5,
+              "opacity": 0
+            },
+            {
+              "t": 7.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "std",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 330,
+            "w": 760,
+            "label": "CLSI POCT01-A2 (2006): plug-and-play · now archived",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "err",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 385,
+            "w": 760,
+            "label": "Hand entry: ~3–5% transcription errors · wrong scan = wrong chart",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 760,
+            "h": 120,
+            "tone": "good",
+            "title": "Hook answer: three locks worked",
+            "lines": [
+              "Expired certification",
+              "Overdue QC",
+              "No scan, no manual entry"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “A lockout is a device fault; override it” (✓ it is a control: fix the cause, then test); “The result is traceable if the patient ID is right” (✓ it must also trace to operator, device serial and reagent/QC lot); “Connectivity makes patient ID checks unnecessary” (✓ results flow instantly, so a wrong ID goes straight to the wrong chart).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a lockout is a fault, so find a way around it. No: it is a control. Fix the cause, then test."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a result is traceable once the patient is right. No: it must also trace to the operator, the device, and the reagent and control lot."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: connectivity makes identification checks unnecessary. No: results flow instantly, so a wrong identification goes straight into the wrong chart."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Lockout = fault; override it.”",
+            "lines": [
+              "✓ It is a control: fix the cause"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Right patient = traceable.”",
+            "lines": [
+              "✓ Plus operator · device · lot/QC"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Connected = no ID check needed.”",
+            "lines": [
+              "✓ Wrong ID flows to the wrong chart"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Three locks, three parents",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “THREE LOCKS guard the test: QC, operator, patient ID. THREE PARENTS sign every result: operator, device, reagent/QC lot. And the data manager is the POST OFFICE between the meter and the chart.” Tokens: three locks · three parents · post office. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: three locks guard the test: quality control, operator, and patient identification. Three parents sign every result: operator, device, and reagent or control lot. The data manager is the post office between meter and chart."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: lockout features differ between devices and programs; visually read tests may have no reader to connect, so results are entered by hand; and a lock cannot catch every error, such as scanning another patient’s barcode."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Three locks, three parents",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 272,
+            "label": "Locks: QC · operator · ID",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 272,
+            "label": "Parents: operator · device · lot",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 272,
+            "label": "DMS = post office",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Lockout features vary by device",
+              "Visually read tests may need hand entry",
+              "Locks miss a scanned wrong barcode"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Locks: QC overdue or out of limits · expired operator · unscanned patient ID”, “Every result traces to operator, device and reagent/QC lot · device → data manager → LIS and record”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Point-of-care testing stays safe when lockouts stop testing with overdue or failed controls, uncertified operators or unverified patient identity, and when every result reaches the record traced to its operator, device and reagent lot."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Locks: QC overdue/failed · expired operator · unscanned patient ID",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Result → operator · device · lot/QC · device → DMS → LIS/EMR",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: bedside tests are run by many people on many small devices, so the devices are set up to refuse a test when controls are overdue, the user is not certified, or the patient is not properly identified, and every result is stamped with who ran it, on which device and with which reagents. Scientific terms: point-of-care testing (POCT), traceability, QC lockout, operator lockout, positive patient identification, data management system (DMS, middleware), unidirectional vs bidirectional connectivity, CLSI POCT01-A2, laboratory information system (LIS), electronic medical record (EMR).",
+    "why": "POCT is often performed by non-laboratory staff who may be less familiar with quality practices; audits have found missed QC, missing documentation and patient-ID errors. Lockouts enforce QC and competency at the device, traceability allows any result to be investigated, and connectivity removes transcription errors from manual entry.",
+    "measure": "QC lockout: QC frequency exceeded or QC outside acceptable limits. Operator lockout: certification expired or not on the valid-operator list. Patient ID: barcode scan required, manual entry restricted where configured. Result record: units, reference interval, date and time, device serial number, operator ID, reagent lot, QC results, marked as POCT. Manual transcription of POC glucose: average 3–5% error rate reported for inpatient ward settings.",
+    "differs": "Unidirectional connectivity sends results and QC from device to DMS only; bidirectional also sends valid operator lists and reagent/QC lot updates back to the devices. POCT results should be labelled as POCT and not trended with central-laboratory results.",
+    "examAngle": "Expect: name the function that blocks testing when QC is overdue or the operator is uncertified, list what a POCT result must trace to, or choose the advantage of connectivity and bidirectional interfaces."
+  },
+  "comparisons": [
+    {
+      "id": "uni-vs-bi",
+      "title": "Unidirectional vs bidirectional connectivity",
+      "left": {
+        "label": "Unidirectional",
+        "points": [
+          "Device → DMS: results and QC",
+          "No updates sent back to the devices"
+        ]
+      },
+      "right": {
+        "label": "Bidirectional",
+        "points": [
+          "Device ↔ DMS",
+          "DMS pushes valid operators and lot changes"
+        ]
+      },
+      "distinguisher": "Whether the data manager can send information back to the device."
+    },
+    {
+      "id": "manual-vs-connected",
+      "title": "Manual entry vs connected result",
+      "left": {
+        "label": "Manual entry",
+        "points": [
+          "Transcription errors (~3–5% on inpatient wards)",
+          "Results may be omitted or delayed"
+        ]
+      },
+      "right": {
+        "label": "Connected",
+        "points": [
+          "Automatic, real-time transfer",
+          "Still needs correct patient ID"
+        ]
+      },
+      "distinguisher": "Who moves the number into the chart: a person or the interface."
+    }
+  ],
+  "mnemonic": {
+    "text": "THREE LOCKS guard the test: QC, operator, patient ID. THREE PARENTS sign every result: operator, device, reagent/QC lot. The data manager is the POST OFFICE between the meter and the chart.",
+    "explanation": "Groups the lockouts, the traceability links and the data path.",
+    "limitation": "Lockout features vary by device and program; visually read tests may lack a reader and need manual entry; a lock cannot catch a scanned wrong barcode."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Data-path diagram is schematic; real systems differ by vendor.",
+    "Error rates come from specific published study settings and are not universal rates."
+  ],
+  "takeaway": "Point-of-care testing stays safe when lockouts stop testing with overdue or failed controls, uncertified operators or unverified patient identity, and when every result reaches the record traced to its operator, device and reagent lot.",
+  "questions": [
+    {
+      "id": "ops-poctlock-q1",
+      "stem": "Every morning, a hospital’s glucose meters refuse patient testing until two levels of quality control have been run and passed. Which feature is this?",
+      "options": [
+        {
+          "id": "a",
+          "text": "QC lockout",
+          "rationale": "Correct. A QC lockout blocks patient testing when QC is due or has failed."
+        },
+        {
+          "id": "b",
+          "text": "Operator lockout",
+          "rationale": "Incorrect. An operator lockout blocks users without current certification."
+        },
+        {
+          "id": "c",
+          "text": "Patient-ID lockout",
+          "rationale": "Incorrect. A patient-ID lockout blocks testing without a valid patient identification, not missing QC."
+        },
+        {
+          "id": "d",
+          "text": "Unidirectional connectivity",
+          "rationale": "Incorrect. That describes data flowing only from device to data manager."
+        }
+      ],
+      "answer": "a",
+      "skill": "Lockouts",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ops-poctlock-q2",
+      "stem": "Besides the patient, what should each point-of-care result be traceable to?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The operator, the device serial number, and the reagent lot and QC results",
+          "rationale": "Correct. These links let any result be investigated later."
+        },
+        {
+          "id": "b",
+          "text": "The ordering physician only",
+          "rationale": "Incorrect. The requester alone does not show how the result was produced."
+        },
+        {
+          "id": "c",
+          "text": "The central-laboratory analyser used for comparison",
+          "rationale": "Incorrect. A central-lab comparison analyser is not one of the traceability links for a POCT result."
+        },
+        {
+          "id": "d",
+          "text": "The device manufacturer’s address",
+          "rationale": "Incorrect. The device is identified by its serial number, not the maker’s address."
+        }
+      ],
+      "answer": "a",
+      "skill": "Traceability",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ops-poctlock-q3",
+      "stem": "A hospital is choosing a POCT data management system. What is the main advantage of bidirectional over unidirectional connectivity?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The data manager can send updated operator lists and reagent or QC lot changes to the devices",
+          "rationale": "Correct. Unidirectional links only send results and QC from the device."
+        },
+        {
+          "id": "b",
+          "text": "Patient barcodes no longer need to be scanned",
+          "rationale": "Incorrect. Positive patient identification matters more, because results transfer immediately."
+        },
+        {
+          "id": "c",
+          "text": "QC no longer needs to be run",
+          "rationale": "Incorrect. QC is still required before patient testing; connectivity lets QC results be reviewed remotely."
+        },
+        {
+          "id": "d",
+          "text": "Results no longer need to be marked as point-of-care",
+          "rationale": "Incorrect. POCT results should still be clearly distinguished from central-laboratory results."
+        }
+      ],
+      "answer": "a",
+      "skill": "Connectivity",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch7",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 7, Testing at the Bedside (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 7,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            4,
+            5,
+            12
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "fung2020",
+      "kind": "external",
+      "citation": "Fung AWS. Utilizing connectivity and data management system for effective quality management and regulatory compliance in point of care testing. Pract Lab Med. 2020;22:e00187. doi:10.1016/j.plabm.2020.e00187",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7649638/",
+      "consulted": true,
+      "usedFor": "POCT definition (near-patient, outside the central lab, non-laboratory personnel, faster TAT); result documentation and traceability to device serial number, operator ID, reagent lot and QC; POCT results distinguished from central-lab results; 3–5% manual transcription error rate; DMS/middleware connecting devices to LIS/HIS/EMR; CLSI POCT01-A2 compliance; uni- vs bidirectional connectivity; 18% patient-ID error audit; DMS holding suspicious IDs; QC lockout (frequency exceeded or out of limits); operator lockout (valid, up-to-date certification); remote lot activation/inactivation."
+    },
+    {
+      "id": "shaw2016",
+      "kind": "external",
+      "citation": "Shaw JLV. Practical challenges related to point of care testing. Pract Lab Med. 2016;4:22-29. doi:10.1016/j.plabm.2015.12.002",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5574506/",
+      "consulted": true,
+      "usedFor": "Positive patient identification with connectivity; requiring a barcode scan and not allowing manual patient entry; manual entry raises transcription and invalid-ID risk; not all devices scan barcodes; operator certification and recertification."
+    },
+    {
+      "id": "khan2019",
+      "kind": "external",
+      "citation": "Khan AH, Shakeel S, Hooda K, Siddiqui K, Jafri L. Best Practices in the Implementation of a Point of Care Testing Program: Experience From a Tertiary Care Hospital in a Developing Country. EJIFCC. 2019;30(3):288-302.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6803771/",
+      "consulted": true,
+      "usedFor": "Daily 8 a.m. QC lock until two QC levels pass; middleware with operator and patient ID lockout and QC lockout; barcoded operator access after certification; bidirectional connectivity; POCT report elements."
+    },
+    {
+      "id": "larsson2015",
+      "kind": "external",
+      "citation": "Larsson A, Greig-Pylypczuk R, Huisman A. The state of point-of-care testing: a European perspective. Ups J Med Sci. 2015;120(1):1-10. doi:10.3109/03009734.2015.1006347",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4389002/",
+      "consulted": true,
+      "usedFor": "Electronic lock-out of operators with inadequate or expired training; remote update of lock-out lists; documentation of operator, reagent batch and internal QC for each test."
+    },
+    {
+      "id": "erasmus2021",
+      "kind": "external",
+      "citation": "Erasmus R, Sahni S, El-Sharkawy R. Connectivity Strategies in Managing a POCT Service. EJIFCC. 2021;32(2):190-194.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8343042/",
+      "consulted": true,
+      "usedFor": "POCT defined as testing at or near the site of patient care; connectivity definition; traceability requirement (when, where, by whom; reagent batch numbers); CLSI POCT1-A2 aimed at plug-and-play, multi-vendor data management."
+    },
+    {
+      "id": "clsi-poct01",
+      "kind": "external",
+      "citation": "Clinical and Laboratory Standards Institute. POCT01-A2: Point-of-Care Connectivity; Approved Standard, Second Edition. Catalogue page (accessed 2026-10-14).",
+      "url": "https://clsi.org/shop/standards/poct01/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. Publication date July 2006; listed as archived (no longer reviewed through the CLSI consensus process) but technically valid; specifies common communication interfaces and protocols between systems and devices. The standard itself was not read."
+    },
+    {
+      "id": "cfr493-1283",
+      "kind": "external",
+      "citation": "42 CFR § 493.1283 — Standard: Test records (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493/subpart-K/section-493.1283",
+      "consulted": true,
+      "usedFor": "Record system must include records and dates of all specimen testing, including the identity of the personnel who performed the test."
+    },
+    {
+      "id": "cfr493-1251",
+      "kind": "external",
+      "citation": "42 CFR § 493.1251 — Standard: Procedure manual (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493/subpart-K/section-493.1251",
+      "consulted": true,
+      "usedFor": "Procedures and changes must be approved, signed and dated by the current laboratory director before use (used for the register flag on Hit 5; not taught in scenes)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-def",
+      "text": "POCT is testing at or near the patient, usually outside the central lab and often by non-laboratory staff, for a fast result.",
+      "status": "checked",
+      "refs": [
+        "fung2020",
+        "erasmus2021"
+      ]
+    },
+    {
+      "id": "cl-trace",
+      "text": "Each POCT result traces to operator ID, device serial number, reagent lot and QC; carries units, reference interval, date/time; marked as POCT; CLIA records identify the tester.",
+      "status": "checked",
+      "refs": [
+        "fung2020",
+        "larsson2015",
+        "erasmus2021",
+        "cfr493-1283"
+      ]
+    },
+    {
+      "id": "cl-lock",
+      "text": "QC lockout (overdue or out of limits), operator lockout (expired certification), patient-ID control (barcode scan, no manual entry).",
+      "status": "checked",
+      "refs": [
+        "fung2020",
+        "khan2019",
+        "larsson2015",
+        "shaw2016"
+      ]
+    },
+    {
+      "id": "cl-conn",
+      "text": "Device → DMS → LIS/HIS/EMR; bidirectional connectivity pushes operator lists and lot changes; manual transcription 3–5% errors; patient-ID errors flow to the wrong chart.",
+      "status": "checked",
+      "refs": [
+        "fung2020",
+        "shaw2016"
+      ]
+    },
+    {
+      "id": "cl-poct01",
+      "text": "CLSI POCT01-A2 (2006) aims at plug-and-play multi-vendor connectivity; now archived but technically valid.",
+      "status": "checked",
+      "refs": [
+        "clsi-poct01",
+        "erasmus2021",
+        "fung2020"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "POCT01-A2 “device interface” and “observation reporting interface” names; central-lab volume and iatrogenic anaemia from inpatient glucose testing; annual procedure review signed by director or designee.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch7"
+      ],
+      "note": "Not taught. No open source read in this session names the two POCT01-A2 interfaces; the CLIA procedure text read requires director approval before use and does not mention annual review or a designee."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; data-path diagram schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Three locks, three parents.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-poct01-archived",
+      "issue": "Ch. 7 Hit 12 presents CLSI POCT01-A2 as the POCT connectivity standard. The CLSI catalogue lists POCT01-A2 (2006) as archived (no longer reviewed through the consensus process) though still technically valid; the reviewer’s two named interfaces could not be confirmed from an open source (register flag rv-ch7-poct01-archived).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-procedure-signoff",
+      "issue": "Ch. 7 Hit 5 says procedures are reviewed annually and signed by the CLIA director or designee. The CLIA text read (42 CFR 493.1251(d)) requires procedures and changes to be approved, signed and dated by the current laboratory director before use and does not mention annual review or a designee; annual review may be an accreditation requirement not checked here. US-only; Philippine rules are not covered (register flag rv-ch7-procedure-signoff).",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; devices and data path shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 factual claims checked against Fung 2020, Shaw 2016, Khan 2019, Larsson 2015, Erasmus 2021, the CLSI POCT01 catalogue page (read via a page-fetch tool) and 42 CFR 493.1283; 1 pending (POCT01-A2 interface names; iatrogenic anaemia; annual procedure review). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
