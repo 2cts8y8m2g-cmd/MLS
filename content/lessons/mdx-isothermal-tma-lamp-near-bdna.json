@@ -1,0 +1,1670 @@
+{
+  "schemaVersion": 1,
+  "id": "mdx-isothermal-tma-lamp-near-bdna",
+  "title": "Amplification Without a Thermal Cycler: TMA, NASBA, LAMP, NEAR and bDNA",
+  "summary": "Learn how isothermal methods (TMA, NASBA, LAMP and NEAR) amplify nucleic acid at one temperature, why RNA-first methods keep double-stranded DNA out, and why branched DNA amplifies the signal rather than the target.",
+  "domain": "p8-mdx",
+  "topic": "ch69",
+  "conceptIds": [
+    "ch69.hit5",
+    "ch69.trap4",
+    "ch69.hit13",
+    "ch69.hit7",
+    "ch69.hit6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 69,
+        "section": "High-Yield Hits",
+        "items": [
+          5,
+          6,
+          7,
+          13
+        ]
+      },
+      {
+        "chapter": 69,
+        "section": "Exam Traps",
+        "items": [
+          4
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 69 Hits 5, 6, 7 and 13 and Trap 4, checked against Dunbar & Das 2019, Obande & Banga Singh 2020, Islam & Koirala 2022, Loeffelholz & Tang 2020, Notomi 2000 (read via a page-fetch tool) and Elbeik 2000 (read via a page-fetch tool). Qualifications: the reviewer’s “TMA/NASBA need NO initial denaturation” is qualified by Obande 2020, which describes an initial ~65 °C RNA denaturation step for NASBA; what is absent is DNA melting, so dsDNA is not amplified; Dunbar 2019 also lists a commercial TMA assay for hepatitis B virus (register flag rv-tma-nasba-denaturation). The reviewer’s 50 copies/mL bDNA limit matches Elbeik 2000, but Dunbar 2019 lists the FDA-approved Versant HIV-1 RNA 3.0 range as 75–500,000 copies/mL (rv-bdna-hiv-lod-version). CLIA waiver is a US category (rv-near-clia-us-only). Not taught: group A strep as a first-generation NEAR waived test, SDA temperature, other Ch. 69 items."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "Explain how TMA and NASBA amplify RNA at a constant temperature and why double-stranded DNA is not amplified.",
+    "Describe LAMP primers, polymerase, temperature and product structure.",
+    "Distinguish target amplification (TMA, NASBA, LAMP, NEAR) from signal amplification (bDNA) and recall NEAR’s point-of-care role."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Four tests, no thermal cycler",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a lab tour shows four molecular tests running with no thermal cycler: (1) an RNA viral-load analyser using transcription-mediated amplification; (2) a heat block running a LAMP assay that turns a tube cloudy; (3) a clinic box giving an influenza result in minutes; (4) a microplate assay for HIV-1 RNA that copies no target at all. Question token: “What is amplified in each, and how?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "A lab tour shows four molecular tests, and not one of them uses a thermal cycler."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "An RNA viral-load analyser, a heat block with a cloudy tube, a clinic box that reports influenza in minutes, and a plate assay for HIV-1 RNA that copies no target at all."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "What is being amplified in each one, and how?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 160,
+            "w": 420,
+            "h": 130,
+            "tone": "b",
+            "title": "1 RNA viral-load analyser",
+            "lines": [
+              "Transcription-mediated"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 160,
+            "w": 400,
+            "h": 130,
+            "tone": "good",
+            "title": "2 Heat block",
+            "lines": [
+              "Tube turns cloudy"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 320,
+            "w": 420,
+            "h": 130,
+            "tone": "a",
+            "title": "3 Clinic box",
+            "lines": [
+              "Influenza in minutes"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s4",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 320,
+            "w": 400,
+            "h": 130,
+            "tone": "warn",
+            "title": "4 HIV-1 RNA plate assay",
+            "lines": [
+              "Copies no target"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 640,
+            "label": "What is amplified, and how?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Constant temperature, different enzymes",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic: a thermometer held flat. Card 1: isothermal amplification runs at one constant temperature, so no thermal cycler is needed; it suits point-of-care and low-resource settings, but primer design is demanding and nonspecific products are a risk. Card 2: NASBA uses three enzymes (AMV reverse transcriptase, RNase H, T7 RNA polymerase); the first primer carries a T7 promoter, so many RNA copies are transcribed from each DNA intermediate; the product is single-stranded RNA. Card 3: TMA works the same way with two enzymes, because its reverse transcriptase also has RNase H activity; it reaches more than a billionfold amplification and is detected in the same tube with acridinium-ester probes (hybridization protection assay).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Isothermal methods amplify nucleic acid at one constant temperature, so no thermal cycler is needed. That makes them suited to point-of-care and low-resource settings, but primer design is demanding and nonspecific products are a risk."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 42,
+          "text": "NASBA targets RNA with three enzymes: reverse transcriptase, RNase H, and T7 RNA polymerase. One primer carries a T7 promoter, so each DNA copy is transcribed into many RNA copies. The product is single-stranded RNA."
+        },
+        {
+          "id": "n3",
+          "start": 42,
+          "end": 52,
+          "text": "Transcription-mediated amplification, TMA, works the same way with only two enzymes, because its reverse transcriptase also has RNase H activity. It can reach more than a billionfold amplification."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "TMA products can be read in the same tube by chemiluminescent acridinium-ester probes, which limits amplicon contamination."
+        }
+      ],
+      "objects": [
+        {
+          "id": "iso",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Isothermal = one temperature",
+            "lines": [
+              "No thermal cycler",
+              "Primer design demanding"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "nasba",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 210,
+            "tone": "a",
+            "title": "NASBA (3 enzymes)",
+            "lines": [
+              "Reverse transcriptase",
+              "RNase H",
+              "T7 RNA polymerase → RNA"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tma",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "h": 160,
+            "tone": "good",
+            "title": "TMA (2 enzymes)",
+            "lines": [
+              "RT with RNase H activity",
+              "> 10⁹-fold"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hpa",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 470,
+            "w": 420,
+            "label": "Same-tube acridinium-ester probe",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Why DNA stays out, and how LAMP loops",
+      "start": 60,
+      "end": 104,
+      "altText": "RNA-first card: in NASBA, double-stranded DNA is not amplified unless it is first denatured; an initial heat step is used for RNA at about 65 °C (about 95 °C would be needed for DNA) before the 41 °C reaction, and the thermolabile enzymes are added afterwards. So an RNA method can measure RNA without double-stranded DNA joining in. LAMP card (Notomi 2000): four primers recognising six distinct target regions (two inner, two outer), optional loop primers (4–6 primers in total), Bst DNA polymerase large fragment (strand-displacing), about 60–65 °C for about 1 hour, about 10⁹ copies in under an hour; products are stem-loop DNAs with inverted repeats of the target, cauliflower-like structures; read by turbidity or dyes.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Why do RNA methods ignore DNA? In NASBA, double-stranded DNA is not amplified unless it is first denatured. The reaction runs at about forty-one degrees, well below the ninety-five degrees that DNA denaturation would need."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "There is still a short initial denaturation step for RNA, at about sixty-five degrees, done before the heat-sensitive enzymes are added. What is missing is the ninety-five degree step that DNA would need."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "LAMP amplifies DNA. Four primers recognise six regions of the target, and loop primers can be added, for four to six primers in all. Bst polymerase displaces strands at about sixty to sixty-five degrees, and needs only a water bath or heat block."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "In under an hour, LAMP builds about a billion copies as stem-loop DNA with repeated inverted copies of the target: cauliflower-like structures that can be read by turbidity or dye."
+        }
+      ],
+      "objects": [
+        {
+          "id": "rna",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 210,
+            "tone": "b",
+            "title": "NASBA: RNA first",
+            "lines": [
+              "dsDNA not amplified unless melted",
+              "Reaction ~41 °C",
+              "No ~95 °C DNA step"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "heat",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 460,
+            "w": 440,
+            "label": "Still a ~65 °C RNA step first",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lamp",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 230,
+            "tone": "good",
+            "title": "LAMP (DNA)",
+            "lines": [
+              "4 primers, 6 regions (+ loop)",
+              "Bst polymerase, ~60–65 °C",
+              "Heat block, no cycler"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cauli",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 480,
+            "w": 420,
+            "label": "~10⁹ copies < 1 h · cauliflower DNA",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "NEAR and bDNA",
+      "start": 104,
+      "end": 144,
+      "altText": "NEAR card: target-specific primers carrying a nicking-enzyme site, a nicking endonuclease and a strand-displacing polymerase repeatedly nick, extend and release short products at a constant temperature; drawback: many nonspecific products. Commercial point-of-care NEAR tests (Alere i, now ID NOW) exist for influenza A/B and RSV, with results in minutes; ID NOW (formerly Alere i) Influenza A & B was described as the first CLIA-waived nucleic acid test. Compared with real-time RT-PCR, sensitivity was lower in low-positive samples. bDNA card: no target amplification; capture and label extender probes hybridise to the target, a preamplifier and branched amplifier molecules build a tree that carries many alkaline-phosphatase probes; chemiluminescent signal proportional to target. Reported HIV-1 detection limit: 50 copies/mL (bDNA 3.0, Elbeik 2000); a 2019 review gives the FDA-approved Versant HIV-1 RNA 3.0 range as 75–500,000 copies/mL. Hook answers: 1 TMA (RNA target), 2 LAMP (DNA target), 3 NEAR, 4 bDNA (signal).",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "NEAR, the nicking enzyme amplification reaction, uses primers that carry a nicking site, a nicking enzyme and a strand-displacing polymerase. Nick, extend, release, repeat, all at one temperature."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Point-of-care NEAR tests for influenza and RSV give results in minutes, and the influenza test was described as the first CLIA-waived nucleic acid test. Low-positive samples can be missed, compared with real-time RT-PCR."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 136,
+          "text": "Branched DNA copies no target. Probes hybridise to the target and build a branched tree carrying many enzyme labels, so the signal is amplified and stays proportional to the target. An early study reported HIV-1 RNA detection down to fifty copies per millilitre; a later review lists the approved assay range from seventy-five copies."
+        },
+        {
+          "id": "l4",
+          "start": 136,
+          "end": 144,
+          "text": "Back to the hook: one is TMA on RNA, two is LAMP on DNA, three is NEAR, and four is branched DNA, which amplifies signal only."
+        }
+      ],
+      "objects": [
+        {
+          "id": "near",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 440,
+            "h": 170,
+            "tone": "a",
+            "title": "NEAR",
+            "lines": [
+              "Nicking enzyme + polymerase",
+              "Many nonspecific products"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "waiv",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "label": "First CLIA-waived NAAT: influenza",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bdna",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 230,
+            "tone": "b",
+            "title": "bDNA: signal, not target",
+            "lines": [
+              "Probe tree + AP labels",
+              "Signal ∝ target",
+              "HIV-1: 50 vs 75 copies/mL"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 760,
+            "label": "1 TMA · 2 LAMP · 3 NEAR · 4 bDNA (signal)",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “TMA is just another PCR” (✓ TMA is isothermal, RNA-targeted and transcription-based, making RNA amplicons with T7 RNA polymerase); “bDNA copies the target” (✓ bDNA amplifies the signal by hybridisation; the target is not copied); “LAMP needs a thermal cycler” (✓ LAMP runs at one temperature, about 60–65 °C, in a water bath or heat block).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: TMA is just another PCR. No: TMA runs at one temperature, starts from RNA, and makes RNA copies with T7 RNA polymerase."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: branched DNA copies the target. No: it amplifies the signal by stacking probes; the target is never copied."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: LAMP needs a thermal cycler. No: it runs at about sixty to sixty-five degrees in a heat block."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “TMA is just another PCR.”",
+            "lines": [
+              "✓ Isothermal, RNA → RNA via T7 polymerase"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “bDNA copies the target.”",
+            "lines": [
+              "✓ Signal amplification only"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “LAMP needs a thermal cycler.”",
+            "lines": [
+              "✓ One temperature, heat block"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Photocopy, sprout, snip, or stack",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “TMA/NASBA PHOTOCOPY RNA into more RNA; LAMP SPROUTS a cauliflower of looped DNA; NEAR SNIPS and releases short copies at the bedside; bDNA only STACKS labels on the target and copies nothing.” Tokens: photocopy = TMA/NASBA · sprout = LAMP · snip = NEAR · stack = bDNA. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: TMA and NASBA photocopy RNA into more RNA. LAMP sprouts a cauliflower of looped DNA. NEAR snips and releases short copies at the bedside. Branched DNA only stacks labels on the target and copies nothing."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: NASBA still uses a brief heat step for RNA; LAMP can be run on RNA after reverse transcription; and reported detection limits differ between sources, so check the package insert."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Photocopy, sprout, snip, or stack",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 170,
+            "w": 200,
+            "label": "Photocopy = TMA",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 170,
+            "w": 200,
+            "label": "Sprout = LAMP",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 170,
+            "w": 200,
+            "label": "Snip = NEAR",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 810,
+            "y": 170,
+            "w": 200,
+            "label": "Stack = bDNA",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.1,
+              "opacity": 0
+            },
+            {
+              "t": 5.8999999999999995,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "NASBA keeps a brief RNA heat step",
+              "RT-LAMP works on RNA too",
+              "Reported limits differ by source"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Isothermal: TMA/NASBA (RNA → RNA, T7 polymerase) · LAMP (4–6 primers, Bst, cauliflower DNA) · NEAR (nicking enzyme, first CLIA-waived influenza NAAT)”, “bDNA = signal amplification, target never copied”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Isothermal methods amplify at one temperature, with TMA and NASBA copying RNA into RNA, LAMP building looped DNA with Bst polymerase, and NEAR powering rapid influenza tests, while branched DNA amplifies only the signal and never copies the target."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "TMA/NASBA: RNA → RNA · LAMP: Bst, cauliflower · NEAR: nicking, rapid flu",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "bDNA = signal amplification; target never copied",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: some tests copy genetic material without heating and cooling over and over. Two of them copy RNA into more RNA, one grows looped DNA, one uses an enzyme that snips DNA to release short copies very quickly, and one, branched DNA, never copies the target and instead piles labels onto it. Scientific terms: isothermal amplification, transcription-mediated amplification (TMA), nucleic acid sequence-based amplification (NASBA), reverse transcriptase, RNase H, T7 RNA polymerase, hybridization protection assay, loop-mediated isothermal amplification (LAMP), Bst DNA polymerase, strand displacement, nicking enzyme amplification reaction (NEAR), branched DNA (bDNA), signal amplification.",
+    "why": "A constant temperature removes the need for a thermal cycler, which makes these methods suited to point-of-care and low-resource use. In NASBA the reaction runs at about 41 °C after only an RNA denaturation step, so double-stranded DNA is not amplified unless it is first denatured at about 95 °C. TMA works on the same principle, but at least one commercial TMA assay targets a DNA virus (hepatitis B virus), so do not assume TMA can never detect DNA. Signal amplification does not copy the target; the signal comes from labelled probes built on the original target and stays proportional to it.",
+    "measure": "NASBA: three enzymes (AMV reverse transcriptase, RNase H, T7 RNA polymerase), ~41 °C reaction after an initial ~65 °C RNA step; dsDNA amplified only if first denatured (~95 °C). TMA: two enzymes (RT with RNase H activity, RNA polymerase), >10⁹-fold. LAMP: 4 primers recognising 6 regions, optional loop primers (4–6 total), Bst polymerase, ~60–65 °C, ~1 h, ~10⁹ copies; cauliflower-like stem-loop products, read by turbidity or dye. NEAR: nicking endonuclease + strand-displacing polymerase; point-of-care influenza A/B and RSV in minutes. bDNA: HIV-1 RNA 50 copies/mL (bDNA 3.0, Elbeik 2000); Versant HIV-1 RNA 3.0 range 75–500,000 copies/mL (Dunbar 2019).",
+    "differs": "PCR (thermal cycling, DNA polymerase) vs TMA/NASBA (isothermal, RNA → RNA); NASBA (separate RNase H) vs TMA (RT with RNase H activity); LAMP (DNA, Bst) vs NEAR (nicking enzyme); target amplification vs signal amplification (bDNA).",
+    "examAngle": "Expect: pick the method that needs no thermal cycler, the one that amplifies signal not target, the polymerase used in LAMP, the method behind the first CLIA-waived molecular influenza test, or why an RNA method is not inflated by DNA."
+  },
+  "comparisons": [
+    {
+      "id": "pcr-vs-tma",
+      "title": "PCR vs TMA/NASBA",
+      "left": {
+        "label": "PCR",
+        "points": [
+          "Repeated heating and cooling in a thermal cycler",
+          "DNA polymerase makes DNA amplicons"
+        ]
+      },
+      "right": {
+        "label": "TMA / NASBA",
+        "points": [
+          "One temperature after a brief RNA heat step",
+          "T7 RNA polymerase makes RNA amplicons"
+        ]
+      },
+      "distinguisher": "Temperature cycling and the type of amplicon."
+    },
+    {
+      "id": "target-vs-signal",
+      "title": "Target vs signal amplification",
+      "left": {
+        "label": "Target (TMA, NASBA, LAMP, NEAR)",
+        "points": [
+          "Copies of the target are made",
+          "Amplicons can contaminate"
+        ]
+      },
+      "right": {
+        "label": "Signal (bDNA)",
+        "points": [
+          "Probes and labels stack on the target",
+          "Signal proportional to target"
+        ]
+      },
+      "distinguisher": "Whether the target sequence itself is copied."
+    }
+  ],
+  "mnemonic": {
+    "text": "TMA/NASBA PHOTOCOPY RNA into more RNA; LAMP SPROUTS a cauliflower of looped DNA; NEAR SNIPS and releases short copies at the bedside; bDNA only STACKS labels on the target and copies nothing.",
+    "explanation": "One verb per method: photocopy, sprout, snip, stack.",
+    "limitation": "NASBA still uses a brief RNA heat step; LAMP can run on RNA after reverse transcription (RT-LAMP); reported detection limits differ between sources."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Mechanism drawings are schematic cards.",
+    "Reported detection limits differ between sources."
+  ],
+  "takeaway": "Isothermal methods amplify at one temperature, with TMA and NASBA copying RNA into RNA, LAMP building looped DNA with Bst polymerase, and NEAR powering rapid influenza tests, while branched DNA amplifies only the signal and never copies the target.",
+  "questions": [
+    {
+      "id": "mdx-iso-q1",
+      "stem": "Which method amplifies the detection signal rather than making copies of the target nucleic acid?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Branched DNA (bDNA) assay",
+          "rationale": "Correct. bDNA builds a branched probe structure carrying many enzyme labels on the target; the target is not copied."
+        },
+        {
+          "id": "b",
+          "text": "Transcription-mediated amplification (TMA)",
+          "rationale": "Incorrect. TMA makes many RNA copies of the target with T7 RNA polymerase."
+        },
+        {
+          "id": "c",
+          "text": "Loop-mediated isothermal amplification (LAMP)",
+          "rationale": "Incorrect. LAMP copies target DNA into long stem-loop products."
+        },
+        {
+          "id": "d",
+          "text": "Nicking enzyme amplification reaction (NEAR)",
+          "rationale": "Incorrect. NEAR generates and amplifies short target-derived products."
+        }
+      ],
+      "answer": "a",
+      "skill": "Target vs signal",
+      "difficulty": "recall"
+    },
+    {
+      "id": "mdx-iso-q2",
+      "stem": "A LAMP assay is set up in a heat block. Which feature fits LAMP?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Four to six primers and strand-displacing Bst polymerase at about 60–65 °C",
+          "rationale": "Correct. Four core primers recognise six regions, loop primers are optional, and Bst works at one temperature."
+        },
+        {
+          "id": "b",
+          "text": "Repeated heating and cooling cycles in a thermal cycler",
+          "rationale": "Incorrect. That is thermal cycling, as in PCR."
+        },
+        {
+          "id": "c",
+          "text": "T7 RNA polymerase producing single-stranded RNA",
+          "rationale": "Incorrect. That describes TMA and NASBA."
+        },
+        {
+          "id": "d",
+          "text": "Alkaline-phosphatase labels on a branched probe tree",
+          "rationale": "Incorrect. That describes bDNA signal amplification."
+        }
+      ],
+      "answer": "a",
+      "skill": "LAMP",
+      "difficulty": "recognition"
+    },
+    {
+      "id": "mdx-iso-q3",
+      "stem": "Why is double-stranded genomic DNA in a specimen not amplified in a NASBA assay for an RNA target?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The reaction runs at about 41 °C with no DNA-melting step, and dsDNA is amplified only if first denatured",
+          "rationale": "Correct. NASBA uses an initial ~65 °C step for RNA only; DNA would need ~95 °C."
+        },
+        {
+          "id": "b",
+          "text": "RNase H destroys all DNA in the specimen",
+          "rationale": "Incorrect. RNase H degrades the RNA strand of RNA–DNA hybrids."
+        },
+        {
+          "id": "c",
+          "text": "NASBA uses no primers",
+          "rationale": "Incorrect. NASBA uses two primers, one carrying a T7 promoter."
+        },
+        {
+          "id": "d",
+          "text": "NASBA requires a thermal cycler that skips the DNA step",
+          "rationale": "Incorrect. NASBA is isothermal and needs no thermal cycler."
+        }
+      ],
+      "answer": "a",
+      "skill": "RNA-first amplification",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch69",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 69, PCR and Amplification Methods (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 69,
+          "section": "High-Yield Hits",
+          "items": [
+            5,
+            6,
+            7,
+            13
+          ]
+        },
+        {
+          "chapter": 69,
+          "section": "Exam Traps",
+          "items": [
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "dunbar2019",
+      "kind": "external",
+      "citation": "Dunbar S, Das S. Amplification chemistries in clinical virology. J Clin Virol. 2019;115:18-31. doi:10.1016/j.jcv.2019.03.015",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7106405/",
+      "consulted": true,
+      "usedFor": "Isothermal methods need no thermal cycler; commercial TMA assays listed for HIV-1, HCV and HBV (Aptima HBV Quant Dx); RT-LAMP assays developed for RNA viruses; NASBA three enzymes and ssRNA product; TMA mechanism, >10⁹-fold, HPA same-tube detection; LAMP 4–6 primers, concatemers, turbidity/dye detection; NEAR mechanism, nonspecific products, POC influenza A/B and RSV (Alere i listed as NEAR), lower sensitivity than RT-PCR in low positives; bDNA hybridisation-based signal amplification, AP chemiluminescence proportional to target; Versant HIV-1 RNA 3.0 range 75–500,000 copies/mL."
+    },
+    {
+      "id": "obande2020",
+      "kind": "external",
+      "citation": "Obande GA, Banga Singh KK. Current and Future Perspectives on Isothermal Nucleic Acid Amplification Technologies for Diagnosing Infections. Infect Drug Resist. 2020;13:455-483. doi:10.2147/idr.s217571",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7024801/",
+      "consulted": true,
+      "usedFor": "NASBA cannot amplify dsDNA unless first denatured; initial denaturation 65 °C for RNA and 95 °C for DNA vs 41 °C reaction; thermolabile enzymes added after denaturation; LAMP Bst polymerase, 4 primers recognising 6 sequences, 60–65 °C for 1 h."
+    },
+    {
+      "id": "islam2022",
+      "kind": "external",
+      "citation": "Islam MM, Koirala D. Toward a next-generation diagnostic tool: A review on emerging isothermal nucleic acid amplification techniques for the detection of SARS-CoV-2 and other infectious viruses. Anal Chim Acta. 2022;1209:339338. doi:10.1016/j.aca.2021.339338",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8633689/",
+      "consulted": true,
+      "usedFor": "TMA targets listed as RNA (DNA); TMA generates RNA amplicons with T7 RNA polymerase and needs only two enzymes because its reverse transcriptase has RNase H activity; NEAR primers with nicking sites, nicking endonuclease plus strand-displacing polymerase; LAMP cauliflower-like stem-loop products; ID NOW uses a NEAR mix."
+    },
+    {
+      "id": "loeffelholz2020",
+      "kind": "external",
+      "citation": "Loeffelholz MJ, Tang YW. Laboratory diagnosis of emerging human coronavirus infections - the state of the art. Emerg Microbes Infect. 2020;9(1):747-756. doi:10.1080/22221751.2020.1745095",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7172701/",
+      "consulted": true,
+      "usedFor": "ID NOW (previously Alere i) Influenza A & B described as the first-ever CLIA-waived nucleic acid-based test."
+    },
+    {
+      "id": "notomi2000",
+      "kind": "external",
+      "citation": "Notomi T, Okayama H, Masubuchi H, Yonekawa T, Watanabe K, Amino N, Hase T. Loop-mediated isothermal amplification of DNA. Nucleic Acids Res. 2000;28(12):E63. doi:10.1093/nar/28.12.e63",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC102748/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. Four primers recognising six distinct sequences; Bst DNA polymerase large fragment; 65 °C for 1 h; 10⁹ copies in under an hour; stem-loop DNAs with inverted repeats, cauliflower-like structures; water bath or heat block."
+    },
+    {
+      "id": "elbeik2000",
+      "kind": "external",
+      "citation": "Elbeik T, Charlebois E, Nassos P, Kahn J, Hecht FM, Yajko D, Ng V, Hadley K. Quantitative and cost comparison of ultrasensitive human immunodeficiency virus type 1 RNA viral load assays: Bayer bDNA quantiplex versions 3.0 and 2.0 and Roche PCR Amplicor monitor version 1.5. J Clin Microbiol. 2000;38(3):1113-1120. doi:10.1128/jcm.38.3.1113-1120.2000",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC86352/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. bDNA 3.0 is signal amplification with a lower detection limit of 50 HIV-1 RNA copies/mL (range 50–500,000)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-iso",
+      "text": "Isothermal amplification runs at one temperature without a thermal cycler; suited to POC; primer design and nonspecific products are challenges.",
+      "status": "checked",
+      "refs": [
+        "dunbar2019"
+      ]
+    },
+    {
+      "id": "cl-tma",
+      "text": "NASBA three enzymes; TMA two enzymes (RT with RNase H activity); T7 RNA polymerase, RNA product; >10⁹-fold; same-tube acridinium-ester detection.",
+      "status": "checked",
+      "refs": [
+        "dunbar2019",
+        "islam2022"
+      ]
+    },
+    {
+      "id": "cl-dna",
+      "text": "dsDNA not amplified in NASBA unless first denatured; ~65 °C RNA step, ~95 °C needed for DNA, ~41 °C reaction.",
+      "status": "checked",
+      "refs": [
+        "obande2020"
+      ],
+      "note": "Stated for NASBA (Obande 2020). No TMA-specific DNA statement was found; Dunbar 2019 lists a commercial TMA assay for hepatitis B virus and Islam 2022 lists TMA targets as RNA (DNA), so the DNA-exclusion point is taught for NASBA only."
+    },
+    {
+      "id": "cl-lamp",
+      "text": "LAMP 4 primers/6 regions plus loop primers (4–6), Bst, ~60–65 °C, ~1 h, ~10⁹ copies, cauliflower-like stem-loop products, turbidity/dye readout.",
+      "status": "checked",
+      "refs": [
+        "notomi2000",
+        "dunbar2019",
+        "obande2020",
+        "islam2022"
+      ]
+    },
+    {
+      "id": "cl-near",
+      "text": "NEAR mechanism; POC influenza A/B and RSV; lower sensitivity in low positives; first CLIA-waived nucleic acid test (influenza).",
+      "status": "checked",
+      "refs": [
+        "dunbar2019",
+        "islam2022",
+        "loeffelholz2020"
+      ]
+    },
+    {
+      "id": "cl-bdna",
+      "text": "bDNA signal amplification, AP chemiluminescence proportional to target; HIV-1 50 copies/mL (bDNA 3.0, 2000) vs Versant 3.0 range 75–500,000 copies/mL.",
+      "status": "checked",
+      "refs": [
+        "dunbar2019",
+        "elbeik2000"
+      ]
+    },
+    {
+      "id": "cl-tmahbv",
+      "text": "At least one commercial TMA assay targets hepatitis B virus (a DNA virus); TMA targets listed as RNA (DNA).",
+      "status": "checked",
+      "refs": [
+        "dunbar2019",
+        "islam2022"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Group A strep as one of the first NEAR CLIA-waived tests; other Ch. 69 numbers (SDA temperature, eSensor cut-off, etc.).",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch69"
+      ],
+      "note": "Not taught as fact; group A strep not verified in the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; mechanisms shown as schematic cards.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Photocopy, sprout, snip, or stack.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-nasba-denaturation",
+      "issue": "The reviewer says TMA/NASBA need no initial denaturation. Obande 2020 describes an initial ~65 °C denaturation step for RNA in NASBA (95 °C for DNA) before the 41 °C reaction; what is absent is DNA melting, which is why dsDNA is not amplified. Dunbar 2019 also lists a commercial TMA assay for hepatitis B virus, a DNA virus, so the reviewer’s blanket statement does not hold for every TMA assay.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-bdna-lod",
+      "issue": "The reviewer gives 50 copies/mL for third-generation bDNA HIV-1 RNA. Elbeik 2000 reports 50 copies/mL for bDNA 3.0, but Dunbar 2019 lists the FDA-approved Versant HIV-1 RNA 3.0 range as 75–500,000 copies/mL; the reported limit differs between sources and the package insert was not read.",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-clia-us-only",
+      "issue": "CLIA waiver is a US regulatory category. Philippine rules for point-of-care molecular testing are not covered; MTLE candidates should check local requirements.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; methods shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 claims checked against six open sources (Notomi 2000 and Elbeik 2000 read via a page-fetch tool); 1 pending (group A strep NEAR, other Ch. 69 numbers). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

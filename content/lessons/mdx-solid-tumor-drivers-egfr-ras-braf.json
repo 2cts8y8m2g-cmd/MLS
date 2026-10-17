@@ -1,0 +1,1703 @@
+{
+  "schemaVersion": 1,
+  "id": "mdx-solid-tumor-drivers-egfr-ras-braf",
+  "title": "Solid-Tumour Drivers: EGFR, ALK, RAS and BRAF V600E",
+  "summary": "Place EGFR, RAS and BRAF on one signalling chain, match lung drivers (EGFR, ALK, ROS1, RET) to their inhibitors, and learn why colorectal cancer needs extended RAS testing before EGFR antibodies and why BRAF assays must cover more than V600E.",
+  "domain": "p8-mdx",
+  "topic": "ch78",
+  "conceptIds": [
+    "ch78.hit3",
+    "ch78.hit5",
+    "ch78.trap2"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 78,
+        "section": "High-Yield Hits",
+        "items": [
+          3,
+          5
+        ]
+      },
+      {
+        "chapter": 78,
+        "section": "Exam Traps",
+        "items": [
+          2
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 78 Hit 3 (EGFR activating mutations, ALK/ROS1/RET, KRAS in colorectal cancer), Hit 5 (BRAF V600E across melanoma, papillary thyroid and colorectal cancer) and Exam Trap 2 (KRAS-mutant colorectal cancer and EGFR antibodies). Checked against the 2017 ASCP/CAP/AMP/ASCO colorectal biomarker guideline (Sepulveda 2017), three open NSCLC reviews (Chevallier 2021, Majeed 2021, König 2021), Cheng 2018 (BRAF testing in melanoma), Kanat 2020 (BRAF-mutant colorectal cancer), Crispo 2019 and the TCGA papillary thyroid study (2014; read via a page-fetch tool, first part of the page only). Qualifications taught: extended RAS (KRAS and NRAS exons 2–4) rather than KRAS alone; ALK is about 3–7% (reviewer ≈7% is the upper end); melanoma BRAF is about 40–60% in Cheng 2018 (reviewer 66%, inside Crispo’s wider 30–70%) and papillary thyroid 62% in TCGA (reviewer ≈45%); in colorectal cancer BRAF V600E is targeted in combination with an EGFR antibody, not like melanoma. Not taught (not verified): the reviewer’s split of exon 19 deletions >50% vs L858R ≈40%; the Number Vault lung turnaround time. The lung CAP/IASLC/AMP 2018 guideline was not accessible as open full text and was not read."
+  },
+  "prerequisites": [
+    "ch75.hit7",
+    "ch76.hit4"
+  ],
+  "objectives": [
+    "Place EGFR, RAS, BRAF and MEK on the MAPK signalling chain and explain why a block above a stuck link fails.",
+    "Match lung adenocarcinoma drivers (EGFR exon 19 deletion/L858R, ALK, ROS1, RET) to their inhibitor classes and name T790M as the commonest cause of resistance to first- and second-generation EGFR TKIs.",
+    "State the extended RAS testing required before EGFR antibodies in colorectal cancer, and why a V600E-only BRAF assay can miss V600K."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three tumours, three reports",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three molecular reports. (1) Lung adenocarcinoma in a never-smoker: EGFR exon 19 deletion detected. (2) Metastatic colorectal cancer: “KRAS exon 2 wild-type”; the oncologist plans an EGFR antibody. (3) Metastatic melanoma: a real-time PCR assay that detects only BRAF V600E is negative. Question token: “Which report is complete?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Three molecular reports arrive. A never-smoker’s lung adenocarcinoma has an EGFR exon nineteen deletion."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "A metastatic colon cancer is reported as KRAS exon two wild-type, and an EGFR antibody is planned. A melanoma is negative on an assay that detects only BRAF V600E."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which of these reports is enough to choose a drug?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "r1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 220,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Lung adenocarcinoma",
+            "lines": [
+              "Never-smoker",
+              "EGFR exon 19 deletion"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 220,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "2 Metastatic colon",
+            "lines": [
+              "KRAS exon 2 wild-type",
+              "EGFR antibody planned"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.4,
+              "opacity": 0
+            },
+            {
+              "t": 8.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "r3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 220,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "3 Melanoma",
+            "lines": [
+              "V600E-only PCR",
+              "Negative"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 640,
+            "label": "Which report is complete?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "One signalling chain",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic chain of five tokens left to right: EGFR (receptor) → RAS → RAF (BRAF) → MEK → ERK, labelled “MAPK signalling”. Three cards below: EGFR — exon 19 deletions + exon 21 L858R ≈ 90% of activating EGFR mutations, switch the receptor on without ligand; KRAS — below EGFR, when stuck on an upstream EGFR block cannot switch it off; BRAF V600E — activated kinase, BRAF inhibitors (vemurafenib, dabrafenib) and MEK inhibitors (trametinib, cobimetinib).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "EGFR is a receptor on the cell surface. When it is switched on, it signals down the RAS, RAF, MEK, ERK cascade, also called MAPK signalling, which drives cell division."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "A driver alteration leaves one link switched on without a signal. In lung cancer, exon nineteen deletions and the exon twenty-one L858R mutation make up about ninety percent of activating EGFR mutations."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "KRAS sits below EGFR. When mutant KRAS is stuck on, blocking the receptor above it cannot switch the signal off."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "BRAF sits below RAS. The V600E mutation activates the BRAF kinase. Vemurafenib and dabrafenib inhibit mutant BRAF, and trametinib and cobimetinib block MEK just downstream."
+        }
+      ],
+      "objects": [
+        {
+          "id": "c0",
+          "type": "token",
+          "props": {
+            "x": 130,
+            "y": 110,
+            "w": 160,
+            "label": "EGFR",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c1",
+          "type": "token",
+          "props": {
+            "x": 305,
+            "y": 110,
+            "w": 160,
+            "label": "RAS",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.7,
+              "opacity": 0
+            },
+            {
+              "t": 2.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 110,
+            "w": 160,
+            "label": "RAF",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.9,
+              "opacity": 0
+            },
+            {
+              "t": 3.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "type": "token",
+          "props": {
+            "x": 655,
+            "y": 110,
+            "w": 160,
+            "label": "MEK",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.1,
+              "opacity": 0
+            },
+            {
+              "t": 4.8999999999999995,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "c4",
+          "type": "token",
+          "props": {
+            "x": 830,
+            "y": 110,
+            "w": 160,
+            "label": "ERK",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.3,
+              "opacity": 0
+            },
+            {
+              "t": 6.1,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "mapk",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 175,
+            "text": "MAPK signalling → cell division",
+            "size": 16,
+            "weight": 700,
+            "color": "accent",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7,
+              "opacity": 0
+            },
+            {
+              "t": 7.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "egfr",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 350,
+            "w": 290,
+            "h": 180,
+            "tone": "b",
+            "title": "EGFR (lung)",
+            "lines": [
+              "Ex19 del + L858R",
+              "≈ 90% of activating",
+              "Receptor on, no ligand"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "kras",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 350,
+            "w": 290,
+            "h": 180,
+            "tone": "warn",
+            "title": "KRAS",
+            "lines": [
+              "Below EGFR",
+              "Stuck on → EGFR",
+              "block cannot stop it"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "braf",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 350,
+            "w": 290,
+            "h": 180,
+            "tone": "a",
+            "title": "BRAF V600E",
+            "lines": [
+              "Activated kinase",
+              "BRAF inhibitors",
+              "+ MEK inhibitors"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Lung: which driver, which drug",
+      "start": 60,
+      "end": 104,
+      "altText": "Four cards. EGFR: ≈20% of lung adenocarcinomas overall; ≈12–15% in white and ≈47–64% in East Asian patients (one review’s table); TKIs erlotinib, gefitinib, afatinib, dacomitinib, osimertinib. Resistance: exon 20 T790M is the commonest cause (≈50–60%) of resistance to first/second-generation TKIs; osimertinib inhibits it. ALK: rearrangements (usually EML4-ALK) in ≈3–7% of NSCLC, more often younger never/light smokers; crizotinib, alectinib, lorlatinib. ROS1 ≈1–2% and RET ≈1–2% of lung adenocarcinomas (ROS1: crizotinib, entrectinib · RET: selpercatinib, pralsetinib).",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "In lung adenocarcinoma, EGFR driver mutations are found in about one in five patients overall, but the rate depends on ancestry: about twelve to fifteen percent in white patients and forty-seven to sixty-four percent in East Asian patients in one review’s table."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "EGFR inhibitors include erlotinib, gefitinib, afatinib, dacomitinib and osimertinib. The exon twenty T790M mutation is the commonest cause of resistance to first- and second-generation drugs, and osimertinib inhibits it."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "ALK rearrangements, usually EML4-ALK, are found in about three to seven percent of non-small cell lung cancers, more often in younger never- or light-smokers. ALK inhibitors include crizotinib, alectinib and lorlatinib."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "ROS1 and RET rearrangements are each found in about one to two percent of lung adenocarcinomas. ROS1 responds to crizotinib or entrectinib, and RET fusions to selpercatinib or pralsetinib."
+        }
+      ],
+      "objects": [
+        {
+          "id": "egfr",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 150,
+            "w": 440,
+            "h": 190,
+            "tone": "b",
+            "title": "EGFR ≈ 20% of adenocarcinoma",
+            "lines": [
+              "White ≈ 12–15%",
+              "East Asian ≈ 47–64%",
+              "Erlotinib · gefitinib · osimertinib …"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "res",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 150,
+            "w": 420,
+            "h": 190,
+            "tone": "bad",
+            "title": "Resistance: T790M",
+            "lines": [
+              "Exon 20 · ≈ 50–60% of",
+              "1st/2nd-generation failures",
+              "→ osimertinib"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "alk",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "h": 190,
+            "tone": "a",
+            "title": "ALK ≈ 3–7% (EML4-ALK)",
+            "lines": [
+              "Younger, never/light smokers",
+              "Crizotinib · alectinib · lorlatinib"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ros",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 400,
+            "w": 420,
+            "h": 190,
+            "tone": "good",
+            "title": "ROS1 · RET ≈ 1–2% each",
+            "lines": [
+              "ROS1 → crizotinib, entrectinib",
+              "RET → selpercatinib, pralsetinib"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Colon and melanoma: read the whole report",
+      "start": 104,
+      "end": 144,
+      "altText": "Left card (2017 ASCP/CAP/AMP/ASCO colorectal guideline): cetuximab and panitumumab bind EGFR; they benefit KRAS wild-type but not KRAS-mutant tumours; KRAS mutated in ≈39–42% (one cited study); patients considered for anti-EGFR therapy must have extended RAS testing — KRAS and NRAS exons 2 (codons 12, 13), 3 (59, 61) and 4 (117, 146). Right card, BRAF across tumours: melanoma ≈40–60% BRAF-mutant (V600E most common, V600K ≈8–20%); papillary thyroid 61.7% BRAF-mutant, mostly V600E (TCGA, 402 tumours); colorectal ≈8% advanced, ≈14% stage II–III. Hook answers card: (1) EGFR TKI candidate; (2) extended RAS first; (3) V600E-only assay can miss V600K — use broader testing.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "In colorectal cancer, cetuximab and panitumumab bind EGFR. They improved survival in KRAS wild-type tumours but not in KRAS-mutant ones. In one study cited by the guideline, about forty percent of tumours carried a KRAS mutation."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 123,
+          "text": "So the 2017 colorectal guideline says patients considered for these antibodies must have extended RAS testing: KRAS and NRAS, exons two, three and four. Exon two alone is incomplete."
+        },
+        {
+          "id": "l3",
+          "start": 123,
+          "end": 134,
+          "text": "BRAF V600E crosses tumour types. About forty to sixty percent of melanomas carry a BRAF mutation, most often V600E, and V600K makes up about eight to twenty percent of the BRAF mutations. In the cancer genome atlas thyroid study, sixty-two percent of papillary carcinomas were BRAF-mutant, and in colorectal cancer it is about eight to fourteen percent."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook. The lung tumour is an EGFR-inhibitor candidate. The colon tumour needs extended RAS testing first. And a V600E-only assay can miss V600K, so the melanoma needs broader BRAF testing."
+        }
+      ],
+      "objects": [
+        {
+          "id": "crc",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 230,
+            "tone": "warn",
+            "title": "Colorectal: anti-EGFR antibodies",
+            "lines": [
+              "No benefit if KRAS mutant",
+              "KRAS mutant ≈ 39–42%",
+              "Extended RAS: KRAS + NRAS",
+              "Exons 2 · 3 · 4"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "braf",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 230,
+            "tone": "a",
+            "title": "BRAF across tumours",
+            "lines": [
+              "Melanoma ≈ 40–60% (V600K 8–20%)",
+              "Papillary thyroid 62% (TCGA)",
+              "Colorectal ≈ 8–14%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 19.5,
+              "opacity": 0
+            },
+            {
+              "t": 20,
+              "reveal": 0
+            },
+            {
+              "t": 20.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 760,
+            "h": 150,
+            "tone": "good",
+            "title": "Hook answers",
+            "lines": [
+              "1 Lung: EGFR-inhibitor candidate",
+              "2 Colon: extended RAS first",
+              "3 Melanoma: V600E-only can miss V600K"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “KRAS-mutant colon cancer responds to cetuximab” (✓ mutant RAS signals below the blocked receptor — no benefit); “KRAS exon 2 wild-type means RAS wild-type” (✓ extended RAS: KRAS and NRAS exons 2, 3, 4); “BRAF V600E colon cancer is treated like melanoma” (✓ in colon cancer a BRAF inhibitor alone lets EGFR reactivate MAPK signalling; BEACON combined encorafenib with cetuximab).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: KRAS-mutant colon cancer responds to cetuximab. No: mutant RAS signals below the blocked receptor, so the antibody gives no benefit."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: KRAS exon two wild-type means RAS wild-type. No: test KRAS and NRAS across exons two, three and four."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: BRAF V600E colon cancer is treated like melanoma. No: in colon cancer a BRAF inhibitor alone lets EGFR switch the pathway back on, so the BEACON trial combined encorafenib with cetuximab."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “KRAS-mutant colon → cetuximab.”",
+            "lines": [
+              "✓ Mutant RAS signals below the block"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “KRAS exon 2 wild-type = RAS wild-type.”",
+            "lines": [
+              "✓ KRAS + NRAS, exons 2 · 3 · 4"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “BRAF colon = BRAF melanoma.”",
+            "lines": [
+              "✓ EGFR feedback → encorafenib + cetuximab"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Block at or below the jam",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Block at or below the jam.” The signalling chain is a row of switches; a drug helps only if it blocks the stuck switch or one below it. Tokens: EGFR jammed → EGFR inhibitor · RAS jammed → EGFR antibody useless · BRAF jammed → BRAF + MEK inhibitors. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: block at or below the jam. If EGFR is stuck on, an EGFR inhibitor works. If RAS is stuck on, an EGFR antibody above it is useless. If BRAF is stuck on, block BRAF and MEK."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: pathways branch and feed back, so in colon cancer a BRAF block alone reactivates EGFR signalling. Resistance mutations such as T790M appear under treatment. And ALK, ROS1 and RET fusions are other kinases that feed this chain, each with its own inhibitor."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Block at or below the jam",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 180,
+            "y": 170,
+            "w": 280,
+            "label": "EGFR jam → EGFR TKI",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 280,
+            "label": "RAS jam → antibody useless",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.0,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 780,
+            "y": 170,
+            "w": 280,
+            "label": "BRAF jam → BRAF + MEK",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Feedback: colon BRAF block reactivates EGFR",
+              "Resistance mutations (T790M) arise on treatment",
+              "ALK · ROS1 · RET: other kinases, own drugs"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Lung: EGFR ex19 del/L858R → EGFR TKI · ALK, ROS1, RET → own inhibitors”, “Colon: extended RAS before EGFR antibodies · BRAF: assay must cover more than V600E”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Match each driver to its own drug, test extended RAS before any EGFR antibody in colorectal cancer, and use a BRAF assay that covers more than V600E, because a drug helps only when it blocks the link that is stuck on."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Lung: EGFR ex19 del / L858R → TKI · ALK, ROS1, RET → own drugs",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Colon: extended RAS before EGFR antibody · BRAF: beyond V600E",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: some cancers grow because one switch in a growth-signal chain is stuck on. Drugs that block that switch, or a switch below it, can work; drugs that block a switch above it cannot. Scientific terms: epidermal growth factor receptor (EGFR), tyrosine kinase inhibitor (TKI), exon 19 deletion, L858R, T790M, RAS–RAF–MEK–ERK (MAPK) cascade, extended RAS testing (KRAS/NRAS exons 2–4), anti-EGFR monoclonal antibody (cetuximab, panitumumab), BRAF V600E/V600K, ALK, ROS1 and RET fusions.",
+    "why": "Mutant KRAS or NRAS keeps signalling below the receptor, so blocking EGFR with an antibody gives no benefit; testing only KRAS exon 2 misses other RAS mutations. In colon cancer, BRAF inhibition alone removes ERK-to-EGFR negative feedback and reactivates the pathway, so BRAF is combined with an EGFR antibody.",
+    "measure": "Lung: EGFR exon 19 deletions + L858R ≈ 90% of activating EGFR mutations; EGFR drivers ≈ 20% of adenocarcinomas (≈ 12–15% white, ≈ 47–64% East Asian in one table); T790M ≈ 50–60% of resistance to first/second-generation TKIs; ALK ≈ 3–7%; ROS1 ≈ 1–2%; RET ≈ 1–2%. Colorectal: KRAS mutant ≈ 39–42%; extended RAS = KRAS and NRAS codons 12/13 (exon 2), 59/61 (exon 3), 117/146 (exon 4); BRAF ≈ 8% advanced, ≈ 14% stage II–III, V600E > 90% of BRAF mutations. Melanoma: ≈ 40–60% BRAF-mutant, V600K ≈ 8–20%. Papillary thyroid: 61.7% BRAF-mutant, mostly V600E (TCGA).",
+    "differs": "EGFR TKI (lung, mutant receptor) vs EGFR antibody (colon, needs RAS wild-type); KRAS exon 2 only vs extended RAS; BRAF V600E in melanoma (BRAF + MEK inhibitors) vs colon (BRAF inhibitor combined with EGFR antibody; BRAF testing also used for prognosis and Lynch triage); V600E-only assay vs broader V600 assay.",
+    "examAngle": "Expect: the EGFR mutations that predict TKI response, the drug for T790M, why KRAS/NRAS-mutant colon cancer is excluded from cetuximab or panitumumab, and which lung fusions have their own inhibitors."
+  },
+  "comparisons": [
+    {
+      "id": "egfr-tki-vs-antibody",
+      "title": "EGFR TKI in lung vs EGFR antibody in colon",
+      "left": {
+        "label": "Lung EGFR TKI",
+        "points": [
+          "Needs activating EGFR mutation (ex19 del, L858R)",
+          "T790M resistance → osimertinib"
+        ]
+      },
+      "right": {
+        "label": "Colon EGFR antibody",
+        "points": [
+          "Cetuximab, panitumumab bind EGFR",
+          "Needs extended RAS wild-type"
+        ]
+      },
+      "distinguisher": "Lung asks “is EGFR mutated?”; colon asks “is RAS wild-type?”."
+    },
+    {
+      "id": "braf-melanoma-vs-colon",
+      "title": "BRAF V600E in melanoma vs colorectal cancer",
+      "left": {
+        "label": "Melanoma",
+        "points": [
+          "≈ 40–60% BRAF-mutant; V600K ≈ 8–20%",
+          "BRAF + MEK inhibitors"
+        ]
+      },
+      "right": {
+        "label": "Colorectal",
+        "points": [
+          "≈ 8–14% BRAF-mutant; prognosis, Lynch triage",
+          "BRAF inhibitor + EGFR antibody (BEACON)"
+        ]
+      },
+      "distinguisher": "EGFR feedback makes a BRAF block alone weak in colon cancer."
+    }
+  ],
+  "mnemonic": {
+    "text": "Block at or below the jam: EGFR jammed → EGFR inhibitor; RAS jammed → an EGFR antibody above it is useless; BRAF jammed → block BRAF and MEK.",
+    "explanation": "Places each drug relative to the stuck link in the RAS–RAF–MEK–ERK chain.",
+    "limitation": "Pathways branch and feed back (colon BRAF block reactivates EGFR, so it is combined with an EGFR antibody); resistance mutations such as T790M arise on treatment; ALK, ROS1 and RET fusions are other kinases that also feed RAS–RAF–MEK–ERK signalling, so each needs its own inhibitor."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "The signalling chain is schematic; real pathways branch (for example PI3K/AKT).",
+    "Frequencies vary by population, stage and assay; the numbers are from the cited reviews."
+  ],
+  "takeaway": "Match each driver to its own drug, test extended RAS before any EGFR antibody in colorectal cancer, and use a BRAF assay that covers more than V600E, because a drug helps only when it blocks the link that is stuck on.",
+  "questions": [
+    {
+      "id": "mdx-drv-q1",
+      "stem": "A metastatic colorectal cancer is reported as “KRAS exon 2 wild-type”, and panitumumab is being considered. Under the 2017 colorectal biomarker guideline, what is needed first?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Extended RAS testing: KRAS and NRAS exons 2, 3 and 4",
+          "rationale": "Correct. Patients considered for anti-EGFR therapy must receive RAS testing covering KRAS and NRAS codons 12/13, 59/61 and 117/146."
+        },
+        {
+          "id": "b",
+          "text": "Nothing more; start panitumumab",
+          "rationale": "Incorrect. KRAS exon 2 alone misses KRAS exon 3/4 and NRAS mutations, which also predict lack of benefit."
+        },
+        {
+          "id": "c",
+          "text": "BRAF V600 testing to predict anti-EGFR response",
+          "rationale": "Incorrect. The guideline found insufficient evidence to use BRAF V600 as a predictive marker for anti-EGFR response; it recommends BRAF testing for prognosis and Lynch evaluation."
+        },
+        {
+          "id": "d",
+          "text": "PIK3CA mutation analysis to select therapy",
+          "rationale": "Incorrect. The guideline found insufficient evidence to recommend PIK3CA analysis for therapy selection outside a clinical trial."
+        }
+      ],
+      "answer": "a",
+      "skill": "Test selection",
+      "difficulty": "application"
+    },
+    {
+      "id": "mdx-drv-q2",
+      "stem": "Which pair of EGFR alterations together accounts for about 90% of activating EGFR mutations in non-small cell lung cancer?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Exon 19 deletions and exon 21 L858R",
+          "rationale": "Correct. These two make up about 90% of activating EGFR mutations and predict response to EGFR TKIs."
+        },
+        {
+          "id": "b",
+          "text": "Exon 20 T790M and exon 21 L858R",
+          "rationale": "Incorrect. T790M is rarely present before treatment; it is the commonest cause of acquired resistance to first- and second-generation TKIs."
+        },
+        {
+          "id": "c",
+          "text": "EML4-ALK and ROS1 fusions",
+          "rationale": "Incorrect. These are rearrangements of other genes (ALK, ROS1), each with its own inhibitors."
+        },
+        {
+          "id": "d",
+          "text": "KRAS G12C and G12D",
+          "rationale": "Incorrect. These are KRAS mutations, not EGFR mutations."
+        }
+      ],
+      "answer": "a",
+      "skill": "Driver recognition",
+      "difficulty": "recall"
+    },
+    {
+      "id": "mdx-drv-q3",
+      "stem": "A metastatic melanoma is negative on a real-time PCR assay that detects only BRAF V600E. Which statement is correct?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The tumour may still carry V600K, so a broader BRAF V600 assay is needed",
+          "rationale": "Correct. V600K is about 8–20% of BRAF-mutant melanomas, and some assays detect only V600E."
+        },
+        {
+          "id": "b",
+          "text": "The result rules out any BRAF V600 mutation",
+          "rationale": "Incorrect. A V600E-only assay cannot detect V600K or other V600 variants."
+        },
+        {
+          "id": "c",
+          "text": "BRAF mutations are rare in melanoma, so no further testing is needed",
+          "rationale": "Incorrect. About 40–60% of melanomas carry a BRAF mutation."
+        },
+        {
+          "id": "d",
+          "text": "VE1 immunohistochemistry will detect V600K instead",
+          "rationale": "Incorrect. The VE1 antibody is specific for V600E."
+        }
+      ],
+      "answer": "a",
+      "skill": "Assay limitations",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch78",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 78, Molecular Testing in Solid Tumors (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 78,
+          "section": "High-Yield Hits",
+          "items": [
+            3,
+            5
+          ]
+        },
+        {
+          "chapter": 78,
+          "section": "Exam Traps",
+          "items": [
+            2
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "sepulveda2017",
+      "kind": "external",
+      "citation": "Sepulveda AR, Hamilton SR, Allegra CJ, et al. Molecular Biomarkers for the Evaluation of Colorectal Cancer. Am J Clin Pathol. 2017;147(3):221-260. doi:10.1093/ajcp/aqw209",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7263311/",
+      "consulted": true,
+      "usedFor": "Cetuximab/panitumumab bind EGFR and benefit KRAS wild-type but not KRAS-mutant tumours; statement 1 (extended RAS: KRAS and NRAS codons 12, 13, 59, 61, 117, 146); KRAS in 42% of metastases and 39% of primaries; BRAF ≈8% advanced and ≈14% stage II–III; statements 2a/2b (BRAF for prognosis and Lynch triage); statement 4 (insufficient evidence for BRAF as anti-EGFR predictor); PIK3CA insufficient for therapy selection."
+    },
+    {
+      "id": "chevallier2021",
+      "kind": "external",
+      "citation": "Chevallier M, Borgeaud M, Addeo A, Friedlaender A. Oncogenic driver mutations in non-small cell lung cancer: Past, present and future. World J Clin Oncol. 2021;12(4):217-237. doi:10.5306/wjco.v12.i4.217",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8085514/",
+      "consulted": true,
+      "usedFor": "Exon 19 deletions or L858R account for 90% of activating EGFR mutations, activating EGFR without ligand; T790M rarely present before TKI and the commonest cause (50–60%) of resistance to first/second-generation TKIs; osimertinib inhibits T790M; ALK ≈5% of advanced NSCLC (2–7%); ROS1 and RET each 1–2% of lung adenocarcinomas; crizotinib for ALK/ROS1; entrectinib active against ROS1; mutant KRAS constitutively active and signalling downstream through MAPK; ALK and ROS1 fusions activate RAS–RAF–MEK–ERK among other pathways."
+    },
+    {
+      "id": "majeed2021",
+      "kind": "external",
+      "citation": "Majeed U, Manochakian R, Zhao Y, Lou Y. Targeted therapy in advanced non-small cell lung cancer: current advances and future trends. J Hematol Oncol. 2021;14(1):108. doi:10.1186/s13045-021-01121-2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8264982/",
+      "consulted": true,
+      "usedFor": "EGFR drivers in ≈20% of lung adenocarcinoma; Table 1 frequencies by ancestry (EGFR 12–15% Caucasian, 47–64% East Asian) and inhibitors (EGFR, ALK, entrectinib for ROS1, selpercatinib/pralsetinib for RET); ALK 3–7%; RET 1–2% of adenocarcinomas, mutually exclusive with EGFR, ALK, RAS."
+    },
+    {
+      "id": "konig2021",
+      "kind": "external",
+      "citation": "König D, Savic Prince S, Rothschild SI. Targeted Therapy in Advanced and Metastatic Non-Small Cell Lung Cancer. An Update on Treatment of the Most Important Actionable Oncogenic Driver Alterations. Cancers (Basel). 2021;13(4):804. doi:10.3390/cancers13040804",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7918961/",
+      "consulted": true,
+      "usedFor": "EML4-ALK in ≈2–8% of NSCLC, mostly younger never/light smokers with adenocarcinoma; ALK inhibitor generations (crizotinib, alectinib, lorlatinib); del19 and L858R as the most common EGFR mutations; T790M after first-generation TKIs (50–60%)."
+    },
+    {
+      "id": "kanat2020",
+      "kind": "external",
+      "citation": "Kanat O, Ertas H, Caner B. Contemporary treatment approaches for metastatic colorectal cancer driven by BRAF V600 mutations. World J Gastrointest Oncol. 2020;12(10):1080-1090. doi:10.4251/wjgo.v12.i10.1080",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7579731/",
+      "consulted": true,
+      "usedFor": "RAS–RAF–MEK–ERK (MAPK) cascade; V600E >90% of BRAF mutations in metastatic CRC; BRAF inhibitors lose ERK–EGFR negative feedback, reactivating MAPK and causing resistance; BEACON (encorafenib + cetuximab ± binimetinib) as a second/third-line option."
+    },
+    {
+      "id": "cheng2018",
+      "kind": "external",
+      "citation": "Cheng L, Lopez-Beltran A, Massari F, MacLennan GT, Montironi R. Molecular testing for BRAF mutations to inform melanoma treatment decisions: a move toward precision medicine. Mod Pathol. 2018;31(1):24-38. doi:10.1038/modpathol.2017.104",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5758899/",
+      "consulted": true,
+      "usedFor": "About half of advanced melanomas (≈40–60%) BRAF-mutant; V600E most common (84.6% in Table 1; up to 90%), V600K ≈8–20%; vemurafenib/dabrafenib inhibit mutant BRAF, trametinib/cobimetinib inhibit downstream MEK; BRAF + MEK combinations; some tests detect only V600E; VE1 antibody specific for V600E."
+    },
+    {
+      "id": "tcga2014",
+      "kind": "external",
+      "citation": "Cancer Genome Atlas Research Network. Integrated genomic characterization of papillary thyroid carcinoma. Cell. 2014;159(3):676-690. doi:10.1016/j.cell.2014.09.050",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4243044/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (first ~100,000 characters of the page). 496 PTCs; 248/402 (61.7%) BRAF mutations, mostly V600E; RAS 12.9%."
+    },
+    {
+      "id": "crispo2019",
+      "kind": "external",
+      "citation": "Crispo F, Notarangelo T, Pietrafesa M, et al. BRAF Inhibitors in Thyroid Cancer: Clinical Impact, Mechanisms of Resistance and Future Perspectives. Cancers (Basel). 2019;11(9):1388. doi:10.3390/cancers11091388",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6770736/",
+      "consulted": true,
+      "usedFor": "BRAF mutations in 36–83% of papillary thyroid tumours, 30–70% of melanomas, ≈10% of colorectal cancer; thyroid cancers less sensitive to BRAF inhibitors than melanoma."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-pathway",
+      "text": "EGFR signals through the RAS–RAF–MEK–ERK (MAPK) cascade; KRAS acts downstream of EGFR; MEK is downstream of BRAF.",
+      "status": "checked",
+      "refs": [
+        "kanat2020",
+        "chevallier2021",
+        "cheng2018"
+      ]
+    },
+    {
+      "id": "cl-egfr",
+      "text": "Exon 19 deletions + L858R ≈90% of activating EGFR mutations; EGFR drivers ≈20% of adenocarcinomas, varying by ancestry; EGFR TKIs; T790M as main resistance mutation, osimertinib.",
+      "status": "checked",
+      "refs": [
+        "chevallier2021",
+        "majeed2021",
+        "konig2021"
+      ]
+    },
+    {
+      "id": "cl-fusions",
+      "text": "ALK ≈3–7% of NSCLC (younger never/light smokers; crizotinib, alectinib, lorlatinib); ROS1 ≈1–2% and RET ≈1–2% of lung adenocarcinomas (ROS1: crizotinib, entrectinib; RET: selpercatinib, pralsetinib); these fusion kinases feed MAPK signalling.",
+      "status": "checked",
+      "refs": [
+        "majeed2021",
+        "chevallier2021",
+        "konig2021"
+      ]
+    },
+    {
+      "id": "cl-crc-ras",
+      "text": "Anti-EGFR antibodies benefit RAS wild-type colorectal cancer only; extended RAS testing (KRAS and NRAS exons 2–4) required; KRAS ≈39–42%; BRAF and PIK3CA not recommended as predictive markers.",
+      "status": "checked",
+      "refs": [
+        "sepulveda2017"
+      ]
+    },
+    {
+      "id": "cl-crc-braf",
+      "text": "BRAF ≈8% advanced / ≈14% stage II–III CRC; BRAF testing for prognosis and Lynch triage; BRAF inhibitor alone triggers EGFR feedback; BEACON combined encorafenib with cetuximab.",
+      "status": "checked",
+      "refs": [
+        "sepulveda2017",
+        "kanat2020"
+      ]
+    },
+    {
+      "id": "cl-melanoma",
+      "text": "Melanoma ≈40–60% BRAF-mutant, V600E most common, V600K ≈8–20%; BRAF and MEK inhibitors; V600E-only assays; VE1 specific for V600E.",
+      "status": "checked",
+      "refs": [
+        "cheng2018"
+      ]
+    },
+    {
+      "id": "cl-ptc",
+      "text": "Papillary thyroid carcinoma 61.7% BRAF-mutant, mostly V600E (TCGA); range 36–83% across studies.",
+      "status": "checked",
+      "refs": [
+        "tcga2014",
+        "crispo2019"
+      ]
+    },
+    {
+      "id": "cl-egfr-split",
+      "text": "Reviewer split: exon 19 deletions >50% and L858R ≈40% of EGFR mutations.",
+      "status": "pending",
+      "note": "Not found in the sources read; not taught."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; signalling chain schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Block at or below the jam.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-extended-ras",
+      "issue": "Ch. 78 Hit 3 and Exam Trap 2 name only KRAS as the marker of EGFR-antibody resistance in colorectal cancer. The 2017 ASCP/CAP/AMP/ASCO guideline (Sepulveda 2017) requires extended RAS testing (KRAS and NRAS exons 2, 3 and 4) for patients considered for anti-EGFR therapy (register flag rv-ch78-extended-ras).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-ch78-alk-share",
+      "issue": "Ch. 78 Hit 3 gives ALK ≈7% of lung cancer. Open reviews give 3–7% (Majeed 2021), about 5% of advanced NSCLC (Chevallier 2021) and 2–8% (König 2021); 7% is the upper end, and Majeed’s Table 1 lists 7% only for Caucasian patients (register flag rv-ch78-alk-share).",
+      "kind": "uncertain",
+      "status": "open"
+    },
+    {
+      "id": "f-ch78-braf-frequencies",
+      "issue": "Ch. 78 Hit 5 and the Number Vault give BRAF in 66% of melanomas (80% of those V600E) and BRAF V600E in ≈45% of papillary thyroid cancers. Cheng 2018 gives about 40–60% of melanomas (about half of advanced melanomas), with V600E 84.6% of BRAF-mutant cases in its table; TCGA 2014 found BRAF mutations, mostly V600E, in 61.7% of 402 papillary thyroid carcinomas. Crispo 2019 cites wide ranges (melanoma 30–70%, papillary thyroid 36–83%) that contain both reviewer figures, so the reviewer point estimates are not wrong outright but differ from the main sources taught (register flag rv-ch78-braf-frequencies).",
+      "kind": "uncertain",
+      "status": "open"
+    },
+    {
+      "id": "f-ch78-crc-braf-combination",
+      "issue": "Ch. 78 Hit 5 lists colorectal cancer alongside melanoma as BRAF V600E-targetable. In colorectal cancer, BRAF inhibition alone is limited by EGFR feedback reactivation, and the BEACON regimen combines encorafenib with cetuximab in second/third line (Kanat 2020); the 2017 guideline recommends BRAF testing for prognosis and Lynch triage (Sepulveda 2017) (register flag rv-ch78-crc-braf-combination).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No micrographs; signalling chain and reports shown as tokens and cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "7 factual claims checked against Sepulveda 2017, Chevallier 2021, Majeed 2021, König 2021, Kanat 2020, Cheng 2018, Crispo 2019 and TCGA 2014 (read via a page-fetch tool); 1 reviewer claim (exon 19 vs L858R split) pending and not taught. The CAP/IASLC/AMP 2018 lung guideline was not read. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
