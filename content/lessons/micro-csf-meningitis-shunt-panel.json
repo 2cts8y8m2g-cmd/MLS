@@ -1,0 +1,1567 @@
+{
+  "schemaVersion": 1,
+  "id": "micro-csf-meningitis-shunt-panel",
+  "title": "Meningitis CSF: Culture Setup, the Bacterial Pattern, Shunt Infections and the Multiplex Panel",
+  "summary": "Handle and plate CSF for community-acquired meningitis (room temperature, blood and chocolate agar in about 5% CO2), read the classic bacterial CSF pattern and its gaps, and recognise why shunt infections caused by skin flora are missed by a multiplex meningitis panel.",
+  "domain": "p7-micro",
+  "topic": "ch66",
+  "conceptIds": [
+    "ch66.hit16",
+    "ch66.hit17",
+    "ch66.hit37"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 66,
+        "section": "High-Yield Hits",
+        "items": [
+          16,
+          17,
+          37
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 66 High-Yield Hits 16 (chocolate agar and CO2 for N. meningitidis), 17 (low glucose, high protein, neutrophilic pleocytosis) and 37 (VP shunt infections and multiplex meningitis/encephalitis panels). Culture setup from the WHO meningitis laboratory manual (2nd ed., 2011; PDF read in full text) and the IDSA/ASM 2018 guide (read via a page-fetch tool); CSF pattern from WHO 2011, Tacon 2012 and Baud 2018; shunt microbiology from Tunkel 2017 (read via a page-fetch tool, first part of the text), Alqasmi 2025 and Akram Asif 2023; panel from Leber 2016 (read via a page-fetch tool) and Trujillo-Gómez 2022. Hit 17 is qualified (register flag rv-csf-bacterial-pattern-gaps: the pattern is often incomplete). Hit 37 is qualified (register flag rv-vp-shunt-cons-panel-gap: gram-negatives dominate at some centres, and the panel has no staphylococcal target). The reviewer’s 5–10% CO2 range is taught as about 5% CO2 or a candle jar (WHO 2011); the 10% upper bound was not checked. An NCBI Bookshelf page (StatPearls) returned a captcha and was not read."
+  },
+  "prerequisites": [
+    "ch66.hit2"
+  ],
+  "objectives": [
+    "Describe correct transport, media and atmosphere for culturing CSF in suspected community-acquired bacterial meningitis.",
+    "Interpret the classic bacterial meningitis CSF pattern and explain why a normal glucose or a negative Gram stain does not exclude it.",
+    "Explain why shunt infections are often caused by skin flora, why normal CSF may not exclude them, and why a multiplex meningitis panel cannot rule them out."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two CSF tubes, one night shift",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario. Two CSF specimens arrive at night: (A) an adult from the emergency department with fever and a stiff neck, cloudy CSF; (B) a child whose ventriculoperitoneal shunt was placed three weeks ago, low-grade fever, CSF cell count only mildly raised, multiplex meningitis panel negative. Question token: “How do you culture A, and is B ruled out?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Two spinal fluid specimens arrive on the night shift. One is cloudy, from an adult with fever and a stiff neck."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "The other is from a child whose brain shunt was placed three weeks ago. The cell count is only mildly raised, and the multiplex meningitis panel is negative."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "How should the first be cultured, and is the second really ruled out?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 420,
+            "h": 170,
+            "tone": "bad",
+            "title": "A · Community adult",
+            "lines": [
+              "Fever · stiff neck",
+              "Cloudy CSF"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "B · Child with VP shunt",
+            "lines": [
+              "Shunt placed 3 weeks ago",
+              "Mild pleocytosis · panel negative"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 680,
+            "label": "Culture A how? Is B ruled out?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Plating community CSF",
+      "start": 20,
+      "end": 60,
+      "altText": "Workflow cards (WHO meningitis manual 2011; IDSA/ASM 2018 guide). Transport: CSF for culture is not refrigerated; keep it at about 20–35 °C and plate it within about 1 hour; if a delay of hours is unavoidable and no trans-isolate medium is available, incubating the tube at 35–37 °C in about 5% CO2 may help organisms survive. Media: blood agar plus chocolate agar; if only one plate is available, use chocolate agar because it supplies hemin and NAD for Haemophilus influenzae. Atmosphere: 35–37 °C in about 5% CO2 or a candle jar. Neisseria meningitidis is fastidious and grows on both blood and chocolate agar, best with humidity. If cultures are contaminated, a chocolate base with vancomycin, colistin, nystatin and trimethoprim can select for N. meningitidis.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Spinal fluid for culture is never refrigerated. Keep it at room temperature and plate it within about an hour. If a long delay cannot be avoided, warm incubation in carbon dioxide may help bacteria survive."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Plate it on blood agar and chocolate agar. If only one plate is available, choose chocolate, because it supplies the hemin and NAD that Haemophilus influenzae needs."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Incubate at thirty-five to thirty-seven degrees in about five percent carbon dioxide, or a candle jar. Neisseria meningitidis is fastidious: it grows on both blood and chocolate agar, and likes a humid atmosphere."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "If the plates are overgrown with contaminants, a chocolate base with vancomycin, colistin, nystatin and trimethoprim selects for the meningococcus."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tr",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 190,
+            "tone": "bad",
+            "title": "Transport",
+            "lines": [
+              "Never refrigerate culture CSF",
+              "Room temperature · plate within ~1 h",
+              "Delay: 35–37 °C in CO2 may help"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "md",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 190,
+            "tone": "b",
+            "title": "Media",
+            "lines": [
+              "Blood agar + chocolate agar",
+              "One plate only? Chocolate (X + V)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "co2",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 450,
+            "w": 440,
+            "label": "35–37 °C · ~5% CO2 or candle jar · humid",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sel",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 450,
+            "w": 420,
+            "label": "Contaminated? Selective chocolate (VCN-T)",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "The bacterial CSF pattern and its gaps",
+      "start": 60,
+      "end": 104,
+      "altText": "Pattern card (WHO 2011; Tacon 2012 table): typical bacterial meningitis CSF is turbid, with pleocytosis of mostly neutrophils (white cells often above 1000 per cubic millimetre, more than about 85% neutrophils), raised protein (above 45 mg/dL; often 100–200 mg/dL) and low glucose (below 45 mg/dL; CSF-to-blood ratio below 0.4). Gaps card: early in infection the white count may not yet be raised (Tacon 2012); after antibiotics, glucose tends to be higher and protein lower (Tacon 2012); low glucose (below 40 mg/dL) was present in only about half of culture- or test-proven microbial meningitis in one large series, with only moderate-to-high specificity (Baud 2018); neurosarcoidosis can also lower CSF glucose. Gram stain card (IDSA/ASM 2018): sensitivity about 60–80% without prior antibiotics and 40–60% with them.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "The classic bacterial pattern: cloudy fluid, many white cells that are mostly neutrophils, protein above forty-five milligrams per decilitre, and glucose below forty-five, with a CSF-to-blood ratio under zero point four."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "But the pattern has gaps. Very early in infection the white count may not be raised yet, and after antibiotics the glucose tends to rise and the protein to fall."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 92,
+          "text": "In one large series, low glucose appeared in only about half of proven microbial meningitis. So low glucose supports the diagnosis, but a normal glucose does not exclude it."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "The Gram stain has gaps too: it finds organisms in roughly sixty to eighty percent of cases before antibiotics, and only forty to sixty percent after."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pat",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 440,
+            "h": 250,
+            "tone": "bad",
+            "title": "Classic bacterial CSF",
+            "lines": [
+              "Turbid",
+              "WBC ↑↑ · mostly neutrophils",
+              "Protein > 45 mg/dL",
+              "Glucose < 45 · CSF:blood < 0.4"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "gap",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 160,
+            "tone": "warn",
+            "title": "Gaps",
+            "lines": [
+              "Early: WBC may be normal",
+              "Pretreated: glucose ↑ · protein ↓"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "reveal": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "half",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 370,
+            "w": 420,
+            "label": "Low glucose in only ~half of cases",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "gs",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 500,
+            "w": 760,
+            "label": "Gram stain: ~60–80% before antibiotics · 40–60% after",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Shunt CSF and the multiplex panel",
+      "start": 104,
+      "end": 144,
+      "altText": "Shunt card (Tunkel 2017; Alqasmi 2025; Akram Asif 2023): the most frequent mechanism of shunt infection is colonization at the time of surgery, and many infections appear in the first weeks; coagulase-negative staphylococci (mainly S. epidermidis) and Cutibacterium acnes are indolent, cause little inflammation, and are pathogenic mainly on prosthetic material; CoNS lead in many series (25.8% in a 2025 Saudi multicentre study, S. aureus 12.9%), but gram-negative bacilli dominate at some centres (Acinetobacter 41% and Pseudomonas 16% vs CoNS 13% in a 2023 Pakistani series). Shunt workup card (Tunkel 2017): normal CSF cell count, glucose and protein may not exclude infection; hold cultures at least 10 days for C. acnes (the IDSA/ASM 2018 guide lists 14 days); CoNS only in enrichment broth or in one of several cultures, with normal CSF and no fever, is not indicative of infection. Panel card (Leber 2016; Trujillo-Gómez 2022): the FilmArray meningitis/encephalitis panel detects 14 community-acquired targets in about 1 hour — E. coli K1, H. influenzae, L. monocytogenes, N. meningitidis, S. agalactiae, S. pneumoniae, seven viruses and Cryptococcus — with no staphylococci; culture is still needed for every CSF and for susceptibility; caution with CNS hardware, particularly negative results; pooled bacterial sensitivity about 89.5% vs culture with low-certainty evidence.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Back to the child. Shunt infections usually begin with colonization during surgery. Skin flora, especially coagulase-negative staphylococci, lead in many series, but some centres now see mostly gram-negative bacilli."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "These skin organisms cause little inflammation, so a normal cell count, glucose and protein may not exclude shunt infection. Hold cultures at least ten days to catch Cutibacterium acnes."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "The multiplex panel detects fourteen community-acquired targets in about an hour: six bacteria, including meningococcus and pneumococcus, plus viruses and Cryptococcus. It has no staphylococcal target."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "So a negative panel cannot rule out a shunt infection, and even a positive panel still needs culture, because the panel gives no susceptibility results."
+        }
+      ],
+      "objects": [
+        {
+          "id": "sh",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 190,
+            "tone": "b",
+            "title": "VP shunt infection",
+            "lines": [
+              "Colonized at surgery",
+              "CoNS lead in many series",
+              "Gram-negatives lead at some centres"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "wk",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "h": 150,
+            "tone": "warn",
+            "title": "Shunt workup",
+            "lines": [
+              "Normal CSF may not exclude",
+              "Hold cultures ≥ 10 days (C. acnes)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pn",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 190,
+            "tone": "a",
+            "title": "ME panel · ~1 h · 14 targets",
+            "lines": [
+              "6 bacteria · viruses · Cryptococcus",
+              "Community-acquired agents",
+              "No staphylococcal target"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pl",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 440,
+            "w": 420,
+            "label": "Panel ≠ culture · no susceptibility",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “A normal CSF glucose rules out bacterial meningitis” (✓ low glucose is present in only about half of microbial meningitis; early or pretreated cases can look milder); “A negative meningitis panel rules out shunt infection” (✓ the panel targets community-acquired agents and has no staphylococcal target; culture, held at least 10 days, is still needed); “Refrigerate CSF overnight and plate it in the morning” (✓ culture CSF stays at room temperature and is plated within about an hour, on blood and chocolate agar in about 5% CO2).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a normal CSF glucose rules out bacterial meningitis. No: low glucose appears in only about half of cases, and early or pretreated cases can look milder."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a negative meningitis panel rules out a shunt infection. No: the panel has no staphylococcal target, so culture is still needed."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: refrigerate the spinal fluid overnight and plate it in the morning. No: keep it at room temperature and plate it within about an hour."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Normal CSF glucose = not bacterial.”",
+            "lines": [
+              "✓ Low glucose in only ~half · early/pretreated look milder"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Negative panel rules out shunt infection.”",
+            "lines": [
+              "✓ No staphylococcal target · culture ≥ 10 days"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Refrigerate CSF, plate in the morning.”",
+            "lines": [
+              "✓ Room temperature · plate within ~1 h · BAP + CAP in CO2"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Warm, chocolate, skin, snapshot",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Community CSF: keep it WARM, give it CHOCOLATE and a breath of CO2. Shunt CSF: think SKIN and WAIT ten days. The panel is a SNAPSHOT, never the plate.” Tokens: warm + chocolate + CO2 · shunt = skin, wait · panel = snapshot. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: community spinal fluid, keep it warm and give it chocolate and a breath of carbon dioxide. Shunt fluid, think skin and wait ten days. The panel is a snapshot, never the plate."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: some centres see mostly gram-negative shunt infections; the classic CSF pattern is often incomplete; and panels differ by manufacturer, so check what your panel actually detects."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Warm, chocolate, skin, snapshot",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Warm · chocolate · CO2",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Shunt = skin, wait",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Panel = snapshot",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Some centres: mostly gram-negative shunt infections",
+              "Classic CSF pattern often incomplete",
+              "Panels differ: check the target list"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Community CSF: room temperature, plate within ~1 h, blood + chocolate agar in ~5% CO2 · classic pattern neutrophils, protein up, glucose down, but not always”, “Shunt CSF: skin flora such as CoNS often, gram-negatives at some centres · ME panel has no staphylococcal target · culture always”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Plate community spinal fluid promptly at room temperature on blood and chocolate agar in carbon dioxide, treat neutrophils with high protein and low glucose as the classic bacterial pattern without letting a normal value exclude it, and remember that shunt infections often involve skin staphylococci that the meningitis panel does not detect."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Room temp · ≤ 1 h · BAP + CAP in CO2 · classic pattern not always present",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Shunt: CoNS often · panel has no staph target · culture always",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: spinal fluid from a patient with suspected meningitis must reach the lab warm and be plated quickly on rich media in a carbon-dioxide-enriched incubator, because the main germs are delicate. The fluid itself shows clues: in bacterial meningitis it is usually cloudy, full of neutrophils, high in protein and low in sugar, but not every case shows every clue. Brain shunts usually get infected by skin germs during surgery, which a fast PCR panel built for community meningitis does not look for. Scientific terms: cerebrospinal fluid (CSF), blood agar plate (BAP), chocolate agar plate (CAP), X and V factors (hemin, NAD), candle jar, pleocytosis, hypoglycorrhachia, CSF-to-blood glucose ratio, ventriculoperitoneal (VP) shunt, coagulase-negative staphylococci (CoNS), Cutibacterium acnes, multiplex meningitis/encephalitis (ME) panel.",
+    "why": "N. meningitidis, S. pneumoniae and H. influenzae are fastidious and lose viability with cold and delay; chocolate agar adds the hemin and NAD that H. influenzae needs. In bacterial meningitis, neutrophils move into the CSF and microbes plus inflammation lower CSF glucose, but early, pretreated or less inflammatory infections may not show the full pattern. Shunt infections usually start with colonization at surgery by low-virulence skin flora, which provoke little inflammation.",
+    "measure": "Culture CSF: not refrigerated, about 20–35 °C, plated within about 1 hour; BAP + CAP (CAP if only one plate); 35–37 °C in about 5% CO2 or a candle jar; selective chocolate with vancomycin, colistin, nystatin and trimethoprim for contaminated cultures. Bacterial pattern: neutrophilic pleocytosis, protein > 45 mg/dL, glucose < 45 mg/dL, CSF:blood glucose < 0.4. Gram stain sensitivity about 60–80% before antibiotics, 40–60% after. Shunt: hold cultures ≥ 10 days for C. acnes. FilmArray ME panel: 14 targets, about 1 hour, no staphylococcal target.",
+    "differs": "Community-acquired meningitis (meningococcus, pneumococcus, H. influenzae; panel-friendly) vs shunt infection (skin flora or local gram-negatives; panel-blind for staphylococci); classic vs incomplete CSF pattern; panel result vs culture with susceptibility.",
+    "examAngle": "Expect: choose correct CSF transport and plating, pick chocolate agar when only one plate is available, recognise the bacterial CSF pattern in a case table, and identify CoNS as a common shunt pathogen that a negative ME panel does not exclude."
+  },
+  "comparisons": [
+    {
+      "id": "community-vs-shunt",
+      "title": "Community-acquired meningitis vs shunt infection",
+      "left": {
+        "label": "Community-acquired",
+        "points": [
+          "Meningococcus, pneumococcus, H. influenzae",
+          "Usually florid neutrophilic CSF"
+        ]
+      },
+      "right": {
+        "label": "VP shunt infection",
+        "points": [
+          "CoNS and C. acnes often; gram-negatives at some centres",
+          "CSF may be near normal"
+        ]
+      },
+      "distinguisher": "Route of entry (bloodstream or contiguous vs colonization at surgery) and organism virulence."
+    },
+    {
+      "id": "panel-vs-culture",
+      "title": "Multiplex ME panel vs culture",
+      "left": {
+        "label": "ME panel",
+        "points": [
+          "About 1 hour, 14 community targets",
+          "No staphylococci, no susceptibility"
+        ]
+      },
+      "right": {
+        "label": "Culture",
+        "points": [
+          "Slower, but grows any cultivable organism",
+          "Gives an isolate for susceptibility testing"
+        ]
+      },
+      "distinguisher": "Fixed target list vs open-ended growth with an isolate."
+    }
+  ],
+  "mnemonic": {
+    "text": "Community CSF: keep it WARM, give it CHOCOLATE and a breath of CO2. Shunt CSF: think SKIN and WAIT ten days. The panel is a SNAPSHOT, never the plate.",
+    "explanation": "Links CSF transport and media, shunt microbiology and culture hold time, and the role of the multiplex panel.",
+    "limitation": "Some centres see mostly gram-negative shunt infections; the classic CSF pattern is often incomplete; panels differ by manufacturer, so check the actual target list."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Thresholds are simplified from one manual and one review table; laboratories use their own reference intervals, and neonates differ.",
+    "Shunt organism rankings vary by centre and patient group."
+  ],
+  "takeaway": "Plate community spinal fluid promptly at room temperature on blood and chocolate agar in carbon dioxide, treat neutrophils with high protein and low glucose as the classic bacterial pattern without letting a normal value exclude it, and remember that shunt infections often involve skin staphylococci that the meningitis panel does not detect.",
+  "questions": [
+    {
+      "id": "micro-csfm-q1",
+      "stem": "CSF from an adult with suspected bacterial meningitis reaches the laboratory late in the evening. Which handling is most appropriate for culture?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Keep it at room temperature and plate it promptly on blood and chocolate agar, incubated at 35–37 °C in about 5% CO2",
+          "rationale": "Correct. Culture CSF is not refrigerated, should be plated within about an hour, and the fastidious agents grow on blood and chocolate agar in about 5% CO2 or a candle jar."
+        },
+        {
+          "id": "b",
+          "text": "Refrigerate it overnight and plate it in the morning",
+          "rationale": "Incorrect. Culture CSF should not be refrigerated or left unplated; cold and delay reduce recovery of fastidious organisms."
+        },
+        {
+          "id": "c",
+          "text": "Plate it on MacConkey agar only, in ambient air",
+          "rationale": "Incorrect. MacConkey agar does not support H. influenzae or N. meningitidis well; blood and chocolate agar in CO2 are used."
+        },
+        {
+          "id": "d",
+          "text": "If only one plate is available, choose blood agar",
+          "rationale": "Incorrect. If only one plate is available, chocolate agar is preferred because it supplies the hemin and NAD that H. influenzae needs."
+        }
+      ],
+      "answer": "a",
+      "skill": "CSF culture setup",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-csfm-q2",
+      "stem": "Which CSF result pattern is most consistent with acute bacterial meningitis?",
+      "options": [
+        {
+          "id": "a",
+          "text": "WBC 2,000/mm³ with 90% neutrophils, protein 200 mg/dL, glucose 20 mg/dL (serum 100 mg/dL)",
+          "rationale": "Correct. Neutrophilic pleocytosis, protein above 45 mg/dL, glucose below 45 mg/dL and a CSF-to-blood ratio of 0.2 form the classic bacterial pattern."
+        },
+        {
+          "id": "b",
+          "text": "WBC 3/mm³, protein 30 mg/dL, glucose 65 mg/dL (serum 95 mg/dL)",
+          "rationale": "Incorrect. These values are within usual normal limits and show no pleocytosis."
+        },
+        {
+          "id": "c",
+          "text": "Normal cell count with protein 60 mg/dL and normal glucose",
+          "rationale": "Incorrect. An isolated mild protein rise without pleocytosis or low glucose does not fit the classic bacterial pattern."
+        },
+        {
+          "id": "d",
+          "text": "Any CSF with a normal glucose, because normal glucose excludes bacterial meningitis",
+          "rationale": "Incorrect. Low glucose is present in only about half of microbial meningitis, and pretreated cases often have higher glucose, so a normal glucose does not exclude it."
+        }
+      ],
+      "answer": "a",
+      "skill": "CSF pattern",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-csfm-q3",
+      "stem": "A child with a ventriculoperitoneal shunt placed three weeks ago has fever, a mildly raised CSF cell count and a negative FilmArray meningitis/encephalitis panel. Which statement is correct?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The panel has no staphylococcal target, so CSF culture, held at least 10 days, is still required",
+          "rationale": "Correct. The panel targets community-acquired agents; coagulase-negative staphylococci, common in shunt infection, are not on it, and C. acnes needs prolonged incubation."
+        },
+        {
+          "id": "b",
+          "text": "A negative panel excludes shunt infection",
+          "rationale": "Incorrect. Negative panel results should be interpreted with caution in patients with CNS hardware because common shunt organisms are not targeted."
+        },
+        {
+          "id": "c",
+          "text": "A near-normal CSF cell count excludes shunt infection",
+          "rationale": "Incorrect. Normal CSF cell count, glucose and protein may not reliably exclude shunt infection, because skin flora provoke little inflammation."
+        },
+        {
+          "id": "d",
+          "text": "Gram-negative bacilli never cause shunt infection",
+          "rationale": "Incorrect. Gram-negative bacilli cause many shunt infections and predominate at some centres."
+        }
+      ],
+      "answer": "a",
+      "skill": "Shunt infection and panels",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch66",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 66, Collecting Microbiology Specimens (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 66,
+          "section": "High-Yield Hits",
+          "items": [
+            16,
+            17,
+            37
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "who2011",
+      "kind": "external",
+      "citation": "World Health Organization. Laboratory Methods for the Diagnosis of Meningitis caused by Neisseria meningitidis, Streptococcus pneumoniae, and Haemophilus influenzae. WHO Manual, 2nd ed. WHO/IVB.11.09. Geneva: WHO; 2011.",
+      "url": "https://stacks.cdc.gov/view/cdc/11632",
+      "consulted": true,
+      "usedFor": "PDF read in full text. CSF for culture not refrigerated, transported at 20–35 °C and plated within 1 hour; incubation at 35–37 °C in ~5% CO2 may improve survival when delayed; BAP and CAP, CAP if only one plate (hemin and NAD for H. influenzae); N. meningitidis fastidious, grows best at 35–37 °C in ~5% CO2 or candle jar on BAP and CAP, humidity helps; selective chocolate base with vancomycin, colistin, nystatin and trimethoprim; typical bacterial CSF abnormalities (turbidity, PMN pleocytosis, glucose < 45 mg/dL, protein > 45 mg/dL)."
+    },
+    {
+      "id": "miller2018",
+      "kind": "external",
+      "citation": "Miller JM, Binnicker MJ, Campbell S, et al. A Guide to Utilization of the Microbiology Laboratory for Diagnosis of Infectious Diseases: 2018 Update by the Infectious Diseases Society of America and the American Society for Microbiology. Clin Infect Dis. 2018;67(6):e1-e94. doi:10.1093/cid/ciy381",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7108105/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (central nervous system section). Do not refrigerate CSF; first tube not used for culture; CSF Gram stain sensitivity about 60–80% without and 40–60% with prior antibiotics; shunt CSF Gram stain and aerobic/anaerobic culture, C. acnes cultures held 14 days."
+    },
+    {
+      "id": "tacon2012",
+      "kind": "external",
+      "citation": "Tacon CL, Flower O. Diagnosis and management of bacterial meningitis in the paediatric population: a review. Emerg Med Int. 2012;2012:320309. doi:10.1155/2012/320309",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3461291/",
+      "consulted": true,
+      "usedFor": "Lumbar puncture findings table (bacterial: WBC > 1000/mm³, > 85–90% PMNs, protein > 100–200 mg/dL, low glucose, CSF:blood glucose < 0.4); WBC may not be raised early; pretreated cases have higher glucose and lower protein."
+    },
+    {
+      "id": "baud2018",
+      "kind": "external",
+      "citation": "Baud MO, Vitt JR, Robbins NM, et al. Pleocytosis is not fully responsible for low CSF glucose in meningitis. Neurol Neuroimmunol Neuroinflamm. 2018;5(1):e425. doi:10.1212/nxi.0000000000000425",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5745359/",
+      "consulted": true,
+      "usedFor": "Hypoglycorrhachia (< 40 mg/dL) in 50.1% of microbial vs 9.6% of aseptic cases (mostly neurosarcoidosis); low sensitivity and moderate-to-high specificity of CSF glucose and CSF-to-serum ratio."
+    },
+    {
+      "id": "tunkel2017",
+      "kind": "external",
+      "citation": "Tunkel AR, Hasbun R, Bhimraj A, et al. 2017 Infectious Diseases Society of America’s Clinical Practice Guidelines for Healthcare-Associated Ventriculitis and Meningitis. Clin Infect Dis. 2017;64(6):e34-e65. doi:10.1093/cid/ciw861",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5848239/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (first part of the text). Colonization at surgery as the most frequent mechanism of shunt infection; CoNS and P. (C.) acnes indolent, minimal inflammation, pathogenic mainly with prosthetic material; normal CSF cell count, glucose and protein may not exclude infection (Rec 14); hold cultures at least 10 days for P. acnes (Rec 17); CoNS only in broth or one of several cultures with normal CSF and no fever not indicative of infection (Rec 26)."
+    },
+    {
+      "id": "alqasmi2025",
+      "kind": "external",
+      "citation": "Alqasmi M, Kariri YA, Alenazy R, Thabet M, Fallata G, Alqurainy N. Ventriculoperitoneal Shunt Infections: Causative Pathogens and Associated Outcomes from Multiple Hospitals in Saudi Arabia. J Clin Med. 2025;14(6):2006. doi:10.3390/jcm14062006",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11942643/",
+      "consulted": true,
+      "usedFor": "Gram-positive bacteria 58.08% of VPS infections, CoNS 25.81%, S. aureus 12.90%, gram-negatives 35.46%; background: VPS infections typically from skin flora, CoNS most reported, S. epidermidis most common among them."
+    },
+    {
+      "id": "akram2023",
+      "kind": "external",
+      "citation": "Akram Asif A, Mahmood K, Riaz S, McHugh T, Sultan S. Bacterial ventriculoperitoneal shunt infections: changing trends in antimicrobial susceptibility, a 7-year retrospective study from Pakistan. Antimicrob Resist Infect Control. 2023;12(1):75. doi:10.1186/s13756-023-01283-3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10408103/",
+      "consulted": true,
+      "usedFor": "Gram-negative predominance at one centre: Acinetobacter 41%, Pseudomonas 16%, CoNS 13%; reported shift from staphylococci and enterococci to gram-negative bacilli."
+    },
+    {
+      "id": "leber2016",
+      "kind": "external",
+      "citation": "Leber AL, Everhart K, Balada-Llasat JM, et al. Multicenter Evaluation of BioFire FilmArray Meningitis/Encephalitis Panel for Detection of Bacteria, Viruses, and Yeast in Cerebrospinal Fluid Specimens. J Clin Microbiol. 2016;54(9):2251-2261. doi:10.1128/jcm.00730-16",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5005480/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. 14 targets (E. coli K1, H. influenzae, L. monocytogenes, N. meningitidis, S. agalactiae, S. pneumoniae, CMV, enterovirus, HSV-1, HSV-2, HHV-6, parechovirus, VZV, C. neoformans/gattii) in about 1 hour; designed for community-acquired agents; does not eliminate the need for culture and gives no susceptibility; unresolved false positives; caution interpreting results, particularly negatives, with CNS hardware."
+    },
+    {
+      "id": "trujillo2022",
+      "kind": "external",
+      "citation": "Trujillo-Gómez J, Tsokani S, Arango-Ferreira C, et al. Biofire FilmArray Meningitis/Encephalitis panel for the aetiological diagnosis of central nervous system infections: A systematic review and diagnostic test accuracy meta-analysis. EClinicalMedicine. 2022;44:101275. doi:10.1016/j.eclinm.2022.101275",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8851290/",
+      "consulted": true,
+      "usedFor": "Pooled bacterial sensitivity 89.5% and specificity 97.4% against culture, low-certainty evidence; suboptimal sensitivity for some bacteria; studies of patients with shunts or intracranial devices excluded."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-culture",
+      "text": "CSF transport, media (BAP + CAP; CAP if only one), ~5% CO2 or candle jar, N. meningitidis growth, selective chocolate base.",
+      "status": "checked",
+      "refs": [
+        "who2011",
+        "miller2018"
+      ]
+    },
+    {
+      "id": "cl-pattern",
+      "text": "Classic bacterial CSF pattern and its gaps (early, pretreated, low glucose in only about half).",
+      "status": "checked",
+      "refs": [
+        "who2011",
+        "tacon2012",
+        "baud2018"
+      ]
+    },
+    {
+      "id": "cl-gram",
+      "text": "CSF Gram stain sensitivity about 60–80% before and 40–60% after antibiotics.",
+      "status": "checked",
+      "refs": [
+        "miller2018"
+      ]
+    },
+    {
+      "id": "cl-shunt",
+      "text": "Shunt infection mechanism, skin-flora organisms, local gram-negative predominance, normal CSF may not exclude, hold cultures ≥ 10 days, CoNS contaminant rule.",
+      "status": "checked",
+      "refs": [
+        "tunkel2017",
+        "alqasmi2025",
+        "akram2023"
+      ]
+    },
+    {
+      "id": "cl-panel",
+      "text": "FilmArray ME panel targets, ~1 h, no staphylococcal target, culture still required, caution with hardware, pooled accuracy.",
+      "status": "checked",
+      "refs": [
+        "leber2016",
+        "trujillo2022"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Reviewer’s 10% upper bound for CO2; reviewer Number Vault CSF values (bacterial WBC > 500 cells/μL; normal glucose 45–100 mg/dL).",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch66"
+      ],
+      "note": "Not taught; WHO 2011 specifies about 5% CO2 or a candle jar."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; cards schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Warm, chocolate, skin, snapshot.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-csf-pattern-gaps",
+      "issue": "Ch. 66 Hit 17 equates low CSF glucose, high protein and neutrophilic pleocytosis with bacterial meningitis without noting that the pattern is often incomplete: low glucose was present in only about half of microbial meningitis (Baud 2018), the white count may not be raised early, and pretreated cases have higher glucose and lower protein (Tacon 2012). Register flag rv-csf-bacterial-pattern-gaps.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-shunt-cons-panel",
+      "issue": "Ch. 66 Hit 37 says VP shunt infections are most often CoNS and pairs this with multiplex ME panels. CoNS lead in many series (Alqasmi 2025), but gram-negative bacilli predominate at some centres (Akram Asif 2023), and the FilmArray ME panel targets community-acquired agents with no staphylococcal target, so negative results with CNS hardware need caution (Leber 2016). Register flag rv-vp-shunt-cons-panel-gap.",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; workflows and CSF patterns shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against the WHO 2011 meningitis manual (PDF read), Miller 2018, Tunkel 2017 and Leber 2016 (read via a page-fetch tool), Tacon 2012, Baud 2018, Alqasmi 2025, Akram Asif 2023 and Trujillo-Gómez 2022; 1 pending (reviewer CO2 upper bound and Number Vault CSF values, not taught). An NCBI Bookshelf page returned a captcha and was not read. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

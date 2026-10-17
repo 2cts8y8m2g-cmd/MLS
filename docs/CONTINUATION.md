@@ -3,11 +3,11 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 195, teaching 971 of 1,932 concepts (about 50.3%).** All 195 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 199, teaching 991 of 1,932 concepts (about 51.3%).** All 199 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
-  - Ch. 4 (14/32 concepts): `ops-electrochem-ise-coulter-coulometry`, `ops-photometry-beer-scatter-luminescence`, `ops-protein-separation-sec-sds-ief`.
+  - Ch. 4 (21/32 concepts): `ops-electrochem-ise-coulter-coulometry`, `ops-photometry-beer-scatter-luminescence`, `ops-protein-separation-sec-sds-ief`, `ops-spectrophotometer-sources-cuvettes-qa`.
   - Ch. 5 (10/20 concepts): `ops-mass-spectrometry-mrm-internal-standard`.
   - Ch. 6 (9/21 concepts): `ops-open-reagents-middleware-tat`, `ops-total-testing-process-automation`.
   - Ch. 7 (12/20 concepts): `ops-poct-clia-waived-pt`, `ops-poct-lockouts-traceability-connectivity`, `ops-poct-waived-molecular-flu-strep`.
@@ -50,7 +50,7 @@
   - Ch. 44 (8/22 concepts): `immuno-hypersensitivity-types-lab`, `immuno-lymphocyte-subsets-th-treg-nk`.
   - Ch. 45 (9/22 concepts): `immuno-competitive-sandwich-hook`, `immuno-homogeneous-emit-fpia`.
   - Ch. 46 (6/20 concepts): `immuno-igra-t-cell-memory`, `immuno-t-cell-activation-proliferation`.
-  - Ch. 47 (12/28 concepts): `immuno-csf-oligoclonal-band-patterns`, `immuno-immunoglobulin-classes`, `immuno-mgus-smoldering-myeloma`.
+  - Ch. 47 (18/28 concepts): `immuno-csf-oligoclonal-band-patterns`, `immuno-immunoglobulin-classes`, `immuno-mgus-smoldering-myeloma`, `immuno-mspike-impostors`.
   - Ch. 48 (7/22 concepts): `immuno-complement-ch50-ah50`.
   - Ch. 49 (8/22 concepts): `immuno-leukocyte-trafficking-chemokines`.
   - Ch. 50 (11/22 concepts): `immuno-hla-crossmatch-pra`, `immuno-hla-typing-resolution-matching`.
@@ -60,7 +60,7 @@
   - Ch. 54 (8/23 concepts): `immuno-anca-cryoglobulin-testing`.
   - Ch. 55 (10/23 concepts): `immuno-celiac-serology-pbc-ama`, `immuno-glomerular-if-pla2r`.
   - Ch. 56 (14/24 concepts): `immuno-allergy-sige-tryptase`, `immuno-ige-switch-mast-cell-mediators`.
-  - Ch. 57 (37/57 concepts): `micro-c-difficile-testing-algorithm`, `micro-enteric-pathogens-stec`, `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-listeria-nocardia-gpr`, `micro-pseudomonas-ampc-wound-culture`, `micro-rapid-id-maldi-panels-16s`, `micro-strep-enterococcus-id`.
+  - Ch. 57 (41/57 concepts): `micro-biosafety-sharps-hbv-sentinel`, `micro-c-difficile-testing-algorithm`, `micro-enteric-pathogens-stec`, `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-listeria-nocardia-gpr`, `micro-pseudomonas-ampc-wound-culture`, `micro-rapid-id-maldi-panels-16s`, `micro-strep-enterococcus-id`.
   - Ch. 58 (16/30 concepts): `micro-ast-mic-breakpoints-dtest`, `micro-beta-lactamases-esbl-cpe`, `micro-gram-positive-resistance-mec-van-hlar`.
   - Ch. 59 (13/26 concepts): `micro-afb-smear-decontamination`, `micro-tb-xpert-dst-ripe`, `micro-tst-igra-bcg`.
   - Ch. 60 (13/25 concepts): `micro-dimorphic-fungi`, `micro-invasive-mold-markers`.
@@ -69,7 +69,7 @@
   - Ch. 63 (9/19 concepts): `micro-rickettsial-tickborne-diagnosis`.
   - Ch. 64 (10/24 concepts): `micro-ebv-cmv-serology`, `micro-hiv-hcv-testing-algorithms`, `micro-respiratory-virus-naat-antigen-culture`.
   - Ch. 65 (11/24 concepts): `micro-entamoeba-coccidia-stool-protozoa`, `micro-malaria-thick-thin-films`.
-  - Ch. 66 (33/54 concepts): `micro-antigen-tests-negatives`, `micro-blood-culture-volume-contamination`, `micro-direct-smears-sterile-fluids-bal`, `micro-endocarditis-blood-cultures-duke`, `micro-result-reporting-critical-calls`, `micro-specimen-acceptability-transport`, `micro-urine-culture-interpretation`.
+  - Ch. 66 (36/54 concepts): `micro-antigen-tests-negatives`, `micro-blood-culture-volume-contamination`, `micro-csf-meningitis-shunt-panel`, `micro-direct-smears-sterile-fluids-bal`, `micro-endocarditis-blood-cultures-duke`, `micro-result-reporting-critical-calls`, `micro-specimen-acceptability-transport`, `micro-urine-culture-interpretation`.
   - Ch. 67 (8/20 concepts): `mdx-molecular-context-fish-cftr-snp`, `mdx-pharmacogenomics`.
   - Ch. 68 (11/25 concepts): `mdx-hybridization-stringency-blots`, `mdx-sanger-pyrosequencing`.
   - Ch. 69 (8/24 concepts): `mdx-qpcr-quantification`.
@@ -84,7 +84,7 @@
   - Ch. 78 (5/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`.
   - Ch. 79 (6/20 concepts): `mdx-expression-profiling-overfitting`.
 - **Reviewer accuracy register:** 246 flags (186 verified issues, 60 needing verification), plus scan results.
-- **Checks:** 1236 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 1260 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
