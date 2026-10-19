@@ -1,0 +1,1559 @@
+{
+  "schemaVersion": 1,
+  "id": "mdx-proteomic-patterns-seldi-maldi",
+  "title": "MALDI-TOF and SELDI Proteomic Patterns: Peaks Without Names",
+  "summary": "Learn how MALDI-TOF measures mass-to-charge ratio, how real competitive PCR uses it for absolute quantification, and why SELDI-TOF pattern diagnostics yields unnamed peaks that can reflect sample-handling bias rather than disease.",
+  "domain": "p8-mdx",
+  "topic": "ch79",
+  "conceptIds": [
+    "ch79.hit7",
+    "ch79.hit10",
+    "ch79.trap3"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 79,
+        "section": "High-Yield Hits",
+        "items": [
+          7,
+          10
+        ]
+      },
+      {
+        "chapter": 79,
+        "section": "Exam Traps",
+        "items": [
+          3
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 79 Hit 7 (SELDI-TOF-MS pattern diagnostics), Hit 10 (MALDI-TOF-MS principle; real competitive PCR) and Trap 3 (SELDI does not identify the proteins). Checked against Singhal 2015, Ding 2004, Grizzle 2005, Sorace and Zhan 2003 and Wegdam 2012 (all read as Europe PMC full text). Qualification recorded: open sources show SELDI patterns can arise from non-biologic experimental bias (sample handling, run differences), not only from overfitting. Not taught: the reviewer’s “24- vs 25-base products” wording (the source describes one- or two-base extension products), the Number Vault study figures (ovarian 100/95, prostate 100/67, osteopontin 80/97), and Hit 11 (bystander effect; transcript–protein correlation 0.39), for which no open source was read."
+  },
+  "prerequisites": [
+    "ch79.hit1"
+  ],
+  "objectives": [
+    "Describe the MALDI-TOF sequence: matrix co-crystallisation, laser desorption/ionisation, m/z from flight time.",
+    "Explain how real competitive PCR uses MALDI-TOF mass differences and a known competitor for absolute quantification.",
+    "Explain why SELDI-TOF pattern diagnostics yields unidentified peaks and why such patterns need bias checks and independent validation."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "A perfect pattern",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a study reports that a serum mass-spectrometry pattern of five peaks separated ovarian cancer from controls with 100% sensitivity in its own samples. A clinician phones the lab: “Which protein is it, and can we offer the test?” Cards: “Pattern: 5 m/z peaks”, “100% in its own samples”. Question token: “Which protein? Clinic-ready?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Invented scenario: a study reports a serum pattern of five mass-spectrometry peaks that separated ovarian cancer from controls perfectly in its own samples."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "A clinician calls the lab and asks two things: which protein is it, and can we offer the test?"
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "To answer, you need to know what these instruments actually measure."
+        }
+      ],
+      "objects": [
+        {
+          "id": "p",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 420,
+            "h": 160,
+            "tone": "b",
+            "title": "Serum pattern",
+            "lines": [
+              "5 m/z peaks",
+              "Cancer vs controls"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "r",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 220,
+            "w": 400,
+            "h": 160,
+            "tone": "good",
+            "title": "Reported result",
+            "lines": [
+              "100% in its own samples"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0
+            },
+            {
+              "t": 4.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 640,
+            "label": "Which protein? Clinic-ready?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "n",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 640,
+            "label": "First: what does the instrument measure?",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "How MALDI-TOF weighs molecules",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic MALDI-TOF pipeline, four cards left to right and down: (1) Matrix — the sample is mixed with an energy-absorbing organic matrix and co-crystallises as it dries; (2) Laser — a laser desorbs and ionises the analytes, mostly as singly protonated ions; (3) Flight tube — ions are accelerated and their mass-to-charge ratio (m/z) is worked out from the time taken to travel the tube; (4) Spectrum — peaks form a peptide mass fingerprint that is matched to a database (in microbiology, mainly ribosomal proteins at 2–20 kDa). A token: real competitive PCR — a competitor differing by one base gives an extension product of different mass; peak-area ratio against the known competitor amount gives absolute quantity.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "MALDI-TOF starts by mixing the sample with an energy-absorbing matrix. As it dries, the sample co-crystallises inside the matrix."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "A laser then desorbs and ionises the molecules, mostly as ions carrying a single extra proton. The ions are accelerated into a flight tube."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Mass-to-charge ratio, m over z, is worked out from how long each ion takes to fly the tube. The peaks form a fingerprint that software matches to a database, which is how microbiology labs identify colonies."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "MALDI can weigh DNA too. In real competitive PCR, a competitor that differs by one base gives an extension product of different mass, and comparing peak areas with the known competitor amount gives an absolute quantity."
+        }
+      ],
+      "objects": [
+        {
+          "id": "mx",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 420,
+            "h": 140,
+            "tone": "b",
+            "title": "1 Matrix",
+            "lines": [
+              "Sample co-crystallises",
+              "in energy-absorbing matrix"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lz",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 400,
+            "h": 140,
+            "tone": "bad",
+            "title": "2 Laser",
+            "lines": [
+              "Desorbs and ionises",
+              "Mostly singly protonated"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ft",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 340,
+            "w": 420,
+            "h": 140,
+            "tone": "a",
+            "title": "3 Flight tube",
+            "lines": [
+              "m/z from flight time"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sp",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 340,
+            "w": 400,
+            "h": 140,
+            "tone": "good",
+            "title": "4 Spectrum",
+            "lines": [
+              "Mass fingerprint",
+              "Matched to a database"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25,
+              "opacity": 0
+            },
+            {
+              "t": 25.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rc",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 820,
+            "label": "Real competitive PCR: 1-base competitor → mass difference → absolute amount",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "SELDI: a chip that pre-sorts, a pattern with no names",
+      "start": 60,
+      "end": 104,
+      "altText": "Schematic SELDI-TOF chip: spots coated with chromatographic surfaces (ion exchange, bound metal ions, or capture molecules such as antibodies) retain a subset of serum proteins; unbound material is washed away; an energy-absorbing matrix is added and the spot is read by laser time-of-flight. Pattern card: software compares thousands of m/z intensities between groups and keeps the combination that separates them (an early ovarian study used genetic algorithms with clustering). Output = m/z positions and intensities, not protein names; one peak may represent more than one protein. Identity card: naming a peak needs separate identification work; LC-MS methods identify proteins directly.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "SELDI is a surface-enhanced variant. Each chip spot carries a chromatographic surface, such as an ion exchanger, a bound metal, or an antibody, that holds on to only some serum proteins. Everything else is washed away before the laser time-of-flight read."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 84,
+          "text": "Pattern diagnostics then compares thousands of m/z intensities between patients and controls. An algorithm keeps the combination that separates the groups best. An early ovarian cancer study used genetic algorithms with clustering."
+        },
+        {
+          "id": "c3",
+          "start": 84,
+          "end": 94,
+          "text": "The output is a list of peak positions and heights. A peak at a given m/z is not a protein name, and one peak may represent more than one protein, so the pattern alone does not identify the proteins."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "Naming a peak takes separate, time-consuming identification work. Newer liquid chromatography mass spectrometry methods identify proteins directly and avoid that step."
+        }
+      ],
+      "objects": [
+        {
+          "id": "chip",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "b",
+            "title": "SELDI chip spot",
+            "lines": [
+              "Chromatographic surface",
+              "Binds a subset; rest washed off",
+              "Matrix + laser TOF read"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pat",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 400,
+            "h": 210,
+            "tone": "a",
+            "title": "Pattern diagnostics",
+            "lines": [
+              "Thousands of m/z values",
+              "Algorithm keeps best set",
+              "e.g. genetic algorithm"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "noid",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 820,
+            "label": "Peak position ≠ protein name",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 25.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lc",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 510,
+            "w": 820,
+            "label": "Identity needs separate work (LC-MS identifies directly)",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "When the pattern is the lab, not the tumour",
+      "start": 104,
+      "end": 144,
+      "altText": "Three evidence cards. Bias: a re-analysis of a public ovarian SELDI dataset found the best-separating m/z values below 500, a region often discarded as noise, and concluded there was non-biologic experimental bias between cancer and control samples. Handling: repeated freeze–thaw cycles can lower peak heights; instrument drift can shift peak positions. Validation: a carefully designed study with an independent cohort reached 73–81% accuracy for ovarian cancer versus benign tumours, found that none of the peaks that differed in serum also differed in tumour tissue, and judged SELDI not applicable to routine care. Hook answers card.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 116,
+          "text": "Why be careful? Re-analysis of one public ovarian cancer dataset found the strongest separating peaks below m over z five hundred, a region often written off as noise. The authors concluded the groups differed because of non-biologic experimental bias."
+        },
+        {
+          "id": "l2",
+          "start": 116,
+          "end": 124,
+          "text": "Handling matters too: repeated freezing and thawing can lower peak heights, and instrument drift can shift where peaks appear."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "A later study with strict protocols and an independent validation cohort separated ovarian cancer from benign tumours with seventy-three to eighty-one percent accuracy. Peaks that differed in serum did not differ in tumour tissue, and the authors judged SELDI not applicable to routine care."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook. Which protein? The pattern does not say. Clinic-ready? Not until it survives independent validation, with handling bias ruled out."
+        }
+      ],
+      "objects": [
+        {
+          "id": "bias",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 200,
+            "w": 280,
+            "h": 190,
+            "tone": "bad",
+            "title": "Bias",
+            "lines": [
+              "Best peaks < 500 m/z",
+              "Non-biologic difference"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hand",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 200,
+            "w": 280,
+            "h": 190,
+            "tone": "warn",
+            "title": "Handling",
+            "lines": [
+              "Freeze–thaw lowers peaks",
+              "Drift shifts positions"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "val",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 200,
+            "w": 280,
+            "h": 190,
+            "tone": "a",
+            "title": "Validation",
+            "lines": [
+              "Independent cohort 73–81%",
+              "Not for routine care"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 760,
+            "h": 130,
+            "tone": "good",
+            "title": "Hook answers",
+            "lines": [
+              "Which protein? Unknown from the pattern",
+              "Clinic-ready? Only after independent validation"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “SELDI pattern diagnostics names the proteins behind the pattern” (✓ it reports m/z peaks; the pattern alone does not identify the proteins); “A discriminating peak must come from the tumour” (✓ it may reflect sample handling or run bias); “TOF sorts ions by mass alone” (✓ it measures mass-to-charge ratio from flight time).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: SELDI pattern diagnostics names the proteins behind the pattern. No: it reports m over z peaks, and the pattern alone does not identify the proteins."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a peak that separates patients from controls must come from the tumour. No: sample handling and run bias can create separating peaks."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: time-of-flight sorts ions by mass alone. No: it measures the mass-to-charge ratio, from how long each ion takes to fly."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “SELDI names the proteins.”",
+            "lines": [
+              "✓ m/z peaks; proteins not identified"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “A separating peak = tumour protein.”",
+            "lines": [
+              "✓ Handling or run bias can do it"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “TOF sorts by mass alone.”",
+            "lines": [
+              "✓ Mass-to-charge, from flight time"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "A barcode with no label",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “A SELDI pattern is a barcode with no product label: you can match the stripes, but they don’t tell you what is in the box — and a smudge from handling can change the stripes.” Tokens: stripes = m/z peaks · no label = unidentified proteins · smudge = handling bias. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: a SELDI pattern is a barcode with no product label. You can match the stripes, but they do not tell you what is in the box, and a smudge from handling can change the stripes."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: a real barcode is stable, but peaks drift between runs; some peaks can later be identified as real proteins; and MALDI in microbiology does have a labelled library to match against."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "A barcode with no label",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Stripes = m/z peaks",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "No label = unknown",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Smudge = bias",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Peaks drift between runs",
+              "Some peaks are later identified",
+              "Microbial MALDI has a labelled library"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “MALDI and SELDI: laser ions → m/z from flight time”, “SELDI pattern = unnamed peaks · bias-prone → identify + validate independently”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "MALDI and SELDI time-of-flight instruments measure mass-to-charge ratio from flight time, but a SELDI pattern is a set of unnamed peaks that handling bias can create, so it needs protein identification and independent validation before clinical use."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "MALDI and SELDI: laser ions → m/z from flight time",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "SELDI pattern = unnamed, bias-prone peaks → identify + validate",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a mass spectrometer turns molecules into charged particles and times how fast they fly; the timing gives a mass-to-charge value. SELDI first lets a chip surface grab some serum proteins, then reads them the same way, and software looks for a set of peaks that differs between patients and controls. Scientific terms: matrix-assisted laser desorption/ionisation (MALDI), surface-enhanced laser desorption/ionisation (SELDI), time-of-flight (TOF), mass-to-charge ratio (m/z), energy-absorbing matrix, peptide mass fingerprint, chromatographic chip surface, pattern diagnostics, genetic algorithm, real competitive PCR, non-biologic experimental bias, independent validation.",
+    "why": "A pattern of m/z peaks can separate groups without anyone knowing which proteins produce the peaks, and differences in how samples were collected, stored or run can also create separating peaks. Without identification and independent validation, a high derivation-set accuracy can be an artefact.",
+    "measure": "MALDI: sample co-crystallised in matrix → laser → mostly singly protonated ions → accelerated → m/z from flight time → spectrum matched to a database (microbial ID uses mainly ribosomal proteins, 2–20 kDa). Real competitive PCR: competitor identical except one base; extension products differ in mass; peak-area ratio × known competitor amount = absolute quantity. SELDI: chromatographic spot retains a protein subset, wash, matrix, laser TOF; algorithm picks discriminating m/z values.",
+    "differs": "MALDI identification (spectrum matched to a labelled library) vs SELDI pattern diagnostics (discriminating peaks not identified by the pattern itself); biological signal vs handling/run bias; derivation-set accuracy vs independent validation.",
+    "examAngle": "Expect: identify that SELDI patterns do not name proteins, recognise what TOF measures (m/z from flight time), explain the MALDI matrix/laser steps, or pick the reason a perfect serum-pattern result is not clinic-ready."
+  },
+  "comparisons": [
+    {
+      "id": "maldi-vs-seldi",
+      "title": "MALDI identification vs SELDI pattern diagnostics",
+      "left": {
+        "label": "MALDI (microbial ID)",
+        "points": [
+          "Sample spotted with matrix",
+          "Spectrum matched to labelled database"
+        ]
+      },
+      "right": {
+        "label": "SELDI pattern",
+        "points": [
+          "Chip surface retains a protein subset",
+          "Discriminating peaks, not named"
+        ]
+      },
+      "distinguisher": "Matching a known library vs selecting unnamed peaks that separate groups."
+    },
+    {
+      "id": "signal-vs-bias",
+      "title": "Biological signal vs experimental bias",
+      "left": {
+        "label": "Biological signal",
+        "points": [
+          "Holds in an independent cohort",
+          "Ideally linked to an identified protein"
+        ]
+      },
+      "right": {
+        "label": "Experimental bias",
+        "points": [
+          "Handling, storage or run differences",
+          "May sit in noise regions (e.g. m/z < 500)"
+        ]
+      },
+      "distinguisher": "Independent validation and identification, with handling bias ruled out."
+    }
+  ],
+  "mnemonic": {
+    "text": "A SELDI pattern is a barcode with no product label: you can match the stripes, but they don’t tell you what is in the box — and a smudge from handling can change the stripes.",
+    "explanation": "Pattern = peak positions; no label = proteins unidentified; smudge = pre-analytic or run bias.",
+    "limitation": "Peaks drift between runs, unlike a printed barcode; some discriminating peaks can later be identified as real proteins; MALDI microbial identification does match against a labelled library."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Instrument and chip drawings are schematic.",
+    "Accuracy figures come from single studies and do not describe every platform."
+  ],
+  "takeaway": "MALDI and SELDI time-of-flight instruments measure mass-to-charge ratio from flight time, but a SELDI pattern is a set of unnamed peaks that handling bias can create, so it needs protein identification and independent validation before clinical use.",
+  "questions": [
+    {
+      "id": "mdx-seldi-q1",
+      "stem": "A SELDI-TOF-MS serum study reports five discriminating peaks that separate cancer patients from controls. What does the pattern itself tell you about the proteins involved?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Only their m/z positions and intensities; the pattern alone does not identify the proteins",
+          "rationale": "Correct. Pattern diagnostics selects m/z values; a peak may represent more than one protein, and naming the proteins needs separate identification work."
+        },
+        {
+          "id": "b",
+          "text": "Their names, because each peak is matched to a protein database",
+          "rationale": "Incorrect. That describes library matching in MALDI microbial identification, not SELDI pattern diagnostics."
+        },
+        {
+          "id": "c",
+          "text": "That they are produced by the tumour",
+          "rationale": "Incorrect. Separating peaks can reflect sample handling or run bias, and in one careful study the peaks that differed in serum did not differ in tumour tissue."
+        },
+        {
+          "id": "d",
+          "text": "Their DNA sequence, read from the flight time",
+          "rationale": "Incorrect. Flight time gives mass-to-charge ratio, not sequence."
+        }
+      ],
+      "answer": "a",
+      "skill": "Pattern diagnostics",
+      "difficulty": "recall"
+    },
+    {
+      "id": "mdx-seldi-q2",
+      "stem": "In MALDI-TOF mass spectrometry, what is measured in the flight tube to determine an ion’s mass-to-charge ratio?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The time the ion takes to travel the tube",
+          "rationale": "Correct. TOF analysers derive m/z from the travel time through the flight tube."
+        },
+        {
+          "id": "b",
+          "text": "The colour of light the ion emits",
+          "rationale": "Incorrect. That describes fluorescence or emission methods."
+        },
+        {
+          "id": "c",
+          "text": "How far the ion migrates through a gel",
+          "rationale": "Incorrect. That describes electrophoresis."
+        },
+        {
+          "id": "d",
+          "text": "The temperature at which the ion melts",
+          "rationale": "Incorrect. Melting temperature belongs to DNA melting analysis, not TOF."
+        }
+      ],
+      "answer": "a",
+      "skill": "Instrument principle",
+      "difficulty": "recall"
+    },
+    {
+      "id": "mdx-seldi-q3",
+      "stem": "Re-analysis of a public SELDI ovarian cancer dataset found that the best-separating peaks lay below m/z 500, a region often treated as noise. What did the authors conclude?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A non-biologic experimental bias existed between the cancer and control samples",
+          "rationale": "Correct. The authors concluded the separation reflected experimental bias that may invalidate the dataset for finding reproducible diagnostic patterns."
+        },
+        {
+          "id": "b",
+          "text": "Small tumour proteins below m/z 500 were confirmed as cancer markers",
+          "rationale": "Incorrect. No proteins were identified; the finding was taken as a sign of bias."
+        },
+        {
+          "id": "c",
+          "text": "The test was ready for ovarian cancer screening",
+          "rationale": "Incorrect. A bias-prone derivation result is not evidence of clinical readiness."
+        },
+        {
+          "id": "d",
+          "text": "The genetic algorithm had named the proteins in the pattern",
+          "rationale": "Incorrect. Pattern algorithms select m/z values; they do not identify proteins."
+        }
+      ],
+      "answer": "a",
+      "skill": "Bias and validation",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch79",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 79, Genomics and Big-Data Lab Tech (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 79,
+          "section": "High-Yield Hits",
+          "items": [
+            7,
+            10
+          ]
+        },
+        {
+          "chapter": 79,
+          "section": "Exam Traps",
+          "items": [
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "singhal2015",
+      "kind": "external",
+      "citation": "Singhal N, Kumar M, Kanaujia PK, Virdi JS. MALDI-TOF mass spectrometry: an emerging technology for microbial identification and diagnosis. Front Microbiol. 2015;6:791. doi:10.3389/fmicb.2015.00791",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4525378/",
+      "consulted": true,
+      "usedFor": "MALDI principle: matrix co-crystallisation, laser desorption/ionisation producing singly protonated ions, acceleration, m/z from flight-tube travel time; peptide mass fingerprint matched to databases; ribosomal proteins at 2–20 kDa for microbial identification."
+    },
+    {
+      "id": "ding2004",
+      "kind": "external",
+      "citation": "Ding C, Maier E, Roscher AA, Braun A, Cantor CR. Simultaneous quantitative and allele-specific expression analysis with real competitive PCR. BMC Genet. 2004;5:8. doi:10.1186/1471-2156-5-8",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC411033/",
+      "consulted": true,
+      "usedFor": "Real competitive PCR: competitor identical except one base; base extension gives products of different mass; MALDI-TOF peak-area ratios with a known competitor amount give absolute quantification."
+    },
+    {
+      "id": "grizzle2005",
+      "kind": "external",
+      "citation": "Grizzle WE, Semmes OJ, Bigbee W, Zhu L, Malik G, Oelschlager DK, Manne B, Manne U. The need for review and understanding of SELDI/MALDI mass spectroscopy data prior to analysis. Cancer Inform. 2005;1:86-97.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2657646/",
+      "consulted": true,
+      "usedFor": "SELDI chip spots with chromatographic surfaces (ion exchange, metal affinity, capture molecules) retaining protein subsets after washing; energy-absorbing matrix; peaks may represent multiple proteins; peak amplitudes may decline with freeze–thaw cycles; instrumental drift shifting peak locations."
+    },
+    {
+      "id": "sorace2003",
+      "kind": "external",
+      "citation": "Sorace JM, Zhan M. A data review and re-assessment of ovarian cancer serum proteomic profiling. BMC Bioinformatics. 2003;4:24. doi:10.1186/1471-2105-4-24",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC165662/",
+      "consulted": true,
+      "usedFor": "The Lancet ovarian SELDI report used genetic algorithms with clustering to select m/z rules; the identity of molecules behind discriminating m/z values cannot be determined from the data; re-analysis found best-separating m/z values below 500 (region often discarded as noise) and concluded non-biologic experimental bias between groups."
+    },
+    {
+      "id": "wegdam2012",
+      "kind": "external",
+      "citation": "Wegdam W, Moerland PD, Meijer D, de Jong SM, Hoefsloot HC, Kenter GG, Buist MR, Aerts JM. A critical assessment of SELDI-TOF-MS for biomarker discovery in serum and tissue of patients with an ovarian mass. Proteome Sci. 2012;10(1):45. doi:10.1186/1477-5956-10-45",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3494530/",
+      "consulted": true,
+      "usedFor": "Independent validation accuracy 73–81% (ovarian cancer vs benign tumours); no serum peaks differentially expressed in tissue; conclusion that SELDI-TOF-MS is not applicable in routine care; identifying proteins found in SELDI experiments is difficult and LC-MS methods identify proteins directly; many earlier SELDI studies lacked external validation."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-maldi",
+      "text": "MALDI-TOF: matrix co-crystallisation, laser desorption/ionisation, m/z from flight time, fingerprint matched to database.",
+      "status": "checked",
+      "refs": [
+        "singhal2015"
+      ]
+    },
+    {
+      "id": "cl-rcpcr",
+      "text": "Real competitive PCR: one-base competitor, mass-different extension products, absolute quantification from peak areas.",
+      "status": "checked",
+      "refs": [
+        "ding2004"
+      ]
+    },
+    {
+      "id": "cl-seldi-chip",
+      "text": "SELDI chip spots with chromatographic surfaces retain a protein subset before laser TOF.",
+      "status": "checked",
+      "refs": [
+        "grizzle2005"
+      ]
+    },
+    {
+      "id": "cl-noid",
+      "text": "Pattern diagnostics selects discriminating m/z values by algorithm; the pattern alone does not identify the proteins, a peak may represent several proteins, and identification is separate work.",
+      "status": "checked",
+      "refs": [
+        "sorace2003",
+        "wegdam2012",
+        "grizzle2005"
+      ]
+    },
+    {
+      "id": "cl-bias",
+      "text": "Separating peaks can reflect non-biologic bias; freeze–thaw and instrument drift alter peaks.",
+      "status": "checked",
+      "refs": [
+        "sorace2003",
+        "grizzle2005"
+      ]
+    },
+    {
+      "id": "cl-valid",
+      "text": "Independent validation 73–81% (cancer vs benign tumours); serum-discriminating peaks not differential in tissue; not applicable in routine care.",
+      "status": "checked",
+      "refs": [
+        "wegdam2012"
+      ]
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; instrument and chip drawings schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“A barcode with no label.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-seldi-bias",
+      "issue": "The reviewer frames the main SELDI pitfall as overfitting. Open sources add that discriminating SELDI peaks can arise from non-biologic experimental bias (sample handling, storage, run differences): a re-analysis of a public ovarian dataset found the best-separating m/z values below 500 and concluded bias, and a later validated study judged SELDI not applicable to routine care. The lesson teaches bias alongside overfitting.",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No spectra or instrument photographs; steps shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "source-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "All 6 factual claims checked against Singhal 2015, Ding 2004, Grizzle 2005, Sorace and Zhan 2003 and Wegdam 2012 (Europe PMC full text). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

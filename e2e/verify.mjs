@@ -287,7 +287,7 @@ try {
     check('Coverage flags unverified ASCP outline', cov.includes('unverified'));
     check('Coverage lists all 79 reviewer chapters', (await page.$$('#chapters tbody tr')).length === 79);
     check('Coverage shows the reviewer accuracy register', cov.includes('Reviewer accuracy register') && cov.includes('48 systems'));
-    await page.screenshot({ path: `${OUT}coverage.png`, fullPage: true });
+    await page.screenshot({ path: `${OUT}coverage.png`, fullPage: true, timeout: 180000 }); // page grows with the accuracy register
 
     // authoring
     await page.goto(`${BASE}#/author`);

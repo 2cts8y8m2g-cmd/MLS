@@ -1,0 +1,1585 @@
+{
+  "schemaVersion": 1,
+  "id": "chem-hil-bilirubin-ammonia",
+  "title": "Hemolysis, Lipemia and Icterus: Diazo Bilirubin and Ammonia Pitfalls",
+  "summary": "Learn how the Jendrassik–Grof diazo method separates direct and total bilirubin, how hemolysis, lipemia and icterus distort chemistry results (including a falsely low bilirubin), and why ammonia needs a resting, chilled, hemolysis-free sample.",
+  "domain": "p2-chem",
+  "topic": "ch28",
+  "conceptIds": [
+    "ch28.hit4",
+    "ch28.hit5",
+    "ch28.hit10",
+    "ch28.trap3"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 28,
+        "section": "High-Yield Hits",
+        "items": [
+          4,
+          5,
+          10
+        ]
+      },
+      {
+        "chapter": 28,
+        "section": "Exam Traps",
+        "items": [
+          3
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 28 Hits 4 (Jendrassik–Grof), 5 (hemolysis, icterus, lipemia) and 10 (ammonia collection) and Trap 3 (hemolyzed bilirubin redraw). Checked against Guerra Ruiz 2021, Thomas 2002, Ho 2021, Nikolac 2014, Krasowski 2019, Wan Azman 2019, Savy 2018, Kaplon 2019 and Bélanger-Quintana 2022, all read as Europe PMC full text. Qualified: hemolysis and iron is method-dependent (Thomas 2002 vs Ho 2021); lipemia’s direction of error is method-dependent rather than “falsely high”; the reviewer’s ammonia stability (3 h at 2–4 °C, 24 h at −20 °C) is longer than open sources advise (<15 min at 4 °C; process within the hour; store at −70 °C). Not verified, so not taught: RBC ammonia ~3× plasma, cigarette-smoke contamination, LD1 as the RBC isoenzyme, hemoglobin competing with ferrozine, and the Number Vault interference limits."
+  },
+  "prerequisites": [
+    "ch28.hit3"
+  ],
+  "objectives": [
+    "Explain how the Jendrassik–Grof diazo method yields direct, total and calculated indirect bilirubin.",
+    "Predict the direction of error that hemolysis and lipemia cause for common chemistry analytes.",
+    "Describe how an ammonia specimen should be collected and handled, and how it is measured."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "One pink tube",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: one serum tube from the emergency department arrives visibly pink, and the analyser flags a hemolysis index of 4+. Orders on the tube: total and direct bilirubin, phosphate, LD, iron and ammonia. Question token: “Which results can you trust?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Invented case: a serum tube from the emergency department arrives pink, and the analyser flags a hemolysis index of four plus."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "The orders are total and direct bilirubin, phosphate, lactate dehydrogenase, iron, and ammonia."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which of these results can you trust, and which way would the others be wrong?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "tube",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 440,
+            "h": 170,
+            "tone": "bad",
+            "title": "Pink serum",
+            "lines": [
+              "Hemolysis index 4+",
+              "Emergency department"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "orders",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 420,
+            "h": 200,
+            "tone": "b",
+            "title": "Orders",
+            "lines": [
+              "Total + direct bilirubin",
+              "Phosphate · LD · iron",
+              "Ammonia"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "Which results can you trust?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "How the diazo bilirubin method works",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic of the Jendrassik–Grof diazo method. Card 1: bilirubin + diazotized sulfanilic acid → coloured azopigments, read near 600 nm (598 nm after alkaline tartrate). Card 2: direct bilirubin = no accelerator, so mainly conjugated bilirubin reacts. Card 3: total bilirubin = caffeine–sodium benzoate accelerator frees unconjugated bilirubin from albumin, so both forms react. Card 4: indirect (unconjugated) = total − direct; the Jendrassik–Grof method as modified by Doumas is described as the gold standard for total bilirubin.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Most laboratories measure bilirubin with a diazo reaction. Bilirubin couples with diazotized sulfanilic acid to form coloured azopigments, read near six hundred nanometres in alkaline solution."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Without an accelerator, mainly conjugated bilirubin reacts. That is the direct bilirubin."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "In the Jendrassik–Grof method, caffeine and sodium benzoate act as the accelerator. They free unconjugated bilirubin from albumin, so both forms react. That is the total."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Indirect, or unconjugated, bilirubin is not measured directly. It is calculated as total minus direct."
+        }
+      ],
+      "objects": [
+        {
+          "id": "diazo",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Diazo reaction",
+            "lines": [
+              "Bilirubin + diazo reagent",
+              "→ azopigment, ~600 nm"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "direct",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "b",
+            "title": "Direct",
+            "lines": [
+              "No accelerator",
+              "Mainly conjugated reacts"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "total",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "good",
+            "title": "Total",
+            "lines": [
+              "Caffeine–benzoate accelerator",
+              "Frees albumin-bound bilirubin"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ind",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Indirect",
+            "lines": [
+              "= total − direct",
+              "Calculated, not measured"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Hemolysis, icterus, lipemia",
+      "start": 60,
+      "end": 104,
+      "altText": "Three saboteur cards. Hemolysis: red cells release contents (potassium about 25× and AST about 40× plasma in one review), so potassium, LD and AST rise; organic phosphate esters release inorganic phosphate, so phosphate rises; hemoglobin absorbs strongly near 415 nm; its pseudoperoxidase activity inhibits azo-dye formation, so Jendrassik–Grof bilirubin can read falsely LOW (from about 0.8 g/L free hemoglobin in one review; size varies by method). Lipemia: lipoproteins absorb and scatter light, most at low wavelengths such as 340 nm; the direction of error depends on the method; volume displacement makes indirect electrolyte methods read low; ultracentrifugation removes lipids. Icterus: the third index. Analysers estimate all three as spectrophotometric HIL indices.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Hemolysis spills the contents of red cells into the serum. Potassium, aspartate aminotransferase and lactate dehydrogenase rise, and released organic phosphate esters liberate inorganic phosphate, so phosphate rises too."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "Hemolysis can also push a result down. Hemoglobin’s pseudoperoxidase activity inhibits the diazo colour, so Jendrassik–Grof bilirubin can read falsely low."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "Lipemia absorbs and scatters light, most strongly at low wavelengths like three hundred and forty nanometres. Whether the result reads high or low depends on the method. Fat also displaces water, so indirect electrolyte methods read low."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "Icterus is the third interferent. Modern analysers estimate hemolysis, icterus and lipemia as spectrophotometric indices, and each assay has its own threshold."
+        }
+      ],
+      "objects": [
+        {
+          "id": "hem",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 240,
+            "w": 440,
+            "h": 270,
+            "tone": "bad",
+            "title": "Hemolysis",
+            "lines": [
+              "K⁺ · AST · LD rise",
+              "Phosphate esters → phosphate ↑",
+              "Hb absorbs near 415 nm",
+              "Diazo bilirubin can read LOW"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lip",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "warn",
+            "title": "Lipemia",
+            "lines": [
+              "Absorbs + scatters, worst at 340 nm",
+              "Direction depends on method",
+              "Volume displacement: Na⁺ low"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ict",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 470,
+            "w": 420,
+            "label": "Icterus + HIL indices per assay",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Ammonia, and the hook answered",
+      "start": 104,
+      "end": 144,
+      "altText": "Ammonia card: glutamate dehydrogenase method, used by most laboratories — reductive amination of α-ketoglutarate consumes NADPH; NAD(P)H indicator reactions are read at 340 nm, so the fall in absorbance tracks ammonia. Collection card: muscle at rest, no tourniquet or fist clenching, large-calibre draw to avoid hemolysis, tube on ice, processed promptly (one recommendation: within the hour); if not run immediately, a urea-cycle consensus advises storing plasma at −70 °C. Hemolysis and transport delay cause false highs. Hook answers card: bilirubin may read low; if the hemolysis is in vitro, phosphate, LD, AST, potassium falsely high; ammonia: recollect; iron: method-dependent. In-vivo hemolysis card: check haptoglobin; rejecting a sample with in-vivo hemolysis is described as malpractice.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Most laboratories measure ammonia with a glutamate dehydrogenase method. Ammonia reacts with alpha-ketoglutarate while NADPH is used up, so the fall in absorbance at three hundred and forty nanometres tracks ammonia."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 126,
+          "text": "Ammonia rises easily in the tube. Draw with the muscle at rest, without a tourniquet or fist clenching, avoid hemolysis, put the tube on ice, and analyse it promptly. Hemolysis and delay cause false highs."
+        },
+        {
+          "id": "l3",
+          "start": 126,
+          "end": 136,
+          "text": "Back to the hook. Bilirubin may read falsely low. If the hemolysis happened in the tube, phosphate, lactate dehydrogenase, aspartate aminotransferase and potassium read falsely high. The ammonia needs a new, careful draw."
+        },
+        {
+          "id": "l4",
+          "start": 136,
+          "end": 144,
+          "text": "Iron depends on the method: one analyser over-read iron in heavy hemolysis, while an older review found little effect. And if hemolysis happened inside the patient, a redraw will not fix it, so check haptoglobin before rejecting."
+        }
+      ],
+      "objects": [
+        {
+          "id": "amm",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Ammonia: GLDH",
+            "lines": [
+              "NH₃ + α-KG, NADPH used up",
+              "Fall read at 340 nm"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "col",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 200,
+            "tone": "warn",
+            "title": "Collection",
+            "lines": [
+              "Muscle at rest · no tourniquet",
+              "No hemolysis · on ice",
+              "Analyse promptly"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "h": 180,
+            "tone": "good",
+            "title": "Hook answers",
+            "lines": [
+              "Bilirubin: may read low",
+              "In vitro: phosphate · LD · K⁺ high",
+              "Ammonia: recollect"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "iron",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 450,
+            "w": 420,
+            "h": 150,
+            "tone": "b",
+            "title": "Iron · in vivo?",
+            "lines": [
+              "Iron: method-dependent",
+              "In vivo: check haptoglobin"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Hemolysis only raises results” (✓ diazo bilirubin falls; proteases released by hemolysis can lower insulin and troponin); “Reject every hemolyzed tube” (✓ in-vivo hemolysis is real; a redraw is hemolyzed again — check haptoglobin); “Lipemia always reads high” (✓ direction depends on wavelength, reaction direction and blanking; indirect electrolytes read low).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: hemolysis only raises results. No: diazo bilirubin falls, and released proteases can lower insulin and troponin."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: reject every hemolyzed tube. No: if the hemolysis is in the patient, every redraw is hemolyzed. Check haptoglobin and the clinical picture."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: lipemia always reads high. No: the direction depends on the method, and indirect electrolyte methods read low."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Hemolysis only raises results.”",
+            "lines": [
+              "✓ Diazo bilirubin falls; insulin, troponin can fall"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Reject every hemolyzed tube.”",
+            "lines": [
+              "✓ In-vivo hemolysis: check haptoglobin"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Lipemia always reads high.”",
+            "lines": [
+              "✓ Direction is method-dependent"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Spill, cloud, cold",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Hemolysis SPILLS (cell contents out, bilirubin colour blocked); lipemia CLOUDS (light lost, water displaced); ammonia wants it COLD, CALM and QUICK.” Tokens: Spill = hemolysis · Cloud = lipemia · Cold = ammonia. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: hemolysis spills, lipemia clouds, and ammonia wants it cold, calm and quick. Spill means cell contents leak out and the bilirubin colour is blocked. Cloud means light is lost and water displaced."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: hemolysis also works through hemoglobin’s own colour and chemistry, not only by spilling; a cloud can push results either way depending on the method; and icterus has no word here at all."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Spill, cloud, cold",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Spill = hemolysis",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Cloud = lipemia",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Cold = ammonia",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Hemolysis also interferes chemically and spectrally",
+              "Lipemia direction varies by method",
+              "Icterus is not in the aid"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Hemolysis: phosphate, LD, potassium up · diazo bilirubin can fall”, “Lipemia direction depends on the method · ammonia: at rest, on ice, no hemolysis, analyse promptly”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Hemolysis in the tube raises phosphate, potassium and lactate dehydrogenase but can lower diazo bilirubin, lipemia errs in a method-dependent direction, and ammonia needs a resting, hemolysis-free draw kept on ice and analysed promptly."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Hemolysis: phosphate · LD · K⁺ up · diazo bilirubin can fall",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Lipemia: method-dependent · ammonia: rest, ice, no hemolysis, fast",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a pink (hemolyzed), yellow (icteric) or cloudy (lipemic) sample can change results in either direction, and ammonia rises falsely when the draw is poor or the sample is delayed or hemolyzed. Bilirubin is measured by turning it into a coloured dye; a helper chemical decides whether you measure only conjugated bilirubin or all of it. Scientific terms: diazo reaction, diazotized sulfanilic acid, azopigment, accelerator (caffeine–sodium benzoate), direct, total and indirect bilirubin, HIL indices, pseudoperoxidase, volume displacement, ultracentrifugation, glutamate dehydrogenase (GLDH), NADPH, in vivo vs in vitro hemolysis, haptoglobin.",
+    "why": "Red cells hold far more potassium, AST, LD and phosphate esters than plasma, so leaking cells raise those results; free hemoglobin also absorbs light and its pseudoperoxidase activity blocks the diazo colour. Lipoproteins absorb and scatter light and take up volume. Ammonia levels rise easily when collection and handling are poor, so preanalytical care largely decides its accuracy.",
+    "measure": "Diazo azopigments read near 600 nm (598 nm in alkaline tartrate); direct = no accelerator, total = caffeine–benzoate accelerator, indirect = total − direct. Hemolysis: K⁺, AST, LD, phosphate falsely high; diazo bilirubin can read falsely low (from about 0.8 g/L free hemoglobin in one review); visible above about 300 mg/L free hemoglobin. Lipemia: worst at 340 nm; direction depends on wavelength, reaction direction and blanking; indirect electrolytes read low; ultracentrifugation removes lipids. Ammonia: GLDH, fall in NADPH at 340 nm; resting muscle, no tourniquet, avoid hemolysis, on ice, process promptly; −70 °C storage if delayed.",
+    "differs": "Direct vs total bilirubin (accelerator absent or present); in vitro hemolysis (parallel rise of hemoglobin, potassium, LD, AST; normal haptoglobin) vs in vivo hemolysis (low haptoglobin; persists on redraw); lipemia spectral error (either direction) vs volume displacement (electrolytes low on indirect methods).",
+    "examAngle": "Expect: the effect of hemolysis on Jendrassik–Grof bilirubin, which analytes rise with hemolysis, what the accelerator does, and the correct way to collect and transport ammonia."
+  },
+  "comparisons": [
+    {
+      "id": "direct-vs-total",
+      "title": "Direct vs total bilirubin",
+      "left": {
+        "label": "Direct",
+        "points": [
+          "No accelerator",
+          "Mainly conjugated bilirubin reacts"
+        ]
+      },
+      "right": {
+        "label": "Total",
+        "points": [
+          "Caffeine–benzoate accelerator",
+          "Unconjugated freed from albumin; both react"
+        ]
+      },
+      "distinguisher": "Whether the accelerator is added; indirect is total minus direct."
+    },
+    {
+      "id": "invitro-vs-invivo",
+      "title": "In vitro vs in vivo hemolysis",
+      "left": {
+        "label": "In vitro",
+        "points": [
+          "Hemoglobin, K⁺, LD, AST rise together",
+          "Haptoglobin and reticulocyte index normal"
+        ]
+      },
+      "right": {
+        "label": "In vivo",
+        "points": [
+          "Haptoglobin falls; indirect bilirubin may rise",
+          "A new sample does not fix it"
+        ]
+      },
+      "distinguisher": "Haptoglobin and whether hemolysis persists in a new sample."
+    }
+  ],
+  "mnemonic": {
+    "text": "Hemolysis SPILLS (cell contents out, bilirubin colour blocked); lipemia CLOUDS (light lost, water displaced); ammonia wants it COLD, CALM and QUICK.",
+    "explanation": "Links each interferent to its main mechanism and ammonia to its handling rules.",
+    "limitation": "Hemolysis also interferes through hemoglobin’s colour and chemistry, not only by spilling; lipemia can push results either way depending on the method; icterus is not covered by the aid."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Tubes and reactions are schematic cards.",
+    "Interference size and direction vary by analyser and reagent; thresholds come from each assay’s own data."
+  ],
+  "takeaway": "Hemolysis in the tube raises phosphate, potassium and lactate dehydrogenase but can lower diazo bilirubin, lipemia errs in a method-dependent direction, and ammonia needs a resting, hemolysis-free draw kept on ice and analysed promptly.",
+  "questions": [
+    {
+      "id": "chem-hil-q1",
+      "stem": "A grossly hemolyzed serum sample is analysed for total bilirubin by the Jendrassik–Grof diazo method. What effect is expected?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Falsely low, because hemoglobin’s pseudoperoxidase activity inhibits azo-dye formation",
+          "rationale": "Correct. Free hemoglobin’s pseudoperoxidase activity inhibits formation of the diazo colour, so Jendrassik–Grof bilirubin reads low; the size of the effect varies by method."
+        },
+        {
+          "id": "b",
+          "text": "Falsely high, because hemoglobin is converted to bilirubin in the tube",
+          "rationale": "Incorrect. The documented effect of free hemoglobin on the diazo method is inhibition of the dye, which lowers the result."
+        },
+        {
+          "id": "c",
+          "text": "No effect, because the dye is read near 600 nm",
+          "rationale": "Incorrect. The interference is chemical, not only spectral, so reading near 600 nm does not protect the result."
+        },
+        {
+          "id": "d",
+          "text": "Falsely high, because hemoglobin absorbs most strongly near 600 nm",
+          "rationale": "Incorrect. Hemoglobin’s strongest absorbance is near 415 nm, and the net effect on diazo bilirubin is a decrease."
+        }
+      ],
+      "answer": "a",
+      "skill": "Interference direction",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-hil-q2",
+      "stem": "Which practice best protects the accuracy of a plasma ammonia result?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Draw with the muscle at rest and no tourniquet, avoid hemolysis, place the tube on ice and analyse promptly",
+          "rationale": "Correct. These steps limit release and generation of ammonia after collection."
+        },
+        {
+          "id": "b",
+          "text": "Transport at room temperature and batch the sample with the next day’s run",
+          "rationale": "Incorrect. Transport delay causes falsely high ammonia; if analysis cannot be immediate, plasma should be frozen, with −70 °C advised by a urea-cycle consensus."
+        },
+        {
+          "id": "c",
+          "text": "Ask the patient to clench a fist to fill the vein faster",
+          "rationale": "Incorrect. The muscle should be at rest, without compression or holding."
+        },
+        {
+          "id": "d",
+          "text": "Accept a hemolyzed sample because glutamate dehydrogenase is specific for ammonia",
+          "rationale": "Incorrect. Hemolysis is a common cause of falsely high ammonia regardless of enzyme specificity."
+        }
+      ],
+      "answer": "a",
+      "skill": "Specimen handling",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-hil-q3",
+      "stem": "In the Jendrassik–Grof method, what distinguishes the total bilirubin measurement from the direct bilirubin measurement?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A caffeine–sodium benzoate accelerator frees unconjugated bilirubin from albumin so it can react",
+          "rationale": "Correct. With the accelerator both forms react (total); without it mainly conjugated bilirubin reacts (direct)."
+        },
+        {
+          "id": "b",
+          "text": "The direct measurement uses the accelerator and the total omits it",
+          "rationale": "Incorrect. This reverses the roles; the accelerator is used for total bilirubin."
+        },
+        {
+          "id": "c",
+          "text": "Total bilirubin is read at 340 nm and direct bilirubin near 600 nm",
+          "rationale": "Incorrect. Both are read from the azopigment colour, not from NADH at 340 nm."
+        },
+        {
+          "id": "d",
+          "text": "Indirect bilirubin is measured first and added to direct bilirubin",
+          "rationale": "Incorrect. Indirect bilirubin is calculated as total minus direct; it is not measured on its own."
+        }
+      ],
+      "answer": "a",
+      "skill": "Method principle",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch28",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 28, How Tests Work and What Fools Them (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 28,
+          "section": "High-Yield Hits",
+          "items": [
+            4,
+            5,
+            10
+          ]
+        },
+        {
+          "chapter": 28,
+          "section": "Exam Traps",
+          "items": [
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "guerraruiz2021",
+      "kind": "external",
+      "citation": "Guerra Ruiz AR, Crespo J, López Martínez RM, Iruzubieta P, Casals Mercadal G, Lalana Garcés M, Lavin B, Morales Ruiz M. Measurement and clinical usefulness of bilirubin in liver disease. Adv Lab Med. 2021;2(3):352-372. doi:10.1515/almed-2021-0047",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10197288/",
+      "consulted": true,
+      "usedFor": "Diazo reaction with diazotized sulfanilic acid; azopigments read at 598 nm in alkaline pH (alkaline tartrate); accelerator dissociates unconjugated bilirubin from albumin; total with accelerator, direct without; indirect = total − direct; Jendrassik–Grof accelerator is caffeine and sodium benzoate; Doumas-modified method as gold standard for total bilirubin."
+    },
+    {
+      "id": "thomas2002",
+      "kind": "external",
+      "citation": "Thomas L. Haemolysis as Influence & Interference Factor. EJIFCC. 2002;13(4):95-98.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6208064/",
+      "consulted": true,
+      "usedFor": "Hemolysis visible above ~300 mg/L free hemoglobin; potassium ~25× and AST ~40× higher in red cells; potassium, LD, AST rise; organic phosphate esters falsely raise phosphate; hemoglobin absorbs strongly at 415 nm; pseudoperoxidase inhibits Jendrassik–Grof azo dye, falsely low bilirubin above ~0.8 g/L free hemoglobin; additive iron effect insignificant because methods measure transferrin-released iron; in vivo vs in vitro criteria (haptoglobin); rejecting suspected in vivo hemolysis is malpractice."
+    },
+    {
+      "id": "ho2021",
+      "kind": "external",
+      "citation": "Ho CKM, Chen C, Setoh JWS, Yap WWT, Hawkins RCW. Optimization of hemolysis, icterus and lipemia interference thresholds for 35 clinical chemistry assays. Pract Lab Med. 2021;25:e00232. doi:10.1016/j.plabm.2021.e00232",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8145753/",
+      "consulted": true,
+      "usedFor": "Spectrophotometric HIL indices; hemolysate overestimated AST, iron, LDH, phosphorus, potassium and others and decreased direct bilirubin on Abbott Alinity; iron falsely increased at H index 3+–4+; lipemia mechanisms (light scattering, volume displacement); direction of lipemia interference on direct bilirubin depended on analyte concentration; icterus interfered with four of 35 assays."
+    },
+    {
+      "id": "nikolac2014",
+      "kind": "external",
+      "citation": "Nikolac N. Lipemia: causes, interference mechanisms, detection and management. Biochem Med (Zagreb). 2014;24(1):57-67. doi:10.11613/bm.2014.008",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3936974/",
+      "consulted": true,
+      "usedFor": "Lipoproteins absorb light, most at lower wavelengths; NAD(P)H indicator reactions read at 340 nm strongly affected; direction depends on wavelength, reaction direction and blanking, and differs between manufacturers; volume displacement gives falsely low electrolytes by indirect potentiometry; ultracentrifugation recommended to remove lipids."
+    },
+    {
+      "id": "krasowski2019",
+      "kind": "external",
+      "citation": "Krasowski MD. Educational Case: Hemolysis and Lipemia Interference With Laboratory Testing. Acad Pathol. 2019;6:2374289519888754. doi:10.1177/2374289519888754",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6876161/",
+      "consulted": true,
+      "usedFor": "In vitro causes of hemolysis; released AST, LD and potassium falsely raise results; released proteases degrade insulin and troponin (falsely low); HIL indices and laboratory rules (cancel or report with comment)."
+    },
+    {
+      "id": "savy2018",
+      "kind": "external",
+      "citation": "Savy N, Brossier D, Brunel-Guitton C, Ducharme-Crevier L, Du Pont-Thibodeau G, Jouvet P. Acute pediatric hyperammonemia: current diagnosis and management strategies. Hepat Med. 2018;10:105-115. doi:10.2147/hmer.s140711",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6140721/",
+      "consulted": true,
+      "usedFor": "Enzymatic ammonia method: reductive amination of α-ketoglutarate using NADPH, NADPH change measured spectrophotometrically; no tourniquet, on ice, rapid transport; stated stability <15 min at 4 °C; false positives from hemolysis and transport delay; urea-cycle consensus: store plasma at −70 °C if not run immediately."
+    },
+    {
+      "id": "kaplon2019",
+      "kind": "external",
+      "citation": "Kaplon J, de Groot JJ, van Straalen JP, Heckman M, Fischer JC. Improved assay protocol for measurement of ammonia on the Roche Cobas 8000 automated platform. Pract Lab Med. 2019;13:e00115. doi:10.1016/j.plabm.2018.e00115",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6295606/",
+      "consulted": true,
+      "usedFor": "The majority of clinical laboratories measure ammonia with a glutamate dehydrogenase method on commercial analysers; tourniquet use, icing, plasma separation time and centrifugation temperature affect accuracy."
+    },
+    {
+      "id": "belanger2022",
+      "kind": "external",
+      "citation": "Bélanger-Quintana A, Arrieta Blanco F, Barrio-Carreras D, Bergua Martínez A, Cañedo Villarroya E, García-Silva MT, et al. Recommendations for the Diagnosis and Therapeutic Management of Hyperammonaemia in Paediatric and Adult Patients. Nutrients. 2022;14(13):2755. doi:10.3390/nu14132755",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9269083/",
+      "consulted": true,
+      "usedFor": "Factitious hyperammonaemia from poor collection; venous or arterial blood with the muscle group at rest, no compression or holding, large-calibre route to avoid haemolysis; keep cold and process within the hour."
+    },
+    {
+      "id": "wanazman2019",
+      "kind": "external",
+      "citation": "Wan Azman WN, Omar J, Koon TS, Tuan Ismail TS. Hemolyzed Specimens: Major Challenge for Identifying and Rejecting Specimens in Clinical Laboratories. Oman Med J. 2019;34(2):94-98. doi:10.5001/omj.2019.19",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6425048/",
+      "consulted": true,
+      "usedFor": "In vivo hemolysis occurs before sampling, so another sample does not resolve it; repeated hemolysis across samples suggests in vivo hemolysis; in vitro hemolysis gives a parallel rise of potassium, LDH and AST; rejection of suspected in vivo hemolysis samples is malpractice; haptoglobin as marker."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-jg",
+      "text": "Diazo/Jendrassik–Grof principle: azopigment near 600 nm; accelerator for total; direct without; indirect calculated.",
+      "status": "checked",
+      "refs": [
+        "guerraruiz2021"
+      ]
+    },
+    {
+      "id": "cl-hem",
+      "text": "Hemolysis raises potassium, AST, LD and phosphate; hemoglobin absorbs near 415 nm; proteases can lower insulin and troponin.",
+      "status": "checked",
+      "refs": [
+        "thomas2002",
+        "ho2021",
+        "krasowski2019"
+      ]
+    },
+    {
+      "id": "cl-hem-bili",
+      "text": "Hemolysis gives falsely low diazo bilirubin via hemoglobin pseudoperoxidase.",
+      "status": "checked",
+      "refs": [
+        "thomas2002",
+        "ho2021"
+      ],
+      "note": "Thomas 2002 gives the mechanism for Jendrassik–Grof bilirubin; Ho 2021 shows a decrease for direct bilirubin on one platform but did not list total bilirubin among hemolysis-affected assays, so size varies by method."
+    },
+    {
+      "id": "cl-lip",
+      "text": "Lipemia absorbs and scatters light (worst at 340 nm), direction method-dependent; volume displacement lowers indirect electrolytes; ultracentrifugation removes lipids.",
+      "status": "checked",
+      "refs": [
+        "nikolac2014",
+        "ho2021"
+      ]
+    },
+    {
+      "id": "cl-hil",
+      "text": "Analysers report spectrophotometric HIL indices with assay-specific thresholds.",
+      "status": "checked",
+      "refs": [
+        "ho2021",
+        "krasowski2019"
+      ]
+    },
+    {
+      "id": "cl-iron",
+      "text": "Effect of hemolysis on iron is method-dependent.",
+      "status": "checked",
+      "refs": [
+        "thomas2002",
+        "ho2021"
+      ]
+    },
+    {
+      "id": "cl-invivo",
+      "text": "In vivo vs in vitro hemolysis; haptoglobin; a redraw does not fix in vivo hemolysis; rejecting in vivo hemolysis described as malpractice.",
+      "status": "checked",
+      "refs": [
+        "thomas2002",
+        "wanazman2019"
+      ]
+    },
+    {
+      "id": "cl-amm",
+      "text": "GLDH ammonia method with NADPH fall at 340 nm; collection at rest without tourniquet, hemolysis avoided, on ice, prompt analysis; −70 °C storage if delayed.",
+      "status": "checked",
+      "refs": [
+        "savy2018",
+        "kaplon2019",
+        "belanger2022",
+        "nikolac2014"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "RBC ammonia ~3× plasma; cigarette smoke contaminating ammonia samples; ammonia stable 3 h at 2–4 °C or 24 h at −20 °C; LD1 as the RBC isoenzyme; hemoglobin competing with ferrozine; Number Vault interference limits.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch28"
+      ],
+      "note": "Not taught as facts; no open source read in this session supported them, and the stability figures conflict with the sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; tubes and reactions schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Spill, cloud, cold.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-hemolysis-iron",
+      "issue": "Ch. 28 Hit 5 and Trap 3 say hemolysis precludes iron. Thomas 2002 found the additive iron effect insignificant because iron methods measure transferrin-released iron, whereas Ho 2021 found iron falsely increased at hemolysis index 3+–4+ on one analyser; the effect is method-dependent (register flag rv-ch28-hemolysis-iron).",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-lipemia-direction",
+      "issue": "Ch. 28 Hit 5 says lipemia scatters light giving falsely high end-points. Nikolac 2014 and Ho 2021 show the direction depends on wavelength, reaction direction, blanking and even analyte concentration (register flag rv-ch28-lipemia-direction).",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-ammonia-stability",
+      "issue": "Ch. 28 Hit 10 gives ammonia stability as 3 h at 2–4 °C or 24 h at −20 °C. Savy 2018 states stability under 15 min at 4 °C and cites a urea-cycle consensus to store plasma at −70 °C; Bélanger-Quintana 2022 advises processing within the hour. The lesson teaches prompt analysis and does not teach the reviewer figures (register flag rv-ch28-ammonia-stability).",
+      "kind": "contradiction",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; tubes and reactions shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "8 claims checked against Guerra Ruiz 2021, Thomas 2002, Ho 2021, Nikolac 2014, Krasowski 2019, Wan Azman 2019, Savy 2018, Kaplon 2019 and Bélanger-Quintana 2022 (all Europe PMC full text); 1 pending (RBC ammonia ratio, smoke contamination, reviewer stability figures, LD1, ferrozine competition, interference limits). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
