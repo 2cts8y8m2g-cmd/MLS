@@ -1,0 +1,1546 @@
+{
+  "schemaVersion": 1,
+  "id": "mdx-array-probe-chemistry",
+  "title": "Array Probe Chemistry: On-Chip Synthesis Yield, Spacers, Density and PNA",
+  "summary": "Learn how light-directed synthesis builds array probes base by base, why small per-step losses multiply into low full-length yield, how spacers and probe density change hybridization, and what a neutral PNA probe changes.",
+  "domain": "p8-mdx",
+  "topic": "ch70",
+  "conceptIds": [
+    "ch70.hit4",
+    "ch70.hit6",
+    "ch70.hit7",
+    "ch70.hit13"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 70,
+        "section": "High-Yield Hits",
+        "items": [
+          4,
+          6,
+          7,
+          13
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 70 Hits 4 (in situ photolithographic synthesis and 20-mer yield), 6 (probe surface density), 7 (spacer length) and 13 (PNA probes). Checked against Agbavwe 2011, Sack 2016, Lenoir 2006, Quijano 2017 and D’Agata 2017 (Europe PMC full text) and the Shchepinov 1997 abstract (full text not available: the PMC page shows only the abstract and the publisher PDF returned 403). Hit 4: the yield arithmetic is taught as a calculation; Agbavwe 2011 reports modern stepwise coupling of about 98.5–99% and Sack 2016 ties low stepwise yield to early MeNPOC chemistry, so the reviewer’s 80–95% range is given as an illustration, not a current figure (register flag proposed). Hit 13: Quijano 2017 describes ambiguity in PNA binding direction (antiparallel vs parallel), so “only antiparallel” is not taught (register flag proposed); “rapid hybridization” was not found in the sources read. Pending: glass ~0.1 pmol/mm² and 100× polypropylene density; yield decline with over-long spacers."
+  },
+  "prerequisites": [
+    "ch70.hit1"
+  ],
+  "objectives": [
+    "Describe how light-directed in situ synthesis builds oligonucleotide probes on a chip.",
+    "Calculate the approximate full-length probe fraction from a stepwise yield and probe length.",
+    "Explain how spacer length and probe density affect hybridization yield.",
+    "State how the neutral PNA backbone changes hybridization behaviour."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "A custom chip that glows too dimly",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a research group designs a custom oligonucleotide array. (1) Its 20-mer probes are built on the chip one base at a time, and each step works about 95% of the time. (2) The probes are attached straight onto the surface at the highest density possible. (3) A colleague suggests swapping the DNA probes for peptide nucleic acid (PNA) probes. The hybridization signal is weaker than expected. Question token: “Where did the signal go?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Invented scenario. A group builds a custom array, making twenty-base probes on the chip one base at a time. Each step works about ninety-five percent of the time."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 13,
+          "text": "The probes sit straight on the surface, packed as densely as possible."
+        },
+        {
+          "id": "h3",
+          "start": 13,
+          "end": 20,
+          "text": "The signal is weak, and a colleague suggests peptide nucleic acid probes. Where did the signal go?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Built on the chip",
+            "lines": [
+              "20-mer, base by base",
+              "~95% per step"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "2 Packed tight",
+            "lines": [
+              "No spacer",
+              "Maximum density"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "3 Switch to PNA?",
+            "lines": [
+              "Neutral backbone"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "Where did the signal go?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Building probes with light",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic of light-directed in situ synthesis on a glass surface. Card 1: each growing probe ends in a light-removable (photolabile) 5′ protecting group. Card 2: light, patterned by a physical mask (Affymetrix) or by micromirrors (maskless synthesis), removes the protecting group only on chosen spots. Card 3: the next phosphoramidite base couples only where the chain was deprotected; the cycle repeats once per base. Card 4: a failed coupling or failed deprotection leaves a probe missing a base (a deletion), the main error type.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Light-directed synthesis builds each probe directly on the chip. Every growing chain is capped by a protecting group that light can remove."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Light, shaped by a mask or by tiny mirrors, uncaps only the chosen spots. Affymetrix chips use physical masks; maskless systems use mirrors."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "The next base then couples only where the chain was uncapped, and the cycle repeats once for every base in the probe."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "If a base fails to couple, or a cap is not removed, that probe ends up missing a base. Deletions are the main synthesis error."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pg",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Photolabile cap",
+            "lines": [
+              "On every growing 5′ end",
+              "Removed by light"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mask",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Mask or mirrors",
+            "lines": [
+              "Uncap chosen spots only",
+              "Affymetrix: physical masks"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cpl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "good",
+            "title": "Couple, repeat",
+            "lines": [
+              "Base adds where uncapped",
+              "One cycle per base"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "err",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "Missed step",
+            "lines": [
+              "Coupling or uncapping fails",
+              "→ deletion error"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Small losses multiply",
+      "start": 60,
+      "end": 104,
+      "altText": "Calculation card: the fraction of full-length, correct probes is roughly the stepwise yield raised to the number of steps. For a 20-mer: 95% per step → 0.95^20 ≈ 36%; 80% per step → 0.80^20 ≈ 1%; 99% per step → 0.99^20 ≈ 82%. History card: early photolabile groups (MeNPOC) gave relatively low stepwise yields, which limited arrays to short probes; NPPOC gave almost quantitative coupling; one maskless-synthesis study measured average stepwise coupling efficiencies of about 98.5–99%. Longer probes always lower the overall yield.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Every step must succeed for a probe to be right, so the yields multiply. The share of full-length probes is about the step yield raised to the number of steps."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "For a twenty-mer at ninety-five percent per step, that is about thirty-six percent. At eighty percent per step, only about one percent is correct."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "Early light-removable groups gave fairly low step yields, so early arrays used short probes. Newer chemistry pushed coupling close to complete. One maskless study measured about ninety-eight and a half to ninety-nine percent per step."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "At ninety-nine percent per step, about eighty-two percent of twenty-mers are full length. Even so, the longer the probe, the lower the overall yield."
+        }
+      ],
+      "objects": [
+        {
+          "id": "calc",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 230,
+            "w": 440,
+            "h": 260,
+            "tone": "b",
+            "title": "Full length ≈ (step yield)ⁿ",
+            "lines": [
+              "20-mer, 95%/step → ~36%",
+              "20-mer, 80%/step → ~1%",
+              "Errors stack with every base"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hist",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "good",
+            "title": "Better chemistry",
+            "lines": [
+              "Early cap (MeNPOC): short probes",
+              "NPPOC: near-complete coupling",
+              "One study: ~98.5–99%/step"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mod",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 470,
+            "w": 420,
+            "label": "99%/step → ~82% of 20-mers",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Room to hybridize, and a neutral probe",
+      "start": 104,
+      "end": 144,
+      "altText": "Three cards from surface and probe chemistry. Spacer card: in one study on an amine-functionalised polypropylene support, spacers of at least 40 atoms between the support and the oligonucleotide gave up to a 150-fold increase in hybridization yield; charged groups in the spacer reduced the yield. Density card: when probes are too close together, steric hindrance lowers hybridization; the highest yields came at about 50% of the maximum oligonucleotide density. PNA card: peptide nucleic acid has an uncharged pseudopeptide backbone, so there is no electrostatic repulsion with the target: PNA–DNA duplexes are more stable, a single mismatch lowers the melting temperature more (about 15 °C vs 4 °C for DNA–DNA), binding is insensitive to ionic strength, and PNA resists nucleases and proteases. Hook answers card.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Surface chemistry matters too. In one study, a spacer of at least forty atoms between the support and the probe raised hybridization yield up to a hundred and fifty-fold. Charged groups in the spacer lowered it."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Crowding hurts. When probes sit too close together, they block each other, and the best yield came at about half the maximum probe density."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Peptide nucleic acid probes have an uncharged backbone, so nothing repels the target. They bind more tightly, a single mismatch drops the melting temperature more than in DNA, binding barely depends on salt, and enzymes do not digest them."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook: errors multiplied over twenty steps, there was no spacer, and the probes were too crowded. PNA probes could sharpen mismatch discrimination, but they do not fix synthesis yield."
+        }
+      ],
+      "objects": [
+        {
+          "id": "sp",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 180,
+            "w": 270,
+            "h": 150,
+            "tone": "good",
+            "title": "Spacer ≥ 40 atoms",
+            "lines": [
+              "Up to 150× yield",
+              "Charged spacer: worse"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "den",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 180,
+            "w": 270,
+            "h": 150,
+            "tone": "warn",
+            "title": "Not too crowded",
+            "lines": [
+              "Best at ~50% max density",
+              "Steric hindrance"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pna",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 200,
+            "w": 270,
+            "h": 190,
+            "tone": "a",
+            "title": "PNA probe",
+            "lines": [
+              "Neutral: tighter binding",
+              "Mismatch ΔTm ~15 vs 4 °C",
+              "Salt- and nuclease-proof"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 760,
+            "h": 150,
+            "tone": "b",
+            "title": "Hook answers",
+            "lines": [
+              "1 Yield multiplied: ~36% full length",
+              "2 Add a spacer; do not over-pack",
+              "3 PNA aids specificity, not synthesis"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “95% per step means 95% of probes are correct” (✓ yields multiply: about 36% of 20-mers); “Pack probes as densely as possible” (✓ crowding causes steric hindrance; the best yield came at about half the maximum density); “PNA hybridizes like DNA, only stronger” (✓ PNA is neutral: binding is insensitive to ionic strength and a single mismatch costs more).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: ninety-five percent per step means ninety-five percent of probes are right. No: the yields multiply, so only about a third of twenty-mers are full length."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: pack the probes as densely as possible. No: crowded probes block each other. The best yield came at about half the maximum density."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: PNA is just stronger DNA. No: its neutral backbone makes binding insensitive to salt and makes a single mismatch cost more."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “95% per step = 95% correct.”",
+            "lines": [
+              "✓ Yields multiply: ~36% of 20-mers"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Densest is best.”",
+            "lines": [
+              "✓ Crowding hinders; best ~50% of max"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “PNA = stronger DNA.”",
+            "lines": [
+              "✓ Neutral: salt-insensitive, harsher on mismatch"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Gates, ladder, elbow room",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Every base is a GATE the probe must pass, so multiply the gates; a SPACER is a ladder that lifts the probe off the floor; probes need ELBOW ROOM; PNA is a probe with no charge to push the target away.” Tokens: gates multiply · ladder = spacer · elbow room = density. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: every base is a gate the probe must pass, so multiply the gates. A spacer is a ladder lifting the probe off the floor, and probes need elbow room. PNA carries no charge to push its target away."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: real errors also include insertions and partial uncapping, and yields differ by base. The spacer and density optimums come from one support in one study. And PNA can bind in more than one orientation."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Gates, ladder, elbow room",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Gates multiply",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Ladder = spacer",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Elbow room = density",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Insertions and partial uncapping also occur",
+              "Spacer and density optimums: one support, one study",
+              "PNA can bind in more than one orientation"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Full-length probes ≈ (step yield)ⁿ: 95% per step → ~36% of 20-mers”, “Spacer ≥40 atoms · ~half maximum density · PNA = neutral, salt-insensitive, mismatch-sensitive”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Synthesis yields multiply with every base, so a twenty-mer made at ninety-five percent per step is only about one-third full length, and hybridization also improves with a long spacer, uncrowded probes and, for specificity, a neutral peptide nucleic acid probe."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Full length ≈ (step yield)ⁿ · 95%/step → ~36% of 20-mers",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Spacer ≥ 40 atoms · ~½ max density · PNA neutral",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: some arrays build each probe on the chip one letter at a time, using light to choose which spots get the next letter. Every step can fail, so the losses add up. How the probe is held on the surface, and how crowded the probes are, also change how well the sample sticks. PNA is an uncharged DNA look-alike that sticks more tightly and more selectively. Scientific terms: in situ light-directed (photolithographic) synthesis, photolabile 5′ protecting group (MeNPOC, NPPOC), physical mask, maskless array synthesis (micromirrors), phosphoramidite coupling, stepwise yield, deletion error, spacer (linker), surface coverage, steric hindrance, peptide nucleic acid (PNA), melting temperature (Tm).",
+    "why": "A probe is correct only if every coupling and every deprotection succeeds, so the full-length fraction falls roughly as the stepwise yield to the power of the number of steps. Probes right on the support, or crowded together, are sterically hindered from pairing with the target. PNA lacks the negatively charged phosphate backbone, so there is no electrostatic repulsion with the target strand.",
+    "measure": "Full-length fraction ≈ (stepwise yield)ⁿ: 20-mer at 95% → ~36%; at 80% → ~1%; at 99% → ~82%. One maskless study: average stepwise coupling ~98.5–99%. Shchepinov 1997 (polypropylene support): spacer ≥40 atoms, up to 150-fold more hybridization; charged spacer groups reduce yield; best yield at ~50% of maximum oligonucleotide density. PNA: single mismatch lowers Tm about 15 °C vs about 4 °C in DNA/DNA.",
+    "differs": "In situ synthesis (built on the chip, yield limited by stepwise chemistry) vs deposited probes (made off-chip, then spotted); physical mask (Affymetrix) vs maskless micromirrors; DNA probe (charged, salt-dependent) vs PNA probe (neutral, salt-insensitive, larger mismatch penalty, nuclease-resistant).",
+    "examAngle": "Expect: compute the correct-sequence fraction from a per-step yield (e.g. 0.95 to the 20th power), recognise that a spacer raises hybridization and that over-dense probes lower it, or pick the PNA property that follows from its neutral backbone."
+  },
+  "comparisons": [
+    {
+      "id": "step-yield",
+      "title": "Per-step yield vs full-length yield",
+      "left": {
+        "label": "Per step",
+        "points": [
+          "One coupling plus one deprotection",
+          "95% sounds nearly perfect"
+        ]
+      },
+      "right": {
+        "label": "Whole 20-mer",
+        "points": [
+          "Product of all 20 steps",
+          "~36% at 95%/step"
+        ]
+      },
+      "distinguisher": "Raise the step yield to the number of steps."
+    },
+    {
+      "id": "dna-vs-pna",
+      "title": "DNA probe vs PNA probe",
+      "left": {
+        "label": "DNA probe",
+        "points": [
+          "Negatively charged phosphate backbone",
+          "Duplex stability depends on salt",
+          "Digested by nucleases"
+        ]
+      },
+      "right": {
+        "label": "PNA probe",
+        "points": [
+          "Uncharged pseudopeptide backbone",
+          "Tighter, salt-insensitive binding",
+          "Single mismatch costs more Tm"
+        ]
+      },
+      "distinguisher": "Backbone charge."
+    }
+  ],
+  "mnemonic": {
+    "text": "Every base is a GATE the probe must pass, so multiply the gates; a SPACER is a ladder that lifts the probe off the floor; probes need ELBOW ROOM; PNA is a probe with no charge to push its target away.",
+    "explanation": "Links stepwise yield, spacer length, probe density and backbone charge to one image each.",
+    "limitation": "Real synthesis errors also include insertions and partial deprotection, and yields differ by base; the spacer and density optimums come from one support in one study; PNA binding direction is not strictly antiparallel."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Chip and probe drawings are schematic.",
+    "The power formula ignores capping, insertions and base-to-base differences.",
+    "Spacer and density figures come from one polypropylene-support study."
+  ],
+  "takeaway": "Synthesis yields multiply with every base, so a twenty-mer made at ninety-five percent per step is only about one-third full length, and hybridization also improves with a long spacer, uncrowded probes and, for specificity, a neutral peptide nucleic acid probe.",
+  "questions": [
+    {
+      "id": "mdx-apc-q1",
+      "stem": "A 20-mer probe is synthesized in situ with an average stepwise yield of 95%. About what fraction of the probes at each feature are full length?",
+      "options": [
+        {
+          "id": "a",
+          "text": "About 36%",
+          "rationale": "Correct. 0.95 raised to the 20th power is about 0.36, because every step must succeed."
+        },
+        {
+          "id": "b",
+          "text": "About 95%",
+          "rationale": "Incorrect. That is the yield of a single step, not of all 20 steps together."
+        },
+        {
+          "id": "c",
+          "text": "About 82%",
+          "rationale": "Incorrect. About 82% corresponds to 99% per step (0.99 to the 20th power)."
+        },
+        {
+          "id": "d",
+          "text": "About 1%",
+          "rationale": "Incorrect. About 1% corresponds to 80% per step (0.80 to the 20th power)."
+        }
+      ],
+      "answer": "a",
+      "skill": "Stepwise yield calculation",
+      "difficulty": "application"
+    },
+    {
+      "id": "mdx-apc-q2",
+      "stem": "In a study of oligonucleotide arrays on a polypropylene support, hybridization yield was highest at about half of the maximum oligonucleotide surface density. What best explains this?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Probes packed too closely sterically hinder one another’s pairing with the target",
+          "rationale": "Correct. The study names steric hindrance between closely spaced oligonucleotides."
+        },
+        {
+          "id": "b",
+          "text": "Lower density raises the stepwise synthesis yield of each probe",
+          "rationale": "Incorrect. Surface coverage was varied with linkers; the effect described is on hybridization, not synthesis chemistry."
+        },
+        {
+          "id": "c",
+          "text": "Fewer probes lower the melting temperature of the duplex",
+          "rationale": "Incorrect. Probe spacing does not change the duplex sequence; crowding limits access."
+        },
+        {
+          "id": "d",
+          "text": "Dense probes bind too much labeled target and saturate the scanner",
+          "rationale": "Incorrect. The study measured lower hybridization yield at high coverage, not a detector limit."
+        }
+      ],
+      "answer": "a",
+      "skill": "Surface density",
+      "difficulty": "recall"
+    },
+    {
+      "id": "mdx-apc-q3",
+      "stem": "Which property of a peptide nucleic acid (PNA) probe follows from its uncharged backbone?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Its duplexes with DNA are stable and largely insensitive to ionic strength",
+          "rationale": "Correct. With no backbone charge there is no electrostatic repulsion to screen with salt."
+        },
+        {
+          "id": "b",
+          "text": "It tolerates single-base mismatches better than DNA does",
+          "rationale": "Incorrect. A single mismatch lowers Tm more in PNA–DNA (about 15 °C) than in DNA–DNA (about 4 °C)."
+        },
+        {
+          "id": "c",
+          "text": "It is rapidly degraded by nucleases",
+          "rationale": "Incorrect. The pseudopeptide backbone resists nucleases and proteases."
+        },
+        {
+          "id": "d",
+          "text": "It needs high salt to bind its target",
+          "rationale": "Incorrect. PNA binding is insensitive to ionic strength because its backbone carries no charge."
+        }
+      ],
+      "answer": "a",
+      "skill": "Probe chemistry",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch70",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 70, Microarrays and Hybridization (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 70,
+          "section": "High-Yield Hits",
+          "items": [
+            4,
+            6,
+            7,
+            13
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "agbavwe2011",
+      "kind": "external",
+      "citation": "Agbavwe C, Kim C, Hong D, Heinrich K, Wang T, Somoza MM. Efficiency, error and yield in light-directed maskless synthesis of DNA microarrays. J Nanobiotechnology. 2011;9:57. doi:10.1186/1477-3155-9-57",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3269373/",
+      "consulted": true,
+      "usedFor": "Europe PMC full text. Light-directed synthesis cycle with a photolabile 5′-OH group; Affymetrix uses physical masks; coupling failure or 5′-deprotection failure gives a deletion (dominant error); measured stepwise coupling about 98.5–99%; overall yield lower for long oligonucleotides."
+    },
+    {
+      "id": "sack2016",
+      "kind": "external",
+      "citation": "Sack M, Hölz K, Holik AK, Kretschy N, Somoza V, Stengele KP, Somoza MM. Express photolithographic DNA microarray synthesis with optimized chemistry and high-efficiency photolabile groups. J Nanobiotechnology. 2016;14:14. doi:10.1186/s12951-016-0166-0",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4776362/",
+      "consulted": true,
+      "usedFor": "Europe PMC full text. In situ methods based on phosphoramidite chemistry; early MeNPOC groups gave relatively low stepwise yield, limiting arrays to short oligomers; NPPOC gave almost quantitative coupling."
+    },
+    {
+      "id": "lenoir2006",
+      "kind": "external",
+      "citation": "Lenoir T, Giannella E. The emergence and diffusion of DNA microarray technology. J Biomed Discov Collab. 2006;1:11. doi:10.1186/1747-5333-1-11",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1590052/",
+      "consulted": true,
+      "usedFor": "Europe PMC full text. Affymetrix light-directed synthesis on glass with photolabile protecting groups and photolithographic masks."
+    },
+    {
+      "id": "shchepinov1997",
+      "kind": "external",
+      "citation": "Shchepinov MS, Case-Green SC, Southern EM. Steric factors influencing hybridisation of nucleic acids to oligonucleotide arrays. Nucleic Acids Res. 1997;25(6):1155-1161. doi:10.1093/nar/25.6.1155",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC146580/",
+      "consulted": true,
+      "usedFor": "Abstract only (Europe PMC abstract and the PMC page, read via a page-fetch tool; the full-text PDF was blocked with 403). Amine-functionalised polypropylene support; optimal spacer at least 40 atoms, up to 150-fold more hybridization; charged spacer groups diminish yield; steric hindrance when oligonucleotides are too close; highest yield at about 50% of maximum oligonucleotide concentration."
+    },
+    {
+      "id": "quijano2017",
+      "kind": "external",
+      "citation": "Quijano E, Bahal R, Ricciardi A, Saltzman WM, Glazer PM. Therapeutic Peptide Nucleic Acids: Principles, Limitations, and Opportunities. Yale J Biol Med. 2017;90(4):583-598.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5733847/",
+      "consulted": true,
+      "usedFor": "Europe PMC full text. Pseudopeptide backbone is charge neutral, giving stronger hybridization; less tolerant of mismatches; nuclease resistance; bis-PNA binds one strand antiparallel and one parallel (Hoogsteen); constrained PNAs reduce ambiguity in binding direction (antiparallel vs parallel)."
+    },
+    {
+      "id": "dagata2017",
+      "kind": "external",
+      "citation": "D’Agata R, Giuffrida MC, Spoto G. Peptide Nucleic Acid-Based Biosensors for Cancer Diagnosis. Molecules. 2017;22(11):E1951. doi:10.3390/molecules22111951",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6150339/",
+      "consulted": true,
+      "usedFor": "Europe PMC full text. Uncharged backbone makes PNA/DNA complexes more stable than DNA/DNA; insensitive to ionic strength and pH; resistant to enzymatic cleavage; single mismatch lowers Tm about 15 °C vs 4 °C in DNA/DNA."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-insitu",
+      "text": "Light-directed in situ synthesis: photolabile 5′ cap, mask or micromirrors, base-by-base coupling; deletions from failed coupling or deprotection.",
+      "status": "checked",
+      "refs": [
+        "agbavwe2011",
+        "sack2016",
+        "lenoir2006"
+      ]
+    },
+    {
+      "id": "cl-yield",
+      "text": "Full-length fraction falls with probe length as the stepwise yields multiply (20-mer: ~36% at 95%, ~1% at 80%, ~82% at 99%).",
+      "status": "checked",
+      "refs": [
+        "agbavwe2011"
+      ],
+      "note": "The percentages are arithmetic (yield to the 20th power); the source supports that overall correct-sequence yield falls with length and depends on stepwise yield."
+    },
+    {
+      "id": "cl-modern",
+      "text": "Early MeNPOC chemistry gave low stepwise yields; NPPOC near-quantitative; one maskless study ~98.5–99% per step.",
+      "status": "checked",
+      "refs": [
+        "sack2016",
+        "agbavwe2011"
+      ]
+    },
+    {
+      "id": "cl-spacer",
+      "text": "Spacer of at least 40 atoms gives up to 150-fold more hybridization; charged spacer groups lower yield.",
+      "status": "checked",
+      "refs": [
+        "shchepinov1997"
+      ],
+      "note": "Abstract only."
+    },
+    {
+      "id": "cl-density",
+      "text": "Crowded probes cause steric hindrance; best yield at about 50% of maximum density.",
+      "status": "checked",
+      "refs": [
+        "shchepinov1997"
+      ],
+      "note": "Abstract only."
+    },
+    {
+      "id": "cl-pna",
+      "text": "PNA: neutral backbone, more stable duplexes, salt-insensitive, larger mismatch Tm penalty (~15 vs 4 °C), nuclease resistant.",
+      "status": "checked",
+      "refs": [
+        "quijano2017",
+        "dagata2017"
+      ]
+    },
+    {
+      "id": "cl-pending-glass",
+      "text": "Reviewer: probe surface density on glass ~0.1 pmol/mm², ~100× less than aminated polypropylene; over-long spacers reduce yield.",
+      "status": "pending",
+      "note": "Not found in the sources read (Shchepinov 1997 full text unavailable); not taught."
+    },
+    {
+      "id": "cl-pending-pna",
+      "text": "Reviewer: PNA hybridizes rapidly and recognises only antiparallel single strands.",
+      "status": "pending",
+      "note": "Rapid hybridization not found in the sources read; Quijano 2017 describes antiparallel/parallel ambiguity. Not taught."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; chip and probe drawings schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Gates, ladder, elbow room.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-photolitho-stepwise",
+      "issue": "Ch. 70 Hit 4 gives 80–95% photodeprotection efficiency per cycle (1–36% correct 20-mers) as a general figure. Sack 2016 ties low stepwise yield to early MeNPOC chemistry, and Agbavwe 2011 measured about 98.5–99% stepwise coupling in modern maskless synthesis (about 74–82% correct 20-mers); stepwise yield also depends on coupling, not photodeprotection alone (register flag rv-photolitho-stepwise-yield).",
+      "kind": "outdated",
+      "status": "open"
+    },
+    {
+      "id": "f-pna-direction",
+      "issue": "Ch. 70 Hit 13 says PNA gives “only antiparallel single-strand recognition”. Quijano 2017 describes ambiguity in PNA binding direction (antiparallel vs parallel) and bis-PNAs whose second strand binds parallel by Hoogsteen pairing; the lesson does not teach “only antiparallel” (register flag rv-pna-binding-direction).",
+      "kind": "contradiction",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; chemistry shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 factual claims checked against Agbavwe 2011, Sack 2016, Lenoir 2006, Quijano 2017, D’Agata 2017 (full text) and Shchepinov 1997 (abstract only; full text blocked); 2 pending (glass density figures and over-long spacers; PNA rapid hybridization and binding direction). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

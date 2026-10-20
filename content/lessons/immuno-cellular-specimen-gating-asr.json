@@ -1,0 +1,1679 @@
+{
+  "schemaVersion": 1,
+  "id": "immuno-cellular-specimen-gating-asr",
+  "title": "Cellular Immunity Testing: Right Tube, Right Clock, Right Cursor",
+  "summary": "Learn which anticoagulants suit lymphocyte counting versus functional cellular assays, why serial CD4 counts are drawn at the same time of day, how the classic 2% cursor rule and modern FMO controls set flow cytometry gates, and what the US analyte specific reagent rule requires of the laboratory.",
+  "domain": "p6-immuno",
+  "topic": "ch46",
+  "conceptIds": [
+    "ch46.hit9",
+    "ch46.trap1",
+    "ch46.hit10",
+    "ch46.trap4",
+    "ch46.hit12",
+    "ch46.trap5"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 46,
+        "section": "High-Yield Hits",
+        "items": [
+          9,
+          10,
+          12
+        ]
+      },
+      {
+        "chapter": 46,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          4,
+          5
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 46 Hits 9, 10 and 12 and Traps 1, 4 and 5. Specimen rules for immunophenotyping, the 2% isotype cursor and gate recovery/purity from the CDC 1997 CD4 guideline (MMWR, read in full); functional-assay anticoagulant advice and the shift from isotype to FMO gating controls from Cossarizza 2021; lithium heparin use in validated functional assays from Yi 2016, Kruse 2021 and Barabas 2017; diurnal CD4 change from Malone 1990, Carmichael 2006 and Campbell 1997 (abstracts only); the ASR rule from 21 CFR 809.30 and 864.4020 and lab validation from 42 CFR 493.1253 (eCFR version 2026-10-01). The reviewer’s “NEVER lithium heparin” is contradicted for several validated IGRA/ELISpot methods (register flag rv-cellular-lithium-heparin); the isotype-cursor rule is largely superseded in multicolour work (rv-isotype-cursor-fmo); the diurnal swing is blunted in HIV (rv-cd4-diurnal-hiv-blunted); the ASR rule is US-only (rv-asr-us-only). Not taught as fact: “preservative-free” heparin, the “<24 h in the dark” storage limit, the 50% biological / 50% technical variability split, the Loken attribution and blast separation by CD45/SSC, and “no absolute standards exist” for immunophenotyping reagents."
+  },
+  "prerequisites": [
+    "ch35.hit1",
+    "ch35.hit13"
+  ],
+  "objectives": [
+    "Choose an acceptable anticoagulant and time limit for lymphocyte immunophenotyping versus a functional cellular assay.",
+    "Explain why serial CD4 counts should be drawn at the same time of day.",
+    "Describe the classic 2% isotype cursor rule, gate recovery and purity, and why FMO controls now largely replace isotype gating.",
+    "State what the US analyte specific reagent rule requires of the laboratory and its reports."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three results, one question",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three items reach a cellular immunology bench. (1) A cytokine-release function test arrives in an EDTA tube. (2) A patient’s serial CD4 counts were always drawn at 8 am; today’s was drawn at 4 pm and is higher. (3) A new flow panel built from analyte specific reagent (ASR) antibodies is reporting results with no disclaimer. Question token: “Which result can you trust?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Invented scenario: a cytokine function test arrives in an EDTA tube."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 13,
+          "text": "A patient’s CD4 counts were always drawn at eight in the morning. Today’s was drawn at four in the afternoon, and it is higher."
+        },
+        {
+          "id": "h3",
+          "start": 13,
+          "end": 20,
+          "text": "And a new flow panel built from analyte specific reagents is reporting results with no disclaimer. Which result can you trust?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "h1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Function test",
+            "lines": [
+              "Cytokine release",
+              "EDTA tube"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "h2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "2 Serial CD4",
+            "lines": [
+              "Usual draw 8 am",
+              "Today 4 pm, higher"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.4,
+              "opacity": 0
+            },
+            {
+              "t": 8.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "h3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "3 New flow panel",
+            "lines": [
+              "Built from ASRs",
+              "No report disclaimer"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.4,
+              "opacity": 0
+            },
+            {
+              "t": 14.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "Which result can you trust?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18.5,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Counting cells versus testing function",
+      "start": 20,
+      "end": 60,
+      "altText": "Two columns. Counting (flow cytometric immunophenotyping, CDC 1997 guideline): K3EDTA, ACD or heparin if processed within 30 hours; ACD or heparin, not EDTA, if processed within 48 hours; reject specimens older than 48 hours, clotted, haemolysed or frozen; keep and transport at room temperature (18–22 °C), avoiding temperatures above 37 °C. Function (living cells must respond in culture): the European Journal of Immunology flow guideline, in its cytokine-detection protocol tips, advises sodium citrate or heparin when possible, because EDTA may interfere with cytokine production; fresh samples generally perform better than cryopreserved ones. Validated function assays define their own tube: published interferon-gamma release and ELISpot methods draw into lithium heparin (QuantiFERON-TB Gold Plus study; T-SPOT.COVID per its manufacturer; a CMV ELISpot processed within 8 hours).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 31,
+          "text": "Cellular tests come in two kinds. Counting tests, like CD4 immunophenotyping, only need the cells to keep their markers. The 1997 CDC guideline accepts EDTA, ACD or heparin if the sample is processed within thirty hours, but only ACD or heparin out to forty-eight hours."
+        },
+        {
+          "id": "n2",
+          "start": 31,
+          "end": 40,
+          "text": "Older than forty-eight hours, clotted, haemolysed or frozen: reject it. Keep the tube at room temperature and away from heat above thirty-seven degrees."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Function tests need living cells that still respond. In its cytokine-detection protocols, a major flow cytometry guideline advises heparin or sodium citrate when possible, because EDTA may interfere with cytokine production. Fresh cells generally beat frozen ones."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Each validated function assay sets its own tube and time limit. Several published interferon-gamma and ELISpot methods actually collect into lithium heparin, so follow the assay, not a blanket rule."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cnt",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 240,
+            "w": 440,
+            "h": 280,
+            "tone": "b",
+            "title": "Counting (immunophenotyping)",
+            "lines": [
+              "≤ 30 h: EDTA, ACD or heparin",
+              "≤ 48 h: ACD or heparin only",
+              "> 48 h, clot, haemolysis: reject",
+              "Room temperature, not > 37 °C"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fun",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 180,
+            "tone": "good",
+            "title": "Function (live response)",
+            "lines": [
+              "Heparin or citrate if possible",
+              "EDTA may blunt cytokines"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            },
+            {
+              "t": 29,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "val",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "label": "Validated assay sets tube + time",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "The clock and the claim",
+      "start": 60,
+      "end": 104,
+      "altText": "Clock card: in Malone 1990 (abstract), CD4 counts rose between 08:00 and 22:00 — by 506 cells/mm³ in HIV-negative controls, a smaller but significant 59 cells/mm³ in HIV-positive patients in Walter Reed stages 1–5 (diurnal change blunted). In Carmichael 2006 (abstract), healthy subjects showed no significant change before 11:30, then a progressive rise; that lab set 11:30 as its latest draw time. Campbell 1997 (abstract): 60 minutes of rest lowered mean CD4 from 1060 to 660 ×10⁶/L. CDC 1997 lists diurnal variation, corticosteroids and strenuous exercise as biologic factors affecting results. Inference from these studies (no formal guideline read): keep serial draws at a consistent time of day. Claim card (US FDA, 21 CFR 809.30, 1997): ASRs are sold to IVD manufacturers, CLIA high-complexity labs (or VHA-regulated labs) and non-clinical users; class I exempt ASRs are labelled (21 CFR 809.10(e)) “analytical and performance characteristics are not established”; advertising and promotional material may make no statement about analytical or clinical performance; the lab appends “This test was developed and its performance characteristics determined by (Laboratory Name). It has not been cleared or approved by the U.S. Food and Drug Administration.” CLIA 42 CFR 493.1253(b)(2): a lab using an in-house or modified test establishes accuracy, precision, analytical sensitivity and specificity, reportable range and reference intervals.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Now the clock. In a classic study, CD4 counts rose between eight in the morning and ten at night: by about five hundred cells per cubic millimetre in healthy controls, and by a smaller, blunted amount in HIV infection."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "A second small study found little change before late morning, then a rise, and in a third, an hour of rest lowered counts. So a draw-time change alone can shift a count: keep serial draws at a consistent time."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "Now the claim. Under the 1997 US FDA rule, analyte specific reagents are labelled as having no established performance, their promotion may make no performance claims, and clinical labs buying them must be high-complexity."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "So the lab owns the test. It must establish accuracy, precision, sensitivity, specificity, reportable range and reference intervals, and append a disclaimer that the test is not FDA cleared or approved."
+        }
+      ],
+      "objects": [
+        {
+          "id": "clk",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 230,
+            "w": 440,
+            "h": 250,
+            "tone": "b",
+            "title": "Clock (diurnal change)",
+            "lines": [
+              "08:00 → 22:00: counts rise",
+              "Rise blunted in HIV",
+              "Rest also lowers counts"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 20,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rule",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "label": "Same time of day for serial CD4",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 17.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "asr",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 230,
+            "tone": "a",
+            "title": "Claim (ASR rule, US)",
+            "lines": [
+              "“Performance not established”",
+              "No maker performance claims",
+              "High-complexity labs"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lab",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "label": "Lab validates + adds disclaimer",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 40,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Setting the gate and the cursor",
+      "start": 104,
+      "end": 144,
+      "altText": "Schematic CD45 versus side-scatter dot plot: lymphocytes are bright CD45 with low side scatter. CDC 1997: optimal lymphocyte gate recovery ≥95% and purity ≥90%; set positivity cursors with the isotype control so that 2% or fewer of cells are positive; count at least 2,500 gated lymphocytes. Modern card (Cossarizza 2021): gating controls based on isotype-matched immunoglobulins have largely been superseded by fluorescence-minus-one (FMO) controls; the isotype control is not useful for judging non-specific binding. Hook answer card: (1) repeat on the tube the assay is validated for; (2) flag the draw-time change and draw at the usual time; (3) validate the ASR panel and add the disclaimer.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "At the cytometer, lymphocytes sit where CD45 is bright and side scatter is low. Optimally, a good gate captures at least ninety-five percent of the lymphocytes, with at least ninety percent purity."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "The 1997 CDC rule set the positive cursor on an isotype control, so that no more than two percent of those negative cells count as positive, and counted at least two thousand five hundred gated lymphocytes."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 132,
+          "text": "Current multicolour guidance has largely replaced isotype controls with fluorescence-minus-one controls for setting gates."
+        },
+        {
+          "id": "l4",
+          "start": 132,
+          "end": 144,
+          "text": "Back to the hook. Recollect the function test in the tube its assay is validated for. Flag the afternoon CD4 draw and return to the usual time. And validate the ASR panel, with a disclaimer on every report."
+        }
+      ],
+      "objects": [
+        {
+          "id": "plot",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "CD45 vs side scatter",
+            "lines": [
+              "Lymphs: CD45 bright, SSC low",
+              "Recovery ≥ 95% · purity ≥ 90%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cur",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "Cursor (CDC 1997)",
+            "lines": [
+              "Isotype control: ≤ 2% positive",
+              "≥ 2,500 gated lymphocytes"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fmo",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 300,
+            "w": 640,
+            "label": "Today: FMO controls largely replace isotype gating",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 760,
+            "h": 150,
+            "tone": "good",
+            "title": "Hook answers",
+            "lines": [
+              "1 Recollect in the validated tube",
+              "2 Flag draw time; keep it consistent",
+              "3 Validate ASR panel + disclaimer"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28.5,
+              "opacity": 0
+            },
+            {
+              "t": 29,
+              "reveal": 0
+            },
+            {
+              "t": 29.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Any anticoagulant works for any cellular test” (✓ counting: EDTA, ACD or heparin within 30 h, ACD or heparin to 48 h; function: the assay’s validated tube, such as heparin, because EDTA may interfere with cytokine production); “Draw CD4 counts whenever convenient” (✓ counts change through the day; keep serial draws at the same time); “ASR reagents come with established performance” (✓ the label says performance is not established; the lab validates and appends the FDA disclaimer).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: any tube works for any cellular test. No: counting tolerates EDTA for thirty hours, but function tests need the assay’s validated tube, such as heparin, because EDTA may blunt cytokines."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: draw CD4 counts whenever convenient. No: counts change through the day, so serial draws stay at the same time."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: analyte specific reagents arrive with established performance. No: the lab must establish it and add the disclaimer."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Any tube for any cellular test.”",
+            "lines": [
+              "✓ Function: validated tube; EDTA may blunt cytokines"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Draw CD4 whenever convenient.”",
+            "lines": [
+              "✓ Same time of day for serial counts"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “ASRs come pre-validated.”",
+            "lines": [
+              "✓ Lab validates + FDA disclaimer"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Tube, clock, cursor, claim",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “TUBE, CLOCK, CURSOR, CLAIM — the right TUBE for counting or function, the same CLOCK time for serial CD4, a CURSOR set so negatives stay at 2% or less, and the lab owns the CLAIM for an ASR test.” Four tokens. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: tube, clock, cursor, claim. The right tube for counting or for function; the same clock time for serial CD4 counts; a cursor that keeps negatives at two percent or less; and the lab owns the claim for an ASR test."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: tube rules differ by assay; the diurnal swing is smaller in HIV; isotype cursors are largely replaced by FMO controls; and the ASR rule is US law, so Philippine requirements are not covered."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Tube, clock, cursor, claim",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 170,
+            "w": 200,
+            "label": "Tube",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 170,
+            "w": 200,
+            "label": "Clock",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 170,
+            "w": 200,
+            "label": "Cursor ≤ 2%",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 810,
+            "y": 170,
+            "w": 200,
+            "label": "Claim = lab",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.1,
+              "opacity": 0
+            },
+            {
+              "t": 5.8999999999999995,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 380,
+            "w": 860,
+            "h": 180,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Tube rules differ by assay",
+              "Diurnal swing smaller in HIV",
+              "FMO controls largely replace isotype",
+              "ASR rule is US-only"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Counting: EDTA, ACD or heparin ≤30 h · function: the assay’s validated tube · serial CD4 at the same time of day”, “Cursor: ≤2% of negative-control cells positive · ASR test: lab validates + FDA disclaimer”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Match the tube to the test, draw serial CD4 counts at the same time of day, set the positive cursor from a negative control, and remember that a lab building a test from analyte specific reagents must validate it and add the FDA disclaimer."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Counting: EDTA/ACD/heparin ≤ 30 h · function: validated tube · same clock",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Cursor ≤ 2% of negatives · ASR: lab validates + disclaimer",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: counting immune cells only needs them to keep their surface markers, but testing what they do needs living cells that still respond, so the tube matters more for function tests. Counts also drift during the day, so repeat counts are best drawn at a consistent time. On the cytometer, the line between positive and negative is set from a control, and a test built from “do-it-yourself” reagents is the lab’s own responsibility. Scientific terms: immunophenotyping, K3EDTA, acid citrate dextrose (ACD), heparin, functional (cytokine, ELISpot, proliferation) assays, diurnal variation, CD45/side-scatter gate, lymphocyte recovery and purity, isotype control, fluorescence-minus-one (FMO) control, analyte specific reagent (ASR), laboratory-developed test.",
+    "why": "EDTA may interfere with cytokine production, and EDTA-held cells shift subset proportions after about 30 hours. In the studies read, CD4 counts rose from morning to evening, so a change in draw time can mimic a real change. Isotype controls may not match the test reagents (fluorochrome-to-protein ratio, antibody concentration), and FMO controls show the spillover of the other fluorochromes into the channel of interest. ASRs are sold without established performance, so the lab must establish it under CLIA and disclose that the test is not FDA cleared or approved.",
+    "measure": "Immunophenotyping (CDC 1997): EDTA, ACD or heparin ≤30 h; ACD or heparin ≤48 h; reject >48 h, clotted, haemolysed or frozen; 18–22 °C, avoid >37 °C. Gate: CD45 bright, low side scatter; recovery ≥95%, purity ≥90%; isotype-set cursor ≤2% positive; ≥2,500 gated lymphocytes. Diurnal: CD4 rose about 506 cells/mm³ from 08:00 to 22:00 in 6 HIV-negative controls, 59 in HIV-positive patients in Walter Reed stages 1–5 (Malone 1990). ASR (21 CFR 809.30, 809.10(e)): class I exempt label “analytical and performance characteristics are not established”; no performance statements in promotion; clinical sale to high-complexity CLIA labs; report disclaimer; lab establishes accuracy, precision, analytical sensitivity and specificity, reportable range and reference intervals (42 CFR 493.1253(b)(2)).",
+    "differs": "Counting vs function specimens; EDTA (acceptable for counts within 30 h) vs heparin/ACD (counts to 48 h; preferred for function); isotype control vs FMO control; ASR-built laboratory-developed test (lab validates, disclaimer) vs FDA-cleared kit used unmodified (lab verifies).",
+    "examAngle": "Expect: pick the tube for a functional lymphocyte assay, explain an unexpected CD4 rise after a draw-time change, identify the cursor rule for negatives, or name the report statement required for an ASR-based test."
+  },
+  "comparisons": [
+    {
+      "id": "count-vs-function",
+      "title": "Counting cells vs testing function",
+      "left": {
+        "label": "Counting (immunophenotyping)",
+        "points": [
+          "EDTA, ACD or heparin within 30 h",
+          "ACD or heparin to 48 h; reject later"
+        ]
+      },
+      "right": {
+        "label": "Function (live response)",
+        "points": [
+          "Heparin or citrate when possible",
+          "EDTA may interfere with cytokines; follow the validated tube"
+        ]
+      },
+      "distinguisher": "Does the test need cells that still respond in culture?"
+    },
+    {
+      "id": "isotype-vs-fmo",
+      "title": "Isotype control vs FMO control",
+      "left": {
+        "label": "Isotype control",
+        "points": [
+          "Classic CDC cursor: ≤2% positive",
+          "Not useful for judging non-specific binding"
+        ]
+      },
+      "right": {
+        "label": "FMO control",
+        "points": [
+          "All stains except one",
+          "Shows spillover into the channel of interest"
+        ]
+      },
+      "distinguisher": "Multicolour gating now relies largely on FMO controls."
+    }
+  ],
+  "mnemonic": {
+    "text": "TUBE, CLOCK, CURSOR, CLAIM — the right TUBE for counting or function, the same CLOCK time for serial CD4, a CURSOR set so negatives stay at 2% or less, and the lab owns the CLAIM for an ASR test.",
+    "explanation": "Four checkpoints for a trustworthy cellular immunology result.",
+    "limitation": "Tube rules differ by assay (some validated function tests use lithium heparin); the diurnal swing is blunted in HIV; isotype cursors are largely replaced by FMO controls; the ASR rule is US law and Philippine requirements are not covered."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Dot plot and cards are schematic, not real cytometer output.",
+    "Diurnal figures come from small studies (read as abstracts) and vary between people."
+  ],
+  "takeaway": "Match the tube to the test, draw serial CD4 counts at the same time of day, set the positive cursor from a negative control, and remember that a lab building a test from analyte specific reagents must validate it and add the FDA disclaimer.",
+  "questions": [
+    {
+      "id": "immuno-csg-q1",
+      "stem": "Blood for CD4 immunophenotyping will reach the flow laboratory about 40 hours after collection. Under the CDC 1997 guideline, which collection is appropriate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "ACD or heparin, kept at room temperature",
+          "rationale": "Correct. ACD or heparin (not EDTA) is acceptable when processing is within 48 hours, and specimens are kept at 18–22 °C."
+        },
+        {
+          "id": "b",
+          "text": "K3EDTA, kept at room temperature",
+          "rationale": "Incorrect. EDTA should not be used for specimens held more than 30 hours, because some lymphocyte proportions change."
+        },
+        {
+          "id": "c",
+          "text": "Any anticoagulant, refrigerated at 4 °C",
+          "rationale": "Incorrect. The guideline calls for room temperature; the effect of 4 °C on immunophenotyping is described as unclear."
+        },
+        {
+          "id": "d",
+          "text": "A serum separator tube",
+          "rationale": "Incorrect. Clotted specimens are rejected; immunophenotyping needs anticoagulated whole blood."
+        }
+      ],
+      "answer": "a",
+      "skill": "Specimen selection",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-csg-q2",
+      "stem": "A patient’s monitoring CD4 counts have always been drawn at 8 am. Today’s sample, drawn at 4 pm, is noticeably higher. What is the best response?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Note the draw-time change and recommend future draws at the usual time of day",
+          "rationale": "Correct. CD4 counts rose from morning to evening in the studies read, so a draw-time change can mimic a real change; a consistent draw time avoids this."
+        },
+        {
+          "id": "b",
+          "text": "Report the rise as proof that therapy is working",
+          "rationale": "Incorrect. A later draw time alone can raise the count; the change may not be real."
+        },
+        {
+          "id": "c",
+          "text": "Ignore it, because diurnal variation does not occur in HIV infection",
+          "rationale": "Incorrect. The diurnal rise was blunted in HIV infection but still significant in Malone 1990 (Walter Reed stages 1–5)."
+        },
+        {
+          "id": "d",
+          "text": "Switch to an EDTA tube to stop the variation",
+          "rationale": "Incorrect. Diurnal change is biological; the anticoagulant does not remove it."
+        }
+      ],
+      "answer": "a",
+      "skill": "Pre-analytical variation",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-csg-q3",
+      "stem": "A US high-complexity laboratory builds a flow cytometry panel from analyte specific reagent (ASR) antibodies. Which requirement applies?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Append a statement that the lab developed the test and that it has not been cleared or approved by the FDA",
+          "rationale": "Correct. 21 CFR 809.30(e) requires this statement on reports of in-house tests built from ASRs."
+        },
+        {
+          "id": "b",
+          "text": "Use the manufacturer’s published clinical performance claims",
+          "rationale": "Incorrect. ASR promotional material may make no statement about analytical or clinical performance."
+        },
+        {
+          "id": "c",
+          "text": "No validation is needed because the antibodies are FDA regulated",
+          "rationale": "Incorrect. Under 42 CFR 493.1253(b)(2) the lab must establish accuracy, precision, analytical sensitivity and specificity, reportable range and reference intervals."
+        },
+        {
+          "id": "d",
+          "text": "Any waived-testing site may buy the ASRs for patient testing",
+          "rationale": "Incorrect. ASRs for clinical use are sold to CLIA labs qualified for high-complexity testing."
+        }
+      ],
+      "answer": "a",
+      "skill": "Regulation",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch46",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 46, Testing Cellular Immunity (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 46,
+          "section": "High-Yield Hits",
+          "items": [
+            9,
+            10,
+            12
+          ]
+        },
+        {
+          "chapter": 46,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            4,
+            5
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "cdc1997",
+      "kind": "external",
+      "citation": "Centers for Disease Control and Prevention. 1997 revised guidelines for performing CD4+ T-cell determinations in persons infected with human immunodeficiency virus (HIV). MMWR Recomm Rep. 1997;46(RR-2):1-29.",
+      "url": "https://www.cdc.gov/mmwr/preview/mmwrhtml/00045580.htm",
+      "consulted": true,
+      "usedFor": "Anticoagulants and time limits for immunophenotyping (EDTA, ACD or heparin ≤30 h; ACD or heparin ≤48 h); rejection criteria; room-temperature transport, avoid >37 °C, 4 °C effect unclear; CD45 bright/low side-scatter lymphocyte gate; recovery ≥95% and purity ≥90%; isotype-set cursors ≤2% positive; ≥2,500 gated lymphocytes; appendix listing diurnal variation (less prevalent in HIV), corticosteroids and strenuous exercise."
+    },
+    {
+      "id": "cossarizza2021",
+      "kind": "external",
+      "citation": "Cossarizza A, Chang HD, Radbruch A, et al. Guidelines for the use of flow cytometry and cell sorting in immunological studies (third edition). Eur J Immunol. 2021;51(12):2708-3145. doi:10.1002/eji.202170126",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11115438/",
+      "consulted": true,
+      "usedFor": "Searched sections of the full text (Europe PMC XML) read: “When possible, use Sodium Citrate or heparin as anticoagulant. EDTA may interfere with cytokine production” (Top tricks for isolating PBMC, in the T-cell cytokine (Tr1/IL-10) protocol section, not a general rule for all functional assays); fresh samples generally perform better than cryopreserved; isotype-matched gating controls largely superseded by FMO controls; isotype control not useful for judging non-specific binding; FMO definition."
+    },
+    {
+      "id": "yi2016",
+      "kind": "external",
+      "citation": "Yi L, Sasaki Y, Nagai H, et al. Evaluation of QuantiFERON-TB Gold Plus for Detection of Mycobacterium tuberculosis infection in Japan. Sci Rep. 2016;6:30617. doi:10.1038/srep30617",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4965764/",
+      "consulted": true,
+      "usedFor": "Methods: blood drawn into lithium-heparin vessels, transported at 22 ± 5 °C and dispensed into QFT assay tubes within 16 h."
+    },
+    {
+      "id": "kruse2021",
+      "kind": "external",
+      "citation": "Kruse M, Dark C, Aspden M, et al. Performance of the T-SPOT.COVID test for detecting SARS-CoV-2-responsive T cells. Int J Infect Dis. 2021;113:155-161. doi:10.1016/j.ijid.2021.09.073",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8482551/",
+      "consulted": true,
+      "usedFor": "Methods: per the manufacturer’s instructions, blood drawn into lithium heparin tubes for an ELISpot-based T-cell assay."
+    },
+    {
+      "id": "barabas2017",
+      "kind": "external",
+      "citation": "Barabas S, Spindler T, Kiener R, et al. An optimized IFN-γ ELISpot assay for the sensitive and standardized monitoring of CMV protein-reactive effector cells of cell-mediated immunity. BMC Immunol. 2017;18(1):14. doi:10.1186/s12865-017-0195-y",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5339961/",
+      "consulted": true,
+      "usedFor": "Methods: lithium heparin tubes, stored up to 8 h at room temperature; heparinised blood processed within 8 h to prevent loss of T-cell functionality."
+    },
+    {
+      "id": "malone1990",
+      "kind": "external",
+      "citation": "Malone JL, Simms TE, Gray GC, Wagner KF, Burge JR, Burke DS. Sources of variability in repeated T-helper lymphocyte counts from human immunodeficiency virus type 1-infected patients: total lymphocyte count fluctuations and diurnal cycle are important. J Acquir Immune Defic Syndr. 1990;3(2):144-151.",
+      "url": "https://europepmc.org/article/MED/1967309",
+      "consulted": true,
+      "usedFor": "Abstract only (Europe PMC; full text not open; abstract truncated at 250 words). 22 men (16 HIV-positive, 6 HIV-negative). CD4 rise from 08:00 to 22:00 of 506 cells/mm³ in HIV-negative controls and 59 cells/mm³ in HIV-positive Walter Reed stage 1–5 patients (significantly blunted); total lymphocyte count variability contributed more than CD4% measurement."
+    },
+    {
+      "id": "carmichael2006",
+      "kind": "external",
+      "citation": "Carmichael KF, Abayomi A. Analysis of diurnal variation of lymphocyte subsets in healthy subjects in the Caribbean, and its implication in HIV monitoring and treatment. Afr J Med Med Sci. 2006;35(1):53-57.",
+      "url": "https://europepmc.org/article/MED/17209328",
+      "consulted": true,
+      "usedFor": "Abstract only (Europe PMC). No significant change in subsets before 11:30, progressive rise thereafter; the lab set 11:30 as its latest collection time."
+    },
+    {
+      "id": "campbell1997",
+      "kind": "external",
+      "citation": "Campbell PJ, Aurelius S, Blowes G, Harvey D. Decrease in CD4 lymphocyte counts with rest; implications for the monitoring of HIV infection. Int J STD AIDS. 1997;8(7):423-426. doi:10.1258/0956462971920460",
+      "url": "https://europepmc.org/article/MED/9228588",
+      "consulted": true,
+      "usedFor": "Abstract only (Europe PMC). 60 minutes of rest lowered mean CD4 from 1060 to 660 ×10⁶/L in 20 healthy volunteers."
+    },
+    {
+      "id": "cfr809-30",
+      "kind": "external",
+      "citation": "21 CFR § 809.30 — Restrictions on the sale, distribution and use of analyte specific reagents (eCFR, version current to 2026-10-01; 62 FR 62259, Nov. 21, 1997).",
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-809/subpart-C/section-809.30",
+      "consulted": true,
+      "usedFor": "Sale limited to IVD manufacturers, CLIA high-complexity (or VHA-regulated) labs and non-clinical users; “Analytical and performance characteristics are not established” statement in promotional material; promotion may make no statement on analytical or clinical performance; report disclaimer wording; ordering limited to authorised persons."
+    },
+    {
+      "id": "cfr809-10",
+      "kind": "external",
+      "citation": "21 CFR § 809.10 — Labeling for in vitro diagnostic products, paragraph (e) (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-809/subpart-B/section-809.10",
+      "consulted": true,
+      "usedFor": "ASR labeling: class I exempt ASRs bear “Analyte Specific Reagent. Analytical and performance characteristics are not established”."
+    },
+    {
+      "id": "cfr864-4020",
+      "kind": "external",
+      "citation": "21 CFR § 864.4020 — Analyte specific reagents (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-864/subpart-E/section-864.4020",
+      "consulted": true,
+      "usedFor": "Definition of ASRs (antibodies, receptor proteins, ligands, nucleic acid sequences and similar reagents); class I exempt by default."
+    },
+    {
+      "id": "cfr493-1253",
+      "kind": "external",
+      "citation": "42 CFR § 493.1253 — Standard: Establishment and verification of performance specifications (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493/subpart-K/section-493.1253",
+      "consulted": true,
+      "usedFor": "Labs introducing in-house or modified tests establish accuracy, precision, analytical sensitivity, analytical specificity, reportable range and reference intervals; unmodified FDA-cleared tests are verified."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-ip-tubes",
+      "text": "Immunophenotyping anticoagulants and time limits; rejection criteria; room-temperature handling.",
+      "status": "checked",
+      "refs": [
+        "cdc1997"
+      ]
+    },
+    {
+      "id": "cl-func-tubes",
+      "text": "Functional assays: heparin or citrate when possible; EDTA may interfere with cytokine production; fresh better than cryopreserved.",
+      "status": "checked",
+      "refs": [
+        "cossarizza2021"
+      ]
+    },
+    {
+      "id": "cl-lihep",
+      "text": "Validated IGRA/ELISpot methods collect into lithium heparin with assay-specific time limits.",
+      "status": "checked",
+      "refs": [
+        "yi2016",
+        "kruse2021",
+        "barabas2017"
+      ]
+    },
+    {
+      "id": "cl-diurnal",
+      "text": "CD4 counts rise from morning to evening, blunted in HIV; rest lowers counts; serial draws at a consistent time.",
+      "status": "checked",
+      "refs": [
+        "malone1990",
+        "carmichael2006",
+        "campbell1997",
+        "cdc1997"
+      ],
+      "note": "Studies read as abstracts only. “Keep serial draws at a consistent time” is taught as an inference from these studies and the CDC listing of diurnal variation; no source read states a formal guideline requiring same-time or morning draws, so “uniform morning draws” is not taught as a rule."
+    },
+    {
+      "id": "cl-gate",
+      "text": "CD45 bright/low side-scatter gate; recovery ≥95%, purity ≥90%; isotype cursor ≤2% positive; ≥2,500 gated lymphocytes.",
+      "status": "checked",
+      "refs": [
+        "cdc1997"
+      ]
+    },
+    {
+      "id": "cl-fmo",
+      "text": "Isotype gating controls largely superseded by FMO controls; isotype controls may not match test reagents (F/P ratio, concentration).",
+      "status": "checked",
+      "refs": [
+        "cossarizza2021",
+        "cdc1997"
+      ]
+    },
+    {
+      "id": "cl-asr",
+      "text": "ASR rule: definition, sale restrictions, label statement, no performance claims, report disclaimer; lab establishes performance specifications.",
+      "status": "checked",
+      "refs": [
+        "cfr809-30",
+        "cfr809-10",
+        "cfr864-4020",
+        "cfr493-1253"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "“Preservative-free” sodium heparin; storage “<24 h in the dark”; “50% biological + 50% technical” CD4 variability; Loken CD45/SSC blast separation; “no absolute standards exist” for immunophenotyping reagents.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch46"
+      ],
+      "note": "Not taught. No source read in this session states these. The Malone 1990 abstract does not give a 50/50 split; the CDC guideline notes that CD4 methodology has become more standardised through published guidelines."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; dot plot schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Tube, clock, cursor, claim.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-lithium-heparin",
+      "issue": "Ch. 46 Hit 9 and Trap 1 say lithium heparin is NEVER acceptable for functional cellular studies. Published validated functional assays collect into lithium heparin (QuantiFERON-TB Gold Plus study, Yi 2016; T-SPOT.COVID per manufacturer, Kruse 2021; a CMV IFN-γ ELISpot, Barabas 2017). The lesson teaches “follow the assay’s validated tube”, with heparin or citrate preferred over EDTA (Cossarizza 2021) (register flag rv-cellular-lithium-heparin).",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-isotype-cursor",
+      "issue": "Ch. 46 Hit 12 gives the ≤2% cursor rule as the gating rule. It comes from the CDC 1997 guideline (isotype-control cursors), but Cossarizza 2021 states that isotype-matched gating controls have largely been superseded by FMO controls. The lesson teaches both (register flag rv-isotype-cursor-fmo).",
+      "kind": "outdated",
+      "status": "open"
+    },
+    {
+      "id": "f-diurnal-hiv",
+      "issue": "Ch. 46 Hit 10 and Trap 4 present diurnal CD4 variation without noting that it is blunted in HIV infection (Malone 1990 abstract: 59 vs 506 cells/mm³; CDC 1997: less prevalent in HIV). The reviewer’s 50% biological / 50% technical split was not found in any source read (register flag rv-cd4-diurnal-hiv-blunted).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-us-only-asr",
+      "issue": "The ASR rule (21 CFR 809.30) and CLIA performance-specification rule (42 CFR 493.1253) are US federal requirements. Philippine rules are not covered; MTLE candidates should check local requirements (register flag rv-asr-us-only).",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No cytometer images; the dot plot is described with cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "All 7 taught factual claims checked against the CDC 1997 guideline, Cossarizza 2021, three methods papers, eCFR text and three study abstracts (abstracts only for Malone 1990, Carmichael 2006 and Campbell 1997). Several reviewer statements remain pending and untaught. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
