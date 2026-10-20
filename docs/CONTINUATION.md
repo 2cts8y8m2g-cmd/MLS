@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 231, teaching 1128 of 1,932 concepts (about 58.4%).** All 231 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 235, teaching 1144 of 1,932 concepts (about 59.2%).** All 235 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -35,7 +35,7 @@
   - Ch. 29 (14/27 concepts): `cm-urine-casts-localize`, `cm-urine-crystals-stones-yeast`, `cm-urine-strip-chemistry`.
   - Ch. 30 (12/25 concepts): `cm-csf-synovial-interpretation`, `cm-serous-fluids-transudate-exudate`.
   - Ch. 31 (18/28 concepts): `heme-esr-westergren-interpretation`, `heme-marrow-sampling-iron-stain`, `heme-red-cell-indices-high-mchc`, `heme-spurious-cbc-corrections`.
-  - Ch. 32 (11/23 concepts): `heme-erythropoiesis-reticulocyte-index`, `heme-heme-synthesis-bilirubin-urobilinogen`.
+  - Ch. 32 (15/23 concepts): `heme-eosinophil-il5-tpo-megakaryocytes`, `heme-erythropoiesis-reticulocyte-index`, `heme-heme-synthesis-bilirubin-urobilinogen`.
   - Ch. 33 (16/27 concepts): `heme-anemia-second-clues`, `heme-hemolytic-anemia-workup`, `heme-microcytic-anemia-ferritin-mentzer`.
   - Ch. 34 (14/25 concepts): `heme-bcell-neoplasm-phenotypes`, `heme-blast-count-aml-mds-apl`, `heme-cml-vs-leukemoid-reaction`, `heme-mpn-pv-et-pmf`.
   - Ch. 35 (12/23 concepts): `heme-b-cell-clonality-mbl-hematogones`, `heme-flow-cytometry-gating`.
@@ -48,7 +48,7 @@
   - Ch. 42 (21/29 concepts): `bb-donor-eligibility-criteria`, `ih-apheresis-citrate-asfa-rce`, `ih-hpc-mobilization-ecp`, `ih-plasma-exchange-tpe`.
   - Ch. 43 (12/22 concepts): `ih-hpc-cd34-dose-cryopreservation`, `ih-hpc-graft-sources-abo`.
   - Ch. 44 (11/22 concepts): `immuno-checkpoint-cart-anti-c5-cd20`, `immuno-hypersensitivity-types-lab`, `immuno-lymphocyte-subsets-th-treg-nk`.
-  - Ch. 45 (9/22 concepts): `immuno-competitive-sandwich-hook`, `immuno-homogeneous-emit-fpia`.
+  - Ch. 45 (14/22 concepts): `immuno-affinity-precipitin-mab-hapten`, `immuno-competitive-sandwich-hook`, `immuno-homogeneous-emit-fpia`.
   - Ch. 46 (12/20 concepts): `immuno-cellular-specimen-gating-asr`, `immuno-igra-t-cell-memory`, `immuno-t-cell-activation-proliferation`.
   - Ch. 47 (18/28 concepts): `immuno-csf-oligoclonal-band-patterns`, `immuno-immunoglobulin-classes`, `immuno-mgus-smoldering-myeloma`, `immuno-mspike-impostors`.
   - Ch. 48 (14/22 concepts): `immuno-complement-ch50-ah50`, `immuno-complement-consumption-patterns`.
@@ -69,7 +69,7 @@
   - Ch. 63 (9/19 concepts): `micro-rickettsial-tickborne-diagnosis`.
   - Ch. 64 (13/24 concepts): `micro-ebv-cmv-serology`, `micro-hiv-hcv-testing-algorithms`, `micro-respiratory-virus-naat-antigen-culture`, `micro-transplant-viral-loads`.
   - Ch. 65 (17/24 concepts): `micro-entamoeba-coccidia-stool-protozoa`, `micro-helminth-specimen-timing`, `micro-malaria-thick-thin-films`.
-  - Ch. 66 (40/54 concepts): `micro-antigen-tests-negatives`, `micro-blood-culture-volume-contamination`, `micro-csf-meningitis-shunt-panel`, `micro-direct-smears-sterile-fluids-bal`, `micro-endocarditis-blood-cultures-duke`, `micro-respiratory-culture-clues-maldi`, `micro-result-reporting-critical-calls`, `micro-specimen-acceptability-transport`, `micro-urine-culture-interpretation`.
+  - Ch. 66 (44/54 concepts): `micro-antigen-tests-negatives`, `micro-blood-culture-volume-contamination`, `micro-csf-meningitis-shunt-panel`, `micro-direct-smears-sterile-fluids-bal`, `micro-endocarditis-blood-cultures-duke`, `micro-respiratory-culture-clues-maldi`, `micro-result-reporting-critical-calls`, `micro-specimen-acceptability-transport`, `micro-specimen-id-transport-biosafety`, `micro-urine-culture-interpretation`.
   - Ch. 67 (8/20 concepts): `mdx-molecular-context-fish-cftr-snp`, `mdx-pharmacogenomics`.
   - Ch. 68 (11/25 concepts): `mdx-hybridization-stringency-blots`, `mdx-sanger-pyrosequencing`.
   - Ch. 69 (13/24 concepts): `mdx-isothermal-tma-lamp-near-bdna`, `mdx-qpcr-quantification`.
@@ -81,10 +81,10 @@
   - Ch. 75 (16/27 concepts): `mdx-cyp2d6-tamoxifen-metabolizer`, `mdx-pgx-toxicity-screening`, `mdx-targeted-therapy-egfr-ras-alk`.
   - Ch. 76 (10/21 concepts): `mdx-oncogene-activation-her2-myc-ctdna`, `mdx-oncoproteins-ras-p53-markers`.
   - Ch. 77 (12/23 concepts): `mdx-bcell-lymphoma-molecular-markers`, `mdx-cml-bcr-abl1-international-scale`, `mdx-myeloid-drivers-sf3b1-kit-chip`.
-  - Ch. 78 (8/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
+  - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 340 flags (257 verified issues, 83 needing verification), plus scan results.
-- **Checks:** 1452 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 1458 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 

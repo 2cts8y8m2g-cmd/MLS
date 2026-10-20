@@ -1,0 +1,1580 @@
+{
+  "schemaVersion": 1,
+  "id": "immuno-affinity-precipitin-mab-hapten",
+  "title": "Antibody Binding: Affinity, Avidity, the Precipitin Curve, Monoclonals and Haptens",
+  "summary": "Define the affinity constant and avidity, read Ka and binding sites from a Scatchard plot, explain the zone of equivalence on the precipitin curve, and choose between monoclonal and polyclonal antibodies and hapten-carrier immunogens.",
+  "domain": "p6-immuno",
+  "topic": "ch45",
+  "conceptIds": [
+    "ch45.hit4",
+    "ch45.hit5",
+    "ch45.hit6",
+    "ch45.trap4",
+    "ch45.trap5"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 45,
+        "section": "High-Yield Hits",
+        "items": [
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "chapter": 45,
+        "section": "Exam Traps",
+        "items": [
+          4,
+          5
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 45 Hits 4, 5 and 6 and Exam Traps 4 and 5, checked against Reverberi 2007 (read via a page-fetch tool), Kastritis 2013, Winzor 2026, Bachmann 2025, Huber 2013, Moraes 2021, Parray 2020, Lipman 2005 (read via a page-fetch tool) and Yang 2020. Qualifications: the Scatchard slope is −Ka, not Ka (flag f-scatchard-slope-sign); antibody excess, not only antigen excess, prevents a visible precipitate (flag f-precipitin-both-excess); the claims that polyclonal serum has “stronger overall avidity” and that monoclonals distinguish isoenzymes and isotypes were not found in sources read and are not taught (flag f-polyclonal-avidity). Not taught: hapten cross-linking in agglutination, the cyclosporine Ka example. The tandfonline page for Ascoli 2018 (polyclonal benefits) returned 403 and was not read; the NCBI Bookshelf search returned a captcha."
+  },
+  "prerequisites": [
+    "ch45.hit1"
+  ],
+  "objectives": [
+    "Define the affinity constant Ka and distinguish affinity from avidity.",
+    "Read Ka and binding-site concentration from a Scatchard plot.",
+    "Explain the zone of equivalence and why antibody or antigen excess prevents a visible precipitate.",
+    "Choose between monoclonal and polyclonal antibodies and explain why a hapten needs a carrier protein."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three puzzles at the reagent bench",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three puzzles at a reagent-development bench. (1) A precipitate formed when antigen was added to antiserum, then disappeared when much more antigen was added. (2) A binding study gives a straight line of bound/free versus bound, and someone must read the affinity constant from it. (3) A small drug molecule was injected alone into a rabbit, and no antibody appeared. Question token: “Ratio, strength, or immunogen?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Three puzzles at the reagent bench. A precipitate formed, then vanished when much more antigen was added."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "A binding study gives a straight line, and someone must read the antibody’s affinity from it."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "And a small drug injected on its own raised no antibody at all. Is each one about ratio, strength, or the immunogen?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "p1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Vanishing precipitate",
+            "lines": [
+              "Formed, then gone",
+              "after more antigen"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "2 Straight-line plot",
+            "lines": [
+              "Bound/free vs bound",
+              "Read the affinity"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "3 Small drug alone",
+            "lines": [
+              "Injected into a rabbit",
+              "No antibody"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0
+            },
+            {
+              "t": 15.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "Ratio, strength, or immunogen?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 18.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Affinity, Ka and avidity",
+      "start": 20,
+      "end": 60,
+      "altText": "Equation card: Ag + Ab ⇌ AgAb. At equilibrium the association (affinity) constant Ka = [AgAb] / ([Ag][Ab]) = ka/kd, reported in L/mol; the dissociation constant Kd = koff/kon is its reciprocal. Affinity card: the strength of ONE binding site for one epitope (monovalent binding). Avidity card: the overall, functional strength when several sites bind at once (multivalent binding). Examples: when both arms of an IgG bind the same red cell, the equilibrium constant rose about a thousandfold in one red-cell model; pentameric IgM can bind with low affinity but high avidity.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Antigen and antibody bind reversibly. At equilibrium, the affinity constant Ka is the bound complex divided by free antigen times free antibody. It equals the association rate constant over the dissociation rate constant, in litres per mole."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 38,
+          "text": "The dissociation constant, Kd, is simply its reciprocal. A higher Ka, or a lower Kd, means a tighter bond."
+        },
+        {
+          "id": "n3",
+          "start": 38,
+          "end": 48,
+          "text": "Affinity is the strength of one binding site for one epitope. Avidity is the overall strength when several sites bind at once."
+        },
+        {
+          "id": "n4",
+          "start": 48,
+          "end": 60,
+          "text": "When both arms of an IgG bind the same red cell, the constant rose about a thousandfold in one model. Pentameric IgM can bind with low affinity but high avidity."
+        }
+      ],
+      "objects": [
+        {
+          "id": "eq",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 150,
+            "w": 840,
+            "h": 150,
+            "tone": "b",
+            "title": "Ka = [AgAb] / ([Ag][Ab]) = ka / kd",
+            "lines": [
+              "Units L/mol · Kd = 1/Ka",
+              "Higher Ka = tighter bond"
+            ],
+            "highlight": 0,
+            "size": 15,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            },
+            {
+              "t": 14,
+              "highlight": 0
+            }
+          ]
+        },
+        {
+          "id": "aff",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 380,
+            "w": 440,
+            "h": 170,
+            "tone": "a",
+            "title": "Affinity",
+            "lines": [
+              "One site, one epitope",
+              "Monovalent binding"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "avi",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 380,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "Avidity",
+            "lines": [
+              "IgG two arms: ~1000× in one model",
+              "IgM: low affinity, high avidity"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 0
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "The precipitin curve and the zone of equivalence",
+      "start": 60,
+      "end": 104,
+      "altText": "Schematic precipitin (Heidelberger) curve: a fixed amount of antiserum, antigen added in increasing amounts; amount of visible precipitate on the y-axis. Three zones: antibody excess (left, little or no visible precipitate), the zone of equivalence (middle, optimal antigen-to-antibody ratio, maximal precipitate) and antigen excess (right, the precipitate is lost). Note card: an excess of EITHER partner prevents a visible precipitate, so the curve is bell-shaped.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "Now change the ratio. Keep the antiserum fixed and add more and more antigen. This is the classic precipitin, or Heidelberger, curve."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 80,
+          "text": "At first antibody is in excess, and little visible precipitate forms."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 92,
+          "text": "At the optimal ratio, the zone of equivalence, precipitation is maximal."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "Add still more antigen and the precipitate is lost again. An excess of either partner prevents a visible precipitate, so the curve is bell-shaped."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ttl",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 70,
+            "text": "Fixed antiserum + rising antigen",
+            "size": 20,
+            "weight": 800,
+            "color": "accent",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "z1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 270,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "Antibody excess",
+            "lines": [
+              "Little or no",
+              "visible precipitate"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "z2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 290,
+            "h": 230,
+            "tone": "good",
+            "title": "Zone of equivalence",
+            "lines": [
+              "Optimal ratio",
+              "MAXIMAL precipitate"
+            ],
+            "highlight": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "z3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 270,
+            "w": 290,
+            "h": 170,
+            "tone": "bad",
+            "title": "Antigen excess",
+            "lines": [
+              "Precipitate lost",
+              "again"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bell",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 760,
+            "label": "Excess of EITHER partner → no visible precipitate (bell curve)",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 38,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 39.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Reading a Scatchard plot",
+      "start": 104,
+      "end": 144,
+      "altText": "Schematic Scatchard plot: y-axis bound/free (B/F), x-axis bound (B). For one class of identical, independent sites the points fall on a straight line. Slope = −Ka (that is, −1/Kd); x-intercept = total binding-site concentration; curvature suggests more than one class of sites (heterogeneity), non-specific binding or a multivalent ligand. Worked example (invented numbers): the line meets the y-axis at B/F = 2 and the x-axis at B = 4 nmol/L; slope = −2 / 4 nmol/L = −0.5 L/nmol, so Ka = 5 × 10⁸ L/mol and binding sites = 4 nmol/L. Hook answers card.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "The Scatchard plot puts bound over free on the y-axis and bound on the x-axis. For one class of identical sites, the points fall on a straight line."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 122,
+          "text": "The slope is minus Ka. The x-intercept is the total concentration of binding sites. A curved plot hints at mixed sites, non-specific binding, or a multivalent ligand."
+        },
+        {
+          "id": "l3",
+          "start": 122,
+          "end": 134,
+          "text": "Invented example: the line runs from two on the y-axis to four nanomoles per litre on the x-axis. The slope is minus two over four, minus zero point five litres per nanomole, so Ka is five times ten to the eighth litres per mole, with four nanomoles per litre of sites."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook. The vanished precipitate is antigen excess, past equivalence. The plot gives Ka from its slope. The lone drug was a hapten without a carrier."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ax",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 440,
+            "h": 230,
+            "tone": "b",
+            "title": "Scatchard: B/F vs B",
+            "lines": [
+              "Slope = −Ka (−1/Kd)",
+              "x-intercept = total sites",
+              "Curved = mixed sites or more"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ex",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 220,
+            "w": 420,
+            "h": 230,
+            "tone": "good",
+            "title": "Invented example",
+            "lines": [
+              "y = 2 · x = 4 nmol/L",
+              "Slope −0.5 L/nmol",
+              "Ka 5 × 10⁸ L/mol · sites 4 nmol/L"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 820,
+            "label": "1 Antigen excess · 2 Ka from slope · 3 Hapten needs a carrier",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Polyclonal antibodies are always better” (✓ choose by the job: a monoclonal antibody from Köhler and Milstein’s 1975 hybridoma method binds ONE epitope and is homogeneous, useful for telling apart conformations or single members of a protein family; a polyclonal mixture binds MANY epitopes, tolerates changes in one epitope and suits immunoprecipitation of complex antigens, but varies between immunised animals); “Any small molecule can immunize” (✓ a hapten is not immunogenic alone; couple it to a carrier protein such as keyhole limpet hemocyanin, then the antibody can recognise the free hapten in a competitive immunoassay); “The Scatchard slope is +Ka” (✓ the slope is −Ka; the x-intercept is the binding-site concentration).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: polyclonal antibodies are always better. No. A monoclonal, from Köhler and Milstein’s 1975 hybridoma method, binds one epitope. A polyclonal mixture binds many epitopes. Pick the one the job needs."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: any small molecule can immunize. No. A hapten must first be coupled to a carrier protein. The antibody raised can then recognise the free hapten."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the Scatchard slope is plus Ka. No. The slope is minus Ka, and the x-intercept is the concentration of binding sites."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Polyclonal is always better.”",
+            "lines": [
+              "✓ mAb: one epitope · pAb: many epitopes"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Any small molecule can immunize.”",
+            "lines": [
+              "✓ Hapten + carrier protein first"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Scatchard slope = +Ka.”",
+            "lines": [
+              "✓ Slope = −Ka · x-intercept = sites"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Handshake, bear hug, dance floor",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Affinity is one HANDSHAKE; avidity is a BEAR HUG with many arms; a precipitate is a DANCE FLOOR that fills only when partners are matched — too many of either side and people stand alone.” Tokens: handshake = affinity · bear hug = avidity · dance floor = equivalence. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: affinity is one handshake. Avidity is a bear hug with many arms. A precipitate is a dance floor that fills only when partners are matched; too many of either side and people stand alone."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: avidity depends on the assay format, not just the antibody; a straight Scatchard line needs one class of identical sites; and the exact shape of a precipitin curve depends on the antigen and antiserum."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Handshake, bear hug, dance floor",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Handshake = affinity",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Bear hug = avidity",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Dance floor = equivalence",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Avidity depends on the assay format",
+              "Straight Scatchard = one class of sites",
+              "Curve shape varies by system"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Ka = [AgAb]/[Ag][Ab] · Scatchard slope −Ka · x-intercept = sites · avidity = many sites”, “Precipitate peaks at equivalence · mAb one epitope, pAb many · hapten needs a carrier”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Affinity is one site’s grip measured as Ka from the negative Scatchard slope, avidity is the extra grip of many sites, precipitation peaks at the zone of equivalence, and a hapten needs a carrier protein before it can raise antibodies."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Ka = [AgAb]/[Ag][Ab] · slope −Ka · x-intercept = sites",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Peak at equivalence · mAb 1 epitope, pAb many · hapten + carrier",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: antibodies grip antigens with a measurable strength. One arm’s grip is affinity; many arms together give avidity. Antibody and antigen clump into a visible precipitate only when their amounts are balanced. Monoclonal antibodies all recognise one spot, polyclonal mixtures recognise many, and a tiny molecule must be attached to a protein before an animal will make antibody to it. Scientific terms: affinity (association) constant Ka, dissociation constant Kd, avidity (functional affinity), precipitin (Heidelberger) curve, zone of equivalence, antibody excess, antigen excess, Scatchard plot, hybridoma, epitope, hapten, carrier protein (keyhole limpet hemocyanin).",
+    "why": "Binding is reversible and follows the law of mass action, so the ratio of complex to free reactants at equilibrium defines Ka. Multivalent binding raises the functional constant. Visible precipitation needs partners in a suitable ratio; with either in excess no visible precipitate forms. Small molecules cannot stimulate an immune response by themselves, so they are coupled to a carrier protein to make a complete immunogen.",
+    "measure": "Ka = [AgAb]/([Ag][Ab]) = ka/kd in L/mol; Kd = 1/Ka. Scatchard plot: B/F (y) against B (x); slope = −Ka; x-intercept = total binding-site concentration; nonlinearity suggests more than one class of sites, non-specific binding or a multivalent ligand. Precipitin curve: maximal precipitate at the zone of equivalence.",
+    "differs": "Affinity (one site) vs avidity (many sites at once); antibody excess vs equivalence vs antigen excess; monoclonal (one epitope, homogeneous, precise affinity) vs polyclonal (many epitopes, tolerant of epitope change, varies between animals); hapten (binds antibody, not immunogenic alone) vs hapten-carrier conjugate (immunogen).",
+    "examAngle": "Expect: calculate Ka from a Scatchard slope, identify the zone of maximal precipitation, explain a lost precipitate, pick a monoclonal or polyclonal reagent for a task, or state what a hapten needs to raise antibodies."
+  },
+  "comparisons": [
+    {
+      "id": "affinity-avidity",
+      "title": "Affinity vs avidity",
+      "left": {
+        "label": "Affinity",
+        "points": [
+          "One binding site, one epitope",
+          "Measured as Ka (L/mol)"
+        ]
+      },
+      "right": {
+        "label": "Avidity",
+        "points": [
+          "Several sites bind at once",
+          "IgM: low affinity, high avidity"
+        ]
+      },
+      "distinguisher": "Monovalent strength vs overall multivalent strength."
+    },
+    {
+      "id": "mab-pab",
+      "title": "Monoclonal vs polyclonal",
+      "left": {
+        "label": "Monoclonal",
+        "points": [
+          "One epitope, homogeneous",
+          "Precise affinity can be measured"
+        ]
+      },
+      "right": {
+        "label": "Polyclonal",
+        "points": [
+          "Many epitopes, tolerant of epitope change",
+          "Varies between immunised animals"
+        ]
+      },
+      "distinguisher": "Single clone and single epitope vs many clones and many epitopes."
+    }
+  ],
+  "mnemonic": {
+    "text": "Affinity is one HANDSHAKE; avidity is a BEAR HUG with many arms; a precipitate is a DANCE FLOOR that fills only when partners are matched — too many of either side and people stand alone.",
+    "explanation": "Separates single-site strength, multivalent strength and ratio-dependent precipitation.",
+    "limitation": "Avidity depends on the assay format; a straight Scatchard line needs one class of identical sites; precipitin curve shape varies by antigen and antiserum."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Worked Scatchard numbers are invented for practice.",
+    "Curves and plots are schematic, not real data."
+  ],
+  "takeaway": "Affinity is one site’s grip measured as Ka from the negative Scatchard slope, avidity is the extra grip of many sites, precipitation peaks at the zone of equivalence, and a hapten needs a carrier protein before it can raise antibodies.",
+  "questions": [
+    {
+      "id": "immuno-aff-q1",
+      "stem": "A Scatchard plot (bound/free on the y-axis, bound on the x-axis) of an antibody is a straight line crossing the y-axis at 2 and the x-axis at 4 nmol/L. What is the affinity constant Ka?",
+      "options": [
+        {
+          "id": "a",
+          "text": "5 × 10⁸ L/mol",
+          "rationale": "Correct. Slope = −2/4 nmol/L = −0.5 L/nmol; Ka is the negative of the slope, 0.5 L/nmol = 5 × 10⁸ L/mol."
+        },
+        {
+          "id": "b",
+          "text": "4 nmol/L",
+          "rationale": "Incorrect. The x-intercept is the total binding-site concentration, not Ka."
+        },
+        {
+          "id": "c",
+          "text": "2, the y-intercept value",
+          "rationale": "Incorrect. The y-intercept equals sites × Ka; Ka comes from the slope."
+        },
+        {
+          "id": "d",
+          "text": "2 × 10⁻⁹ mol/L",
+          "rationale": "Incorrect. This is Kd (1/Ka), a concentration, not the affinity constant."
+        }
+      ],
+      "answer": "a",
+      "skill": "Scatchard calculation",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-aff-q2",
+      "stem": "Antigen is added in increasing amounts to a fixed volume of antiserum. Where on the precipitin curve is the amount of visible precipitate greatest?",
+      "options": [
+        {
+          "id": "a",
+          "text": "In the zone of equivalence",
+          "rationale": "Correct. Precipitation is maximal at the optimal antigen-to-antibody ratio."
+        },
+        {
+          "id": "b",
+          "text": "In the zone of antibody excess",
+          "rationale": "Incorrect. Excess antibody prevents a visible precipitate."
+        },
+        {
+          "id": "c",
+          "text": "In the zone of antigen excess",
+          "rationale": "Incorrect. Surplus antigen prevents a visible precipitate; the precipitate is lost."
+        },
+        {
+          "id": "d",
+          "text": "Equally at every ratio once antibody is present",
+          "rationale": "Incorrect. The curve is bell-shaped; precipitation depends on the ratio."
+        }
+      ],
+      "answer": "a",
+      "skill": "Precipitin curve",
+      "difficulty": "recall"
+    },
+    {
+      "id": "immuno-aff-q3",
+      "stem": "A laboratory wants antibodies against a small drug molecule for a competitive immunoassay. What must be done to the drug before immunisation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Couple it to a carrier protein such as keyhole limpet hemocyanin",
+          "rationale": "Correct. A hapten is not immunogenic by itself; the hapten-carrier conjugate is the immunogen."
+        },
+        {
+          "id": "b",
+          "text": "Inject the free drug at a higher dose",
+          "rationale": "Incorrect. A small molecule cannot elicit an immune response by itself, whatever the dose."
+        },
+        {
+          "id": "c",
+          "text": "Nothing, because any molecule that binds antibody is immunogenic",
+          "rationale": "Incorrect. Haptens can be recognised by antibody but cannot stimulate antibody production alone."
+        },
+        {
+          "id": "d",
+          "text": "Use a monoclonal antibody instead of immunising",
+          "rationale": "Incorrect. Making a monoclonal also starts by immunising an animal, so the hapten still needs a carrier."
+        }
+      ],
+      "answer": "a",
+      "skill": "Haptens",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch45",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 45, Immunoassays: Antibodies as Tools (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 45,
+          "section": "High-Yield Hits",
+          "items": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "chapter": 45,
+          "section": "Exam Traps",
+          "items": [
+            4,
+            5
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "reverberi2007",
+      "kind": "external",
+      "citation": "Reverberi R, Reverberi L. Factors affecting the antigen-antibody reaction. Blood Transfus. 2007;5(4):227-240. doi:10.2450/2007.0047-07",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2581910/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (Europe PMC full text unavailable). Law of mass action: Keq = [complex]/([ag][ab]) = ka/kd, in L/mol; IgG binding with both sites to the same red cell raises the equilibrium constant by three orders of magnitude; polyclonal antibodies are mixtures of different affinities, so a single constant is an average."
+    },
+    {
+      "id": "kastritis2013",
+      "kind": "external",
+      "citation": "Kastritis PL, Bonvin AM. On the binding affinity of macromolecular interactions: daring to ask why proteins interact. J R Soc Interface. 2013;10(79):20120835. doi:10.1098/rsif.2012.0835",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3565702/",
+      "consulted": true,
+      "usedFor": "Kd defined from kon and koff; Scatchard plot of bound/free: x-intercept n[At], y-intercept n[At]/Kd, slope −1/Kd; nonlinearity from multiple sites or non-specific binding."
+    },
+    {
+      "id": "winzor2026",
+      "kind": "external",
+      "citation": "Winzor DJ. The Scatchard Equation for a Multivalent Ligand: A Much Needed but Neglected Expression Required for Valid Interpretation of Biphasic Bioassays. Protein J. 2026;45(3):431-440. doi:10.1007/s10930-026-10334-8",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13222208/",
+      "consulted": true,
+      "usedFor": "Full text via Europe PMC, equations checked with a page-fetch tool. Scatchard rearrangement gives the association constant and site number from slope and intercept; bound/free versus bound plot; concave curvature attributed to heterogeneity or negative cooperativity, or to ligand multivalence."
+    },
+    {
+      "id": "bachmann2025",
+      "kind": "external",
+      "citation": "Bachmann MF, Krenger PS, Mohsen MO, Kramer MF, Starchenka S, Whitehead P, Vogel M, Heath MD. On the role of antibody affinity and avidity in the IgE-mediated allergic response. Allergy. 2025;80(1):37-46. doi:10.1111/all.16248",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11724228/",
+      "consulted": true,
+      "usedFor": "Affinity refers to monovalent binding; avidity effects are caused by multivalent binding; pentameric IgM can bind with low affinity but high avidity."
+    },
+    {
+      "id": "huber2013",
+      "kind": "external",
+      "citation": "Huber M. Activation/Inhibition of mast cells by supra-optimal antigen concentrations. Cell Commun Signal. 2013;11(1):7. doi:10.1186/1478-811x-11-7",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3598417/",
+      "consulted": true,
+      "usedFor": "Precipitin (Heidelberger) curves from titrating antigen against a fixed amount of antiserum; only an optimal ratio (the zone of equivalence) gives a visible precipitate, whereas excess antibody or surplus antigen prevents it; bell-shaped curve."
+    },
+    {
+      "id": "moraes2021",
+      "kind": "external",
+      "citation": "Moraes JZ, Hamaguchi B, Braggion C, Speciale ER, Cesar FBV, Soares GFDS, Osaki JH, Pereira TM, Aguiar RB. Hybridoma technology: is it still useful? Curr Res Immunol. 2021;2:32-40. doi:10.1016/j.crimmu.2021.03.002",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9040095/",
+      "consulted": true,
+      "usedFor": "Hybridoma technology described by Köhler and Milstein in 1975 (Nature 256:495-497): immunisation, fusion of B lymphocytes with myeloma cells, cloning."
+    },
+    {
+      "id": "parray2020",
+      "kind": "external",
+      "citation": "Parray HA, Shukla S, Samal S, Shrivastava T, Ahmed S, Sharma C, Kumar R. Hybridoma technology a versatile method for isolation of monoclonal antibodies, its applicability across species, limitations, advancement and future perspectives. Int Immunopharmacol. 2020;85:106639. doi:10.1016/j.intimp.2020.106639",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7255167/",
+      "consulted": true,
+      "usedFor": "Polyclonal antibodies are secreted by different B-cell lineages and bind multiple epitopes; monoclonal antibodies are monospecific, from identical B cells, specific for a single epitope, with minimal batch-to-batch variation."
+    },
+    {
+      "id": "lipman2005",
+      "kind": "external",
+      "citation": "Lipman NS, Jackson LR, Trudel LJ, Weis-Garcia F. Monoclonal versus polyclonal antibodies: distinguishing characteristics, applications, and information resources. ILAR J. 2005;46(3):258-268. doi:10.1093/ilar.46.3.258",
+      "url": "https://academic.oup.com/ilarjournal/article/46/3/258/656246",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (first 100,000 characters). Polyclonals recognise multiple epitopes, so change in one epitope matters less; useful for immunoprecipitation of complex antigens; differ between immunised animals; precise affinity measurable only for monoclonals; avidity is assay specific; monoclonal monospecificity useful for conformational change, phosphorylation states and single members of protein families; haptens cannot stimulate an immune response themselves and are coupled to a carrier such as keyhole limpet hemocyanin; Köhler and Milstein devised the technique in the mid-1970s."
+    },
+    {
+      "id": "yang2020",
+      "kind": "external",
+      "citation": "Yang L, Zhang X, Shen D, Yu X, Li Y, Wen K, Shen J, Wang Z. Hapten Design and Monoclonal Antibody to Fluoroacetamide, a Small and Highly Toxic Chemical. Biomolecules. 2020;10(7):986. doi:10.3390/biom10070986",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7407904/",
+      "consulted": true,
+      "usedFor": "A small molecule cannot elicit an immune response by itself unless linked to a carrier protein (KLH immunogen); the resulting monoclonal antibody recognised the free molecule in an indirect competitive ELISA."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-ka",
+      "text": "Ka = [AgAb]/([Ag][Ab]) = ka/kd in L/mol; Kd is its reciprocal.",
+      "status": "checked",
+      "refs": [
+        "reverberi2007",
+        "kastritis2013"
+      ]
+    },
+    {
+      "id": "cl-avid",
+      "text": "Affinity = monovalent binding; avidity = multivalent binding; IgG two-arm binding raised the constant ~1000-fold in a red-cell model; IgM low affinity, high avidity.",
+      "status": "checked",
+      "refs": [
+        "bachmann2025",
+        "reverberi2007"
+      ]
+    },
+    {
+      "id": "cl-precip",
+      "text": "Precipitin curve: maximal visible precipitate at the zone of equivalence; antibody excess or antigen excess prevents a visible precipitate.",
+      "status": "checked",
+      "refs": [
+        "huber2013"
+      ]
+    },
+    {
+      "id": "cl-scatchard",
+      "text": "Scatchard plot B/F vs B: slope −Ka (−1/Kd), x-intercept total binding sites; curvature from mixed sites, non-specific binding or multivalent ligand.",
+      "status": "checked",
+      "refs": [
+        "kastritis2013",
+        "winzor2026"
+      ]
+    },
+    {
+      "id": "cl-mab",
+      "text": "Köhler and Milstein 1975 hybridoma method; monoclonal = one epitope, homogeneous, precise affinity; useful for conformation and single protein-family members.",
+      "status": "checked",
+      "refs": [
+        "moraes2021",
+        "parray2020",
+        "lipman2005"
+      ]
+    },
+    {
+      "id": "cl-pab",
+      "text": "Polyclonal = many epitopes, tolerant of epitope change, suits immunoprecipitation of complex antigens, varies between animals, mixture of affinities.",
+      "status": "checked",
+      "refs": [
+        "lipman2005",
+        "parray2020",
+        "reverberi2007"
+      ]
+    },
+    {
+      "id": "cl-hapten",
+      "text": "A hapten is not immunogenic alone; it is coupled to a carrier protein such as KLH; the antibody then recognises free hapten in a competitive immunoassay.",
+      "status": "checked",
+      "refs": [
+        "yang2020",
+        "lipman2005"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Polyclonal serum has “stronger overall avidity” for complex antigens; monoclonals distinguish isoenzymes and isotypes; haptens cannot cross-link in agglutination unless immobilised; antigen excess “solubilizes” a formed precipitate; cyclosporine Ka example.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch45"
+      ],
+      "note": "Not taught as facts; not found in sources read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario and worked Scatchard numbers invented; curves schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Handshake, bear hug, dance floor.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-scatchard-slope-sign",
+      "issue": "Ch. 45 Hit 5 says the Scatchard slope “gives Ka”. Kastritis 2013 gives the slope as −1/Kd (that is, −Ka) and the x-intercept as n[At]; Ka is the negative of the slope. The lesson teaches “slope = −Ka” (register flag rv-scatchard-slope-sign).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-precipitin-both-excess",
+      "issue": "Ch. 45 Hit 4 says excess antigen solubilizes the precipitate but does not mention antibody excess. Huber 2013 states that both excess antibody and surplus antigen prevent a visible precipitate. The lesson teaches both sides of the bell-shaped curve (register flag rv-precipitin-both-excess).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-polyclonal-avidity",
+      "issue": "Ch. 45 Hit 6 and Exam Trap 4 say polyclonal serum has “stronger overall avidity” and that monoclonals distinguish isoenzymes and isotypes. Lipman 2005 calls avidity assay specific and lists conformational change, phosphorylation states and single protein-family members; no source read states the avidity or isoenzyme claims. Not taught (register flag rv-polyclonal-avidity).",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; curves and plots shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "7 factual claims checked against Reverberi 2007 and Lipman 2005 (both read via a page-fetch tool), Kastritis 2013, Winzor 2026, Bachmann 2025, Huber 2013, Moraes 2021, Parray 2020 and Yang 2020; 1 pending (polyclonal avidity, isoenzymes, hapten agglutination, solubilisation wording, cyclosporine Ka). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
