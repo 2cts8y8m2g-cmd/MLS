@@ -368,7 +368,7 @@
       "title": "The ROC curve",
       "start": 60,
       "end": 104,
-      "altText": "Schematic ROC plot on the left: y-axis sensitivity (true-positive rate), x-axis 1 − specificity (false-positive rate), a dashed 45° diagonal labelled chance, a point A low and to the left (strict cutoff), a point B high and to the right (lenient cutoff), and the upper-left corner marked perfect (sensitivity 1, false-positive rate 0). Cards on the right: “AUC 0.5 = chance (coin toss); 1.0 = perfect; ≥ 0.8 generally acceptable (one review: 0.8–0.9 good, ≥ 0.9 excellent)”; “Compare tests: larger AUC; check the 95% CI — its lower limit must exceed 0.5”.",
+      "altText": "Schematic ROC plot on the left: y-axis sensitivity (true-positive rate), x-axis 1 − specificity (false-positive rate), a dashed 45° diagonal labelled chance, a point A low and to the left (strict cutoff), a point B high and to the right (lenient cutoff), and the upper-left corner marked perfect (sensitivity 1, false-positive rate 0). Cards on the right: “AUC 0.5 = chance (coin toss); 1.0 = perfect; ≥ 0.8 generally acceptable (one review: 0.8–0.9 good, ≥ 0.9 excellent)”; “Compare tests: larger AUC, if the difference is statistically significant; the lower 95% CI limit must exceed 0.5 for the test to beat chance”.",
       "cues": [
         {
           "id": "c1",
@@ -392,7 +392,7 @@
           "id": "c4",
           "start": 94,
           "end": 104,
-          "text": "To compare tests, the larger area wins, but read the 95 percent confidence interval: its lower limit must exceed 0.5, and a wide interval means less certainty."
+          "text": "To compare tests, a larger area is better, but check that the difference is statistically significant. For one test to beat chance, the lower limit of its 95 percent confidence interval must exceed 0.5, and a wide interval means a less reliable estimate."
         }
       ],
       "objects": [
@@ -626,7 +626,7 @@
             "tone": "warn",
             "title": "Comparing tests",
             "lines": [
-              "Larger AUC is better",
+              "Larger AUC, if significant",
               "Lower 95% CI limit > 0.5"
             ],
             "highlight": 0,
@@ -663,13 +663,13 @@
           "id": "l1",
           "start": 104,
           "end": 114,
-          "text": "There is no single correct cutoff; dozens of methods exist. Youden’s J, sensitivity plus specificity minus one, picks the point where J is largest. Another picks the point closest to the perfect upper-left corner."
+          "text": "There is no single correct cutoff; more than 30 methods exist. Youden’s J, sensitivity plus specificity minus one, picks the point where J is largest. Another picks the point closest to the perfect upper-left corner."
         },
         {
           "id": "l2",
           "start": 114,
           "end": 126,
-          "text": "Both treat false positives and false negatives as equally bad. The cost approach does not. It weighs the odds of no disease against disease, times the net cost of a false positive over the net cost of a false negative, and picks the cutoff that scores best."
+          "text": "Both give sensitivity and specificity equal weight. The cost approach does not. It weighs the odds of no disease against disease, times the net cost of a false positive over the net cost of a false negative, and picks the cutoff that scores best."
         },
         {
           "id": "l3",
@@ -1359,7 +1359,7 @@
   "explanation": {
     "what": "Plain language: results from sick and healthy people overlap, so wherever you draw the line you will miss some sick people or flag some healthy ones. Moving the line trades one error for the other. An ROC curve shows every possible line at once, and the area under it summarises how well the test separates the two groups. Scientific terms: cutoff (decision threshold, positivity criterion), sensitivity (true-positive rate), 1 − specificity (false-positive rate), receiver operating characteristic (ROC) curve, area under the curve (AUC), 95% confidence interval, Youden’s J, Euclidean distance to (0, 1), cost index.",
     "why": "Because the distributions overlap, sensitivity and specificity move in opposite directions as the cutoff moves. Each cutoff gives one sensitivity/false-positive-rate pair; plotting all pairs gives the ROC curve. A curve near the diagonal means heavy overlap (chance-level discrimination); a curve bowing toward the upper-left means little overlap.",
-    "measure": "Lower cutoff (disease = high values): sensitivity ↑, false positives ↑, specificity ↓; raise it for the reverse. ROC: y = sensitivity, x = 1 − specificity; strict cutoffs lie down-left, lenient ones up-right. AUC 0.5 = chance; 1.0 = perfect; ≥ 0.8 generally acceptable (one review: 0.8–0.9 good, ≥ 0.9 excellent); the lower 95% CI limit must exceed 0.5. Cutoff selection: maximise Youden’s J = Se + Sp − 1; or minimise the distance to (0, 1); or, when costs are known, maximise fm = Se − m(1 − Sp), where m = [(1 − Pr)/Pr] × [(C_FP − C_TN)/(C_FN − C_TP)].",
+    "measure": "Lower cutoff (disease = high values): sensitivity ↑, false positives ↑, specificity ↓; raise it for the reverse. ROC: y = sensitivity, x = 1 − specificity; strict cutoffs lie down-left, lenient ones up-right. AUC 0.5 = chance; 1.0 = perfect; ≥ 0.8 generally acceptable (one review: 0.8–0.9 good, ≥ 0.9 excellent); for an AUC to be statistically significant, the lower 95% CI limit must exceed 0.5, and comparing two tests needs a statistically significant difference, not just a larger number. Cutoff selection: maximise Youden’s J = Se + Sp − 1; or minimise the distance to (0, 1); or, when costs are known, maximise fm = Se − m(1 − Sp), where m = [(1 − Pr)/Pr] × [(C_FP − C_TN)/(C_FN − C_TP)].",
     "differs": "Screening/rule-out (favour sensitivity, lower cutoff) vs confirmation before costly or risky action (favour specificity, higher cutoff); AUC (whole-curve summary) vs a single cutoff’s sensitivity and specificity; statistical significance of an AUC vs clinical usefulness; equal-weight methods (Youden, corner distance) vs the cost approach.",
     "examAngle": "Expect: the direction of change when a cutoff is lowered; the axes of an ROC curve; what an AUC of 0.5 or 1.0 means; which of two curves is better; and which cutoff to choose for a rare disease with costly false positives."
   },
@@ -1389,7 +1389,7 @@
       "left": {
         "label": "Youden / corner distance",
         "points": [
-          "Weights false positives and false negatives equally",
+          "Gives sensitivity and specificity equal weight",
           "Needs only sensitivity and specificity"
         ]
       },
@@ -1461,7 +1461,7 @@
         {
           "id": "c",
           "text": "x: prevalence; y: positive predictive value",
-          "rationale": "Incorrect. That describes how PPV changes with prevalence, not an ROC curve, which is built from sensitivity and specificity."
+          "rationale": "Incorrect. An ROC curve is built from the sensitivity and specificity at each cutoff, not from prevalence or predictive values."
         },
         {
           "id": "d",
@@ -1495,7 +1495,7 @@
         {
           "id": "d",
           "text": "Always to Youden’s J, whatever the costs",
-          "rationale": "Incorrect. Youden’s J weights false positives and false negatives equally; the cost approach exists because they are rarely equal."
+          "rationale": "Incorrect. Youden’s J gives sensitivity and specificity equal weight; the cost approach exists because the costs of false-positive and false-negative results are rarely equal."
         }
       ],
       "answer": "a",
@@ -1557,12 +1557,12 @@
       "doi": "10.4103/tjem.tjem_182_23",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10664195/",
       "consulted": true,
-      "usedFor": "Full text (Europe PMC). ROC plots true-positive fraction against false-positive fraction; 45° diagonal = chance; upper-left = perfect; AUC interpretation table; an AUC of 0.65 can be statistically significant yet not clinically adequate; confidence-interval width; Youden index and cost- or context-based alternatives."
+      "usedFor": "Full text (Europe PMC). ROC plots true-positive fraction against false-positive fraction; 45° diagonal = chance; upper-left = perfect; AUC interpretation table; an AUC of 0.65 can be statistically significant yet not clinically adequate; confidence-interval width (wide = less reliable); comparing two AUCs needs a statistically significant difference (DeLong test), not only a larger value; Youden index and cost- or context-based alternatives."
     },
     {
       "id": "leeflang2013",
       "kind": "external",
-      "citation": "Leeflang MM, Rutjes AW, Reitsma JB, Hooft L, Bossuyt PM. Variation of a test’s sensitivity and specificity with disease prevalence. CMAJ. 2013;185(11):E537-44.",
+      "citation": "Leeflang MM, Rutjes AW, Reitsma JB, Hooft L, Bossuyt PM. Variation of a test's sensitivity and specificity with disease prevalence. CMAJ. 2013;185(11):E537-44.",
       "doi": "10.1503/cmaj.121286",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3735771/",
       "consulted": true,
@@ -1600,7 +1600,7 @@
     },
     {
       "id": "cl-auc",
-      "text": "AUC ≥ 0.8 generally acceptable; interpretation bands; lower 95% CI limit > 0.5; significant AUC can still be clinically inadequate.",
+      "text": "AUC ≥ 0.8 generally acceptable; interpretation bands; lower 95% CI limit > 0.5 for statistical significance; a wide CI means a less reliable estimate; differences between tests should be statistically significant; a significant AUC can still be clinically inadequate.",
       "status": "checked",
       "refs": [
         "nahm2022",
@@ -1609,7 +1609,7 @@
     },
     {
       "id": "cl-methods",
-      "text": "Youden’s J, distance to (0, 1) and the cost index fm with m = [(1 − Pr)/Pr] × [(C_FP − C_TN)/(C_FN − C_TP)].",
+      "text": "More than 30 cutoff methods; Youden’s J, distance to (0, 1) and the cost index fm with m = [(1 − Pr)/Pr] × [(C_FP − C_TN)/(C_FN − C_TP)].",
       "status": "checked",
       "refs": [
         "nahm2022"
