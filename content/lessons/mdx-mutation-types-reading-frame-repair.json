@@ -1,0 +1,1632 @@
+{
+  "schemaVersion": 1,
+  "id": "mdx-mutation-types-reading-frame-repair",
+  "title": "Mutation Types: Codons, Reading Frame, Point, Repeat, Translocation and Repair Defects",
+  "summary": "Learn how start and stop codons define the reading frame, why in-frame dystrophin deletions usually cause Becker and frameshifts cause Duchenne, and how sickle cell, fragile X, CML, Lynch syndrome and xeroderma pigmentosum illustrate the main kinds of DNA error.",
+  "domain": "p8-mdx",
+  "topic": "ch68",
+  "conceptIds": [
+    "ch68.hit1",
+    "ch68.hit13",
+    "ch68.hit14",
+    "ch68.hit15",
+    "ch68.trap4"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 68,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "chapter": 68,
+        "section": "Exam Traps",
+        "items": [
+          4
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 68 Hits 1, 13, 14 and 15 and Trap 4. Checked against Vitale 2025, Kearse 2017, Inusa 2019, Ciaccio 2017, Aartsma-Rus 2016, Sampaio 2021, Gallon 2021 and Leung 2022 (all read as Europe PMC full text). Context added: Hit 1 says the start codon is “always AUG”; Vitale 2025 says an open reading frame “typically” starts at AUG and Kearse 2017 describes non-AUG initiation at near-cognate codons such as CUG, GUG and UUG at lower efficiency (rv-aug-usual-not-always). Hit 14 and Trap 4 pair Duchenne with frameshift deletion and Becker with in-frame deletion; Aartsma-Rus 2016 says close to 10% of mutations do not follow the reading-frame rule and that duplications and small mutations, including nonsense point mutations, also cause Duchenne (rv-dmd-frame-rule-exceptions). Hit 15 equates xeroderma pigmentosum with an NER defect; Leung 2022 says the XP variant form (about 30% of cases) has normal NER and defective DNA polymerase eta (rv-xp-variant-not-ner). Not taught: the genetic code’s degeneracy (not stated in the sources read) and the reviewer’s phrase “hyperactive c-abl protein”, which the lesson gives as the source’s “persistently active tyrosine kinase”."
+  },
+  "prerequisites": [
+    "ch67.hit5"
+  ],
+  "objectives": [
+    "Name the three stop codons and the usual start codon, and explain how a nonsense mutation truncates a protein.",
+    "Predict Duchenne versus Becker muscular dystrophy from whether a dystrophin deletion keeps the reading frame, and state the rule’s limits.",
+    "Match sickle cell disease, fragile X syndrome, CML, Lynch syndrome and xeroderma pigmentosum to their mutation or repair mechanism."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two brothers, one gene",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: two boys in one family both carry a deletion in the dystrophin (DMD) gene. Boy A lost exons whose combined length is a multiple of three; Boy B lost a stretch that is not. Beside them on the molecular bench: a sickle cell confirmation, a CML sample tested for t(9;22), and a colon tumour sent for mismatch repair testing. Question token: “Same gene, same kind of error, so the same disease?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Invented scenario: two brothers both carry a deletion in the dystrophin gene."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "One brother lost a stretch whose length divides evenly by three. The other lost a stretch that does not."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Same gene, same kind of error. Will they have the same disease?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 420,
+            "h": 170,
+            "tone": "b",
+            "title": "Boy A: DMD deletion",
+            "lines": [
+              "Length divisible by 3"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 170,
+            "tone": "bad",
+            "title": "Boy B: DMD deletion",
+            "lines": [
+              "Length not divisible by 3"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 640,
+            "label": "Same gene, same error, same disease?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Reading in threes",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic mRNA strip divided into three-letter codons, starting at AUG and ending at a stop codon. Cards: “Start: AUG (usual)”, “Stop: UAA · UAG · UGA”, “Nonsense mutation: sense codon becomes a premature stop → truncated protein; many such mRNAs are degraded by nonsense-mediated decay”, and a note that near-cognate start codons (CUG, GUG, UUG) can also start translation at lower efficiency.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "A gene’s message is read in three-letter codons. The open reading frame usually begins at the start codon A U G."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "It ends at one of three stop codons: U A A, U A G or U G A. Stop codons call in release factors and the finished protein is let go."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "A nonsense mutation turns an ordinary codon into a stop codon too early. Translation ends prematurely, and many of these messages are destroyed by nonsense-mediated decay."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "One caution: A U G is the usual start, not the only one. Cells can also start at near-matches such as C U G, G U G or U U G, but much less efficiently."
+        }
+      ],
+      "objects": [
+        {
+          "id": "start",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "good",
+            "title": "Start codon",
+            "lines": [
+              "AUG (the usual start)",
+              "Found by scanning 5′ → 3′"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "stop",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "Stop codons",
+            "lines": [
+              "UAA · UAG · UGA",
+              "Release factors end translation"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "non",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "h": 150,
+            "tone": "warn",
+            "title": "Nonsense mutation",
+            "lines": [
+              "Sense codon → premature stop",
+              "Truncated protein · often NMD"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "nonaug",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 400,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Not always AUG",
+            "lines": [
+              "CUG · GUG · UUG can start",
+              "Lower efficiency"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Four ways DNA goes wrong",
+      "start": 60,
+      "end": 104,
+      "altText": "Four mutation-type cards. Point substitution: sickle cell, a single base change GAG → GTG puts valine in place of glutamic acid at position 6 of the β-globin chain (HbS). Repeat expansion: fragile X, CGG repeats in the 5′ untranslated region of FMR1 — normal 5–44, grey zone 45–54, premutation 55–200, full mutation > 200 with promoter hypermethylation and silencing. Frame: a deletion or duplication whose length is a multiple of three keeps the reading frame (in-frame); any other length shifts it (frameshift), often reaching a premature stop. Translocation: CML, balanced reciprocal t(9;22)(q34;q11) fuses ABL1 (chromosome 9) with BCR (chromosome 22); the BCR-ABL1 protein is a persistently active tyrosine kinase.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "Point substitution. In sickle cell disease a single base changes, G A G to G T G, so valine replaces glutamic acid at position six of the beta-globin chain. That is haemoglobin S."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "Repeat expansion. In fragile X, C G G repeats in the F M R 1 gene grow. Above two hundred repeats, a full mutation, the promoter is hypermethylated and the gene is silenced. Fifty-five to two hundred is a premutation."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "Frame. If a deletion or duplication removes or adds a multiple of three bases, the reading frame survives. Any other length shifts the frame, and the scrambled message often hits a stop codon early."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "Translocation. In chronic myeloid leukaemia, chromosomes nine and twenty-two swap pieces. ABL1 joins BCR, and the fusion protein is a tyrosine kinase that is always switched on."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Point: sickle cell",
+            "lines": [
+              "GAG → GTG (one base)",
+              "Glu → Val, β-globin position 6"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rep",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 190,
+            "tone": "warn",
+            "title": "Repeat: fragile X",
+            "lines": [
+              "CGG in FMR1 5′ UTR",
+              "Premutation 55–200",
+              "Full > 200 → methylated, silenced"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12,
+              "reveal": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fr",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Frame",
+            "lines": [
+              "Multiple of 3 → in-frame",
+              "Otherwise → frameshift, early stop"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 32,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tr",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 440,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "Translocation: CML",
+            "lines": [
+              "t(9;22): ABL1 joins BCR",
+              "Kinase always on"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34,
+              "reveal": 0
+            },
+            {
+              "t": 34.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 42,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 43,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Frame decides severity; repair genes guard the code",
+      "start": 104,
+      "end": 144,
+      "altText": "Left: dystrophin cards. Duchenne: out-of-frame deletion/duplication or a nonsense mutation → no functional dystrophin → severe. Becker: in-frame change → shorter, partly functional dystrophin → later onset, slower progression. Footnote: close to 10% of mutations break this reading-frame rule; deletions about 68%, duplications about 11%, small mutations about 20% of DMD patients. Right: repair cards. Lynch syndrome: germline pathogenic variant in a mismatch repair gene (MLH1, MSH2, MSH6, PMS2); tumours often show microsatellite instability. Xeroderma pigmentosum: autosomal recessive; most forms are nucleotide excision repair defects, so UV photoproducts are not removed; the XP variant form (about 30% of cases) has normal NER but defective DNA polymerase eta; about 10,000-fold lifetime risk of non-melanoma skin cancer. Hook answer: Boy A (in-frame) most likely Becker, Boy B (frameshift) most likely Duchenne.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Back to dystrophin. Out-of-frame deletions or duplications, or a nonsense mutation, leave no working dystrophin. That is Duchenne, the severe form."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "In-frame changes make a shorter dystrophin that still partly works. That is Becker, often with later onset and slower progression. But close to ten percent of mutations break this rule."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Repair genes guard the code. Lynch syndrome is a germline variant in a mismatch repair gene: M L H 1, M S H 2, M S H 6 or P M S 2. Tumours often show microsatellite instability."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Xeroderma pigmentosum is recessive and mostly a defect in nucleotide excision repair, so ultraviolet damage is not cut out; the variant form instead lacks polymerase eta. So Boy A most likely has Becker, and Boy B Duchenne."
+        }
+      ],
+      "objects": [
+        {
+          "id": "dmd",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 160,
+            "tone": "bad",
+            "title": "Duchenne (severe)",
+            "lines": [
+              "Out-of-frame or nonsense",
+              "No functional dystrophin"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bmd",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 370,
+            "w": 440,
+            "h": 160,
+            "tone": "good",
+            "title": "Becker (milder)",
+            "lines": [
+              "In-frame: shorter dystrophin",
+              "~10% break the frame rule"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ly",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 160,
+            "tone": "b",
+            "title": "Lynch: mismatch repair",
+            "lines": [
+              "Germline MLH1 · MSH2 · MSH6 · PMS2",
+              "Tumours often MSI-high"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "xp",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 370,
+            "w": 420,
+            "h": 160,
+            "tone": "warn",
+            "title": "XP: excision repair",
+            "lines": [
+              "Recessive; mostly NER defect",
+              "XP variant: polymerase η"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 37,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Becker is the worse dystrophy” (✓ Duchenne is severe: the frame is lost; Becker keeps the frame and is milder); “The bigger deletion is always the worse one” (✓ whether the frame is kept matters more than size, and about 10% of cases break even that rule); “Lynch syndrome is an excision repair defect” (✓ Lynch = mismatch repair; xeroderma pigmentosum = mostly nucleotide excision repair).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: Becker is the worse dystrophy. No: Duchenne is severe because the frame is lost. Becker keeps the frame and is milder."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: the bigger deletion is always worse. No: whether the reading frame survives matters more than size, and about one case in ten breaks even that rule."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: Lynch syndrome is an excision repair defect. No: Lynch is mismatch repair. Nucleotide excision repair defects cause most xeroderma pigmentosum."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Becker is the worse dystrophy.”",
+            "lines": [
+              "✓ Duchenne = frame lost = severe"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Bigger deletion = always worse.”",
+            "lines": [
+              "✓ Frame first; ~10% break the rule"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Lynch = excision repair defect.”",
+            "lines": [
+              "✓ Lynch = mismatch · XP = excision"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "THE FAT CAT",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: the sentence “THE FAT CAT ATE THE RAT” read in three-letter words. Delete a whole word (“THE CAT ATE THE RAT”) and it still reads: in-frame, Becker. Delete one letter (“THE ATC ATA TET HER AT”) and every word after it is gibberish: frameshift, Duchenne. Second hook: “Lynch loses Mismatch, Xeroderma can’t eXcise.” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: read THE FAT CAT ATE THE RAT in three-letter words. Drop a whole word and it still reads: in-frame, Becker. Drop one letter and everything after it is gibberish: frameshift, Duchenne. And: Lynch loses mismatch, xeroderma can’t excise."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: about one dystrophin mutation in ten breaks the frame rule; Duchenne can also come from a single nonsense point mutation; and the xeroderma pigmentosum variant form has normal excision repair."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "THE FAT CAT ATE THE RAT",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Drop a word = Becker",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Drop a letter = Duchenne",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Lynch MMR · XP NER",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "~10% break the frame rule",
+              "Nonsense point mutations cause Duchenne too",
+              "XP variant: excision repair normal"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Frame kept → Becker · frame lost or early stop → Duchenne”, “Sickle = one base · fragile X = CGG repeat · CML = t(9;22) · Lynch = mismatch repair · XP = excision repair”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Read genes in threes: a deletion that keeps the frame usually gives the milder Becker dystrophy while a frameshift or early stop codon gives Duchenne, and the other classic errors are one swapped base in sickle cell, a CGG repeat in fragile X, a 9;22 swap in chronic myeloid leukaemia and broken repair in Lynch syndrome and xeroderma pigmentosum."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Frame kept → Becker · frame lost or early stop → Duchenne",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Sickle 1 base · FXS CGG · CML t(9;22) · Lynch MMR · XP NER",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: genes are read three letters at a time, from a start signal to a stop signal. Errors can swap one letter, repeat a short phrase too many times, delete letters, or move a whole chunk to another chromosome, and some people inherit broken spell-checkers (repair genes). Scientific terms: codon, open reading frame, start codon (AUG), stop codons (UAA, UAG, UGA), nonsense mutation, premature termination codon, nonsense-mediated decay, point substitution, trinucleotide repeat expansion, premutation, full mutation, in-frame versus frameshift deletion, reciprocal translocation, BCR-ABL1, mismatch repair (MMR), microsatellite instability (MSI), nucleotide excision repair (NER).",
+    "why": "Because the code is read in triplets, losing a multiple of three bases removes amino acids but keeps the rest of the message readable, while any other length scrambles everything downstream and usually reaches a stop codon early. That is why in-frame dystrophin deletions usually give a shorter, partly working protein (Becker) and out-of-frame ones give none (Duchenne). Repair defects do not cause one specific mutation; they let errors accumulate.",
+    "measure": "Stop codons UAA, UAG, UGA; start usually AUG (near-cognate CUG, GUG, UUG at lower efficiency). Sickle cell: GAG → GTG, glutamic acid → valine at position 6 of β-globin. FMR1 CGG repeats: normal 5–44, grey zone 45–54, premutation 55–200, full mutation > 200 (promoter hypermethylation; more than 99% of fragile X). CML: t(9;22)(q34;q11), ABL1 + BCR. DMD gene: deletions about 68%, duplications about 11%, small mutations about 20%; close to 10% break the reading-frame rule. Lynch: germline MLH1, MSH2, MSH6 or PMS2 (EPCAM 3′ deletions silence MSH2). XP: autosomal recessive; most forms are NER defects (XP variant, about 30%, has normal NER and defective DNA polymerase eta); about 10,000-fold lifetime risk of non-melanoma skin cancer.",
+    "differs": "In-frame (Becker, milder) vs frameshift or nonsense (Duchenne, severe); point substitution (sickle cell) vs repeat expansion (fragile X) vs translocation (CML); mismatch repair (Lynch) vs nucleotide excision repair (most xeroderma pigmentosum); premutation (55–200) vs full mutation (> 200).",
+    "examAngle": "Expect: identify a stop codon, predict Duchenne or Becker from a deletion length, match a disease to its mutation type, or match Lynch syndrome and xeroderma pigmentosum to the right repair pathway."
+  },
+  "comparisons": [
+    {
+      "id": "dmd-vs-bmd",
+      "title": "Duchenne vs Becker muscular dystrophy",
+      "left": {
+        "label": "Duchenne",
+        "points": [
+          "Out-of-frame deletion or duplication, or nonsense mutation",
+          "No functional dystrophin, severe"
+        ]
+      },
+      "right": {
+        "label": "Becker",
+        "points": [
+          "In-frame deletion or duplication",
+          "Shorter, partly functional dystrophin, later onset"
+        ]
+      },
+      "distinguisher": "Whether the reading frame is kept (with about 10% exceptions)."
+    },
+    {
+      "id": "mmr-vs-ner",
+      "title": "Lynch syndrome vs xeroderma pigmentosum",
+      "left": {
+        "label": "Lynch syndrome",
+        "points": [
+          "Germline MLH1, MSH2, MSH6 or PMS2 variant",
+          "Mismatch repair; tumours often MSI-high"
+        ]
+      },
+      "right": {
+        "label": "Xeroderma pigmentosum",
+        "points": [
+          "Autosomal recessive; most forms NER defects",
+          "XP variant (about 30%): normal NER, polymerase eta defect"
+        ]
+      },
+      "distinguisher": "Mismatch repair vs (mostly) nucleotide excision repair."
+    }
+  ],
+  "mnemonic": {
+    "text": "THE FAT CAT ATE THE RAT: drop a whole word and it still reads (in-frame, Becker); drop one letter and the rest is gibberish (frameshift, Duchenne). Lynch loses Mismatch, Xeroderma can’t eXcise.",
+    "explanation": "Shows why deletions that are multiples of three keep the downstream message readable, and pairs each repair syndrome with its pathway.",
+    "limitation": "About 10% of dystrophin mutations break the reading-frame rule; Duchenne can also come from a single nonsense point mutation; real protein function depends on which domains are lost, not only on whether the frame is kept; and the xeroderma pigmentosum variant form (about 30% of cases) has normal nucleotide excision repair and a defective DNA polymerase eta."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "mRNA strip and chromosome drawings are schematic.",
+    "The sentence analogy ignores protein domains and the roughly 10% of exceptions to the frame rule."
+  ],
+  "takeaway": "Read genes in threes: a deletion that keeps the frame usually gives the milder Becker dystrophy while a frameshift or early stop codon gives Duchenne, and the other classic errors are one swapped base in sickle cell, a CGG repeat in fragile X, a 9;22 swap in chronic myeloid leukaemia and broken repair in Lynch syndrome and xeroderma pigmentosum.",
+  "questions": [
+    {
+      "id": "mdx-mut-q1",
+      "stem": "A boy has a deletion of several dystrophin exons whose combined length is 255 nucleotides (a multiple of three). Which outcome is most likely?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Becker muscular dystrophy: a shorter but partly functional dystrophin",
+          "rationale": "Correct. A deletion that is a multiple of three keeps the reading frame, which usually gives a shorter, partly functional protein and the milder Becker form (about 10% of mutations are exceptions)."
+        },
+        {
+          "id": "b",
+          "text": "Duchenne muscular dystrophy: no functional dystrophin",
+          "rationale": "Incorrect. Duchenne usually results from out-of-frame deletions or duplications or from nonsense mutations, not from in-frame deletions."
+        },
+        {
+          "id": "c",
+          "text": "No effect, because the deletion is in-frame",
+          "rationale": "Incorrect. In-frame deletions still remove amino acids; the protein is shorter and only partly functional."
+        },
+        {
+          "id": "d",
+          "text": "Fragile X syndrome",
+          "rationale": "Incorrect. Fragile X is caused by expansion of CGG repeats in FMR1, not by dystrophin deletions."
+        }
+      ],
+      "answer": "a",
+      "skill": "Reading-frame rule",
+      "difficulty": "application"
+    },
+    {
+      "id": "mdx-mut-q2",
+      "stem": "Which pairing of disorder and molecular mechanism is correct?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sickle cell disease: a single base substitution (GAG → GTG) in β-globin",
+          "rationale": "Correct. One base change puts valine in place of glutamic acid at position 6 of the β-globin chain, giving haemoglobin S."
+        },
+        {
+          "id": "b",
+          "text": "Fragile X syndrome: reciprocal translocation between chromosomes 9 and 22",
+          "rationale": "Incorrect. t(9;22) is the Philadelphia chromosome of CML; fragile X is a CGG repeat expansion in FMR1."
+        },
+        {
+          "id": "c",
+          "text": "Chronic myeloid leukaemia: CGG trinucleotide repeat expansion",
+          "rationale": "Incorrect. CML is characterized by the Philadelphia chromosome, t(9;22)(q34;q11), which creates the BCR-ABL1 fusion gene."
+        },
+        {
+          "id": "d",
+          "text": "Xeroderma pigmentosum: defective mismatch repair",
+          "rationale": "Incorrect. Most forms of xeroderma pigmentosum are nucleotide excision repair defects (the variant form affects DNA polymerase eta); defective mismatch repair is Lynch syndrome."
+        }
+      ],
+      "answer": "a",
+      "skill": "Mutation types",
+      "difficulty": "recall"
+    },
+    {
+      "id": "mdx-mut-q3",
+      "stem": "A single base substitution changes a codon in the middle of a gene to UAG. What is this mutation and its usual effect?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A nonsense mutation that ends translation early, giving a truncated protein",
+          "rationale": "Correct. UAG is one of the three stop codons (with UAA and UGA); a premature stop truncates the protein, and many such mRNAs are degraded by nonsense-mediated decay."
+        },
+        {
+          "id": "b",
+          "text": "A new start codon that adds amino acids to the protein",
+          "rationale": "Incorrect. UAG is a stop codon; the usual start codon is AUG."
+        },
+        {
+          "id": "c",
+          "text": "An in-frame deletion that removes one amino acid",
+          "rationale": "Incorrect. No bases were deleted; one base was substituted, creating a premature stop codon."
+        },
+        {
+          "id": "d",
+          "text": "A repeat expansion that silences the promoter",
+          "rationale": "Incorrect. Repeat expansion, as in fragile X, is growth of a repeated sequence such as CGG, not a single substitution."
+        }
+      ],
+      "answer": "a",
+      "skill": "Codons and nonsense mutations",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch68",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 68, How Molecular Tests Work (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 68,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "chapter": 68,
+          "section": "Exam Traps",
+          "items": [
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "vitale2025",
+      "kind": "external",
+      "citation": "Vitale E, Ricci D, Corrao F, Fiduccia I, Cruciata I, Carollo PS, Branchini A, Lentini L, Pibiri I. Nonsense Mutations in Rare and Ultra-Rare Human Disorders: An Overview. IUBMB Life. 2025;77(6):e70031. doi:10.1002/iub.70031",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12142302/",
+      "consulted": true,
+      "usedFor": "Open reading frame typically starts with AUG and ends with UGA, UAA or UAG; nonsense mutations are single-base substitutions creating an in-frame premature termination codon and a truncated protein; PTCs can also arise from frameshifts; nonsense-mediated decay degrades PTC-containing mRNAs; release factor eRF1 at the stop codon."
+    },
+    {
+      "id": "kearse2017",
+      "kind": "external",
+      "citation": "Kearse MG, Wilusz JE. Non-AUG translation: a new start for protein synthesis in eukaryotes. Genes Dev. 2017;31(17):1717-1731. doi:10.1101/gad.305250.117",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5666671/",
+      "consulted": true,
+      "usedFor": "ORFs traditionally defined as starting at AUG and ending at UAA, UGA or UAG; the preinitiation complex scans 5′ to 3′ for the start codon, most often the first AUG; translation can initiate at non-AUG near-cognate codons (CUG, GUG, UUG) at much lower efficiency; ribosome profiling shows thousands of non-AUG initiation events."
+    },
+    {
+      "id": "inusa2019",
+      "kind": "external",
+      "citation": "Inusa BPD, Hsu LL, Kohli N, Patel A, Ominu-Evbota K, Anie KA, Atoyebi W. Sickle Cell Disease-Genetics, Pathophysiology, Clinical Presentation and Treatment. Int J Neonatal Screen. 2019;5(2):20. doi:10.3390/ijns5020020",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7510211/",
+      "consulted": true,
+      "usedFor": "Single base-pair point mutation GAG → GTG substitutes valine for glutamic acid at position 6 of the β chain (HbS)."
+    },
+    {
+      "id": "ciaccio2017",
+      "kind": "external",
+      "citation": "Ciaccio C, Fontana L, Milani D, Tabano S, Miozzo M, Esposito S. Fragile X syndrome: a review of clinical and molecular diagnoses. Ital J Pediatr. 2017;43(1):39. doi:10.1186/s13052-017-0355-y",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5395755/",
+      "consulted": true,
+      "usedFor": "More than 99% of fragile X from CGG expansion (> 200) in the FMR1 5′ UTR; normal 5–44, grey zone 45–54, premutation 55–200; full mutation causes promoter hypermethylation and transcriptional silencing."
+    },
+    {
+      "id": "aartsmarus2016",
+      "kind": "external",
+      "citation": "Aartsma-Rus A, Ginjaar IB, Bushby K. The importance of genetic diagnosis for Duchenne muscular dystrophy. J Med Genet. 2016;53(3):145-151. doi:10.1136/jmedgenet-2015-103387",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4789806/",
+      "consulted": true,
+      "usedFor": "Duchenne mutations disrupt the reading frame or create a premature stop; Becker mutations keep the frame, giving shorter partly functional dystrophin with later onset and slower progression; divisible-by-3 rule; close to 10% do not follow the reading-frame rule; deletions about 68%, duplications about 11%, small mutations about 20%; examples show a single-exon out-of-frame deletion (exon 45) causing Duchenne while a nine-exon in-frame deletion (exons 46–54) gives Becker; nonsense mutations are among the small mutations causing Duchenne."
+    },
+    {
+      "id": "sampaio2021",
+      "kind": "external",
+      "citation": "Sampaio MM, Santos MLC, Marques HS, Gonçalves VLS, Araújo GRL, Lopes LW, Apolonio JS, Silva CS, Santos LKS, et al. Chronic myeloid leukemia-from the Philadelphia chromosome to specific target drugs: A literature review. World J Clin Oncol. 2021;12(2):69-94. doi:10.5306/wjco.v12.i2.69",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7918527/",
+      "consulted": true,
+      "usedFor": "Philadelphia chromosome = balanced reciprocal translocation t(9;22)(q34;q11); ABL (chromosome 9) fuses with BCR (chromosome 22) to form BCR-ABL1, a persistently active tyrosine kinase."
+    },
+    {
+      "id": "gallon2021",
+      "kind": "external",
+      "citation": "Gallon R, Gawthorpe P, Phelps RL, Hayes C, Borthwick GM, Santibanez-Koref M, Jackson MS, Burn J. How Should We Test for Lynch Syndrome? A Review of Current Guidelines and Future Strategies. Cancers (Basel). 2021;13(3):406. doi:10.3390/cancers13030406",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7865939/",
+      "consulted": true,
+      "usedFor": "Lynch syndrome defined by a germline pathogenic variant in MLH1, MSH2, MSH6 or PMS2; EPCAM 3′ deletions silence MSH2; MSI-high tumours and MMR-deficiency testing."
+    },
+    {
+      "id": "leung2022",
+      "kind": "external",
+      "citation": "Leung AK, Barankin B, Lam JM, Leong KF, Hon KL. Xeroderma pigmentosum: an updated review. Drugs Context. 2022;11. doi:10.7573/dic.2022-2-5",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9045481/",
+      "consulted": true,
+      "usedFor": "Autosomal recessive defect of nucleotide excision repair; UV photoproducts (cyclobutane pyrimidine dimers, 6–4 photoproducts) not removed; photosensitivity; about 10,000-fold lifetime risk of non-melanoma skin cancer and 2000-fold for melanoma; mean age at first non-melanoma skin cancer 9 years; XPA–XPG act in NER while XPV (about 30% of cases) has normal NER and mutated DNA polymerase eta (translesion synthesis)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-codons",
+      "text": "Stop codons UAA, UAG, UGA; AUG is the usual start; non-AUG near-cognate initiation exists at lower efficiency.",
+      "status": "checked",
+      "refs": [
+        "vitale2025",
+        "kearse2017"
+      ]
+    },
+    {
+      "id": "cl-nonsense",
+      "text": "Nonsense mutation creates a premature stop, truncating the protein; NMD degrades many such mRNAs.",
+      "status": "checked",
+      "refs": [
+        "vitale2025"
+      ]
+    },
+    {
+      "id": "cl-sickle",
+      "text": "Sickle cell: GAG → GTG, glutamic acid → valine at β-globin position 6.",
+      "status": "checked",
+      "refs": [
+        "inusa2019"
+      ]
+    },
+    {
+      "id": "cl-fxs",
+      "text": "Fragile X: FMR1 CGG repeat ranges; full mutation > 200 with hypermethylation and silencing.",
+      "status": "checked",
+      "refs": [
+        "ciaccio2017"
+      ]
+    },
+    {
+      "id": "cl-frame",
+      "text": "Reading-frame rule for Duchenne vs Becker; about 10% exceptions; mutation-type frequencies.",
+      "status": "checked",
+      "refs": [
+        "aartsmarus2016"
+      ]
+    },
+    {
+      "id": "cl-cml",
+      "text": "CML: t(9;22)(q34;q11) BCR-ABL1 fusion; persistently active tyrosine kinase.",
+      "status": "checked",
+      "refs": [
+        "sampaio2021"
+      ]
+    },
+    {
+      "id": "cl-lynch",
+      "text": "Lynch: germline MMR gene variant (MLH1, MSH2, MSH6, PMS2); MSI-high tumours.",
+      "status": "checked",
+      "refs": [
+        "gallon2021"
+      ]
+    },
+    {
+      "id": "cl-xp",
+      "text": "XP: autosomal recessive; most forms NER defects with UV damage unrepaired; XP variant has normal NER and defective polymerase eta; about 10,000-fold non-melanoma skin cancer risk.",
+      "status": "checked",
+      "refs": [
+        "leung2022"
+      ]
+    },
+    {
+      "id": "cl-degenerate",
+      "text": "Reviewer: the genetic code is degenerate (multiple codons per amino acid). Not taught; not stated in the sources read.",
+      "status": "pending"
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; mRNA and chromosome drawings schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“THE FAT CAT ATE THE RAT”; “Lynch loses Mismatch, Xeroderma can’t eXcise.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-aug-usual-not-always",
+      "issue": "Ch. 68 Hit 1 says the start codon is “always AUG”. Vitale 2025 says an open reading frame “typically” starts at AUG, and Kearse 2017 describes translation initiating at non-AUG near-cognate codons (CUG, GUG, UUG) at lower efficiency. AUG remains the answer for “the start codon” on exams (register flag rv-aug-usual-not-always).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-dmd-frame-rule-exceptions",
+      "issue": "Ch. 68 Hit 14 and Trap 4 pair Duchenne with frameshift deletion and Becker with in-frame deletion. Aartsma-Rus 2016 says close to 10% of mutations do not follow the reading-frame rule, and Duchenne also results from out-of-frame duplications and small mutations, including nonsense point mutations (register flag rv-dmd-frame-rule-exceptions).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-xp-variant-not-ner",
+      "issue": "Ch. 68 Hit 15 and its memory hook equate xeroderma pigmentosum with a nucleotide excision repair defect. Leung 2022 says XPA–XPG act in NER, but the XP variant (XPV, about 30% of cases worldwide) has normal NER and mutations in DNA polymerase eta, which performs translesion synthesis. NER defect remains the best single answer for classic XP (register flag rv-xp-variant-not-ner).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; codons, mutations and repair defects shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "8 taught factual claims checked against open-access reviews read as Europe PMC full text; 1 reviewer claim (code degeneracy) left pending and not taught. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
