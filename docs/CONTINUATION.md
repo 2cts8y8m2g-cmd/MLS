@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 243, teaching 1174 of 1,932 concepts (about 60.8%).** All 243 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 245, teaching 1185 of 1,932 concepts (about 61.3%).** All 245 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -60,7 +60,7 @@
   - Ch. 54 (11/23 concepts): `immuno-anca-cryoglobulin-testing`, `immuno-large-vessel-gca-takayasu`.
   - Ch. 55 (14/23 concepts): `immuno-autoimmune-liver-aih-pbc-psc`, `immuno-celiac-serology-pbc-ama`, `immuno-glomerular-if-pla2r`.
   - Ch. 56 (14/24 concepts): `immuno-allergy-sige-tryptase`, `immuno-ige-switch-mast-cell-mediators`.
-  - Ch. 57 (44/57 concepts): `micro-biosafety-sharps-hbv-sentinel`, `micro-c-difficile-testing-algorithm`, `micro-enteric-pathogens-stec`, `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-gram-stain-cons-novobiocin`, `micro-listeria-nocardia-gpr`, `micro-pseudomonas-ampc-wound-culture`, `micro-rapid-id-maldi-panels-16s`, `micro-strep-enterococcus-id`.
+  - Ch. 57 (48/57 concepts): `micro-biosafety-sharps-hbv-sentinel`, `micro-c-difficile-testing-algorithm`, `micro-crypto-ohl-aspergillus-mucorales`, `micro-enteric-pathogens-stec`, `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-gram-stain-cons-novobiocin`, `micro-listeria-nocardia-gpr`, `micro-pseudomonas-ampc-wound-culture`, `micro-rapid-id-maldi-panels-16s`, `micro-strep-enterococcus-id`.
   - Ch. 58 (21/30 concepts): `micro-ast-mic-breakpoints-dtest`, `micro-ast-reference-methods-antibiogram`, `micro-beta-lactamases-esbl-cpe`, `micro-gram-positive-resistance-mec-van-hlar`.
   - Ch. 59 (18/26 concepts): `micro-afb-smear-decontamination`, `micro-ntm-runyon-identification`, `micro-tb-xpert-dst-ripe`, `micro-tst-igra-bcg`.
   - Ch. 60 (17/25 concepts): `micro-candida-germ-tube-chromagar-resistance`, `micro-dimorphic-fungi`, `micro-invasive-mold-markers`.
@@ -70,7 +70,7 @@
   - Ch. 64 (13/24 concepts): `micro-ebv-cmv-serology`, `micro-hiv-hcv-testing-algorithms`, `micro-respiratory-virus-naat-antigen-culture`, `micro-transplant-viral-loads`.
   - Ch. 65 (17/24 concepts): `micro-entamoeba-coccidia-stool-protozoa`, `micro-helminth-specimen-timing`, `micro-malaria-thick-thin-films`.
   - Ch. 66 (44/54 concepts): `micro-antigen-tests-negatives`, `micro-blood-culture-volume-contamination`, `micro-csf-meningitis-shunt-panel`, `micro-direct-smears-sterile-fluids-bal`, `micro-endocarditis-blood-cultures-duke`, `micro-respiratory-culture-clues-maldi`, `micro-result-reporting-critical-calls`, `micro-specimen-acceptability-transport`, `micro-specimen-id-transport-biosafety`, `micro-urine-culture-interpretation`.
-  - Ch. 67 (8/20 concepts): `mdx-molecular-context-fish-cftr-snp`, `mdx-pharmacogenomics`.
+  - Ch. 67 (15/20 concepts): `mdx-cpt-molecular-tiers-unlisted-bundling`, `mdx-molecular-context-fish-cftr-snp`, `mdx-pharmacogenomics`.
   - Ch. 68 (16/25 concepts): `mdx-hybridization-stringency-blots`, `mdx-mutation-types-reading-frame-repair`, `mdx-sanger-pyrosequencing`.
   - Ch. 69 (13/24 concepts): `mdx-isothermal-tma-lamp-near-bdna`, `mdx-qpcr-quantification`.
   - Ch. 70 (14/23 concepts): `mdx-array-normalization-dasl`, `mdx-array-probe-chemistry`, `mdx-hybridization-arrays`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 378 flags (284 verified issues, 94 needing verification), plus scan results.
-- **Checks:** 1524 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 1536 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
