@@ -1,0 +1,1658 @@
+{
+  "schemaVersion": 1,
+  "id": "heme-thrombocytopenia-itp-ttp-ditp",
+  "title": "Thrombocytopenia Sorting: ITP, Drug-Induced, TTP and Giant Platelets",
+  "summary": "Sort low platelet counts by mechanism: the ITP threshold, chemotherapy as production failure, ADAMTS13 cut-offs for TTP versus HUS, drug-induced immune thrombocytopenia timing and testing limits, and why giant platelets point away from ITP.",
+  "domain": "p4-heme",
+  "topic": "ch37",
+  "conceptIds": [
+    "ch37.hit5",
+    "ch37.hit7",
+    "ch37.hit15",
+    "ch37.trap1",
+    "ch37.trap6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 37,
+        "section": "High-Yield Hits",
+        "items": [
+          5,
+          7,
+          15
+        ]
+      },
+      {
+        "chapter": 37,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          6
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 37 Hits 5 (ADAMTS13 cut-offs), 7 (ITP threshold; drug-induced nadir and onset), 15 (chemotherapy vs destructive causes and megakaryocytes) and Exam Traps 1 (giant platelets assumed ITP) and 6 (MAHA assumed TTP). Checked against the ISTH 2020 TTP diagnosis guideline (Zheng 2020; read via a page-fetch tool), the Japanese 2023 TTP guideline, Oh 2019, Provan 2019 (read via a page-fetch tool), Nomura 2016, Wang 2022, Mingot-Castellano 2023, Kuter 2022, Vayne 2020, Noris 2013 and Balduini 2022. Corrections: the ISTH guideline uses < 10% for TTP and > 10% to consider HUS, with no 30% lower bound for HUS (register flag rv-adamts13-hus-range); “destructive causes show increased megakaryocytes” is only partly supported for ITP and was not checked for TTP or HIT (register flag rv-megakaryocytes-destruction). The source gives DITP onset as usually 5–7 days, within the reviewer’s 5–10. Not taught: Shiga-toxin HUS age pattern, the PLASMIC/French scores in detail, the normal 150–450 range and aspirin washout (Hit 8)."
+  },
+  "prerequisites": [
+    "ch37.hit1"
+  ],
+  "objectives": [
+    "Apply the platelet-count threshold and exclusion principle for diagnosing ITP.",
+    "Interpret ADAMTS13 activity cut-offs for TTP versus HUS and state when to draw the sample.",
+    "Recognise the timing, severity and testing limits of drug-induced immune thrombocytopenia.",
+    "Explain why giant platelets point toward an inherited thrombocytopenia rather than ITP."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three low counts, three different stories",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three patients with low platelets. (1) A well adult with a count of 60 × 10⁹/L, low counts since childhood, many giant platelets on the smear, no response to steroids. (2) A patient whose count falls to 8 × 10⁹/L six days after starting a new drug. (3) A patient with schistocytes, haemolysis and a count of 15 × 10⁹/L. Question token: “Same number, same disease?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Three patients with low platelets. One has had low counts since childhood, with giant platelets on the smear, and steroids never helped."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "One crashes to eight thousand, six days after starting a new drug. One has fragmented red cells and haemolysis."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "All three are thrombocytopenic. Is it the same disease, and which test separates them?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Lifelong low count",
+            "lines": [
+              "Giant platelets",
+              "Steroids failed"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "2 New drug, day 6",
+            "lines": [
+              "Platelets 8 × 10⁹/L"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "3 Schistocytes",
+            "lines": [
+              "Haemolysis",
+              "Platelets 15 × 10⁹/L"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0
+            },
+            {
+              "t": 11.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 640,
+            "label": "Same number, same disease?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Factory or destruction, and the ITP threshold",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic: a marrow “factory” (megakaryocytes) on the left, circulating platelets on the right. Card 1: thrombocytopenia arises from decreased production or increased destruction. Card 2: chemotherapy acts on stem cells and megakaryocyte progenitors, so production fails. Card 3: immune thrombocytopenia (ITP) is a diagnosis of exclusion with a platelet count below 100 × 10⁹/L; one study found more marrow megakaryocytes and larger platelets in ITP, although autoantibodies can also impair production. Card 4: marrow examination is not required for typical isolated ITP.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Low platelets come from two broad mechanisms: the marrow makes too few, or platelets are destroyed or consumed faster than they are made."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Chemotherapy is a production problem. Different drugs damage stem cells or later megakaryocyte progenitors, so the factory makes fewer platelets."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 52,
+          "text": "Immune thrombocytopenia is a diagnosis of exclusion: a platelet count below one hundred times ten to the ninth per litre, with no other cause found. In one study, ITP marrows had more megakaryocytes and the blood had larger platelets, although the antibodies can also impair platelet production."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "A bone marrow examination is not needed for typical, isolated ITP. It is considered for atypical features or failure to respond."
+        }
+      ],
+      "objects": [
+        {
+          "id": "mech",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Two mechanisms",
+            "lines": [
+              "Production ↓",
+              "Destruction or consumption ↑"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "chemo",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "Chemotherapy",
+            "lines": [
+              "Hits stem cells and progenitors",
+              "Factory makes fewer"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "itp",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "h": 180,
+            "tone": "a",
+            "title": "ITP",
+            "lines": [
+              "< 100 × 10⁹/L, no other cause",
+              "Megakaryocytes ↑ in one study",
+              "Antibodies also hit production"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bm",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Marrow exam?",
+            "lines": [
+              "Not for typical isolated ITP",
+              "Atypical or refractory cases"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "TTP: when the VWF scissors are missing",
+      "start": 60,
+      "end": 104,
+      "altText": "Schematic: ADAMTS13 drawn as scissors cutting ultra-large von Willebrand factor (VWF) strings. Without it, ultra-large multimers trap platelets into microthrombi, causing thrombotic microangiopathy. A threshold bar: ADAMTS13 activity below 10% (10 IU/dL) is the hallmark of TTP; 10–20% means seek alternative diagnoses; above 10%, after excluding secondary causes, consider haemolytic uraemic syndrome (HUS). One registry found a median of 77% in atypical HUS. Practice card: draw the ADAMTS13 sample before plasma exchange or any blood product, but do not wait for the result to start treatment when suspicion is high. Treatment card: immune TTP — plasma exchange plus corticosteroids, with caplacizumab; congenital TTP — plasma to replace the enzyme.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "ADAMTS13 is the scissors that cut ultra-large von Willebrand factor strings. Without it, the strings trap platelets into microthrombi, and red cells are sheared into fragments."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 82,
+          "text": "The ISTH 2020 guideline makes ADAMTS13 activity below ten percent, or ten international units per decilitre, the hallmark of TTP. Between ten and twenty percent, look for other diagnoses. Above ten percent, once secondary causes are excluded, consider haemolytic uraemic syndrome."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 92,
+          "text": "In one registry, atypical HUS had a median ADAMTS13 activity of seventy-seven percent. Draw the ADAMTS13 sample before plasma exchange or any blood product, but if suspicion is high, start treatment without waiting for the result."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "Immune TTP, with autoantibodies against ADAMTS13, is treated with plasma exchange and corticosteroids, and caplacizumab blocks von Willebrand factor binding to platelets. Congenital TTP is treated with plasma to replace the missing enzyme."
+        }
+      ],
+      "objects": [
+        {
+          "id": "sc",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 160,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "ADAMTS13 = VWF scissors",
+            "lines": [
+              "Absent → ultra-large strings",
+              "Platelet microthrombi"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bar",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 210,
+            "tone": "bad",
+            "title": "ADAMTS13 activity",
+            "lines": [
+              "< 10% → TTP",
+              "10–20% → seek other causes",
+              "> 10% → consider HUS"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "draw",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 360,
+            "w": 440,
+            "h": 150,
+            "tone": "warn",
+            "title": "Before plasma exchange",
+            "lines": [
+              "Draw ADAMTS13 first",
+              "High suspicion: don’t wait"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tx",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Treatment",
+            "lines": [
+              "Immune: exchange + steroids",
+              "Congenital: replace with plasma"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Drug clues, giant platelets, and the hook",
+      "start": 104,
+      "end": 144,
+      "altText": "Card 1, drug-induced immune thrombocytopenia (DITP): often severe (below 20 × 10⁹/L), typically after about 5–7 days of a new drug, but within hours with GPIIb-IIIa antagonists such as abciximab, even on first exposure. Drug-dependent antibody tests are specific but insensitive: a negative result does not exclude DITP. Card 2, giant platelets: very large platelets may not be counted by analysers, so the count and mean platelet volume are underestimated; many giant platelets suggest an inherited thrombocytopenia (Bernard-Soulier syndrome, MYH9-related disease), which can be misdiagnosed as ITP. Hook answers card.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Drug-induced immune thrombocytopenia is often severe, below twenty times ten to the ninth per litre, and typically appears five to seven days after a new drug. GPIIb-IIIa antagonists can drop the count within hours, even on first exposure."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Drug-dependent antibody tests are specific but insensitive. A negative result does not rule out the drug."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Giant platelets are a size clue. Analysers may not count very large platelets, so the count and the mean platelet volume read falsely low. Many giant platelets suggest an inherited thrombocytopenia, such as Bernard-Soulier syndrome, which can be misdiagnosed as ITP."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook. Patient one: think inherited macrothrombocytopenia, not ITP. Patient two: suspect the new drug. Patient three: send ADAMTS13 before plasma exchange."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ditp",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 170,
+            "tone": "warn",
+            "title": "Drug-induced (DITP)",
+            "lines": [
+              "Often < 20 × 10⁹/L, day 5–7",
+              "GPIIb-IIIa blockers: hours"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "neg",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 310,
+            "w": 440,
+            "label": "Negative antibody test ≠ ruled out",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "giant",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "b",
+            "title": "Giant platelets",
+            "lines": [
+              "Count and MPV read low",
+              "Think Bernard-Soulier, MYH9",
+              "Can be misdiagnosed as ITP"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 760,
+            "h": 150,
+            "tone": "a",
+            "title": "Hook answers",
+            "lines": [
+              "1 Giant, lifelong: inherited, not ITP",
+              "2 Day 6 of new drug: DITP",
+              "3 Schistocytes: ADAMTS13 before exchange"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Microangiopathy plus low platelets is always TTP” (✓ check ADAMTS13: below 10% supports TTP; above 10%, consider HUS and other causes); “Giant platelets plus a low count means ITP” (✓ think inherited macrothrombocytopenia such as Bernard-Soulier syndrome; analysers undercount giant platelets); “A negative drug-antibody test excludes DITP” (✓ the tests are insensitive).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: haemolysis with fragments and low platelets is always TTP. No: check ADAMTS13. Below ten percent supports TTP; above ten percent, think HUS and other causes."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: giant platelets with a low count means ITP. No: think of an inherited macrothrombocytopenia such as Bernard-Soulier syndrome."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: a negative drug-antibody test excludes drug-induced thrombocytopenia. No: these tests are insensitive."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “MAHA + low platelets = TTP.”",
+            "lines": [
+              "✓ ADAMTS13 < 10% = TTP; > 10% think HUS"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Giant platelets = ITP.”",
+            "lines": [
+              "✓ Think inherited: Bernard-Soulier, MYH9"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Negative drug test = not the drug.”",
+            "lines": [
+              "✓ Tests are specific but insensitive"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Factory, shredder, scissors",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “The FACTORY (marrow) can shut down — chemotherapy. The SHREDDER (antibodies) destroys platelets in the blood — ITP and drugs. The SCISSORS (ADAMTS13) go missing — TTP, under ten.” Tokens: factory = production · shredder = destruction · scissors = ADAMTS13 < 10%. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: the factory, the marrow, can shut down, as with chemotherapy. The shredder, antibodies, destroys platelets in the blood, as in ITP and drug reactions. The scissors, ADAMTS13, can go missing: that is TTP, under ten percent."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: in ITP the antibodies also damage the factory; ADAMTS13 between ten and twenty percent is a grey zone; and giant platelets are neither shredded nor scissor-cut, they are an inherited size problem."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Factory, shredder, scissors",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Factory = marrow",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Shredder = antibodies",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Scissors = ADAMTS13",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "ITP also impairs production",
+              "ADAMTS13 10–20% = grey zone",
+              "Giant platelets: inherited size clue"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “ITP < 100 × 10⁹/L, exclusion · TTP: ADAMTS13 < 10%”, “DITP: day 5–7, tests insensitive · giant platelets: think inherited”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Call it immune thrombocytopenia only below 100 × 10⁹/L with no other cause, confirm TTP with ADAMTS13 activity below 10 percent, suspect a drug when the count crashes about a week into a new medicine, and consider inherited disease when many platelets are giant."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "ITP < 100 × 10⁹/L, exclusion · TTP: ADAMTS13 < 10%",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "DITP: day 5–7, tests insensitive · giant: think inherited",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a low platelet count is a number, not a diagnosis. The marrow may not be making enough, antibodies may be destroying them, a drug may be the trigger, the clotting “scissors” enzyme may be missing, or the platelets may be inherited giants that the analyser miscounts. Scientific terms: thrombocytopenia, immune thrombocytopenia (ITP), drug-induced immune thrombocytopenia (DITP), megakaryocyte, thrombotic microangiopathy (TMA), thrombotic thrombocytopenic purpura (TTP; immune and congenital), ADAMTS13, ultra-large von Willebrand factor multimers, haemolytic uraemic syndrome (HUS), mean platelet volume (MPV), inherited macrothrombocytopenia (Bernard-Soulier syndrome, MYH9-related disease).",
+    "why": "Treatments differ sharply: plasma exchange for immune TTP, stopping the drug in DITP, immunosuppression in ITP, and avoiding unnecessary ITP treatment or splenectomy in inherited thrombocytopenia, where transfusions carry an alloimmunisation risk. Severe ADAMTS13 deficiency is the specific marker that separates TTP from other TMAs.",
+    "measure": "ITP: platelets < 100 × 10⁹/L with no other cause (diagnosis of exclusion); marrow exam not required for typical isolated ITP. TTP: ADAMTS13 activity < 10% (10 IU/dL); 10–20% seek alternatives; > 10% consider HUS after excluding secondary causes; draw before plasma exchange or blood products. DITP: often < 20 × 10⁹/L, usually after 5–7 days of the drug, within hours for GPIIb-IIIa antagonists; antibody tests specific but insensitive. Giant platelets: analysers can underestimate count and MPV.",
+    "differs": "Production failure (chemotherapy: stem cells and progenitors damaged) vs destruction (ITP: antibodies, with marrow megakaryocytes increased in one study); TTP (ADAMTS13 < 10%) vs HUS (> 10%); acquired ITP (no other cause, may respond to treatment) vs inherited macrothrombocytopenia (lifelong, giant platelets, unresponsive).",
+    "examAngle": "Expect: whether a count meets the ITP threshold, which ADAMTS13 value confirms TTP, what a negative drug-antibody test means, the mechanism of chemotherapy thrombocytopenia, and the inherited disorder behind giant platelets with a low count."
+  },
+  "comparisons": [
+    {
+      "id": "ttp-vs-hus",
+      "title": "TTP vs HUS",
+      "left": {
+        "label": "TTP",
+        "points": [
+          "ADAMTS13 activity < 10%",
+          "Immune: exchange + steroids; congenital: plasma"
+        ]
+      },
+      "right": {
+        "label": "HUS",
+        "points": [
+          "ADAMTS13 activity > 10%",
+          "Consider after excluding secondary TMA"
+        ]
+      },
+      "distinguisher": "ADAMTS13 activity drawn before plasma exchange."
+    },
+    {
+      "id": "itp-vs-inherited",
+      "title": "ITP vs inherited macrothrombocytopenia",
+      "left": {
+        "label": "ITP",
+        "points": [
+          "< 100 × 10⁹/L, no other cause",
+          "Larger platelets possible (MPV ↑)"
+        ]
+      },
+      "right": {
+        "label": "Inherited (Bernard-Soulier, MYH9)",
+        "points": [
+          "Many giant platelets",
+          "Long-standing, unaffected by treatment"
+        ]
+      },
+      "distinguisher": "Platelet size and history; analysers may undercount giants."
+    }
+  ],
+  "mnemonic": {
+    "text": "The FACTORY (marrow) can shut down — chemotherapy. The SHREDDER (antibodies) destroys platelets in the blood — ITP and drugs. The SCISSORS (ADAMTS13) go missing — TTP, under ten.",
+    "explanation": "Separates production failure, immune destruction and ADAMTS13 deficiency.",
+    "limitation": "ITP antibodies also impair production; ADAMTS13 10–20% is a grey zone; giant platelets are an inherited size problem that the aid does not cover."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Factory, shredder and scissors drawings are schematic.",
+    "The 77% atypical HUS median comes from one Korean registry cohort of 50 adults."
+  ],
+  "takeaway": "Call it immune thrombocytopenia only below 100 × 10⁹/L with no other cause, confirm TTP with ADAMTS13 activity below 10 percent, suspect a drug when the count crashes about a week into a new medicine, and consider inherited disease when many platelets are giant.",
+  "questions": [
+    {
+      "id": "heme-tcp-q1",
+      "stem": "A patient has microangiopathic haemolytic anaemia and thrombocytopenia. Under the ISTH 2020 guideline, which ADAMTS13 activity is the hallmark of TTP?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Below 10% (10 IU/dL)",
+          "rationale": "Correct. Severe deficiency below 10% is the hallmark of TTP."
+        },
+        {
+          "id": "b",
+          "text": "10–20%",
+          "rationale": "Incorrect. In this range the guideline advises seeking alternative diagnoses."
+        },
+        {
+          "id": "c",
+          "text": "Above 50%",
+          "rationale": "Incorrect. Activity above 10% points toward HUS or another TMA once secondary causes are excluded."
+        },
+        {
+          "id": "d",
+          "text": "Any value, if the platelet count is below 20 × 10⁹/L",
+          "rationale": "Incorrect. The platelet count does not replace ADAMTS13; many TMAs cause severe thrombocytopenia."
+        }
+      ],
+      "answer": "a",
+      "skill": "TTP diagnosis",
+      "difficulty": "recall"
+    },
+    {
+      "id": "heme-tcp-q2",
+      "stem": "Six days after starting a new antibiotic, a patient’s platelets fall to 9 × 10⁹/L. A drug-dependent platelet antibody test is negative. What is the best interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Drug-induced immune thrombocytopenia is still possible, because these tests are insensitive",
+          "rationale": "Correct. The tests are specific but insensitive, so a negative result does not exclude DITP."
+        },
+        {
+          "id": "b",
+          "text": "The drug is excluded as the cause",
+          "rationale": "Incorrect. A negative test does not rule out DITP; a metabolite may be responsible, among other explanations."
+        },
+        {
+          "id": "c",
+          "text": "The timing excludes a drug cause",
+          "rationale": "Incorrect. DITP usually appears after about 5–7 days of a new drug."
+        },
+        {
+          "id": "d",
+          "text": "A count this low confirms ITP",
+          "rationale": "Incorrect. ITP is a diagnosis of exclusion, and drugs must be excluded first."
+        }
+      ],
+      "answer": "a",
+      "skill": "DITP testing",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-tcp-q3",
+      "stem": "An adult with lifelong thrombocytopenia (50 × 10⁹/L) has many giant platelets on the smear and never responded to ITP treatment. What is the most appropriate interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Consider an inherited macrothrombocytopenia such as Bernard-Soulier syndrome",
+          "rationale": "Correct. Excessive numbers of giant platelets may indicate an inherited thrombocytopenia, which can be misdiagnosed as ITP."
+        },
+        {
+          "id": "b",
+          "text": "Refractory ITP; proceed to splenectomy",
+          "rationale": "Incorrect. Patients with inherited forms have had unnecessary treatment and splenectomy after being misdiagnosed with ITP."
+        },
+        {
+          "id": "c",
+          "text": "Chemotherapy-type production failure",
+          "rationale": "Incorrect. There is no chemotherapy or other marrow toxin in the history; long-standing thrombocytopenia unaffected by treatment points toward an inherited cause."
+        },
+        {
+          "id": "d",
+          "text": "Trust the analyser count and MPV as exact",
+          "rationale": "Incorrect. Analysers may not recognise very large platelets, underestimating both the count and the MPV."
+        }
+      ],
+      "answer": "a",
+      "skill": "Giant platelets",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch37",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 37, Platelets and von Willebrand Disease (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 37,
+          "section": "High-Yield Hits",
+          "items": [
+            5,
+            7,
+            15
+          ]
+        },
+        {
+          "chapter": 37,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "zheng2020",
+      "kind": "external",
+      "citation": "Zheng XL, Vesely SK, Cataland SR, et al. ISTH guidelines for the diagnosis of thrombotic thrombocytopenic purpura. J Thromb Haemost. 2020;18(10):2486-2495. doi:10.1111/jth.15006",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146131/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. ADAMTS13 activity < 10 IU/dL (10%) as the hallmark of TTP; 10–20% seek alternative diagnoses; > 10% consider HUS after excluding secondary TMA; draw ADAMTS13 before plasma exchange or blood products and start treatment without waiting when suspicion is high. No 30% cut-off is given."
+    },
+    {
+      "id": "matsumoto2023",
+      "kind": "external",
+      "citation": "Matsumoto M, Miyakawa Y, Kokame K, et al. Diagnostic and treatment guidelines for thrombotic thrombocytopenic purpura (TTP) in Japan 2023. Int J Hematol. 2023;118(5):529-546. doi:10.1007/s12185-023-03657-0",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10615956/",
+      "consulted": true,
+      "usedFor": "ADAMTS13 cleaves ultra-large VWF multimers that otherwise form platelet thrombi; TTP criterion ADAMTS13 < 10%; immune TTP treated with plasma exchange plus corticosteroids and caplacizumab (anti-VWF A1 nanobody); congenital TTP treated with FFP to supply ADAMTS13."
+    },
+    {
+      "id": "oh2019",
+      "kind": "external",
+      "citation": "Oh J, Oh D, Lee SJ, et al. Prognostic utility of ADAMTS13 activity for the atypical hemolytic uremic syndrome (aHUS) and comparison of complement serology between aHUS and thrombotic thrombocytopenic purpura. Blood Res. 2019;54(3):218-228. doi:10.5045/br.2019.54.3.218",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6779945/",
+      "consulted": true,
+      "usedFor": "TTP and aHUS separated by ADAMTS13 < 10% vs > 10%; median ADAMTS13 activity 77% in a Korean aHUS registry cohort."
+    },
+    {
+      "id": "provan2019",
+      "kind": "external",
+      "citation": "Provan D, Arnold DM, Bussel JB, et al. Updated international consensus report on the investigation and management of primary immune thrombocytopenia. Blood Adv. 2019;3(22):3780-3817. doi:10.1182/bloodadvances.2019000812",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6880896/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (only part of the ~400k-character page). Diagnosis based principally on excluding other causes of isolated thrombocytopenia; bone marrow examination not required at initial diagnosis of isolated thrombocytopenia, appropriate with relapse, non-response or before splenectomy; excessive giant or small platelets may indicate an inherited thrombocytopenia; consider inherited forms in long-standing thrombocytopenia unaffected by treatment; drugs in the differential."
+    },
+    {
+      "id": "nomura2016",
+      "kind": "external",
+      "citation": "Nomura S. Advances in Diagnosis and Treatments for Immune Thrombocytopenia. Clin Med Insights Blood Disord. 2016;9:15-22. doi:10.4137/cmbd.s39643",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4948655/",
+      "consulted": true,
+      "usedFor": "Platelet count < 100 × 10⁹/L as the main diagnostic criterion; ITP a diagnosis of exclusion (drugs, TTP, Bernard-Soulier syndrome and others excluded)."
+    },
+    {
+      "id": "wang2022",
+      "kind": "external",
+      "citation": "Wang W, Tao S, Zhang X, et al. The Value of Combined Detection of Megakaryocyte and Platelet Parameters for the Diagnosis of Primary Immune Thrombocytopenia. Clin Appl Thromb Hemost. 2022;28:10760296221106779. doi:10.1177/10760296221106779",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9358600/",
+      "consulted": true,
+      "usedFor": "Increased total marrow megakaryocytes and increased MPV and large-platelet ratio in adult ITP versus controls (single-centre study; its ITP criteria already required increased or normal megakaryocytes, and controls had other diseases)."
+    },
+    {
+      "id": "mingot2023",
+      "kind": "external",
+      "citation": "Mingot-Castellano ME, Canaro Hirnyk M, Sánchez-González B, et al. Recommendations for the Clinical Approach to Immune Thrombocytopenia: Spanish ITP Working Group (GEPTI). J Clin Med. 2023;12(20):6422. doi:10.3390/jcm12206422",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10607106/",
+      "consulted": true,
+      "usedFor": "ITP autoantibodies also reduce platelet production (TPO receptor, megakaryocyte apoptosis); bone marrow examination reserved for refractoriness or suspected other disease."
+    },
+    {
+      "id": "kuter2022",
+      "kind": "external",
+      "citation": "Kuter DJ. Treatment of chemotherapy-induced thrombocytopenia in patients with non-hematologic malignancies. Haematologica. 2022;107(6):1243-1263. doi:10.3324/haematol.2021.279512",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9152964/",
+      "consulted": true,
+      "usedFor": "Chemotherapy drugs affect the megakaryocyte and platelet production pathway at different steps (stem cells, later megakaryocyte progenitors)."
+    },
+    {
+      "id": "ali2017",
+      "kind": "external",
+      "citation": "Ali N, Auerbach HE. New-onset acute thrombocytopenia in hospitalized patients: pathophysiology and diagnostic approach. J Community Hosp Intern Med Perspect. 2017;7(3):157-167. doi:10.1080/20009666.2017.1335156",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5538216/",
+      "consulted": true,
+      "usedFor": "Two primary mechanisms of thrombocytopenia: decreased production and increased destruction; reduced megakaryocyte number leads to thrombocytopenia."
+    },
+    {
+      "id": "vayne2020",
+      "kind": "external",
+      "citation": "Vayne C, Guéry EA, Rollin J, et al. Pathophysiology and Diagnosis of Drug-Induced Immune Thrombocytopenia. J Clin Med. 2020;9(7):2212. doi:10.3390/jcm9072212",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7408966/",
+      "consulted": true,
+      "usedFor": "DITP often < 20 × 10⁹/L; suspected when severe thrombocytopenia follows usually 5–7 days of a drug, or within hours with abciximab or fibrinogen-receptor antagonists (first-exposure cases); laboratory tests have good specificity but poor sensitivity, so a negative result does not rule out DITP."
+    },
+    {
+      "id": "noris2013",
+      "kind": "external",
+      "citation": "Noris P, Klersy C, Gresele P, et al. Platelet size for distinguishing between inherited thrombocytopenias and immune thrombocytopenia: a multicentric, real life study. Br J Haematol. 2013;162(1):112-119. doi:10.1111/bjh.12349",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3757308/",
+      "consulted": true,
+      "usedFor": "Several patients with inherited thrombocytopenias misdiagnosed as ITP, with unnecessary treatment or splenectomy; very large platelets (MYH9-RD, Bernard-Soulier) not recognised by counters, underestimating count and MPV; MPV helps separate ITP from inherited macrothrombocytopenias."
+    },
+    {
+      "id": "balduini2022",
+      "kind": "external",
+      "citation": "Balduini CL. Treatment of inherited thrombocytopenias. Haematologica. 2022;107(6):1278-1292. doi:10.3324/haematol.2022.280856",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9152979/",
+      "consulted": true,
+      "usedFor": "Platelet transfusion in inherited thrombocytopenia carries an alloimmunisation and refractoriness risk."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-mech",
+      "text": "Production vs destruction; chemotherapy damages stem cells and megakaryocyte progenitors.",
+      "status": "checked",
+      "refs": [
+        "ali2017",
+        "kuter2022"
+      ]
+    },
+    {
+      "id": "cl-itp",
+      "text": "ITP: < 100 × 10⁹/L with no other cause; marrow exam not needed for typical ITP; megakaryocytes increased in one study; antibodies also impair production.",
+      "status": "checked",
+      "refs": [
+        "nomura2016",
+        "provan2019",
+        "wang2022",
+        "mingot2023"
+      ]
+    },
+    {
+      "id": "cl-ttp",
+      "text": "ADAMTS13 cleaves ultra-large VWF; < 10% hallmark of TTP; 10–20% seek alternatives; > 10% consider HUS; aHUS median 77% in one registry; draw before plasma exchange; treatment of immune and congenital TTP.",
+      "status": "checked",
+      "refs": [
+        "zheng2020",
+        "matsumoto2023",
+        "oh2019"
+      ]
+    },
+    {
+      "id": "cl-ditp",
+      "text": "DITP often < 20 × 10⁹/L, suspected after usually 5–7 days, within hours for GPIIb-IIIa antagonists; tests specific but insensitive.",
+      "status": "checked",
+      "refs": [
+        "vayne2020"
+      ]
+    },
+    {
+      "id": "cl-giant",
+      "text": "Giant platelets undercounted; excessive giant platelets may indicate inherited thrombocytopenia (Bernard-Soulier, MYH9-RD), which can be misdiagnosed as ITP; transfusion alloimmunisation risk.",
+      "status": "checked",
+      "refs": [
+        "noris2013",
+        "provan2019",
+        "balduini2022"
+      ]
+    },
+    {
+      "id": "cl-pend-hus",
+      "text": "Reviewer: HUS keeps 30–100% ADAMTS13 activity; Shiga-toxin HUS mainly affects children. Not taught.",
+      "status": "pending",
+      "note": "ISTH 2020 gives > 10% for HUS with no 30% bound; age pattern not checked."
+    },
+    {
+      "id": "cl-pend-mk",
+      "text": "Reviewer: TTP and HIT show increased marrow megakaryocytes. Not taught.",
+      "status": "pending",
+      "note": "No source read for marrow findings in TTP or HIT."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; drawings schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Factory, shredder, scissors.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-hus-range",
+      "issue": "Ch. 37 Hit 5 and Exam Trap 6 give ADAMTS13 “≤5–10%” for TTP and “30–100%” for HUS. The ISTH 2020 guideline uses < 10% (10 IU/dL) for TTP, advises seeking alternatives at 10–20%, and says to consider HUS above 10% after excluding secondary causes; it gives no 30% lower bound. The lesson teaches the ISTH cut-offs (register flag rv-adamts13-hus-range).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-megakaryocytes",
+      "issue": "Ch. 37 Hit 15 says destructive causes (ITP/TTP/HIT) show increased megakaryocytes. One study found increased megakaryocytes in ITP, but ITP autoantibodies also impair megakaryocyte production, and no source was read for TTP or HIT marrow findings. The lesson teaches only the ITP finding, with the production caveat (register flag rv-megakaryocytes-destruction).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No micrographs; platelets, marrow and ADAMTS13 shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 taught claims checked against Zheng 2020 and Provan 2019 (both read via a page-fetch tool), Matsumoto 2023, Oh 2019, Nomura 2016, Wang 2022, Mingot-Castellano 2023, Kuter 2022, Ali 2017, Vayne 2020, Noris 2013 and Balduini 2022; 2 reviewer claims left pending and untaught (HUS 30–100% range and age pattern; megakaryocytes in TTP and HIT). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

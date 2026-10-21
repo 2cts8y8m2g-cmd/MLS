@@ -1,0 +1,1560 @@
+{
+  "schemaVersion": 1,
+  "id": "heme-flow-compensation-tandem-fmo",
+  "title": "Flow Cytometry Artifacts: Compensation, Tandem Dyes and FMO Controls",
+  "summary": "Learn what spillover and compensation are, what under- and overcompensation look like, how tandem dyes create false signals, and how fluorescence-minus-one controls set gates, so instrument physics is not mistaken for leukaemia biology.",
+  "domain": "p4-heme",
+  "topic": "ch35",
+  "conceptIds": [
+    "ch35.hit4",
+    "ch35.hit11",
+    "ch35.hit13",
+    "ch35.trap4"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 35,
+        "section": "High-Yield Hits",
+        "items": [
+          4,
+          11,
+          13
+        ]
+      },
+      {
+        "chapter": 35,
+        "section": "Exam Traps",
+        "items": [
+          4
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 35 Hit 4 (compensation; 22/15/26% example; biexponential display), Hit 11 (tandem dye artifacts), Hit 13 (FMO controls) and Exam Trap 4 (phantom dim PE-Cy5 coexpression). Checked against Cossarizza 2021 (EJI flow guidelines, 3rd ed.), Kalina 2012 (EuroFlow), Roca 2021 (AutoSpill), Bhowmick 2021 and 2023, McKinnon 2018 (read via a page-fetch tool) and the Le Roy 2009 abstract. The reviewer’s 22% is taught only as a worked example: sources show spillover values are measured per instrument and, for tandems, per reagent (register flag rv-ch35-compensation-value-specific). The reviewer groups the PE-Cy5 and APC-Cy7 artifacts as “variable parent emission”; the sources give two mechanisms (APC-Cy7/H7 degradation producing donor APC signal; PE-Cy5 emission reaching the APC detector), which the lesson separates (register flag rv-ch35-tandem-two-mechanisms). Not taught: spectral unmixing, panel-design rules, Number Vault items other than the compensation example."
+  },
+  "prerequisites": [
+    "ch35.hit1"
+  ],
+  "objectives": [
+    "Define spillover and compensation and state the single-stain control rule.",
+    "Recognise the patterns of undercompensation and overcompensation and why biexponential display is used.",
+    "Explain how tandem dyes produce false signals and how an FMO control sets a gate."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Biology or physics?",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three puzzling plots from one multicolour leukaemia panel — (1) a bright PE-labelled B-cell population shows a dim smear of “positivity” in the PE-Cy5 detector; (2) in a tube containing a PE-Cy5 conjugate, a population looks positive in the APC detector although no APC antibody should bind it; (3) a dim marker shows no clear gap between negative and positive. Question token: “Biology or physics?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Three puzzling plots from one leukaemia panel. First: a bright PE-labelled B-cell population looks dimly positive in the PE-Cy5 detector."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "Second: cells look positive in the APC detector, though no APC antibody should bind them. Third: a dim marker with no clear gap between negative and positive."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Is this abnormal leukaemia biology, or is it the physics of the instrument?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Bright PE B cells",
+            "lines": [
+              "Dim “PE-Cy5 +” smear"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "2 APC detector",
+            "lines": [
+              "Positive, but no",
+              "APC antibody target"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.3,
+              "opacity": 0
+            },
+            {
+              "t": 9.100000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "3 Dim marker",
+            "lines": [
+              "No clear gap",
+              "Where is negative?"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0
+            },
+            {
+              "t": 11.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 640,
+            "label": "Biology or physics?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Spillover and compensation",
+      "start": 20,
+      "end": 60,
+      "altText": "Four cards. Spillover: each fluorochrome has one primary detector, but some of its light also reaches other detectors. Compensation: subtracts that spillover, using a value measured from single-stained controls. Single-stain rule: the control must be as bright as or brighter than the sample, and its emission spectrum must match the dye in the sample; tandem conjugates may need their own control. Spread: even correct compensation leaves photon-counting spread that can hide dim populations. A footnote: the reviewer’s “PE spills 22% into PE-Cy5” is a worked example; real values are measured on each instrument and reagent set.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Each fluorochrome has one primary detector, but some of its light lands in neighbouring detectors. That unwanted signal is spillover."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Compensation subtracts the spillover, using values measured from single-stained controls. Each control must be at least as bright as the sample, and its dye must match the dye in the sample."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Even perfect compensation leaves spread: counting error that widens the compensated population and can hide dim cells."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "The reviewer’s twenty-two percent for PE into PE-Cy5 is a worked example. Real spillover values are measured on each instrument, and tandem dyes can need values for each reagent."
+        }
+      ],
+      "objects": [
+        {
+          "id": "spill",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Spillover",
+            "lines": [
+              "Light reaches other detectors",
+              "One primary detector per dye"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "comp",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Compensation",
+            "lines": [
+              "Subtracts measured spillover",
+              "Single stains: as bright or brighter"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "spread",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Spread remains",
+            "lines": [
+              "Counting error after correction",
+              "Can hide dim populations"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "vals",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "“22%” is an example",
+            "lines": [
+              "Measured per instrument",
+              "Tandems: per reagent"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Too little, too much",
+      "start": 60,
+      "end": 104,
+      "altText": "Two plot cards side by side (worked example using the reviewer’s numbers: measured PE spillover into PE-Cy5 22%). Undercompensation (only 15% subtracted): leftover spillover makes bright PE events look excessively positive in the PE-Cy5 detector — a population that leans upward with a positive slope, a phantom dim positive. Overcompensation (26% subtracted): too much is removed, pushing events excessively negative — a downward slope and “super-negative” events, so real dim cells can be lost. Display card: a biexponential scale visually magnifies values close to zero, so small compensation errors become visible; screen every marker against every marker for leaning or super-negative populations.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Worked example: PE truly spills twenty-two percent into PE-Cy5. Subtract only fifteen, and leftover spillover makes bright PE cells look positive in PE-Cy5: a population that leans upward, a phantom dim positive."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "Subtract twenty-six, and too much is removed. Events are pushed below zero, the population leans downward, and genuinely dim cells can disappear."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "These errors are easiest to see near zero. A biexponential display visually magnifies values close to zero, so small compensation errors become noticeable there."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "So before calling an aberrant phenotype, look at every marker against every marker. Leaning or super-negative populations point to compensation, not biology."
+        }
+      ],
+      "objects": [
+        {
+          "id": "under",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 230,
+            "tone": "bad",
+            "title": "Under: 15% of 22%",
+            "lines": [
+              "Leftover spillover",
+              "Positive slope, leans up",
+              "Phantom dim positive"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "over",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 230,
+            "tone": "warn",
+            "title": "Over: 26% of 22%",
+            "lines": [
+              "Too much removed",
+              "Negative slope, super-negatives",
+              "Dim cells lost"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "reveal": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bx",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 400,
+            "w": 760,
+            "label": "Biexponential display magnifies values near zero",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "nxn",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 480,
+            "w": 760,
+            "label": "Check every marker against every marker before calling biology",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Tandem dyes and FMO controls",
+      "start": 104,
+      "end": 144,
+      "altText": "Tandem card: a donor dye (PE or APC) passes energy to an acceptor (Cy5, Cy7, H7) by FRET, giving a longer-wavelength emission. Tandems are less stable than their donors and their energy transfer can differ from lot to lot. APC-Cy7/H7 conjugates degrade over time on cells, giving a nonspecific signal in the APC (donor) detector. PE-Cy5 emits near APC, so some of its signal reaches the red-laser APC detector (cross-laser spillover). FMO card: a fluorescence-minus-one tube contains every antibody except one; it shows how much signal other dyes spread into that channel and helps set the gate boundary, especially for markers of unknown expression or in channels with spread. It cannot show nonspecific binding of the omitted antibody. Hook answers: (1) check compensation; (2) suspect a tandem artifact; (3) use an FMO control to set the gate.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Tandem dyes join a donor, such as PE or APC, to an acceptor, such as Cy5 or Cy7, by energy transfer. They are less stable than the donor alone, and energy transfer can vary from lot to lot."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "APC-Cy7 and APC-H7 degrade over time on cells, producing a false signal in the APC detector. PE-Cy5 emits close to APC, so some of its signal also reaches the APC detector."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "A fluorescence-minus-one control contains every antibody except one. It shows how far the other dyes spread into that channel, and helps set the gate, especially for markers of unknown expression or in channels with spread. It cannot show nonspecific binding of the missing antibody."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook. Puzzle one: check compensation. Puzzle two: suspect a tandem artifact. Puzzle three: set the gate with a fluorescence-minus-one control."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tan",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 230,
+            "w": 440,
+            "h": 260,
+            "tone": "b",
+            "title": "Tandem dyes",
+            "lines": [
+              "Donor → acceptor (FRET)",
+              "Less stable; lot-to-lot variation",
+              "APC-Cy7/H7 degrade → APC signal",
+              "PE-Cy5 reaches APC detector"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fmo",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 420,
+            "h": 260,
+            "tone": "good",
+            "title": "FMO control",
+            "lines": [
+              "All antibodies minus one",
+              "Shows spread → sets the gate",
+              "Not nonspecific binding"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 860,
+            "label": "1 Compensation · 2 Tandem artifact · 3 FMO gate",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Dim PE-Cy5 on bright PE cells = aberrant coexpression” (✓ check compensation and tandem artifacts and the FMO first); “22% is the correct PE→PE-Cy5 value” (✓ spillover is measured on each instrument and reagent set); “Overcompensating is the safe side” (✓ it pushes events below zero and can erase real dim populations).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: dim PE-Cy5 on bright PE cells means aberrant coexpression. Not yet: rule out undercompensation and tandem artifacts, and compare with the control first."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: twenty-two percent is the correct PE into PE-Cy5 value. No: spillover is measured on your instrument, with your reagents."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: overcompensating is the safe side. No: it pushes events below zero and can erase real dim populations."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Dim PE-Cy5 on bright PE = coexpression.”",
+            "lines": [
+              "✓ Rule out compensation, tandems; use FMO"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “22% is the right value.”",
+            "lines": [
+              "✓ Measured per instrument and reagent"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Overcompensate to be safe.”",
+            "lines": [
+              "✓ Super-negatives; dim cells lost"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "The noisy neighbour",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Compensation is turning down the neighbour’s music that leaks through the wall. Too little and you still hear it (a phantom positive); too much and you erase your own quiet song (a lost dim population). The FMO is switching your own music off to hear what the room sounds like.” Tokens: too little = phantom · too much = lost · FMO = room sound. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: compensation is turning down the neighbour’s music that leaks through the wall. Too little, and you still hear it: a phantom positive. Too much, and you erase your own quiet song. The fluorescence-minus-one control is switching your own music off to hear the room."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: spillover is a measured fraction for each dye and detector, not a changing volume; spread cannot be subtracted away; and a degrading tandem shifts signal back to its donor channel, which a fixed compensation value may not match."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "The noisy neighbour",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Too little = phantom",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Too much = lost",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "FMO = room sound",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Spillover is a measured fraction",
+              "Spread cannot be subtracted",
+              "Degrading tandems shift colour"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Under = phantom positive · over = super-negatives, lost dim cells · biexponential display”, “Tandems degrade and cross into APC · FMO sets the gate”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Before calling a dim population aberrant, rule out undercompensation, overcompensation and tandem dye artifacts, and set the gate with a fluorescence-minus-one control."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Under = phantom positive · over = lost dim cells · biexponential",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Tandems degrade or reach APC · FMO sets the gate",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: each coloured label on an antibody leaks a little light into the detectors meant for other colours. The instrument subtracts that leak (compensation). Subtract too little and cells look falsely positive; too much and real dim cells vanish. Some labels are two dyes joined together (tandems) and can break or leak in unexpected ways, and a control missing one antibody shows where “negative” really ends. Scientific terms: fluorochrome, primary detector, spillover, compensation (spillover matrix), single-stained compensation control, spillover spread, undercompensation, overcompensation, super-negative events, biexponential (logicle) display, tandem dye, FRET donor and acceptor, cross-laser spillover, fluorescence-minus-one (FMO) control, isotype control.",
+    "why": "Flow diagnosis of leukaemia compares antigen-expression patterns of normal and neoplastic cells, and improper correction can create or erase populations, so an artifact can mislead the diagnosis. Correct compensation, awareness of tandem behaviour and proper gating controls separate instrument physics from biology.",
+    "measure": "Spillover values come from single-stained controls run on the same instrument, at least as bright as the sample and with the same dye (tandem conjugates may need their own controls). Undercompensation leaves excessively positive values in the secondary detector (upward-leaning population); overcompensation gives excessively negative values (downward lean, super-negatives). Display compensated data on a biexponential scale and review every marker against every marker. FMO tube = all antibodies except one; it defines the gate boundary for that channel.",
+    "differs": "Undercompensation (phantom positive) vs overcompensation (lost dim cells); spillover (corrected by compensation) vs spread (cannot be subtracted); tandem degradation (donor signal, e.g. APC from APC-Cy7) vs cross-laser spillover (PE-Cy5 into the APC detector); FMO (spread into a channel, gate setting) vs compensation (spillover correction) vs isotype control (largely superseded for gating).",
+    "examAngle": "Expect: name the cause of a dim false positive on bright cells, predict the effect of under- or overcompensation, pick the control used to set a gate for a dim marker, or identify a tandem dye artifact."
+  },
+  "comparisons": [
+    {
+      "id": "under-vs-over",
+      "title": "Undercompensation vs overcompensation",
+      "left": {
+        "label": "Undercompensation",
+        "points": [
+          "Too little spillover subtracted",
+          "Upward lean; phantom dim positive"
+        ]
+      },
+      "right": {
+        "label": "Overcompensation",
+        "points": [
+          "Too much subtracted",
+          "Super-negatives; dim cells lost"
+        ]
+      },
+      "distinguisher": "Direction of the lean in the secondary detector on a biexponential plot."
+    },
+    {
+      "id": "fmo-vs-comp",
+      "title": "FMO control vs compensation control",
+      "left": {
+        "label": "FMO control",
+        "points": [
+          "All antibodies except one",
+          "Sets the gate for that channel"
+        ]
+      },
+      "right": {
+        "label": "Single-stain control",
+        "points": [
+          "One dye per tube",
+          "Measures spillover values"
+        ]
+      },
+      "distinguisher": "Gate placement vs spillover measurement."
+    }
+  ],
+  "mnemonic": {
+    "text": "Compensation is turning down the neighbour’s music that leaks through the wall: too little and you still hear it (phantom positive), too much and you erase your own quiet song (lost dim population). The FMO is switching your own music off to hear what the room sounds like.",
+    "explanation": "Links under- and overcompensation to their visible effects and the FMO to gate setting.",
+    "limitation": "Spillover is a measured fraction for each dye-detector pair, not a changing volume; spread left after compensation cannot be subtracted; a degrading tandem shifts signal back to its donor channel on the cells, which a fixed compensation value may not match."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "The 22%, 15% and 26% values are the reviewer’s worked example, not instrument constants.",
+    "Plots are described as schematic cards, not real cytometry data."
+  ],
+  "takeaway": "Before calling a dim population aberrant, rule out undercompensation, overcompensation and tandem dye artifacts, and set the gate with a fluorescence-minus-one control.",
+  "questions": [
+    {
+      "id": "heme-cmp-q1",
+      "stem": "In an invented example, single-stained controls show PE spilling 22% into the PE-Cy5 detector, but only 15% is subtracted. A bright PE-positive population now looks dimly PE-Cy5 positive. What is the most likely explanation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Undercompensation leaving residual PE signal in the PE-Cy5 detector",
+          "rationale": "Correct. Too little subtraction leaves excessively positive values in the secondary detector, creating a phantom dim positive."
+        },
+        {
+          "id": "b",
+          "text": "Overcompensation of PE into PE-Cy5",
+          "rationale": "Incorrect. Overcompensation pushes events below zero; it does not create false positivity."
+        },
+        {
+          "id": "c",
+          "text": "True aberrant PE-Cy5 antigen coexpression",
+          "rationale": "Incorrect. Coexpression should not be called until the known compensation error is corrected."
+        },
+        {
+          "id": "d",
+          "text": "Spread that no compensation can remove",
+          "rationale": "Incorrect. Spread widens a population around its true value; here a fixable subtraction error explains the shift."
+        }
+      ],
+      "answer": "a",
+      "skill": "Compensation errors",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-cmp-q2",
+      "stem": "Cells stained with an APC-Cy7 conjugate and no APC antibody show an increasing signal in the APC detector the longer the stained sample waits before acquisition. What is the best explanation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Degradation of the APC-Cy7 tandem, releasing donor APC signal",
+          "rationale": "Correct. APC-Cy7/H7 tandems degrade over time on cells, producing a nonspecific APC signal."
+        },
+        {
+          "id": "b",
+          "text": "New APC antigen expression during storage",
+          "rationale": "Incorrect. No APC-labelled antibody is present; the signal comes from the tandem."
+        },
+        {
+          "id": "c",
+          "text": "Overcompensation of APC into APC-Cy7",
+          "rationale": "Incorrect. Overcompensation lowers values; it does not produce a rising positive signal over time."
+        },
+        {
+          "id": "d",
+          "text": "Instrument carryover from the previous tube",
+          "rationale": "Incorrect. Carryover would not grow with the time this sample waited after staining."
+        }
+      ],
+      "answer": "a",
+      "skill": "Tandem dye artifacts",
+      "difficulty": "application"
+    },
+    {
+      "id": "heme-cmp-q3",
+      "stem": "In a multicolour panel, a dimly expressed marker shows no clear gap between negative and positive cells. Which control best defines where the gate should be placed?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A fluorescence-minus-one tube containing every antibody except that marker",
+          "rationale": "Correct. The FMO shows how far the other dyes spread into that channel and helps identify the gate boundary, which matters most where spread blurs the negative population."
+        },
+        {
+          "id": "b",
+          "text": "A single-stained control for that marker’s dye",
+          "rationale": "Incorrect. Single stains are used to measure spillover for compensation, not to set gates in the full panel."
+        },
+        {
+          "id": "c",
+          "text": "An unstained tube",
+          "rationale": "Incorrect. It contains none of the panel’s dyes, so it cannot show how far they spread into this channel."
+        },
+        {
+          "id": "d",
+          "text": "Raising the compensation value until the dim cells separate",
+          "rationale": "Incorrect. Deliberate overcompensation pushes events below zero and can erase real dim cells."
+        }
+      ],
+      "answer": "a",
+      "skill": "Gating controls",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch35",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 35, Flow Cytometry for Blood Cancers (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 35,
+          "section": "High-Yield Hits",
+          "items": [
+            4,
+            11,
+            13
+          ]
+        },
+        {
+          "chapter": 35,
+          "section": "Exam Traps",
+          "items": [
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope, exam framing and the 22/15/26% worked example. Not used as verification."
+    },
+    {
+      "id": "cossarizza2021",
+      "kind": "external",
+      "citation": "Cossarizza A, Chang HD, Radbruch A, et al. Guidelines for the use of flow cytometry and cell sorting in immunological studies (third edition). Eur J Immunol. 2021;51(12):2708-3145. doi:10.1002/eji.202170126",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11115438/",
+      "consulted": true,
+      "usedFor": "Read via Europe PMC full text (relevant sections). FMO control definition (all antibodies except one), identifies spread into the channel of interest, helps identify gating boundaries especially for markers with unknown antigen expression levels and in detectors with spreading error, has largely superseded isotype controls, cannot account for nonspecific binding of the omitted antibody; incorrect compensation as a common artifact; N×N review for leaning and super-negative populations; biexponential and other transformations."
+    },
+    {
+      "id": "kalina2012",
+      "kind": "external",
+      "citation": "Kalina T, Flores-Montero J, van der Velden VH, et al. EuroFlow standardization of flow cytometer instrument settings and immunophenotyping protocols. Leukemia. 2012;26(9):1986-2010. doi:10.1038/leu.2012.122",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3437409/",
+      "consulted": true,
+      "usedFor": "Read via Europe PMC full text. Tandem dyes use FRET from donor to acceptor; non-uniform spectral characteristics and variable spillover to the donor channel; PE-Cy7 and APC-H7 needed reagent-specific compensation values; compensation controls must be bright and spectrally matched; tandem reagent life-span; 405-nm laser power failures required new setup and compensation; diagnosis compares normal and aberrant/neoplastic expression patterns."
+    },
+    {
+      "id": "roca2021",
+      "kind": "external",
+      "citation": "Roca CP, Burton OT, Gergelits V, et al. AutoSpill is a principled framework that simplifies the analysis of multichromatic flow cytometry data. Nat Commun. 2021;12(1):2890. doi:10.1038/s41467-021-23126-8",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8129071/",
+      "consulted": true,
+      "usedFor": "Read via Europe PMC full text. Overcompensation gives excessively negative values (negative slope); undercompensation gives excessively positive values (positive slope); biexponential scale visually amplifies values near zero, making small errors noticeable; poor discrimination of populations due to over- and undercompensation, and undercompensation eliminating most of a CD25+ population during gating."
+    },
+    {
+      "id": "bhowmick2021",
+      "kind": "external",
+      "citation": "Bhowmick D, van Diepen F, Pfauth A, Tissier R, Ratliff ML. A gain and dynamic range independent index to quantify spillover spread to aid panel design in flow cytometry. Sci Rep. 2021;11(1):20553. doi:10.1038/s41598-021-99831-7",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8520008/",
+      "consulted": true,
+      "usedFor": "Read via Europe PMC full text. Definition of spillover and compensation; spread remaining after compensation can mask dim populations; spillover spread values depend on detector sensitivity."
+    },
+    {
+      "id": "bhowmick2023",
+      "kind": "external",
+      "citation": "Bhowmick D, Lowe SK, Ratliff ML. Side-by-Side Comparison of Compensation Beads Used in Polychromatic Flow Cytometry. Immunohorizons. 2023;7(12):819-833. doi:10.4049/immunohorizons.2300066",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10759156/",
+      "consulted": true,
+      "usedFor": "Read via Europe PMC full text. First rule of compensation: single stains equally bright or brighter than the sample; improper correction can lead to population loss and/or gain; PE-Cy5 and APC have similar emission maxima so cross-laser bleedthrough is expected."
+    },
+    {
+      "id": "mckinnon2018",
+      "kind": "external",
+      "citation": "McKinnon KM. Flow Cytometry: An Overview. Curr Protoc Immunol. 2018;120:5.1.1-5.1.11. doi:10.1002/cpim.40",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5939936/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (full text not available from Europe PMC). Tandem dyes use FRET; they are less stable than the donor fluorochromes and can differ from lot to lot in energy transfer efficiency, complicating compensation."
+    },
+    {
+      "id": "leroy2009",
+      "kind": "external",
+      "citation": "Le Roy C, Varin-Blank N, Ajchenbaum-Cymbalista F, Letestu R. Flow cytometry APC-tandem dyes are degraded through a cell-dependent mechanism. Cytometry A. 2009;75(10):882-890. doi:10.1002/cyto.a.20774",
+      "url": "https://europepmc.org/article/MED/19739089",
+      "consulted": true,
+      "usedFor": "Abstract only (full text not open access). APC-Cy7/H7 tandems degrade over time on cells, producing an unexpected nonspecific signal in the APC channel; degradation is cell-dependent."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-comp",
+      "text": "Spillover definition; compensation subtracts measured spillover; single-stain controls as bright or brighter and spectrally matched; spread remains after compensation.",
+      "status": "checked",
+      "refs": [
+        "bhowmick2021",
+        "bhowmick2023",
+        "kalina2012"
+      ]
+    },
+    {
+      "id": "cl-err",
+      "text": "Undercompensation = excessively positive values (upward lean); overcompensation = excessively negative values, super-negatives, lost populations; biexponential display; N×N review.",
+      "status": "checked",
+      "refs": [
+        "roca2021",
+        "cossarizza2021",
+        "bhowmick2023"
+      ]
+    },
+    {
+      "id": "cl-specific",
+      "text": "Spillover values are measured per instrument; tandem conjugates may need reagent-specific values.",
+      "status": "checked",
+      "refs": [
+        "kalina2012",
+        "bhowmick2021"
+      ]
+    },
+    {
+      "id": "cl-tandem",
+      "text": "Tandems use FRET, are less stable and vary by lot; APC-Cy7/H7 degrade on cells giving APC signal; PE-Cy5 signal reaches the APC detector.",
+      "status": "checked",
+      "refs": [
+        "mckinnon2018",
+        "leroy2009",
+        "kalina2012",
+        "bhowmick2023"
+      ],
+      "note": "Le Roy 2009 read as abstract only."
+    },
+    {
+      "id": "cl-fmo",
+      "text": "FMO = all antibodies except one; shows spread into the channel and helps set gating boundaries, especially for markers with unknown expression levels and in detectors with spreading error; has largely superseded isotype controls; cannot show nonspecific binding of the omitted antibody.",
+      "status": "checked",
+      "refs": [
+        "cossarizza2021"
+      ]
+    },
+    {
+      "id": "cl-why",
+      "text": "Flow diagnosis compares normal and neoplastic expression patterns; improper correction can create or erase populations.",
+      "status": "checked",
+      "refs": [
+        "kalina2012",
+        "bhowmick2023"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "The reviewer’s 22% PE→PE-Cy5 value, and 15%/26% as the under/over values, as general figures.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch35"
+      ],
+      "note": "No source read gives these as standard values; used only as a worked example."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; 22/15/26% worked example; plots schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“The noisy neighbour.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-ch35-comp-value",
+      "issue": "Ch. 35 Hit 4, the Number Vault and the memory hook present 22% PE→PE-Cy5 as “the magic spillover number”. Kalina 2012 (EuroFlow) and Bhowmick 2021 show spillover values are measured on each instrument and setting, with reagent-specific values for some tandems; the lesson uses 22/15/26% only as a worked example (register flag rv-ch35-compensation-value-specific).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-ch35-tandem-mechanisms",
+      "issue": "Ch. 35 Hit 11 groups the PE-Cy5→APC and APC-Cy7→APC artifacts as “variable parent emission”. Le Roy 2009 describes APC-Cy7/H7 degradation giving donor (APC) signal, while Bhowmick 2023 attributes PE-Cy5 signal in the APC detector to similar emission maxima (cross-laser bleedthrough), which is not parent (PE) emission; the lesson teaches the two mechanisms separately (register flag rv-ch35-tandem-two-mechanisms).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No cytometry plots or images; patterns described on schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 factual claims checked against Cossarizza 2021, Kalina 2012, Roca 2021, Bhowmick 2021 and 2023, McKinnon 2018 (read via a page-fetch tool) and the Le Roy 2009 abstract; 1 pending (the reviewer’s 22/15/26% values as general figures, used only as a worked example). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
