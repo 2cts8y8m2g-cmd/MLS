@@ -1,0 +1,1766 @@
+{
+  "schemaVersion": 1,
+  "id": "chem-gfr-clearance-creatinine-limits",
+  "title": "GFR Markers: Inulin, Creatinine Clearance and the BUN Ratio",
+  "summary": "Learn what makes an ideal filtration marker, why inulin and PAH measure GFR and renal plasma flow, how to calculate creatinine clearance from a 24-hour urine, why serum creatinine is an imperfect GFR marker, and why a BUN-to-creatinine ratio above 20 does not prove prerenal azotemia.",
+  "domain": "p2-chem",
+  "topic": "ch15",
+  "conceptIds": [
+    "ch15.hit2",
+    "ch15.hit14",
+    "ch15.trap5",
+    "ch15.trap6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 15,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          14
+        ]
+      },
+      {
+        "chapter": 15,
+        "section": "Exam Traps",
+        "items": [
+          5,
+          6
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 15 Hit 2 (inulin as GFR gold standard; PAH ≈ renal plasma flow; filtration fraction), Hit 14 (creatinine clearance calculation), Trap 5 (creatinine is not a perfect GFR marker) and Trap 6 (urea and the BUN:creatinine ratio). Checked against Speeckaert 2021, Ebert 2021, Seegmiller 2020, Bischoff 2014, Pottel 2024, Wang 2024, Biljak 2017, Drion 2012, Ostermann 2016, Husain 2023 and Uchino 2012 (all full text from Europe PMC). Inulin is taught as the classic reference that has largely been replaced in practice by iohexol, iothalamate and isotope clearance (register flag rv-inulin-reference-context). The BUN:creatinine > 20 rule for prerenal azotemia is taught as a suggestion only, because Uchino 2012 found it did not separate prerenal azotemia from ATN (register flag rv-bun-cr-ratio-prerenal). The filtration fraction “≈ 0.2” is shown with one study’s figures (about 0.23). The reviewer says secretion reaches 50% of urinary creatinine in advanced renal failure; Wang 2024 reports a creatinine/inulin clearance ratio up to 2.5 (about 60% secreted), so the lesson quotes the ratio. Not verified and not taught: the direction of bilirubin and cephalosporin interference in the Jaffe assay, “muscle wasting can cut production to < 1/5 of predicted”, tube feeding plus muscle wasting as the top inpatient cause of a high ratio, and the inulin clearance reference values. Not taught: eGFR equations, cystatin C details, FENa (taught in chem-fena-prerenal-vs-atn)."
+  },
+  "prerequisites": [],
+  "objectives": [
+    "State the properties of an ideal filtration marker and why inulin and PAH clearance estimate GFR and renal plasma flow.",
+    "Calculate creatinine clearance from a timed urine collection and name its main errors.",
+    "Explain how muscle mass, tubular secretion, assay interference and non-steady states distort serum creatinine.",
+    "Interpret a BUN-to-creatinine ratio above 20 with its non-renal causes in mind."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three kidney numbers",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three requests reach the chemistry bench. (1) A 24-hour urine of 1440 mL with urine creatinine 100 mg/dL and plasma creatinine 1.0 mg/dL: what is the creatinine clearance? (2) A bed-bound patient with a leg amputation and severe muscle wasting: serum creatinine 0.6 mg/dL, creatinine-based eGFR 110. (3) An inpatient on high-protein tube feeding: BUN 60 mg/dL, creatinine 2.0 mg/dL, ratio 30. Question token: “Which number tells the truth about GFR?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Three kidney numbers reach the bench. A twenty-four hour urine of 1440 millilitres, waiting for a creatinine clearance."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "A bed-bound amputee with wasted muscles and a creatinine of 0.6. And a tube-fed inpatient with a BUN to creatinine ratio of 30."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which of these numbers tells the truth about filtration, and which one is being fooled?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "c1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 190,
+            "tone": "b",
+            "title": "1 24-h urine",
+            "lines": [
+              "1440 mL · U 100 mg/dL",
+              "P 1.0 mg/dL",
+              "Clearance = ?"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 190,
+            "tone": "warn",
+            "title": "2 Amputee, wasted",
+            "lines": [
+              "Creatinine 0.6 mg/dL",
+              "eGFR 110"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 190,
+            "tone": "a",
+            "title": "3 Tube-fed inpatient",
+            "lines": [
+              "BUN 60 · creatinine 2.0",
+              "Ratio 30"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "Which number tells the truth about GFR?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The perfect filtration marker",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic nephron. Ideal-marker card: freely filtered, not protein-bound, removed only by the kidney, neither secreted nor reabsorbed by the tubules. Inulin card: meets these criteria, so its urinary clearance was long the reference method; now laborious and in short supply, largely replaced by iohexol, iothalamate, ⁵¹Cr-EDTA or ⁹⁹ᵐTc-DTPA clearance. PAH card: para-aminohippurate is filtered AND secreted, mostly removed in one pass, so its clearance approximates effective renal plasma flow (extraction about 0.9 in healthy people). Filtration fraction card: GFR ÷ renal plasma flow; in one study of healthy adolescents, 139 ÷ 615 mL/min ≈ 0.23, roughly a fifth to a quarter of plasma filtered.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "A perfect filtration marker is freely filtered, not bound to protein, removed only by the kidney, and neither secreted nor reabsorbed by the tubules. Whatever is filtered is exactly what appears in the urine."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Inulin meets these rules, so its urinary clearance was long the reference method for GFR. Because it is laborious and in short supply, most centres now use iohexol, iothalamate or radioactive tracers instead."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "P A H, para-aminohippurate, is different. It is filtered and also secreted, so most of it is cleared in a single pass. Its clearance approximates the effective renal plasma flow."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Divide GFR by renal plasma flow and you get the filtration fraction. In one study of healthy adolescents it was about 139 over 615, roughly a fifth to a quarter."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ideal",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 200,
+            "tone": "good",
+            "title": "Ideal GFR marker",
+            "lines": [
+              "Freely filtered, not protein-bound",
+              "Kidney is the only exit",
+              "Not secreted, not reabsorbed"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "inu",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 200,
+            "tone": "b",
+            "title": "Inulin: classic reference",
+            "lines": [
+              "Urinary clearance = GFR",
+              "Now: iohexol, iothalamate,",
+              "⁵¹Cr-EDTA, ⁹⁹ᵐTc-DTPA"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pah",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 430,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "PAH: filtered + secreted",
+            "lines": [
+              "One pass clears most of it",
+              "Clearance ≈ renal plasma flow"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ff",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Filtration fraction",
+            "lines": [
+              "GFR ÷ RPF",
+              "139 ÷ 615 ≈ 0.23 (one study)"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Why creatinine is not perfect",
+      "start": 60,
+      "end": 104,
+      "altText": "Four cards on serum creatinine (113 Da, freely filtered, made from muscle creatine). Generation: depends on muscle mass and diet (cooked meat, creatine supplements); amputation, muscular dystrophy, anorexia or wasting lower it, so creatinine-based eGFR can be falsely high. Secretion: some creatinine is secreted by the proximal tubule, so creatinine clearance overestimates GFR (about 25% in one review); in chronic renal failure the creatinine/inulin clearance ratio can reach 2.5; drugs such as cimetidine or trimethoprim block secretion and raise creatinine without changing GFR. Assay: the Jaffe alkaline picrate reaction also reacts with pseudo-chromogens (acetoacetate and other ketones, glucose, protein) and generally reads higher than enzymatic methods; bilirubin and some drugs, including cephalosporins, are listed interferents; enzymatic assays are more specific. Steady state: in early AKI the GFR can be near zero while creatinine is only slightly above baseline, so estimating equations are not valid.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "Creatinine is small, 113 daltons, and freely filtered, but it is made from muscle creatine. Little muscle, from amputation, dystrophy, anorexia or wasting, means little creatinine, so the estimated GFR can look falsely good. Meat and creatine supplements push it the other way."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "The tubules also secrete some creatinine, so creatinine clearance overestimates GFR, by about a quarter in one review. In chronic renal failure the creatinine clearance can be two and a half times the inulin clearance. Cimetidine and trimethoprim block secretion and raise creatinine without touching GFR."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "The assay matters too. The Jaffe picrate reaction also colours ketones such as acetoacetate, glucose and protein, so it usually reads higher than enzymatic methods. Bilirubin and some drugs, including cephalosporins, interfere as well."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "Finally, creatinine needs a steady state. Early in acute kidney injury the GFR can collapse while creatinine has barely moved, so GFR equations do not apply until levels settle."
+        }
+      ],
+      "objects": [
+        {
+          "id": "gen",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 200,
+            "tone": "bad",
+            "title": "Generation (muscle)",
+            "lines": [
+              "Low muscle → low creatinine",
+              "eGFR falsely high",
+              "Meat, creatine: higher"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sec",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 200,
+            "tone": "warn",
+            "title": "Tubular secretion",
+            "lines": [
+              "CrCl overestimates (~25%)",
+              "CRF: up to 2.5 × inulin",
+              "Cimetidine, trimethoprim"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12,
+              "reveal": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "assay",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 430,
+            "w": 440,
+            "h": 170,
+            "tone": "a",
+            "title": "Assay (Jaffe)",
+            "lines": [
+              "Ketones, glucose, protein: high",
+              "Bilirubin, cephalosporins interfere",
+              "Enzymatic: more specific"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 32,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ss",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "h": 170,
+            "tone": "b",
+            "title": "Steady state",
+            "lines": [
+              "Early AKI: GFR falls first",
+              "Creatinine lags",
+              "Equations not valid"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Clearance and the BUN ratio",
+      "start": 104,
+      "end": 144,
+      "altText": "Formula card: clearance = (urine creatinine × urine flow) ÷ plasma creatinine; 24-hour volume ÷ 1440 min = flow in mL/min; 1440 mL → 1 mL/min; (100 × 1) ÷ 1.0 = 100 mL/min. Pitfall card: timed collections are error-prone; in one study of living kidney donor candidates median 24-h creatinine clearance was 73 versus iothalamate-measured GFR 107 mL/min/1.73 m², attributed mainly to collection problems; secretion pushes the other way. BUN ratio card: the classic idea is that in volume depletion ADH increases urea reabsorption so BUN rises more than creatinine (ratio > 20); in a study of 3641 AKI inpatients about half had a ratio > 20, the ratio was not bimodal, and a high ratio carried higher, not lower, mortality; BUN also rises with protein load or parenteral nutrition, catabolism, steroids and gastrointestinal bleeding. Hook answers: (1) 100 mL/min if the collection was complete; (2) low muscle makes creatinine overestimate GFR, so cystatin C or measured GFR is more reliable; (3) a ratio of 30 suggests but does not prove volume depletion; consider feeding, catabolism, bleeding or steroids.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Clearance equals urine creatinine times urine flow, divided by plasma creatinine. Turn a 24-hour volume into flow by dividing by 1440 minutes: 1440 millilitres is one millilitre per minute. So 100 times 1, over 1.0, is 100 millilitres per minute."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Timed urines are easy to get wrong. In one study of kidney donor candidates, the 24-hour creatinine clearance ran far below the measured GFR, mostly from collection problems, while secretion pushes it the other way."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "The BUN to creatinine ratio rests on an old idea: in volume depletion, more urea is reabsorbed, so the ratio climbs above 20. But in a large study of kidney injury, half of patients were above 20, and BUN also rises with protein feeding, catabolism, steroids and bleeding."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook. The urine gives 100 millilitres per minute, if the collection was complete. The amputee’s creatinine overestimates GFR; cystatin C or a measured GFR is safer. And the ratio of 30 suggests, but does not prove, dehydration."
+        }
+      ],
+      "objects": [
+        {
+          "id": "form",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 200,
+            "tone": "good",
+            "title": "Clearance = (U × V) ÷ P",
+            "lines": [
+              "V = 24-h volume ÷ 1440 min",
+              "1440 mL → 1 mL/min",
+              "(100 × 1) ÷ 1.0 = 100 mL/min"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pit",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 430,
+            "w": 440,
+            "h": 150,
+            "tone": "warn",
+            "title": "Timed-urine pitfalls",
+            "lines": [
+              "Missed urine → too low",
+              "Secretion → too high"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bun",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 200,
+            "tone": "a",
+            "title": "BUN : creatinine > 20",
+            "lines": [
+              "Theory: urea reabsorbed",
+              "Half of AKI patients > 20",
+              "Feeding, catabolism, bleeding"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "Hook answers",
+            "lines": [
+              "1 100 mL/min if complete",
+              "2 Creatinine misleads: cystatin C",
+              "3 Ratio 30 suggests, not proves"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Serum creatinine is a perfect GFR marker” (✓ muscle mass, tubular secretion, assay interference and non-steady states all distort it); “Inulin clearance is what labs run every day” (✓ it is the classic reference concept, but routine measured GFR now mostly uses iohexol, iothalamate or isotopes, and routine estimates use creatinine or cystatin C); “BUN:creatinine > 20 proves prerenal azotemia” (✓ BUN rises with protein load, catabolism, steroids and bleeding; the ratio did not separate prerenal azotemia from ATN in a large study).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: serum creatinine is a perfect GFR marker. No: muscle, secretion, the assay and a missing steady state all bend it."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: labs measure inulin clearance every day. No: inulin is the classic reference, but measured GFR now mostly uses iohexol, iothalamate or isotopes."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: a BUN to creatinine ratio above 20 proves prerenal azotemia. No: protein, catabolism, steroids and bleeding raise BUN too."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Creatinine is a perfect GFR marker.”",
+            "lines": [
+              "✓ Muscle · secretion · assay · steady state"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Labs run inulin clearance routinely.”",
+            "lines": [
+              "✓ Reference concept; iohexol, iothalamate now"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “BUN : Cr > 20 proves prerenal.”",
+            "lines": [
+              "✓ Protein, catabolism, steroids, bleeding"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Creatinine has MASS",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Inulin goes in and out untouched; creatinine has MASS — Muscle (generation), Assay (Jaffe chromogens), Secretion (tubules), Steady state (acute changes).” Tokens: Muscle · Assay · Secretion · Steady state. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: inulin goes in and out untouched, but creatinine has MASS. Muscle makes it, the Assay can misread it, the tubules Secrete it, and it needs a Steady state."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: the list is not complete, since diet, drugs, gut breakdown and fluid status matter too. It says nothing about urea. And cystatin C, the usual alternative, has its own non-GFR influences, such as inflammation, thyroid disease and steroids."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Creatinine has MASS",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 170,
+            "w": 200,
+            "label": "Muscle",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 170,
+            "w": 200,
+            "label": "Assay",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 170,
+            "w": 200,
+            "label": "Secretion",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 810,
+            "y": 170,
+            "w": 200,
+            "label": "Steady state",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.1,
+              "opacity": 0
+            },
+            {
+              "t": 5.8999999999999995,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "inu",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 240,
+            "w": 700,
+            "label": "Inulin: in and out untouched",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 6.5,
+              "opacity": 0
+            },
+            {
+              "t": 7.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 400,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Not exhaustive: diet, drugs, gut loss, fluid status",
+              "Says nothing about urea",
+              "Cystatin C has its own non-GFR influences"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Ideal marker: filtered, never secreted or reabsorbed (inulin) · PAH ≈ renal plasma flow · clearance = U × V ÷ P”, “Creatinine has MASS · BUN:Cr > 20 suggests, never proves, volume depletion”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Inulin defines GFR because it is filtered but never secreted or reabsorbed, whereas creatinine clearance, urine creatinine times flow over plasma creatinine, is bent by muscle mass, assay interference, tubular secretion and non-steady states, and a high BUN to creatinine ratio only suggests volume depletion."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Inulin: filtered only · PAH ≈ RPF · clearance = U × V ÷ P",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Creatinine has MASS · BUN : Cr > 20 suggests, never proves",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: GFR is how much plasma the kidneys filter each minute. A perfect test substance is filtered and then left alone by the tubules; inulin behaves like that, creatinine nearly does but not quite, and urea is pushed around by many things besides filtration. Scientific terms: glomerular filtration rate (GFR), clearance, measured GFR (mGFR), inulin, iohexol, iothalamate, ⁵¹Cr-EDTA, ⁹⁹ᵐTc-DTPA, para-aminohippurate (PAH), effective renal plasma flow (ERPF), filtration fraction, tubular secretion, non-GFR determinants, Jaffe (alkaline picrate) reaction, pseudo-chromogens, enzymatic creatinine assay, steady state, BUN-to-creatinine ratio, fractional excretion of urea.",
+    "why": "Clearance of a substance equals GFR only if all that is filtered appears in the urine and nothing is added by secretion or removed by reabsorption. Creatinine is also secreted, its production depends on muscle, and its assay can be fooled; urea is reabsorbed more when urine flow is low and its production rises with protein load and catabolism.",
+    "measure": "Clearance = (urine concentration × urine flow) ÷ plasma concentration; flow (mL/min) = 24-h volume ÷ 1440. Filtration fraction = GFR ÷ renal plasma flow (about 0.23 in one study of healthy adolescents: 139 ÷ 615 mL/min). Creatinine clearance overestimates GFR by about 25% because of secretion; in chronic renal failure the creatinine/inulin clearance ratio can reach 2.5. Incomplete timed collections make clearance falsely low.",
+    "differs": "Inulin (filtered only → GFR) vs PAH (filtered and secreted → renal plasma flow) vs creatinine (filtered plus some secretion → overestimates GFR) vs urea (filtered and partly reabsorbed); Jaffe vs enzymatic creatinine; steady state vs acute kidney injury.",
+    "examAngle": "Expect: a creatinine clearance calculation from a 24-hour urine, identifying the ideal-marker property of inulin or the PAH-RPF link, recognising that low muscle mass or secretion-blocking drugs distort creatinine, and not over-reading a BUN:creatinine ratio above 20."
+  },
+  "comparisons": [
+    {
+      "id": "inulin-vs-creatinine",
+      "title": "Inulin vs creatinine",
+      "left": {
+        "label": "Inulin",
+        "points": [
+          "Exogenous, infused",
+          "Filtered, not secreted or reabsorbed"
+        ]
+      },
+      "right": {
+        "label": "Creatinine",
+        "points": [
+          "Endogenous, made by muscle",
+          "Filtered plus some tubular secretion"
+        ]
+      },
+      "distinguisher": "Inulin clearance equals GFR; creatinine clearance overestimates it and serum creatinine depends on muscle mass."
+    },
+    {
+      "id": "inulin-vs-pah",
+      "title": "Inulin vs PAH",
+      "left": {
+        "label": "Inulin",
+        "points": [
+          "Filtered only",
+          "Clearance ≈ GFR"
+        ]
+      },
+      "right": {
+        "label": "PAH",
+        "points": [
+          "Filtered and secreted",
+          "Clearance ≈ effective renal plasma flow"
+        ]
+      },
+      "distinguisher": "Their ratio (GFR ÷ RPF) is the filtration fraction."
+    }
+  ],
+  "mnemonic": {
+    "text": "Inulin goes in and out untouched; creatinine has MASS: Muscle (generation), Assay (Jaffe chromogens), Secretion (tubules), Steady state (acute changes).",
+    "explanation": "Contrasts the ideal marker with the four main ways creatinine misleads.",
+    "limitation": "Not exhaustive (diet, drugs, gut creatinine breakdown and fluid status also matter); says nothing about urea or the BUN ratio; cystatin C, the usual alternative, has its own non-GFR influences such as inflammation, thyroid disease and corticosteroids."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Nephron and markers are drawn schematically.",
+    "Single-study figures (filtration fraction, donor clearance bias, BUN ratio distribution) are not universal values."
+  ],
+  "takeaway": "Inulin defines GFR because it is filtered but never secreted or reabsorbed, whereas creatinine clearance, urine creatinine times flow over plasma creatinine, is bent by muscle mass, assay interference, tubular secretion and non-steady states, and a high BUN to creatinine ratio only suggests volume depletion.",
+  "questions": [
+    {
+      "id": "chem-gfr-q1",
+      "stem": "A 24-hour urine collection measures 2880 mL with a urine creatinine of 60 mg/dL. Plasma creatinine is 1.2 mg/dL. What is the creatinine clearance?",
+      "options": [
+        {
+          "id": "a",
+          "text": "100 mL/min",
+          "rationale": "Correct. Flow = 2880 ÷ 1440 = 2 mL/min; clearance = (60 × 2) ÷ 1.2 = 100 mL/min."
+        },
+        {
+          "id": "b",
+          "text": "50 mL/min",
+          "rationale": "Incorrect. This assumes a flow of 1 mL/min; 2880 mL over 1440 minutes is 2 mL/min."
+        },
+        {
+          "id": "c",
+          "text": "144 mL/min",
+          "rationale": "Incorrect. This multiplies by the plasma creatinine instead of dividing by it."
+        },
+        {
+          "id": "d",
+          "text": "0.04 mL/min",
+          "rationale": "Incorrect. This inverts the formula; clearance is urine concentration × flow ÷ plasma concentration."
+        }
+      ],
+      "answer": "a",
+      "skill": "Creatinine clearance calculation",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-gfr-q2",
+      "stem": "Which property makes inulin clearance a reference measure of glomerular filtration rate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It is freely filtered and neither secreted nor reabsorbed by the tubules",
+          "rationale": "Correct. Everything filtered appears in the urine and nothing is added or removed, so its clearance equals GFR."
+        },
+        {
+          "id": "b",
+          "text": "It is both filtered and actively secreted, so one pass clears nearly all of it",
+          "rationale": "Incorrect. That describes PAH, whose clearance approximates renal plasma flow, not GFR."
+        },
+        {
+          "id": "c",
+          "text": "It is produced by muscle at a steady rate",
+          "rationale": "Incorrect. That describes creatinine; inulin is an exogenous substance that must be infused."
+        },
+        {
+          "id": "d",
+          "text": "It is fully reabsorbed and broken down by the proximal tubule",
+          "rationale": "Incorrect. That describes cystatin C, which is why cystatin C is measured in serum rather than as a urinary clearance."
+        }
+      ],
+      "answer": "a",
+      "skill": "Ideal filtration marker",
+      "difficulty": "recall"
+    },
+    {
+      "id": "chem-gfr-q3",
+      "stem": "A bed-bound patient with a leg amputation and severe muscle wasting has serum creatinine 0.6 mg/dL and a creatinine-based eGFR of 110 mL/min/1.73 m². What is the best interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The eGFR may overestimate GFR because low muscle mass lowers creatinine production; cystatin C or measured GFR is more reliable",
+          "rationale": "Correct. Creatinine depends on muscle mass; amputation and wasting give falsely reassuring creatinine-based estimates."
+        },
+        {
+          "id": "b",
+          "text": "Kidney function is confirmed to be excellent",
+          "rationale": "Incorrect. A low creatinine here mainly reflects low production, not high filtration."
+        },
+        {
+          "id": "c",
+          "text": "The low creatinine is caused by ketone interference in the Jaffe assay",
+          "rationale": "Incorrect. Ketones such as acetoacetate react in the Jaffe assay and push creatinine up, not down."
+        },
+        {
+          "id": "d",
+          "text": "Tubular secretion of creatinine has stopped, lowering the serum value",
+          "rationale": "Incorrect. Blocking secretion, as cimetidine or trimethoprim do, raises serum creatinine rather than lowering it."
+        }
+      ],
+      "answer": "a",
+      "skill": "Non-GFR determinants of creatinine",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch15",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 15, Kidneys, Electrolytes, and Acid-Base (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 15,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            14
+          ]
+        },
+        {
+          "chapter": 15,
+          "section": "Exam Traps",
+          "items": [
+            5,
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "speeckaert2021",
+      "kind": "external",
+      "citation": "Speeckaert MM, Seegmiller J, Glorieux G, Lameire N, Van Biesen W, Vanholder R, Delanghe JR. Measured Glomerular Filtration Rate: The Query for a Workable Golden Standard Technique. J Pers Med. 2021;11(10):949. doi:10.3390/jpm11100949",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8541429/",
+      "consulted": true,
+      "usedFor": "Full text read (Europe PMC). Criteria for an exogenous GFR marker (water-soluble, not protein-bound, only renally excreted, freely filtered, neither secreted nor reabsorbed); urinary inulin clearance long considered the reference method; inulin largely abandoned because laborious and in short supply; replaced by iohexol, iothalamate, ⁵¹Cr-EDTA, ⁹⁹ᵐTc-DTPA; cystatin C non-GFR determinants (inflammation, adiposity, smoking, thyroid and corticosteroid hormones)."
+    },
+    {
+      "id": "ebert2021",
+      "kind": "external",
+      "citation": "Ebert N, Bevc S, Bökenkamp A, Gaillard F, Hornum M, Jager KJ, et al. Assessment of kidney function: clinical indications for measured GFR. Clin Kidney J. 2021;14(8):1861-1870. doi:10.1093/ckj/sfab042",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8323140/",
+      "consulted": true,
+      "usedFor": "Full text read (Europe PMC). Creatinine depends heavily on muscle mass; sarcopenia, anorexia, muscular dystrophy or limb amputation give falsely elevated creatinine-based eGFR; cystatin C less influenced by muscle mass; measured GFR indicated when estimates are unreliable; perfect endogenous marker criteria."
+    },
+    {
+      "id": "seegmiller2020",
+      "kind": "external",
+      "citation": "Seegmiller JC, Wolfe BJ, Albtoush N, Melena I, Gross SP, Vinovskis C, et al. Tubular Secretion Markers, Glomerular Filtration Rate, Effective Renal Plasma Flow, and Filtration Fraction in Healthy Adolescents. Kidney Med. 2020;2(5):670-672. doi:10.1016/j.xkme.2020.05.013",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7568071/",
+      "consulted": true,
+      "usedFor": "Full text read (Europe PMC). PAH secreted by proximal tubule with most cleared in a single pass, approximating effective renal plasma flow; 16 healthy adolescents: iohexol GFR 139 ± 20 mL/min, PAH ERPF 615 ± 62 mL/min (filtration fraction calculated from these means ≈ 0.23)."
+    },
+    {
+      "id": "bischoff2014",
+      "kind": "external",
+      "citation": "Bischoff A, Bucher M, Gekle M, Sauvant C. PAH clearance after renal ischemia and reperfusion is a function of impaired expression of basolateral Oat1 and Oat3. Physiol Rep. 2014;2(2):e00243. doi:10.1002/phy2.243",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3966241/",
+      "consulted": true,
+      "usedFor": "Full text read (Europe PMC). PAH extraction ratio in healthy humans approximates 0.9; PAH clearance is valid for renal plasma flow only if extraction is nearly complete; filtration fraction defined as GFR/RPF."
+    },
+    {
+      "id": "pottel2024",
+      "kind": "external",
+      "citation": "Pottel H, Delanaye P, Cavalier E. Exploring Renal Function Assessment: Creatinine, Cystatin C, and Estimated Glomerular Filtration Rate Focused on the European Kidney Function Consortium Equation. Ann Lab Med. 2024;44(2):135-143. doi:10.3343/alm.2023.0237",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10628758/",
+      "consulted": true,
+      "usedFor": "Full text read (Europe PMC). Creatinine freely filtered, not reabsorbed, small proportion secreted; Jaffe alkaline picrate reaction and pseudo-chromogens (acetoacetate, pyruvate, ketones, proteins, glucose, ascorbic acid); Jaffe generally higher than enzymatic; enzymatic more specific; creatinine clearance overestimates GFR by about 25% through tubular secretion and needs a 24-h urine; cystatin C fully reabsorbed and catabolised, not secreted."
+    },
+    {
+      "id": "wang2024",
+      "kind": "external",
+      "citation": "Wang X, Mu J, Ma K, Ma Y. Challenges of Serum Creatinine Level in GFR Assessment and Drug Dosing Decisions in Kidney Injury. Adv Pharm Bull. 2024;14(4):745-758. doi:10.34172/apb.42345",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11970497/",
+      "consulted": true,
+      "usedFor": "Full text read (Europe PMC). Inulin as gold standard but not routine; drugs (cimetidine, trimethoprim and others) inhibit creatinine secretion and raise serum creatinine without changing GFR; in chronic renal failure the creatinine/inulin clearance ratio is as high as 2.5; early AKI: GFR near zero while creatinine only slightly above baseline; muscle mass determines creatinine production."
+    },
+    {
+      "id": "biljak2017",
+      "kind": "external",
+      "citation": "Biljak VR, Honović L, Matica J, Krešić B, Vojak SŠ. The role of laboratory testing in detection and classification of chronic kidney disease: national recommendations. Biochem Med (Zagreb). 2017;27(1):153-176. doi:10.11613/bm.2017.019",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5382859/",
+      "consulted": true,
+      "usedFor": "Full text read (Europe PMC). Sources of error in creatinine-based GFR estimation (table reproduced from KDIGO 2012): non-steady state (AKI), muscle mass extremes, diet (cooked meat, creatine supplements), muscle-wasting disease, drug inhibition of secretion (cimetidine, fenofibrate), spectral and chemical assay interference (glucose, ketones, bilirubin, drugs); interferents include cephalosporins; errors in collecting 24-h urine; eGFR not applicable after acute changes or amputation."
+    },
+    {
+      "id": "drion2012",
+      "kind": "external",
+      "citation": "Drion I, Cobbaert C, Groenier KH, Weykamp C, Bilo HJ, Wetzels JF, Kleefstra N. Clinical evaluation of analytical variations in serum creatinine measurements: why laboratories should abandon Jaffe techniques. BMC Nephrol. 2012;13:133. doi:10.1186/1471-2369-13-133",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3504563/",
+      "consulted": true,
+      "usedFor": "Full text read (Europe PMC). Jaffe techniques overestimated creatinine (21%, 12%, 10% at 52, 73 and 94 µmol/L) owing to non-specificity (protein, glucose, ketones); enzymatic methods less variable."
+    },
+    {
+      "id": "ostermann2016",
+      "kind": "external",
+      "citation": "Ostermann M, Joannidis M. Acute kidney injury 2016: diagnosis and diagnostic workup. Crit Care. 2016;20(1):299. doi:10.1186/s13054-016-1478-z",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5037640/",
+      "consulted": true,
+      "usedFor": "Full text read (Europe PMC). Creatinine 113 Da, freely filtered, derived from muscle creatine; affected by drugs competing for secretion, muscle wasting, sepsis, liver disease and volume status; lags behind a fall in GFR; lack of steady state in critical illness; low fractional excretion of urea (< 34%) may support functional AKI but its absence does not exclude it."
+    },
+    {
+      "id": "husain2023",
+      "kind": "external",
+      "citation": "Husain SA, Stevens JS, King KL, Robbins-Juarez SY, Cohen M, Lyashchenko AK, et al. Timed Creatinine Clearance and Measured Glomerular Filtration Rate in Living Kidney Donors. Kidney Med. 2023;5(1):100572. doi:10.1016/j.xkme.2022.100572",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9881214/",
+      "consulted": true,
+      "usedFor": "Full text read (Europe PMC). Creatinine clearance calculated as urinary creatinine × urine volume ÷ serum creatinine; 212 donor candidates: median 24-h creatinine clearance 73 vs iothalamate mGFR 107 mL/min/1.73 m²; inaccuracy attributed mainly to timed collection problems; potential error from tubular secretion."
+    },
+    {
+      "id": "uchino2012",
+      "kind": "external",
+      "citation": "Uchino S, Bellomo R, Goldsmith D. The meaning of the blood urea nitrogen/creatinine ratio in acute kidney injury. Clin Kidney J. 2012;5(2):187-191. doi:10.1093/ckj/sfs013",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5783213/",
+      "consulted": true,
+      "usedFor": "Full text read (Europe PMC). Theory: ADH increases water and urea reabsorption in prerenal azotemia so BUN rises more than creatinine (ratio > 20); in 3641 AKI inpatients, 53% had a ratio > 20, the distribution was not bimodal and a high ratio had higher mortality; BUN modulated by parenteral nutrition, protein catabolism, steroids and GI bleeding; authors conclude the ratio cannot separate prerenal azotemia from ATN."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-ideal",
+      "text": "Ideal filtration marker criteria; inulin meets them and its urinary clearance was long the reference; inulin largely replaced by iohexol, iothalamate, ⁵¹Cr-EDTA and ⁹⁹ᵐTc-DTPA.",
+      "status": "checked",
+      "refs": [
+        "speeckaert2021",
+        "ebert2021",
+        "wang2024"
+      ]
+    },
+    {
+      "id": "cl-pah-ff",
+      "text": "PAH is filtered and secreted, mostly cleared in one pass (extraction about 0.9), so its clearance approximates effective renal plasma flow; filtration fraction = GFR ÷ RPF, about 0.23 in one study of healthy adolescents.",
+      "status": "checked",
+      "refs": [
+        "seegmiller2020",
+        "bischoff2014"
+      ],
+      "note": "The 0.23 is calculated from the study means (139 ÷ 615); the reviewer’s rounded “≈ 0.2” is not quoted as a source value."
+    },
+    {
+      "id": "cl-generation",
+      "text": "Creatinine (113 Da) is freely filtered and derived from muscle creatine; low muscle mass (amputation, dystrophy, anorexia, wasting) lowers it and inflates creatinine-based eGFR; meat and creatine supplements raise it.",
+      "status": "checked",
+      "refs": [
+        "ostermann2016",
+        "ebert2021",
+        "biljak2017",
+        "pottel2024"
+      ]
+    },
+    {
+      "id": "cl-secretion",
+      "text": "Tubular secretion makes creatinine clearance overestimate GFR (about 25%); creatinine/inulin clearance ratio up to 2.5 in chronic renal failure; cimetidine and trimethoprim block secretion and raise creatinine without changing GFR.",
+      "status": "checked",
+      "refs": [
+        "pottel2024",
+        "wang2024",
+        "biljak2017"
+      ]
+    },
+    {
+      "id": "cl-jaffe",
+      "text": "Jaffe alkaline picrate reacts with pseudo-chromogens (acetoacetate and other ketones, glucose, protein) and generally reads higher than enzymatic assays; bilirubin and some drugs including cephalosporins are listed interferents; enzymatic assays are more specific.",
+      "status": "checked",
+      "refs": [
+        "pottel2024",
+        "drion2012",
+        "biljak2017"
+      ]
+    },
+    {
+      "id": "cl-steady",
+      "text": "Creatinine lags behind an acute fall in GFR; creatinine-based estimates need a steady state and are not valid in AKI.",
+      "status": "checked",
+      "refs": [
+        "wang2024",
+        "ostermann2016",
+        "biljak2017"
+      ]
+    },
+    {
+      "id": "cl-crcl",
+      "text": "Creatinine clearance = urine creatinine × urine flow ÷ plasma creatinine; 24-h volume ÷ 1440 min gives flow; timed collections are error-prone (median 73 vs measured 107 mL/min/1.73 m² in one donor study).",
+      "status": "checked",
+      "refs": [
+        "husain2023",
+        "pottel2024",
+        "biljak2017"
+      ]
+    },
+    {
+      "id": "cl-bun",
+      "text": "BUN:creatinine > 20 is based on increased urea reabsorption in volume depletion but did not separate prerenal azotemia from ATN in a large study; BUN rises with nutrition, catabolism, steroids and GI bleeding; low fractional urea excretion supports but does not prove functional AKI.",
+      "status": "checked",
+      "refs": [
+        "uchino2012",
+        "ostermann2016"
+      ]
+    },
+    {
+      "id": "cl-p-jaffe-direction",
+      "text": "Reviewer: cephalosporins falsely raise and bilirubin falsely lowers Jaffe creatinine.",
+      "status": "pending",
+      "note": "Open sources read list both as interferents without stating direction; not taught as directional."
+    },
+    {
+      "id": "cl-p-wasting",
+      "text": "Reviewer: muscle wasting can cut creatinine production to < 1/5 of predicted.",
+      "status": "pending",
+      "note": "No open source read gives this figure; not taught."
+    },
+    {
+      "id": "cl-p-tubefeed",
+      "text": "Reviewer: in hospitalised patients the top cause of a high BUN/creatinine ratio is adequate tube feeding plus severe muscle wasting; fractional urea excretion is preferred for volume assessment.",
+      "status": "pending",
+      "note": "Uchino 2012 lists nutrition and catabolism among BUN modulators but does not rank causes; not taught as the top cause."
+    },
+    {
+      "id": "cl-p-inulin-values",
+      "text": "Reviewer Number Vault: inulin clearance 127 (men) / 118 (women) mL/min/1.73 m², declining about 1 per year after age 20–30.",
+      "status": "pending",
+      "note": "Not verified against an open source; not taught."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; nephron and markers drawn schematically.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Creatinine has MASS” and “inulin goes in and out untouched.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-inulin-reference",
+      "issue": "Ch. 15 Hit 2 calls inulin clearance the GFR gold standard without context. Speeckaert 2021 describes urinary inulin clearance as the long-standing reference but notes that most clinicians have abandoned it (laborious, limited supply) for iohexol, iothalamate, ⁵¹Cr-EDTA or ⁹⁹ᵐTc-DTPA clearance. The lesson teaches inulin as the reference concept and names the methods now used (register flag rv-inulin-reference-context).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-bun-ratio",
+      "issue": "Ch. 15 Trap 6 and the Quick-Compare table present BUN:creatinine > 20 as favouring volume depletion. Uchino 2012 found about half of AKI inpatients above 20, no bimodal distribution and higher mortality with a high ratio, and concluded the ratio cannot separate prerenal azotemia from ATN; BUN also rises with nutrition, catabolism, steroids and GI bleeding. The lesson teaches the ratio as suggestive only (register flag rv-bun-cr-ratio-prerenal).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; nephron, markers and formulas shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "8 taught factual claims checked against Speeckaert 2021, Ebert 2021, Seegmiller 2020, Bischoff 2014, Pottel 2024, Wang 2024, Biljak 2017, Drion 2012, Ostermann 2016, Husain 2023 and Uchino 2012 (all read as full text from Europe PMC, no page-fetch tool). 4 reviewer claims remain pending and are not taught (Jaffe interference direction for bilirubin and cephalosporins, the < 1/5 production figure, tube feeding as the top inpatient cause of a high ratio, inulin reference values). The KDIGO 2012 table was read only as reproduced in Biljak 2017. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

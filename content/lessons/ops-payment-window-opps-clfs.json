@@ -1,0 +1,1606 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-payment-window-opps-clfs",
+  "title": "Inside or Outside the DRG: The Payment Window, APCs and the Lab Fee Schedule",
+  "summary": "Learn why an inpatient test is a cost inside one DRG payment, which outpatient tests fall into the Medicare payment window before admission, and why hospital outpatient lab tests are generally paid on the Clinical Laboratory Fee Schedule rather than through APCs.",
+  "domain": "p1-ops",
+  "topic": "ch13",
+  "conceptIds": [
+    "ch13.hit1",
+    "ch13.hit2",
+    "ch13.hit12",
+    "ch13.trap2"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 13,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          2,
+          12
+        ]
+      },
+      {
+        "chapter": 13,
+        "section": "Exam Traps",
+        "items": [
+          2
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 13 Hits 1, 2 and 12 and Exam Trap 2. Checked against the eCFR text of 42 CFR 412.2, 412.60, 414.507, 414.510, 419.1, 419.2, 419.20, 419.21, 419.22 and 419.31 (version 2026-10-01) and the CMS Three Day Payment Window page. The reviewer states the rule as a 72-hour window; the regulation counts the admission day plus the 3 calendar days before it (1 day for non-IPPS hospitals), and a lab test’s date of service is normally the collection date, not the order date (rv-payment-window-calendar-days). The reviewer’s Hit 12 says lab tests are generally paid on the fee schedule; OPPS also packages certain lab tests into related services (rv-opps-lab-packaging). The cost-center/revenue-center wording is taught as the reviewer’s managerial framing of the payment rules. Not taught: the 14-day post-discharge rule and other Number Vault figures, capitation, leases, budgeting, the CLIA competency schedule. US Medicare rules only; Philippine and PhilHealth rules are not covered."
+  },
+  "prerequisites": [
+    "ch1.hit8",
+    "ch1.hit9"
+  ],
+  "objectives": [
+    "Explain why an inpatient laboratory test adds cost but not payment under a per-discharge DRG payment.",
+    "Apply the Medicare payment window: which hospital outpatient tests before an admission go on the inpatient claim.",
+    "State how hospital outpatient clinical laboratory tests are paid relative to OPPS APCs and the Clinical Laboratory Fee Schedule."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Monday draw, Thursday admission",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a Medicare patient has a basic metabolic panel and CBC drawn at the hospital’s own outpatient laboratory on Monday morning and is admitted as an inpatient to the same acute-care (IPPS) hospital on Thursday evening, more than 72 hours later. A second set of tests was collected on Wednesday by an independent reference laboratory that the hospital does not own or operate. The billing clerk plans to send both as separate outpatient claims. Question token: “Inpatient claim, or bill separately?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "A Medicare patient has blood drawn at the hospital’s own outpatient lab on Monday morning, and is admitted to the same hospital on Thursday evening, more than seventy-two hours later."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "Another set of tests was collected on Wednesday by an independent reference lab that the hospital neither owns nor operates. The clerk plans separate outpatient claims for both."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which tests go on the inpatient claim, and which are billed separately?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "mon",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "b",
+            "title": "Mon: hospital outpatient lab",
+            "lines": [
+              "BMP + CBC collected",
+              "Admitted Thu evening"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "wed",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "Wed: independent lab",
+            "lines": [
+              "Not owned or operated",
+              "by the hospital"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 640,
+            "label": "Inpatient claim, or bill separately?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Two ways Medicare pays for a test",
+      "start": 20,
+      "end": 60,
+      "altText": "Two doors. INPATIENT door (42 CFR 412.2 and 412.60): under the inpatient prospective payment system the hospital receives a predetermined amount per discharge; that payment covers inpatient operating costs, explicitly including ancillary services such as laboratory services; each discharge is assigned to one DRG (diagnosis-related group) regardless of the number of services furnished, and each DRG has a weighting factor reflecting its relative resource cost. So an extra inpatient test adds cost but not payment. OUTPATIENT door (42 CFR 414.507): clinical diagnostic laboratory tests are paid per test from the Clinical Laboratory Fee Schedule; since 2018 each rate equals the weighted median of private payer rates.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Medicare pays for an inpatient stay with one predetermined amount per discharge, under the inpatient prospective payment system."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "That amount covers the hospital’s operating costs, including laboratory services, and each stay is assigned to a single diagnosis-related group, no matter how many services were given."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "So for an inpatient, an extra test adds cost to the hospital but no extra payment. The lab works as a cost inside a fixed price."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Outpatient lab tests are different. Each test is paid from the Clinical Laboratory Fee Schedule, and since 2018 each rate is the weighted median of private payer rates."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ipps",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Inpatient: per discharge",
+            "lines": [
+              "One predetermined amount",
+              "Lab costs included"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "drg",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "label": "One DRG per stay, any number of tests",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cost",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 480,
+            "w": 440,
+            "label": "Extra inpatient test = cost, not revenue",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "clfs",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 190,
+            "tone": "good",
+            "title": "Outpatient: per test (CLFS)",
+            "lines": [
+              "Fee schedule rate per test",
+              "Since 2018: private-payer median"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "The payment window",
+      "start": 60,
+      "end": 104,
+      "altText": "Window card (42 CFR 412.2(c)(5); CMS Three Day Payment Window page): for a subsection (d) hospital paid under IPPS, outpatient services furnished on the date of admission and during the 3 calendar days immediately preceding it are treated as inpatient operating costs and go on the Part A inpatient claim. Who card: only services furnished by the hospital or by an entity wholly owned (hospital is sole owner) or wholly operated (hospital has exclusive responsibility for routine operations) by it. What card: all diagnostic services, including clinical diagnostic laboratory tests, are included; nondiagnostic services only if related to the admission (since June 25, 2010, the hospital may attest that they are unrelated). One-day card: for non-subsection (d) hospitals (psychiatric, rehabilitation, long-term care, children’s and cancer hospitals) the window is 1 day. Date card: the date of service of a lab test is generally the date the specimen was collected (42 CFR 414.510(a)).",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Here is the rule. For an acute-care hospital paid under the inpatient system, outpatient services on the day of admission and on the three calendar days before it are billed on the inpatient claim."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "It covers only services furnished by the hospital itself, or by an entity the hospital wholly owns or wholly operates."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 92,
+          "text": "Diagnostic services, including clinical lab tests, are always included. Nondiagnostic services are included only if they relate to the admission."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "Psychiatric, rehabilitation, long-term care, children’s and cancer hospitals have a one-day window instead. And for a lab test, the date of service is normally the day the specimen was collected, not the day it was ordered."
+        }
+      ],
+      "objects": [
+        {
+          "id": "win",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Admission day + 3 calendar days",
+            "lines": [
+              "Subsection (d) IPPS hospital",
+              "Goes on the Part A claim"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "who",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "label": "Hospital or entity it wholly owns/operates",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "what",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "What is included",
+            "lines": [
+              "Diagnostic (incl. lab): always",
+              "Nondiagnostic: if related"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "one",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 400,
+            "w": 420,
+            "label": "Non-IPPS hospitals: 1-day window",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dos",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 760,
+            "label": "Lab date of service = specimen collection date",
+            "tone": "b",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 38,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 39.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Outpatient side: APCs and the fee schedule",
+      "start": 104,
+      "end": 144,
+      "altText": "OPPS card (42 CFR 419.1, 419.20, 419.31): the hospital outpatient prospective payment system took effect for services furnished from July 1, 2000 (applicability to hospitals stated as August 1, 2000); services that are clinically comparable and similar in resource use are grouped into Ambulatory Payment Classification (APC) groups, each with a payment weight. Exclusion card (419.22(l), 419.2(b)(17)): clinical diagnostic laboratory tests are excluded from OPPS payment, except certain tests whose payment is packaged into the related outpatient procedure or service. Critical access hospitals are excluded from OPPS (419.20(b)(2)). Hook answer card: Monday’s hospital tests fall in the window (Wednesday, Tuesday and Monday are the 3 calendar days before a Thursday admission) and go on the inpatient claim even though more than 72 hours passed; Wednesday’s independent-lab tests are billed by that lab on its own.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "For hospital outpatients, Medicare introduced its outpatient prospective payment system in 2000. It groups services that are clinically similar and cost about the same into Ambulatory Payment Classifications, or APCs."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "But clinical lab tests are carved out of that system, and are generally paid on the lab fee schedule instead."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 132,
+          "text": "The exception: certain lab tests are packaged, meaning their payment is folded into the payment for the related outpatient procedure."
+        },
+        {
+          "id": "l4",
+          "start": 132,
+          "end": 144,
+          "text": "Back to the hook. Wednesday, Tuesday and Monday are the three calendar days before a Thursday admission, so Monday’s hospital tests go on the inpatient claim, even after more than seventy-two hours. The independent lab bills its Wednesday tests separately."
+        }
+      ],
+      "objects": [
+        {
+          "id": "opps",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "OPPS (from 2000)",
+            "lines": [
+              "APC = similar services,",
+              "similar resource use"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "excl",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "Lab tests: excluded",
+            "lines": [
+              "Generally paid on the CLFS",
+              "not by APC"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pkg",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 400,
+            "w": 420,
+            "label": "Except certain packaged lab tests",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 760,
+            "h": 110,
+            "tone": "warn",
+            "title": "Hook answer",
+            "lines": [
+              "Mon hospital tests → inpatient claim",
+              "Wed independent lab → billed by that lab"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28.5,
+              "opacity": 0
+            },
+            {
+              "t": 29,
+              "reveal": 0
+            },
+            {
+              "t": 29.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “The order arrived 2 days before admission, so bill it as outpatient” (✓ hospital diagnostic tests in the window go on the inpatient claim; what counts is the date of service, normally the collection date); “It is a 72-hour clock” (✓ it is the admission day plus 3 calendar days before, or 1 day for non-IPPS hospitals); “Outpatient lab tests are paid by APC” (✓ lab tests are generally excluded from OPPS and paid on the fee schedule, except certain packaged tests).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: the order came in two days before admission, so bill it as outpatient. No: a diagnostic test the hospital performed in the window goes on the inpatient claim."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: it is a seventy-two-hour clock. No: count calendar days, the admission day plus the three days before it, or one day for hospitals outside the inpatient system."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: outpatient lab tests are paid through APCs. No: they are generally paid on the lab fee schedule, except certain tests that are packaged."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Ordered 2 days before, bill as outpatient.”",
+            "lines": [
+              "✓ Hospital diagnostic test in window → inpatient claim"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “It is a 72-hour clock.”",
+            "lines": [
+              "✓ Admission day + 3 calendar days (1 day non-IPPS)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Outpatient lab tests are paid by APC.”",
+            "lines": [
+              "✓ Fee schedule, except certain packaged tests"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Three days back, same owner",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Three days back, same owner: count the admission day and three calendar days back, and bundle only what the hospital’s own lab (or a lab it wholly owns or operates) did.” Tokens: Admission day + 3 calendar days · Same owner/operator · Inpatient = one DRG; outpatient = fee schedule. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: three days back, same owner. Count the admission day and three calendar days back, and bundle only what the hospital, or a lab it wholly owns or operates, performed."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: hospitals outside the inpatient system use one day; nondiagnostic services count only if related to the admission; ownership or operation decides, not the building; and these are US Medicare rules only."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Three days back, same owner",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Admission day + 3",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Same owner/operator",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "DRG in, fee schedule out",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Non-IPPS hospitals: 1 day",
+              "Nondiagnostic services only if related",
+              "Ownership decides, not location; US only"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Inpatient = one DRG payment per stay; diagnostic tests by the hospital (or its wholly owned/operated entity) on the admission day + 3 calendar days before → inpatient claim”, “Outpatient lab tests = Clinical Laboratory Fee Schedule, not APCs, except certain packaged tests”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Medicare pays one DRG amount per inpatient stay, so diagnostic tests that the hospital or an entity it wholly owns or operates performs on the admission day or the three calendar days before go on the inpatient claim, while outpatient laboratory tests are generally paid per test on the Clinical Laboratory Fee Schedule rather than through APCs."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "One DRG per stay · admission day + 3 calendar days · same owner",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Outpatient lab = fee schedule, not APC (except packaged tests)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: for a hospital stay, Medicare pays one set price, so the hospital’s tests during the stay, and the hospital’s diagnostic tests in the few days just before it, are covered by that one price. Outpatient tests on their own are paid test by test from a price list. Scientific terms: inpatient prospective payment system (IPPS), payment per discharge, diagnosis-related group (DRG) and weighting factor, subsection (d) hospital, 3-day (or 1-day) payment window, wholly owned or operated entity, diagnostic vs nondiagnostic services, date of service, hospital outpatient prospective payment system (OPPS), Ambulatory Payment Classification (APC), packaging, Clinical Laboratory Fee Schedule (CLFS).",
+    "why": "The DRG payment is predetermined and covers ancillary services such as laboratory work, and a discharge gets one DRG regardless of how many services were furnished, so inpatient testing is a cost to manage. The law defines inpatient operating costs to include the hospital’s diagnostic services shortly before admission, so those charges belong on the inpatient (Part A) claim rather than on separate outpatient claims.",
+    "measure": "Window: admission day + 3 calendar days before (subsection (d) IPPS hospitals); 1 day for psychiatric, rehabilitation, long-term care, children’s and cancer hospitals. Covered: services by the hospital or an entity it wholly owns (sole owner) or wholly operates (exclusive responsibility for routine operations). Diagnostic services (including clinical lab tests) always; nondiagnostic only if related (since June 25, 2010). Lab date of service: normally the specimen collection date. OPPS: services from July 1, 2000; APCs group clinically comparable services with similar resource use; clinical lab tests excluded except certain packaged tests. CLFS rates since 2018: weighted median of private payer rates.",
+    "differs": "Calendar-day window vs a 72-hour clock; collection date vs order date; hospital-owned or operated laboratory vs independent laboratory; diagnostic vs nondiagnostic services; IPPS (3-day) vs non-IPPS (1-day) hospitals; APC payment vs fee-schedule payment vs packaged payment.",
+    "examAngle": "Expect: decide whether a pre-admission test is billed on the inpatient claim, identify the exception for an independent laboratory, or name how outpatient laboratory tests are paid (fee schedule, not APC)."
+  },
+  "comparisons": [
+    {
+      "id": "inpatient-vs-outpatient-payment",
+      "title": "Inpatient vs outpatient lab payment",
+      "left": {
+        "label": "Inpatient (IPPS)",
+        "points": [
+          "One predetermined amount per discharge (DRG)",
+          "Extra tests add cost, not payment"
+        ]
+      },
+      "right": {
+        "label": "Outpatient (CLFS)",
+        "points": [
+          "Paid per test from the fee schedule",
+          "Generally outside OPPS APC payment"
+        ]
+      },
+      "distinguisher": "Fixed price per stay vs a price per test."
+    },
+    {
+      "id": "window-in-vs-out",
+      "title": "In the window vs outside it",
+      "left": {
+        "label": "Goes on the inpatient claim",
+        "points": [
+          "Hospital or wholly owned/operated entity",
+          "Diagnostic test on admission day or 3 calendar days before"
+        ]
+      },
+      "right": {
+        "label": "Billed separately",
+        "points": [
+          "Independent laboratory the hospital does not own or operate",
+          "Collected before the window opens"
+        ]
+      },
+      "distinguisher": "Who furnished the test and on which calendar day it was collected."
+    }
+  ],
+  "mnemonic": {
+    "text": "Three days back, same owner: count the admission day and three calendar days back, and bundle only what the hospital’s own lab (or a lab it wholly owns or operates) did.",
+    "explanation": "Links the calendar-day count with the ownership condition of 42 CFR 412.2(c)(5).",
+    "limitation": "Non-IPPS hospitals use a 1-day window; nondiagnostic services are included only if related to the admission; ownership or operation decides, not physical location; US Medicare rules only."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Payment doors and window cards are schematic, not real claim forms.",
+    "Regulatory text paraphrased (US Medicare only); read the current regulations and CMS manuals for exact wording."
+  ],
+  "takeaway": "Medicare pays one DRG amount per inpatient stay, so diagnostic tests that the hospital or an entity it wholly owns or operates performs on the admission day or the three calendar days before go on the inpatient claim, while outpatient laboratory tests are generally paid per test on the Clinical Laboratory Fee Schedule rather than through APCs.",
+  "questions": [
+    {
+      "id": "ops-pw-q1",
+      "stem": "A Medicare patient’s blood is collected at an acute-care (IPPS) hospital’s outpatient laboratory at 8 a.m. on Monday for a diagnostic panel. The patient is admitted as an inpatient to the same hospital at 6 p.m. on Thursday. How should the Monday test be billed?",
+      "options": [
+        {
+          "id": "a",
+          "text": "On the inpatient (Part A) claim for the stay",
+          "rationale": "Correct. Monday is one of the 3 calendar days before a Thursday admission, and diagnostic services furnished by the hospital in that window are included on the inpatient claim."
+        },
+        {
+          "id": "b",
+          "text": "As a separate outpatient claim, because more than 72 hours passed",
+          "rationale": "Incorrect. The window counts calendar days (admission day plus the 3 days before), not hours."
+        },
+        {
+          "id": "c",
+          "text": "As a separate outpatient claim, because it was ordered before the admission decision",
+          "rationale": "Incorrect. Diagnostic services in the window are included regardless of when they were ordered; the lab date of service is normally the collection date."
+        },
+        {
+          "id": "d",
+          "text": "Only after the patient signs an Advance Beneficiary Notice",
+          "rationale": "Incorrect. An ABN concerns likely noncoverage for medical necessity; it has nothing to do with the payment window."
+        }
+      ],
+      "answer": "a",
+      "skill": "Payment window",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-pw-q2",
+      "stem": "Two days before an inpatient admission to an IPPS hospital, which of these laboratory services would NOT be included on the hospital’s inpatient claim under the payment window?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tests performed by an independent laboratory that the hospital neither owns nor operates",
+          "rationale": "Correct. The window applies only to services furnished by the hospital or by an entity it wholly owns or wholly operates."
+        },
+        {
+          "id": "b",
+          "text": "Tests performed in the hospital’s own outpatient laboratory",
+          "rationale": "Incorrect. Hospital-furnished diagnostic tests in the window go on the inpatient claim."
+        },
+        {
+          "id": "c",
+          "text": "Tests performed by an off-site laboratory of which the hospital is the sole owner",
+          "rationale": "Incorrect. A wholly owned entity is treated like the hospital, whatever its location."
+        },
+        {
+          "id": "d",
+          "text": "Tests performed by the hospital that seem unrelated to the reason for admission",
+          "rationale": "Incorrect. Diagnostic services, including clinical lab tests, are included whether or not they relate to the admission; only nondiagnostic services can be attested as unrelated."
+        }
+      ],
+      "answer": "a",
+      "skill": "Payment window exceptions",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-pw-q3",
+      "stem": "Under Medicare, how are clinical diagnostic laboratory tests for hospital outpatients generally paid?",
+      "options": [
+        {
+          "id": "a",
+          "text": "On the Clinical Laboratory Fee Schedule, except certain tests packaged into a related outpatient service",
+          "rationale": "Correct. Clinical lab tests are excluded from OPPS payment except when packaged (42 CFR 419.22(l) and 419.2(b)(17))."
+        },
+        {
+          "id": "b",
+          "text": "Each test through its own Ambulatory Payment Classification",
+          "rationale": "Incorrect. APCs group outpatient procedures and services, but clinical lab tests are generally excluded from OPPS payment."
+        },
+        {
+          "id": "c",
+          "text": "Through the DRG for the patient’s diagnosis",
+          "rationale": "Incorrect. DRGs classify inpatient discharges, not outpatient visits."
+        },
+        {
+          "id": "d",
+          "text": "Through a fixed payment per member per month",
+          "rationale": "Incorrect. That describes capitation, which is not how Medicare fee-for-service pays outpatient lab tests."
+        }
+      ],
+      "answer": "a",
+      "skill": "OPPS and CLFS",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch13",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 13, The Business Side of the Lab (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 13,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            2,
+            12
+          ]
+        },
+        {
+          "chapter": 13,
+          "section": "Exam Traps",
+          "items": [
+            2
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope, cost-center framing and exam framing. Not used as verification."
+    },
+    {
+      "id": "cfr412-2",
+      "kind": "external",
+      "citation": "42 CFR § 412.2 — Basis of payment (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-412/subpart-A/section-412.2",
+      "consulted": true,
+      "usedFor": "Predetermined amount per discharge; operating costs include ancillary services such as laboratory services; (c)(5) preadmission services on the admission date and the 3 calendar days before, furnished by the hospital or an entity wholly owned (sole owner) or wholly operated (exclusive responsibility for routine operations); diagnostic services including clinical diagnostic laboratory tests; nondiagnostic services from June 25, 2010 unless attested unrelated."
+    },
+    {
+      "id": "cfr412-60",
+      "kind": "external",
+      "citation": "42 CFR § 412.60 — DRG classification and weighting factors (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-412/subpart-D/section-412.60",
+      "consulted": true,
+      "usedFor": "Discharges classified into DRGs; each DRG has a weighting factor reflecting relative resource cost; each discharge is assigned to only one DRG regardless of the number of conditions treated or services furnished."
+    },
+    {
+      "id": "cms-window",
+      "kind": "external",
+      "citation": "Centers for Medicare & Medicaid Services. Three Day Payment Window. CMS.gov (accessed 2026-10-11).",
+      "url": "https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/three-day-payment-window",
+      "consulted": true,
+      "usedFor": "3-day window for subsection (d) IPPS hospitals and 1-day window for non-subsection (d) hospitals (psychiatric, rehabilitation, long-term care, children’s and cancer hospitals); all outpatient diagnostic services and related nondiagnostic services furnished by the hospital or a wholly owned or operated entity go on the Part A inpatient bill; Pub. L. 111-192 section 102 effective June 25, 2010."
+    },
+    {
+      "id": "cfr414-510",
+      "kind": "external",
+      "citation": "42 CFR § 414.510 — Laboratory date of service for clinical laboratory and pathology specimens (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-414/subpart-G/section-414.510",
+      "consulted": true,
+      "usedFor": "Date of service of a clinical laboratory test is generally the date the specimen was collected (with listed exceptions for stored specimens and certain tests)."
+    },
+    {
+      "id": "cfr414-507",
+      "kind": "external",
+      "citation": "42 CFR § 414.507 — Payment for clinical diagnostic laboratory tests (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-414/subpart-G/section-414.507",
+      "consulted": true,
+      "usedFor": "Payment rate per clinical diagnostic laboratory test from January 1, 2018 equals the weighted median of private payor rates."
+    },
+    {
+      "id": "cfr419-opps",
+      "kind": "external",
+      "citation": "42 CFR §§ 419.1, 419.20 and 419.21 — Hospital outpatient prospective payment system: basis and scope; hospitals and services subject to it (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-419",
+      "consulted": true,
+      "usedFor": "OPPS established for services furnished on or after July 1, 2000 (applicability to hospitals stated as on or after August 1, 2000); critical access hospitals excluded."
+    },
+    {
+      "id": "cfr419-31",
+      "kind": "external",
+      "citation": "42 CFR § 419.31 — Ambulatory payment classification (APC) system and payment weights (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-419/subpart-C/section-419.31",
+      "consulted": true,
+      "usedFor": "APC groups classify outpatient services comparable clinically and in resource use; each APC has a weighting factor."
+    },
+    {
+      "id": "cfr419-2-22",
+      "kind": "external",
+      "citation": "42 CFR §§ 419.2 and 419.22 — OPPS basis of payment (packaged costs) and services excluded from OPPS (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-419/subpart-B/section-419.22",
+      "consulted": true,
+      "usedFor": "419.22(l): clinical diagnostic laboratory tests are not paid under OPPS except as provided in 419.2(b)(17); 419.2(b)(17): certain clinical diagnostic laboratory tests are packaged into payment for the related procedures or services."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-drg",
+      "text": "IPPS pays a predetermined amount per discharge that includes laboratory services; one DRG per discharge regardless of services furnished; DRG weighting factors.",
+      "status": "checked",
+      "refs": [
+        "cfr412-2",
+        "cfr412-60"
+      ]
+    },
+    {
+      "id": "cl-window",
+      "text": "Payment window: admission day plus 3 calendar days (1 day for non-subsection (d) hospitals); hospital or wholly owned/operated entity; diagnostic services always, nondiagnostic only if related; Part A inpatient claim.",
+      "status": "checked",
+      "refs": [
+        "cfr412-2",
+        "cms-window"
+      ]
+    },
+    {
+      "id": "cl-dos",
+      "text": "Lab date of service is generally the specimen collection date.",
+      "status": "checked",
+      "refs": [
+        "cfr414-510"
+      ]
+    },
+    {
+      "id": "cl-opps",
+      "text": "OPPS from 2000; APC definition; clinical lab tests excluded from OPPS except certain packaged tests; CLFS payment per test, weighted median of private payor rates since 2018.",
+      "status": "checked",
+      "refs": [
+        "cfr419-opps",
+        "cfr419-31",
+        "cfr419-2-22",
+        "cfr414-507"
+      ]
+    },
+    {
+      "id": "cl-centers",
+      "text": "Inpatient laboratory as a cost center and outpatient laboratory as a historical revenue center.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch13"
+      ],
+      "note": "Managerial framing from the reviewer; consistent with the payment rules read, but the terms themselves were not checked against an accounting source. Taught only as the consequence that extra inpatient tests add cost but not payment."
+    },
+    {
+      "id": "cl-pend",
+      "text": "Number Vault figures (Medicare share of hospital revenue, MAC jurisdictions, number of DRGs, 14-day post-discharge rule) and related Ch. 13 items.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch13"
+      ],
+      "note": "Not taught in this lesson."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; payment doors and window cards schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Three days back, same owner.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-window-calendar",
+      "issue": "The reviewer (Hit 1, Trap 2, Number Vault, figure caption, Memory Hook) states a 72-hour window tied to when tests were ordered. 42 CFR 412.2(c)(5) and the CMS payment-window page count the admission date plus the 3 calendar days before it (1 day for non-subsection (d) hospitals), limited to services furnished by the hospital or an entity it wholly owns or operates, and 42 CFR 414.510 sets a lab test’s date of service as the collection date. A test collected more than 72 hours before admission can still fall in the window. The lesson teaches the regulation.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-opps-packaging",
+      "issue": "The reviewer’s Hit 12 says clinical lab tests are generally still paid on the fee schedule rather than by APC. That holds, but 42 CFR 419.22(l) and 419.2(b)(17) add that certain clinical diagnostic laboratory tests are packaged into the OPPS payment for the related service. The lesson teaches the exception.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-us-only-payment",
+      "issue": "DRG/IPPS, the payment window, OPPS/APCs and the Clinical Laboratory Fee Schedule are US Medicare rules. Philippine and PhilHealth payment rules are not covered (see register flag rv-us-centric); MTLE candidates should check local requirements.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; payment rules shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against the eCFR text of 42 CFR 412.2, 412.60, 414.507, 414.510, 419.1, 419.2, 419.20, 419.21, 419.22 and 419.31 (version 2026-10-01) and the CMS Three Day Payment Window page; 2 pending (the reviewer’s cost-center/revenue-center framing; Number Vault figures not taught). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

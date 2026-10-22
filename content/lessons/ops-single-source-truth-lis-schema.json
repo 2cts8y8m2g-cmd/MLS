@@ -1,0 +1,1578 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-single-source-truth-lis-schema",
+  "title": "Single Source of Truth, Denormalization and the LIS Schema",
+  "summary": "Learn why each data element should live in one table with other tables pointing to it by key, what primary and foreign keys enforce, when deliberate duplication (denormalization) is acceptable, and why a lab needs its LIS schema and data access to build its own reports.",
+  "domain": "p1-ops",
+  "topic": "ch12",
+  "conceptIds": [
+    "ch12.hit4",
+    "ch12.hit12",
+    "ch12.trap3",
+    "ch12.trap6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 12,
+        "section": "High-Yield Hits",
+        "items": [
+          4,
+          12
+        ]
+      },
+      {
+        "chapter": 12,
+        "section": "Exam Traps",
+        "items": [
+          3,
+          6
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 12 Hits 4 (single source of truth; denormalization) and 12 (LIS schema must be secured) and Traps 3 (duplicated data) and 6 (proprietary schema). Keys and referential integrity are checked against the PostgreSQL documentation (Section 5.5 and Glossary); duplication errors against Dilling 2020; denormalization trade-offs against Angles 2024; vendor-contract data access against Dilling 2020 and Arvisais-Anhalt 2022. The reviewer says duplication “breaks referential integrity”; in the PostgreSQL definition referential integrity is the foreign-key matching rule, and stale duplicates are a consistency problem (register flag rv-duplication-vs-referential-integrity). No consulted source states that the schema must be secured by contract as a standard requirement; the lesson presents it as the reviewer’s recommendation, supported by sources showing that data access is often set by vendor contracts. Not taught: barcodes, Auto-14, cognition limits, machine-learning terminology."
+  },
+  "prerequisites": [
+    "ch12.hit3"
+  ],
+  "objectives": [
+    "Explain single source of truth and how primary and foreign keys support it.",
+    "Distinguish a stale duplicate (inconsistency) from a foreign-key violation, and describe denormalization as a managed trade-off.",
+    "Explain why access to the LIS schema and data matters for independent reports and extractions."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two birth dates, one patient",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: registration corrects a patient’s date of birth from 1958 to 1985. The LIS stores the birth date in the patient table AND in a copied column of a report table, which nobody updated. The next report prints the old date, and an age-based reference interval is applied to the wrong age. Separately, the lab asks for a monthly turnaround report the vendor does not offer and is told the database layout is not shared. Question token: “Which design rule broke, and what should the lab have secured?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Invented scenario: registration corrects a patient’s birth date. The patient table is fixed, but a copy of the birth date in a report table is not."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "The next report prints the old date, and the age-based reference range is chosen for the wrong age."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Then the lab wants its own report, and learns it cannot see how the database is laid out. Which rule broke, and what should the lab have secured?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "pt",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Patient table",
+            "lines": [
+              "Birth date: 1985 (corrected)"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rep",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "Report table copy",
+            "lines": [
+              "Birth date: 1958 (stale)"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0
+            },
+            {
+              "t": 4.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "res",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 320,
+            "w": 420,
+            "label": "Wrong age → wrong range",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sch",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 320,
+            "w": 420,
+            "label": "Own report? Layout not shared",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 760,
+            "label": "Which rule broke? What should be secured?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 18.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "One home per data element",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic: a Patient table (key: medical record number, holding name and birth date) and a Results table whose rows carry the record number as a foreign key. Card 1: each data element is stored in one place; other tables point to it by key. Card 2: primary key = unique, not-null identifier for each row. Card 3: foreign key = values must match a row in the referenced table; this is referential integrity. Card 4: a spreadsheet repeats the patient’s data on every row, so one change must be made in many places.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "In a relational database, each fact lives in one home. The birth date sits once, in the patient table. Every other table that needs it holds only the patient’s key."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "A primary key identifies each row. It must be unique and never empty, so the same patient cannot be entered twice under one key."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "A foreign key must match a row that exists in another table. A result cannot point to a patient who is not there. That rule is called referential integrity."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Compare a spreadsheet: it repeats the patient’s details on every row, so a single correction must be made in many places, and one missed row leaves an error."
+        }
+      ],
+      "objects": [
+        {
+          "id": "home",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "good",
+            "title": "One home per fact",
+            "lines": [
+              "Birth date stored once",
+              "Others hold the key"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pk",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "b",
+            "title": "Primary key",
+            "lines": [
+              "Unique, never empty",
+              "One row per patient"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fk",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Foreign key",
+            "lines": [
+              "Must match an existing row",
+              "= referential integrity"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ss",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Spreadsheet",
+            "lines": [
+              "Details repeated per row",
+              "One fix, many places"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "When copies drift",
+      "start": 60,
+      "end": 104,
+      "altText": "Left card: an undisciplined copy. The same element stored in two tables can be updated in one and not the other; the copies then disagree and a report may read the stale one. Middle note: strictly, referential integrity is the foreign-key matching rule; a stale copy is an inconsistency between duplicates, which a foreign key alone does not catch. Right card: denormalization. Designers sometimes add redundant data on purpose to make queries faster; the cost is a risk to data integrity and consistency, so the copies must be kept in step deliberately.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Now break the rule. Store the birth date in two tables, update one, and the copies disagree. Any report that reads the stale copy is wrong, and nothing looks broken."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "A precise point: referential integrity, strictly, is the foreign key matching rule. A stale duplicate is a consistency failure that a foreign key alone will not catch. Avoiding duplicates is how you prevent it."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "Sometimes duplication is deliberate. Denormalization adds redundant data so queries run faster."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "The price is a risk to integrity and consistency, so a denormalized copy must be kept in step on purpose, never assumed to stay correct."
+        }
+      ],
+      "objects": [
+        {
+          "id": "drift",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 210,
+            "w": 440,
+            "h": 210,
+            "tone": "bad",
+            "title": "Undisciplined copy",
+            "lines": [
+              "Two homes for one fact",
+              "One updated, one stale",
+              "Report reads the stale one"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ri",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 410,
+            "w": 440,
+            "label": "Stale copy ≠ FK violation",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "den",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 210,
+            "tone": "a",
+            "title": "Denormalization",
+            "lines": [
+              "Deliberate redundancy",
+              "Faster queries",
+              "Risk: inconsistency"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "keep",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 410,
+            "w": 420,
+            "label": "Keep copies in step on purpose",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "The schema and who can see it",
+      "start": 104,
+      "end": 144,
+      "altText": "Card 1: schema = the data descriptions of a database: table definitions, keys and other constraints. Card 2: to write your own query or extraction (custom SQL), you need to know which tables hold the data and how their keys link. Card 3: how much access an institution has to a vendor system’s underlying data is often set in the contracts signed with the vendor; access gets harder when a lab changes LIS, and some institutions pay the vendor or a third party to reach archived data. Card 4, hook answers: (1) the birth date had two homes, breaking single source of truth; (2) the lab should have secured schema and data access when buying the system.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "The schema is the description of a database: its table definitions, its keys and its other constraints. It is the map of where every fact lives."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "To build your own report or extraction, someone must write a query against those tables, and that needs the map."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "How much access a lab gets to a vendor system’s data is often written into the vendor contract. Access gets harder when a lab changes systems, and some institutions end up paying the vendor or a third party for it."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook. The birth date had two homes, so single source of truth broke. And the time to secure the schema and data access was at purchase."
+        }
+      ],
+      "objects": [
+        {
+          "id": "def",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Schema",
+            "lines": [
+              "Table definitions",
+              "Keys and constraints"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sql",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Own reports",
+            "lines": [
+              "Custom query needs the map"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "con",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "warn",
+            "title": "Vendor contract",
+            "lines": [
+              "Often sets data access",
+              "LIS change: harder, may cost"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Hook answers",
+            "lines": [
+              "1 Two homes for one fact",
+              "2 Secure access at purchase"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “A duplicate is harmless — it’s just a copy” (✓ copies drift; one stale copy misreports); “Denormalization is always an error” (✓ it is a deliberate performance trade-off that must be managed); “Vendor reports are enough, the schema doesn’t matter” (✓ without the schema and data access the lab cannot build independent reports or extractions; address access at purchase).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a duplicate is harmless, it is just a copy. No: copies drift, and one stale copy is enough to misreport."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: denormalization is always a mistake. No: it is a deliberate trade for speed, acceptable only when the copies are managed."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the vendor’s reports are enough, so the schema does not matter. No: without it the lab cannot build its own reports or extractions."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “It’s just a copy.”",
+            "lines": [
+              "✓ Copies drift; one stale copy misreports"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Denormalization is always wrong.”",
+            "lines": [
+              "✓ Deliberate speed trade-off, must be managed"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Vendor reports are enough.”",
+            "lines": [
+              "✓ No schema = no independent reports"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "One home, many addresses",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Every fact has ONE HOME; other tables carry only its ADDRESS (the key); the SCHEMA is the street map — get the map when you buy the town.” Tokens: home = single table · address = key · map = schema. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: every fact has one home. Other tables carry only its address, the key. The schema is the street map, and you get the map when you buy the town."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: denormalized copies are deliberate second homes; a key checks that an address exists, not that the value is right; and in some database products, schema also names a container for tables."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "One home, many addresses",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Home = one table",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Address = key",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Map = schema",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Denormalized copies are deliberate",
+              "A key checks existence, not correctness",
+              "“Schema” can also mean a namespace"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “One home per fact · other tables hold the key · copies drift unless managed”, “Schema = table definitions + keys → secure access at purchase”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Store each fact in one table and let other tables point to it by key, manage any deliberate copy so it cannot drift, and secure the schema and data access when the system is bought so the lab can build its own reports."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "One home per fact · others hold the key · copies drift",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Schema = tables + keys → secure access at purchase",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: write each fact down in one place only, and everywhere else just point to it. If you copy it, the copies can disagree. And to pull your own reports out of a system, you need its map. Scientific terms: relational database, table, row, primary key, foreign key, referential integrity, single source of truth, duplication, denormalization, data consistency, schema (table definitions, keys, constraints), SQL query, extraction.",
+    "why": "When a fact is stored once, a correction is made once and every report reads the same value. Duplicates must each be updated, and a missed one silently misreports. Labs also need reports the vendor may not supply, and building them needs knowledge of the tables and keys plus permission to reach the data.",
+    "measure": "Primary key: unique and not null for each row. Foreign key: values must match a row in the referenced table (referential integrity). Denormalization: redundant data added for query speed at a cost to integrity and consistency. Schema: the data descriptions of a database (table definitions, constraints). Data access to vendor systems is often defined in the vendor contract.",
+    "differs": "Single source of truth vs duplicated copies; stale duplicate (inconsistency) vs foreign-key violation (referential integrity); undisciplined duplication vs managed denormalization; vendor-supplied reports vs independent reports built from the schema.",
+    "examAngle": "Expect: identify why a corrected value still appears on a report (duplicated data), state what a foreign key enforces, or choose what a lab should secure when buying an LIS (schema and data access)."
+  },
+  "comparisons": [
+    {
+      "id": "single-vs-duplicate",
+      "title": "Single source vs duplicated data",
+      "left": {
+        "label": "Single source of truth",
+        "points": [
+          "Fact stored in one table",
+          "Others reference it by key",
+          "One correction fixes every report"
+        ]
+      },
+      "right": {
+        "label": "Duplicated data",
+        "points": [
+          "Same fact in several tables",
+          "Each copy must be updated",
+          "A stale copy misreports silently"
+        ]
+      },
+      "distinguisher": "How many places must change when the fact changes."
+    },
+    {
+      "id": "fk-vs-denorm",
+      "title": "Foreign key vs denormalization",
+      "left": {
+        "label": "Foreign key",
+        "points": [
+          "Value must match an existing row",
+          "Enforces referential integrity"
+        ]
+      },
+      "right": {
+        "label": "Denormalization",
+        "points": [
+          "Redundant data added on purpose",
+          "Faster queries, risk of inconsistency"
+        ]
+      },
+      "distinguisher": "A constraint that links tables vs a deliberate copy that must be managed."
+    }
+  ],
+  "mnemonic": {
+    "text": "Every fact has ONE HOME; other tables carry only its ADDRESS (the key); the SCHEMA is the street map: get the map when you buy the town.",
+    "explanation": "Links single source of truth, keys and schema access in one picture.",
+    "limitation": "Denormalized copies are deliberate second homes; a key checks that the referenced row exists, not that its value is correct; in some database products “schema” also names a namespace that holds tables."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Tables are drawn as schematic cards, not a real LIS design.",
+    "Contract terms vary by vendor and institution."
+  ],
+  "takeaway": "Store each fact in one table and let other tables point to it by key, manage any deliberate copy so it cannot drift, and secure the schema and data access when the system is bought so the lab can build its own reports.",
+  "questions": [
+    {
+      "id": "ops-sst-q1",
+      "stem": "Registration corrects a patient’s birth date. The next laboratory report still prints the old birth date, because the LIS also stores the birth date in a report table that was not updated. Which design problem does this show?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The same data element was stored in more than one place, and one copy went stale",
+          "rationale": "Correct. With a single source of truth the date would be corrected once and every report would read it."
+        },
+        {
+          "id": "b",
+          "text": "The patient table lacked a primary key",
+          "rationale": "Incorrect. A missing primary key allows duplicate rows; it does not explain a second, uncorrected copy in another table."
+        },
+        {
+          "id": "c",
+          "text": "A foreign key was missing a matching row",
+          "rationale": "Incorrect. A foreign-key violation means a reference to a row that does not exist; here both rows exist but disagree."
+        },
+        {
+          "id": "d",
+          "text": "The report table was correctly denormalized, so no error occurred",
+          "rationale": "Incorrect. Denormalized copies must be kept in step; an unsynchronised copy that misreports is an error."
+        }
+      ],
+      "answer": "a",
+      "skill": "Single source of truth",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-sst-q2",
+      "stem": "What does a foreign key constraint enforce in a relational database?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Values in the column must match a row in the referenced table",
+          "rationale": "Correct. This maintains referential integrity between the two tables."
+        },
+        {
+          "id": "b",
+          "text": "Values in the column must be unique and not null",
+          "rationale": "Incorrect. That describes a primary key."
+        },
+        {
+          "id": "c",
+          "text": "The stored value is clinically correct",
+          "rationale": "Incorrect. A key checks that the referenced row exists, not that the data are right."
+        },
+        {
+          "id": "d",
+          "text": "Copies of the same value in other tables stay identical",
+          "rationale": "Incorrect. Keeping duplicates in step is a separate design task; a foreign key does not do it."
+        }
+      ],
+      "answer": "a",
+      "skill": "Keys",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ops-sst-q3",
+      "stem": "A laboratory is negotiating the purchase of a new LIS and wants to build its own quality and turnaround reports in future. What should it make sure the agreement covers?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Access to the database schema (table definitions and key links) and to the underlying data",
+          "rationale": "Correct. Independent reports and extractions are queries against those tables, and access to vendor data is often defined in the contract."
+        },
+        {
+          "id": "b",
+          "text": "Only the vendor’s standard report package",
+          "rationale": "Incorrect. Standard reports may not meet the lab’s needs, leaving it dependent on the vendor."
+        },
+        {
+          "id": "c",
+          "text": "A spreadsheet export of each day’s results",
+          "rationale": "Incorrect. A flat export repeats data and loses the table structure needed for flexible queries."
+        },
+        {
+          "id": "d",
+          "text": "Nothing; the schema can always be obtained free after go-live",
+          "rationale": "Incorrect. Access is often set by the contract, and institutions changing systems have had to pay for access to archived data."
+        }
+      ],
+      "answer": "a",
+      "skill": "LIS schema access",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch12",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 12, Lab Computers and Data (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 12,
+          "section": "High-Yield Hits",
+          "items": [
+            4,
+            12
+          ]
+        },
+        {
+          "chapter": 12,
+          "section": "Exam Traps",
+          "items": [
+            3,
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope, the recommendation to secure the schema at purchase, exam framing. Not used as verification."
+    },
+    {
+      "id": "pg-docs",
+      "kind": "external",
+      "citation": "PostgreSQL Global Development Group. PostgreSQL Documentation (current): Section 5.5, Constraints (5.5.4 Primary Keys, 5.5.5 Foreign Keys); and Appendix M, Glossary (Foreign key, Referential integrity, Schema).",
+      "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+      "consulted": true,
+      "usedFor": "Primary key = unique and not null row identifier; foreign key values must match a row of another table, maintaining referential integrity; glossary definitions of referential integrity and schema (a namespace, and more generically all data descriptions such as table definitions and constraints)."
+    },
+    {
+      "id": "dilling2020",
+      "kind": "external",
+      "citation": "Dilling TJ. Artificial Intelligence Research: The Utility and Design of a Relational Database System. Adv Radiat Oncol. 2020;5(6):1280-1285. doi:10.1016/j.adro.2020.06.027",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7718502/",
+      "consulted": true,
+      "usedFor": "Spreadsheets repeat data so one change must be made in many rows and missed updates introduce errors; relational tables store the fact once and link by keys; keys prevent duplicate rows; foreign keys reject rows referring to absent records; level of access to vendor source-system data is often defined in institutional contracts with vendors."
+    },
+    {
+      "id": "angles2024",
+      "kind": "external",
+      "citation": "Angles R, Arenas-Salinas M, García R, Ingram B. An optimized relational database for querying structural patterns in proteins. Database (Oxford). 2024;2024:baad093. doi:10.1093/database/baad093",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10939390/",
+      "consulted": true,
+      "usedFor": "Denormalization adds redundant information to tables to reduce query time; drawbacks include compromised data integrity, potential errors and data inconsistency."
+    },
+    {
+      "id": "arvisais2022",
+      "kind": "external",
+      "citation": "Arvisais-Anhalt S, Lehmann CU, Bishop JA, et al. Searching Full-Text Anatomic Pathology Reports Using Business Intelligence Software. J Pathol Inform. 2022;13:100014. doi:10.1016/j.jpi.2022.100014",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8892022/",
+      "consulted": true,
+      "usedFor": "Access to stored reports is complicated when institutions transition between LISs and vendors; institutions have paid LIS vendors or third parties for access to archived reports; the authors extracted data with a custom SQL script from the EHR relational database."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-keys",
+      "text": "Primary key unique and not null; foreign key values must match a row in the referenced table (referential integrity).",
+      "status": "checked",
+      "refs": [
+        "pg-docs",
+        "dilling2020"
+      ]
+    },
+    {
+      "id": "cl-sst",
+      "text": "Storing a fact once means one correction; duplicated data must be updated everywhere and missed copies cause errors.",
+      "status": "checked",
+      "refs": [
+        "dilling2020"
+      ]
+    },
+    {
+      "id": "cl-denorm",
+      "text": "Denormalization adds redundancy for query speed at a cost to integrity and consistency.",
+      "status": "checked",
+      "refs": [
+        "angles2024"
+      ]
+    },
+    {
+      "id": "cl-ri",
+      "text": "A stale duplicate is a consistency failure, distinct from a foreign-key (referential integrity) violation.",
+      "status": "checked",
+      "refs": [
+        "pg-docs",
+        "dilling2020"
+      ],
+      "note": "Inference from the PostgreSQL definitions; qualifies the reviewer’s wording (register flag rv-duplication-vs-referential-integrity)."
+    },
+    {
+      "id": "cl-schema",
+      "text": "Schema = data descriptions of a database (table definitions, constraints); own queries and extractions use the tables and keys.",
+      "status": "checked",
+      "refs": [
+        "pg-docs",
+        "arvisais2022"
+      ]
+    },
+    {
+      "id": "cl-access",
+      "text": "Access to vendor data is often set by contract; LIS transitions complicate access and institutions have paid vendors or third parties.",
+      "status": "checked",
+      "refs": [
+        "dilling2020",
+        "arvisais2022"
+      ]
+    },
+    {
+      "id": "cl-contract",
+      "text": "The schema must be contractually secured at purchase as a standard requirement.",
+      "status": "pending",
+      "note": "Reviewer recommendation; no consulted source states it as a requirement. The lesson frames it as a recommendation supported by cl-access."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; tables schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“One home, many addresses.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-duplication-ri",
+      "issue": "Ch. 12 Hit 4 and Trap 3 say duplicated data “breaks referential integrity”. In the PostgreSQL definition, referential integrity is the foreign-key rule that referencing values must match an existing row; a stale duplicate is a data-consistency problem that a foreign key does not detect. The lesson teaches the distinction (register flag rv-duplication-vs-referential-integrity).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; tables and keys shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 claims checked against the PostgreSQL documentation, Dilling 2020, Angles 2024 and Arvisais-Anhalt 2022; 1 pending (schema must be contractually secured, a reviewer recommendation). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

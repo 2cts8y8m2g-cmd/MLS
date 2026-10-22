@@ -1,0 +1,1721 @@
+{
+  "schemaVersion": 1,
+  "id": "mdx-nested-competitive-arms-multiplex-pcr",
+  "title": "PCR Variants: Nested, Multiplex, Allele-Specific and Competitive PCR",
+  "summary": "Learn why nested PCR is more specific but contamination-prone, how multiplex and allele-specific primers are designed, and why competitive PCR with a same-primer internal competitor quantifies reliably where end-point yield does not.",
+  "domain": "p8-mdx",
+  "topic": "ch69",
+  "conceptIds": [
+    "ch69.hit4",
+    "ch69.trap2",
+    "ch69.hit11",
+    "ch69.hit10",
+    "ch69.hit8",
+    "ch69.trap6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 69,
+        "section": "High-Yield Hits",
+        "items": [
+          4,
+          8,
+          10,
+          11
+        ]
+      },
+      {
+        "chapter": 69,
+        "section": "Exam Traps",
+        "items": [
+          2,
+          6
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 69 Hits 4, 8, 10 and 11 and Traps 2 and 6, checked against Dunbar & Das 2019, Elnifro 2000 (read via a page-fetch tool, first ~100,000 characters), Newton 1989 (abstract only, read via a page-fetch tool), Huang 2013, Miura 2008, Pagliarulo 2004, Quan 2018 and Lovatt 2002. Qualifications: the reviewer says closed-tube real-time PCR “kills” the nested-PCR contamination problem; Lovatt 2002 says a closed system reduces the chance of carryover, and Dunbar 2019 notes closed commercial nested multiplex systems have largely overcome the two-tube limitations (register flag rv-nested-closed-tube-context). The reviewer’s 0.1% allele-specific sensitivity (IDH1, TERT in glioma) is assay-dependent: Huang 2013 reports 0.1–2% for JAK2 ARMS assays and 0.5% for its BRAF assay; the IDH1/TERT glioma figure was not verified (rv-allele-specific-sensitivity-assay). Not taught: nested first-round cycle numbers, extreme PCR, GenMark eSensor threshold, IDH1/TERT examples."
+  },
+  "prerequisites": [
+    "ch69.hit1"
+  ],
+  "objectives": [
+    "Explain why nested PCR increases specificity and why opening tubes between rounds causes false positives.",
+    "State the primer-design rules for multiplex PCR and the 3′-end principle of allele-specific (ARMS) PCR.",
+    "Explain why competitive PCR with a same-primer internal competitor quantifies reliably while end-point yield does not."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Four assays, four design flaws",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a small molecular lab drafts four assays — (1) a two-tube nested PCR for a scarce pathogen, first-round product pipetted into a second tube; (2) a one-tube multiplex for four viruses using primers borrowed from four unrelated papers; (3) a test for a low-level tumour point mutation; (4) viral quantity read from gel band brightness, compared with standards run in separate tubes. Question token: “Which design choice breaks each one?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "A small molecular lab drafts four assays: a two-tube nested PCR, a one-tube multiplex for four viruses built from borrowed primers, and a test for a rare tumour mutation."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "The fourth reads viral quantity from the brightness of gel bands, compared with standards run in separate tubes."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which design choice could break each one?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "a1",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 420,
+            "h": 130,
+            "tone": "b",
+            "title": "1 Two-tube nested PCR",
+            "lines": [
+              "Product moved to tube 2"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 2,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "a2",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 130,
+            "tone": "a",
+            "title": "2 Four-virus multiplex",
+            "lines": [
+              "Primers from four papers"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3,
+              "opacity": 0
+            },
+            {
+              "t": 3.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "a3",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 350,
+            "w": 420,
+            "h": 130,
+            "tone": "warn",
+            "title": "3 Rare point mutation",
+            "lines": [
+              "Few mutant copies"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.5,
+              "opacity": 0
+            },
+            {
+              "t": 6.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "a4",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 350,
+            "w": 420,
+            "h": 130,
+            "tone": "bad",
+            "title": "4 Band-brightness quantity",
+            "lines": [
+              "Standards in other tubes"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 500,
+            "w": 640,
+            "label": "Which design choice breaks each one?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Nested PCR: a second identity check",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic: template with outer primer pair (round 1) and inner primer pair annealing inside the first-round product (round 2). Gain card: the first product gives more template for round 2 (sensitivity), and the inner primers can only anneal if the first product carries their complementary sequence (specificity). Cost card: long turnaround, hard to automate when tubes are transferred, and a higher risk of amplicon contamination because of the high amplicon yield, especially with separate tubes for each stage; nested primers are a major contributor to false positives from carryover. Closed-system card: real-time PCR in a closed tube removes post-PCR processing and reduces the chance of carryover; commercial closed nested multiplex systems have largely overcome the two-tube limitations.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Nested PCR runs two rounds. The outer primers copy a stretch of the target; then a second, inner primer pair anneals inside that first product."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "The first product gives round two more template, raising sensitivity. And the inner primers bind only if the first product really is the target, which raises specificity: a second identity check."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "The price is the tube transfer. Round one leaves a huge amount of product, and opening the tube to move it spreads amplicons, so nested primers are a classic source of false positives."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Real-time PCR in a closed tube skips post-PCR handling and lowers that carryover risk, and closed commercial nested systems have largely solved the two-tube problem."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tpl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Two rounds (schematic)",
+            "lines": [
+              "Round 1: outer primers",
+              "Round 2: inner primers inside"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "gain",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "Gain",
+            "lines": [
+              "More template: sensitivity",
+              "Inner primers: specificity"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cost",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "h": 170,
+            "tone": "bad",
+            "title": "Cost: open the tube",
+            "lines": [
+              "Huge round-1 yield",
+              "Carryover → false positives"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "closed",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "Closed systems",
+            "lines": [
+              "Real-time: no post-PCR step",
+              "Closed nested panels exist"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Primer design: multiplex and allele-specific",
+      "start": 60,
+      "end": 104,
+      "altText": "Multiplex card (Elnifro 2000): primers with nearly identical optimum annealing temperatures; no significant homology internally or to one another (primer dimers); a length of about 18–30 bases and 35–60% GC may prove satisfactory; one efficient target can outcompete another (preferential amplification); avoid nested primers in multiplex PCR where possible. Allele-specific card (ARMS, Newton 1989): an oligonucleotide with a mismatched 3′ residue does not function as a primer under appropriate conditions, so a primer ending on the mutant base extends only from the mutant allele. Sensitivity card (Huang 2013): 0.5% BRAF V600E in a wild-type background for one ARMS assay; reported 0.1–2% for JAK2 V617F ARMS assays; dideoxy sequencing detects about 15–20% mutant allele. A common control product in the same tube shows that amplification worked.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Multiplex PCR puts several primer pairs in one tube, so they must work under one set of conditions: nearly identical optimum annealing temperatures, and no significant complementarity within or between primers, or primer dimers form."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "Even well-matched pairs compete. A very efficient target can outcompete a weaker one, so each pair is tested empirically, and nested primers are avoided in multiplexes where possible."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "Allele-specific PCR moves the decision to the last base. A primer whose three-prime end is mismatched does not prime under the right conditions, so a primer ending on the mutant base copies only the mutant allele."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "That makes it sensitive. One BRAF assay found half a percent mutant allele, and JAK2 assays report point one to two percent, while dideoxy sequencing needs roughly fifteen to twenty percent."
+        }
+      ],
+      "objects": [
+        {
+          "id": "mx",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 210,
+            "tone": "b",
+            "title": "Multiplex primer set",
+            "lines": [
+              "Near-identical annealing temps",
+              "No homology to one another",
+              "Else: primer dimers"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "comp",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 460,
+            "w": 440,
+            "label": "Efficient targets outcompete weak ones",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "arms",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "Allele-specific (ARMS)",
+            "lines": [
+              "3′ mismatch → no priming",
+              "3′ base = mutant → mutant only"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sens",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "Sensitivity (assay-dependent)",
+            "lines": [
+              "ARMS: ~0.1–2% mutant",
+              "Sequencing: ~15–20%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0
+            },
+            {
+              "t": 35,
+              "reveal": 0
+            },
+            {
+              "t": 35.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 42,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Quantifying at the end point",
+      "start": 104,
+      "end": 144,
+      "altText": "Schematic sigmoid amplification curve: exponential phase, then linear, then plateau as reagents deplete and products self-anneal. End-point card: conventional PCR reads product at the end of the reaction, near the plateau; quantitative real-time PCR reads the signal in the exponential phase, and digital PCR counts positive partitions with no calibration curve. Competitive card: a competitor template of known amount is spiked into the SAME tube and co-amplified with the SAME primer pair; its product differs in size; because target and competitor amplify with identical efficiency, the product ratio stays constant and reflects the starting ratio. Hook answers card.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Every PCR curve flattens. After the exponential phase, reagents run out and products re-anneal, so the reaction reaches a plateau."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 122,
+          "text": "A gel band read at the end point is read near that plateau, so its brightness no longer tracks the starting amount well. Real-time PCR reads the exponential phase instead; digital PCR counts positive partitions."
+        },
+        {
+          "id": "l3",
+          "start": 122,
+          "end": 132,
+          "text": "Competitive PCR fixes the end point a different way. A known amount of competitor shares the tube and the same primer pair, giving a product of a different size. With identical efficiency, the product ratio mirrors the starting ratio."
+        },
+        {
+          "id": "l4",
+          "start": 132,
+          "end": 144,
+          "text": "Back to the hook: seal or separate the nested assay, test the borrowed multiplex primers together, use an allele-specific primer for the rare mutation, and quantify with a competitor, real-time or digital PCR."
+        }
+      ],
+      "objects": [
+        {
+          "id": "curve",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 180,
+            "tone": "b",
+            "title": "Amplification curve",
+            "lines": [
+              "Exponential",
+              "Linear",
+              "Plateau: reagents used up"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ep",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 320,
+            "w": 440,
+            "label": "End point ≈ plateau ≠ starting amount",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cpcr",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "good",
+            "title": "Competitive PCR",
+            "lines": [
+              "Known competitor, same tube",
+              "Same primer pair, new size",
+              "Ratio = starting ratio"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 860,
+            "h": 120,
+            "tone": "a",
+            "title": "Hook answers",
+            "lines": [
+              "1 Seal it · 2 Test primers together",
+              "3 3′-end primer · 4 Competitor, qPCR or dPCR"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28.5,
+              "opacity": 0
+            },
+            {
+              "t": 29,
+              "reveal": 0
+            },
+            {
+              "t": 29.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Nested PCR is more specific because it runs more cycles” (✓ specificity comes from the inner primers annealing inside the first product); “End-point PCR against an external standard curve is fine for quantification” (✓ end-point yield reflects the plateau; use a same-tube competitor with the same primers, or real-time or digital PCR); “Allele-specific primers discriminate at their 5′ end” (✓ the 3′ terminal base decides whether the primer extends).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: nested PCR is more specific because it runs more cycles. No: the specificity comes from the inner primers, which bind only inside the correct first product."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: an end-point band against an external standard curve is fine for quantification. No: end-point yield reflects the plateau. Use a same-tube competitor, or real-time or digital PCR."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: allele-specific primers discriminate at their five-prime end. No: the three-prime base decides whether the polymerase can extend."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Nested = specific because more cycles.”",
+            "lines": [
+              "✓ Inner primers re-check identity"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “End point + external curve is fine.”",
+            "lines": [
+              "✓ Plateau; use competitor, qPCR or dPCR"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Allele-specific at the 5′ end.”",
+            "lines": [
+              "✓ The 3′ terminal base decides"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Doorman, twins, last word, one key",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Nested PCR has a second DOORMAN who checks ID inside the first door — but propping the door open lets the crowd (amplicons) out. Competitive PCR races TWINS on the same track (same primers), so the finish-line ratio tells you the starting ratio. Allele-specific PCR listens to the LAST WORD (3′ base). A multiplex is a choir that must sing in ONE KEY (matched annealing temperatures) without singers grabbing each other (no complementary primers).” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: nested PCR has a second doorman who checks identity, but propping the door open lets amplicons escape. Competitive PCR races twins on one track. Allele-specific PCR listens to the last word, the three-prime base. A multiplex choir sings in one key."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: closed nested systems keep the door shut; competitor and target are not perfect twins, they differ in size or sequence; and allele-specific sensitivity varies by assay."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Doorman, twins, last word, one key",
+            "size": 26,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 135,
+            "y": 170,
+            "w": 215,
+            "label": "Doorman = nested",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.2,
+              "opacity": 0
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 365,
+            "y": 170,
+            "w": 215,
+            "label": "Twins = competitive",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.4,
+              "opacity": 0
+            },
+            {
+              "t": 3.2,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 595,
+            "y": 170,
+            "w": 215,
+            "label": "Last word = 3′",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5999999999999996,
+              "opacity": 0
+            },
+            {
+              "t": 4.3999999999999995,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 825,
+            "y": 170,
+            "w": 215,
+            "label": "One key = multiplex",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.8,
+              "opacity": 0
+            },
+            {
+              "t": 5.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Closed nested systems keep the door shut",
+              "Competitor differs in size or sequence",
+              "Allele-specific sensitivity is assay-dependent"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Nested: inner primers add specificity, open tubes add carryover · multiplex: matched annealing temperatures, no complementary primers”, “Allele-specific: the 3′ base decides · quantify with a same-primer competitor, real-time or digital PCR, not a plateau band”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Nested PCR gains specificity from its inner primers but risks carryover when tubes are opened, multiplex primers need matched annealing temperatures and no complementarity, allele-specific primers discriminate at their three-prime base, and reliable quantification needs a same-primer competitor or real-time or digital PCR rather than a plateau band."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 840,
+            "label": "Nested: inner primers = specificity · open tube = carryover · multiplex: one Tm, no dimers",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 840,
+            "label": "Allele-specific: 3′ base decides · quantify: competitor, qPCR or dPCR",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: basic PCR has been modified to be more specific (nested), to test several targets at once (multiplex), to tell a single changed base apart (allele-specific), and to measure how much target there is (competitive). Each modification brings its own design rule. Scientific terms: outer and inner primers, amplicon carryover contamination, closed-tube real-time PCR, annealing temperature, primer dimer, preferential amplification, amplification refractory mutation system (ARMS), 3′-terminal mismatch, competitor (internal standard), co-amplification, plateau phase, end-point detection.",
+    "why": "Nested PCR checks the target twice, but its huge first-round yield contaminates the lab if tubes are opened. Primers sharing one tube must work under one temperature and must not pair with each other. Polymerase extension depends on a matched 3′ end, which lets one primer discriminate a point mutation. End-point product reflects the plateau, so a competitor that shares tube, primers and efficiency is needed for end-point quantification.",
+    "measure": "Multiplex primers: nearly identical optimum annealing temperatures; no significant internal or mutual homology; about 18–30 bases and 35–60% GC may prove satisfactory. ARMS sensitivity: about 0.1–2% mutant allele reported for JAK2 V617F assays, 0.5% for one BRAF V600E assay, versus about 15–20% for dideoxy sequencing. Competitive PCR: known competitor amount, same primer pair, product of different size; product ratio reflects starting ratio.",
+    "differs": "Nested (two primer sets, two rounds) vs single-round PCR; internal competitor (same tube, same primers) vs external standard (separate tubes); allele-specific PCR (3′ base) vs sequencing (lower sensitivity); end-point reading (plateau) vs real-time reading (exponential phase) vs digital counting (no calibration curve).",
+    "examAngle": "Expect: the cause of sporadic false positives after starting nested PCR, which primer end confers allele specificity, why competitive PCR uses the same primer pair, and which multiplex primer rule prevents primer dimers."
+  },
+  "comparisons": [
+    {
+      "id": "nested-vs-single",
+      "title": "Nested vs single-round PCR",
+      "left": {
+        "label": "Nested",
+        "points": [
+          "Two primer sets, inner set inside",
+          "Higher sensitivity and specificity",
+          "Carryover risk if tubes are opened"
+        ]
+      },
+      "right": {
+        "label": "Single round",
+        "points": [
+          "One primer pair",
+          "No tube transfer between rounds"
+        ]
+      },
+      "distinguisher": "A second, internal primer pair re-checks identity at the cost of contamination risk."
+    },
+    {
+      "id": "internal-vs-external",
+      "title": "Internal competitor vs external standard",
+      "left": {
+        "label": "Competitive (internal)",
+        "points": [
+          "Same tube, same primer pair",
+          "Identical efficiency; ratio reflects start"
+        ]
+      },
+      "right": {
+        "label": "End point, external",
+        "points": [
+          "Standards in separate tubes",
+          "Yield read near the plateau"
+        ]
+      },
+      "distinguisher": "Sharing the tube and primers cancels efficiency differences."
+    }
+  ],
+  "mnemonic": {
+    "text": "Nested PCR has a second DOORMAN who checks ID, but propping the door open lets amplicons out; competitive PCR races TWINS on one track; allele-specific PCR listens to the LAST WORD (3′ base); a multiplex choir sings in ONE KEY without grabbing each other.",
+    "explanation": "One image per PCR variant and its design rule.",
+    "limitation": "Closed nested systems keep the door shut; the competitor differs from the target in size or sequence, so they are not perfect twins; allele-specific sensitivity varies by assay."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Primer and curve drawings are schematic.",
+    "Sensitivity figures come from specific published assays; other assays differ."
+  ],
+  "takeaway": "Nested PCR gains specificity from its inner primers but risks carryover when tubes are opened, multiplex primers need matched annealing temperatures and no complementarity, allele-specific primers discriminate at their three-prime base, and reliable quantification needs a same-primer competitor or real-time or digital PCR rather than a plateau band.",
+  "questions": [
+    {
+      "id": "mdx-pv-q1",
+      "stem": "Soon after a laboratory starts a two-tube nested PCR, sporadic positives appear in negative controls across unrelated runs. What is the most likely cause?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Carryover of first-round amplicons when tubes are opened for the second round",
+          "rationale": "Correct. The high first-round yield and tube transfer make amplicon carryover the classic cause of nested-PCR false positives."
+        },
+        {
+          "id": "b",
+          "text": "Loss of specificity because the inner primers bind outside the first product",
+          "rationale": "Incorrect. The inner primers anneal inside the first-round product; that is what raises specificity."
+        },
+        {
+          "id": "c",
+          "text": "Primer dimers from primers with mismatched annealing temperatures",
+          "rationale": "Incorrect. That is a multiplex design problem and would not explain positives in negative controls across runs."
+        },
+        {
+          "id": "d",
+          "text": "Too few cycles in the second round",
+          "rationale": "Incorrect. Too few cycles would lower sensitivity, not create false positives."
+        }
+      ],
+      "answer": "a",
+      "skill": "Troubleshooting nested PCR",
+      "difficulty": "application"
+    },
+    {
+      "id": "mdx-pv-q2",
+      "stem": "An ARMS (allele-specific) PCR detects a point mutation in tumour DNA. What gives the primer its allele specificity?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Its 3′ terminal base matches only the target allele, and a mismatched 3′ end does not prime",
+          "rationale": "Correct. Under appropriate conditions an oligonucleotide with a mismatched 3′ residue does not function as a primer."
+        },
+        {
+          "id": "b",
+          "text": "Its 5′ end carries the mutant base",
+          "rationale": "Incorrect. Extension depends on a matched 3′ end; a 5′ mismatch does not block priming."
+        },
+        {
+          "id": "c",
+          "text": "A second primer set anneals inside the first product",
+          "rationale": "Incorrect. That describes nested PCR."
+        },
+        {
+          "id": "d",
+          "text": "A competitor of known amount is co-amplified with the same primers",
+          "rationale": "Incorrect. That describes competitive PCR, used for quantification."
+        }
+      ],
+      "answer": "a",
+      "skill": "Allele-specific PCR principle",
+      "difficulty": "recall"
+    },
+    {
+      "id": "mdx-pv-q3",
+      "stem": "Why does competitive PCR co-amplify the target and a known competitor with the SAME primer pair in the SAME tube?",
+      "options": [
+        {
+          "id": "a",
+          "text": "So both amplify with identical efficiency and the product ratio reflects the starting ratio",
+          "rationale": "Correct. Shared primers and conditions cancel efficiency differences, so the end-point ratio is informative."
+        },
+        {
+          "id": "b",
+          "text": "So the two products are the same size and form one band",
+          "rationale": "Incorrect. The competitor is designed to give a product of a different size so the two can be told apart."
+        },
+        {
+          "id": "c",
+          "text": "So a standard curve in separate tubes becomes unnecessary because the plateau equals the starting amount",
+          "rationale": "Incorrect. The plateau does not track the starting amount; that is why an internal competitor is used."
+        },
+        {
+          "id": "d",
+          "text": "So primer dimers are detected by a melting curve",
+          "rationale": "Incorrect. Melting curves belong to dye-based real-time PCR, not to competitive PCR."
+        }
+      ],
+      "answer": "a",
+      "skill": "Quantification design",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch69",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 69, PCR and Amplification Methods (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 69,
+          "section": "High-Yield Hits",
+          "items": [
+            4,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "chapter": 69,
+          "section": "Exam Traps",
+          "items": [
+            2,
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "dunbar2019",
+      "kind": "external",
+      "citation": "Dunbar S, Das S. Amplification chemistries in clinical virology. J Clin Virol. 2019;115:18-31. doi:10.1016/j.jcv.2019.03.015",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7106405/",
+      "consulted": true,
+      "usedFor": "Nested PCR: two primer sets, inner set anneals internal to the first; sensitivity and specificity increased (more template; inner primers anneal only to a complementary first product); disadvantages: turnaround, automation, amplicon contamination risk from high yield, especially with separate tubes; commercial nested multiplex assays have largely overcome these limitations. Multiplex PCR requires compatible primers and conditions."
+    },
+    {
+      "id": "elnifro2000",
+      "kind": "external",
+      "citation": "Elnifro EM, Ashshi AM, Cooper RJ, Klapper PE. Multiplex PCR: optimization and application in diagnostic virology. Clin Microbiol Rev. 2000;13(4):559-570. doi:10.1128/cmr.13.4.559",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC88949/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (first ~100,000 characters). Multiplex primers with nearly identical optimum annealing temperatures; no significant homology internally or to one another; primer dimers; 18–30 bases and 35–60% GC may prove satisfactory; empirical testing; preferential amplification and outcompeting of targets; nested primers a major contributor to false positives from carryover; avoid nested primers in multiplex PCR where possible."
+    },
+    {
+      "id": "newton1989",
+      "kind": "external",
+      "citation": "Newton CR, Graham A, Heptinstall LE, Powell SJ, Summers C, Kalsheker N, Smith JC, Markham AF. Analysis of any point mutation in DNA. The amplification refractory mutation system (ARMS). Nucleic Acids Res. 1989;17(7):2503-2516. doi:10.1093/nar/17.7.2503",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC317639/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (abstract only). Oligonucleotides with a mismatched 3′ residue do not function as PCR primers under appropriate conditions (ARMS principle)."
+    },
+    {
+      "id": "huang2013",
+      "kind": "external",
+      "citation": "Huang T, Zhuge J, Zhang WW. Sensitive detection of BRAF V600E mutation by Amplification Refractory Mutation System (ARMS)-PCR. Biomark Res. 2013;1(1):3. doi:10.1186/2050-7771-1-3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3776245/",
+      "consulted": true,
+      "usedFor": "ARMS-PCR with a common control product plus mutant- and wild-type-specific products in one tube; 0.5% BRAF V600E analytical sensitivity; reported 0.1–2% sensitivity for JAK2 V617F ARMS; dideoxy sequencing about 15–20% mutant allele."
+    },
+    {
+      "id": "miura2008",
+      "kind": "external",
+      "citation": "Miura F, Kawaguchi N, Yoshida M, Uematsu C, Kito K, Sakaki Y, Ito T. Absolute quantification of the budding yeast transcriptome by means of competitive PCR between genomic and complementary DNAs. BMC Genomics. 2008;9:574. doi:10.1186/1471-2164-9-574",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2612024/",
+      "consulted": true,
+      "usedFor": "In competitive PCR a target and its competitor standard are co-amplified with a single primer pair to give products that differ in size."
+    },
+    {
+      "id": "pagliarulo2004",
+      "kind": "external",
+      "citation": "Pagliarulo V, George B, Beil SJ, Groshen S, Laird PW, Cai J, Willey J, Cote RJ, Datar RH. Sensitivity and reproducibility of standardized-competitive RT-PCR for transcript quantification and its comparison with real time RT-PCR. Mol Cancer. 2004;3:5. doi:10.1186/1476-4598-3-5",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC344741/",
+      "consulted": true,
+      "usedFor": "Competitive templates in standardized quantities co-amplified with the native template; quantification by comparing band intensities at the end of PCR; identical amplification efficiency makes the product ratio constant and reflective of initial amounts; competitor serves as an internal control for reaction failure."
+    },
+    {
+      "id": "quan2018",
+      "kind": "external",
+      "citation": "Quan PL, Sauzade M, Brouzes E. dPCR: A Technology Review. Sensors (Basel). 2018;18(4):E1271. doi:10.3390/s18041271",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5948698/",
+      "consulted": true,
+      "usedFor": "PCR saturates and reaches a plateau as reagents are depleted and products self-anneal; conventional PCR reads products at the end point; qPCR quantifies from the exponential phase; dPCR counts positive partitions and does not rely on calibration curves."
+    },
+    {
+      "id": "lovatt2002",
+      "kind": "external",
+      "citation": "Lovatt A. Applications of quantitative PCR in the biosafety and genetic stability assessment of biotechnology products. J Biotechnol. 2002;82(3):279-300. doi:10.1016/s1389-0352(01)00043-5",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7148957/",
+      "consulted": true,
+      "usedFor": "Real-time Q-PCR is performed in a closed reaction system and eliminates post-PCR processing, reducing the chances of carryover contamination compared with conventional end-point PCR."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-nested",
+      "text": "Nested PCR: inner primers inside the first product; sensitivity and specificity increased; specificity from the inner primers.",
+      "status": "checked",
+      "refs": [
+        "dunbar2019"
+      ]
+    },
+    {
+      "id": "cl-carry",
+      "text": "Nested PCR carryover contamination from high yield and tube transfer; closed real-time PCR reduces carryover; closed commercial nested systems largely overcome the limitation.",
+      "status": "checked",
+      "refs": [
+        "dunbar2019",
+        "elnifro2000",
+        "lovatt2002"
+      ]
+    },
+    {
+      "id": "cl-multiplex",
+      "text": "Multiplex primers: nearly identical annealing temperatures, no internal or mutual homology, primer dimers, length/GC guide, preferential amplification, avoid nested primers.",
+      "status": "checked",
+      "refs": [
+        "elnifro2000",
+        "dunbar2019"
+      ]
+    },
+    {
+      "id": "cl-arms",
+      "text": "3′-mismatched oligonucleotides do not prime under appropriate conditions; ARMS design with control product.",
+      "status": "checked",
+      "refs": [
+        "newton1989",
+        "huang2013"
+      ]
+    },
+    {
+      "id": "cl-arms-sens",
+      "text": "ARMS sensitivity about 0.1–2% (JAK2), 0.5% (one BRAF assay); sequencing about 15–20%.",
+      "status": "checked",
+      "refs": [
+        "huang2013"
+      ]
+    },
+    {
+      "id": "cl-competitive",
+      "text": "Competitive PCR: known competitor, same primer pair, different product size, identical efficiency, ratio reflects starting amount.",
+      "status": "checked",
+      "refs": [
+        "miura2008",
+        "pagliarulo2004"
+      ]
+    },
+    {
+      "id": "cl-endpoint",
+      "text": "End-point yield is read near the plateau; qPCR reads the exponential phase; dPCR needs no calibration curve.",
+      "status": "checked",
+      "refs": [
+        "quan2018"
+      ],
+      "note": "The reviewer’s wording that tube-to-tube efficiency differences make end-point yields “wildly variable” with an external standard was not found stated in these terms; the lesson teaches the plateau and same-tube competitor points the sources support."
+    },
+    {
+      "id": "cl-glioma",
+      "text": "Allele-specific PCR reaching 0.1% for IDH1 and TERT in glioma.",
+      "status": "pending",
+      "note": "Not taught; no open source for the glioma examples was read."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; primer and curve drawings schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Doorman, twins, last word, one key.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-nested-closed",
+      "issue": "The reviewer says closed-tube real-time PCR “kills” the nested-PCR contamination problem. Lovatt 2002 says a closed real-time system reduces the chance of carryover rather than eliminating it, and Dunbar 2019 notes that closed commercial nested and multiplex nested assays have largely overcome the two-tube limitations, so nested PCR itself is not inherently open-tube.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-asp-sensitivity",
+      "issue": "The reviewer gives allele-specific PCR sensitivity “down to 0.1% (IDH1, TERT in glioma)”. Huang 2013 reports 0.1–2% for JAK2 V617F ARMS assays and 0.5% for its BRAF V600E assay, so the figure is assay-dependent; the IDH1/TERT glioma examples were not verified.",
+      "kind": "method-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No gel or instrument images; primers and curves shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "7 claims checked against eight open sources (Elnifro 2000 and Newton 1989 read via a page-fetch tool; Newton abstract only); 1 pending (IDH1/TERT glioma examples). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

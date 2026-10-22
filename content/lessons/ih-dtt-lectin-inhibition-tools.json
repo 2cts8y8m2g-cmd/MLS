@@ -1,0 +1,1491 @@
+{
+  "schemaVersion": 1,
+  "id": "ih-dtt-lectin-inhibition-tools",
+  "title": "Daratumumab, DTT, Lectins and Inhibition: Tools That Reveal Antibody Specificity",
+  "summary": "Recognise anti-CD38 drug panreactivity in the IAT, resolve it with DTT-treated reagent cells and K-negative units, and use soluble-substance inhibition (hydatid cyst fluid for anti-P1) and Dolichos biflorus lectin (anti-A1) correctly.",
+  "domain": "p5-bb",
+  "topic": "ch40",
+  "conceptIds": [
+    "ch40.hit8",
+    "ch40.trap4",
+    "ch40.hit26",
+    "ch40.hit28"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 40,
+        "section": "High-Yield Hits",
+        "items": [
+          8,
+          26,
+          28
+        ]
+      },
+      {
+        "chapter": 40,
+        "section": "Exam Traps",
+        "items": [
+          4
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 40 Hit 8 and Trap 4 (anti-CD38 panreactivity; DTT-treated cells; K-negative blood), Hit 26 (Dolichos biflorus anti-A1 lectin) and Hit 28 (hydatid cyst fluid inhibits anti-P1). Checked against Lancman 2018 (Front Immunol review), Gorakshakar 2016 (lectins review) and Byrne 2019 (Immunohematology; read through the NCBI BioC API because Europe PMC full text returned an error and the PMC page was blocked by a browser check). Added context: DTT also denatures Lutheran, Yt, JMH, LW, Cromer, Indian, Dombrock and Knops antigens; Dolichos also agglutinates Tn and Cad cells; inhibition requires a dilution control. Pending: Hit 28’s “ficin enhances P1” was not verified and is not taught."
+  },
+  "prerequisites": [
+    "ch40.hit1",
+    "ch40.hit7"
+  ],
+  "objectives": [
+    "Explain why anti-CD38 therapy causes weak panreactivity in the IAT but not ABO/RhD typing problems.",
+    "Apply the DTT method and the K-negative rule, and read a DTT-treated screen.",
+    "Interpret a soluble-substance inhibition test with its dilution control, and state what Dolichos biflorus lectin detects."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Eleven cells, all 1+",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a 68-year-old with multiple myeloma needs red cells. ABO and RhD typing are clean. The 3-cell antibody screen is 1+ with every cell, the 11-cell panel is 1+ with every cell, and the autocontrol is negative. Question token: “Ten alloantibodies, or one drug?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Invented case: a patient with multiple myeloma needs red cells. ABO and RhD typing are clean."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "But the antibody screen is weakly positive with every cell, the whole panel is one plus, and the autocontrol is negative."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Is this a patient with ten alloantibodies, or a patient on one drug?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "typ",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "ABO / RhD",
+            "lines": [
+              "Forward and reverse agree"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "scr",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "Screen + panel (IAT)",
+            "lines": [
+              "Every cell 1+",
+              "Autocontrol negative"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 700,
+            "label": "Ten alloantibodies, or one drug?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "How an anti-CD38 drug fools the IAT",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic: a reagent red cell carrying a few CD38 molecules. Anti-CD38 therapeutic antibody (daratumumab; isatuximab behaves the same way) in the patient plasma binds CD38 on reagent cells, and antihuman globulin then agglutinates them: weak, usually 1+ panagglutination in tube, gel and solid phase. ABO and RhD typing are not affected. The DAT and autocontrol are often negative, partly because CD38 on the patient’s own red cells is downregulated. The reaction cannot simply be called false-positive: some patients already carry real alloantibodies. IAT positivity can persist for months after the drug is stopped.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "CD38 is the target of myeloma drugs such as daratumumab and isatuximab. Red cells carry small amounts of CD38, including the reagent cells used in the antibody screen."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "In the indirect antiglobulin test, the drug in the patient’s plasma binds those reagent cells, so every cell reacts, usually weakly, in tube, gel or solid phase. ABO and RhD typing are not affected."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "The direct antiglobulin test and autocontrol are often negative, partly because the patient’s own red cells lose CD38 after exposure."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Do not simply call it false-positive: some of these patients already have real alloantibodies, and the interference can last for months after the drug stops."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cd",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "CD38 on red cells",
+            "lines": [
+              "Low level, reagent cells too",
+              "Drug target in myeloma"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "iat",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "IAT: panreactive",
+            "lines": [
+              "Usually 1+, every method",
+              "ABO / RhD unaffected"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dat",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "DAT / autocontrol",
+            "lines": [
+              "Often negative",
+              "Own cells lose CD38"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "real",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Not just a nuisance",
+            "lines": [
+              "Real alloantibodies can hide",
+              "Lasts months after stopping"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "DTT: strip the target, then pick K-negative",
+      "start": 60,
+      "end": 104,
+      "altText": "Workflow card. DTT (dithiothreitol) is a reducing agent that breaks disulfide bonds and denatures CD38 on reagent red cells, so the drug no longer binds and the screen becomes readable. DTT also denatures Kell antigens (and antigens of the Lutheran, Yt, JMH, LW, Cromer, Indian, Dombrock and Knops systems), so anti-K cannot be excluded: give K-negative red cells unless the patient is known to be K-positive. DTT screen negative → crossmatch DTT-treated K-negative units. DTT screen positive → a true alloantibody; identify it with DTT-treated cells. Before the first dose: type and screen plus an extended phenotype or genotype, and tell the blood bank. In a life-threatening emergency, do not delay: uncrossmatched ABO/RhD-compatible (or group O) red cells.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "The standard fix treats the reagent cells, not the patient. Dithiothreitol, DTT, breaks disulfide bonds and denatures CD38, so the drug has nothing to bind and the screen becomes readable."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "The price: DTT also destroys Kell antigens, plus several less common systems. Anti-K can no longer be excluded, so the patient gets K-negative red cells unless already known to be K-positive."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "If the DTT screen is negative, crossmatch K-negative units against DTT-treated cells. If it is still positive, a real alloantibody is present: identify it with a DTT-treated panel."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "Best of all, plan ahead: a type and screen plus an extended phenotype or genotype before the first dose. And in a life-threatening emergency, never delay: issue uncrossmatched ABO and RhD-compatible blood."
+        }
+      ],
+      "objects": [
+        {
+          "id": "dtt",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "DTT-treated reagent cells",
+            "lines": [
+              "Breaks disulfide bonds",
+              "CD38 denatured → screen readable"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "kell",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "bad",
+            "title": "Also destroyed",
+            "lines": [
+              "Kell → give K-negative",
+              "Lu, Yt, JMH, LW, Cromer, In, Do, Kn"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12,
+              "reveal": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 20,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "read",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "h": 170,
+            "tone": "good",
+            "title": "Read the DTT screen",
+            "lines": [
+              "Negative → K-neg, crossmatch",
+              "Positive → true alloantibody"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 32,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "plan",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "Plan ahead",
+            "lines": [
+              "Baseline screen + phenotype",
+              "Emergency: don’t delay"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34,
+              "reveal": 0
+            },
+            {
+              "t": 34.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 42,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 43,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Soak and spot: inhibition and lectins",
+      "start": 104,
+      "end": 144,
+      "altText": "Inhibition card: incubate the plasma with a soluble substance of matching specificity, and a second tube of plasma with an inert diluent (saline or albumin) as the dilution control; test both against cells that reacted before. Inhibited = test tube nonreactive while the dilution control still reacts. Dilution control nonreactive = invalid. Anti-P1 is inhibited by hydatid cyst fluid or pigeon egg albumin; other examples: secretor saliva (ABH, Lewis), urine (Sda), pooled plasma (Chido/Rodgers). Lectin card: Dolichos biflorus seed lectin (anti-A1) agglutinates A1 but not A2 red cells; used to subgroup group A, for example when a recipient has anti-A1 active at body temperature and needs A2 cells; it also agglutinates Tn and Cad polyagglutinable cells. Hook answer: one drug — test with DTT-treated cells and give K-negative blood.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 115,
+          "text": "A second tool treats the plasma instead. Inhibition mixes the plasma with a soluble substance of the same specificity, which soaks up the antibody. A parallel tube with saline or albumin is the dilution control."
+        },
+        {
+          "id": "l2",
+          "start": 115,
+          "end": 124,
+          "text": "If the test tube stops reacting while the dilution control still reacts, the antibody was inhibited. Anti-P1 is inhibited by hydatid cyst fluid or pigeon egg albumin. If the dilution control also goes negative, the test is invalid."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 135,
+          "text": "A third tool spots a sugar on the cells. Dolichos biflorus lectin acts as anti-A1: it agglutinates A1 cells but not A2 cells. One use: a recipient whose anti-A1 reacts at body temperature can be crossmatched with A2 cells. It also agglutinates rare Tn and Cad cells."
+        },
+        {
+          "id": "l4",
+          "start": 135,
+          "end": 144,
+          "text": "Back to the hook: one drug, not ten antibodies. Ask about anti-CD38 therapy, test with DTT-treated cells, and give K-negative blood."
+        }
+      ],
+      "objects": [
+        {
+          "id": "inh",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 230,
+            "w": 440,
+            "h": 230,
+            "tone": "b",
+            "title": "Inhibition (soak)",
+            "lines": [
+              "Plasma + soluble substance",
+              "Dilution control must still react",
+              "Anti-P1: hydatid fluid, pigeon egg"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lec",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 230,
+            "w": 420,
+            "h": 230,
+            "tone": "good",
+            "title": "Dolichos biflorus (spot)",
+            "lines": [
+              "Anti-A1 lectin",
+              "A1 + · A2 −",
+              "Also Tn and Cad cells"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 820,
+            "label": "Hook: anti-CD38 drug → DTT cells → K-negative units",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 32.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Panreactive IAT = many alloantibodies” (✓ ask about anti-CD38 therapy first; drug panreactivity is usually weak with a negative autocontrol); “A negative DTT screen excludes everything” (✓ DTT destroys Kell and some other antigens, so give K-negative units); “No reaction after hydatid fluid proves anti-P1” (✓ only if the dilution control still reacts).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a panreactive screen means many alloantibodies. First ask about anti-CD38 therapy; one question can save hours of panel work."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a negative DTT screen rules out every antibody. No: DTT destroyed Kell, so anti-K was never tested, and the patient needs K-negative blood."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the reaction vanished after hydatid fluid, so it must be anti-P1. Only if the dilution control still reacts; otherwise the antibody may simply have been diluted away."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Panreactive = many antibodies.”",
+            "lines": [
+              "✓ Ask about anti-CD38 therapy first"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “DTT screen negative = no antibodies.”",
+            "lines": [
+              "✓ Kell destroyed → K-negative units"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Inhibited, so it is anti-P1.”",
+            "lines": [
+              "✓ Dilution control must still react"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Strip, soak, spot",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “STRIP the target (DTT strips CD38 off reagent cells), SOAK up the antibody (a soluble substance such as hydatid cyst fluid soaks up anti-P1), SPOT the sugar (Dolichos biflorus spots A1).” Tokens: strip = DTT · soak = inhibition · spot = lectin. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: strip, soak, spot. DTT strips the drug’s target off the reagent cells. A soluble substance soaks up the antibody in the plasma. A lectin spots one sugar on the cells."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: stripping also removes Kell and other antigens; soaking needs a dilution control and may fail against high-titer drug antibodies; and Dolichos also spots Tn and Cad cells, not only A1."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Strip, soak, spot",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Strip = DTT",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Soak = inhibition",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Spot = lectin",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "DTT also strips Kell and others",
+              "Inhibition needs a dilution control",
+              "Dolichos also hits Tn and Cad"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Panreactive weak IAT + anti-CD38 drug → DTT-treated cells → K-negative units”, “Inhibition needs a reactive dilution control · Dolichos biflorus = anti-A1”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "When a myeloma patient’s screen reacts with every cell, ask about anti-CD38 therapy, test with DTT-treated cells and give K-negative blood, and remember that inhibition needs a reactive dilution control while Dolichos biflorus separates A1 from A2."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Weak panreactive IAT + anti-CD38 → DTT cells → K-negative",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Inhibition: dilution control must react · Dolichos = anti-A1",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: some myeloma drugs are antibodies that stick to every red cell in the antibody screen, hiding any real antibody. The lab removes the drug’s target from the test cells with a chemical (DTT), soaks up certain antibodies with matching soluble substances, and uses plant lectins to tell red cell subgroups apart. Scientific terms: CD38, daratumumab, isatuximab, indirect antiglobulin test (IAT), panagglutination, dithiothreitol (DTT), Kell antigens, extended phenotype/genotype, soluble-substance inhibition, dilution control, hydatid cyst fluid, pigeon egg albumin, anti-P1, Dolichos biflorus lectin (anti-A1), Tn and Cad polyagglutination.",
+    "why": "Anti-CD38 drugs bind the low level of CD38 on reagent red cells, so antihuman globulin agglutinates every cell. DTT reduces disulfide bonds and denatures CD38, but also Kell and several other antigens. Inhibition works because a soluble antigen of matching specificity occupies the antibody before it meets the cells; lectins bind specific cell-surface sugars.",
+    "measure": "Anti-CD38: weak (usually 1+) panreactivity in all AHG methods; ABO/RhD unaffected; DAT/autocontrol often negative; can persist months after stopping. DTT screen negative → K-negative, crossmatch-compatible (DTT-treated) units; positive → identify with DTT-treated panel. Baseline type and screen plus extended phenotype or genotype before therapy. Inhibition: test tube nonreactive + dilution control reactive = inhibited; dilution control nonreactive = invalid. Anti-P1: hydatid cyst fluid or pigeon egg albumin. Dolichos biflorus: A1 positive, A2 negative; also Tn and Cad.",
+    "differs": "Drug panreactivity (weak, autocontrol often negative, drug history) vs multiple alloantibodies; treating the cells (DTT, enzymes) vs treating the plasma (inhibition); Dolichos biflorus (anti-A1) vs Ulex europaeus (anti-H).",
+    "examAngle": "Expect: the next step for a panreactive screen in a myeloma patient, which antibody DTT cannot exclude (anti-K), which substance inhibits anti-P1, or which reagent separates A1 from A2."
+  },
+  "comparisons": [
+    {
+      "id": "drug-vs-allo",
+      "title": "Anti-CD38 interference vs multiple alloantibodies",
+      "left": {
+        "label": "Anti-CD38 drug",
+        "points": [
+          "Weak, usually 1+, every cell",
+          "Autocontrol/DAT often negative",
+          "Resolves with DTT-treated cells"
+        ]
+      },
+      "right": {
+        "label": "Multiple alloantibodies",
+        "points": [
+          "Variable strength by cell and phase",
+          "Pattern fits antigen profiles",
+          "Persists on DTT cells (unless DTT-sensitive)"
+        ]
+      },
+      "distinguisher": "Drug history plus reactivity that disappears with DTT-treated cells."
+    },
+    {
+      "id": "cells-vs-plasma",
+      "title": "Treat the cells vs treat the plasma",
+      "left": {
+        "label": "DTT (cells)",
+        "points": [
+          "Denatures CD38 on reagent cells",
+          "Also destroys Kell and others"
+        ]
+      },
+      "right": {
+        "label": "Inhibition (plasma)",
+        "points": [
+          "Soluble substance soaks up one antibody",
+          "Needs a reactive dilution control"
+        ]
+      },
+      "distinguisher": "Which side of the reaction is modified: the antigen on the cell, or the antibody in the plasma."
+    }
+  ],
+  "mnemonic": {
+    "text": "Strip, soak, spot: DTT STRIPS the drug’s target off reagent cells, a soluble substance SOAKS up the antibody, and a lectin SPOTS one sugar on the cells.",
+    "explanation": "Sorts the three tools by what they act on: cell antigen, plasma antibody, or cell sugar.",
+    "limitation": "DTT also strips Kell and other antigens; inhibition needs a dilution control and may fail against high-titer drug antibodies; Dolichos biflorus also agglutinates Tn and Cad cells."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Cell and reagent drawings are schematic.",
+    "“Strip, soak, spot” simplifies; each tool has other antigens or cells it affects."
+  ],
+  "takeaway": "When a myeloma patient’s screen reacts with every cell, ask about anti-CD38 therapy, test with DTT-treated cells and give K-negative blood, and remember that inhibition needs a reactive dilution control while Dolichos biflorus separates A1 from A2.",
+  "questions": [
+    {
+      "id": "ih-dtt-q1",
+      "stem": "A patient with multiple myeloma receiving daratumumab has a 1+ reaction with every screening and panel cell by IAT, a negative autocontrol and normal ABO/RhD typing. Red cells are needed for a routine transfusion. What is the best next step?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Repeat the antibody screen and panel with DTT-treated reagent cells",
+          "rationale": "Correct. DTT denatures CD38 on reagent cells, removing the drug interference so real alloantibodies can be detected."
+        },
+        {
+          "id": "b",
+          "text": "Report multiple alloantibodies and search for rare antigen-negative blood",
+          "rationale": "Incorrect. Weak uniform panreactivity in a patient on anti-CD38 therapy is the drug pattern; it must be resolved before calling multiple antibodies."
+        },
+        {
+          "id": "c",
+          "text": "Issue uncrossmatched group O red cells without further testing",
+          "rationale": "Incorrect. Uncrossmatched blood is for life-threatening emergencies; a routine transfusion allows DTT testing."
+        },
+        {
+          "id": "d",
+          "text": "Perform an elution on the patient’s red cells",
+          "rationale": "Incorrect. The DAT and autocontrol are often negative with anti-CD38 drugs; the problem is the drug in plasma reacting with reagent cells."
+        }
+      ],
+      "answer": "a",
+      "skill": "Recognise drug interference",
+      "difficulty": "application"
+    },
+    {
+      "id": "ih-dtt-q2",
+      "stem": "The DTT-treated antibody screen of a daratumumab-treated patient is negative. The patient’s Kell type is unknown. Which red cells should be selected?",
+      "options": [
+        {
+          "id": "a",
+          "text": "ABO/RhD-compatible, K-negative units that are compatible with DTT-treated cells",
+          "rationale": "Correct. DTT destroys Kell antigens, so anti-K cannot be excluded; K-negative units remove that risk."
+        },
+        {
+          "id": "b",
+          "text": "Any ABO/RhD-compatible units, since the screen is negative",
+          "rationale": "Incorrect. A negative DTT screen says nothing about anti-K because the Kell antigens were destroyed."
+        },
+        {
+          "id": "c",
+          "text": "Fy(a−) units, because DTT destroys Duffy antigens",
+          "rationale": "Incorrect. Duffy antigens are destroyed by papain, not DTT; the DTT-sensitive antigen of concern here is Kell."
+        },
+        {
+          "id": "d",
+          "text": "Jk(a−) units, because DTT destroys Kidd antigens",
+          "rationale": "Incorrect. Kidd is not the DTT-sensitive system at issue; Kell is."
+        }
+      ],
+      "answer": "a",
+      "skill": "Unit selection after DTT",
+      "difficulty": "application"
+    },
+    {
+      "id": "ih-dtt-q3",
+      "stem": "To confirm suspected anti-P1, plasma is incubated with hydatid cyst fluid, and a second aliquot with saline as a dilution control. Both tubes are now nonreactive with P1-positive cells that reacted before. How should this be interpreted?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Invalid test: the antibody may simply have been diluted",
+          "rationale": "Correct. Inhibition is shown only when the test tube is nonreactive and the dilution control still reacts; a nonreactive dilution control invalidates the test."
+        },
+        {
+          "id": "b",
+          "text": "Anti-P1 confirmed",
+          "rationale": "Incorrect. Loss of reactivity in the dilution control too means dilution, not specific inhibition, could explain the result."
+        },
+        {
+          "id": "c",
+          "text": "Anti-P1 excluded",
+          "rationale": "Incorrect. An invalid test neither confirms nor excludes the specificity."
+        },
+        {
+          "id": "d",
+          "text": "An additional alloantibody is present",
+          "rationale": "Incorrect. Additional antibodies are suggested when the sample plus substance still reacts, not when everything is negative."
+        }
+      ],
+      "answer": "a",
+      "skill": "Inhibition interpretation",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch40",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 40, Blood Groups and Compatibility (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 40,
+          "section": "High-Yield Hits",
+          "items": [
+            8,
+            26,
+            28
+          ]
+        },
+        {
+          "chapter": 40,
+          "section": "Exam Traps",
+          "items": [
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "lancman2018",
+      "kind": "external",
+      "citation": "Lancman G, Arinsburg S, Jhang J, Cho HJ, Jagannath S, Madduri D, Parekh S, Richter J, Chari A. Blood Transfusion Management for Patients Treated With Anti-CD38 Monoclonal Antibodies. Front Immunol. 2018;9:2616. doi:10.3389/fimmu.2018.02616",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6249335/",
+      "consulted": true,
+      "usedFor": "Full text read via Europe PMC. CD38 on red cells; weak, usually 1+ panagglutination in tube, gel and solid phase; class effect (isatuximab); ABO/RhD unaffected; DAT/autocontrol often negative with CD38 downregulation; real alloantibodies in some patients; IAT positivity lasting months after stopping; DTT mechanism and Kell plus Lutheran, Yt, JMH, LW, Cromer, Indian, Dombrock, Knops denaturation; K-negative unless known K-positive; reading the DTT screen; baseline type and screen and extended phenotype/genotype; emergency uncrossmatched ABO/RhD-compatible blood; papain destroys Duffy and MNS."
+    },
+    {
+      "id": "byrne2019",
+      "kind": "external",
+      "citation": "Byrne KM, Mercado CMC, Nnabue TN, Paige TD, Flegel WA. Inhibition of blood group antibodies by soluble substances. Immunohematology. 2019;35(1):19-22.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6436639/",
+      "consulted": true,
+      "usedFor": "Author manuscript read through the NCBI BioC API (Europe PMC full text returned a server error; the PMC page was blocked by a browser check). Inhibition principle and procedure; dilution control with inert substance and its interpretation; anti-P1 inhibited by hydatid cyst fluid or pigeon egg albumin (Table 1); saliva (ABH, Lewis), urine (Sda), pooled plasma (Chido/Rodgers); high-titer drug antibodies may not be inhibitable."
+    },
+    {
+      "id": "gorakshakar2016",
+      "kind": "external",
+      "citation": "Gorakshakar AC, Ghosh K. Use of lectins in immunohematology. Asian J Transfus Sci. 2016;10(1):12-21. doi:10.4103/0973-6247.172180",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4782487/",
+      "consulted": true,
+      "usedFor": "Full text read via Europe PMC. Dolichos biflorus anti-A1 lectin routinely used to differentiate A1 and A2 cells; crossmatch with A2 cells when anti-A1 is active at physiological temperature; Dolichos also agglutinates Tn and Cad cells, cross-reactivity reduced by dilution; Ulex europaeus anti-H."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-cd38",
+      "text": "Anti-CD38 drugs cause weak panreactivity in the IAT; ABO/RhD unaffected; DAT/autocontrol often negative; persists months.",
+      "status": "checked",
+      "refs": [
+        "lancman2018"
+      ]
+    },
+    {
+      "id": "cl-dtt",
+      "text": "DTT denatures CD38 and Kell (plus other systems); K-negative units unless known K-positive; reading the DTT screen.",
+      "status": "checked",
+      "refs": [
+        "lancman2018"
+      ]
+    },
+    {
+      "id": "cl-plan",
+      "text": "Baseline type and screen plus phenotype/genotype; emergency uncrossmatched blood without delay.",
+      "status": "checked",
+      "refs": [
+        "lancman2018"
+      ]
+    },
+    {
+      "id": "cl-inh",
+      "text": "Inhibition procedure and dilution control; hydatid cyst fluid and pigeon egg albumin inhibit anti-P1.",
+      "status": "checked",
+      "refs": [
+        "byrne2019"
+      ]
+    },
+    {
+      "id": "cl-dol",
+      "text": "Dolichos biflorus is anti-A1 (A1 positive, A2 negative); also Tn and Cad.",
+      "status": "checked",
+      "refs": [
+        "gorakshakar2016"
+      ]
+    },
+    {
+      "id": "cl-ficin-p1",
+      "text": "Reviewer Hit 28: ficin enhances P1 reactivity.",
+      "status": "pending",
+      "note": "No open source was read for this in this session; not taught."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; cell drawings schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Strip, soak, spot.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "af-dtt-other",
+      "kind": "missing-context",
+      "status": "open",
+      "issue": "Ch. 40 Hit 8 names only Kell as DTT-sensitive. Lancman 2018 lists Lutheran, Yt, JMH, LW, Cromer, Indian, Dombrock and Knops antigens too, so antibodies to them (for example Yt) can be missed on DTT-treated cells; the K-negative rule applies unless the patient is known K-positive. The lesson teaches the fuller list (register flag rv-dtt-other-antigens)."
+    },
+    {
+      "id": "af-dolichos-tn",
+      "kind": "missing-context",
+      "status": "open",
+      "issue": "Ch. 40 Hit 26 presents Dolichos biflorus as reacting with A1 only. Gorakshakar 2016: Dolichos biflorus lectin also agglutinates Tn- and Cad-positive (polyagglutinable) cells; cross-reactivity is reduced by dilution. The lesson adds this (register flag rv-dolichos-tn-cad)."
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No photographs; reactions shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "All taught factual claims (5) checked against Lancman 2018, Byrne 2019 (read through the NCBI BioC API) and Gorakshakar 2016. One reviewer claim (ficin enhances P1) is pending and not taught. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

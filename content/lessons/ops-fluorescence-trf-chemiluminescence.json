@@ -1,0 +1,1622 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-fluorescence-trf-chemiluminescence",
+  "title": "Fluorescence, Time-Resolved Europium and Chemiluminescence",
+  "summary": "Learn how fluorescence and phosphorescence differ (singlet vs triplet, fast vs slow), why fluorometers read at 90°, how time-resolved europium assays escape short-lived background, and why chemiluminescence needs no excitation source.",
+  "domain": "p1-ops",
+  "topic": "ch4",
+  "conceptIds": [
+    "ch4.hit9",
+    "ch4.hit11",
+    "ch4.trap6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 4,
+        "section": "High-Yield Hits",
+        "items": [
+          9,
+          11
+        ]
+      },
+      {
+        "chapter": 4,
+        "section": "Exam Traps",
+        "items": [
+          6
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 4 High-Yield Hits 9 (fluorescence vs phosphorescence; right-angle reading) and 11 (time-resolved fluorescence with Eu³⁺ chelate) and Exam Trap 6 (chemiluminescence needs no excitation source). Checked against Zacharioudaki 2022, Hagan 2011, Kristoffersen 2018, Blanco-Jáquez 2026, Shokoufi 2020, Cinquanta 2017, Chen 2023 and Takakura 2021 (all read as Europe PMC full text). Qualification: the reviewer gives fluorescence 10⁻⁹–10⁻⁶ s and phosphorescence 10⁻⁴–10 s; Zacharioudaki 2022 gives 10⁻¹⁰–10⁻⁷ s and 10⁻⁶ s up to seconds, so the lesson teaches “nanoseconds” vs “microseconds to seconds” (register flag rv-ch4-luminescence-lifetimes). The reviewer’s fluorescein 4.5 ns is given by Kristoffersen 2018 as near 4 ns (3.3–3.9 ns measured, solvent-dependent), and its Eu³⁺ 10–1000 μs as μs–ms in Hagan 2011. Not taught as fact: the reviewer’s exact lifetime ranges and 4.5 ns. Chemiluminescence basics and luminometers (Hit 10) are taught in ops-photometry-beer-scatter-luminescence."
+  },
+  "prerequisites": [
+    "ch4.hit1",
+    "ch4.hit10"
+  ],
+  "objectives": [
+    "Distinguish fluorescence from phosphorescence by excited state and lifetime.",
+    "Explain why fluorometers read emission at 90° to the excitation beam.",
+    "Explain how time-resolved europium-chelate assays remove short-lived background.",
+    "State why chemiluminescence needs no excitation source and has a low blank."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three labels, one glowing serum",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a serum immunoassay is being redesigned because serum itself glows when lit with ultraviolet light, raising the blank. Three candidate labels sit on the bench: (1) fluorescein, (2) a europium(III) chelate, (3) an acridinium ester. Question token: “Which signal can be read without the serum glow?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Invented scenario: a serum immunoassay has a high blank, because serum proteins and other molecules glow when they are lit."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Three labels are on the bench: fluorescein, a europium chelate, and an acridinium ester."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which of them can be read without the serum glow getting in the way, and why?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "glow",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 110,
+            "w": 640,
+            "label": "Serum glows when lit → high blank",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "l1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 270,
+            "w": 290,
+            "h": 150,
+            "tone": "b",
+            "title": "1 Fluorescein",
+            "lines": [
+              "Classic fluorescent label"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "l2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 270,
+            "w": 290,
+            "h": 150,
+            "tone": "a",
+            "title": "2 Europium chelate",
+            "lines": [
+              "Lanthanide label"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "l3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 270,
+            "w": 290,
+            "h": 150,
+            "tone": "warn",
+            "title": "3 Acridinium ester",
+            "lines": [
+              "Chemiluminescent label"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 700,
+            "label": "Which signal escapes the serum glow?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Singlet, triplet and the 90° detector",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic energy diagram: absorbing a photon lifts an electron from the ground singlet state to an excited singlet state. Return straight from the excited singlet with light emission is fluorescence (lifetime of the order of nanoseconds; one review gives 10⁻¹⁰ to 10⁻⁷ s). Crossing to a triplet state first (intersystem crossing), then emitting, is phosphorescence, which is slower (the same review gives 10⁻⁶ s up to seconds) because it involves a change of electron spin. Emission is at a longer wavelength than excitation (Stokes shift). A fluorometer drawing shows the detector at 90° to the excitation beam, which keeps direct excitation light off the detector.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Fluorescence starts with absorption. A photon lifts an electron from the ground singlet state to an excited singlet state."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "If it falls straight back and emits light, that is fluorescence. It is fast: lifetimes are of the order of nanoseconds. The emitted light has a longer wavelength than the excitation light, the Stokes shift."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "If the electron first crosses to a triplet state, the later emission is phosphorescence. The spin change makes it much slower: microseconds up to seconds."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "In a fluorometer the emission is usually read at ninety degrees to the excitation beam, so the bright excitation light does not shine straight into the detector."
+        }
+      ],
+      "objects": [
+        {
+          "id": "abs",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Absorb",
+            "lines": [
+              "Ground singlet → excited singlet"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fl",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Fluorescence",
+            "lines": [
+              "Singlet → ground, ~ns",
+              "Longer wavelength (Stokes)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ph",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Phosphorescence",
+            "lines": [
+              "Via triplet (spin change)",
+              "Slower: µs up to seconds"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "geo",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Fluorometer geometry",
+            "lines": [
+              "Detector at 90° to beam",
+              "Keeps excitation light out"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Time-resolved fluorescence: wait, then read",
+      "start": 60,
+      "end": 104,
+      "altText": "Timeline schematic: a flash of excitation light at time zero; background fluorescence from serum and conventional dyes (fluorescein lifetime near 4 ns) decays within nanoseconds; europium(III) chelate luminescence lasts microseconds to milliseconds. A shaded “gate” starts after the background has decayed, so only europium light is counted. Side card: an antenna ligand absorbs the light and passes energy, through its triplet state, to the europium ion; europium emits a sharp red line near 613 nm (europium–NTA enhancement complex: excitation 340 nm, emission 613 nm). Stokes shift over 150 nm for lanthanide chelates versus under 50 nm for conventional fluorophores, so scattered excitation light is easier to exclude.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "Serum and ordinary dyes fluoresce for only nanoseconds; fluorescein lasts about four. Europium chelates are different: their luminescence lasts microseconds to milliseconds."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "Time-resolved fluorescence uses that gap. Flash the sample, wait until the short-lived background has died away, then open the detector gate and count only the long-lived europium light."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "Europium absorbs light poorly by itself, so it is held in a chelate with an antenna ligand. The antenna absorbs, then passes the energy through its triplet state to europium, which emits a sharp red line near six hundred and thirteen nanometres."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "There is a second advantage: the Stokes shift of lanthanide chelates is over one hundred and fifty nanometres, against under fifty for conventional dyes, so scattered excitation light is easy to filter out."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 210,
+            "tone": "b",
+            "title": "After the flash",
+            "lines": [
+              "Serum background: ns",
+              "Fluorescein: ~4 ns",
+              "Europium chelate: µs–ms"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "gate",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 360,
+            "w": 440,
+            "label": "Wait → open gate → count Eu³⁺ only",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ant",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "a",
+            "title": "Antenna chelate",
+            "lines": [
+              "Ligand absorbs the light",
+              "Energy via triplet → Eu³⁺",
+              "Sharp red line ~613 nm"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 32,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "stokes",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 760,
+            "h": 110,
+            "tone": "warn",
+            "title": "Stokes shift",
+            "lines": [
+              "Lanthanide > 150 nm · conventional dyes < 50 nm"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Chemiluminescence: no lamp at all",
+      "start": 104,
+      "end": 144,
+      "altText": "Chemiluminescence cards: the excited state is made by a chemical reaction, not by absorbing light, so the instrument has no excitation source. Direct labels: acridinium esters. Indirect (enzyme) labels: alkaline phosphatase with a 1,2-dioxetane substrate (AMPPD); horseradish peroxidase with luminol or its derivatives. With no excitation light there is no scattered excitation light and no autofluorescence, so the blank is low. Hook answers: fluorescein shares the nanosecond time scale of the serum glow; the europium chelate is read after the glow has decayed (time-resolved); the acridinium ester needs no excitation, so the serum is never lit.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Chemiluminescence makes its excited state by a chemical reaction instead of by absorbing light. So the instrument has no excitation lamp at all."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Labels can be direct, such as acridinium esters, or enzymes: alkaline phosphatase with a dioxetane substrate, or horseradish peroxidase with luminol."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "No excitation light means no scattered excitation light and no autofluorescence, so the blank signal is low."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook. Fluorescein glows on the same nanosecond time scale as serum. The europium chelate is read after the serum glow has gone. The acridinium ester never lights the serum at all."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "good",
+            "title": "Chemiluminescence",
+            "lines": [
+              "Reaction makes the excited state",
+              "No excitation lamp"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lab",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "b",
+            "title": "Labels",
+            "lines": [
+              "Direct: acridinium ester",
+              "ALP + dioxetane (AMPPD)",
+              "HRP + luminol"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bg",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 330,
+            "w": 440,
+            "label": "No scatter · no autofluorescence",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 760,
+            "h": 150,
+            "tone": "a",
+            "title": "Hook answers",
+            "lines": [
+              "1 Fluorescein: same ns scale as serum glow",
+              "2 Europium: read after the glow decays",
+              "3 Acridinium: serum never lit"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Chemiluminescence needs an excitation light source like fluorescence” (✓ a chemical reaction makes the excited state; no lamp); “Phosphorescence is faster than fluorescence” (✓ phosphorescence goes through the triplet state and lasts longer); “Time-resolved fluorescence works because europium is brighter than fluorescein” (✓ lanthanide chelates are generally less bright; the gain comes from reading after short-lived background has decayed).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: chemiluminescence needs an excitation lamp, just like fluorescence. No: a chemical reaction makes the excited state, so there is no lamp."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: phosphorescence is faster than fluorescence. No: it passes through the triplet state, and lasts longer."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: europium wins because it is brighter. No: lanthanide chelates are generally less bright than fluorescein. They win because they are read after the background has gone."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Chemiluminescence needs a lamp.”",
+            "lines": [
+              "✓ A reaction makes the light"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Phosphorescence is faster.”",
+            "lines": [
+              "✓ Triplet route: slower, longer-lived"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Europium is simply brighter.”",
+            "lines": [
+              "✓ It wins by timing, not brightness"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Flash, afterglow, glow stick",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Fluorescence is a camera FLASH, gone at once; europium is the AFTERGLOW you read once the flash has faded; chemiluminescence is a GLOW STICK, which you crack instead of lighting.” Tokens: flash = fluorescence · afterglow = time-resolved europium · glow stick = chemiluminescence. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: fluorescence is a camera flash, gone at once. Europium is the afterglow you read once the flash has faded. Chemiluminescence is a glow stick: you crack it instead of lighting it."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: the published lifetime ranges differ between sources and depend on the molecule and its surroundings; the time gate removes short-lived background, not every interference; and a chemiluminescent signal changes with reaction time, so it is read in a set time window."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Flash, afterglow, glow stick",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Flash = fluorescence",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Afterglow = Eu³⁺ TRF",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Glow stick = CL",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Lifetime ranges vary by source and molecule",
+              "Gating removes short-lived background only",
+              "CL signal depends on reaction timing"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Fluorescence = singlet, ns · phosphorescence = triplet, slower · read at 90°”, “Europium chelate = µs–ms → time-gated reading · chemiluminescence = reaction-made light, no lamp”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Fluorescence fades within nanoseconds, so time-resolved assays read the long-lived europium glow after the background has died, while chemiluminescence needs no excitation lamp at all because a chemical reaction makes the light."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Fluorescence: singlet, ns · phosphorescence: triplet, slower · read at 90°",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Eu³⁺ chelate: µs–ms, time-gated · chemiluminescence: no lamp",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: some molecules soak up light and give it back a moment later as a different colour. Ordinary dyes give it back almost instantly; europium chelates give it back slowly, so you can wait for the background to fade before measuring. Chemiluminescent labels make light from a chemical reaction, so no lamp is needed. Scientific terms: excited singlet state, triplet state, intersystem crossing, fluorescence lifetime, phosphorescence, Stokes shift, right-angle (90°) detection geometry, lanthanide chelate, antenna ligand, time-gated (time-resolved) detection, chemiluminescence, acridinium ester, 1,2-dioxetane (AMPPD), luminol.",
+    "why": "Biological samples contain many molecules that fluoresce for nanoseconds, which raises the blank of conventional fluorescence assays. Long-lived lanthanide luminescence can be measured after that background has decayed, and chemiluminescence avoids excitation light altogether, so both give low backgrounds.",
+    "measure": "Fluorescence: from the excited singlet, of the order of nanoseconds (one review: 10⁻¹⁰–10⁻⁷ s); emission at a longer wavelength than excitation; read at 90°. Phosphorescence: via the triplet state, slower (one review: 10⁻⁶ s up to seconds). Fluorescein: near 4 ns. Eu³⁺ chelates: μs to ms; Eu³⁺–NTA enhancement complex excitation 340 nm, emission 613 nm; Stokes shift over 150 nm vs under 50 nm for conventional fluorophores. Chemiluminescence: no excitation source; direct labels (acridinium esters) or enzyme labels (ALP + AMPPD dioxetane; HRP + luminol).",
+    "differs": "Fluorescence (singlet, ns) vs phosphorescence (triplet, μs–s); conventional fluorescence (read during excitation, background shares the time scale) vs time-resolved fluorescence (read after a delay); photoluminescence (needs excitation light) vs chemiluminescence (reaction-made light).",
+    "examAngle": "Expect: which excited state gives phosphorescence, why the fluorometer detector is at a right angle, which label is used in time-resolved fluorescence and why it lowers background, and which method needs no excitation source."
+  },
+  "comparisons": [
+    {
+      "id": "fluor-vs-phos",
+      "title": "Fluorescence vs phosphorescence",
+      "left": {
+        "label": "Fluorescence",
+        "points": [
+          "Excited singlet → ground",
+          "Nanoseconds"
+        ]
+      },
+      "right": {
+        "label": "Phosphorescence",
+        "points": [
+          "Via triplet (intersystem crossing)",
+          "Microseconds up to seconds"
+        ]
+      },
+      "distinguisher": "Spin change through the triplet state makes phosphorescence slower."
+    },
+    {
+      "id": "trf-vs-cl",
+      "title": "Time-resolved fluorescence vs chemiluminescence",
+      "left": {
+        "label": "Time-resolved (Eu³⁺)",
+        "points": [
+          "Excitation flash, then a delay",
+          "Long-lived emission counted after background decays"
+        ]
+      },
+      "right": {
+        "label": "Chemiluminescence",
+        "points": [
+          "No excitation source",
+          "Light from a chemical reaction"
+        ]
+      },
+      "distinguisher": "Both cut background: one by timing, the other by never lighting the sample."
+    }
+  ],
+  "mnemonic": {
+    "text": "Fluorescence is a camera FLASH, gone at once; europium is the AFTERGLOW you read once the flash has faded; chemiluminescence is a GLOW STICK, which you crack instead of lighting.",
+    "explanation": "Separates fast fluorescence, long-lived time-gated europium luminescence and reaction-made chemiluminescence.",
+    "limitation": "Lifetime ranges differ between sources and depend on the molecule and its surroundings; time gating removes only short-lived background; a chemiluminescent signal depends on reaction timing and is read in a set time window."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Energy diagram and timeline are schematic, not to scale.",
+    "Lifetime ranges are one review’s summary; values depend on the molecule and solvent."
+  ],
+  "takeaway": "Fluorescence fades within nanoseconds, so time-resolved assays read the long-lived europium glow after the background has died, while chemiluminescence needs no excitation lamp at all because a chemical reaction makes the light.",
+  "questions": [
+    {
+      "id": "ops-ftc-q1",
+      "stem": "A time-resolved fluoroimmunoassay uses a europium(III) chelate label. What is the main reason it has a lower background than a fluorescein-labelled assay?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Emission is measured after a delay, when the short-lived background fluorescence has decayed",
+          "rationale": "Correct. Europium chelate luminescence lasts microseconds to milliseconds, while sample background lasts nanoseconds, so time gating removes it."
+        },
+        {
+          "id": "b",
+          "text": "Europium chelates are much brighter than fluorescein",
+          "rationale": "Incorrect. Lanthanide chelates are generally less bright; the benefit comes from background suppression."
+        },
+        {
+          "id": "c",
+          "text": "No excitation light is needed",
+          "rationale": "Incorrect. That describes chemiluminescence; europium chelates are excited by a light flash."
+        },
+        {
+          "id": "d",
+          "text": "Europium emits at a shorter wavelength than it absorbs",
+          "rationale": "Incorrect. Emission (near 613 nm) is at a much longer wavelength than excitation, a large Stokes shift."
+        }
+      ],
+      "answer": "a",
+      "skill": "Time-resolved fluorescence",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-ftc-q2",
+      "stem": "Which statement about chemiluminescence is correct?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The excited state is produced by a chemical reaction, so no excitation light source is needed",
+          "rationale": "Correct. This is why chemiluminescence avoids scattered excitation light and autofluorescence."
+        },
+        {
+          "id": "b",
+          "text": "It requires a monochromatic excitation beam, as fluorescence does",
+          "rationale": "Incorrect. No excitation source is used."
+        },
+        {
+          "id": "c",
+          "text": "Its blank is high because the sample autofluoresces",
+          "rationale": "Incorrect. With no excitation light there is no autofluorescence; the blank is low."
+        },
+        {
+          "id": "d",
+          "text": "Acridinium esters must be read with a time gate after a flash",
+          "rationale": "Incorrect. Acridinium esters are triggered chemically; time gating after a flash describes lanthanide time-resolved fluorescence."
+        }
+      ],
+      "answer": "a",
+      "skill": "Chemiluminescence principle",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ops-ftc-q3",
+      "stem": "Compared with fluorescence, phosphorescence:",
+      "options": [
+        {
+          "id": "a",
+          "text": "Arises after crossing to a triplet state and lasts longer",
+          "rationale": "Correct. Intersystem crossing to the triplet state involves a spin change, so emission is slower (microseconds to seconds)."
+        },
+        {
+          "id": "b",
+          "text": "Arises directly from the excited singlet state and is faster",
+          "rationale": "Incorrect. That describes fluorescence."
+        },
+        {
+          "id": "c",
+          "text": "Is produced by a chemical reaction without light absorption",
+          "rationale": "Incorrect. That is chemiluminescence; phosphorescence follows light absorption."
+        },
+        {
+          "id": "d",
+          "text": "Is emitted at a shorter wavelength than the absorbed light",
+          "rationale": "Incorrect. Photoluminescence is emitted at a longer wavelength (lower energy) than the absorbed light."
+        }
+      ],
+      "answer": "a",
+      "skill": "Excited states",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch4",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 4, How Analyzers Work (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 4,
+          "section": "High-Yield Hits",
+          "items": [
+            9,
+            11
+          ]
+        },
+        {
+          "chapter": 4,
+          "section": "Exam Traps",
+          "items": [
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "zacharioudaki2022",
+      "kind": "external",
+      "citation": "Zacharioudaki DE, Fitilis I, Kotti M. Review of Fluorescence Spectroscopy in Environmental Quality Applications. Molecules. 2022;27(15):4801. doi:10.3390/molecules27154801",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9370042/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. Absorption to an excited singlet; fluorescence from the singlet (10⁻¹⁰–10⁻⁷ s; lifetime of the order of ns); phosphorescence after transition to the triplet state (10⁻⁶ s up to seconds, because of the spin change); Stokes shift to longer wavelength."
+    },
+    {
+      "id": "hagan2011",
+      "kind": "external",
+      "citation": "Hagan AK, Zuchner T. Lanthanide-based time-resolved luminescence immunoassays. Anal Bioanal Chem. 2011;400(9):2847-2864. doi:10.1007/s00216-011-5047-7",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3102841/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. Singlet/triplet and intersystem crossing; lanthanide luminescence μs–ms vs nanosecond background; time-gated acquisition; serum background; antenna effect via ligand triplet; Eu³⁺ most commonly used; Eu³⁺–NTA excitation 340 nm, emission 613 nm; Stokes shift >150 nm vs <50 nm; lanthanide brightness generally lower than fluorescein."
+    },
+    {
+      "id": "kristoffersen2018",
+      "kind": "external",
+      "citation": "Kristoffersen AS, Erga SR, Hamre B, Frette Ø. Testing Fluorescence Lifetime Standards using Two-Photon Excitation and Time-Domain Instrumentation: Fluorescein, Quinine Sulfate and Green Fluorescent Protein. J Fluoresc. 2018;28(5):1065-1073. doi:10.1007/s10895-018-2270-z",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6153725/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. Fluorescein lifetimes near 4 ns in earlier work; 3.3–3.9 ns measured, varying with solvent."
+    },
+    {
+      "id": "blanco2026",
+      "kind": "external",
+      "citation": "Blanco-Jáquez AD, Alarcón-Herrera MT, Valenzuela-García LI, et al. Portable Multispectral Fluorometer with Embedded Machine Learning for Chlorophyll-a Estimation in Acetone-Extracted Samples. Sensors (Basel). 2026;26(13):4086. doi:10.3390/s26134086",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13364246/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. Emission detected at 90° geometry, reducing direct excitation light on the sensor."
+    },
+    {
+      "id": "shokoufi2020",
+      "kind": "external",
+      "citation": "Shokoufi N, Vosough M, Rahimzadegan-Asl M, Abbasi-Ahd A, Khatibeghdami M. Fiberoptic-Coupled Spectrofluorometer with Array Detection as a Process Analytical Chemistry Tool for Continuous Flow Monitoring of Fluoroquinolone Antibiotics. Int J Anal Chem. 2020;2020:2921417. doi:10.1155/2020/2921417",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7029292/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. Fluorescence collected at a right angle to the excitation beam."
+    },
+    {
+      "id": "cinquanta2017",
+      "kind": "external",
+      "citation": "Cinquanta L, Fontana DE, Bizzaro N. Chemiluminescent immunoassay technology: what does it change in autoantibody detection? Auto Immun Highlights. 2017;8(1):9. doi:10.1007/s13317-017-0097-2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5483212/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. Exergonic chemical reactions produce the excited state; direct labels (acridinium esters) and enzyme labels (ALP with AMPPD dioxetane; HRP with luminol); low background emission; signal measured in a time window and depends on reaction kinetics."
+    },
+    {
+      "id": "chen2023",
+      "kind": "external",
+      "citation": "Chen Z, Su L, Wu Y, et al. Design and synthesis of a small molecular NIR-II chemiluminescence probe for in vivo-activated H2S imaging. Proc Natl Acad Sci U S A. 2023;120(8):e2205186120. doi:10.1073/pnas.2205186120",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9974472/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. Chemiluminescence relies on an excited state formed by a chemical reaction instead of external light excitation, avoiding autofluorescence and scattering from excitation light."
+    },
+    {
+      "id": "takakura2021",
+      "kind": "external",
+      "citation": "Takakura H. Molecular Design of d-Luciferin-Based Bioluminescence and 1,2-Dioxetane-Based Chemiluminescence Substrates for Altered Output Wavelength and Detecting Various Molecules. Molecules. 2021;26(6):1618. doi:10.3390/molecules26061618",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7998607/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. Luminescence needs no excitation light, so scattered light and autofluorescence are not observed and background can be very low; excitation by light (fluorescence) vs by chemical reaction."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-states",
+      "text": "Fluorescence from the excited singlet (ns); phosphorescence after intersystem crossing to the triplet, slower (μs to s); Stokes shift to longer wavelength.",
+      "status": "checked",
+      "refs": [
+        "zacharioudaki2022",
+        "hagan2011"
+      ]
+    },
+    {
+      "id": "cl-geometry",
+      "text": "Fluorometers commonly read emission at 90° to the excitation beam, keeping direct excitation light off the detector.",
+      "status": "checked",
+      "refs": [
+        "blanco2026",
+        "shokoufi2020"
+      ]
+    },
+    {
+      "id": "cl-trf",
+      "text": "Eu³⁺ chelates: μs–ms luminescence, time-gated reading after ns background decays; antenna ligand via triplet; emission 613 nm; Stokes shift >150 nm vs <50 nm; lower brightness than fluorescein.",
+      "status": "checked",
+      "refs": [
+        "hagan2011"
+      ]
+    },
+    {
+      "id": "cl-fluorescein",
+      "text": "Fluorescein lifetime near 4 ns.",
+      "status": "checked",
+      "refs": [
+        "kristoffersen2018"
+      ]
+    },
+    {
+      "id": "cl-cl",
+      "text": "Chemiluminescence: reaction-made excited state, no excitation source, low background; acridinium ester, ALP + dioxetane, HRP + luminol; signal read in a time window.",
+      "status": "checked",
+      "refs": [
+        "cinquanta2017",
+        "chen2023",
+        "takakura2021"
+      ]
+    },
+    {
+      "id": "cl-reviewer-numbers",
+      "text": "Reviewer figures: fluorescence 10⁻⁹–10⁻⁶ s, phosphorescence 10⁻⁴–10 s, Eu³⁺ 10–1000 μs, fluorescein 4.5 ns.",
+      "status": "pending",
+      "note": "Not taught as stated; the sources read give different or broader ranges (see accuracy flag)."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; energy diagram and timeline schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Flash, afterglow, glow stick.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-luminescence-lifetimes",
+      "issue": "Ch. 4 Hit 9 gives fluorescence lifetimes of 10⁻⁹–10⁻⁶ s and phosphorescence 10⁻⁴–10 s; Hit 11 gives fluorescein 4.5 ns and Eu³⁺ 10–1000 μs. Zacharioudaki 2022 gives fluorescence 10⁻¹⁰–10⁻⁷ s and phosphorescence 10⁻⁶ s up to seconds; Kristoffersen 2018 gives fluorescein near 4 ns (3.3–3.9 ns measured, solvent-dependent); Hagan 2011 gives lanthanide luminescence in the μs–ms range. Ranges differ between sources and depend on the molecule and environment. The lesson teaches nanoseconds vs microseconds-to-seconds and does not teach the exact reviewer ranges (register flag rv-ch4-luminescence-lifetimes).",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No photographs; energy states, timeline and instrument geometry are drawn as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 factual claims checked against Zacharioudaki 2022, Hagan 2011, Kristoffersen 2018, Blanco-Jáquez 2026, Shokoufi 2020, Cinquanta 2017, Chen 2023 and Takakura 2021 (all read as Europe PMC full text); 1 pending (reviewer numeric lifetime ranges not taught). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

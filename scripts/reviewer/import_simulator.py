@@ -384,6 +384,32 @@ FLAG_RULES = [
      'sim-q318: the answer (undercompensation) still stands, because the stem states that 22% was the measured spillover. Sources show spillover values are measured per instrument and reagent, so 22% should not be read as a general constant.'),
     ('rv-ch35-tandem-two-mechanisms', 'PE-Cy5 can emit as APC',
      "sim-q323: answer b (a PE-Cy5-related artifact in the APC detector) is still the best choice. Bhowmick 2023 explains the PE-Cy5 signal as cross-laser bleedthrough, because PE-Cy5 and APC have similar emission maxima. That is spillover into the APC detector, not emission from the parent dye. The explanation's 'APC-Cy7 can too' is a separate mechanism: cell-dependent tandem degradation (Le Roy 2009)."),
+    ('rv-ch67-scraping-not-microdissection', 'pre-extraction procedures (?:like|such as) microdissection',
+     "sim-q607: answer c still stands because the stem describes a pathologist doing genuine microdissection, which has its own codes (88380/88381) for microscopically identified target cells. The NCCI manual adds that simply scraping tumor off an unstained slide is included in the molecular code and must not be billed as microdissection. Quantitation of extracted nucleic acid is also included, so 'pre-extraction procedures' are not all separately billable."),
+    ('rv-ch67-81479-scope', '81479 (?:covers|is for) tests (?:with no|lacking any) Tier 1 or Tier 2',
+     'sim-q88 and sim-q606: both answers still stand. Answer a in sim-q88 is the best of the four options, because a borrowed Tier 1 code is wrong. But for a 40-gene NGS panel, a genomic sequencing procedure code (such as 81445 or 81450 for 5-50 gene neoplasm panels) or a PLA code may fit before 81479. NCCI allows 81479 (one unit) or component codes only when no CPT code accurately describes the procedure.'),
+    ('rv-crypto-induction-who2022', 'Cryptococcal meningitis induction: amphotericin B \\+ flucytosine',
+     'Matches sim-q784 only. The answer (amphotericin B plus flucytosine) still stands among the options given, and fluconazole monotherapy is correctly rejected. The WHO 2022 preferred induction is a single high-dose liposomal amphotericin B plus 14 days of flucytosine and fluconazole (Ngan 2022; Jarvis 2022).'),
+    ('rv-ohl-fixed-candidiasis', 'Non-scrapable EBV-positive white plaques = oral hairy leukoplakia; thrush scrapes off',
+     'Matches sim-q785 only. The answer (oral hairy leukoplakia) still stands because the stem gives EBV-positive cells. Chronic hyperplastic candidiasis also does not scrape off (Vila 2020), so being fixed alone is not diagnostic; EBV in situ hybridisation confirms OHL (Martins 2017).'),
+    ('rv-mucorales-pauciseptate', '(?i)broad,? aseptate hyphae|hyphae are fragile and aseptate',
+     "Matches sim-q787 and sim-q545. The answers still stand: Rhizopus for q787, and mince or tease rather than homogenise tissue for q545, which matches Gullì 2024's advice against grinding. Sources describe Mucorales hyphae as aseptate or pauciseptate rather than always aseptate, and Mucor can also form rhizoids (Gullì 2024; Walther 2019)."),
+    ('rv-adamts13-hus-range', 'HUS keeps 30.100% activity',
+     "sim-q51 (ADAMTS13 4%, so TTP): the answer still stands, because 4% is below the ISTH 10 IU/dL hallmark. The explanation's 'HUS keeps 30–100%' is not an ISTH cut-off. ISTH says to consider HUS above 10% after excluding secondary causes."),
+    ('rv-megakaryocytes-destruction', 'destructive causes \\(ITP/TTP/HIT\\) show increased marrow megakaryocytes',
+     "sim-q733 (chemotherapy, decreased megakaryocytes, so production failure): the answer stands, since chemotherapy drugs damage stem cells and megakaryocyte progenitors (Kuter 2022), though some agents also increase destruction. The explanation's claim that ITP/TTP/HIT all show increased megakaryocytes is only partly supported for ITP, where antibodies also impair production, and was not verified for TTP or HIT."),
+    ('rv-etv6-runx1-late-relapse', 'ETV6-RUNX1 = favorable prognosis',
+     "sim-q726: the answer (favourable prognosis) still stands. Sun 2017 says the outcome is generally favourable but late relapses occur in up to 20%, so the explanation could add 'generally' and mention possible late relapse."),
+    ('rv-bcell-translocation-frequencies', 'cyclin D1\\+ \\(t\\(11;14\\)\\) = mantle cell lymphoma',
+     'sim-q310: the answer (mantle cell lymphoma) still stands for the classic phenotype. WHO-HAEM5 gives t(11;14) in at least 95% of MCL, not all, and says non-nodal MCL frequently lacks CD5.'),
+    ('rv-amenorrhea-fixed-sequence', 'then prolactin/TSH, progestin challenge, FSH/LH',
+     "sim-q223's answer (hCG first) still stands. Its explanation repeats the fixed order, with FSH/LH after the progestin challenge. Open reviews (Gibson 2020, Nelson 2023) measure FSH, prolactin and TSH in the first round with hCG, and Gibson notes experts caution against routine progestin challenge because it may be unreliable."),
+    ('rv-fsh-menopause-vs-poi', '12 months of amenorrhea has FSH 85',
+     "sim-q709's answer (primary ovarian failure, menopause) still stands because the patient is 52 with 12 months of amenorrhea, which meets the WHO definition. The explanation's 'Low estradiol + high FSH = primary ovarian failure' needs age context: under 40 the same pattern is POI (ESHRE 2024)."),
+    ('rv-b2-transferrin-not-csf-only', '[Bb]eta-2-?\\s?transferrin[^.]*CSF-specific',
+     "sim-q178 and sim-q267 call beta-2 transferrin CSF-specific. Their answers still stand, because Oh 2017 calls it a highly sensitive and specific confirmatory marker for a CSF leak. Oh 2017 also notes it is present in perilymph and vitreous humour, so eye rupture can give a false positive, and 'CSF-specific' should be qualified."),
+    ('rv-meconium-window-onset', '[Mm]econium reflects the second and third trimesters',
+     "sim-q269's answer stands: meconium does not capture first-trimester-only drinking (Price 2018; Lange 2014). The explanation should add that the onset of meconium formation is debated (about 12 to 20 weeks), and that one cohort used an EtG cut-off of 10 ng/g as a marker of third-trimester exposure (Maschke 2021)."),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
@@ -402,7 +428,8 @@ FLAG_RULES = [
 
 
 # Rules whose issue is not specific to the chapter the flag was found in.
-ANY_CHAPTER = {'rv-biotin-fda', 'rv-fvl-risk', 'rv-calcium-ref-albumin'}
+ANY_CHAPTER = {'rv-biotin-fda', 'rv-fvl-risk', 'rv-calcium-ref-albumin',
+               'rv-crypto-induction-who2022', 'rv-ohl-fixed-candidiasis', 'rv-mucorales-pauciseptate'}
 
 
 def text(el):
