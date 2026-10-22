@@ -430,6 +430,14 @@ FLAG_RULES = [
      'sim-q336 asks which proteins are vitamin K-dependent, and its answer (II, VII, IX, X, C, S, Z) still stands. Its explanation gives only a fixed 2-4 h IV onset: Vigue 2009 says the INR starts falling within about 4 h of IV vitamin K mostly through factor VII, Witt 2016 says a significant INR fall needs at least 6 h and more likely 12-24 h, and oral vitamin K is preferred when there is no major bleeding.'),
     ('rv-ch33-epo-not-specific', 'High EPO with no JAK2 means secondary erythrocytosis',
      'sim-q301 (smoker, high EPO, JAK2 negative) still stands: a high EPO with no JAK2 mutation points to secondary erythrocytosis. The flag covers the reverse claim. A low EPO is only a WHO minor criterion for PV, and it also occurs in some non-neoplastic erythrocytosis (Mori 2023).'),
+    ('rv-ch28-ggt-induction-real', '(?i)induce GGT up to 5x without liver injury',
+     "sim-q237: the answer (drug-induced GGT elevation with carbamazepine) still stands; Hadzagic-Catibusic 2017 attributes carbamazepine GGT rises to enzyme induction without liver injury. The '5x' figure, alcohol as an 'inducer' and 'isolated GGT elevation needs no liver imaging' were not verified in the sources read, so treat those parts of the explanation as unverified."),
+    ('rv-ch28-calcium-acidified-ise', '(?i)acidified serum measures total calcium',
+     'sim-q238: the keyed answer relies on acidified-serum ISE total calcium, which no open source read could verify. Sources read measured ionized calcium by ISE on anaerobic samples and total calcium by colorimetric methods. Keep the question labelled as unverified until a method source confirms it.'),
+    ('rv-lipase-definitive-ch9', 'amylase normalizes in 48-72 hours',
+     "sim-q197's answer still stands: pain plus lipase at 5x ULN is acute pancreatitis, and lipase is the better late marker. WSES 2019, however, says amylase returns to normal over 3-7 days, not 48-72 hours. Lipase is preferred for its window and sensitivity, not because it is definitive."),
+    ('rv-alf-enzyme-definition-ch9', "albumin's ~20-day half-life keeps it normal until late",
+     "sim-q193 treats a normal albumin as expected early in acute liver failure. That is consistent with this flag and conflicts with Hit 13's 'low albumin/protein'. The albumin and factor VII half-life figures were not checked against any source read in this session, so the answer is plausible but unverified here."),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
@@ -450,7 +458,7 @@ FLAG_RULES = [
 # Rules whose issue is not specific to the chapter the flag was found in.
 ANY_CHAPTER = {'rv-biotin-fda', 'rv-fvl-risk', 'rv-calcium-ref-albumin',
                'rv-crypto-induction-who2022', 'rv-ohl-fixed-candidiasis', 'rv-mucorales-pauciseptate',
-               'rv-aspirin-recovery-time'}
+               'rv-aspirin-recovery-time', 'rv-lipase-definitive-ch9', 'rv-alf-enzyme-definition-ch9'}
 
 
 def text(el):
