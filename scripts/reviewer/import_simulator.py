@@ -410,6 +410,14 @@ FLAG_RULES = [
      "sim-q178 and sim-q267 call beta-2 transferrin CSF-specific. Their answers still stand, because Oh 2017 calls it a highly sensitive and specific confirmatory marker for a CSF leak. Oh 2017 also notes it is present in perilymph and vitreous humour, so eye rupture can give a false positive, and 'CSF-specific' should be qualified."),
     ('rv-meconium-window-onset', '[Mm]econium reflects the second and third trimesters',
      "sim-q269's answer stands: meconium does not capture first-trimester-only drinking (Price 2018; Lange 2014). The explanation should add that the onset of meconium formation is debated (about 12 to 20 weeks), and that one cohort used an EtG cut-off of 10 ng/g as a marker of third-trimester exposure (Maschke 2021)."),
+    ('rv-bun-cr-ratio-prerenal', 'BUN/creatinine >20:1 points to prerenal azotemia|BUN/Cr ratio of 12:1 also argues against prerenal',
+     'sim-q11 (dehydrated elderly patient, ratio 30:1) and sim-q143 (FENa 3.2%, ratio 12:1) treat the BUN/creatinine ratio as separating prerenal azotemia from ATN. Both keyed answers still stand as the classic exam reading: sim-q11 comes with a clinical history of dehydration, and sim-q143 rests mainly on FENa in oliguria. However, Uchino 2012 concluded that using the ratio to separate prerenal azotemia from ATN cannot be justified, so the explanations should say that a ratio above 20 only suggests volume depletion and that BUN is also raised by parenteral nutrition, protein catabolism, steroids or GI bleeding.'),
+    ('rv-aspirin-recovery-time', 'aspirin needs a 5-7 day washout',
+     'Matches sim-q346 only. The answer (EDTA is unsuitable for aggregometry, recollect in citrate) still stands. The 5-7-day aspirin washout is supported by Jourdi 2022 Table 1 but is not a single fixed figure: Lee 2014 found ASPI aggregation normalised by 96 hours after stopping 100 mg daily, while ACCP guidance suggested 7-10 days before noncardiac surgery.'),
+    ('rv-clopidogrel-boxed-warning', '(?i)FDA boxed warning( \\(2010\\))?',
+     'Matches sim-q368 and sim-q656. Both answers (CYP2C19 *2/*3 poor metabolizers form less active metabolite and get less platelet inhibition; use an alternative such as prasugrel or ticagrelor) agree with CPIC 2022. The boxed warning exists, but the 2010 date in sim-q656 was not verified in the sources read (CPIC 2022 cites a 2016 label update), and it is US labelling only.'),
+    ('rv-payment-window-calendar-days', '(?i)within 72 hours before inpatient admission',
+     "sim-q17 (hospital-lab tests 2 days before admission must be bundled into the inpatient DRG claim; the rule doesn't cover independent nonhospital labs): the answer still stands for an IPPS hospital. 42 CFR 412.2(c)(5) and CMS count the admission day plus 3 calendar days before it (admission day plus 1 day before for non-IPPS hospitals), not 72 hours, and cover only services by the hospital or an entity it wholly owns or operates. The lab date of service is the collection date (42 CFR 414.510)."),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
@@ -429,7 +437,8 @@ FLAG_RULES = [
 
 # Rules whose issue is not specific to the chapter the flag was found in.
 ANY_CHAPTER = {'rv-biotin-fda', 'rv-fvl-risk', 'rv-calcium-ref-albumin',
-               'rv-crypto-induction-who2022', 'rv-ohl-fixed-candidiasis', 'rv-mucorales-pauciseptate'}
+               'rv-crypto-induction-who2022', 'rv-ohl-fixed-candidiasis', 'rv-mucorales-pauciseptate',
+               'rv-aspirin-recovery-time'}
 
 
 def text(el):
