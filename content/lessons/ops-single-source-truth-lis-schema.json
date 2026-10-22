@@ -53,7 +53,7 @@
       "title": "Two birth dates, one patient",
       "start": 0,
       "end": 20,
-      "altText": "Invented scenario: registration corrects a patient’s date of birth from 1958 to 1985. The LIS stores the birth date in the patient table AND in a copied column of a report table, which nobody updated. The next report prints the old date, and an age-based reference interval is applied to the wrong age. Separately, the lab asks for a monthly turnaround report the vendor does not offer and is told the database layout is not shared. Question token: “Which design rule broke, and what should the lab have secured?”",
+      "altText": "Invented scenario: registration corrects a patient’s date of birth from 1958 to 1985. The LIS stores the birth date in the patient table AND in a copied column of a report table, which nobody updated. The next report prints the old date, so anything calculated from that copy uses the wrong age. Separately, the lab asks for a monthly turnaround report the vendor does not offer and is told the database layout is not shared. Question token: “Which design rule broke, and what should the lab have secured?”",
       "cues": [
         {
           "id": "h1",
@@ -65,7 +65,7 @@
           "id": "h2",
           "start": 8,
           "end": 14,
-          "text": "The next report prints the old date, and the age-based reference range is chosen for the wrong age."
+          "text": "The next report reads the stale copy and prints the old date, so anything calculated from it uses the wrong age."
         },
         {
           "id": "h3",
@@ -148,7 +148,7 @@
             "x": 710,
             "y": 320,
             "w": 420,
-            "label": "Wrong age → wrong range",
+            "label": "Report reads stale copy",
             "tone": "bad",
             "highlight": 0,
             "opacity": 0
@@ -592,7 +592,7 @@
       "title": "The schema and who can see it",
       "start": 104,
       "end": 144,
-      "altText": "Card 1: schema = the data descriptions of a database: table definitions, keys and other constraints. Card 2: to write your own query or extraction (custom SQL), you need to know which tables hold the data and how their keys link. Card 3: how much access an institution has to a vendor system’s underlying data is often set in the contracts signed with the vendor; access gets harder when a lab changes LIS, and some institutions pay the vendor or a third party to reach archived data. Card 4, hook answers: (1) the birth date had two homes, breaking single source of truth; (2) the lab should have secured schema and data access when buying the system.",
+      "altText": "Card 1: schema = the data descriptions of a database: table definitions, keys and other constraints. Card 2: to write your own query or extraction (custom SQL), you need to know which tables hold the data and how their keys link. Card 3: how much access an institution has to a vendor system’s underlying data is often set in the contracts signed with the vendor; access gets harder when a lab changes LIS, and some institutions have paid the vendor or a third party for access to archived reports. Card 4, hook answers: (1) the birth date had two homes, breaking single source of truth; (2) the reviewer advises securing schema and data access when buying the system.",
       "cues": [
         {
           "id": "l1",
@@ -610,13 +610,13 @@
           "id": "l3",
           "start": 124,
           "end": 134,
-          "text": "How much access a lab gets to a vendor system’s data is often written into the vendor contract. Access gets harder when a lab changes systems, and some institutions end up paying the vendor or a third party for it."
+          "text": "How much access a lab gets to a vendor system’s data is often written into the vendor contract. Access gets harder when a lab changes systems, and some institutions have paid the vendor or a third party for access to archived reports."
         },
         {
           "id": "l4",
           "start": 134,
           "end": 144,
-          "text": "Back to the hook. The birth date had two homes, so single source of truth broke. And the time to secure the schema and data access was at purchase."
+          "text": "Back to the hook. The birth date had two homes, so single source of truth broke. And because access is often set by contract, the reviewer advises securing the schema and data access at purchase."
         }
       ],
       "objects": [
@@ -743,7 +743,7 @@
             "title": "Hook answers",
             "lines": [
               "1 Two homes for one fact",
-              "2 Secure access at purchase"
+              "2 Secure access in contract"
             ],
             "highlight": 0,
             "reveal": 0,
@@ -783,7 +783,7 @@
       "title": "Three classic traps",
       "start": 144,
       "end": 174,
-      "altText": "Three trap cards: “A duplicate is harmless — it’s just a copy” (✓ copies drift; one stale copy misreports); “Denormalization is always an error” (✓ it is a deliberate performance trade-off that must be managed); “Vendor reports are enough, the schema doesn’t matter” (✓ without the schema and data access the lab cannot build independent reports or extractions; address access at purchase).",
+      "altText": "Three trap cards: “A duplicate is harmless — it’s just a copy” (✓ copies drift; one stale copy misreports); “Denormalization is always an error” (✓ it is a deliberate performance trade-off that must be managed); “Vendor reports are enough, the schema doesn’t matter” (✓ without the schema and data access the lab is limited to what the vendor supplies; address access at purchase).",
       "cues": [
         {
           "id": "e1",
@@ -801,7 +801,7 @@
           "id": "e3",
           "start": 164,
           "end": 174,
-          "text": "Trap three: the vendor’s reports are enough, so the schema does not matter. No: without it the lab cannot build its own reports or extractions."
+          "text": "Trap three: the vendor’s reports are enough, so the schema does not matter. No: without the schema and data access, the lab is limited to the reports the vendor supplies."
         }
       ],
       "objects": [
@@ -892,7 +892,7 @@
             "tone": "warn",
             "title": "✗ “Vendor reports are enough.”",
             "lines": [
-              "✓ No schema = no independent reports"
+              "✓ No schema access = vendor reports only"
             ],
             "reveal": 0,
             "size": 16,
@@ -1417,7 +1417,7 @@
         {
           "id": "d",
           "text": "Nothing; the schema can always be obtained free after go-live",
-          "rationale": "Incorrect. Access is often set by the contract, and institutions changing systems have had to pay for access to archived data."
+          "rationale": "Incorrect. Access is often set by the contract, and some institutions changing systems have paid vendors or third parties for access to archived reports."
         }
       ],
       "answer": "a",
@@ -1481,7 +1481,7 @@
       "citation": "Arvisais-Anhalt S, Lehmann CU, Bishop JA, et al. Searching Full-Text Anatomic Pathology Reports Using Business Intelligence Software. J Pathol Inform. 2022;13:100014. doi:10.1016/j.jpi.2022.100014",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8892022/",
       "consulted": true,
-      "usedFor": "Access to stored reports is complicated when institutions transition between LISs and vendors; institutions have paid LIS vendors or third parties for access to archived reports; the authors extracted data with a custom SQL script from the EHR relational database."
+      "usedFor": "Access to stored reports is complicated when institutions transition between LISs and vendors; institutions have paid LIS vendors or third parties for access to archived reports; the authors extracted report text and structured data from the EHR database with a custom Structured Query Language script."
     }
   ],
   "claims": [
