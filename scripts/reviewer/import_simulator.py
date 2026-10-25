@@ -452,6 +452,8 @@ FLAG_RULES = [
      "sim-q560 answer (macrolide resistance; do not use azithromycin) stands per CDC 2021 and Stamm 2010. The explanation's 'uniformly penicillin-susceptible' and 'rampant' overstate: Stamm reports no documented penicillin resistance and regionally variable macrolide resistance."),
     ('rv-spt-wheal-method', '(?i)mean wheal|intradermal 1\\+',
      "sim-q515 still has the correct answer (>=3 mm), but the explanation's 'mean wheal' is only one measurement convention (the European standard uses the largest diameter; WAO uses at least 3 mm more than the negative control, with device-specific thresholds), and the 'intradermal 1+ = 5-10 mm' grading was not verified in an open source."),
+    ('rv-was-microplatelets-ig-pattern', 'Only WAS has small platelets|IgA high, IgM low',
+     'sim-q66 (boy with immunodeficiency, eczema and small-platelet thrombocytopenia → Wiskott-Aldrich) still has the right answer. Its explanation overstates: microplatelets were present in only about half of one large series, X-linked thrombocytopenia from the same gene also causes thrombocytopenia, and sources disagree on the immunoglobulin pattern (high IgA/low IgM in one review, IgG, IgM and IgA often low with high IgE in another).'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',

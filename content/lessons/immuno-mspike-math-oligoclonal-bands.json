@@ -1,0 +1,1637 @@
+{
+  "schemaVersion": 1,
+  "id": "immuno-mspike-math-oligoclonal-bands",
+  "title": "M-Spike Math, Bence Jones Protein and Benign Oligoclonal Bands",
+  "summary": "Calculate an M-spike concentration from the densitometer trace and see why it is only semi-quantitative, find monoclonal light chains in urine, and recognise small oligoclonal bands after transplant or infection that are not relapse or a plasma cell disorder.",
+  "domain": "p6-immuno",
+  "topic": "ch47",
+  "conceptIds": [
+    "ch47.hit4",
+    "ch47.hit7",
+    "ch47.hit15",
+    "ch47.trap4"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 47,
+        "section": "High-Yield Hits",
+        "items": [
+          4,
+          7,
+          15
+        ]
+      },
+      {
+        "chapter": 47,
+        "section": "Exam Traps",
+        "items": [
+          4
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 47 Hit 4 (M-spike calculation; SPEP reference ranges), Hit 7 (Bence Jones protein), Hit 15 (serum oligoclonal bands without a plasma cell disorder) and Exam Trap 4. Checked against Pires 2025, Lee 2026, Singh 2017, Coker 2013 and Gwathmey 2015 (full text via Europe PMC) and Tate 2019, Hall 2009, Tovar 2013 and Katzmann 2009 (read via a page-fetch tool). The calculation is taught with the sources’ caveats (gating method, beta-region overlap, poor accuracy for small spikes). Not taught (pending): the reviewer’s numerical SPEP reference ranges; “Bence Jones protein in >50% of myeloma”; “the heat test is obsolete”; CMV-associated bands in transplant patients; HIV bands appearing before diagnosis. The reviewer’s statement that bands “may even signal a good antitumor response” is qualified (register flag rv-ocb-post-asct-prognosis). The StatPearls Bence-Jones Protein chapter (NBK541035) was blocked (browser check on NCBI; 403 on Europe PMC) and was not read."
+  },
+  "prerequisites": [
+    "ch47.hit3",
+    "ch47.hit12"
+  ],
+  "objectives": [
+    "Calculate an M-spike concentration from its share of the densitometer trace and the total protein, and state why the result is semi-quantitative.",
+    "Describe Bence Jones protein and the urine and serum tests used to detect monoclonal light chains.",
+    "Recognise oligoclonal bands after transplant or with infection as findings that do not by themselves mean relapse or a plasma cell disorder."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three gels, three questions",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three electrophoresis requests. (1) A new patient’s SPEP: the spike is 28% of the scanned trace, total protein 8.0 g/dL. (2) A patient suspected of light-chain disease with no obvious serum spike: where else should the lab look? (3) Three months after autologous stem cell transplant for IgG-lambda myeloma, faint new IgG-kappa bands appear. Question token: “How much, where, and is it relapse?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Three requests arrive. A new patient’s serum gel shows a spike making up twenty-eight percent of the trace, with total protein eight grams per decilitre. How many grams is the spike?"
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 13,
+          "text": "A second patient may make only free light chains, and the serum gel shows no clear spike. Where else should the lab look?"
+        },
+        {
+          "id": "h3",
+          "start": 13,
+          "end": 20,
+          "text": "And three months after a stem cell transplant for IgG lambda myeloma, faint new IgG kappa bands appear. Is that relapse?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 New SPEP",
+            "lines": [
+              "Spike = 28% of trace",
+              "Total protein 8.0 g/dL"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "2 Light chains only?",
+            "lines": [
+              "No clear serum spike"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0
+            },
+            {
+              "t": 8.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "3 After transplant",
+            "lines": [
+              "IgG-λ myeloma",
+              "New faint IgG-κ bands"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0
+            },
+            {
+              "t": 14.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "How much, where, and is it relapse?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 18.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Turning a peak into grams",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic densitometer trace of a serum gel with five zones and a spike in gamma. The scanner integrates the area under each peak; the spike’s share of the total area multiplied by the measured total protein gives its concentration. Worked example from the hook: 0.28 × 8.0 g/dL = 2.24 ≈ 2.2 g/dL. Reference card: each laboratory reports fractions against its own validated intervals (numerical SPEP intervals are not taught in this lesson). Note card: SPEP quantifies; immunofixation identifies the heavy and light chain but cannot quantify.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "A densitometer scans the stained gel and integrates the area under each peak. The monoclonal spike is measured as its share of the total area."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 42,
+          "text": "Multiply that share by the measured total protein to get grams. For the hook: zero point two eight times eight point zero is about two point two grams per decilitre."
+        },
+        {
+          "id": "n3",
+          "start": 42,
+          "end": 52,
+          "text": "Serum electrophoresis quantifies the spike. Immunofixation identifies its heavy and light chain and is more sensitive, but it cannot give a concentration."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "This lesson does not teach a table of normal fraction values: use the intervals printed on your laboratory’s report."
+        }
+      ],
+      "objects": [
+        {
+          "id": "trace",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 180,
+            "tone": "b",
+            "title": "Densitometer trace (schematic)",
+            "lines": [
+              "Albumin · α1 · α2 · β · γ",
+              "Spike area ÷ total area"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "calc",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 180,
+            "tone": "good",
+            "title": "Spike g/dL",
+            "lines": [
+              "Share × total protein",
+              "0.28 × 8.0 ≈ 2.2 g/dL"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 20,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ife",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 440,
+            "w": 440,
+            "label": "SPEP quantifies · IFE identifies",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ri",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 440,
+            "w": 420,
+            "label": "Use your lab’s intervals",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Why the number is only semi-quantitative",
+      "start": 60,
+      "end": 104,
+      "altText": "Gating card: perpendicular drop (peak area from where the spike meets the polyclonal background straight down to baseline) vs tangent skimming (only the area above a tangent drawn along the gamma background); tangent skimming is unreliable for spikes in the alpha or beta regions, where transferrin and C3 distort the trace. Use the same method serially within a laboratory. Overlap card: a spike overlapping a normal beta protein may be reported as the combined peak. Sensitivity card: limit of quantification about 2 g/L; accuracy falls for spikes below 10 g/L.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "The result depends on where the operator draws the edges. Perpendicular drop counts everything under the spike down to the baseline. Tangent skimming counts only the part above the gamma background."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "Tangent skimming is unreliable when the spike sits in the alpha or beta region, where transferrin and C3 distort the trace. For serial results, use the same method in the same laboratory."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 92,
+          "text": "A spike that overlaps a normal beta protein may be reported as one combined peak that includes the normal protein as well as the spike."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "Small spikes are the least reliable: one review gives a limit of quantification of about two grams per litre, with accuracy falling below ten grams per litre."
+        }
+      ],
+      "objects": [
+        {
+          "id": "gate",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 180,
+            "tone": "b",
+            "title": "Gating",
+            "lines": [
+              "Perpendicular drop: to baseline",
+              "Tangent skim: above background"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "same",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 440,
+            "w": 440,
+            "label": "α/β spike: skim unreliable · same method serially",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ovl",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 160,
+            "tone": "a",
+            "title": "β-region overlap",
+            "lines": [
+              "Combined peak reported",
+              "Includes the normal protein"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "loq",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 410,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "Small spikes",
+            "lines": [
+              "LOQ ≈ 2 g/L",
+              "Accuracy falls < 10 g/L"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 40,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Urine light chains and new small bands",
+      "start": 104,
+      "end": 144,
+      "altText": "Urine card: Bence Jones protein = monoclonal free light chains in urine. Urine protein electrophoresis detects them but is less sensitive than serum tests; urine immunofixation is more sensitive and types the light chain. About 15–20% of myelomas produce light chains only. Serum free light chains can reduce 24-hour urine testing, but urine immunofixation stays mandatory when AL amyloidosis is suspected. After-transplant card: small new bands (oligoclonal bands, abnormal protein bands) are frequent after autologous transplant, often appear in the first months (median 1.8 months in one series), are often transient, and reflect a regenerating immune response; in one series only one of 15 apparently monoclonal new bands was true progression. Outside myeloma, small bands without a known paraprotein are more often due to infection or inflammation. Hook answers.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Bence Jones protein is monoclonal free light chain in the urine. Urine electrophoresis can miss small amounts; urine immunofixation is more sensitive and shows whether the chain is kappa or lambda."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 122,
+          "text": "About one in six to one in five myelomas make light chains only. Serum free light chains can cut down urine testing, but urine immunofixation is still required when AL amyloidosis is suspected."
+        },
+        {
+          "id": "l3",
+          "start": 122,
+          "end": 134,
+          "text": "After autologous transplant, new small bands are common, often within the first few months. They reflect a regenerating immune system, are often transient, and are mostly not relapse. Without a known paraprotein, small bands more often reflect infection or inflammation."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Hook answers: the spike is about two point two grams per decilitre; look in the urine with immunofixation and add serum free light chains; and report the new bands without calling relapse, then follow them."
+        }
+      ],
+      "objects": [
+        {
+          "id": "bjp",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 160,
+            "tone": "b",
+            "title": "Bence Jones protein",
+            "lines": [
+              "Monoclonal free light chain in urine",
+              "Urine IFE > urine PEP"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lc",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 360,
+            "w": 440,
+            "label": "~15–20% light-chain only · AL: urine IFE required",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ocb",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 200,
+            "tone": "a",
+            "title": "New small bands",
+            "lines": [
+              "Post-transplant: common, early",
+              "Regenerating immunity, often transient",
+              "No myeloma: infection, inflammation"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 462,
+            "w": 760,
+            "h": 120,
+            "tone": "good",
+            "title": "Hook answers",
+            "lines": [
+              "1 ≈ 2.2 g/dL",
+              "2 Urine IFE + serum FLC",
+              "3 Report, follow; not relapse by default"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Serum oligoclonal bands always mean a plasma cell disorder” (✓ small bands without a known paraprotein are more often from infection or inflammation; HIV is associated with polyclonal and monoclonal gammopathy); “A new band after transplant means relapse” (✓ most are transient oligoclonal responses of a regenerating immune system); “Oligoclonal bands prove a good prognosis” (✓ they mostly mark patients already in complete response; their independent prognostic value is uncertain).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: serum oligoclonal bands always mean a plasma cell disorder. No: without a known paraprotein, small bands more often reflect infection or inflammation, and HIV is linked to polyclonal and monoclonal gammopathy."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a new band after transplant means relapse. No: most are transient responses of the regenerating immune system."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the bands prove a good prognosis. No: they mostly mark patients already in complete response, and studies disagree on whether they predict outcome on their own."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Oligoclonal = plasma cell disorder.”",
+            "lines": [
+              "✓ Infection, inflammation, HIV"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “New band after transplant = relapse.”",
+            "lines": [
+              "✓ Usually transient immune recovery"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Bands prove a good prognosis.”",
+            "lines": [
+              "✓ Mark complete response; value uncertain"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Share times total; choir, not soloist",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Share × total = grams: the spike’s share of the trace times total protein gives its concentration. After a transplant, a CHOIR of faint new voices (oligoclonal bands) is not the old SOLOIST (the myeloma clone) returning; and when the soloist only sings light chains, listen in the urine.” Tokens: share × total · choir ≠ soloist · light chains → urine IFE. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: share times total equals grams. After a transplant, a choir of faint new voices is not the old soloist coming back. And when the soloist sings only light chains, listen in the urine."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: the share depends on gating and beta-region overlap; a choir voice can share the soloist’s isotype, and real relapse does happen; and serum free light chains, not only urine, are used to find light chains."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Share × total; choir, not soloist",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Share × total = g/dL",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Choir ≠ soloist",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Light chains → urine IFE",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Gating and β overlap change the share",
+              "Same isotype possible; relapse happens",
+              "Serum FLC also finds light chains"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Spike g/dL = share of trace × total protein (semi-quantitative; same method serially) · Bence Jones = urine free light chains → urine IFE”, “Small oligoclonal bands: post-transplant immune recovery or infection, not automatically a plasma cell disorder or relapse”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Quantify an M-spike as its share of the trace times total protein and treat the number as semi-quantitative, look for Bence Jones light chains with urine immunofixation, and do not read small oligoclonal bands after transplant or infection as relapse or as a plasma cell disorder."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Share × total protein · semi-quantitative · Bence Jones → urine IFE",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Oligoclonal bands: immune recovery or infection, not automatic relapse",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: the scanner measures how big the spike is compared with the whole gel, and that share times total protein gives its amount. Some clones make only light chains, which spill into urine. After a transplant, or during infections, the immune system can make a few small bands that are not cancer. Scientific terms: densitometry, perpendicular drop, tangent skimming, limit of quantification, Bence Jones protein (monoclonal free light chain), urine protein electrophoresis, urine immunofixation, serum free light chains, oligoclonal bands (abnormal protein bands), autologous stem cell transplantation, immune reconstitution.",
+    "why": "Treatment decisions follow serial M-spike values, so the method must be consistent; small or beta-region spikes are measured poorly. Light-chain-only disease can be missed by serum electrophoresis. Misreading a transient oligoclonal response as relapse could change treatment.",
+    "measure": "Spike g/dL = spike share of total trace area × total protein. Perpendicular drop vs tangent skimming (skim unreliable in alpha/beta); same method serially; spike overlapping a beta protein may be reported as a combined peak; LOQ about 2 g/L with poor accuracy below 10 g/L. Urine IFE more sensitive than urine PEP; ~15–20% light-chain-only myeloma; urine IFE mandatory in suspected AL amyloidosis. Post-ASCT bands: 73% in one series (median 1.8 months), 57.9% vs 8.8% without ASCT in another, and 34% in a third; rates depend on sampling and method.",
+    "differs": "SPEP (quantifies) vs IFE (identifies); urine PEP vs urine IFE; oligoclonal response (several faint, often transient bands, often different isotype) vs relapse of the original clone; small bands in infection or inflammation vs paraprotein.",
+    "examAngle": "Expect: an M-spike calculation, the best test for urine light chains, or interpreting new small bands after transplant or in a patient with infection."
+  },
+  "comparisons": [
+    {
+      "id": "pd-vs-ts",
+      "title": "Perpendicular drop vs tangent skimming",
+      "left": {
+        "label": "Perpendicular drop",
+        "points": [
+          "Spike area down to baseline",
+          "Includes polyclonal background under the spike"
+        ]
+      },
+      "right": {
+        "label": "Tangent skimming",
+        "points": [
+          "Only area above the gamma background",
+          "Unreliable for alpha- or beta-region spikes"
+        ]
+      },
+      "distinguisher": "Whether the background under the spike is counted; use one method consistently."
+    },
+    {
+      "id": "oligo-vs-relapse",
+      "title": "Oligoclonal response vs relapse",
+      "left": {
+        "label": "Oligoclonal response",
+        "points": [
+          "Several faint new bands, often a different isotype or position",
+          "Often transient; regenerating immunity"
+        ]
+      },
+      "right": {
+        "label": "Relapse",
+        "points": [
+          "Matches the original isotype and recorded position",
+          "Needs serial follow-up; a persisting band alone is not proof"
+        ]
+      },
+      "distinguisher": "Isotype and position compared with the recorded original spike, plus serial follow-up."
+    }
+  ],
+  "mnemonic": {
+    "text": "Share × total = grams: the spike’s share of the trace times total protein gives its concentration. After a transplant, a CHOIR of faint new voices (oligoclonal bands) is not the old SOLOIST (the myeloma clone) returning; and when the soloist only sings light chains, listen in the urine.",
+    "explanation": "Links the calculation, the oligoclonal response and urine light-chain testing.",
+    "limitation": "The share depends on gating and beta-region overlap; an oligoclonal band can share the original isotype and true relapse occurs; serum free light chains also detect light chains."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Densitometer trace and bands are schematic.",
+    "Frequencies come from single-centre series; rates vary by treatment and method."
+  ],
+  "takeaway": "Quantify an M-spike as its share of the trace times total protein and treat the number as semi-quantitative, look for Bence Jones light chains with urine immunofixation, and do not read small oligoclonal bands after transplant or infection as relapse or as a plasma cell disorder.",
+  "questions": [
+    {
+      "id": "immuno-msm-q1",
+      "stem": "On SPEP densitometry, a monoclonal spike makes up 25% of the total trace area. Total protein is 7.2 g/dL. What is the M-spike concentration?",
+      "options": [
+        {
+          "id": "a",
+          "text": "1.8 g/dL",
+          "rationale": "Correct. 0.25 × 7.2 g/dL = 1.8 g/dL."
+        },
+        {
+          "id": "b",
+          "text": "0.25 g/dL",
+          "rationale": "Incorrect. This is the fraction, not multiplied by total protein."
+        },
+        {
+          "id": "c",
+          "text": "2.9 g/dL",
+          "rationale": "Incorrect. This divides 7.2 by 2.5 instead of multiplying by 0.25."
+        },
+        {
+          "id": "d",
+          "text": "18 g/dL",
+          "rationale": "Incorrect. The decimal is misplaced; the spike cannot exceed total protein."
+        }
+      ],
+      "answer": "a",
+      "skill": "M-spike calculation",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-msm-q2",
+      "stem": "A patient is suspected of having light-chain-only myeloma, and serum electrophoresis shows no clear spike. Which urine test is most sensitive for detecting and typing a monoclonal free light chain?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Urine immunofixation electrophoresis",
+          "rationale": "Correct. Urine IFE is more sensitive than urine PEP and identifies kappa or lambda."
+        },
+        {
+          "id": "b",
+          "text": "Urine protein electrophoresis alone",
+          "rationale": "Incorrect. Urine PEP can miss small amounts of free light chain and does not type the chain."
+        },
+        {
+          "id": "c",
+          "text": "Total urine protein measurement",
+          "rationale": "Incorrect. Total protein does not show whether a monoclonal light chain is present."
+        },
+        {
+          "id": "d",
+          "text": "Serum total immunoglobulin measurement",
+          "rationale": "Incorrect. Total immunoglobulin measures monoclonal and polyclonal protein together and is not recommended for identifying M-protein; it is also not a urine test."
+        }
+      ],
+      "answer": "a",
+      "skill": "Light-chain testing",
+      "difficulty": "recall"
+    },
+    {
+      "id": "immuno-msm-q3",
+      "stem": "Three months after autologous stem cell transplant for IgG-lambda myeloma, serum IFE shows two faint new IgG-kappa bands at positions different from the original spike. What is the most appropriate interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Likely an oligoclonal response of the regenerating immune system; report and follow serially",
+          "rationale": "Correct. New small bands are frequent after ASCT, often transient, and mostly not relapse."
+        },
+        {
+          "id": "b",
+          "text": "Relapse of the original myeloma",
+          "rationale": "Incorrect. The bands differ in light chain and position from the original IgG-lambda clone."
+        },
+        {
+          "id": "c",
+          "text": "Proof of a good prognosis independent of response",
+          "rationale": "Incorrect. Such bands mostly mark patients in complete response; their independent prognostic value is uncertain."
+        },
+        {
+          "id": "d",
+          "text": "A specimen artifact that should be ignored",
+          "rationale": "Incorrect. Small bands should be reported, with their uncertain significance stated."
+        }
+      ],
+      "answer": "a",
+      "skill": "Post-transplant bands",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch47",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 47, Antibodies and Humoral Immunity (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 47,
+          "section": "High-Yield Hits",
+          "items": [
+            4,
+            7,
+            15
+          ]
+        },
+        {
+          "chapter": 47,
+          "section": "Exam Traps",
+          "items": [
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "pires2025",
+      "kind": "external",
+      "citation": "Pires AM, Barreto JP, Caetano J, et al. Multiple Myeloma Laboratory Diagnostics Made Simple: Practical Insights and Key Recommendations. J Clin Med. 2025;14(19):7115. doi:10.3390/jcm14197115",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12525595/",
+      "consulted": true,
+      "usedFor": "Full text via Europe PMC. M-protein concentration by integrating the peak area (relative peak area); perpendicular drop vs tangent skimming, tangent skimming unreliable in alpha/beta; same method serially; free light chains alone in about 20%; urine IFE mandatory in suspected AL amyloidosis; sFLC allows more selective 24 h urine testing; total immunoglobulin not recommended for identifying M-protein; oligoclonal bands after stem cell transplantation as a transient reconstitution phenomenon."
+    },
+    {
+      "id": "lee2026",
+      "kind": "external",
+      "citation": "Lee J, Yoo S, Yang S, Song SH. Paradigm Shift in Monoclonal Protein Detection: From Electrophoresis-based to Mass Spectrometry-based Methods. Ann Lab Med. 2026;46(1):3-15. doi:10.3343/alm.2025.0133",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12698248/",
+      "consulted": true,
+      "usedFor": "Full text via Europe PMC. Urine PEP detects monoclonal FLCs (Bence Jones proteins) with lower sensitivity; serum and urine IFE more sensitive and identify isotype; IFE cannot quantify; LOQ about 2 g/L with accuracy decreasing below 10 g/L."
+    },
+    {
+      "id": "singh2017",
+      "kind": "external",
+      "citation": "Singh G. Oligoclonal Pattern/Abnormal Protein Bands in Post-Treatment Plasma Cell Myeloma Patients: Implications for Protein Electrophoresis and Serum Free Light Chain Assay Results. J Clin Med Res. 2017;9(8):671-679. doi:10.14740/jocmr3049w",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5505303/",
+      "consulted": true,
+      "usedFor": "Full text via Europe PMC. Densitometric quantitation; combined peak reported when a spike overlaps a normal band; 15–18% light-chain-only myeloma; oligoclonal pattern in 57.9% after ASCT vs 8.8% without; often transient; IgG kappa most common; recording spike location helps; oligoclonal pattern also seen with infection or autoimmune processes; prognostic meaning in equipoise."
+    },
+    {
+      "id": "hall2009",
+      "kind": "external",
+      "citation": "Hall SL, Tate J, Gill D, Mollee P. Significance of abnormal protein bands in patients with multiple myeloma following autologous stem cell transplantation. Clin Biochem Rev. 2009;30(3):113-118.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2754999/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. Abnormal protein bands in 73% after ASCT, median onset 1.8 months; transient regeneration of a limited immune response; may be mistakenly reported as relapse; only one of 15 apparently monoclonal bands was true progression; no outcome effect after correcting for complete remission."
+    },
+    {
+      "id": "tovar2013",
+      "kind": "external",
+      "citation": "Tovar N, de Larrea CF, Aróstegui JI, et al. Natural history and prognostic impact of oligoclonal humoral response in patients with multiple myeloma after autologous stem cell transplantation: long-term results from a single institution. Haematologica. 2013;98(7):1142-1146. doi:10.3324/haematol.2013.084350",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3696619/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. Oligoclonal bands in 34% after ASCT, median duration 1.35 years; almost exclusive to patients in complete response; longer PFS, but considered a characteristic of CR rather than an independent prognostic marker."
+    },
+    {
+      "id": "tate2019",
+      "kind": "external",
+      "citation": "Tate JR. The Paraprotein - an Enduring Biomarker. Clin Biochem Rev. 2019;40(1):5-22.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6370287/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (first 100,000 characters; the remainder was the reference list). Perpendicular drop and tangent skimming gating; comigration with normal proteins in the beta region; small bands in patients without a known paraprotein more commonly due to infectious or inflammatory disease; oligoclonal and small bands should be reported after transplant."
+    },
+    {
+      "id": "katzmann2009",
+      "kind": "external",
+      "citation": "Katzmann JA. Screening panels for monoclonal gammopathies: time to change. Clin Biochem Rev. 2009;30(3):105-111.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2754998/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. SPEP, IFE and FLC as a screening panel; screening for AL should include urine IFE; urine IFE and serum FLC each detect abnormalities the other may miss."
+    },
+    {
+      "id": "gwathmey2015",
+      "kind": "external",
+      "citation": "Gwathmey TM, Willis MS, Tatreau J, Wang S, McCudden CR. Clinical Relevance of Trace Bands on Serum Electrophoresis in Patients Without a History of Gammopathy. EJIFCC. 2015;26(2):114-124.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4975357/",
+      "consulted": true,
+      "usedFor": "Full text via Europe PMC. Methods: monoclonal immunoglobulins quantitated from the serum total protein combined with the percent area of the abnormal band by scanning densitometry."
+    },
+    {
+      "id": "coker2013",
+      "kind": "external",
+      "citation": "Coker WJ, Jeter A, Schade H, Kang Y. Plasma cell disorders in HIV-infected patients: epidemiology and molecular mechanisms. Biomark Res. 2013;1(1):8. doi:10.1186/2050-7771-1-8",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4177611/",
+      "consulted": true,
+      "usedFor": "Full text via Europe PMC. HIV infection associated with polyclonal hypergammaglobulinemia and monoclonal gammopathy (3.8–26% in small series); paraproteins may be directed against HIV antigens."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-calc",
+      "text": "Spike concentration = share of the densitometer trace × total protein.",
+      "status": "checked",
+      "refs": [
+        "gwathmey2015",
+        "pires2025",
+        "singh2017"
+      ],
+      "note": "Gwathmey 2015 quantitated monoclonal immunoglobulins from the serum total protein combined with the percent area of the band by scanning densitometry; Pires describes concentration from the integrated (relative) peak area."
+    },
+    {
+      "id": "cl-gate",
+      "text": "Gating methods, beta-region overlap, same method serially, LOQ and accuracy below 10 g/L; SPEP quantifies, IFE identifies.",
+      "status": "checked",
+      "refs": [
+        "pires2025",
+        "tate2019",
+        "singh2017",
+        "lee2026"
+      ]
+    },
+    {
+      "id": "cl-urine",
+      "text": "Bence Jones protein as urine monoclonal FLC; urine IFE more sensitive than urine PEP; light-chain-only proportion; urine IFE in suspected AL amyloidosis; serum FLC role.",
+      "status": "checked",
+      "refs": [
+        "lee2026",
+        "pires2025",
+        "singh2017",
+        "katzmann2009"
+      ]
+    },
+    {
+      "id": "cl-asct",
+      "text": "Oligoclonal/abnormal protein bands after ASCT: frequency, timing, transient, mostly not relapse; association with CR, uncertain independent prognosis.",
+      "status": "checked",
+      "refs": [
+        "hall2009",
+        "singh2017",
+        "tovar2013",
+        "pires2025"
+      ]
+    },
+    {
+      "id": "cl-infect",
+      "text": "Small bands without a known paraprotein more commonly from infection or inflammation; HIV associated with polyclonal and monoclonal gammopathy.",
+      "status": "checked",
+      "refs": [
+        "tate2019",
+        "singh2017",
+        "coker2013"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Numerical SPEP reference ranges; Bence Jones protein in >50% of myeloma; heat test obsolete; CMV-associated bands in transplant patients; HIV bands preceding diagnosis; IVIG-derived IFE pattern after treatment.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch47"
+      ],
+      "note": "Not found in the sources read; not taught as facts."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; trace and bands schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Share times total; choir, not soloist.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-mspike-semiquant",
+      "issue": "Ch. 47 Hit 4 presents the M-spike calculation (percent × total protein) and a fixed SPEP reference-range table without caveats. Pires 2025, Tate 2019 and Lee 2026 describe the result as semi-quantitative: it depends on the gating method (perpendicular drop vs tangent skimming), comigration with beta-region proteins and spike size (accuracy falls below 10 g/L), and the same method should be used serially. The reviewer’s numerical SPEP ranges were not verified and are not taught (register flag rv-spep-mspike-quantitation).",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-bjp-context",
+      "issue": "Ch. 47 Hit 7 says Bence Jones protein is present in >50% of myeloma and that the heat test is obsolete; neither figure nor statement was found in the sources read. Lee 2026 and Pires 2025 add that urine PEP is less sensitive than serum-based tests and immunofixation, that serum free light chains allow more selective urine testing, and that urine IFE remains mandatory in suspected AL amyloidosis (register flag rv-bjp-urine-context).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-ocb-prognosis",
+      "issue": "Ch. 47 Exam Trap 4 says serum oligoclonal bands in myeloma “may even signal a good antitumor response”. Tovar 2013 found them almost exclusively in complete response and considered them a characteristic of CR rather than an independent prognostic marker; Hall 2009 found no outcome effect after correcting for CR; Singh 2017 calls the evidence in equipoise (register flag rv-ocb-post-asct-prognosis).",
+      "kind": "uncertain",
+      "status": "open"
+    },
+    {
+      "id": "f-ocb-hiv-cmv",
+      "issue": "Ch. 47 Hit 15 names CMV in transplant patients and HIV bands that may appear before HIV diagnosis. The sources read support infection and inflammation as common causes of small bands (Tate 2019, Singh 2017) and HIV-associated polyclonal and monoclonal gammopathy (Coker 2013), but not the CMV example or bands preceding HIV diagnosis; these are not taught (register flag rv-serum-ocb-hiv-cmv).",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No gel images; densitometer trace and bands shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Pires 2025, Lee 2026, Singh 2017, Coker 2013 and Gwathmey 2015 (full text via Europe PMC) and Hall 2009, Tovar 2013, Tate 2019 and Katzmann 2009 (read via a page-fetch tool); 1 pending (SPEP ranges, Bence Jones frequency, heat test, CMV and pre-diagnosis HIV bands, IVIG pattern). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
