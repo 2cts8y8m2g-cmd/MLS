@@ -438,6 +438,8 @@ FLAG_RULES = [
      "sim-q197's answer still stands: pain plus lipase at 5x ULN is acute pancreatitis, and lipase is the better late marker. WSES 2019, however, says amylase returns to normal over 3-7 days, not 48-72 hours. Lipase is preferred for its window and sensitivity, not because it is definitive."),
     ('rv-alf-enzyme-definition-ch9', "albumin's ~20-day half-life keeps it normal until late",
      "sim-q193 treats a normal albumin as expected early in acute liver failure. That is consistent with this flag and conflicts with Hit 13's 'low albumin/protein'. The albumin and factor VII half-life figures were not checked against any source read in this session, so the answer is plausible but unverified here."),
+    ('rv-weil-felix-resource-limited', 'Weil-Felix test is obsolete, insensitive, and nonspecific',
+     "sim-q571: the answer (do not perform Weil-Felix; use IFA and treat empirically with doxycycline) still stands where IFA is available. Open reviews confirm poor sensitivity and specificity but note the test is still the only one available in some resource-limited settings, so 'obsolete' is overstated there and option d ('only if IFA is unavailable') is not absurd outside well-resourced labs."),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
