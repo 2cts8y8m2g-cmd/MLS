@@ -1,0 +1,1626 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-ms-analyzers-scan-modes-resolution",
+  "title": "Mass Analyzers: Scan Modes, Ion Traps, Orbitrap and Resolution",
+  "summary": "Tell tandem-in-space from tandem-in-time mass spectrometry, read the four triple-quadrupole scan modes (especially precursor vs product ion scans), see how an ion trap reaches MSn and how an Orbitrap detects ions, and calculate resolution as m/Δm at half peak height.",
+  "domain": "p1-ops",
+  "topic": "ch5",
+  "conceptIds": [
+    "ch5.hit5",
+    "ch5.hit12",
+    "ch5.trap3",
+    "ch5.trap5"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 5,
+        "section": "High-Yield Hits",
+        "items": [
+          5,
+          12
+        ]
+      },
+      {
+        "chapter": 5,
+        "section": "Exam Traps",
+        "items": [
+          3,
+          5
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 5 Hits 5 and 12 and Traps 3 and 5. Checked against Chong 2018, Banerjee 2012, Li 2021, Kind 2010, Deschamps 2023 and Makarov 2026 (all read as Europe PMC full text). Hit 12’s gloss “resolution = peak mass divided by resolving power” is not followed: the sources define Δm as the peak width at half maximum height, and Deschamps 2023 calls m/Δm the resolving power (register flag rv-ms-resolution-delta-m). Hit 5’s “Orbitrap (2005) = the gold standard for large biomolecules” is qualified: the analyzer was invented in 1999 and named in 2000, 2005 was the commercial launch, and FT-ICR offers higher resolution (register flag rv-orbitrap-2005-gold-standard). Not taught as fact: “nondestructive” Orbitrap detection, the 0.001 amu lysine/glutamine figure (Number Vault), the reviewer’s exact MS7–MS8 depth (a review gives a practical limit of MS6–MS10)."
+  },
+  "prerequisites": [
+    "ch5.hit2",
+    "ch5.hit3"
+  ],
+  "objectives": [
+    "Distinguish tandem mass spectrometry in space (triple quadrupole) from tandem in time (ion trap) and explain how an ion trap reaches MSn.",
+    "State which quadrupole is fixed and which scans in product ion, precursor ion, neutral loss and MRM modes.",
+    "Describe Orbitrap detection and calculate mass resolution as m/Δm at half peak height."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three questions for the mass spec bench",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a laboratory mass spectrometry bench gets three requests — (1) “Find every molecule in this extract that breaks down to give the same characteristic fragment” on a triple quadrupole; (2) “Fragment this unknown drug metabolite, then fragment one of its fragments again” (MS3); (3) “Separate two peaks whose masses differ only in the third decimal place.” Question token: “Which scan mode, which analyzer, how much resolution?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Three requests reach the mass spectrometry bench. First: on a triple quadrupole, find every molecule that breaks down to give one characteristic fragment."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "Second: fragment an unknown drug metabolite, then fragment one of its fragments again. Third: separate two peaks whose masses differ only in the third decimal place."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which scan mode, which analyzer, and how much resolution?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "r1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Same fragment",
+            "lines": [
+              "Triple quadrupole",
+              "Which parents give it?"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "2 Fragment again",
+            "lines": [
+              "Unknown metabolite",
+              "MS → MS² → MS³"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.4,
+              "opacity": 0
+            },
+            {
+              "t": 9.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "r3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "3 Near-identical masses",
+            "lines": [
+              "Differ in 3rd decimal",
+              "Enough resolution?"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0
+            },
+            {
+              "t": 11.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 700,
+            "label": "Scan mode? Analyzer? Resolution?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Tandem in space vs tandem in time",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic. Left: a triple quadrupole drawn as three boxes in a row — Q1 (mass filter) → q2 (collision cell, inert gas) → Q3 (mass filter): tandem mass spectrometry IN SPACE, each step in a different place. Right: one ion trap drawn as a single box with a looping arrow — isolate a precursor, fragment it by collision with buffer gas, then isolate a fragment and fragment it again: tandem IN TIME, every step in the same trap, one after another, giving MSn. One review gives a practical limit of about MS6 to MS10 because product-ion abundance falls at each stage. Limits card: space-charge effects limit the quantitative dynamic range; in a quadrupole ion trap, fragments below about one third of the precursor m/z are lost (the “1/3 rule” or low-mass cut-off).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Tandem mass spectrometry can be built in space or in time. A triple quadrupole works in space: the first quadrupole selects, the collision cell fragments, and the third quadrupole analyses, each in a different place."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 42,
+          "text": "An ion trap works in time: one trap isolates a precursor, fragments it with buffer gas, then isolates one fragment and fragments it again. Repeating the cycle gives MS to the n."
+        },
+        {
+          "id": "n3",
+          "start": 42,
+          "end": 52,
+          "text": "In practice the fragments get weaker at every stage; one review puts the practical limit at about MS six to MS ten."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "Ion traps have costs: crowded ions limit the quantitative range, and fragments below about one third of the precursor’s mass-to-charge are lost, the low-mass cut-off."
+        }
+      ],
+      "objects": [
+        {
+          "id": "space",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 220,
+            "tone": "b",
+            "title": "In space: triple quadrupole",
+            "lines": [
+              "Q1 selects precursor",
+              "q2 collision cell fragments",
+              "Q3 analyses products"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "time",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 220,
+            "tone": "a",
+            "title": "In time: ion trap",
+            "lines": [
+              "Isolate → fragment",
+              "Isolate a fragment → fragment",
+              "Repeat = MSⁿ"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lim",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 470,
+            "w": 420,
+            "label": "Practical limit ≈ MS⁶–MS¹⁰",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cost",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 470,
+            "w": 440,
+            "h": 120,
+            "tone": "bad",
+            "title": "Ion trap costs",
+            "lines": [
+              "Space charge limits range",
+              "Low-mass cut-off ≈ 1/3"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Four triple-quadrupole scan modes",
+      "start": 60,
+      "end": 104,
+      "altText": "Table schematic with two columns, Q1 and Q3, each set to SELECT (fixed on one m/z) or SCAN (sweeping a range). Product ion scan: Q1 select, Q3 scan — all fragments of one chosen precursor; used to pick MRM transitions and to help confirm identity. Precursor ion scan: Q1 scan, Q3 select — Q3 is parked on one product ion while Q1 sweeps, finding every precursor that gives that fragment. Neutral loss scan: Q1 scan, Q3 scan together — finds precursors that lose one specific neutral fragment. MRM: Q1 select, Q3 select — no scanning. Use card: precursor and neutral-loss modes have been used for acylcarnitine profiling and for finding drug–glucuronide conjugates.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "A triple quadrupole has two mass filters, and each can either select one mass-to-charge or scan a range. The four combinations are the four scan modes."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "Product ion scan: the first quadrupole selects one precursor and the third scans, showing all its fragments. It is used to choose transitions and to help confirm identity."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 92,
+          "text": "Precursor ion scan is the reverse: the third quadrupole is parked on one product ion while the first scans, finding every precursor that makes that fragment."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "In a neutral loss scan both quadrupoles scan together, finding precursors that lose one particular neutral piece. In multiple reaction monitoring both are fixed. Precursor and neutral loss scans have been used to profile acylcarnitines."
+        }
+      ],
+      "objects": [
+        {
+          "id": "hdr",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 600,
+            "label": "Each quadrupole: SELECT or SCAN",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "prod",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Product ion scan",
+            "lines": [
+              "Q1 select · Q3 scan",
+              "All fragments of one parent"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "prec",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 220,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Precursor ion scan",
+            "lines": [
+              "Q1 scan · Q3 select",
+              "All parents of one fragment"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "nl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 430,
+            "w": 440,
+            "h": 150,
+            "tone": "warn",
+            "title": "Neutral loss scan",
+            "lines": [
+              "Q1 scan · Q3 scan",
+              "Parents losing one neutral"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mrm",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "MRM",
+            "lines": [
+              "Q1 select · Q3 select",
+              "No scanning: quantitation"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 36.5,
+              "opacity": 0
+            },
+            {
+              "t": 37.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 40,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Orbitrap and resolution",
+      "start": 104,
+      "end": 144,
+      "altText": "Schematic Orbitrap: a spindle-shaped central electrode inside two outer barrel electrodes. Ions injected from a C-trap orbit the central electrode and oscillate along its axis; the outer electrodes pick up the image current, and a Fourier transform converts the frequencies to m/z (axial frequency depends on m/z). History token: named the Orbitrap in 2000, first introduced commercially in 2005 (LTQ Orbitrap hybrid). Resolution card: R = m/Δm, where Δm is the peak width at half its maximum height (FWHM). Worked example: peak at m/z 400 with FWHM 0.004 → R = 400/0.004 = 100,000. Classes (one review): below 10,000 low (quadrupole, linear ion trap); above 10,000 high (time-of-flight); above 100,000 ultra-high (FT-ICR, Orbitrap). Longer acquisition gives higher Orbitrap resolution. Hook answers: (1) precursor ion scan; (2) ion trap (tandem in time); (3) a high-resolution analyzer such as an Orbitrap.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 116,
+          "text": "The Orbitrap traps ions around a spindle-shaped central electrode. The ions orbit and oscillate along it, the outer electrodes pick up their image current, and a Fourier transform turns the frequencies into mass-to-charge values."
+        },
+        {
+          "id": "l2",
+          "start": 116,
+          "end": 122,
+          "text": "It was named in 2000 and introduced commercially in 2005, in a hybrid with a linear ion trap."
+        },
+        {
+          "id": "l3",
+          "start": 122,
+          "end": 134,
+          "text": "Resolution is the peak mass divided by delta m, the width of the peak at half its maximum height. A peak at m/z four hundred that is 0.004 wide gives one hundred thousand. Below ten thousand is low resolution; above one hundred thousand is ultra-high, the range of Orbitrap and FT-ICR instruments."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook: a precursor ion scan finds every parent of one fragment, an ion trap fragments again and again in time, and near-identical masses need a high-resolution analyzer such as an Orbitrap."
+        }
+      ],
+      "objects": [
+        {
+          "id": "orb",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 220,
+            "tone": "b",
+            "title": "Orbitrap (schematic)",
+            "lines": [
+              "Ions orbit a central spindle",
+              "Outer electrodes: image current",
+              "Fourier transform → m/z"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hist",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 470,
+            "w": 440,
+            "label": "Named 2000 · commercial 2005",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "res",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 220,
+            "tone": "good",
+            "title": "R = m / Δm (FWHM)",
+            "lines": [
+              "Δm = peak width at half height",
+              "400 / 0.004 = 100,000",
+              "< 10,000 low · > 100,000 ultra-high"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 440,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Hook answers",
+            "lines": [
+              "1 Precursor ion scan",
+              "2 Ion trap (in time)",
+              "3 High resolution, e.g. Orbitrap"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “A product ion scan parks Q3 on one fragment” (✓ that is the precursor ion scan: Q3 fixed on one product ion, Q1 scanning; a product ion scan fixes Q1 and scans Q3); “A triple quadrupole does MS7” (✓ multistage MSn is done by trapping instruments such as the ion trap, which repeat isolation and fragmentation in time); “R = mass ÷ resolving power” (✓ Δm is the peak width at half maximum height; m/Δm itself is often called the resolving power).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a product ion scan parks the third quadrupole on one fragment. No: that is the precursor ion scan. A product ion scan fixes the first quadrupole and scans the third."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a triple quadrupole does MS seven. No: deep multistage work is done by trapping instruments such as the ion trap, which repeat the cycle in time."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: resolution is mass divided by resolving power. No: delta m is the peak width at half height, and m over delta m is itself often called the resolving power."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Product ion scan parks Q3.”",
+            "lines": [
+              "✓ Precursor scan parks Q3; product scan parks Q1"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Triple quad does MS⁷.”",
+            "lines": [
+              "✓ Ion trap: MSⁿ in time"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “R = mass ÷ resolving power.”",
+            "lines": [
+              "✓ Δm = peak width at half height"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Pick the parent, pin the kid",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “PRODUCT scan: Pick the parent, list its kids. PRECURSOR scan: Pin the kid, find all its parents. A triple quad is three rooms in a row (space); an ion trap is one room used again and again (time). Resolution = how thin the peak is at half height.” Tokens: pick the parent · pin the kid · rooms vs one room. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: product scan, pick the parent and list its kids. Precursor scan, pin the kid and find all its parents. A triple quad is three rooms in a row; an ion trap is one room used again and again."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: a neutral loss scan moves both filters together; ion traps lose small fragments below the one-third cut-off; and authors use resolution and resolving power in different ways, so read the definition given."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Pick the parent, pin the kid",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Product: pick parent",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Precursor: pin kid",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Space vs time",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Neutral loss: both filters scan",
+              "Ion traps lose fragments below ≈ 1/3",
+              "Resolution terms vary by author"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Product scan: Q1 select, Q3 scan · Precursor scan: Q1 scan, Q3 select · Ion trap = MSn in time”, “Orbitrap: image current + Fourier transform · R = m/Δm, Δm = FWHM”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "A precursor ion scan parks the third quadrupole on one fragment while the first scans, ion traps reach MS to the n by repeating fragmentation in time, and the Orbitrap reads image currents by Fourier transform, with resolution equal to peak mass over peak width at half height."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Precursor: Q1 scan, Q3 select · Ion trap = MSⁿ in time",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Orbitrap: image current + FT · R = m/Δm (FWHM)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: some mass spectrometers break molecules apart in a chain of separate chambers, while an ion trap does every step in one chamber, one after another, so it can keep breaking fragments into smaller fragments. A triple quadrupole can be set to look for the pieces of one molecule, or for every molecule that gives one piece. The Orbitrap “listens” to ions circling an electrode and converts their rhythm into masses; resolution tells how thin, and so how separable, the peaks are. Scientific terms: tandem in space, tandem in time, triple quadrupole (Q1, q2 collision cell, Q3), quadrupole ion trap, MSn, space-charge effect, low-mass cut-off (1/3 rule), product ion scan, precursor ion scan, neutral loss scan, multiple reaction monitoring (MRM), Orbitrap, C-trap, image current, Fourier transform, resolution/resolving power, full width at half maximum (FWHM).",
+    "why": "Spatially separated analyzers can each be set to select or scan, giving four useful combinations; a trap can isolate and re-fragment ions repeatedly because all steps happen sequentially in the same volume. In the Orbitrap, axial oscillation frequency depends on m/z, so the frequency spectrum obtained by Fourier transform of the image current gives the mass spectrum; longer acquisition gives narrower peaks and higher resolution.",
+    "measure": "Product ion scan: Q1 select, Q3 scan. Precursor ion scan: Q1 scan, Q3 select. Neutral loss: Q1 and Q3 scan. MRM: Q1 and Q3 select (Chong 2018). MSn practical limit about MS6–MS10 (Kind 2010). R = m/Δm with Δm = FWHM; < 10,000 low (quadrupole, linear ion trap), > 10,000 high (TOF), > 100,000 ultra-high (FT-ICR, Orbitrap) (Deschamps 2023). Orbitrap named 2000, commercial LTQ Orbitrap 2005 (Makarov 2026).",
+    "differs": "Product vs precursor ion scan (which quadrupole is parked); neutral loss (both scan) vs MRM (both fixed); tandem in space vs in time; ion trap (MSn, low-mass cut-off, space charge) vs triple quadrupole (quantitation); Orbitrap vs FT-ICR (both image current + Fourier transform; FT-ICR higher resolution, larger and costlier).",
+    "examAngle": "Expect: “which mode fixes Q3 and scans Q1?” (precursor ion scan), “which analyzer can do MS7?” (ion trap), “how does an Orbitrap detect ions?” (image current + Fourier transform), or a resolution calculation m/Δm."
+  },
+  "comparisons": [
+    {
+      "id": "product-vs-precursor",
+      "title": "Product ion scan vs precursor ion scan",
+      "left": {
+        "label": "Product ion scan",
+        "points": [
+          "Q1 selects one precursor",
+          "Q3 scans all its fragments"
+        ]
+      },
+      "right": {
+        "label": "Precursor ion scan",
+        "points": [
+          "Q3 fixed on one product ion",
+          "Q1 scans for every precursor that makes it"
+        ]
+      },
+      "distinguisher": "Which quadrupole is parked: Q1 (product scan) or Q3 (precursor scan)."
+    },
+    {
+      "id": "space-vs-time",
+      "title": "Tandem in space vs tandem in time",
+      "left": {
+        "label": "In space (triple quadrupole)",
+        "points": [
+          "Select, fragment, analyse in separate devices",
+          "Workhorse for MRM quantitation"
+        ]
+      },
+      "right": {
+        "label": "In time (ion trap)",
+        "points": [
+          "All steps in one trap, sequentially",
+          "Repeatable: MSⁿ, but low-mass cut-off"
+        ]
+      },
+      "distinguisher": "Separate places vs one place used repeatedly."
+    }
+  ],
+  "mnemonic": {
+    "text": "PRODUCT scan: Pick the parent, list its kids. PRECURSOR scan: Pin the kid, find all its parents. A triple quad is three rooms in a row (space); an ion trap is one room used again and again (time). Resolution = how thin the peak is at half height.",
+    "explanation": "Fixes which quadrupole is parked in each scan, and space vs time tandem MS.",
+    "limitation": "Neutral loss scans move both filters together; ion traps lose fragments below about one third of the precursor m/z; authors use “resolution” and “resolving power” inconsistently."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Analyzer drawings are schematic.",
+    "Resolution classes and MSn limits are as given in single reviews; instruments differ."
+  ],
+  "takeaway": "A precursor ion scan parks the third quadrupole on one fragment while the first scans, ion traps reach MS to the n by repeating fragmentation in time, and the Orbitrap reads image currents by Fourier transform, with resolution equal to peak mass over peak width at half height.",
+  "questions": [
+    {
+      "id": "ops-msa-q1",
+      "stem": "On a triple quadrupole, the third quadrupole (Q3) is fixed on one product ion while the first quadrupole (Q1) scans a mass range. Which scan mode is this?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Precursor ion scan",
+          "rationale": "Correct. Q1 scans and Q3 selects, revealing every precursor that produces that product ion."
+        },
+        {
+          "id": "b",
+          "text": "Product ion scan",
+          "rationale": "Incorrect. A product ion scan fixes Q1 on one precursor and scans Q3."
+        },
+        {
+          "id": "c",
+          "text": "Neutral loss scan",
+          "rationale": "Incorrect. In a neutral loss scan both Q1 and Q3 scan."
+        },
+        {
+          "id": "d",
+          "text": "Multiple reaction monitoring",
+          "rationale": "Incorrect. In MRM both Q1 and Q3 are fixed; nothing scans."
+        }
+      ],
+      "answer": "a",
+      "skill": "Scan modes",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-msa-q2",
+      "stem": "A laboratory needs MS3 and MS4 spectra of an unknown metabolite by repeatedly isolating and fragmenting ions in the same device. Which analyzer is designed for this?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Quadrupole ion trap",
+          "rationale": "Correct. Trapping instruments separate each MS step in time, so product ions can be isolated and fragmented again (MSn)."
+        },
+        {
+          "id": "b",
+          "text": "Single quadrupole",
+          "rationale": "Incorrect. A quadrupole on its own cannot perform MSn."
+        },
+        {
+          "id": "c",
+          "text": "Triple quadrupole",
+          "rationale": "Incorrect. A triple quadrupole is tandem in space with one collision cell: one stage of MS/MS."
+        },
+        {
+          "id": "d",
+          "text": "The ion source",
+          "rationale": "Incorrect. The ion source makes ions; isolation and fragmentation happen in the analyzer stages."
+        }
+      ],
+      "answer": "a",
+      "skill": "Tandem in time",
+      "difficulty": "recognition"
+    },
+    {
+      "id": "ops-msa-q3",
+      "stem": "A peak at m/z 400 has a width of 0.004 at half of its maximum height. What is the mass resolution (m/Δm, FWHM)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "100,000",
+          "rationale": "Correct. 400 / 0.004 = 100,000, in the ultra-high range reported for Orbitrap and FT-ICR instruments."
+        },
+        {
+          "id": "b",
+          "text": "1,600",
+          "rationale": "Incorrect. This multiplies instead of dividing and mis-scales the width."
+        },
+        {
+          "id": "c",
+          "text": "10,000",
+          "rationale": "Incorrect. That would need a peak width of 0.04."
+        },
+        {
+          "id": "d",
+          "text": "0.00001",
+          "rationale": "Incorrect. This is Δm/m, the inverse of resolution."
+        }
+      ],
+      "answer": "a",
+      "skill": "Resolution calculation",
+      "difficulty": "calculation"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch5",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 5, Mass Spectrometry in the Lab (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 5,
+          "section": "High-Yield Hits",
+          "items": [
+            5,
+            12
+          ]
+        },
+        {
+          "chapter": 5,
+          "section": "Exam Traps",
+          "items": [
+            3,
+            5
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "chong2018",
+      "kind": "external",
+      "citation": "Chong YK, Ho CC, Leung SY, Lau SKP, Woo PCY. Clinical Mass Spectrometry in the Bioinformatics Era: A Hitchhiker’s Guide. Comput Struct Biotechnol J. 2018;16:316-334. doi:10.1016/j.csbj.2018.08.003",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6138949/",
+      "consulted": true,
+      "usedFor": "Triple quadrupole as tandem in space (Q1, collision cell, Q3); Table 2 select/scan settings for product ion, precursor ion, neutral loss and MRM modes; uses of product ion scan and of precursor/neutral loss scans (acylcarnitines, glucuronides); quadrupole ion trap MSn, space-charge effect and 1/3 low-mass cut-off; Orbitrap central electrode, image-current detection and Fourier transformation, C-trap; resolving power expressed as FWHM."
+    },
+    {
+      "id": "banerjee2012",
+      "kind": "external",
+      "citation": "Banerjee S, Mazumdar S. Electrospray ionization mass spectrometry: a technique to access the information beyond the molecular weight of the analyte. Int J Anal Chem. 2012;2012:282574. doi:10.1155/2012/282574",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3348530/",
+      "consulted": true,
+      "usedFor": "Mass analyzers set in series in space (triple quadrupole, hybrids) or in time (trapping instruments); MSn performed in ion-trap or FT-ICR instruments with each step separated in time, by repeated isolation and fragmentation."
+    },
+    {
+      "id": "li2021",
+      "kind": "external",
+      "citation": "Li C, Chu S, Tan S, Yin X, Jiang Y, Dai X, Gong X, Fang X, Tian D. Towards Higher Sensitivity of Mass Spectrometry: A Perspective From the Mass Analyzers. Front Chem. 2021;9:813359. doi:10.3389/fchem.2021.813359",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8724130/",
+      "consulted": true,
+      "usedFor": "Quadrupole alone cannot perform MSn; ion trap can isolate ions and realize MSn but space-charge effects limit ion accumulation; QqQ: Q1 and Q3 mass filters, Q2 collision cell; Orbitrap described as an ultra-high-resolution analyzer."
+    },
+    {
+      "id": "kind2010",
+      "kind": "external",
+      "citation": "Kind T, Fiehn O. Advances in structure elucidation of small molecules using mass spectrometry. Bioanal Rev. 2010;2(1-4):23-60. doi:10.1007/s12566-010-0015-9",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3015162/",
+      "consulted": true,
+      "usedFor": "Ion traps and hybrids create MSn spectra by consecutive fragmentation; falling product-ion abundance sets a practical limit at MS6 to MS10."
+    },
+    {
+      "id": "deschamps2023",
+      "kind": "external",
+      "citation": "Deschamps E, Calabrese V, Schmitz I, Hubert-Roux M, Castagnos D, Afonso C. Advances in Ultra-High-Resolution Mass Spectrometry for Pharmaceutical Analysis. Molecules. 2023;28(5):2061. doi:10.3390/molecules28052061",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10003995/",
+      "consulted": true,
+      "usedFor": "Resolving power = (m/z)/Δ(m/z) with Δ measured at FWHM; low (< 10,000; quadrupole, linear ion trap), high (> 10,000; TOF) and ultra-high (> 100,000; FT-ICR, Orbitrap) classes; Orbitrap invented and patented by Makarov in 1999, central spindle and outer electrodes, axial oscillation frequency depends on m/z, image-current detection and Fourier transform; longer acquisition gives higher resolution; FT-ICR higher resolution than Orbitrap."
+    },
+    {
+      "id": "makarov2026",
+      "kind": "external",
+      "citation": "Makarov A. First 20 Years of Orbitrap Mass Spectrometry as the Mainstream Analytical Technique. Mass Spectrom Rev. 2026;45(6):1064-1086. doi:10.1002/mas.70024",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13639506/",
+      "consulted": true,
+      "usedFor": "Named the Orbitrap mass analyzer in 2000; first introduced to the wider community in 2005 as part of the commercial LTQ Orbitrap hybrid; three electrodes; image currents on split outer electrodes are Fourier transformed to give the m/z spectrum; intact-protein and native high-mass applications."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-space-time",
+      "text": "Tandem in space (triple quadrupole) vs tandem in time (ion trap); MSn by repeated isolation and fragmentation; practical limit about MS6–MS10.",
+      "status": "checked",
+      "refs": [
+        "chong2018",
+        "banerjee2012",
+        "kind2010",
+        "li2021"
+      ]
+    },
+    {
+      "id": "cl-trap-limits",
+      "text": "Ion trap space-charge effect and 1/3 low-mass cut-off; a quadrupole alone cannot perform MSn.",
+      "status": "checked",
+      "refs": [
+        "chong2018",
+        "li2021"
+      ]
+    },
+    {
+      "id": "cl-scan-modes",
+      "text": "Select/scan settings of Q1 and Q3 in product ion, precursor ion, neutral loss and MRM modes; their uses.",
+      "status": "checked",
+      "refs": [
+        "chong2018"
+      ]
+    },
+    {
+      "id": "cl-orbitrap",
+      "text": "Orbitrap electrodes, image-current detection, Fourier transform; named 2000, commercial 2005.",
+      "status": "checked",
+      "refs": [
+        "chong2018",
+        "deschamps2023",
+        "makarov2026"
+      ]
+    },
+    {
+      "id": "cl-resolution",
+      "text": "R = m/Δm with Δm at FWHM; resolution classes; longer acquisition gives higher Orbitrap resolution.",
+      "status": "checked",
+      "refs": [
+        "deschamps2023",
+        "chong2018"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "“Nondestructive” Orbitrap detection; “gold standard for large biomolecules”; 0.001 amu lysine/glutamine figure; exact MS7–MS8 depth.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch5"
+      ],
+      "note": "Not taught as facts. Deschamps 2023 calls ICR-cell detection non-destructive but the sources read do not state this for the Orbitrap."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; analyzer drawings schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Pick the parent, pin the kid.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-ms-resolution-delta-m",
+      "issue": "Ch. 5 Hit 12 glosses R = M/ΔM as “peak mass divided by resolving power” and defines resolving power as the peak width at 50% height. Deschamps 2023 defines Δm as the peak width at half maximum (FWHM) and calls m/Δm itself the resolving power; Chong 2018 likewise quotes resolving power as a FWHM ratio. The lesson teaches Δm = peak width at half height (register flag rv-ms-resolution-delta-m).",
+      "kind": "contradiction",
+      "status": "open"
+    },
+    {
+      "id": "f-orbitrap-2005-gold-standard",
+      "issue": "Ch. 5 Hit 5 dates the Orbitrap to 2005 and calls it the gold standard for large biomolecules. Deschamps 2023 states it was invented and patented in 1999 and Makarov 2026 that it was named in 2000, with 2005 the commercial LTQ Orbitrap launch; Deschamps 2023 reports higher resolution for FT-ICR. The lesson teaches named 2000/commercial 2005 and does not call it a gold standard (register flag rv-orbitrap-2005-gold-standard).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; analyzers shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Chong 2018, Banerjee 2012, Li 2021, Kind 2010, Deschamps 2023 and Makarov 2026 (Europe PMC full text); 1 pending (nondestructive detection, gold-standard wording, Number Vault Orbitrap figure, exact MS7–MS8 depth; not taught). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
