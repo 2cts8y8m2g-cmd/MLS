@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 278, teaching 1316 of 1,932 concepts (about 68.1%).** All 278 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 279, teaching 1320 of 1,932 concepts (about 68.3%).** All 279 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -30,7 +30,7 @@
   - Ch. 24 (17/26 concepts): `chem-drug-screen-confirmation-validity`, `chem-tdm-timing-kinetics`, `chem-toxic-alcohols-salicylate-gaps`.
   - Ch. 25 (11/21 concepts): `chem-endocrine-dynamic-testing`, `chem-low-renin-hypertension-aldo`, `chem-thyroid-patterns-graves-iodine`.
   - Ch. 26 (14/22 concepts): `chem-amenorrhea-workup-ovarian-failure`, `chem-hcg-pregnancy-unknown-location`, `chem-prenatal-afp-down-screening`, `chem-semen-hypogonadism`.
-  - Ch. 27 (12/22 concepts): `chem-fat-soluble-vitamins-d-k`, `chem-wilson-disease-copper`, `chem-zinc-copper-status-menkes`.
+  - Ch. 27 (16/22 concepts): `chem-fat-soluble-vitamins-d-k`, `chem-vitamin-deficiency-syndromes`, `chem-wilson-disease-copper`, `chem-zinc-copper-status-menkes`.
   - Ch. 28 (14/22 concepts): `chem-chelators-calcium-iron-ggt`, `chem-glucose-340nm-poct-pitfalls`, `chem-hil-bilirubin-ammonia`, `chem-pseudohyponatremia-jaffe`.
   - Ch. 29 (19/27 concepts): `cm-urine-casts-localize`, `cm-urine-concentration-timed-collections`, `cm-urine-crystals-stones-yeast`, `cm-urine-strip-chemistry`.
   - Ch. 30 (16/25 concepts): `cm-alternative-specimens-saliva-meconium-b2tf`, `cm-csf-synovial-interpretation`, `cm-serous-fluids-transudate-exudate`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 461 flags (347 verified issues, 114 needing verification), plus scan results.
-- **Checks:** 1734 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 1740 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
