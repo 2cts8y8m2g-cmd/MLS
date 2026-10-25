@@ -440,6 +440,16 @@ FLAG_RULES = [
      "sim-q193 treats a normal albumin as expected early in acute liver failure. That is consistent with this flag and conflicts with Hit 13's 'low albumin/protein'. The albumin and factor VII half-life figures were not checked against any source read in this session, so the answer is plausible but unverified here."),
     ('rv-weil-felix-resource-limited', 'Weil-Felix test is obsolete, insensitive, and nonspecific',
      "sim-q571: the answer (do not perform Weil-Felix; use IFA and treat empirically with doxycycline) still stands where IFA is available. Open reviews confirm poor sensitivity and specificity but note the test is still the only one available in some resource-limited settings, so 'obsolete' is overstated there and option d ('only if IFA is unavailable') is not absurd outside well-resourced labs."),
+    ('rv-cdi-fidaxomicin-preferred', 'Oral vancomycin \\(or fidaxomicin\\) is first-line for C\\. difficile',
+     'sim-q808: the answer (oral vancomycin) still stands, since oral vancomycin remains a guideline-endorsed first-line option and the other options are wrong. The explanation should add that the 2021 IDSA/SHEA focused update prefers fidaxomicin over vancomycin (Bainum 2023).'),
+    ('rv-ch66-oxa-s-os-mrsa', 'Beta-lactamase-positive but oxacillin-susceptible S\\. aureus = MSSA',
+     'sim-q804: the answer (penicillin G ineffective, nafcillin/oxacillin effective) still stands for a phenotypically oxacillin-susceptible isolate. The explanation could note that rare mecA-positive oxacillin-susceptible strains (OS-MRSA) exist (Brahma 2019).'),
+    ('rv-neurosyphilis-rpr-odds', '11\\s*[×x]\\s*baseline in HIV-positive',
+     "sim-q77 keyed option c says the risk is about 11x baseline in HIV-positive patients. The high-risk answer stands, but Marra 2004 gives 5.98-fold odds in HIV-infected and 10.85-fold in HIV-uninfected subjects; CDC 2021 also reserves CSF examination for patients with an abnormal neurologic examination, so the explanation's 'support CSF evaluation' needs that caveat."),
+    ('rv-neurosyphilis-dx-signs', 'positive serum treponemal test, a positive CSF VDRL, and CSF pleocytosis',
+     'sim-q554 answer (IV aqueous penicillin G 10-14 days) stands, but the stem gives no neurologic signs; CDC 2021 considers a reactive CSF-VDRL diagnostic in a person with neurologic signs or symptoms, so adding a neurologic finding to the stem would match the guideline.'),
+    ('rv-tpallidum-resistance-scope', 'uniformly penicillin-susceptible',
+     "sim-q560 answer (macrolide resistance; do not use azithromycin) stands per CDC 2021 and Stamm 2010. The explanation's 'uniformly penicillin-susceptible' and 'rampant' overstate: Stamm reports no documented penicillin resistance and regionally variable macrolide resistance."),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
@@ -460,7 +470,8 @@ FLAG_RULES = [
 # Rules whose issue is not specific to the chapter the flag was found in.
 ANY_CHAPTER = {'rv-biotin-fda', 'rv-fvl-risk', 'rv-calcium-ref-albumin',
                'rv-crypto-induction-who2022', 'rv-ohl-fixed-candidiasis', 'rv-mucorales-pauciseptate',
-               'rv-aspirin-recovery-time', 'rv-lipase-definitive-ch9', 'rv-alf-enzyme-definition-ch9'}
+               'rv-aspirin-recovery-time', 'rv-lipase-definitive-ch9', 'rv-alf-enzyme-definition-ch9',
+               'rv-cdi-fidaxomicin-preferred', 'rv-ch66-oxa-s-os-mrsa'}
 
 
 def text(el):
