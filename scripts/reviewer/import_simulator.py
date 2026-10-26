@@ -466,6 +466,12 @@ FLAG_RULES = [
      'Matches sim-q37 and sim-q225. Both answers still stand (B12 deficiency; check B12/MMA before giving folate). The sources describe the nerve damage as often permanent, with some patients improving on treatment, not uniformly irreversible.'),
     ('rv-mma-renal-confounder', '[Mm]ethylmalonate rises (?:only )?in B12 deficiency',
      "Matches sim-q37 and sim-q225. Both answers still stand (MMA is the more specific B12 marker). Renal insufficiency also raises MMA, so 'rises only in B12 deficiency' needs the renal caveat."),
+    ('rv-desmopressin-rise-cutoffs', '>10% rise in urine osmolality after desmopressin',
+     "sim-q215: the answer (central DI) still stands because 280 to 460 mOsm/kg is a ~64% rise, above the classic >50% criterion. The explanation's >10%/<10% rule is not what the sources give (>50% for complete central; >9% only separates partial central from primary polydipsia)."),
+    ('rv-siad-fena-salt-wasting', 'has cerebral salt wasting.{0,5}volume status distinguishes',
+     'sim-q146 (Ch. 15): the best-fit answer likely stands within the options, but Warren 2023 calls cerebral salt wasting somewhat controversial, says it has no standardized criteria beyond clinical volume status (itself unreliable), and notes a prospective SAH study found no cases. Hypovolemia with high urine sodium also occurs with diuretics and adrenal insufficiency.'),
+    ('rv-ua-management-context', '(?i)still managed as ACS in the high-sensitivity era',
+     "sim-q169: the answer (unstable angina) still stands; the Fifth UDMI keeps unstable angina within the ACS umbrella. 'Still managed as ACS' is acceptable, but sources note a more favourable prognosis and less benefit from intensified antiplatelet therapy and early invasive strategies than NSTEMI, so it should not imply management identical to NSTEMI."),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
@@ -487,7 +493,8 @@ FLAG_RULES = [
 ANY_CHAPTER = {'rv-biotin-fda', 'rv-fvl-risk', 'rv-calcium-ref-albumin',
                'rv-crypto-induction-who2022', 'rv-ohl-fixed-candidiasis', 'rv-mucorales-pauciseptate',
                'rv-aspirin-recovery-time', 'rv-lipase-definitive-ch9', 'rv-alf-enzyme-definition-ch9',
-               'rv-cdi-fidaxomicin-preferred', 'rv-ch66-oxa-s-os-mrsa'}
+               'rv-cdi-fidaxomicin-preferred', 'rv-ch66-oxa-s-os-mrsa',
+               'rv-siad-fena-salt-wasting'}
 
 
 def text(el):
