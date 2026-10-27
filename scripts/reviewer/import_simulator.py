@@ -478,6 +478,8 @@ FLAG_RULES = [
      "sim-q129: the answer (paired t-test) stands because the design is before/after on the same subjects. The 'more powerful' wording holds only when the paired values are positively correlated (Kim 2015)."),
     ('rv-exempt-identifiable-categories', '(?i)retrospective (deidentified work qualifies as exempt|chart review of deidentified)',
      'Matches sim-q18 and sim-q140, which treat retrospective deidentified work as exempt. The keyed answers still stand as the best options offered, but 45 CFR 46.104(d)(4) also exempts some secondary research on identifiable information (publicly available, or HIPAA-regulated uses), and truly non-identifiable data may not be human subjects research at all.'),
+    ('rv-myriad-us-scope', 'isolated naturally occurring DNA is a product of nature',
+     'sim-q623 repeats the Myriad holding; the answer still stands under the 2013 opinion. The opinion is US law only, and it notes that very short cDNA indistinguishable from natural DNA is excepted; Philippine rules are not covered.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',

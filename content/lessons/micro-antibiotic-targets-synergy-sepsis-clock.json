@@ -1,0 +1,1688 @@
+{
+  "schemaVersion": 1,
+  "id": "micro-antibiotic-targets-synergy-sepsis-clock",
+  "title": "Antibiotic Targets, Synergy Testing and the Septic-Shock Clock",
+  "summary": "Learn which cellular target each major antibiotic class hits, how a checkerboard FIC index and a time-kill assay define synergy, how tolerance is expressed as an MBC/MIC ratio, and what the Kumar 2006 septic-shock timing data do and do not show.",
+  "domain": "p7-micro",
+  "topic": "ch58",
+  "conceptIds": [
+    "ch58.hit13",
+    "ch58.hit14",
+    "ch58.hit21"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 58,
+        "section": "High-Yield Hits",
+        "items": [
+          13,
+          14,
+          21
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 58 Hits 13 (Kumar 2006 septic-shock timing), 14 (checkerboard FIC, time-kill synergy, tolerance) and 21 (antibiotic targets by class). Checked against Kapoor 2017, Gajdács 2017, Stein 2015, Cázares-Domínguez 2015, Kumar 2014 and Evans 2021 (open full text), and Kohanski 2010 and Doern 2014 (each read via a page-fetch tool). The Kumar 2006 paper itself was not read (not open access); its figures are taught from its first author’s 2014 review, and the SSC 2021 guideline gives the context that the evidence is observational and weaker without shock (register flag rv-ch58-kumar-context). Doern 2014 defines time-kill synergy as a >2 log10 (not ≥2) greater kill, synergy cutoffs vary between studies, and synergy testing is not endorsed for routine use (rv-ch58-synergy-method). Tolerance as MBC/MIC ≥32 is confirmed only as a common definition in one primary study. Not taught: the Number Vault note that tolerance means bacteriologic failure despite susceptibility; the “rapid AST and stewardship” rationale; bacteriostatic labels for clindamycin and linezolid."
+  },
+  "prerequisites": [
+    "ch58.hit1"
+  ],
+  "objectives": [
+    "Match β-lactams, vancomycin, aminoglycosides, macrolides, clindamycin, linezolid, fluoroquinolones, rifampin, TMP-SMX and metronidazole to their targets.",
+    "Calculate an FIC index from checkerboard MICs and classify the interaction; state the time-kill synergy definition and the limits of synergy testing.",
+    "Define tolerance by the MBC/MIC ratio.",
+    "State what the Kumar 2006 septic-shock timing data showed and how the 2021 Surviving Sepsis Campaign guideline frames antibiotic timing."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two drugs, one plate, one clock",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three cards on a microbiology bench. (1) A clinician asks whether ampicillin and gentamicin hit the same bacterial target. (2) A checkerboard plate for drug A plus drug B: drug A MIC 8 µg/mL alone and 2 µg/mL in combination; drug B MIC 4 µg/mL alone and 1 µg/mL in combination. (3) A patient in septic shock: hypotension began at 06:00, the first effective antibiotic was given at 10:00. Question token: “Which target, is it synergy, and does the clock matter?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Three questions reach the bench. A clinician asks whether ampicillin and gentamicin hit the same target in the bacterium."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "A checkerboard plate shows drug A falling from an MIC of eight to two in combination, and drug B from four to one."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "And a patient in septic shock became hypotensive at six, but got an effective antibiotic only at ten. Which target, is it synergy, and does the clock matter?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Same target?",
+            "lines": [
+              "Ampicillin",
+              "+ gentamicin"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "2 Checkerboard",
+            "lines": [
+              "A: MIC 8 → 2",
+              "B: MIC 4 → 1"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.3,
+              "opacity": 0
+            },
+            {
+              "t": 8.1,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "bad",
+            "title": "3 Septic shock",
+            "lines": [
+              "Hypotension 06:00",
+              "Effective drug 10:00"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.3,
+              "opacity": 0
+            },
+            {
+              "t": 15.100000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 460,
+            "w": 700,
+            "label": "Which target, synergy, and does the clock matter?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 18.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Where each class hits",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic: four target cards around a bacterial cell. Cell wall: β-lactams bind penicillin-binding proteins and block peptidoglycan cross-linking; glycopeptides (vancomycin) bind the D-alanyl-D-alanine end of cell-wall precursors. 30S ribosome: aminoglycosides bind 16S rRNA, cause misreading and are the broadly bactericidal ribosome inhibitors; tetracyclines also act on 30S. 50S ribosome: macrolides, lincosamides (clindamycin) and oxazolidinones (linezolid); macrolides are typically bacteriostatic. Nucleic acid and folate: fluoroquinolones inhibit DNA gyrase and topoisomerase IV; rifamycins bind RNA polymerase and block transcription; sulfamethoxazole blocks dihydropteroate synthase and trimethoprim blocks dihydrofolate reductase, two steps of one pathway; metronidazole is a prodrug that must be reduced, releasing reactive products that damage DNA, and is a key anaerobe drug.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Start at the wall. Beta-lactams bind penicillin-binding proteins and stop peptidoglycan cross-linking. Vancomycin binds the D-alanyl-D-alanine end of the wall precursors."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Aminoglycosides bind the 30S ribosomal subunit and cause misreading; among ribosome inhibitors they are the broadly bactericidal ones. Cell-wall drugs help them get into the cell, which is one basis for combining them."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Macrolides, clindamycin and linezolid act on the 50S subunit. Macrolides are typically bacteriostatic."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Fluoroquinolones inhibit DNA gyrase and topoisomerase four. Rifampin binds RNA polymerase. Sulfamethoxazole and trimethoprim block two steps of the folate pathway. Metronidazole must be reduced inside the cell, and its products damage DNA, which makes it a key anaerobe drug."
+        }
+      ],
+      "objects": [
+        {
+          "id": "wall",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Cell wall",
+            "lines": [
+              "β-lactams → PBPs",
+              "Vancomycin → D-Ala-D-Ala"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "r30",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "30S ribosome",
+            "lines": [
+              "Aminoglycosides: bactericidal",
+              "Synergy with wall drugs"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "r50",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "50S ribosome",
+            "lines": [
+              "Macrolides · clindamycin · linezolid",
+              "Macrolides: typically static"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dna",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 400,
+            "w": 420,
+            "h": 200,
+            "tone": "warn",
+            "title": "DNA · RNA · folate",
+            "lines": [
+              "FQ → gyrase / topo IV",
+              "Rifampin → RNA polymerase",
+              "TMP-SMX → 2 folate steps",
+              "Metronidazole → DNA damage"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Measuring synergy",
+      "start": 60,
+      "end": 104,
+      "altText": "Checkerboard schematic: drug A in twofold dilutions across the plate, drug B in twofold dilutions down, so every well holds a different pair. For each drug, FIC = MIC in combination ÷ MIC alone; the FIC index (FICI) = FIC of A + FIC of B. Interpretation card (Doern 2014): FICI ≤ 0.5 = synergy (a fourfold MIC reduction); 0.5–1 = additive or non-synergistic; 1–4 = indifferent; > 4 = antagonism. Time-kill card: colony counts over time; synergy = more than a 2 log10 greater kill by the combination than by its most active single agent, best judged within the first 12 h. Caveat token: no gold standard; methods often disagree; not endorsed for routine clinical use.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "Synergy can be measured. In a checkerboard, drug A runs in twofold dilutions across the plate and drug B down it, so every well holds a different pair."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "For each drug, the fractional inhibitory concentration, or FIC, is its MIC in combination divided by its MIC alone. Add the two FICs to get the FIC index."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "In a widely cited review, an index of one half or less is synergy, a fourfold drop in MIC. Up to one is additive, one to four is indifferent, and above four is antagonism."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "A time-kill assay counts survivors over time. Synergy is more than a two-log greater kill than the best single drug, best judged in the first twelve hours. There is no gold standard, methods often disagree, and routine synergy testing is not endorsed."
+        }
+      ],
+      "objects": [
+        {
+          "id": "grid",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Checkerboard",
+            "lines": [
+              "A across · B down",
+              "Twofold dilutions, every pair"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fic",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "FIC index",
+            "lines": [
+              "FIC = MIC combo ÷ MIC alone",
+              "FICI = FIC A + FIC B"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12,
+              "reveal": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cut",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 200,
+            "tone": "good",
+            "title": "Reading the index",
+            "lines": [
+              "≤ 0.5 synergy",
+              "0.5–1 additive",
+              "1–4 indifferent",
+              "> 4 antagonism"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 32,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tk",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Time-kill",
+            "lines": [
+              "> 2 log10 more kill than best drug",
+              "No gold standard · not routine"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34,
+              "reveal": 0
+            },
+            {
+              "t": 34.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 43,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 43,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Working the numbers",
+      "start": 104,
+      "end": 144,
+      "altText": "Worked example card: drug A 2 ÷ 8 = 0.25; drug B 1 ÷ 4 = 0.25; FICI = 0.5 → synergy. Tolerance card: an isolate inhibited but poorly killed; tolerance is commonly defined as an MBC/MIC ratio ≥ 32 (example: MIC 1, MBC 32 µg/mL → ratio 32). Clock card (Kumar 2006, as summarised by its first author in 2014): retrospective septic-shock cohort; effective antimicrobial within the first hour after onset of hypotension → 79.9% survival to discharge; each additional hour of delay over the first 6 h → survival fell by an average of 7.6%. Context card (Surviving Sepsis Campaign 2021): give antimicrobials immediately, ideally within 1 h, in possible septic shock; in possible sepsis without shock, rapid assessment and antimicrobials within 3 h if concern persists; the time association is weaker without shock and the evidence is observational. Hook answers: (1) different targets, cell wall and 30S; (2) FICI 0.5 = synergy; (3) a 4-hour delay matters.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Back to the plate. Drug A: two divided by eight is a quarter. Drug B: one divided by four is a quarter. The index is one half, so the pair is synergistic."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Tolerance is the opposite problem: the drug inhibits but barely kills. It is commonly defined as an MBC to MIC ratio of thirty-two or more, for example an MIC of one with an MBC of thirty-two."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Now the clock. In Kumar’s 2006 retrospective study of septic shock, effective antibiotics in the first hour after hypotension began meant about eighty percent survival. Each further hour of delay, across the first six hours, cut survival by an average of seven point six percent."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "The 2021 Surviving Sepsis guideline gives antimicrobials immediately, ideally within an hour, in possible septic shock, and within three hours in possible sepsis without shock. So: different targets, synergy, and yes, the four-hour delay matters."
+        }
+      ],
+      "objects": [
+        {
+          "id": "calc",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 170,
+            "tone": "good",
+            "title": "Hook plate",
+            "lines": [
+              "A: 2 ÷ 8 = 0.25",
+              "B: 1 ÷ 4 = 0.25",
+              "FICI 0.5 → synergy"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tol",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Tolerance",
+            "lines": [
+              "Commonly MBC/MIC ≥ 32",
+              "MIC 1, MBC 32 → tolerant"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "clock",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 190,
+            "tone": "bad",
+            "title": "Kumar 2006 (septic shock)",
+            "lines": [
+              "Hour 1 after hypotension: 79.9%",
+              "Each later hour (to 6 h): −7.6%",
+              "Retrospective, one cohort"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ssc",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "SSC 2021",
+            "lines": [
+              "Possible shock: within 1 h",
+              "Sepsis, no shock: within 3 h"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Aminoglycosides and macrolides both act on the 50S subunit” (✓ aminoglycosides bind 30S; macrolides bind 50S); “An FIC index of 2 means synergy” (✓ synergy is ≤ 0.5; 1–4 is indifferent); “Survival falls 7.6% per hour in every septic patient, at every hour” (✓ one retrospective septic-shock study, first 6 h after hypotension; weaker association without shock).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: aminoglycosides and macrolides both act on the 50S subunit. No: aminoglycosides bind 30S, macrolides bind 50S."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: an FIC index of two means synergy. No: synergy is one half or less. Two is indifferent."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: survival falls seven point six percent per hour in every septic patient. No: that figure comes from one retrospective septic-shock study, over the first six hours after hypotension."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Aminoglycosides hit 50S.”",
+            "lines": [
+              "✓ Aminoglycosides 30S · macrolides 50S"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “FIC index 2 = synergy.”",
+            "lines": [
+              "✓ Synergy ≤ 0.5 · 1–4 indifferent"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “−7.6%/h in every patient.”",
+            "lines": [
+              "✓ One septic-shock study, first 6 h"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Wall, two floors, the code, the clock",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Picture the bacterium as a building: the WALL (β-lactams, vancomycin), two ribosome FLOORS — floor 30 (aminoglycosides) and floor 50 (macrolides, clindamycin, linezolid) — and the CODE room (fluoroquinolones, rifampin, TMP-SMX, metronidazole). Quarter plus quarter makes a half: synergy. The shock clock starts at hypotension.” Tokens: wall · 30 / 50 floors · code room · ¼ + ¼ = ½. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: the bacterium is a building. The wall is for beta-lactams and vancomycin. Two ribosome floors: thirty for aminoglycosides, fifty for macrolides, clindamycin and linezolid. The code room is for quinolones, rifampin, the folate pair and metronidazole. A quarter plus a quarter makes a half: synergy. And the shock clock starts at hypotension."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: ribosome drugs can be bactericidal for some species; synergy cutoffs and methods differ between laboratories and studies; and seven point six percent is an average from one observational study, not a guaranteed loss for each patient."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Wall, two floors, the code, the clock",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Wall · 30 · 50 · code",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "¼ + ¼ = ½ = synergy",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Clock starts at hypotension",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Ribosome drugs can kill some species",
+              "Synergy cutoffs and methods vary",
+              "7.6% is an observational average"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Wall: β-lactams, vancomycin · 30S: aminoglycosides · 50S: macrolides, clindamycin, linezolid · code: FQ, rifampin, TMP-SMX, metronidazole”, “FICI ≤ 0.5 = synergy · septic shock: effective antibiotics within the first hour”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Match each antibiotic class to its target, call a combination synergistic only when its FIC index is one half or less, and treat septic shock as a clock that starts at hypotension, because each hour of delay in effective antibiotics was linked to lower survival."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Wall · 30S aminoglycosides · 50S macrolides · code room",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "FICI ≤ 0.5 = synergy · shock clock starts at hypotension",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: each antibiotic family attacks one part of the bacterium — the wall, one of two halves of the protein-making ribosome, or the machinery that copies and reads DNA. Two drugs together can work better than either alone, and the lab can measure that on a dilution grid. In septic shock, how fast an effective drug is given matters. Scientific terms: penicillin-binding proteins (PBPs), D-alanyl-D-alanine, 30S and 50S ribosomal subunits, DNA gyrase and topoisomerase IV, RNA polymerase, dihydropteroate synthase and dihydrofolate reductase, prodrug reduction, bactericidal vs bacteriostatic, checkerboard, fractional inhibitory concentration (FIC) index, time-kill assay, tolerance (MBC/MIC ratio), septic shock.",
+    "why": "Knowing targets explains combinations (a cell-wall drug helps an aminoglycoside get into the cell) and cross-resistance; synergy testing is sometimes asked for in hard-to-treat infections but its methods disagree; and timing data are the reason septic shock is treated as an emergency.",
+    "measure": "FIC = MIC in combination ÷ MIC alone; FICI = FIC A + FIC B. Doern 2014: ≤0.5 synergy; 0.5–1 additive; 1–4 indifferent; >4 antagonism. Time-kill synergy: >2 log10 greater kill than the most active single agent, best assessed within 12 h. Tolerance: commonly MBC/MIC ≥32. Kumar 2006: 79.9% survival with effective antimicrobials in the first hour after hypotension; average 7.6% lower survival for each further hour over the first 6 h. SSC 2021: immediately, ideally within 1 h, for possible septic shock; within 3 h for possible sepsis without shock if concern persists.",
+    "differs": "30S (aminoglycosides, broadly bactericidal) vs 50S (macrolides, typically bacteriostatic); synergy (≤0.5) vs additive vs indifferent vs antagonism (>4); MIC (inhibition) vs MBC (killing) and tolerance (high MBC/MIC); septic shock (strong time association) vs sepsis without shock (weaker).",
+    "examAngle": "Expect: match a drug to its target, compute an FIC index from MICs, recognise MBC/MIC ≥32 as tolerance, or recall the 7.6% per hour figure and its setting."
+  },
+  "comparisons": [
+    {
+      "id": "thirty-vs-fifty",
+      "title": "30S vs 50S inhibitors",
+      "left": {
+        "label": "30S",
+        "points": [
+          "Aminoglycosides, tetracyclines",
+          "Aminoglycosides broadly bactericidal"
+        ]
+      },
+      "right": {
+        "label": "50S",
+        "points": [
+          "Macrolides, clindamycin, linezolid",
+          "Macrolides typically bacteriostatic"
+        ]
+      },
+      "distinguisher": "Which ribosomal subunit the drug binds."
+    },
+    {
+      "id": "synergy-vs-antagonism",
+      "title": "FIC index categories",
+      "left": {
+        "label": "Synergy",
+        "points": [
+          "FICI ≤ 0.5",
+          "Fourfold MIC drop for each drug"
+        ]
+      },
+      "right": {
+        "label": "Indifferent / antagonism",
+        "points": [
+          "FICI 1–4 indifferent",
+          "FICI > 4 antagonism"
+        ]
+      },
+      "distinguisher": "The summed FIC index, with cutoffs that vary by method."
+    }
+  ],
+  "mnemonic": {
+    "text": "Picture the bacterium as a building: the WALL (β-lactams, vancomycin), two ribosome FLOORS — floor 30 (aminoglycosides) and floor 50 (macrolides, clindamycin, linezolid) — and the CODE room (fluoroquinolones, rifampin, TMP-SMX, metronidazole). Quarter plus quarter makes a half: synergy. The shock clock starts at hypotension.",
+    "explanation": "Groups targets by location and links the FIC example and the timing anchor.",
+    "limitation": "Ribosome inhibitors can be bactericidal for some species; synergy cutoffs and methods vary and have no gold standard; 7.6% is an average from one retrospective septic-shock study, not a guaranteed per-patient loss."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Cell and target drawing is schematic.",
+    "The building analogy simplifies drugs with more than one action."
+  ],
+  "takeaway": "Match each antibiotic class to its target, call a combination synergistic only when its FIC index is one half or less, and treat septic shock as a clock that starts at hypotension, because each hour of delay in effective antibiotics was linked to lower survival.",
+  "questions": [
+    {
+      "id": "micro-ats-q1",
+      "stem": "Which antibiotic class binds the 30S ribosomal subunit and is the broadly bactericidal group among ribosome inhibitors?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Aminoglycosides",
+          "rationale": "Correct. Aminoglycosides bind 16S rRNA of the 30S subunit, cause misreading and are broadly bactericidal."
+        },
+        {
+          "id": "b",
+          "text": "Macrolides",
+          "rationale": "Incorrect. Macrolides bind the 50S subunit and are typically bacteriostatic."
+        },
+        {
+          "id": "c",
+          "text": "Fluoroquinolones",
+          "rationale": "Incorrect. Fluoroquinolones inhibit DNA gyrase and topoisomerase IV, not the ribosome."
+        },
+        {
+          "id": "d",
+          "text": "Glycopeptides (vancomycin)",
+          "rationale": "Incorrect. Vancomycin binds D-alanyl-D-alanine on cell-wall precursors."
+        }
+      ],
+      "answer": "a",
+      "skill": "Antibiotic targets",
+      "difficulty": "recall"
+    },
+    {
+      "id": "micro-ats-q2",
+      "stem": "In a checkerboard, drug A has an MIC of 16 µg/mL alone and 4 µg/mL in combination; drug B has an MIC of 2 µg/mL alone and 0.25 µg/mL in combination. Using the cutoffs in Doern 2014, what is the FIC index and interpretation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "0.375 — synergy",
+          "rationale": "Correct. 4 ÷ 16 = 0.25 and 0.25 ÷ 2 = 0.125; the sum, 0.375, is ≤ 0.5."
+        },
+        {
+          "id": "b",
+          "text": "0.375 — indifferent",
+          "rationale": "Incorrect. The index is right, but indifference is 1–4; ≤ 0.5 is synergy."
+        },
+        {
+          "id": "c",
+          "text": "12 — antagonism",
+          "rationale": "Incorrect. This inverts the ratios (MIC alone ÷ MIC in combination). FIC is the combination MIC divided by the MIC alone."
+        },
+        {
+          "id": "d",
+          "text": "0.125 — synergy",
+          "rationale": "Incorrect. This is only drug B’s FIC; the index is the sum of both drugs’ FICs."
+        }
+      ],
+      "answer": "a",
+      "skill": "FIC calculation",
+      "difficulty": "application"
+    },
+    {
+      "id": "micro-ats-q3",
+      "stem": "Which statement best describes the Kumar 2006 septic-shock timing finding?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Each hour of delay in effective antimicrobials over the first 6 h after hypotension onset was associated with an average 7.6% fall in survival",
+          "rationale": "Correct. This retrospective study reported 79.9% survival with effective therapy in the first hour and an average 7.6% fall for each further hour over 6 h."
+        },
+        {
+          "id": "b",
+          "text": "A randomised trial proved that each hour of delay causes a 7.6% fall in survival",
+          "rationale": "Incorrect. The study was retrospective and observational, so it shows an association."
+        },
+        {
+          "id": "c",
+          "text": "The same per-hour effect applies equally to sepsis without shock",
+          "rationale": "Incorrect. The 2021 Surviving Sepsis Campaign guideline notes weaker, less consistent associations without shock."
+        },
+        {
+          "id": "d",
+          "text": "Survival only begins to fall when effective therapy is delayed beyond 6 h",
+          "rationale": "Incorrect. The fall was reported for each hour from the second hour after hypotension onset."
+        }
+      ],
+      "answer": "a",
+      "skill": "Evidence interpretation",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch58",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 58, Antibiotic Susceptibility Testing (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 58,
+          "section": "High-Yield Hits",
+          "items": [
+            13,
+            14,
+            21
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "kapoor2017",
+      "kind": "external",
+      "citation": "Kapoor G, Saigal S, Elongavan A. Action and resistance mechanisms of antibiotics: A guide for clinicians. J Anaesthesiol Clin Pharmacol. 2017;33(3):300-305. doi:10.4103/joacp.joacp_349_15",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5672523/",
+      "consulted": true,
+      "usedFor": "β-lactams bind PBPs; glycopeptides bind D-alanyl-D-alanine; aminoglycosides bind 16S rRNA of 30S and cause misreading; aminoglycoside synergy with cell-wall inhibitors through greater penetration; tetracyclines 30S; macrolides, lincosamides and linezolid 50S; fluoroquinolones inhibit DNA gyrase and topoisomerase IV; sulfonamides inhibit dihydropteroate synthase and trimethoprim dihydrofolate reductase."
+    },
+    {
+      "id": "kohanski2010",
+      "kind": "external",
+      "citation": "Kohanski MA, Dwyer DJ, Collins JJ. How antibiotics kill bacteria: from targets to networks. Nat Rev Microbiol. 2010;8(6):423-435. doi:10.1038/nrmicro2333",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2896384/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (first 100,000 characters). Rifamycins bind RNA polymerase and block transcription; aminoglycosides are the broadly bactericidal ribosome inhibitors (30S); macrolides typically bacteriostatic, ribosome inhibitors can be bactericidal in a species-specific way; quinolone targets gyrase and topoisomerase IV; β-lactam and glycopeptide cell-wall targets."
+    },
+    {
+      "id": "gajdacs2017",
+      "kind": "external",
+      "citation": "Gajdács M, Spengler G, Urbán E. Identification and Antimicrobial Susceptibility Testing of Anaerobic Bacteria: Rubik’s Cube of Clinical Microbiology? Antibiotics (Basel). 2017;6(4):E25. doi:10.3390/antibiotics6040025",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5745468/",
+      "consulted": true,
+      "usedFor": "Metronidazole is a 5-nitroimidazole prodrug that must be reduced, releasing reactive products that damage DNA, proteins and membranes; one of the most important agents for anaerobic infections."
+    },
+    {
+      "id": "doern2014",
+      "kind": "external",
+      "citation": "Doern CD. When does 2 plus 2 equal 5? A review of antimicrobial synergy testing. J Clin Microbiol. 2014;52(12):4124-4128. doi:10.1128/jcm.01121-14",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4313275/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (full text not available from Europe PMC). Checkerboard method; FIC calculated from MIC in combination vs alone; FIC ≤0.5 synergy (fourfold MIC reduction), 0.5–1 additive/non-synergistic, 1–4 indifferent, >4 antagonism; time-kill synergy = >2 log10 greater kill than the most active constituent, best assessed within 12 h; no gold standard, methods often disagree; not enough evidence to endorse routine synergy testing."
+    },
+    {
+      "id": "stein2015",
+      "kind": "external",
+      "citation": "Stein C, Makarewicz O, Bohnert JA, Pfeifer Y, Kesselmeier M, Hagel S, Pletz MW. Three Dimensional Checkerboard Synergy Analysis of Colistin, Meropenem, Tigecycline against Multidrug-Resistant Clinical Klebsiella pneumonia Isolates. PLoS One. 2015;10(6):e0126479. doi:10.1371/journal.pone.0126479",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4465894/",
+      "consulted": true,
+      "usedFor": "FICI formula as the sum of MIC(combination)/MIC(alone) for each drug; example of different interpretive cutoffs (FICI <0.8 synergy, using median FICI) showing method dependence."
+    },
+    {
+      "id": "cazares2015",
+      "kind": "external",
+      "citation": "Cázares-Domínguez V, Cruz-Córdova A, Ochoa SA, Escalona G, Arellano-Galindo J, Rodríguez-Leviz A, et al. Vancomycin tolerant, methicillin-resistant Staphylococcus aureus reveals the effects of vancomycin on cell wall thickening. PLoS One. 2015;10(3):e0118791. doi:10.1371/journal.pone.0118791",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4368777/",
+      "consulted": true,
+      "usedFor": "Vancomycin tolerance “commonly defined as” an MBC/MIC ratio ≥32."
+    },
+    {
+      "id": "kumar2014",
+      "kind": "external",
+      "citation": "Kumar A. An alternate pathophysiologic paradigm of sepsis and septic shock: implications for optimizing antimicrobial therapy. Virulence. 2014;5(1):80-97. doi:10.4161/viru.26913",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3916387/",
+      "consulted": true,
+      "usedFor": "Summary by the first author of the 2006 retrospective septic-shock analysis: 79.9% survival with effective antimicrobials within the first hour after hypotension onset; survival dropped an average of 7.6% for each additional hour over the first 6 h; odds of death already raised by the second hour. The 2006 paper (Kumar A, et al. Crit Care Med. 2006;34(6):1589-1596) was not read."
+    },
+    {
+      "id": "evans2021",
+      "kind": "external",
+      "citation": "Evans L, Rhodes A, Alhazzani W, Antonelli M, Coopersmith CM, French C, et al. Surviving sepsis campaign: international guidelines for management of sepsis and septic shock 2021. Intensive Care Med. 2021;47(11):1181-1247. doi:10.1007/s00134-021-06506-y",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8486643/",
+      "consulted": true,
+      "usedFor": "Antimicrobials immediately, ideally within 1 h, for possible septic shock; possible sepsis without shock: rapid assessment and antimicrobials within 3 h if concern persists; strong time association in shock, weaker without shock; supporting studies observational."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-targets",
+      "text": "Targets of β-lactams, vancomycin, aminoglycosides, tetracyclines, macrolides, clindamycin, linezolid, fluoroquinolones, rifampin, TMP-SMX and metronidazole.",
+      "status": "checked",
+      "refs": [
+        "kapoor2017",
+        "kohanski2010",
+        "gajdacs2017"
+      ]
+    },
+    {
+      "id": "cl-cidal",
+      "text": "Aminoglycosides broadly bactericidal; macrolides typically bacteriostatic; aminoglycoside synergy with cell-wall agents.",
+      "status": "checked",
+      "refs": [
+        "kohanski2010",
+        "kapoor2017"
+      ]
+    },
+    {
+      "id": "cl-fic",
+      "text": "Checkerboard design; FIC and FICI calculation; Doern cutoffs ≤0.5, 0.5–1, 1–4, >4.",
+      "status": "checked",
+      "refs": [
+        "doern2014",
+        "stein2015"
+      ]
+    },
+    {
+      "id": "cl-timekill",
+      "text": "Time-kill synergy >2 log10 greater kill than the most active single agent, best judged within 12 h; no gold standard; not endorsed routinely; cutoffs vary.",
+      "status": "checked",
+      "refs": [
+        "doern2014",
+        "stein2015"
+      ]
+    },
+    {
+      "id": "cl-tol",
+      "text": "Tolerance commonly defined as MBC/MIC ≥32.",
+      "status": "checked",
+      "refs": [
+        "cazares2015"
+      ],
+      "note": "One primary study stating a common definition; no guideline or standard was read."
+    },
+    {
+      "id": "cl-kumar",
+      "text": "Kumar 2006: 79.9% survival with effective antimicrobials in the first hour after hypotension; average 7.6% fall per additional hour over the first 6 h; retrospective.",
+      "status": "checked",
+      "refs": [
+        "kumar2014"
+      ],
+      "note": "Taken from the first author’s 2014 review; the 2006 paper was not read."
+    },
+    {
+      "id": "cl-ssc",
+      "text": "SSC 2021 timing recommendations and observational, weaker-without-shock evidence.",
+      "status": "checked",
+      "refs": [
+        "evans2021"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Reviewer’s “≥2-log10” time-kill threshold; tolerance as “bacteriologic failure despite susceptibility”; rapid AST and stewardship as the remedy implied by the 7.6% figure; bacteriostatic labels for clindamycin and linezolid.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch58"
+      ],
+      "note": "Not taught as facts; sources read give >2 log10 or do not address these points."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; cell and plate drawings schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Wall, two floors, the code, the clock.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-kumar-context",
+      "issue": "Ch. 58 Hit 13 gives the 7.6%-per-hour survival loss without context. The figure is an average over the first 6 h after onset of hypotension in one retrospective septic-shock cohort (Kumar 2014 summary); SSC 2021 notes the supporting evidence is observational and the time association is weaker and less consistent in sepsis without shock (register flag rv-ch58-kumar-context).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-synergy-method",
+      "issue": "Ch. 58 Hit 14 gives fixed synergy thresholds. Doern 2014 defines time-kill synergy as >2 log10 (not ≥2), notes there is no gold standard and methods often disagree, and does not endorse routine synergy testing; other studies use different FICI cutoffs (Stein 2015: <0.8 with median FICI) (register flag rv-ch58-synergy-method).",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-tolerance-def",
+      "issue": "The MBC/MIC ≥32 tolerance threshold was confirmed only as a “commonly defined” threshold in one primary study; no standard document was read.",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No photographs; targets, plates and timing shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "7 claims checked against Kapoor 2017, Gajdács 2017, Stein 2015, Cázares-Domínguez 2015, Kumar 2014, Evans 2021 (open full text) and Kohanski 2010, Doern 2014 (read via a page-fetch tool); 1 pending (reviewer’s ≥2-log10 wording, tolerance as clinical failure, rapid-AST rationale, clindamycin/linezolid static labels). The Kumar 2006 original was not read. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
