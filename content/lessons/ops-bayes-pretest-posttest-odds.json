@@ -1,0 +1,1601 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-bayes-pretest-posttest-odds",
+  "title": "Bayes at the Bench: Pretest Odds, Likelihood Ratios and Posttest Probability",
+  "summary": "Use Bayes in one line (posttest odds = pretest odds × likelihood ratio) to see why a 99% sensitive and specific test gives a positive predictive value near 1% for a rare disease, and keep sensitivity, predictive values and likelihood ratios apart.",
+  "domain": "p1-ops",
+  "topic": "ch8",
+  "conceptIds": [
+    "ch8.hit12",
+    "ch8.trap1",
+    "ch8.trap3",
+    "ch8.trap7",
+    "ch8.trap8",
+    "ch8.table2"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 8,
+        "section": "High-Yield Hits",
+        "items": [
+          12
+        ]
+      },
+      {
+        "chapter": 8,
+        "section": "Exam Traps",
+        "items": [
+          1,
+          3,
+          7,
+          8
+        ]
+      },
+      {
+        "chapter": 8,
+        "section": "Table",
+        "items": [
+          2
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 8 Hit 12 (Bayes in one line), Exam Traps 1 (99/99 test, rare disease), 3 (prevalence-independent measure), 7 (“Do not confuse”) and 8 (prevalence given → predictive value), and the “Do not confuse” table (Table 2). Checked against Ranganathan & Aggarwal 2018 (full text), Deeks & Altman 2004 (read via a page-fetch tool), Fierz & Bossuyt 2021 (full text), Trevethan 2017 (full text) and Leeflang 2013 (read via a page-fetch tool). The 99/99 example is arithmetic: PPV = 99 ÷ 10,098 ≈ 0.98%, so “~1%” is right; the Number Vault and 5-Second Recall figure of “0.9%” is a truncation of 0.98% (it rounds to 1.0%). Nuance (Trap 3, Table 2): with sensitivity and specificity held fixed, likelihood ratios do not change with prevalence (Ranganathan 2018), but Leeflang 2013 found sensitivity and/or specificity varied with prevalence in 8 of 23 meta-analyses and LR+ for one test ranged 2.35–25.4 across studies, so “prevalence-proof” and “No — test properties” are taught with that caveat. Not taught: the rheumatoid factor and lipase worked examples, SnNOut/SpPIn, the HIT anti-PF4 figures, PICO/EBM steps."
+  },
+  "prerequisites": [
+    "ch8.hit1",
+    "ch8.hit5"
+  ],
+  "objectives": [
+    "Convert between probability and odds and apply posttest odds = pretest odds × likelihood ratio.",
+    "Explain why a highly sensitive and specific test can have a very low positive predictive value for a rare disease.",
+    "Distinguish what sensitivity/specificity, predictive values and likelihood ratios each answer, and which depend on prevalence."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "A 99 percent test, a rare disease",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a screening test with 99% sensitivity and 99% specificity is used in a population where the disease affects 1 in 10,000 people. A healthy-feeling adult tests positive and asks: “So I almost certainly have it?” Question token: “Almost certainly sick, or almost certainly not?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "A screening test is ninety-nine percent sensitive and ninety-nine percent specific. The disease affects one person in ten thousand."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "A healthy-feeling adult tests positive and asks: so I almost certainly have it?"
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Almost certainly sick, or almost certainly not? The answer needs one more number than the test gives you."
+        }
+      ],
+      "objects": [
+        {
+          "id": "test",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Screening test",
+            "lines": [
+              "Sensitivity 99%",
+              "Specificity 99%"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "prev",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 220,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "The disease",
+            "lines": [
+              "1 in 10,000 people"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0
+            },
+            {
+              "t": 4.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "res",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "label": "Result: POSITIVE",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 8.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 700,
+            "label": "Almost certainly sick, or almost certainly not?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Three numbers, three questions",
+      "start": 20,
+      "end": 60,
+      "altText": "Three cards answer different questions. Sensitivity and specificity: how does the test behave in people already known to have, or not have, the disease? PPV and NPV: given this result, how likely is disease? These are strongly influenced by prevalence. Likelihood ratios: how much does this result shift the odds of disease? With sensitivity and specificity held fixed, likelihood ratios do not change with prevalence. A fourth card converts odds and probability: odds = p ÷ (1 − p); probability = odds ÷ (1 + odds).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Each number answers a different question. Sensitivity and specificity describe the test in people already known to have, or not to have, the disease."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Predictive values answer the patient’s question: given this result, how likely is disease? They are strongly influenced by how common the disease is in the people tested."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Likelihood ratios answer a third question: how much does this result shift the odds? If sensitivity and specificity stay the same, the likelihood ratios do not change with prevalence."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Likelihood ratios work on odds, not probabilities. Odds equal p over one minus p, and probability equals odds over one plus odds."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ss",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Sensitivity / specificity",
+            "lines": [
+              "Test in known diseased / healthy",
+              "Test properties"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pv",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "PPV / NPV",
+            "lines": [
+              "Given this result: disease?",
+              "Swing with prevalence"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lr",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 380,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Likelihood ratios",
+            "lines": [
+              "How much the odds shift",
+              "Fixed if Se and Sp are fixed"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "odds",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 380,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Odds ↔ probability",
+            "lines": [
+              "Odds = p ÷ (1 − p)",
+              "p = odds ÷ (1 + odds)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 37,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Bayes in one line",
+      "start": 60,
+      "end": 104,
+      "altText": "Formula card: LR+ = sensitivity ÷ (1 − specificity); LR− = (1 − sensitivity) ÷ specificity. Bayes card: posttest odds = pretest odds × LR; posttest probability = posttest odds ÷ (1 + posttest odds). LR = 1 changes nothing; LRs above 10 or below 0.1 are considered strong evidence. Worked example from a published teaching article (hypothetical D-dimer data for pulmonary embolism): LR+ 4.85, LR− 0.35. Pretest 30%: positive → about 67%, negative → about 13%. Pretest 1%: positive → about 5%, negative → about 0.35%.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 70,
+          "text": "The positive likelihood ratio is sensitivity over one minus specificity. The negative likelihood ratio is one minus sensitivity, over specificity."
+        },
+        {
+          "id": "c2",
+          "start": 70,
+          "end": 80,
+          "text": "Bayes in one line: posttest odds equal pretest odds times the likelihood ratio. Then convert back: probability equals odds over one plus odds. A ratio of one changes nothing; above ten or below zero point one is strong evidence."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 92,
+          "text": "A published teaching example uses a D-dimer test with a positive likelihood ratio of about 4.85. For a high-risk patient with a thirty percent pretest probability, a positive result raises it to about sixty-seven percent."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "For a low-risk patient at one percent, the same positive result gives only about five percent. Same test, same likelihood ratio, very different meaning, because the starting point differs."
+        }
+      ],
+      "objects": [
+        {
+          "id": "form",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Likelihood ratios",
+            "lines": [
+              "LR+ = Se ÷ (1 − Sp)",
+              "LR− = (1 − Se) ÷ Sp"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 8,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "bayes",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 190,
+            "tone": "good",
+            "title": "Bayes in one line",
+            "lines": [
+              "Post odds = pre odds × LR",
+              "p = odds ÷ (1 + odds)",
+              "LR > 10 or < 0.1 = strong"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hi",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Pretest 30% · LR+ 4.85",
+            "lines": [
+              "Odds 0.43 × 4.85 ≈ 2.1",
+              "Posttest ≈ 67%"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 26,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lo",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Pretest 1% · LR+ 4.85",
+            "lines": [
+              "Odds 0.01 × 4.85 ≈ 0.05",
+              "Posttest ≈ 5%"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Solving the hook",
+      "start": 104,
+      "end": 144,
+      "altText": "Bayes route: LR+ = 0.99 ÷ 0.01 = 99. Pretest odds = 1 ÷ 9,999 ≈ 0.0001. Posttest odds ≈ 0.0099, so posttest probability ≈ 0.98%, about 1%. Counting route (per 1,000,000 people): 100 have the disease, 99 test positive; 999,900 do not, and 1% of them (9,999) test positive. PPV = 99 ÷ 10,098 ≈ 1%. Rule card: if the question gives a prevalence or pretest probability and asks about a result, it wants a predictive value (or a posttest probability); if it asks which number survives a change in prevalence, it wants sensitivity, specificity or a likelihood ratio.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Back to the hook. The positive likelihood ratio is zero point nine nine over zero point zero one: ninety-nine. Pretest odds are one in nine thousand nine hundred ninety-nine."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Multiply: the posttest odds are about one in a hundred, so the probability of disease is about one percent. Roughly ninety-nine of every hundred positives are false."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Check by counting a million people. A hundred have the disease and ninety-nine test positive. Of the healthy, one percent, nearly ten thousand, also test positive."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Exam rule: if a question hands you a prevalence and asks about a result, it wants a predictive value. If it asks which number survives a change in prevalence, think likelihood ratio."
+        }
+      ],
+      "objects": [
+        {
+          "id": "step1",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Bayes route",
+            "lines": [
+              "LR+ = 0.99 ÷ 0.01 = 99",
+              "Pretest odds = 1 : 9,999"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "step2",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 290,
+            "w": 440,
+            "label": "Posttest odds ≈ 0.0099 → ≈ 1%",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "count",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "a",
+            "title": "Per 1,000,000 people",
+            "lines": [
+              "100 diseased → 99 positive",
+              "999,900 healthy → 9,999 positive",
+              "PPV = 99 ÷ 10,098 ≈ 1%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rule",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 760,
+            "h": 150,
+            "tone": "good",
+            "title": "Exam rule",
+            "lines": [
+              "Prevalence given + result → PPV / NPV",
+              "Survives a prevalence change → LR"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “99% sensitive and 99% specific, so a positive means almost certain disease” (✓ at 1 in 10,000 prevalence, PPV is about 1%); “Multiply the pretest probability by the LR” (✓ convert to odds first, multiply, then convert back); “Likelihood ratios are the same in every population” (✓ they do not change with prevalence when sensitivity and specificity are fixed, but study estimates can differ between populations; one review found LR+ for one test ranging from 2.35 to 25.4 across studies).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: ninety-nine percent sensitive and specific, so a positive is almost certain disease. No: for a rare disease, most positives are false."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: multiply the pretest probability by the likelihood ratio. No: convert probability to odds, multiply, then convert back."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: a likelihood ratio is the same in every population. Arithmetic says prevalence alone does not move it, but real studies in different patients can give quite different values."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “99/99 test + positive = almost certain.”",
+            "lines": [
+              "✓ Rare disease: PPV ≈ 1%"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Probability × LR.”",
+            "lines": [
+              "✓ Odds × LR, then back to probability"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “LR is identical in every population.”",
+            "lines": [
+              "✓ Prevalence alone does not move it; spectrum can"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "The exchange rate",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “The likelihood ratio is an exchange rate. Change your probability into the odds currency, multiply by the exchange rate, then change it back. A tiny starting sum stays small even at a good rate.” Tokens: change into odds · multiply by LR · change back. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: the likelihood ratio is an exchange rate. Change your probability into odds, multiply by the rate, then change it back. A tiny starting sum stays small, even at a good rate."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: the rate is estimated from studies and can differ between patient groups; the pretest probability is often a judgement; and there is no agreed way to chain likelihood ratios from several tests."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "The exchange rate",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "1 Probability → odds",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "2 × LR (the rate)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "3 Odds → probability",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "LR estimates vary between populations",
+              "Pretest probability is a judgement",
+              "No agreed way to chain several LRs"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Posttest odds = pretest odds × LR · p = odds ÷ (1 + odds)”, “Se/Sp = test · PPV/NPV = prevalence-dependent · 99/99 at 1 in 10,000 → PPV ≈ 1%”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Turn the pretest probability into odds, multiply by the likelihood ratio and turn the result back into a probability, because sensitivity and specificity describe the test while predictive value also depends on how common the disease is, so even a 99 percent sensitive and specific test gives a positive predictive value near 1 percent when only 1 in 10,000 people is affected."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Posttest odds = pretest odds × LR · p = odds ÷ (1 + odds)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "PPV/NPV follow prevalence · 99/99 at 1 in 10,000 → PPV ≈ 1%",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a test result does not tell you the chance of disease on its own; it tells you how much to update the chance you started with. If the disease is very rare, even an excellent test mostly flags healthy people, because there are so many more of them. Scientific terms: pretest probability, pretest odds, likelihood ratio (LR+, LR−), posttest odds, posttest probability, Bayes’ theorem, positive and negative predictive value (PPV, NPV), prevalence, spectrum.",
+    "why": "Sensitivity and specificity are measured within the diseased and the non-diseased groups separately, so prevalence does not enter them. A predictive value mixes the two groups, so it depends on how many people in each group are tested. The likelihood ratio compares how often a result occurs in diseased versus non-diseased people, so it scales the pretest odds into posttest odds whatever the starting prevalence.",
+    "measure": "Odds = p ÷ (1 − p); p = odds ÷ (1 + odds). LR+ = sensitivity ÷ (1 − specificity); LR− = (1 − sensitivity) ÷ specificity. Posttest odds = pretest odds × LR. LR = 1: no change; LR > 10 or < 0.1: strong evidence. Worked: D-dimer teaching example LR+ 4.85 → pretest 30% becomes about 67%, pretest 1% becomes about 5%. A 99/99 test at 1 in 10,000 prevalence: LR+ 99, PPV ≈ 1%.",
+    "differs": "Sensitivity/specificity (how the test behaves in known diseased/healthy people; prevalence not in the formula) vs PPV/NPV (chance of disease given a result; swing with prevalence) vs likelihood ratios (how much a result shifts the odds; fixed when sensitivity and specificity are fixed). Odds vs probability. Prevalence (a population figure) vs pretest probability (an individual estimate that also uses history and findings).",
+    "examAngle": "Expect: the PPV of a 99/99 test for a rare disease; a posttest probability from a pretest probability and an LR; which measure changes when the same test is used in a population with a different prevalence; and which measure answers “given this result, how likely is disease?”."
+  },
+  "comparisons": [
+    {
+      "id": "pv-vs-lr",
+      "title": "Predictive values vs likelihood ratios",
+      "left": {
+        "label": "PPV / NPV",
+        "points": [
+          "Chance of disease given the result",
+          "Strongly influenced by prevalence"
+        ]
+      },
+      "right": {
+        "label": "LR+ / LR−",
+        "points": [
+          "How much the result shifts the odds",
+          "Unchanged by prevalence if Se and Sp are fixed"
+        ]
+      },
+      "distinguisher": "A predictive value already contains the prevalence; a likelihood ratio needs a pretest probability supplied."
+    },
+    {
+      "id": "odds-vs-prob",
+      "title": "Odds vs probability",
+      "left": {
+        "label": "Probability",
+        "points": [
+          "p = odds ÷ (1 + odds)",
+          "Range 0 to 1"
+        ]
+      },
+      "right": {
+        "label": "Odds",
+        "points": [
+          "Odds = p ÷ (1 − p)",
+          "What the likelihood ratio multiplies"
+        ]
+      },
+      "distinguisher": "Multiply odds, never probabilities, by a likelihood ratio."
+    }
+  ],
+  "mnemonic": {
+    "text": "The likelihood ratio is an exchange rate: change your probability into the odds currency, multiply by the rate, then change it back. A tiny starting sum stays small even at a good rate.",
+    "explanation": "Fixes the order of steps (probability → odds → × LR → probability) and why a rare disease keeps the posttest probability low.",
+    "limitation": "LR estimates come from studies and can differ between patient groups; the pretest probability is often a subjective estimate; and there is no consensus on how to combine likelihood ratios from several tests."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Cards and counts are schematic arithmetic, not real patient data.",
+    "The D-dimer numbers come from a hypothetical teaching example, not a real assay."
+  ],
+  "takeaway": "Turn the pretest probability into odds, multiply by the likelihood ratio and turn the result back into a probability, because sensitivity and specificity describe the test while predictive value also depends on how common the disease is, so even a 99 percent sensitive and specific test gives a positive predictive value near 1 percent when only 1 in 10,000 people is affected.",
+  "questions": [
+    {
+      "id": "ops-bayes-q1",
+      "stem": "A patient’s pretest probability of disease is 20%. A test result has a likelihood ratio of 4. What is the posttest probability?",
+      "options": [
+        {
+          "id": "a",
+          "text": "50%",
+          "rationale": "Correct. Pretest odds = 0.2 ÷ 0.8 = 0.25; × 4 = 1; probability = 1 ÷ (1 + 1) = 50%."
+        },
+        {
+          "id": "b",
+          "text": "80%",
+          "rationale": "Incorrect. This comes from multiplying the probability (20% × 4); the likelihood ratio multiplies odds, not probabilities."
+        },
+        {
+          "id": "c",
+          "text": "20%",
+          "rationale": "Incorrect. A likelihood ratio above 1 raises the probability; only an LR of 1 leaves it unchanged."
+        },
+        {
+          "id": "d",
+          "text": "5%",
+          "rationale": "Incorrect. This divides by the likelihood ratio; an LR of 4 increases, not decreases, the odds."
+        }
+      ],
+      "answer": "a",
+      "skill": "Bayes calculation",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-bayes-q2",
+      "stem": "A test with unchanged sensitivity and specificity is moved from a hospital clinic to population screening, where the disease is far less common. Which measure falls?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Positive predictive value",
+          "rationale": "Correct. Predictive values depend on prevalence; with fewer diseased people tested, a larger share of positives are false."
+        },
+        {
+          "id": "b",
+          "text": "Positive likelihood ratio",
+          "rationale": "Incorrect. LR+ is calculated from sensitivity and specificity, so it stays the same if they are unchanged."
+        },
+        {
+          "id": "c",
+          "text": "Sensitivity",
+          "rationale": "Incorrect. The stem holds sensitivity fixed; it is measured only in people who have the disease."
+        },
+        {
+          "id": "d",
+          "text": "Specificity",
+          "rationale": "Incorrect. The stem holds specificity fixed; it is measured only in people who do not have the disease."
+        }
+      ],
+      "answer": "a",
+      "skill": "Prevalence dependence",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-bayes-q3",
+      "stem": "A test that is 99% sensitive and 99% specific screens for a disease with a prevalence of 1 in 10,000. A person tests positive. About what is the chance they have the disease?",
+      "options": [
+        {
+          "id": "a",
+          "text": "About 1%",
+          "rationale": "Correct. LR+ = 99 and pretest odds are about 1 in 10,000, so posttest odds are about 1 in 100: of roughly 10,100 positives per million, only 99 are true."
+        },
+        {
+          "id": "b",
+          "text": "About 99%",
+          "rationale": "Incorrect. This confuses sensitivity with positive predictive value; prevalence is ignored."
+        },
+        {
+          "id": "c",
+          "text": "About 50%",
+          "rationale": "Incorrect. That would need pretest odds of about 1 in 99 (a prevalence near 1%), not 1 in 10,000."
+        },
+        {
+          "id": "d",
+          "text": "About 9%",
+          "rationale": "Incorrect. This is roughly the PPV at a prevalence of 1 in 1,000, ten times more common than in the stem."
+        }
+      ],
+      "answer": "a",
+      "skill": "PPV and prevalence",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch8",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 8, After the Result: What Numbers Mean (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 8,
+          "section": "High-Yield Hits",
+          "items": [
+            12
+          ]
+        },
+        {
+          "chapter": 8,
+          "section": "Exam Traps",
+          "items": [
+            1,
+            3,
+            7,
+            8
+          ]
+        },
+        {
+          "chapter": 8,
+          "section": "Table",
+          "items": [
+            2
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "ranganathan2018",
+      "kind": "external",
+      "citation": "Ranganathan P, Aggarwal R. Understanding the properties of diagnostic tests - Part 2: Likelihood ratios. Perspect Clin Res. 2018;9(2):99-102.",
+      "doi": "10.4103/picr.picr_41_18",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5950618/",
+      "consulted": true,
+      "usedFor": "Full text read. Sensitivity/specificity describe results given disease present or absent; predictive values highly influenced by prevalence; LR+ = Se/(1 − Sp), LR− = (1 − Se)/Sp; LR 1 = no difference; LRs > 10 or < 0.1 very useful; LRs unchanged across prevalences of 1%, 10% and 30% when Se and Sp are fixed (Table 3); posttest odds = pretest odds × LR; odds–probability conversion; pretest probability depends on prevalence plus history, symptoms and signs; hypothetical D-dimer example (LR+ 4.85, LR− 0.35; 30% → 67% and 13%; 1% → 5% and 0.35%); limitations (subjective pretest probability, no consensus on combining LRs from several tests)."
+    },
+    {
+      "id": "deeks2004",
+      "kind": "external",
+      "citation": "Deeks JJ, Altman DG. Diagnostic tests 4: likelihood ratios. BMJ. 2004;329(7458):168-169.",
+      "doi": "10.1136/bmj.329.7458.168",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC478236/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. Posttest odds = pretest odds × LR; pretest odds = p/(1 − p); posttest probability = odds/(1 + odds); LRs above 10 and below 0.1 provide strong evidence; predictive values depend on the prevalence in the study sample."
+    },
+    {
+      "id": "fierz2021",
+      "kind": "external",
+      "citation": "Fierz W, Bossuyt X. Likelihood Ratio Approach and Clinical Interpretation of Laboratory Tests. Front Immunol. 2021;12:655262.",
+      "doi": "10.3389/fimmu.2021.655262",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8086426/",
+      "consulted": true,
+      "usedFor": "Full text read. Laboratory perspective: by Bayes’ theorem, pretest odds × LR = posttest odds; estimating pretest odds starts from prevalence and adds clinical findings; a low suspicion needs a much higher LR to rule in."
+    },
+    {
+      "id": "trevethan2017",
+      "kind": "external",
+      "citation": "Trevethan R. Sensitivity, Specificity, and Predictive Values: Foundations, Pliabilities, and Pitfalls in Research and Practice. Front Public Health. 2017;5:307.",
+      "doi": "10.3389/fpubh.2017.00307",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5701930/",
+      "consulted": true,
+      "usedFor": "Full text read. Sensitivity and specificity vs PPV/NPV answer different questions; PPV is the probability that people with a positive result have the condition; sensitivity is often confused with PPV; the four values depend on test stringency and the prevalence in the sample."
+    },
+    {
+      "id": "leeflang2013",
+      "kind": "external",
+      "citation": "Leeflang MM, Rutjes AW, Reitsma JB, Hooft L, Bossuyt PM. Variation of a test's sensitivity and specificity with disease prevalence. CMAJ. 2013;185(11):E537-44.",
+      "doi": "10.1503/cmaj.121286",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3735771/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. Across 23 meta-analyses, sensitivity or specificity varied significantly with prevalence in 8 (35%), with higher prevalence accompanying lower specificity; Bayesian reasoning assumes LRs stay the same as prevalence varies, yet in one pulmonary embolism review LR+ ranged from 2.35 to 25.4; mechanisms include spectrum effects and referral filters, and prevalence is not claimed to be the cause."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-three",
+      "text": "Sensitivity/specificity, predictive values and likelihood ratios answer different questions; predictive values depend strongly on prevalence.",
+      "status": "checked",
+      "refs": [
+        "ranganathan2018",
+        "trevethan2017",
+        "deeks2004"
+      ]
+    },
+    {
+      "id": "cl-lr-formulas",
+      "text": "LR+ = Se/(1 − Sp); LR− = (1 − Se)/Sp; LR 1 = no change; > 10 or < 0.1 strong evidence; LRs unchanged by prevalence when Se and Sp are fixed.",
+      "status": "checked",
+      "refs": [
+        "ranganathan2018",
+        "deeks2004"
+      ]
+    },
+    {
+      "id": "cl-bayes",
+      "text": "Posttest odds = pretest odds × LR; odds = p/(1 − p); p = odds/(1 + odds); pretest probability uses prevalence plus clinical findings.",
+      "status": "checked",
+      "refs": [
+        "deeks2004",
+        "ranganathan2018",
+        "fierz2021"
+      ]
+    },
+    {
+      "id": "cl-ddimer",
+      "text": "Hypothetical D-dimer teaching example: LR+ 4.85; pretest 30% → about 67%; pretest 1% → about 5%.",
+      "status": "checked",
+      "refs": [
+        "ranganathan2018"
+      ]
+    },
+    {
+      "id": "cl-99",
+      "text": "99/99 test at 1 in 10,000 prevalence gives PPV about 1% (arithmetic using the checked formulas).",
+      "status": "checked",
+      "refs": [
+        "ranganathan2018",
+        "deeks2004"
+      ],
+      "note": "Arithmetic: 99 true positives and 9,999 false positives per million; PPV ≈ 0.98%."
+    },
+    {
+      "id": "cl-spectrum",
+      "text": "LR and sensitivity/specificity estimates can differ between study populations (spectrum), so “prevalence-proof” needs that caveat.",
+      "status": "checked",
+      "refs": [
+        "leeflang2013",
+        "ranganathan2018"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Reviewer worked examples not taught: rheumatoid factor (sens 95/spec 90, 5% → 33%), lipase LR+ 9, anti-PF4 PPV 40/NPV 100, D-dimer 400/200 U/mL cutoffs.",
+      "status": "pending"
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; cards schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“The exchange rate.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-lr-prevalence-proof",
+      "issue": "Exam Trap 3 and the “Do not confuse” table call likelihood ratios (and sensitivity/specificity) prevalence-independent. That holds arithmetically when sensitivity and specificity are fixed (Ranganathan 2018), but Leeflang 2013 found sensitivity or specificity varied with prevalence in 8 of 23 meta-analyses and LR+ for one test ranged from 2.35 to 25.4 across studies, through spectrum and referral effects. The lesson teaches the arithmetic rule with this caveat.",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; calculations shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "All 6 taught factual claims checked against Ranganathan & Aggarwal 2018, Deeks & Altman 2004 (read via a page-fetch tool), Fierz & Bossuyt 2021, Trevethan 2017 and Leeflang 2013 (read via a page-fetch tool); one pending claim lists reviewer worked examples that are not taught. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
