@@ -1,0 +1,1604 @@
+{
+  "schemaVersion": 1,
+  "id": "bb-pbm-single-unit-iron-overload",
+  "title": "Patient Blood Management: Fix Anaemia, One Unit at a Time, and the Iron Bill",
+  "summary": "Learn the three pillars of patient blood management, how pre-operative iron deficiency is found and treated, why stable patients get one red-cell unit then reassessment, and why chronic transfusion causes iron overload that is treated by chelation.",
+  "domain": "p5-bb",
+  "topic": "ch41",
+  "conceptIds": [
+    "ch41.hit26",
+    "ch41.table1",
+    "ch41.hit24"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 41,
+        "section": "High-Yield Hits",
+        "items": [
+          24,
+          26
+        ]
+      },
+      {
+        "chapter": 41,
+        "section": "Number Vault",
+        "items": [
+          1
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 41 High-Yield Hits 26 (PBM pillar 1) and 24 (chronic transfusion iron overload), and the first Number Vault row (one RBC unit raises Hb ~1 g/dL, Hct ~3%; transfuse one unit at a time in stable patients). Checked against SIR4PBM (Meybohm 2017), NICE NG24 (red-cell chapter, read from the NICE website), Krishna 2023, Saliba 2015, Kwiatkowski 2011 and Pinyopornpanish 2023. The reviewer’s “no excretion” is given in the sources as no mechanism to excrete EXCESS iron (basal losses ~1–2 mg/day), and its “not phlebotomy” holds while the patient is anaemic and transfusion-dependent; after cure by HSCT phlebotomy is used. Not taught here: the vault’s 70-kg qualifier and “Hct range 2–9%”, and its other rows (triggers, platelets, CCI, cryo, storage, timing, neonatal and SCD targets), several of which are taught in bb-component-choice-thresholds and bb-component-storage-irradiation."
+  },
+  "prerequisites": [
+    "ch41.hit5"
+  ],
+  "objectives": [
+    "Name the three pillars of patient blood management and the pre-operative steps of pillar 1.",
+    "Apply the single-unit-then-reassess rule and the approximate Hb and Hct rise per red-cell unit.",
+    "Explain why chronic transfusion causes iron overload and why chelation, not phlebotomy, is used while the patient is transfusion-dependent."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three patients, three red-cell decisions",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three patient cards. (1) A 66-year-old booked for elective hip replacement in 5 weeks: Hb 10.6 g/dL, ferritin 14 ng/mL. (2) A post-operative adult, not bleeding, haemodynamically stable: Hb 6.8 g/dL; the order reads “2 units RBC”. (3) A 16-year-old with beta-thalassaemia major on monthly transfusions for 10 years: ferritin 2,800 ng/mL, cardiac MRI T2* 14 ms. Question token: “Treat, transfuse, or chelate?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Three patients. One is booked for a hip replacement in five weeks, with a haemoglobin of 10.6 and a ferritin of 14."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "One is stable after surgery, not bleeding, with a haemoglobin of 6.8, and the order says two units."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "And one teenager with thalassaemia has had monthly transfusions for ten years. Treat, transfuse, or chelate?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "p1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Elective hip, 5 weeks",
+            "lines": [
+              "Hb 10.6 g/dL",
+              "Ferritin 14 ng/mL"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "2 Post-op, stable",
+            "lines": [
+              "Hb 6.8 g/dL · not bleeding",
+              "Order: 2 units"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "bad",
+            "title": "3 Thalassaemia major",
+            "lines": [
+              "Monthly RBC × 10 years",
+              "Ferritin 2,800 · T2* 14 ms"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.3,
+              "opacity": 0
+            },
+            {
+              "t": 15.100000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 640,
+            "label": "Treat, transfuse, or chelate?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 17,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 18.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The three pillars of patient blood management",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic: three pillar cards under a banner “Patient blood management (PBM)”. Pillar 1 — manage the patient’s anaemia: detect it early and support red-cell production (iron, other nutrients, medicines). Pillar 2 — conserve blood: prevent and manage bleeding and coagulopathy, careful surgical technique, cell salvage, and less blood drawn for tests. Pillar 3 — harness tolerance of anaemia and decide with the patient: restrictive transfusion thresholds and informed consent. A footer token: “The patient’s own blood comes first.”",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Patient blood management treats the patient’s own blood as the first resource. International recommendations build it on three pillars."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Pillar one: manage the anaemia. Find it early and treat its cause, such as iron deficiency, so red-cell production can recover."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Pillar two: conserve blood. Prevent and control bleeding, use careful surgical technique and cell salvage, and draw less blood for laboratory tests."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Pillar three: harness the patient’s tolerance of anaemia, with restrictive transfusion thresholds and decisions made with the patient."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ban",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 110,
+            "w": 640,
+            "label": "Patient blood management",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pl1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 300,
+            "w": 290,
+            "h": 200,
+            "tone": "b",
+            "title": "1 Manage anaemia",
+            "lines": [
+              "Detect early",
+              "Treat the cause (iron)"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pl2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 300,
+            "w": 290,
+            "h": 200,
+            "tone": "good",
+            "title": "2 Conserve blood",
+            "lines": [
+              "Control bleeding",
+              "Cell salvage · fewer draws"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pl3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 300,
+            "w": 290,
+            "h": 200,
+            "tone": "warn",
+            "title": "3 Tolerate anaemia",
+            "lines": [
+              "Restrictive thresholds",
+              "Decide with the patient"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Pillar one before elective surgery",
+      "start": 60,
+      "end": 104,
+      "altText": "Screening card (SIR4PBM 2017): patients facing surgery with expected blood loss over 500 mL, or a 10% or greater chance of transfusion, are assessed early and screened for iron deficiency. Iron-deficiency card: ferritin < 30 ng/mL, transferrin saturation < 20%, and/or MCV < 80 fL, MCH < 27 pg; with inflammation, ferritin > 100 ng/mL with TSAT < 20% suggests functional iron deficiency. Treatment card: intravenous iron if oral iron is not tolerated or surgery is less than 4–6 weeks away; erythropoiesis-stimulating agents only after nutritional deficiencies are ruled out or corrected; postpone elective surgery until anaemia is classified and treated, if possible. Lab card (pillar 2): avoid unnecessary tests, sample less often, use the smallest practical tubes.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Pillar one starts in the pre-operative clinic. Patients expecting more than 500 millilitres of blood loss, or a ten percent or greater chance of transfusion, should be assessed early and screened for iron deficiency."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 84,
+          "text": "Ferritin below 30, transferrin saturation below 20 percent, or small, pale red cells point to iron deficiency. With inflammation, a ferritin above 100 with low saturation suggests functional iron deficiency."
+        },
+        {
+          "id": "c3",
+          "start": 84,
+          "end": 94,
+          "text": "Intravenous iron is used when oral iron is not tolerated or surgery is less than four to six weeks away. If possible, elective surgery waits until the anaemia is classified and treated."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "The laboratory helps with pillar two: avoid unnecessary tests, sample less often, and use the smallest practical tubes, because blood drawn for tests can cause hospital anaemia."
+        }
+      ],
+      "objects": [
+        {
+          "id": "scr",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 160,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Who to screen",
+            "lines": [
+              "Expected loss > 500 mL",
+              "or ≥ 10% chance of transfusion"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "idx",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 190,
+            "tone": "warn",
+            "title": "Iron deficiency",
+            "lines": [
+              "Ferritin < 30 ng/mL",
+              "TSAT < 20% · MCV < 80 fL",
+              "Inflamed: ferritin > 100 + TSAT < 20%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "reveal": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 22,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 23,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tx",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 380,
+            "w": 440,
+            "h": 170,
+            "tone": "good",
+            "title": "Treat, then operate",
+            "lines": [
+              "IV iron if oral fails or < 4–6 wk",
+              "Postpone elective surgery if possible"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0
+            },
+            {
+              "t": 25,
+              "reveal": 0
+            },
+            {
+              "t": 25.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 32,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lab",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 400,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Lab: pillar 2",
+            "lines": [
+              "Fewer, smaller draws",
+              "Sample less often"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0
+            },
+            {
+              "t": 35.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "One unit, then the iron bill",
+      "start": 104,
+      "end": 144,
+      "altText": "Dose card: one red-cell unit raises Hb by about 1 g/dL and haematocrit by about 3% (a rule of thumb). NICE NG24: for adults without active bleeding, consider single-unit transfusion; after each unit, clinically reassess and check Hb before giving more; restrictive threshold 70 g/L with a target of 70–90 g/L (80 g/L, target 80–100 g/L, in acute coronary syndrome). Iron card: packed red cells carry about 1.1 mg iron per mL, about 200–250 mg per unit; the body has no mechanism to excrete the excess. Chelation card: guidelines start chelation after 10–20 units or ferritin > 1,000 ng/mL; ferritin sustained > 2,500 ng/mL carries higher risk; cardiac T2* < 20 ms = cardiac iron loading. Hook answers: (1) treat iron deficiency first; (2) one unit, reassess; (3) chelation.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Now the dose. One red-cell unit raises haemoglobin by roughly 1 gram per decilitre and haematocrit by about 3 percent."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "For adults who are not bleeding, NICE advises considering one unit at a time, then reassessing the patient and rechecking haemoglobin before giving more."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Every unit also delivers about 200 to 250 milligrams of iron, and the body has no way to excrete the excess. Chelation usually starts after 10 to 20 units, or once ferritin passes 1,000. A cardiac T2 star below 20 milliseconds means iron in the heart."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook. Patient one: treat the iron deficiency before surgery. Patient two: one unit, then reassess. Patient three: chelation."
+        }
+      ],
+      "objects": [
+        {
+          "id": "dose",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 160,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "One unit ≈",
+            "lines": [
+              "Hb + ~1 g/dL",
+              "Hct + ~3%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "one",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 300,
+            "w": 440,
+            "label": "Not bleeding: 1 unit → reassess",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "iron",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 210,
+            "tone": "bad",
+            "title": "The iron bill",
+            "lines": [
+              "~200–250 mg iron per unit",
+              "No way to excrete the excess",
+              "Chelate: 10–20 units or ferritin > 1,000"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 760,
+            "h": 150,
+            "tone": "a",
+            "title": "Hook answers",
+            "lines": [
+              "1 Treat iron deficiency first",
+              "2 One unit, then reassess",
+              "3 Chelation"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Two units is the standard red-cell order” (✓ in a stable adult who is not bleeding, consider one unit, then reassess and recheck Hb); “Transfusional iron overload is treated with phlebotomy” (✓ chelation is the mainstay while the patient remains anaemic and transfusion-dependent; removing red cells worsens the anaemia); “PBM just means a lower transfusion trigger” (✓ three pillars; pillar 1 is finding and treating anaemia before elective surgery).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: two units is the standard order. No: in a stable adult who is not bleeding, consider one unit, then reassess and recheck haemoglobin."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: treat transfusional iron overload with phlebotomy. No: while the patient is anaemic and transfusion-dependent, chelation is the mainstay. Removing blood would deepen the anaemia."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: patient blood management just means a lower trigger. No: it has three pillars, and the first is finding and treating anaemia before elective surgery."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Two units is standard.”",
+            "lines": [
+              "✓ Not bleeding: 1 unit, then reassess"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Iron overload → phlebotomy.”",
+            "lines": [
+              "✓ Transfusion-dependent anaemia: chelate"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “PBM = a lower trigger.”",
+            "lines": [
+              "✓ Three pillars; pillar 1 fixes anaemia first"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Fill, plug, coast — and pay the toll",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “FILL the tank (treat the anaemia), PLUG the leaks (conserve blood), COAST on reserve (tolerate anaemia, restrictive thresholds). If you must refuel, add ONE unit and check the gauge, and remember every unit pays an iron toll the body cannot refund; only a chelator can.” Tokens: Fill · Plug · Coast · Iron toll. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: fill the tank, plug the leaks, coast on reserve. If you must refuel, add one unit and check the gauge. And every unit pays an iron toll the body cannot refund."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: pillar three is also about deciding with the patient, not just coasting; one gram per unit is only an average; and once transfusions stop, for example after a cure by stem-cell transplant, phlebotomy can remove iron too."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Fill, plug, coast · iron toll",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 170,
+            "w": 200,
+            "label": "Fill = anaemia",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 170,
+            "w": 200,
+            "label": "Plug = blood loss",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 170,
+            "w": 200,
+            "label": "Coast = tolerate",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 810,
+            "y": 170,
+            "w": 200,
+            "label": "Toll = iron",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.1,
+              "opacity": 0
+            },
+            {
+              "t": 5.8999999999999995,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Pillar 3 includes shared decisions",
+              "1 g/dL per unit is an average",
+              "After cure (HSCT), phlebotomy is used"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Fix anaemia · conserve blood · tolerate anaemia → one unit, then reassess”, “Each unit ≈ 200–250 mg iron, no excretion → chelation in chronic transfusion”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Patient blood management fixes anaemia and saves the patient’s own blood first, gives red cells one unit at a time with reassessment, and remembers that every unit adds about 200 to 250 milligrams of iron that only chelation can remove in a chronically transfused patient."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Fix anaemia · conserve blood · tolerate → 1 unit, reassess",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Each unit ≈ 200–250 mg iron, no excretion → chelate",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: before reaching for donor blood, treat the cause of the patient’s anaemia, stop avoidable blood loss and accept a lower haemoglobin when it is safe; when blood is needed, give one unit and look again. Every unit carries iron the body cannot get rid of, so people transfused for years need drugs that bind iron. Scientific terms: patient blood management (PBM), pre-operative anaemia, iron deficiency and functional iron deficiency, transferrin saturation (TSAT), intravenous iron, erythropoiesis-stimulating agent (ESA), cell salvage, restrictive threshold, single-unit transfusion, transfusional iron overload, serum ferritin, liver iron concentration, cardiac MRI T2*, iron chelation (deferoxamine, deferiprone, deferasirox).",
+    "why": "Treating anaemia and conserving blood reduce the need for donor red cells. Giving one unit then reassessing avoids transfusing more than is needed. Each unit adds iron that humans cannot excrete, and the excess deposits in liver, heart and endocrine organs.",
+    "measure": "Screen surgical patients with expected loss > 500 mL or ≥ 10% transfusion probability; iron deficiency: ferritin < 30 ng/mL, TSAT < 20%, MCV < 80 fL, MCH < 27 pg; functional iron deficiency with inflammation: ferritin > 100 ng/mL with TSAT < 20%. IV iron if oral fails or surgery < 4–6 weeks away. One unit ≈ +1 g/dL Hb, +3% Hct. NICE: restrictive threshold 70 g/L, target 70–90 g/L; single unit then reassess if not bleeding. Iron ≈ 1.1 mg/mL of packed red cells, ≈ 200–250 mg per unit; start chelation after 10–20 units or ferritin > 1,000 ng/mL; ferritin sustained > 2,500 ng/mL = higher risk; cardiac T2* < 20 ms = cardiac iron.",
+    "differs": "PBM (whole-pathway care) vs a transfusion trigger alone; single unit then reassess vs a fixed two-unit order; transfusional iron overload (anaemic, chelation) vs hereditary haemochromatosis (not anaemic, phlebotomy).",
+    "examAngle": "Expect: the best PBM step for an iron-deficient patient before elective surgery, the expected Hb rise or number of units for a stable patient, and the treatment of a chronically transfused patient with high ferritin and cardiac iron (chelation, not phlebotomy)."
+  },
+  "comparisons": [
+    {
+      "id": "single-vs-fixed",
+      "title": "Single unit vs fixed two-unit order",
+      "left": {
+        "label": "Single unit",
+        "points": [
+          "Stable, not bleeding",
+          "Reassess and recheck Hb after each unit"
+        ]
+      },
+      "right": {
+        "label": "Larger volumes",
+        "points": [
+          "Active or major bleeding",
+          "Guided by bleeding and haemorrhage protocols"
+        ]
+      },
+      "distinguisher": "Whether the patient is actively bleeding."
+    },
+    {
+      "id": "transfusional-vs-hh",
+      "title": "Transfusional iron overload vs hereditary haemochromatosis",
+      "left": {
+        "label": "Transfusional",
+        "points": [
+          "Anaemic, transfusion-dependent",
+          "Iron chelation is the mainstay"
+        ]
+      },
+      "right": {
+        "label": "Hereditary (HFE)",
+        "points": [
+          "Increased iron absorption, not anaemic",
+          "Phlebotomy is standard treatment"
+        ]
+      },
+      "distinguisher": "Whether the patient can afford to lose red cells."
+    }
+  ],
+  "mnemonic": {
+    "text": "FILL the tank (treat the anaemia), PLUG the leaks (conserve blood), COAST on reserve (tolerate anaemia). If you must refuel, add ONE unit and check the gauge, and remember every unit pays an iron toll the body cannot refund; only a chelator can.",
+    "explanation": "Maps the three PBM pillars, the single-unit rule and transfusional iron loading onto one driving image.",
+    "limitation": "Pillar 3 also means deciding with the patient, not only tolerating anaemia; 1 g/dL per unit is an average; after cure by stem-cell transplant, phlebotomy can remove the iron."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Pillars and iron flow are schematic cards.",
+    "The Hb rise per unit is a rule of thumb and varies between patients."
+  ],
+  "takeaway": "Patient blood management fixes anaemia and saves the patient’s own blood first, gives red cells one unit at a time with reassessment, and remembers that every unit adds about 200 to 250 milligrams of iron that only chelation can remove in a chronically transfused patient.",
+  "questions": [
+    {
+      "id": "bb-pbm-q1",
+      "stem": "A 66-year-old is booked for elective knee replacement in 3 weeks. Hb is 10.6 g/dL, ferritin 14 ng/mL and transferrin saturation 11%. Which step best follows patient blood management?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Treat the iron deficiency, with intravenous iron because surgery is less than 4–6 weeks away, and postpone surgery if needed",
+          "rationale": "Correct. Pillar 1: classify and treat pre-operative anaemia; IV iron is used when surgery is less than 4–6 weeks away or oral iron is not tolerated."
+        },
+        {
+          "id": "b",
+          "text": "Transfuse two red-cell units before surgery",
+          "rationale": "Incorrect. Donor blood does not treat the cause, and a fixed two-unit order ignores the single-unit-then-reassess approach."
+        },
+        {
+          "id": "c",
+          "text": "Proceed with surgery and transfuse if the Hb falls",
+          "rationale": "Incorrect. PBM recommends treating anaemia before elective surgery when possible."
+        },
+        {
+          "id": "d",
+          "text": "Start an erythropoiesis-stimulating agent alone",
+          "rationale": "Incorrect. ESAs are suggested only after nutritional deficiencies such as iron deficiency are ruled out or corrected."
+        }
+      ],
+      "answer": "a",
+      "skill": "PBM pillar 1",
+      "difficulty": "application"
+    },
+    {
+      "id": "bb-pbm-q2",
+      "stem": "A stable post-operative adult who is not bleeding has Hb 6.8 g/dL. Following NICE guidance, which red-cell order is most appropriate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "One unit, then clinical reassessment and a repeat Hb before any further unit",
+          "rationale": "Correct. NICE advises considering single-unit transfusion in adults without active bleeding, then reassessing and rechecking Hb."
+        },
+        {
+          "id": "b",
+          "text": "Two units as a standard order",
+          "rationale": "Incorrect. A fixed two-unit order skips the reassessment after each unit."
+        },
+        {
+          "id": "c",
+          "text": "Three units to bring Hb near 10 g/dL",
+          "rationale": "Incorrect. With a restrictive threshold of 70 g/L the target is 70–90 g/L, not 10 g/dL; each unit adds only about 1 g/dL."
+        },
+        {
+          "id": "d",
+          "text": "No transfusion until Hb falls below 5 g/dL",
+          "rationale": "Incorrect. The restrictive threshold is 70 g/L (7 g/dL), and this Hb is below it."
+        }
+      ],
+      "answer": "a",
+      "skill": "Red-cell dosing",
+      "difficulty": "application"
+    },
+    {
+      "id": "bb-pbm-q3",
+      "stem": "A 16-year-old with beta-thalassaemia major has had monthly transfusions for 10 years. Ferritin is 2,800 ng/mL and cardiac MRI T2* is 14 ms. What is the best management of the iron?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Iron chelation therapy",
+          "rationale": "Correct. Each unit adds about 200–250 mg of iron that cannot be excreted; chelation is the mainstay, and T2* < 20 ms shows cardiac iron loading."
+        },
+        {
+          "id": "b",
+          "text": "Serial phlebotomy",
+          "rationale": "Incorrect. Removing blood from a transfusion-dependent anaemic patient worsens the anaemia; phlebotomy is for hereditary haemochromatosis or after cure."
+        },
+        {
+          "id": "c",
+          "text": "Stop all transfusions",
+          "rationale": "Incorrect. The patient still needs transfusion for the underlying anaemia; the iron is managed with chelation."
+        },
+        {
+          "id": "d",
+          "text": "Oral iron supplements",
+          "rationale": "Incorrect. The patient is iron overloaded, not iron deficient."
+        }
+      ],
+      "answer": "a",
+      "skill": "Iron overload",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch41",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 41, Transfusion: Giving Blood Safely (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 41,
+          "section": "High-Yield Hits",
+          "items": [
+            24,
+            26
+          ]
+        },
+        {
+          "chapter": 41,
+          "section": "Number Vault",
+          "items": [
+            1
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "meybohm2017",
+      "kind": "external",
+      "citation": "Meybohm P, Froessler B, Goodnough LT, Klein AA, Muñoz M, Murphy MF, Richards T, Shander A, Spahn DR, Zacharowski K. “Simplified International Recommendations for the Implementation of Patient Blood Management” (SIR4PBM). Perioper Med (Lond). 2017;6:5. doi:10.1186/s13741-017-0061-8",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5356305/",
+      "consulted": true,
+      "usedFor": "Three PBM principles (manage anaemia; blood conservation incl. less phlebotomy, cell salvage, coagulation management; harness tolerance of anaemia with patient-centred decisions); pre-operative screening criteria (>500 mL loss or ≥10% transfusion probability); iron-deficiency cut-offs; IV iron if oral not tolerated or surgery <4–6 weeks; ESAs after nutritional deficiencies ruled out; postpone elective surgery; smaller tubes and fewer tests."
+    },
+    {
+      "id": "nice-ng24",
+      "kind": "external",
+      "citation": "National Institute for Health and Care Excellence. Blood transfusion (NICE guideline NG24). Published 18 November 2015; last updated 26 February 2026. Chapter: Red blood cell transfusion, recommendations 1.5–1.6.",
+      "url": "https://www.nice.org.uk/guidance/ng24/chapter/Red-blood-cell-transfusion",
+      "consulted": true,
+      "usedFor": "Restrictive threshold 70 g/L with target 70–90 g/L; 80 g/L (target 80–100 g/L) in acute coronary syndrome; consider single-unit transfusion in adults without active bleeding, then clinically reassess and check Hb before further units."
+    },
+    {
+      "id": "krishna2023",
+      "kind": "external",
+      "citation": "Krishna HM, Prasad MK, Mitragotri MV, Bipin GI, Gupta D, Sharma R. Recent advances in perioperative blood management. Indian J Anaesth. 2023;67(1):130-138. doi:10.4103/ija.ija_1043_22",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10034933/",
+      "consulted": true,
+      "usedFor": "One PRBC unit raises haematocrit by about 3% and Hb by about 1 g/dL (Table 1); WHO-endorsed three pillars of PBM."
+    },
+    {
+      "id": "saliba2015",
+      "kind": "external",
+      "citation": "Saliba AN, Harb AR, Taher AT. Iron chelation therapy in transfusion-dependent thalassemia patients: current strategies and future directions. J Blood Med. 2015;6:197-209. doi:10.2147/jbm.s72463",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4476479/",
+      "consulted": true,
+      "usedFor": "200–250 mg iron per unit; no mechanism to excrete excess transfusional iron; guidelines start chelation after 10–20 units or ferritin >1,000 ng/mL; cardiac T2* monitoring."
+    },
+    {
+      "id": "kwiatkowski2011",
+      "kind": "external",
+      "citation": "Kwiatkowski JL. Management of transfusional iron overload - differential properties and efficacy of iron chelating agents. J Blood Med. 2011;2:135-149. doi:10.2147/jbm.s13065",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3262345/",
+      "consulted": true,
+      "usedFor": "1.1 mg iron per mL of packed red cells; humans lack mechanisms to excrete excess iron; phlebotomy is standard for hereditary haemochromatosis but impractical in congenital anaemias; ferritin sustained >2,500 ng/mL linked to cardiac risk; cardiac T2* <20 ms = cardiac iron loading."
+    },
+    {
+      "id": "pinyopornpanish2023",
+      "kind": "external",
+      "citation": "Pinyopornpanish K, Tantiworawit A, Leerapun A, Soontornpun A, Thongsawat S. Secondary Iron Overload and the Liver: A Comprehensive Review. J Clin Transl Hepatol. 2023;11(4):932-941. doi:10.14218/jcth.2022.00420",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10318281/",
+      "consulted": true,
+      "usedFor": "Basal iron loss 1–2 mg/day with no mechanism to excrete excess; chelation is the mainstay for secondary iron overload with anaemia; phlebotomy not the treatment of choice in ineffective-erythropoiesis anaemias; after HSCT, phlebotomy (or deferasirox) is used and preferred to remove excess iron."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-pillars",
+      "text": "Three PBM pillars: manage anaemia, conserve blood, harness tolerance of anaemia with patient-centred decisions.",
+      "status": "checked",
+      "refs": [
+        "meybohm2017",
+        "krishna2023"
+      ]
+    },
+    {
+      "id": "cl-preop",
+      "text": "Pre-operative screening criteria, iron-deficiency cut-offs, IV iron timing, ESA after deficiencies corrected, postpone elective surgery; fewer and smaller lab draws.",
+      "status": "checked",
+      "refs": [
+        "meybohm2017"
+      ]
+    },
+    {
+      "id": "cl-dose",
+      "text": "One unit raises Hb ~1 g/dL and Hct ~3%; single unit then reassess in adults without active bleeding; restrictive threshold 70 g/L, target 70–90 g/L.",
+      "status": "checked",
+      "refs": [
+        "krishna2023",
+        "nice-ng24"
+      ]
+    },
+    {
+      "id": "cl-iron",
+      "text": "~200–250 mg iron per unit (1.1 mg/mL); no mechanism to excrete excess; chelation thresholds (10–20 units or ferritin >1,000); ferritin >2,500 risk; cardiac T2* <20 ms.",
+      "status": "checked",
+      "refs": [
+        "saliba2015",
+        "kwiatkowski2011",
+        "pinyopornpanish2023"
+      ]
+    },
+    {
+      "id": "cl-chelate-not-phleb",
+      "text": "Chelation, not phlebotomy, while anaemic and transfusion-dependent; phlebotomy for hereditary haemochromatosis and after cure by HSCT.",
+      "status": "checked",
+      "refs": [
+        "pinyopornpanish2023",
+        "kwiatkowski2011"
+      ]
+    },
+    {
+      "id": "cl-vault-rest",
+      "text": "Reviewer Number Vault details not verified here: the 70-kg qualifier for the 1 g/dL rule and the “Hct range 2–9% by vascular volume”; the vault’s other rows are outside this lesson.",
+      "status": "pending",
+      "note": "Not taught; no open source read in this session gives the 70-kg qualifier or the 2–9% range."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; pillars and iron flow schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Fill, plug, coast — and pay the iron toll.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-phlebotomy-after-cure",
+      "issue": "The reviewer says transfusional iron overload is treated with chelation “not phlebotomy”. Pinyopornpanish 2023 confirms chelation is the mainstay while the patient is anaemic, but after cure by HSCT phlebotomy (or deferasirox) is used and preferred to remove excess iron. The lesson teaches the context.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-iron-no-excretion",
+      "issue": "The reviewer says each unit adds iron “with no excretion”. Sources state the body has no mechanism to excrete EXCESS iron; basal losses of about 1–2 mg/day still occur, far below the 200–250 mg per unit. The lesson uses “no way to excrete the excess”.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-pbm-guideline",
+      "issue": "Single-unit dosing and the 70 g/L threshold are taught from NICE NG24 (UK) and international PBM recommendations; local hospital transfusion policies and Philippine practice may differ and are not covered.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; pillars, doses and iron shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 factual claims checked against SIR4PBM (Meybohm 2017), NICE NG24 (read from the NICE website), Krishna 2023, Saliba 2015, Kwiatkowski 2011 and Pinyopornpanish 2023; 1 pending (reviewer Number Vault 70-kg qualifier and Hct range, not taught). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
