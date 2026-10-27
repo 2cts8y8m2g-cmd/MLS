@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 472 flags: 355 verified issues and 117 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 475 flags: 358 verified issues and 117 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -478,6 +478,9 @@ Needs verification:
 - **Ch. 25 Trap 5:** Trap 5 says a fractional sodium excretion >0.5% favours renal salt wasting over SIADH. The open SIAD review read discusses fractional uric acid excretion instead (FE-UA >12% had a 100% positive predictive value for SIAD in one study; FE-UA stays raised after sodium correction… (`rv-siad-fena-salt-wasting`, needs-verification).
 - **Ch. 19 Hit 5:** Hit 5 and the Number Vault rows give the Fourth UDMI (2018) procedural MI multiples as the definition: type 4a > 5x and type 5 > 10x the 99th percentile within 48 h, and reinfarction as a > 20% rise over 3-6 h. (`rv-procedural-mi-thresholds`, verified-issue).
 - **Ch. 19 Hit 6:** Hit 6 says unstable angina is 'managed like NSTEMI'. (`rv-ua-management-context`, needs-verification).
+- **Ch. 10 Hit 12:** Hit 12 (and the 'Five per cell' Memory Hook, the Number Vault 'Chi-square validity floor' row and the 5-Second Recall answer) says chi-square is valid only if every cell has ≥5 expected observations. (`rv-chi-square-expected-80pct`, verified-issue).
+- **Ch. 10 Hit 13:** Hit 13 says paired t-tests are more powerful than unpaired. (`rv-paired-t-positive-correlation`, verified-issue).
+- **Ch. 10 Trap 6:** Trap 6 says to switch to rank-based tests when a parametric test meets 'wildly non-Gaussian data', without trade-offs. (`rv-nonparametric-large-sample`, verified-issue).
 - Ch. 40 Hit 7: enzymes said to destroy S/s (Manduzio 2024: variable).
 - Ch. 1 Hit 4: breath tests "not regulated by CLIA".
 - Ch. 40 Vault #2: ">62 Rh antigens".
@@ -499,7 +502,7 @@ Automated scan: **23** dated-guideline statements and **134** High-Yield Hits wi
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 197 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 199 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
@@ -722,7 +725,8 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Hemoglobin Measurement: the HiCN Method, Turbidity and Specimen Source (Ch. 31):** 1 pending claim (reviewer's WBC >30 ×10⁹/L interference threshold; capillary RBC ~0.5 ×10¹²/L excess, of which only the direction is supported by Krleza 2015); lesson flags f-capillary-venous-hb-gap (contradiction) and f-hicn-wbc-threshold (uncertain); register flags rv-capillary-venous-hb-gap and rv-hicn-wbc-threshold. Checked against Garcia-Casal 2023, Girard 2025 (GFHC), Fan 2026, Henry 2022, Neufeld 2019 and Krleza 2015 (all full text via Europe PMC; no page-fetch tool used). Independent fact-check corrected overstatements (cyanide-free reagents used by 'some', not 'many', analyzers; takeaway limited to the reference method; haemolysis removed from colour interference; Henry's cut-off wording).
 - **Polyuria and Hyponatremia: Water Deprivation, Copeptin and SIAD (Ch. 25):** 1 pending claim (reviewer's FENa >0.5% rule for renal salt wasting); 4 open lesson flags (desmopressin-response cut-offs, copeptin cut-off valid only after stimulation, FENa/salt-wasting rule, DI renaming to AVP-D/AVP-R); register flags rv-desmopressin-rise-cutoffs, rv-copeptin-stimulated-only, rv-siad-fena-salt-wasting. Checked against Refardt 2019, Flynn 2024, Warren 2023 and Arima 2022 (all Europe PMC full text; no page-fetch tool used); independent re-check corrected three question rationales, one question stem and one narration cue.
 - **Chest Pain Triage: STEMI, Serial Troponin, Unstable Angina and Procedure-Related MI (Ch. 19):** 1 pending claim (unstable angina 'managed like NSTEMI', reinfarction > 20% rule, door-to-ECG 10 min, hs-cTn ng/L rows); lesson flags f-procedural-mi-2026 (outdated) and f-ua-management (missing-context); register flags rv-procedural-mi-thresholds (verified-issue) and rv-ua-management-context (needs-verification). Checked against Mills 2026 (Fifth UDMI), Domienik-Karłowicz 2021 and Paiva 2024 (Europe PMC full texts; no page-fetch tool needed). An independent fact-check fixed Q3 (an after-the-procedure complication, so one confirming feature is enough), a Q1 rationale, the wording on how unstable angina is confirmed (angiography), and procedure-related MI confirmation (angiography or imaging).
-- **Choosing the Test: Paired t, Chi-Square vs Fisher, and Rank Tests (Ch. 10):** written and source-referenced, but the independent fact-check has NOT yet been completed; treat as unverified until this line is updated.
+- **Choosing the Test: Paired t, Chi-Square vs Fisher, and Rank Tests (Ch. 10):** 0 pending claims; 4 open lesson flags (chi-square expected-count rule is ≥5 in at least 80% of cells and none below 1, not every cell; paired t gains power only with positively correlated pairs; rank-test switch omits large-sample tolerance and power loss; ±2 SD 95.5% vs 95.4% rounding); register flags rv-chi-square-expected-80pct, rv-paired-t-positive-correlation, rv-nonparametric-large-sample. Checked against McHugh 2013, Kim 2017, Kim 2015, Nahm 2016, Mishra 2019 and Ghasemi 2012 (all full texts read via Europe PMC; no page-fetch tool needed); independently re-verified (citations, claims, questions, flags).
+- **Case Report or Research? Exemption Calls and Anonymous vs De-identified Data (Ch. 14):** written and source-referenced, but the independent fact-check has NOT yet been completed; treat as unverified until this line is updated.
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
