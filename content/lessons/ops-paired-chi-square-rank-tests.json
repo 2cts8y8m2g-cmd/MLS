@@ -1,0 +1,1586 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-paired-chi-square-rank-tests",
+  "title": "Choosing the Test: Paired t, Chi-Square vs Fisher, and Rank Tests",
+  "summary": "Learn the Gaussian 68–95–99.7 bands and the normality assumption behind parametric tests, when a paired t-test beats an unpaired one, which rank-based test replaces each parametric test, and when chi-square must give way to Fisher’s exact test.",
+  "domain": "p1-ops",
+  "topic": "ch10",
+  "conceptIds": [
+    "ch10.hit2",
+    "ch10.hit12",
+    "ch10.hit13",
+    "ch10.trap6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 10,
+        "section": "High-Yield Hits",
+        "items": [
+          2,
+          12,
+          13
+        ]
+      },
+      {
+        "chapter": 10,
+        "section": "Exam Traps",
+        "items": [
+          6
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 10 Hits 2, 12 and 13 and Trap 6. Checked against McHugh 2013 and Kim 2017 (chi-square, Fisher), Kim 2015 (t-tests), Nahm 2016 (rank-based tests), Mishra 2019 and Ghasemi 2012 (normal distribution, normality checks). Qualifications taught from the sources: Hit 12 says chi-square needs ≥5 expected in every cell, but both chi-square sources give the usual rule of ≥5 in at least 80% of cells and none below 1 (register flag rv-chi-square-expected-80pct); Hit 13 says paired t-tests are more powerful, but Kim 2015 shows this holds only when the paired values are positively correlated (register flag rv-paired-t-positive-correlation); Trap 6 omits that large samples tolerate non-normality and that rank tests lose some power on normal data (register flag rv-nonparametric-large-sample). Hit 2’s ±2 SD figure is 95.5% in the reviewer and 95.4% in Mishra 2019, a rounding difference; the lesson uses 95.4%. Not taught: the reviewer’s Number Vault worked examples, CV, geometric mean, analytic sensitivity, the confidence-interval formula."
+  },
+  "prerequisites": [
+    "ch10.hit5"
+  ],
+  "objectives": [
+    "State the share of Gaussian data within ±1, ±2 and ±3 SD, and the normality assumption of parametric tests.",
+    "Choose between a paired and an independent t-test, and explain when pairing gains power.",
+    "Name the rank-based alternative to the paired t-test, unpaired t-test and ANOVA.",
+    "Apply the expected-count rule to choose between chi-square and Fisher’s exact test."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three analyses, one question",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a lab quality project hands in three analyses. (1) Quiz scores of the same 10 staff before and after training, compared with an unpaired t-test. (2) A 2×2 table of 18 specimens (collection method A or B × haemolysed or not), tested with chi-square. (3) Turnaround times from two shifts, small and strongly right-skewed, compared with a t-test. Question token: “Right test, or wrong test?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "A lab quality project hands in three analyses. First: quiz scores of the same ten staff, before and after training, compared with an unpaired t-test."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "Second: eighteen specimens in a two-by-two table of collection method against haemolysis, tested with chi-square. Third: small, strongly skewed turnaround times from two shifts, compared with a t-test."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "For each one: right test, or wrong test?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Same 10 staff",
+            "lines": [
+              "Before vs after training",
+              "Unpaired t-test"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "2 Haemolysis 2×2",
+            "lines": [
+              "18 specimens, method A/B",
+              "Chi-square"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "3 Turnaround times",
+            "lines": [
+              "Small, right-skewed",
+              "t-test"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0
+            },
+            {
+              "t": 11.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 640,
+            "label": "Right test, or wrong test?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The bell curve and its assumption",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic Gaussian (normal) curve with bands: mean ± 1 SD holds about 68.2% of values, ± 2 SD about 95.4%, ± 3 SD about 99.7% (Mishra 2019; the reviewer rounds the middle figure to 95.5%). Assumption card: parametric tests such as the t-test and ANOVA assume approximately normal data (plus equal variances and independence). Checking card: histogram or Q–Q plot plus a normality test; the Shapiro–Wilk test has better power than Kolmogorov–Smirnov; small samples often pass normality tests because the tests have little power, and very large samples can fail on trivial deviations. Large-sample token: with large samples (more than about 30 or 40) a violation of normality should not cause major problems for parametric procedures.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Start with the bell curve. In normally distributed data, about sixty-eight percent of values lie within one standard deviation of the mean, about ninety-five percent within two, and about ninety-nine point seven percent within three."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Parametric tests, such as the t-test and analysis of variance, assume data close to this shape, along with equal variances and independent observations."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "So check the shape: look at a histogram or a Q-Q plot, and use a normality test. Shapiro-Wilk has better power than Kolmogorov-Smirnov. Small samples often pass normality tests simply because the tests have little power."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Sample size matters the other way too. With large samples, more than about thirty or forty, a departure from normality should not cause major problems for parametric tests."
+        }
+      ],
+      "objects": [
+        {
+          "id": "bell",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 210,
+            "tone": "b",
+            "title": "Gaussian bands",
+            "lines": [
+              "± 1 SD ≈ 68.2%",
+              "± 2 SD ≈ 95.4%",
+              "± 3 SD ≈ 99.7%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "assume",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 160,
+            "tone": "a",
+            "title": "Parametric tests assume",
+            "lines": [
+              "Approximately normal data",
+              "Equal variances · independence"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "check",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 200,
+            "tone": "good",
+            "title": "Check the shape",
+            "lines": [
+              "Histogram · Q–Q plot",
+              "Shapiro–Wilk > K–S in power",
+              "Small n passes too easily"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "clt",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 470,
+            "w": 440,
+            "label": "Large n (> 30–40): less of a problem",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Paired or independent, Gaussian or not",
+      "start": 60,
+      "end": 104,
+      "altText": "Design card: independent t-test for two separate groups; paired t-test when the same subjects are measured twice (before/after, crossover) — it tests the within-pair differences. Power card: Var(A − B) = σ₁² + σ₂² − 2ρσ₁σ₂; when the paired values are positively correlated (ρ > 0) the variance of the differences shrinks, the t statistic grows and the paired test is more powerful; if ρ < 0 the paired test is less powerful, but ignoring a paired design is still wrong. Rank-test table (Nahm 2016): paired t → Wilcoxon signed-rank; unpaired t → Mann–Whitney (Wilcoxon rank-sum); ANOVA → Kruskal–Wallis.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Next, the design. Two separate groups of people call for the independent t-test. When the same subjects are measured twice, before and after, or in a crossover, use the paired t-test, which works on each subject’s difference."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 84,
+          "text": "Why pairing helps: when each subject’s two values are positively correlated, the variance of the differences shrinks. The t statistic gets bigger, and the paired test gains power."
+        },
+        {
+          "id": "c3",
+          "start": 84,
+          "end": 94,
+          "text": "That gain is not automatic. If the paired values were negatively correlated, the paired test would have less power. Even so, analysing paired data as if the groups were independent ignores the design."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "If the data are clearly not normal, switch to a rank-based test: Wilcoxon signed-rank for paired data, Mann-Whitney, also called Wilcoxon rank-sum, for two independent groups, and Kruskal-Wallis for three or more."
+        }
+      ],
+      "objects": [
+        {
+          "id": "design",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Match the design",
+            "lines": [
+              "Separate groups → independent t",
+              "Same subjects twice → paired t"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "power",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 410,
+            "w": 440,
+            "h": 200,
+            "tone": "good",
+            "title": "Why pairing gains power",
+            "lines": [
+              "Var(A − B) = σ₁² + σ₂² − 2ρσ₁σ₂",
+              "ρ > 0 → smaller SD, more power",
+              "ρ < 0 → less power"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "reveal": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rank",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 260,
+            "w": 420,
+            "h": 230,
+            "tone": "a",
+            "title": "Not Gaussian? Use ranks",
+            "lines": [
+              "Paired t → Wilcoxon signed-rank",
+              "Unpaired t → Mann–Whitney",
+              "ANOVA → Kruskal–Wallis"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0
+            },
+            {
+              "t": 35,
+              "reveal": 0
+            },
+            {
+              "t": 35.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 43,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 43,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Counts: chi-square or Fisher",
+      "start": 104,
+      "end": 144,
+      "altText": "Worked 2×2 table (invented): method A 8 specimens, method B 10; haemolysed 4, not haemolysed 14; N = 18. Expected count = row total × column total ÷ N: A-haemolysed 8×4/18 ≈ 1.8, B-haemolysed 10×4/18 ≈ 2.2, A-not 6.2, B-not 7.8. Rule card: chi-square is an approximation, valid when no more than 20% of cells have an expected count below 5 and no cell is below 1. Here 2 of 4 cells (50%) are below 5, so use Fisher’s exact test, which is exact and valid at any sample size. Both tests need independent groups. Hook answers: (1) paired t-test (or Wilcoxon signed-rank if the differences are clearly non-normal); (2) Fisher’s exact test; (3) Mann–Whitney test.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "For categorical counts, chi-square compares observed counts with the counts expected if there were no association. Each expected count is the row total times the column total, divided by the grand total."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Chi-square is an approximation. It holds when no more than twenty percent of cells have an expected count below five, and no cell is below one. In this table, two of four cells are below five."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 132,
+          "text": "So use Fisher’s exact test, which is exact and valid at any sample size. Both tests need independent groups."
+        },
+        {
+          "id": "l4",
+          "start": 132,
+          "end": 144,
+          "text": "Back to the hook. The same ten staff need a paired t-test, or Wilcoxon signed-rank if the differences are clearly skewed. The haemolysis table needs Fisher’s exact test. And the small, skewed turnaround times need Mann-Whitney."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tbl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 200,
+            "tone": "b",
+            "title": "Expected = row × column ÷ N",
+            "lines": [
+              "A, haemolysed: 8 × 4 ÷ 18 ≈ 1.8",
+              "B, haemolysed: 10 × 4 ÷ 18 ≈ 2.2",
+              "Not haemolysed: 6.2 · 7.8"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rule",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Chi-square valid if",
+            "lines": [
+              "≤ 20% of cells expected < 5",
+              "No cell expected < 1"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fisher",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 300,
+            "w": 420,
+            "label": "2 of 4 below 5 → Fisher’s exact",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 760,
+            "h": 150,
+            "tone": "a",
+            "title": "Hook answers",
+            "lines": [
+              "1 Same staff: paired t (or signed-rank)",
+              "2 Haemolysis 2×2: Fisher’s exact",
+              "3 Skewed small TATs: Mann–Whitney"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28.5,
+              "opacity": 0
+            },
+            {
+              "t": 29,
+              "reveal": 0
+            },
+            {
+              "t": 29.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Chi-square needs at least 5 observed in every cell” (✓ the rule is about EXPECTED counts: no more than 20% of cells below 5, none below 1; otherwise Fisher’s exact); “Before/after on the same people? An unpaired t-test will do” (✓ a paired design needs a paired t-test or Wilcoxon signed-rank); “Small, clearly skewed samples: run the t-test anyway” (✓ switch to a rank-based test such as Mann–Whitney).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: chi-square needs five observed cases in every cell. No: the rule is about expected counts. No more than twenty percent may be below five, and none below one."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: before-and-after values on the same people can go into an unpaired t-test. No: a paired design needs a paired test."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: small, clearly skewed samples can go through a t-test anyway. No: switch to a rank-based test such as Mann-Whitney."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “≥ 5 observed in every cell.”",
+            "lines": [
+              "✓ Expected: ≤ 20% below 5, none below 1"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Same people? Unpaired t is fine.”",
+            "lines": [
+              "✓ Paired t or Wilcoxon signed-rank"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Skewed small samples: t-test anyway.”",
+            "lines": [
+              "✓ Rank-based test (Mann–Whitney)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Pair, count, rank",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “PAIR the same faces, COUNT the boxes, RANK the crooked.” Same subjects twice → paired test; categories → chi-square, or Fisher when expected counts are small; small, crooked (skewed) data → rank-based tests. Tokens: Pair = same subjects · Count = chi-square / Fisher · Rank = skewed. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: pair the same faces, count the boxes, rank the crooked. Same subjects measured twice get a paired test. Counts in boxes get chi-square, or Fisher when expected counts are small. Crooked, skewed data get rank-based tests."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: pairing adds power only when the paired values are positively correlated; Fisher’s exact test is valid at any sample size, not only small ones; and large samples tolerate non-normal data, while rank tests give up some power when data really are normal."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Pair, count, rank",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Pair = same subjects",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Count = χ² / Fisher",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Rank = skewed data",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Pairing helps only if positively correlated",
+              "Fisher’s exact is valid at any size",
+              "Large n tolerates non-normality"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Same subjects twice → paired t (or Wilcoxon signed-rank) · small skewed data → rank tests”, “Chi-square: ≤ 20% of expected counts below 5, none below 1 → otherwise Fisher’s exact”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Use a paired test when the same subjects are measured twice, a rank-based test when small samples are clearly not Gaussian, and Fisher’s exact test instead of chi-square when more than one in five expected cell counts falls below five."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Same subjects → paired t / signed-rank · skewed small n → ranks",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "χ²: ≤ 20% expected < 5, none < 1 · otherwise Fisher’s exact",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: the right statistical test depends on how the study was built and what the data look like. Measuring the same people twice is different from comparing two separate groups; counts in categories need different tests from measurements; and lopsided data with few values are better handled by ranking them. Scientific terms: Gaussian (normal) distribution, standard deviation, parametric test, normality test (Shapiro–Wilk, Kolmogorov–Smirnov), independent and paired t-test, correlation of paired values, Wilcoxon signed-rank, Mann–Whitney (Wilcoxon rank-sum), Kruskal–Wallis, chi-square test of independence, expected count, Fisher’s exact test.",
+    "why": "Parametric tests are efficient when their assumptions hold but can mislead when they do not; rank-based tests are “always valid, but not always efficient”. A paired analysis uses the correlation between a subject’s two measurements, shrinking the variance of the differences. Chi-square relies on a large-sample approximation that fails when expected counts are small, whereas Fisher’s exact test computes the probability exactly.",
+    "measure": "Gaussian: ±1 SD ≈ 68.2%, ±2 SD ≈ 95.4%, ±3 SD ≈ 99.7%. Paired t: Var(A − B) = σ₁² + σ₂² − 2ρσ₁σ₂, more power if ρ > 0. Rank analogues: paired t → Wilcoxon signed-rank; unpaired t → Mann–Whitney; ANOVA → Kruskal–Wallis. Chi-square expected count = row total × column total ÷ N; valid when no more than 20% of cells are below 5 and none below 1; otherwise Fisher’s exact test.",
+    "differs": "Paired vs independent design; parametric (means, assumes normality) vs rank-based (ranks, no normality assumption); chi-square (approximate, large samples) vs Fisher’s exact (exact, any size); expected vs observed counts.",
+    "examAngle": "Expect: pick the test for a before/after design, name the nonparametric equivalent of a t-test or ANOVA, decide whether a contingency table needs Fisher’s exact test, or recall the 68–95–99.7 percentages."
+  },
+  "comparisons": [
+    {
+      "id": "paired-vs-independent",
+      "title": "Paired vs independent t-test",
+      "left": {
+        "label": "Paired t",
+        "points": [
+          "Same subjects measured twice",
+          "Tests within-pair differences; more power if ρ > 0"
+        ]
+      },
+      "right": {
+        "label": "Independent t",
+        "points": [
+          "Two separate groups",
+          "Variance of the difference = sum of the two variances"
+        ]
+      },
+      "distinguisher": "Whether each value in one group has a partner in the other."
+    },
+    {
+      "id": "chi-vs-fisher",
+      "title": "Chi-square vs Fisher’s exact test",
+      "left": {
+        "label": "Chi-square",
+        "points": [
+          "Large-sample approximation",
+          "Valid if ≤ 20% of expected counts < 5, none < 1"
+        ]
+      },
+      "right": {
+        "label": "Fisher’s exact",
+        "points": [
+          "Exact calculation",
+          "Valid at any size; used when expected counts are small"
+        ]
+      },
+      "distinguisher": "The expected counts in the table."
+    }
+  ],
+  "mnemonic": {
+    "text": "PAIR the same faces, COUNT the boxes, RANK the crooked.",
+    "explanation": "Same subjects twice → paired test; categorical counts → chi-square or Fisher; small skewed data → rank-based tests.",
+    "limitation": "Pairing adds power only when paired values are positively correlated; Fisher’s exact test is valid at any sample size; large samples tolerate non-normality and rank tests lose some power on normal data."
+  },
+  "analogyLimitations": [
+    "Scenario and table counts are invented.",
+    "Bell curve and tables are schematic.",
+    "The expected-count rule is a rule of thumb; software and textbooks vary in detail."
+  ],
+  "takeaway": "Use a paired test when the same subjects are measured twice, a rank-based test when small samples are clearly not Gaussian, and Fisher’s exact test instead of chi-square when more than one in five expected cell counts falls below five.",
+  "questions": [
+    {
+      "id": "ops-tests-q1",
+      "stem": "A 2×2 table compares haemolysis between two collection methods. Two of the four cells have expected counts below 5, and none is below 1. Which analysis is most appropriate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Fisher’s exact test",
+          "rationale": "Correct. Half the cells have expected counts below 5, more than the 20% allowed for the chi-square approximation; Fisher’s exact test is valid at any sample size."
+        },
+        {
+          "id": "b",
+          "text": "Chi-square, because no expected count is below 1",
+          "rationale": "Incorrect. Both conditions must hold: no cell below 1 AND no more than 20% of cells below 5."
+        },
+        {
+          "id": "c",
+          "text": "Chi-square, because every observed count is at least 5",
+          "rationale": "Incorrect. The rule concerns expected counts, not observed counts."
+        },
+        {
+          "id": "d",
+          "text": "An independent t-test",
+          "rationale": "Incorrect. The t-test compares means of continuous data; these are categorical counts."
+        }
+      ],
+      "answer": "a",
+      "skill": "Chi-square vs Fisher",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-tests-q2",
+      "stem": "Twelve analysts are scored before and after a competency course. The before-after differences are small in number and clearly skewed. Which test is most appropriate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Wilcoxon signed-rank test",
+          "rationale": "Correct. It is the rank-based alternative to the paired t-test for paired data that are not normally distributed."
+        },
+        {
+          "id": "b",
+          "text": "Mann–Whitney test",
+          "rationale": "Incorrect. Mann–Whitney is for two independent groups; these are the same analysts measured twice."
+        },
+        {
+          "id": "c",
+          "text": "Kruskal–Wallis test",
+          "rationale": "Incorrect. Kruskal–Wallis compares three or more independent groups."
+        },
+        {
+          "id": "d",
+          "text": "Independent t-test",
+          "rationale": "Incorrect. It ignores the pairing and assumes normality, which the skewed differences violate."
+        }
+      ],
+      "answer": "a",
+      "skill": "Rank-based test choice",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-tests-q3",
+      "stem": "In normally distributed data, approximately what percentage of values lie within ±2 SD of the mean?",
+      "options": [
+        {
+          "id": "a",
+          "text": "About 95%",
+          "rationale": "Correct. About 95.4% lie within ±2 SD (the reviewer rounds to 95.5%)."
+        },
+        {
+          "id": "b",
+          "text": "About 68%",
+          "rationale": "Incorrect. That is the share within ±1 SD."
+        },
+        {
+          "id": "c",
+          "text": "About 99.7%",
+          "rationale": "Incorrect. That is the share within ±3 SD."
+        },
+        {
+          "id": "d",
+          "text": "About 50%",
+          "rationale": "Incorrect. Far more than half lie within ±2 SD; about 68% already lie within ±1 SD."
+        }
+      ],
+      "answer": "a",
+      "skill": "Gaussian bands",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch10",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 10, Statistics for the Lab (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 10,
+          "section": "High-Yield Hits",
+          "items": [
+            2,
+            12,
+            13
+          ]
+        },
+        {
+          "chapter": 10,
+          "section": "Exam Traps",
+          "items": [
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "mchugh2013",
+      "kind": "external",
+      "citation": "McHugh ML. The chi-square test of independence. Biochem Med (Zagreb). 2013;23(2):143-149. doi:10.11613/bm.2013.018",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3900058/",
+      "consulted": true,
+      "usedFor": "Chi-square for nominal counts; expected count = row marginal × column marginal ÷ n; assumption of expected ≥5 in at least 80% of cells and no cell below 1; groups must be independent (not the same subjects measured repeatedly)."
+    },
+    {
+      "id": "kim2017",
+      "kind": "external",
+      "citation": "Kim HY. Statistical notes for clinical researchers: Chi-squared test and Fisher's exact test. Restor Dent Endod. 2017;42(2):152-155. doi:10.5395/rde.2017.42.2.152",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5426219/",
+      "consulted": true,
+      "usedFor": "Chi-square is a large-sample approximation, relevant only when no more than 20% of cells have expected <5 and none <1; Fisher’s exact test is exact, valid for all sample sizes, and needed when more than 20% of cells have expected <5; both require independent groups."
+    },
+    {
+      "id": "kim2015",
+      "kind": "external",
+      "citation": "Kim TK. T test as a parametric statistic. Korean J Anesthesiol. 2015;68(6):540-546. doi:10.4097/kjae.2015.68.6.540",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4667138/",
+      "consulted": true,
+      "usedFor": "Independent vs paired t-test; assumptions of normality, equal variance and independence; Var(A − B) = σ₁² + σ₂² − 2ρσ₁σ₂, so the paired test gains power when ρ > 0 and loses it when ρ < 0; ignoring the paired design is incorrect; Wilcoxon rank-sum (Mann–Whitney) and signed-rank as nonparametric alternatives."
+    },
+    {
+      "id": "nahm2016",
+      "kind": "external",
+      "citation": "Nahm FS. Nonparametric statistical tests for the continuous data: the basic concept and the practical use. Korean J Anesthesiol. 2016;69(1):8-14. doi:10.4097/kjae.2016.69.1.8",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4754273/",
+      "consulted": true,
+      "usedFor": "Rank-based tests use ranks/signs and need no normality assumption; parametric–nonparametric analogues (paired t → Wilcoxon signed-rank; unpaired t → Mann–Whitney; ANOVA → Kruskal–Wallis); “always valid, but not always efficient”; lower power than parametric tests when data are normal (asymptotic relative efficiency 0.955)."
+    },
+    {
+      "id": "mishra2019",
+      "kind": "external",
+      "citation": "Mishra P, Pandey CM, Singh U, Gupta A, Sahu C, Keshri A. Descriptive statistics and normality tests for statistical data. Ann Card Anaesth. 2019;22(1):67-72. doi:10.4103/aca.aca_157_18",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6350423/",
+      "consulted": true,
+      "usedFor": "Normal distribution: 68.2%, 95.4% and 99.7% within mean ± 1, 2 and 3 SD; parametric tests assume normality; histograms, Q–Q plots and Shapiro–Wilk/Kolmogorov–Smirnov tests for checking it."
+    },
+    {
+      "id": "ghasemi2012",
+      "kind": "external",
+      "citation": "Ghasemi A, Zahediasl S. Normality tests for statistical analysis: a guide for non-statisticians. Int J Endocrinol Metab. 2012;10(2):486-489. doi:10.5812/ijem.3505",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3693611/",
+      "consulted": true,
+      "usedFor": "Parametric tests assume normality; with large samples (>30 or 40) violation should not cause major problems; small samples often pass normality tests because of low power; Shapiro–Wilk has better power than Kolmogorov–Smirnov."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-gauss",
+      "text": "Gaussian bands 68.2 / 95.4 / 99.7%; parametric tests assume approximate normality; checking normality; large-sample tolerance.",
+      "status": "checked",
+      "refs": [
+        "mishra2019",
+        "ghasemi2012",
+        "kim2015"
+      ],
+      "note": "The reviewer gives 95.5% for ±2 SD; Mishra 2019 gives 95.4%. The difference is rounding."
+    },
+    {
+      "id": "cl-paired",
+      "text": "Paired vs independent t-test; power gain only when paired values are positively correlated; ignoring pairing is incorrect.",
+      "status": "checked",
+      "refs": [
+        "kim2015"
+      ]
+    },
+    {
+      "id": "cl-rank",
+      "text": "Rank-based analogues of paired t, unpaired t and ANOVA; validity vs efficiency trade-off.",
+      "status": "checked",
+      "refs": [
+        "nahm2016",
+        "kim2015"
+      ]
+    },
+    {
+      "id": "cl-chi",
+      "text": "Expected-count formula; chi-square validity rule (≤20% of cells below 5, none below 1); Fisher’s exact test valid at any size; independence requirement.",
+      "status": "checked",
+      "refs": [
+        "mchugh2013",
+        "kim2017"
+      ]
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario, haemolysis table and staff/turnaround data invented; curves and tables schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Pair the same faces, count the boxes, rank the crooked.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-chi-square-every-cell",
+      "issue": "Ch. 10 Hit 12 says chi-square is valid only if every cell has ≥5 expected observations. McHugh 2013 and Kim 2017 give the usual rule: expected ≥5 in at least 80% of cells and no cell below 1; Kim 2017 adds that Fisher’s exact test is valid at all sample sizes. The lesson teaches the source rule (register flag rv-chi-square-expected-80pct).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-paired-power-correlation",
+      "issue": "Ch. 10 Hit 13 says paired t-tests are more powerful than unpaired. Kim 2015 shows the gain depends on positive correlation between the paired values; with negative correlation the paired test is less powerful (register flag rv-paired-t-positive-correlation).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-nonparametric-trade-off",
+      "issue": "Ch. 10 Trap 6 says to switch to rank-based tests when normality is violated, without the trade-offs: Ghasemi 2012 notes that with large samples (>30 or 40) non-normality causes no major problems, and Nahm 2016 notes rank tests have lower power when data are normal (register flag rv-nonparametric-large-sample).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-gauss-95-rounding",
+      "issue": "Ch. 10 Hit 2 gives 95.5% within ±2 SD; Mishra 2019 gives 95.4%. The figures differ only in rounding; the lesson uses 95.4% and “about 95%”.",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; curves and tables shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "source-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "All 4 factual claims checked against McHugh 2013, Kim 2017, Kim 2015, Nahm 2016, Mishra 2019 and Ghasemi 2012 (full texts read via Europe PMC). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
