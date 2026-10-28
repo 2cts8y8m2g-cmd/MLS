@@ -38,7 +38,8 @@
     "note": "Teaches Ch. 11 Hits 1 (sigma metric), 4 (QC target from 10 measurements on 10 days; SD from 20) and 5 (power function graphs) and Exam Trap 4 (1₂s as a rejection rule). Checked against Westgard, Bayat and Westgard 2018 and 2019, Gruber 2024, Giannoli 2021, Ricós 2022 and Costa-Pallaruelo 2025. Qualified: the reviewer’s single “~10% false alerts” for 1₂s is taught as the N-dependent false-rejection rates 4.6%, 8.9% and 13.0% for one, two and three control measurements (register flag rv-12s-false-rejection-n). Not taught as fact (pending, not found in the sources read): the reviewer’s power-function figures (1₂s ~35% at 1 SD, 1₃s ~50% at 2.5 SD, multirule ~65% at 2.5 SD and ~90% at 3.2 SD) and “long-term SD cumulative over 6–12 months, never the average of monthly SDs”. Hit 2 (1₂s warning vs 1₃s reject) is taught in ops-qc-levey-jennings-rules; the Number Vault table is not taught in full."
   },
   "prerequisites": [
-    "ch11.hit2"
+    "ch10.hit9",
+    "ch2.hit4"
   ],
   "objectives": [
     "Calculate a sigma metric with matching units and relate it to QC effort.",
@@ -607,7 +608,7 @@
       "title": "False rejection and target setting",
       "start": 104,
       "end": 144,
-      "altText": "1₂s card: probability of false rejection 4.6% with one control measurement, 8.9% with two, 13.0% with three (Gruber 2024); with two levels on 20 tests, at least one test can be expected to flag in every QC cycle, so 1₂s is not used as a rejection rule by default. Target card: the laboratory sets its own mean and SD from measurements under stable conditions; insert values are only a guide; with no previous data, initial mean and SD from at least 20 data points on different days; for a new control lot the mean can shift while the SD usually stays the same, and 10 measurements on different days give a first-approximation mean; a few-day mean is provisional and must be updated. Hook answers: method A (6.0σ) simple rules; method B (3.2σ) more rules and controls; stop using 1₂s to reject; a 3-day target is provisional only.",
+      "altText": "1₂s card: probability of false rejection 4.6% with one control measurement, 8.9% with two, 13.0% with three (Gruber 2024); with two levels on 20 tests, at least one test can be expected to flag in every QC cycle, so the authors advise against 1₂s as a default rejection rule. Target card: the laboratory sets its own mean and SD from measurements under stable conditions; insert values are only a guide; with no previous data, initial mean and SD from at least 20 data points on different days; for a new control lot the mean can shift while the SD usually stays the same, and 10 measurements on different days give a first-approximation mean; a few-day mean is provisional and must be updated. Hook answers: method A (6.0σ) simple rules; method B (3.2σ) more rules and controls; stop using 1₂s to reject; a 3-day target is provisional only.",
       "cues": [
         {
           "id": "l1",
@@ -619,7 +620,7 @@
           "id": "l2",
           "start": 114,
           "end": 124,
-          "text": "A lab running two levels on twenty tests can expect at least one test to flag in every QC cycle. That is why 1-2s is not used as a rejection rule by default."
+          "text": "A lab running two levels on twenty tests can expect at least one test to flag in every QC cycle. That is why review authors advise against 1-2s as a default rejection rule."
         },
         {
           "id": "l3",
@@ -963,7 +964,7 @@
           "id": "m2",
           "start": 183,
           "end": 194,
-          "text": "Where it breaks: QC errors are shifts measured in SD units, not a yes-or-no fire; false rejection grows with the number of controls; and the curves are computer simulations for one rule and one number of controls."
+          "text": "Where it breaks: QC errors are shifts measured in SD units, not a yes-or-no fire; false rejection grows with the number of controls; and each curve is computer-generated for one rule and one number of controls."
         }
       ],
       "objects": [
@@ -1075,7 +1076,7 @@
             "lines": [
               "Errors are shifts in SD units",
               "Pfr grows with more controls",
-              "Curves are simulations per rule and N"
+              "Each curve: one rule, one N"
             ],
             "reveal": 0,
             "size": 14,
@@ -1350,7 +1351,7 @@
   "mnemonic": {
     "text": "A QC rule is a smoke alarm: its power curve shows how often it rings with no fire (false rejection) and how often it catches a fire of a given size (error detection). 1₂s is the alarm that goes off whenever you make toast.",
     "explanation": "Separates false rejection from error detection and ties the critical shift to “fire size”.",
-    "limitation": "QC errors are shifts measured in SD units, not a yes-or-no fire; false rejection grows with the number of control measurements; power curves are computer simulations for one rule and one number of controls."
+    "limitation": "QC errors are shifts measured in SD units, not a yes-or-no fire; false rejection grows with the number of control measurements; each power curve is computer-generated for one rule and one number of controls."
   },
   "analogyLimitations": [
     "Scenario and method numbers are invented.",
@@ -1395,7 +1396,7 @@
         {
           "id": "a",
           "text": "The 1₂s rule has a high probability of false rejection, about 9% of good runs with two control measurements",
-          "rationale": "Correct. Gruber 2024 gives 4.6%, 8.9% and 13.0% for one, two and three control measurements, so 1₂s is not used as a rejection rule by default."
+          "rationale": "Correct. Gruber 2024 gives 4.6%, 8.9% and 13.0% for one, two and three control measurements, and the authors advise against 1₂s as a default rejection rule."
         },
         {
           "id": "b",
@@ -1487,7 +1488,7 @@
       "citation": "Westgard S, Bayat H, Westgard JO. Mistaken assumptions drive new Six Sigma model off the road. Biochem Med (Zagreb). 2019;29(1):010903. doi:10.11613/bm.2019.010903",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6294151/",
       "consulted": true,
-      "usedFor": "ΔSEcrit = [(pTE − |bias|)/SD] − 1.65 = SM − 1.65; power function graphs give Ped at the critical shift and Pfr under stable operation; axes (probability of rejection vs size of systematic error, sigma scale on top); curves per rule, N and R produced by a computer program."
+      "usedFor": "ΔSEcrit = [(pTE − |bias|)/SD] − 1.65 = SM − 1.65; power function graphs give Ped at the critical shift and Pfr under stable operation; axes (probability of rejection vs size of systematic error, sigma scale on top); curves per rule, N and R produced by a computer program (EZ Rules3)."
     },
     {
       "id": "gruber2024",
@@ -1495,7 +1496,7 @@
       "citation": "Gruber L, Hausch A, Mueller T. Internal Quality Controls in the Medical Laboratory: A Narrative Review of the Basic Principles of an Appropriate Quality Control Plan. Diagnostics (Basel). 2024;14(19):2223. doi:10.3390/diagnostics14192223",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11475633/",
       "consulted": true,
-      "usedFor": "1₂s Pfr 4.6% / 8.9% / 13.0% for one, two and three IQC levels; two levels on 20 parameters flag at least one parameter each cycle; 1₂s should not be a default rejection rule; insert values only a guide; ≥ 20 data points on different days for initial mean and SD; new lot: mean may shift, SD usually unchanged; 10 measurements on different days for a first-approximation mean (citing CLSI C24); few-day mean is transient and updated."
+      "usedFor": "1₂s Pfr 4.6% / 8.9% / 13.0% for one, two and three IQC levels; two levels on 20 parameters flag at least one parameter each cycle; in the authors’ opinion 1₂s should not be a default rejection rule; insert values only a guide; ≥ 20 data points on different days for initial mean and SD; new lot: mean may shift, SD usually unchanged; 10 measurements on different days for a first-approximation mean (citing CLSI C24); few-day mean is transient and updated."
     },
     {
       "id": "giannoli2021",
@@ -1533,7 +1534,7 @@
     },
     {
       "id": "cl-power",
-      "text": "Power function graph axes; Pfr read at zero error and Ped at the critical shift; ΔSEcrit = sigma − 1.65; curves are simulations per rule and N.",
+      "text": "Power function graph axes; Pfr read at zero error and Ped at the critical shift; ΔSEcrit = sigma − 1.65; each curve is computer-generated for one rule and N.",
       "status": "checked",
       "refs": [
         "westgard2019",
@@ -1551,7 +1552,7 @@
     },
     {
       "id": "cl-12s",
-      "text": "1₂s Pfr 4.6%, 8.9%, 13.0% for one, two and three control measurements; two levels on 20 tests flag every cycle; 1₂s not a default rejection rule.",
+      "text": "1₂s Pfr 4.6%, 8.9%, 13.0% for one, two and three control measurements; two levels on 20 tests flag at least one test every cycle; authors advise against 1₂s as a default rejection rule; 2 SD limits cause high false rejection (Ricós).",
       "status": "checked",
       "refs": [
         "gruber2024",

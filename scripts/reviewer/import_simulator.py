@@ -516,6 +516,8 @@ FLAG_RULES = [
      'sim-q178: beta-2 transferrin remains the right interpretation (CSF leak). Oh 2017 and Torabi 2024 note it also occurs in perilymph and vitreous and can be falsely positive in rare liver/metabolic disorders; the allelic-variant rationale was not verified. sim-q267 (Chapter 30) is already annotated by rv-b2-transferrin-not-csf-only and is deliberately not matched.'),
     ('rv-php-camp-infusion', '(?i)(blunted|subnormal)\\s+urinary\\s+cAMP',
      "sim-q150 (AHO child with low calcium, high phosphate, high PTH) still has the correct answer, pseudohypoparathyroidism. But the explanation says the blunted cAMP response 'confirms' it; the 2018 consensus says exogenous PTH testing is not necessary, confirms PHP by molecular genetic analysis, and notes PHP type 2 shows a cAMP rise with a deficient phosphaturic response."),
+    ('rv-12s-false-rejection-n', '1_2s as a rejection rule produces ~10% false alerts',
+     "sim-q15: the answer (1_2s is a warning, not a rejection rule) still stands. Gruber 2024 gives 1_2s false rejection as 4.6%, 8.9% and 13.0% with one, two and three control levels, so '~10%' holds only for about two control levels."),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
