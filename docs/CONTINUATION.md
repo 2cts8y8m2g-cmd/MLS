@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 302, teaching 1409 of 1,932 concepts (about 72.9%).** All 302 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 303, teaching 1412 of 1,932 concepts (about 73.1%).** All 303 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -62,7 +62,7 @@
   - Ch. 56 (18/24 concepts): `immuno-allergy-sige-tryptase`, `immuno-ige-switch-mast-cell-mediators`, `immuno-skin-tests-panels-penicillin`.
   - Ch. 57 (51/57 concepts): `micro-biosafety-sharps-hbv-sentinel`, `micro-c-difficile-testing-algorithm`, `micro-crypto-ohl-aspergillus-mucorales`, `micro-enteric-pathogens-stec`, `micro-food-poisoning-shigella-hpylori`, `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-gram-stain-cons-novobiocin`, `micro-listeria-nocardia-gpr`, `micro-pseudomonas-ampc-wound-culture`, `micro-rapid-id-maldi-panels-16s`, `micro-strep-enterococcus-id`.
   - Ch. 58 (24/30 concepts): `micro-antibiotic-targets-synergy-sepsis-clock`, `micro-ast-mic-breakpoints-dtest`, `micro-ast-reference-methods-antibiogram`, `micro-beta-lactamases-esbl-cpe`, `micro-gram-positive-resistance-mec-van-hlar`.
-  - Ch. 59 (18/26 concepts): `micro-afb-smear-decontamination`, `micro-ntm-runyon-identification`, `micro-tb-xpert-dst-ripe`, `micro-tst-igra-bcg`.
+  - Ch. 59 (21/26 concepts): `micro-afb-smear-decontamination`, `micro-ntm-runyon-identification`, `micro-tb-airborne-control-hiv-mac`, `micro-tb-xpert-dst-ripe`, `micro-tst-igra-bcg`.
   - Ch. 60 (21/25 concepts): `micro-candida-germ-tube-chromagar-resistance`, `micro-crypto-antigen-t2candida-fungal-pcr`, `micro-dimorphic-fungi`, `micro-invasive-mold-markers`.
   - Ch. 61 (16/21 concepts): `micro-lyme-two-tier-serology`, `micro-neurosyphilis-penicillin-jhr`, `micro-syphilis-serology-algorithms`.
   - Ch. 62 (12/19 concepts): `micro-chlamydia-mycoplasma-diagnosis`, `micro-chlamydia-treatment-lgv`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 519 flags (393 verified issues, 126 needing verification), plus scan results.
-- **Checks:** 1878 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 1884 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
