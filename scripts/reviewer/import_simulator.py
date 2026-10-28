@@ -524,6 +524,8 @@ FLAG_RULES = [
      "sim-q74: the answer (cryptococcal polysaccharide antigen) still stands. The explanation's '<50%' is not general: Boulware 2014 found 86% overall in HIV-infected adults, 42% at <1,000 CFU/mL, and Skipper 2019 cites 50-86% in HIV, with frequent negatives in HIV-seronegative patients."),
     ('rv-ch60-t2candida-five-species', 'T2 Candida detects 1-3 CFU/mL|1 to 3 CFU/mL of whole blood with 99\\.4',
      'sim-q550: option c is still the best answer among the choices. The 99.4% specificity is a 2015 clinical-trial figure (pooled 94% across 8 studies); the 1-3 CFU/mL and ~4 h vs >120 h figures were not confirmed from a source read (Tang 2019 states 1 CFU/mL secondhand), and T2Candida detects only five Candida species.'),
+    ('rv-ch6-tat-targets-local', '90th-percentile RFP goals are chemistry 30 min',
+     "sim-q104 states the 30/45/20/30 goals as if they were general 'RFP goals' while the stem does not give the lab's own goals. The answer (immunoassay) stands only if the lab adopted those goals; sources say TAT goals are set locally and negotiated with users, so the stem should state the lab's targets."),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
