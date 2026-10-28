@@ -3,14 +3,14 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 298, teaching 1393 of 1,932 concepts (about 72.1%).** All 298 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 299, teaching 1398 of 1,932 concepts (about 72.4%).** All 299 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
   - Ch. 4 (24/32 concepts): `ops-electrochem-ise-coulter-coulometry`, `ops-fluorescence-trf-chemiluminescence`, `ops-photometry-beer-scatter-luminescence`, `ops-protein-separation-sec-sds-ief`, `ops-spectrophotometer-sources-cuvettes-qa`.
   - Ch. 5 (14/20 concepts): `ops-mass-spectrometry-mrm-internal-standard`, `ops-ms-analyzers-scan-modes-resolution`.
   - Ch. 6 (13/21 concepts): `ops-analyzer-carryover-immunoassay-maldi`, `ops-open-reagents-middleware-tat`, `ops-total-testing-process-automation`.
-  - Ch. 7 (12/20 concepts): `ops-poct-clia-waived-pt`, `ops-poct-lockouts-traceability-connectivity`, `ops-poct-waived-molecular-flu-strep`.
+  - Ch. 7 (17/20 concepts): `ops-poct-clia-waived-pt`, `ops-poct-limits-hcg-creatinine-cardiac`, `ops-poct-lockouts-traceability-connectivity`, `ops-poct-waived-molecular-flu-strep`.
   - Ch. 8 (20/23 concepts): `ops-bayes-pretest-posttest-odds`, `ops-reference-interval-delta-check-individuality`, `ops-roc-curve-cutoff-selection`, `ops-sensitivity-specificity-predictive-values`.
   - Ch. 9 (14/21 concepts): `ops-detective-coag-patterns`, `ops-detective-ida-vs-acd-iron-stores`, `ops-detective-low-anion-gap-proteins`, `ops-detective-pancreatitis-liver-failure`.
   - Ch. 10 (16/22 concepts): `ops-p-values-errors-multiple-testing`, `ops-paired-chi-square-rank-tests`, `ops-reference-intervals-method-comparison`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 512 flags (387 verified issues, 125 needing verification), plus scan results.
-- **Checks:** 1854 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 1860 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
