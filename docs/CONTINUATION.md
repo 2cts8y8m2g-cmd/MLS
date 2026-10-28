@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 295, teaching 1381 of 1,932 concepts (about 71.5%).** All 295 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 297, teaching 1389 of 1,932 concepts (about 71.9%).** All 297 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -19,11 +19,11 @@
   - Ch. 13 (17/25 concepts): `ops-coding-panels-medical-necessity-abn`, `ops-payment-window-opps-clfs`, `ops-test-cost-breakeven-npv`.
   - Ch. 14 (12/18 concepts): `ops-case-reports-exemption-anonymous-data`, `ops-ethics-belmont-irb-research`.
   - Ch. 15 (18/26 concepts): `chem-anion-gap-delta-osmolal`, `chem-fena-prerenal-vs-atn`, `chem-gfr-clearance-creatinine-limits`, `chem-pseudohyperkalemia-glucose-sodium`.
-  - Ch. 16 (9/18 concepts): `chem-bone-turnover-osteoporosis-paget`, `chem-hypercalcemia-pth-pthrp`.
+  - Ch. 16 (13/18 concepts): `chem-bone-turnover-osteoporosis-paget`, `chem-ckd-shpt-pth-assays-resistance`, `chem-hypercalcemia-pth-pthrp`.
   - Ch. 17 (15/22 concepts): `chem-diabetes-diagnosis-hba1c`, `chem-ketones-hypoglycemia`.
   - Ch. 18 (17/24 concepts): `chem-apolipoproteins-apoe-dysbetalipoproteinemia`, `chem-ldl-calculation-friedewald`, `chem-lipid-cutpoints-statin-intensity`.
   - Ch. 19 (16/21 concepts): `chem-acs-stemi-serial-troponin-ua`, `chem-natriuretic-peptides-heart-failure`, `chem-troponin-myocardial-injury`.
-  - Ch. 20 (13/22 concepts): `chem-plasma-protein-patterns`, `chem-serum-protein-electrophoresis-m-spike`.
+  - Ch. 20 (17/22 concepts): `chem-plasma-protein-patterns`, `chem-serum-protein-electrophoresis-m-spike`, `chem-transferrin-saturation-cdt-b2-wilson`.
   - Ch. 21 (18/23 concepts): `chem-enzyme-dibucaine-ace-acid-phosphatase`, `chem-enzyme-kinetics-inhibition`, `chem-enzyme-results-macroenzymes-artifacts`, `chem-enzyme-units-nadh-ld-direction`.
   - Ch. 22 (21/26 concepts): `chem-cirrhosis-scores-meld-child-pugh-afp`, `chem-hav-hcv-wilson-misleading-markers`, `chem-hepatitis-b-serology-window`, `chem-hyperbilirubinemia-pre-post-conjugation`, `chem-liver-panel-patterns`.
   - Ch. 23 (17/23 concepts): `chem-fecal-occult-blood-apt`, `chem-gi-hormone-tumors-vip-gastrin-5hiaa`, `chem-malabsorption-elastase-celiac`, `chem-pancreatic-enzymes-pancreatitis`, `chem-pancreatitis-cause-severity-ranson`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 506 flags (382 verified issues, 124 needing verification), plus scan results.
-- **Checks:** 1842 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 1848 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
