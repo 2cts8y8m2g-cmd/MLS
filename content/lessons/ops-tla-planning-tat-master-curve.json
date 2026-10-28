@@ -1,0 +1,1617 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-tla-planning-tat-master-curve",
+  "title": "Planning Automation: 90th-Percentile Turnaround Goals and Master Curves",
+  "summary": "Learn why automation planning starts with a workflow map, how turnaround goals are set locally and measured at the 90th percentile, why running everything as stat can slow a track, and how a barcoded master curve is adjusted with lot calibrators.",
+  "domain": "p1-ops",
+  "topic": "ch6",
+  "conceptIds": [
+    "ch6.hit1",
+    "ch6.hit7",
+    "ch6.hit12"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 6,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          7,
+          12
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 6 Hits 1, 7 and 12 (fourth lesson for Ch. 6). Checked against Hawkins 2007 and Armbruster 2014 (both read via a page-fetch tool; the Europe PMC full-text endpoint returned an error or no text), Ellison 2018, Archetti 2017, Nam & Park 2025, Mahler 2016, Lijia 2020 and Fortunato 2016. Nuances: the 30-45-20-30 minute targets were not found in any open source and are shown only as the reviewer’s example of one lab’s RFP (register flag rv-ch6-tat-targets-local); stat prioritisation can be unnecessary or even counterproductive on a fast TLA (rv-ch6-stat-priority-tla); the barcoded master curve is adjusted to the instrument with lot calibrators rather than used alone (rv-ch6-master-curve-local-calibration); the specific planning sequence of Hit 12 (RFP, vendor presentations, site visits, 2–3 finalists, ~6-month reassessment) was not found in the sources (rv-ch6-tla-planning-sequence). Not taught as fact: workstation/workcell/virtual vs physical workcell definitions, Number Vault figures, the figure caption."
+  },
+  "prerequisites": [
+    "ch6.hit2",
+    "ch6.hit5"
+  ],
+  "objectives": [
+    "Explain why TLA planning begins with a detailed analysis of the current workflow.",
+    "Describe how turnaround goals are set and why they are expressed as a 90% completion time.",
+    "Explain how a barcoded master curve and lot calibrators produce the working calibration curve."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "The automation wish list",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a hospital lab is writing its wish list for a total laboratory automation (TLA) purchase. A manager proposes (1) choosing the track vendor first and mapping the workflow later; (2) running every troponin as a stat to get the fastest turnaround; (3) skipping calibration when a new immunoassay reagent lot arrives, because “the bar code already holds the curve”. Question token: “Which of these holds up?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "A hospital lab is planning a total laboratory automation purchase, and the manager has three ideas."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "Pick the track vendor first and map the workflow later. Run every troponin as a stat. And skip calibration on new reagent lots, because the bar code already holds the curve."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which of these ideas holds up?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "i1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Vendor first",
+            "lines": [
+              "Map workflow later"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "i2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "2 Everything stat",
+            "lines": [
+              "Fastest troponin?"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "i3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "3 Skip lot calibration",
+            "lines": [
+              "“Bar code has the curve”"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 640,
+            "label": "Which of these holds up?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "How turnaround goals are written",
+      "start": 20,
+      "end": 60,
+      "altText": "TAT card (Hawkins 2007): turnaround time is best summarised by the median, a 90% (or 95%) completion time and the outlier rate, rather than the mean alone. Goals card: TAT goals are set locally, informed by the literature and local expectations, and negotiated with users; the review notes the difficulty of recommending universal evidence-based goals, and cites one general benchmark of a 90% completion time under 60 minutes for common tests (registration to report). Armbruster 2014 lists, among automation selection criteria, aiming to achieve the desired TAT about 90% of the time. Example token: the reviewer’s example RFP (30 min chemistry, 45 immunoassay, 20 CBC, 30 basic coagulation at the 90th percentile) is one laboratory’s own requirement, not a standard.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Turnaround time is not one number. A review in the Clinical Biochemist Reviews recommends reporting the median, the time by which ninety percent of results are complete, and the rate of outliers."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 42,
+          "text": "The ninety-percent completion time is the ninetieth percentile: nine in ten results are out by then. An automation review advises aiming to hit the desired turnaround about ninety percent of the time."
+        },
+        {
+          "id": "n3",
+          "start": 42,
+          "end": 52,
+          "text": "Who sets the goal? The laboratory, locally, negotiated with the clinicians who use the results. The review notes there are no universal evidence-based goals."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "So the reviewer’s example, thirty minutes for chemistry, forty-five for immunoassay, twenty for a blood count and thirty for basic coagulation, is one lab’s own request for proposal, not a standard."
+        }
+      ],
+      "objects": [
+        {
+          "id": "tat",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 200,
+            "tone": "b",
+            "title": "Report TAT as",
+            "lines": [
+              "Median",
+              "90% completion time",
+              "Outlier rate"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "p90",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 450,
+            "w": 440,
+            "label": "90th percentile = 9 in 10 results out",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "goal",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "Goals are local",
+            "lines": [
+              "Negotiated with users",
+              "No universal evidence-based goal"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ex",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "label": "Reviewer example RFP: 30 · 45 · 20 · 30 min",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Plan the process before the machine",
+      "start": 60,
+      "end": 104,
+      "altText": "Planning card (Armbruster 2014): the first step towards TLA is a thorough, detailed analysis of current laboratory processes, mapping the workflow from specimen receipt through testing and reporting; applying automation to a suboptimal process only automates a poor process. Selection is complex and time-consuming: confirm the track works with analyzers from other manufacturers, and remember that a manufacturer’s theoretical throughput may not match reality; as a rule of thumb a good TLA system should handle at least 80% of the workload. Measure card: solid pre- and post-automation metrics (for example stat and routine TAT) prove whether automation worked. Case card (Ellison 2018, Saudi tertiary hospital): more than 4 years of planning and preparation, a strategic plan with named people responsible for each project stream, then vendor selection; contracts consolidated from 5 to 1. Support card (Nam and Park 2025): ongoing vendor support agreements (software upgrades, remote monitoring, emergency repairs) are needed to keep the system running and add to the total cost of ownership.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Automation planning starts with the laboratory, not the catalogue. The first step is a detailed map of the current workflow, from specimen receipt to reporting. Automating a poor process just gives you an automated poor process."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "Selection is slow and complex. Check that the track works with other makers’ analyzers, and treat claimed throughput with caution: a good system should handle at least eighty percent of the workload."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "In one Saudi tertiary hospital, more than four years of planning, with named people responsible for each project stream, came before the vendor was chosen, and five contracts became one."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "After go-live, measure. Compare turnaround and failures before and after, and budget for ongoing vendor support, including upgrades, remote monitoring and emergency repairs."
+        }
+      ],
+      "objects": [
+        {
+          "id": "map",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Step 1: map the workflow",
+            "lines": [
+              "Receipt → testing → reporting",
+              "Fix the process, then automate"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sel",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 410,
+            "w": 440,
+            "h": 200,
+            "tone": "warn",
+            "title": "Selecting a system",
+            "lines": [
+              "Track open to other analyzers?",
+              "Claimed throughput ≠ reality",
+              "Handle ≥ 80% of workload"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "reveal": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "case",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 210,
+            "tone": "a",
+            "title": "One hospital’s path",
+            "lines": [
+              "> 4 years planning",
+              "Named owner per stream",
+              "5 contracts → 1"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "post",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 470,
+            "w": 420,
+            "label": "Measure before/after · budget for support",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 40,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Stats and master curves on the line",
+      "start": 104,
+      "end": 144,
+      "altText": "Stat card (Ellison 2018): in a TLA, stat assay kits slowed performance; after 11 stat kits were changed to routine and unnecessary auto-rerun rules were removed, median troponin T turnaround fell from 64.9 to 52.4 minutes. Armbruster 2014 cites a TLA in which TAT fell enough that stat samples needing results within 1 hour no longer had to be prioritised and tested separately. Master-curve card (Mahler 2016; Lijia 2020): for each reagent lot the manufacturer establishes a calibration curve, the master curve, and embeds its parameters in a bar code or QR code on the reagent; the analyzer reads it, and the user adapts it to the instrument by running lot calibrators (two calibrators once per lot on the systems described), producing the working curve used for results. Fortunato 2016 describes master curves adjusted by 1-point or 2-point calibration depending on platform. Hook answer card.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Back to the stat idea. In the Saudi lab, stat assay kits actually slowed the automated line. Switching eleven of them to routine and removing needless reruns cut median troponin turnaround from about sixty-five to fifty-two minutes."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 120,
+          "text": "Another automated lab found stats under one hour no longer needed separate priority at all."
+        },
+        {
+          "id": "l3",
+          "start": 120,
+          "end": 134,
+          "text": "Now the bar code. For each reagent lot the manufacturer builds a master curve and stores it in a bar code or QR code. The analyzer reads it, but the lab still runs that lot’s calibrators, often two, to adjust the curve to its own instrument. That adjusted working curve calculates the results."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Hook answers: map the workflow before choosing a vendor, let measured turnaround decide what runs as stat, and calibrate every new lot as the manufacturer directs."
+        }
+      ],
+      "objects": [
+        {
+          "id": "stat",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 170,
+            "tone": "warn",
+            "title": "Stat kits on a TLA",
+            "lines": [
+              "11 stat kits → routine",
+              "Troponin median 64.9 → 52.4 min"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "nost",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 410,
+            "w": 440,
+            "label": "Fast TLA: stats < 1 h need no separate lane",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mc",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 210,
+            "tone": "b",
+            "title": "Master curve per lot",
+            "lines": [
+              "Maker builds curve → bar/QR code",
+              "Lab runs lot calibrators",
+              "= working curve on this analyzer"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "reveal": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 760,
+            "h": 110,
+            "tone": "good",
+            "title": "Hook answers",
+            "lines": [
+              "Map first · measure stats · calibrate each lot"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “30 minutes is the universal chemistry TAT standard” (✓ goals are set locally with users and usually expressed as a 90% completion time; 30-45-20-30 is one lab’s example); “A master-lot bar code means no calibration in the lab” (✓ the barcoded master curve is adjusted with lot calibrators on the lab’s instrument, as the manufacturer directs); “Choose the automation, then fix the workflow” (✓ map and improve the workflow first; automating a poor process gives an automated poor process).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: thirty minutes is the universal chemistry standard. No: each lab sets and negotiates its own goals, usually as a ninety-percent completion time."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a master-lot bar code means no calibration. No: the lab adjusts the master curve with that lot’s calibrators on its own analyzer."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: buy the automation, then fix the workflow. No: map and improve the workflow first, or you automate a poor process."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “30 min is the universal standard.”",
+            "lines": [
+              "✓ Local goals, 90% completion time"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Bar code = no calibration.”",
+            "lines": [
+              "✓ Lot calibrators adjust the master curve"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Automate, then fix the workflow.”",
+            "lines": [
+              "✓ Map and fix first"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Map, measure, match",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “MAP, MEASURE, MATCH. MAP the workflow before you shop; MEASURE turnaround the way you promised it (nine in ten results by the goal you agreed); MATCH each new reagent lot’s master curve to your own analyzer with its calibrators.” Tokens: map = workflow first · measure = 90% completion · match = lot calibration. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: map, measure, match. Map the workflow before you shop. Measure turnaround the way you promised it, nine in ten results by the agreed goal. Match each new lot’s master curve to your analyzer with its calibrators."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: calibration rules differ by platform and assay, so follow the manufacturer; some labs set goals at other percentiles or as medians; and real projects are not one neat sequence."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Map, measure, match",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Map = workflow first",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Measure = 90% completion",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Match = lot calibrators",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Calibration rules differ by platform",
+              "Goals may use other percentiles",
+              "Projects are not one neat sequence"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Map the workflow before choosing automation · measure TAT as median + 90% completion against locally agreed goals”, “Master curve in the reagent bar code + lot calibrators on your analyzer = working curve”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Plan automation by mapping your own workflow first, judge turnaround against goals your laboratory agreed with its users at the ninetieth percentile, and treat a barcoded master curve as a starting point that each lot’s calibrators adjust to your analyzer."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Map workflow first · TAT = median + 90% completion vs local goals",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Bar-coded master curve + lot calibrators = working curve",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: before buying a robot line, a lab studies how its work really flows; it promises clinicians how fast results will come and checks that nine in ten results meet that promise; and reagents arrive with a factory calibration curve in their bar code that the lab fine-tunes for its own machine. Scientific terms: total laboratory automation (TLA), workflow analysis, turnaround time (TAT), median, 90% completion time (90th percentile), outlier rate, request for proposal (RFP), stat, master curve, working curve, lot calibrators, total cost of ownership.",
+    "why": "Automating an unanalysed process locks in its problems, and claimed throughput may not match a lab’s real workload. TAT goals must fit local clinical needs, and the 90th percentile captures the slow tail that the mean hides. A master curve is made on the manufacturer’s instruments, so each analyzer needs a small adjustment with calibrators.",
+    "measure": "TAT: median, 90% (or 95%) completion time and outlier rate (Hawkins 2007); aim to meet the desired TAT about 90% of the time (Armbruster 2014); one cited general benchmark is a 90% completion time under 60 minutes for common tests. A good TLA should handle at least 80% of the workload (Armbruster rule of thumb). Example case: stat kits switched to routine cut median troponin T TAT from 64.9 to 52.4 min (Ellison 2018). Master curve: lot-specific curve in a bar or QR code, adapted with lot calibrators (two calibrators once per lot on the systems described).",
+    "differs": "Local TAT goal vs universal standard; 90th percentile vs mean; stat lane vs fast routine processing on a TLA; master curve (manufacturer) vs working curve (lab’s instrument).",
+    "examAngle": "Expect: decide whether a vendor TAT meets the lab’s own stated goal, choose the first step in automation planning, or explain what the lab must still do when a barcoded reagent lot arrives."
+  },
+  "comparisons": [
+    {
+      "id": "master-vs-working",
+      "title": "Master curve vs working curve",
+      "left": {
+        "label": "Master curve",
+        "points": [
+          "Built by the manufacturer for each lot",
+          "Stored in a bar code or QR code"
+        ]
+      },
+      "right": {
+        "label": "Working curve",
+        "points": [
+          "Recalculated on the lab’s analyzer",
+          "Uses that lot’s calibrators"
+        ]
+      },
+      "distinguisher": "Who generates it, and on which instrument."
+    },
+    {
+      "id": "tat-mean-vs-p90",
+      "title": "Mean TAT vs 90% completion time",
+      "left": {
+        "label": "Mean",
+        "points": [
+          "Pulled by a few very slow results",
+          "Hides the slow tail"
+        ]
+      },
+      "right": {
+        "label": "90% completion",
+        "points": [
+          "Time by which 9 in 10 results are out",
+          "Pairs with median and outlier rate"
+        ]
+      },
+      "distinguisher": "Whether the slow tail of results is visible."
+    }
+  ],
+  "mnemonic": {
+    "text": "MAP, MEASURE, MATCH: MAP the workflow before you shop; MEASURE turnaround the way you promised it (nine in ten results by the agreed goal); MATCH each new reagent lot’s master curve to your own analyzer with its calibrators.",
+    "explanation": "Map = workflow analysis first; measure = 90% completion time against local goals; match = lot calibration of the master curve.",
+    "limitation": "Calibration rules differ by platform and assay; some labs set goals at other percentiles or as medians; real projects are not one neat sequence."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Cards are schematic; real automation lines and calibration screens differ by vendor.",
+    "Case figures come from single hospitals and may not generalise."
+  ],
+  "takeaway": "Plan automation by mapping your own workflow first, judge turnaround against goals your laboratory agreed with its users at the ninetieth percentile, and treat a barcoded master curve as a starting point that each lot’s calibrators adjust to your analyzer.",
+  "questions": [
+    {
+      "id": "ops-tla-q1",
+      "stem": "A hospital laboratory is starting to plan total laboratory automation. What should come first?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A detailed analysis and map of the current workflow from specimen receipt to reporting",
+          "rationale": "Correct. Workflow analysis is the first step; automating a suboptimal process only automates a poor process."
+        },
+        {
+          "id": "b",
+          "text": "Choosing the track vendor with the highest claimed throughput",
+          "rationale": "Incorrect. Claimed theoretical throughput may not match a lab’s real workload, and the needs must be known first."
+        },
+        {
+          "id": "c",
+          "text": "Reclassifying all tests as stat to protect turnaround",
+          "rationale": "Incorrect. In one TLA, stat kits slowed the line; switching some to routine reduced turnaround."
+        },
+        {
+          "id": "d",
+          "text": "Measuring post-automation turnaround",
+          "rationale": "Incorrect. Pre- and post-automation metrics matter, but they cannot come before the system is planned."
+        }
+      ],
+      "answer": "a",
+      "skill": "Automation planning",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-tla-q2",
+      "stem": "A laboratory states its chemistry turnaround goal as a 90% completion time of 30 minutes. What does this mean?",
+      "options": [
+        {
+          "id": "a",
+          "text": "At least 9 in 10 chemistry results should be reported within 30 minutes",
+          "rationale": "Correct. The 90% completion time is the 90th percentile of turnaround."
+        },
+        {
+          "id": "b",
+          "text": "The average chemistry turnaround should be 30 minutes",
+          "rationale": "Incorrect. That is the mean, which hides the slow tail."
+        },
+        {
+          "id": "c",
+          "text": "30 minutes is the universal standard every lab must meet",
+          "rationale": "Incorrect. TAT goals are set locally and negotiated with users; there are no universal evidence-based goals."
+        },
+        {
+          "id": "d",
+          "text": "90% of chemistry tests must be run as stat",
+          "rationale": "Incorrect. The figure describes the distribution of turnaround, not test priority."
+        }
+      ],
+      "answer": "a",
+      "skill": "TAT metrics",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ops-tla-q3",
+      "stem": "A new lot of an immunoassay reagent arrives with its master curve stored in a bar code. What does the laboratory typically still do before reporting patient results with the lot?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Run the lot’s calibrators so the analyzer adapts the master curve into a working curve",
+          "rationale": "Correct. The master curve is made by the manufacturer; the user adjusts it to the instrument with calibrators (for example two calibrators once per lot), following the manufacturer."
+        },
+        {
+          "id": "b",
+          "text": "Nothing, because the bar code fully calibrates the analyzer",
+          "rationale": "Incorrect. The bar code supplies the master curve parameters, but the systems described still require lot calibration on the instrument."
+        },
+        {
+          "id": "c",
+          "text": "Build a full multi-point calibration curve from scratch, ignoring the bar code",
+          "rationale": "Incorrect. The master-curve design avoids this; the lab runs only the specified calibrators."
+        },
+        {
+          "id": "d",
+          "text": "Reuse the previous lot’s working curve",
+          "rationale": "Incorrect. The master curve is lot-specific, so each new lot needs its own calibration."
+        }
+      ],
+      "answer": "a",
+      "skill": "Master curve calibration",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch6",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 6, Automation and the Total Testing Process (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 6,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            7,
+            12
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope, the example RFP turnaround targets, the planning sequence and exam framing. Not used as verification."
+    },
+    {
+      "id": "hawkins2007",
+      "kind": "external",
+      "citation": "Hawkins RC. Laboratory turnaround time. Clin Biochem Rev. 2007;28(4):179-194. PMCID: PMC2282400",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2282400/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (Europe PMC full text was empty; the fetch covered the first 100,000 characters of the article page). Medians, 90% (or 95%) completion times and outlier rates preferred; TAT goals set locally and negotiated with users; difficulty of universal evidence-based goals; a 90% completion time under 60 minutes for common tests as a general benchmark."
+    },
+    {
+      "id": "armbruster2014",
+      "kind": "external",
+      "citation": "Armbruster DA, Overcash DR, Reyes J. Clinical Chemistry Laboratory Automation in the 21st Century - Amat Victoria curam (Victory loves careful preparation). Clin Biochem Rev. 2014;35(3):143-153. PMCID: PMC4204236",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4204236/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (Europe PMC full-text endpoint returned an error). First step is a detailed analysis of current processes; automating a suboptimal process automates a poor process; selection is complex; check track compatibility; theoretical throughput may not match reality; a good TLA handles at least 80% of the workload; aim for desired TAT about 90% of the time; solid pre/post metrics; a TLA where stats under 1 hour no longer needed separate prioritisation."
+    },
+    {
+      "id": "ellison2018",
+      "kind": "external",
+      "citation": "Ellison TL, Alharbi M, Alkaf M, Elimam S, Alfaries M, Nounou RA, Nasr R, Owaidah T. Implementation of total laboratory automation at a tertiary care hospital in Saudi Arabia: effect on turnaround time and cost efficiency. Ann Saudi Med. 2018;38(5):352-357. doi:10.5144/0256-4947.2018.352",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6180219/",
+      "consulted": true,
+      "usedFor": "More than 4 years of planning; in-depth analysis and strategic plan with named responsible individuals; contracts 5 → 1; stat kits slowed the TLA, and changing 11 stat kits to routine (with removal of unnecessary auto-rerun rules) reduced median troponin T TAT from 64.9 to 52.4 min."
+    },
+    {
+      "id": "archetti2017",
+      "kind": "external",
+      "citation": "Archetti C, Montanelli A, Finazzi D, Caimi L, Garrafa E. Clinical Laboratory Automation: A Case Study. J Public Health Res. 2017;6(1):881. doi:10.4081/jphr.2017.881",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5477477/",
+      "consulted": true,
+      "usedFor": "The TAT expected for each test is usually agreed with users of the service; the hospital set its own maximum validation times (1 h emergency, 2 h urgent, 1 day routine)."
+    },
+    {
+      "id": "nampark2025",
+      "kind": "external",
+      "citation": "Nam Y, Park HD. Revolutionizing Laboratory Practices: Pioneering Trends in Total Laboratory Automation. Ann Lab Med. 2025;45(5):472-483. doi:10.3343/alm.2024.0581",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12370808/",
+      "consulted": true,
+      "usedFor": "Successful TLA adoption requires strategic planning; substantial initial costs; ongoing vendor support agreements (software upgrades, remote monitoring, emergency repairs) increase total cost of ownership."
+    },
+    {
+      "id": "mahler2016",
+      "kind": "external",
+      "citation": "Mahler M, Bentow C, Serra J, Fritzler MJ. Detection of autoantibodies using chemiluminescence technologies. Immunopharmacol Immunotoxicol. 2016;38(1):14-20. doi:10.3109/08923973.2015.1077461",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4819877/",
+      "consulted": true,
+      "usedFor": "Lot-specific 4-parameter master curve established during manufacture and embedded in a bar code; instrument reads it; user adapts it by running two calibrators once per lot, producing the working curve."
+    },
+    {
+      "id": "lijia2020",
+      "kind": "external",
+      "citation": "Lijia S, Lihong S, Huabin W, Xiaoping X, Xiaodong L, Yixuan Z, Pin H, Yina X, Xiaoyun S, Junqi W. Serological chemiluminescence immunoassay for the diagnosis of SARS-CoV-2 infection. J Clin Lab Anal. 2020;34(10):e23466. doi:10.1002/jcla.23466",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7404627/",
+      "consulted": true,
+      "usedFor": "Results calculated from an instrument-specific curve generated by 2-point calibration and a master curve supplied via the reagent QR code."
+    },
+    {
+      "id": "fortunato2016",
+      "kind": "external",
+      "citation": "Fortunato A. A new sensitive automated assay for procalcitonin detection: LIAISON® BRAHMS PCT® II GEN. Pract Lab Med. 2016;6:1-7. doi:10.1016/j.plabm.2016.06.002",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5574861/",
+      "consulted": true,
+      "usedFor": "Assays based on an internal master curve with 1-point or 2-point calibration depending on platform."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-tat",
+      "text": "TAT reported as median, 90% completion time and outlier rate; goals set locally with users; no universal evidence-based goals; aim for desired TAT about 90% of the time.",
+      "status": "checked",
+      "refs": [
+        "hawkins2007",
+        "armbruster2014",
+        "archetti2017"
+      ]
+    },
+    {
+      "id": "cl-plan",
+      "text": "Workflow analysis first; automating a poor process; track compatibility; claimed throughput; ≥80% of workload; pre/post metrics; one hospital’s 4-year planning and contract consolidation; ongoing vendor support costs.",
+      "status": "checked",
+      "refs": [
+        "armbruster2014",
+        "ellison2018",
+        "nampark2025"
+      ]
+    },
+    {
+      "id": "cl-stat",
+      "text": "Stat kits slowed a TLA and switching some to routine reduced troponin TAT; a fast TLA removed the need to prioritise stats under 1 hour separately.",
+      "status": "checked",
+      "refs": [
+        "ellison2018",
+        "armbruster2014"
+      ]
+    },
+    {
+      "id": "cl-mc",
+      "text": "Lot-specific master curve in a bar or QR code, adapted on the instrument with lot calibrators into a working curve.",
+      "status": "checked",
+      "refs": [
+        "mahler2016",
+        "lijia2020",
+        "fortunato2016"
+      ]
+    },
+    {
+      "id": "cl-rfp",
+      "text": "The 30-45-20-30 minute 90th-percentile targets (chemistry, immunoassay, CBC, basic coagulation) as one lab’s RFP requirements.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch6"
+      ],
+      "note": "Shown only as the reviewer’s example; not found in any open source read."
+    },
+    {
+      "id": "cl-seq",
+      "text": "Hit 12 planning sequence: RFP → vendor presentations → site visits → 2–3 finalists → contract → reassess about 6 months after installation; master-lot label contents (concentrations, expected detector responses, tolerances).",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch6"
+      ],
+      "note": "Not taught as fact; sources describe workflow analysis first and post-implementation metrics but not this sequence or timing."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; cards schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Map, measure, match.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-tat-local",
+      "issue": "The reviewer’s 30/45/20/30-minute 90th-percentile targets were not found in open sources; Hawkins 2007 states goals are set locally and cites a general 90% completion benchmark under 60 minutes for common tests. The lesson presents the numbers only as one lab’s example.",
+      "kind": "uncertain",
+      "status": "open"
+    },
+    {
+      "id": "f-stat-priority",
+      "issue": "Hit 1 lists the ability to prioritise stats as a requirement; on a TLA, stat assay kits slowed throughput in one hospital (Ellison 2018), and another TLA no longer needed separate stat prioritisation (Armbruster 2014).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-master-curve",
+      "issue": "Hit 7 implies the barcoded label data are used to calibrate each lot; the systems described in the sources still require the user to run lot calibrators (one or two points, by platform) to adapt the master curve to the instrument.",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-plan-seq",
+      "issue": "The Hit 12 planning sequence (RFP, vendor presentations, site visits, 2–3 finalists, contract, reassessment about 6 months after installation) was not found in the open sources read.",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; planning, turnaround and calibration shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked (Hawkins 2007 and Armbruster 2014 read via a page-fetch tool; Ellison 2018, Archetti 2017, Nam & Park 2025, Mahler 2016, Lijia 2020, Fortunato 2016 via Europe PMC full text); 2 pending (example RFP targets; Hit 12 sequence and master-lot label contents). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
