@@ -506,6 +506,16 @@ FLAG_RULES = [
      'sim-q29: the answer (Wilson disease is still possible despite a normal ceruloplasmin) still stands per AASLD 2023, Schroeder 2021 and Penning 2023, and ceruloplasmin can be falsely raised during acute inflammation. The 15%/35% figures in the explanation and option c were not found in open sources and need verification.'),
     ('rv-hav-relapsing-igm-context', 'IgM anti-HAV = acute hepatitis A, which never becomes chronic',
      'sim-q705: the answer stands; ACIP 2020 confirms hepatitis A does not cause chronic infection and IgG gives lifelong protection. Missing context: 10-15% of symptomatic patients have prolonged or relapsing illness for up to 6 months (not chronic infection), and fulminant failure occurs in under 1%.'),
+    ('rv-hh-tsat-with-ferritin', '≥ 45% screen → hemochromatosis',
+     "sim-q701: the calculation (60%) and the work-up answer still stand. AASLD 2011 pairs TS with ferritin and notes the 45% cutoff is sensitive but not specific, so 'hemochromatosis workup' should mean further evaluation, not diagnosis."),
+    ('rv-atp7b-variant-count', '(?i)ceruloplasmin <20 mg/dL confirms Wilson',
+     "sim-q226 (Chapter 27): Wilson disease remains the best answer (KF rings, tremor, urine copper >100 ug/24 h, low ceruloplasmin). AASLD 2023 says no gold-standard test exists and a combination is used, with ceruloplasmin typically <14 mg/dL in Wilson disease and poor predictive value, so 'confirms' overstates the ceruloplasmin/urine copper pair."),
+    ('rv-cdt-false-negative-groups', '(?i)false negatives in women, nonsmokers, and high BMI',
+     "sim-q179: CDT remains the correct answer. Fagan 2014 (HPLC) found women, overweight/obesity and cirrhosis linked to false negatives; smoking status was not associated, so 'nonsmokers' should be qualified."),
+    ('rv-b2-transferrin-ch20-qualifiers', '(?i)Beta-2-transferrin \\(asialotransferrin\\) is CSF-specific',
+     'sim-q178: beta-2 transferrin remains the right interpretation (CSF leak). Oh 2017 and Torabi 2024 note it also occurs in perilymph and vitreous and can be falsely positive in rare liver/metabolic disorders; the allelic-variant rationale was not verified. sim-q267 (Chapter 30) is already annotated by rv-b2-transferrin-not-csf-only and is deliberately not matched.'),
+    ('rv-php-camp-infusion', '(?i)(blunted|subnormal)\\s+urinary\\s+cAMP',
+     "sim-q150 (AHO child with low calcium, high phosphate, high PTH) still has the correct answer, pseudohypoparathyroidism. But the explanation says the blunted cAMP response 'confirms' it; the 2018 consensus says exogenous PTH testing is not necessary, confirms PHP by molecular genetic analysis, and notes PHP type 2 shows a cAMP rise with a deficient phosphaturic response."),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
@@ -528,7 +538,7 @@ ANY_CHAPTER = {'rv-biotin-fda', 'rv-fvl-risk', 'rv-calcium-ref-albumin',
                'rv-crypto-induction-who2022', 'rv-ohl-fixed-candidiasis', 'rv-mucorales-pauciseptate',
                'rv-aspirin-recovery-time', 'rv-lipase-definitive-ch9', 'rv-alf-enzyme-definition-ch9',
                'rv-cdi-fidaxomicin-preferred', 'rv-ch66-oxa-s-os-mrsa',
-               'rv-siad-fena-salt-wasting'}
+               'rv-siad-fena-salt-wasting', 'rv-atp7b-variant-count'}
 
 
 def text(el):

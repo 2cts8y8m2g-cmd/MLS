@@ -1,0 +1,1610 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-qc-sigma-power-function-targets",
+  "title": "Sigma Metrics, Power Function Graphs and QC Targets",
+  "summary": "Calculate the sigma metric with matching units, read a power function graph for false rejection and error detection at the critical systematic error, see why 1₂s is a poor rejection rule, and set a new control target from your own data.",
+  "domain": "p1-ops",
+  "topic": "ch11",
+  "conceptIds": [
+    "ch11.hit1",
+    "ch11.hit4",
+    "ch11.hit5",
+    "ch11.trap4"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 11,
+        "section": "High-Yield Hits",
+        "items": [
+          1,
+          4,
+          5
+        ]
+      },
+      {
+        "chapter": 11,
+        "section": "Exam Traps",
+        "items": [
+          4
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 11 Hits 1 (sigma metric), 4 (QC target from 10 measurements on 10 days; SD from 20) and 5 (power function graphs) and Exam Trap 4 (1₂s as a rejection rule). Checked against Westgard, Bayat and Westgard 2018 and 2019, Gruber 2024, Giannoli 2021, Ricós 2022 and Costa-Pallaruelo 2025. Qualified: the reviewer’s single “~10% false alerts” for 1₂s is taught as the N-dependent false-rejection rates 4.6%, 8.9% and 13.0% for one, two and three control measurements (register flag rv-12s-false-rejection-n). Not taught as fact (pending, not found in the sources read): the reviewer’s power-function figures (1₂s ~35% at 1 SD, 1₃s ~50% at 2.5 SD, multirule ~65% at 2.5 SD and ~90% at 3.2 SD) and “long-term SD cumulative over 6–12 months, never the average of monthly SDs”. Hit 2 (1₂s warning vs 1₃s reject) is taught in ops-qc-levey-jennings-rules; the Number Vault table is not taught in full."
+  },
+  "prerequisites": [
+    "ch11.hit2"
+  ],
+  "objectives": [
+    "Calculate a sigma metric with matching units and relate it to QC effort.",
+    "Read a power function graph for probability of false rejection and error detection at the critical systematic error.",
+    "Explain why 1₂s is a poor rejection rule and how to set a new control target and SD."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two methods and a jumpy QC policy",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a chemistry lab reviews two methods. Method A: allowable total error (TEa) 10%, bias 1%, CV 1.5%. Method B: TEa 10%, bias 2%, CV 2.5%. Lab policy: reject the run whenever any control exceeds 2 SD (1₂s as a rejection rule), with two control levels on each of 20 tests, and many rejected runs are repeated with no fault found. A new lot of control material starts Monday, and the plan is to fix its target mean from 3 days of data. Question token: “Which method needs tighter QC, and what is wrong with the policy?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "A lab reviews two methods with the same allowable error of ten percent. Method A has a bias of one percent and a CV of 1.5 percent; method B, a bias of two percent and a CV of 2.5 percent."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "Its policy rejects any run with a control beyond 2 SD, and many rejected runs turn out fine. A new control lot will get its target from three days of data."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which method needs tighter QC, and what is wrong with the policy?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "ma",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "good",
+            "title": "Method A",
+            "lines": [
+              "TEa 10% · bias 1%",
+              "CV 1.5%"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mb",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "bad",
+            "title": "Method B",
+            "lines": [
+              "TEa 10% · bias 2%",
+              "CV 2.5%"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4,
+              "opacity": 0
+            },
+            {
+              "t": 4.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pol",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "QC policy",
+            "lines": [
+              "Reject on any 1₂s",
+              "2 levels × 20 tests",
+              "New lot target: 3 days"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.4,
+              "opacity": 0
+            },
+            {
+              "t": 9.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 700,
+            "label": "Tighter QC for A or B? What is wrong with the policy?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The sigma metric",
+      "start": 20,
+      "end": 60,
+      "altText": "Formula card: Sigma = (TEa − |bias|) / imprecision. With TEa and bias in percent, divide by the CV in percent; with all terms in measurement units, divide by the SD. Bias always shrinks the allowable error, never enlarges it. Worked cards: method A (10 − 1) / 1.5 = 6.0 sigma; method B (10 − 2) / 2.5 = 3.2 sigma. Effort token: high sigma = fewer rules and controls; low sigma = more rules, more controls, more frequent QC.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 32,
+          "text": "The sigma metric asks how many units of imprecision fit inside the allowable error after bias has used up its share. Sigma equals allowable total error minus the absolute bias, divided by imprecision."
+        },
+        {
+          "id": "n2",
+          "start": 32,
+          "end": 40,
+          "text": "Keep the units matched. Percent allowable error and percent bias go over the CV in percent; values in measurement units go over the SD. Bias always shrinks the space, never enlarges it."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "Method A: ten minus one is nine, divided by 1.5, gives six sigma. Method B: ten minus two is eight, divided by 2.5, gives 3.2 sigma."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "The best methods need the least QC effort. A high-sigma method can run simple rules with few controls; a low-sigma method needs more rules, more controls and more frequent QC."
+        }
+      ],
+      "objects": [
+        {
+          "id": "f",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Sigma = (TEa − |bias|) / CV",
+            "lines": [
+              "Room left after bias",
+              "Measured in imprecision units"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "u",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "label": "% with CV% · units with SD",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "wa",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Method A",
+            "lines": [
+              "(10 − 1) / 1.5 = 6.0σ"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 23,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "wb",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 370,
+            "w": 420,
+            "h": 150,
+            "tone": "bad",
+            "title": "Method B",
+            "lines": [
+              "(10 − 2) / 2.5 = 3.2σ"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 25,
+              "opacity": 0
+            },
+            {
+              "t": 25.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "eff",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 500,
+            "w": 760,
+            "label": "High σ → simple QC · low σ → more rules, more controls",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Reading a power function graph",
+      "start": 60,
+      "end": 104,
+      "altText": "Schematic power function graph card: y-axis = probability of rejection; bottom x-axis = size of systematic error (in SD units); top x-axis = sigma scale; one curve per rule and number of controls (N). Reading card: height at zero error = probability of false rejection (Pfr); height at the critical shift = probability of error detection (Ped). Critical shift card: ΔSEcrit = sigma − 1.65; method A 6.0 − 1.65 = 4.35 SD; method B 3.2 − 1.65 = 1.55 SD. Goal token: Ped ≥ 90% at ΔSEcrit with Pfr ≤ 5%.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "A power function graph shows how a QC rule performs. The vertical axis is the probability of rejecting the run; the horizontal axis is the size of a systematic error, with a sigma scale along the top. Each curve is one rule with a set number of controls."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "Where a curve starts, at zero error, is its false rejection rate: runs rejected when nothing is wrong. Further right, the curve’s height is its chance of catching a shift of that size."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "The shift that matters is the critical systematic error: the sigma metric minus 1.65. For method A that is about 4.35 SD; for method B, only about 1.55 SD."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "A common design goal is at least ninety percent error detection at the critical shift, with false rejection at five percent or less. A large critical shift is easy to catch; a small one needs more rules and more controls."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pg",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 210,
+            "tone": "b",
+            "title": "Power function graph",
+            "lines": [
+              "y: probability of rejection",
+              "x: size of systematic error",
+              "One curve per rule and N"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rd",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 440,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Reading it",
+            "lines": [
+              "At zero error: Pfr",
+              "At the critical shift: Ped"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "reveal": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "se",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "warn",
+            "title": "ΔSEcrit = σ − 1.65",
+            "lines": [
+              "A: 6.0 − 1.65 = 4.35 SD",
+              "B: 3.2 − 1.65 = 1.55 SD",
+              "Smaller = harder to catch"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "goal",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 460,
+            "w": 420,
+            "label": "Goal: Ped ≥ 90% · Pfr ≤ 5%",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "False rejection and target setting",
+      "start": 104,
+      "end": 144,
+      "altText": "1₂s card: probability of false rejection 4.6% with one control measurement, 8.9% with two, 13.0% with three (Gruber 2024); with two levels on 20 tests, at least one test can be expected to flag in every QC cycle, so 1₂s is not used as a rejection rule by default. Target card: the laboratory sets its own mean and SD from measurements under stable conditions; insert values are only a guide; with no previous data, initial mean and SD from at least 20 data points on different days; for a new control lot the mean can shift while the SD usually stays the same, and 10 measurements on different days give a first-approximation mean; a few-day mean is provisional and must be updated. Hook answers: method A (6.0σ) simple rules; method B (3.2σ) more rules and controls; stop using 1₂s to reject; a 3-day target is provisional only.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Now the 1-2s rule. Used to reject, a single 2 SD limit falsely rejects about 4.6 percent of good runs with one control, 8.9 percent with two, and 13 percent with three."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "A lab running two levels on twenty tests can expect at least one test to flag in every QC cycle. That is why 1-2s is not used as a rejection rule by default."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Targets come from your own data; insert values are only a guide. With no history, the mean and SD need at least twenty points on different days. For a new control lot, the SD usually holds, and ten measurements on different days give a first estimate of the mean."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook. Method A, at six sigma, can run simple rules; method B, at 3.2 sigma, needs more rules and controls. Stop rejecting on 1-2s, and treat a three-day target as provisional, to be updated as data accrue."
+        }
+      ],
+      "objects": [
+        {
+          "id": "fr",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 210,
+            "tone": "bad",
+            "title": "1₂s false rejection",
+            "lines": [
+              "N = 1: 4.6%",
+              "N = 2: 8.9%",
+              "N = 3: 13.0%"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ev",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 450,
+            "w": 440,
+            "label": "2 levels × 20 tests → a flag every cycle",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "tg",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "b",
+            "title": "Setting targets",
+            "lines": [
+              "Own data; insert = guide",
+              "No history: ≥ 20 points, mean + SD",
+              "New lot: ≥ 10 days for the mean"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 440,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Hook answers",
+            "lines": [
+              "A 6.0σ simple · B 3.2σ more QC",
+              "No 1₂s rejects · 3-day mean provisional"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “1₂s is the most sensitive, so use it to reject runs” (✓ it falsely rejects about 9% of good runs with two controls; treat it as a warning and pick rules from sigma and power curves); “Percent TEa and bias over an SD in mg/dL” (✓ match units: percent over CV, measurement units over SD); “The insert value or a few days’ mean is the final target” (✓ use the lab’s own mean from at least 10 measurements on different days; update a provisional mean).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: 1-2s is the most sensitive, so use it to reject. No: with two controls it falsely rejects about nine percent of good runs. Choose rules from sigma and the power curves."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: percent allowable error and bias divided by an SD in milligrams per decilitre. No: match the units, percent over CV, measurement units over SD."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the insert value, or a few days of data, is the final target. No: use your own mean from at least ten measurements on different days."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “1₂s is most sensitive: reject on it.”",
+            "lines": [
+              "✓ ~9% false rejection with N = 2"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “% TEa and bias over SD in mg/dL.”",
+            "lines": [
+              "✓ % over CV · units over SD"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Insert value or 3 days = final target.”",
+            "lines": [
+              "✓ Own mean, ≥ 10 measurements on different days"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "The smoke alarm",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “A QC rule is a smoke alarm. Its power curve shows how often it rings with no fire (false rejection) and how often it rings for a fire of a given size (error detection). 1₂s is the alarm that goes off whenever you make toast. Sigma tells you how big the fire must be before patients get hurt: a high-sigma method only needs an alarm for big fires.” Tokens: no fire = Pfr · real fire = Ped · fire size = ΔSEcrit. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: a QC rule is a smoke alarm. Its power curve shows how often it rings with no fire, and how often it catches a fire of a given size. 1-2s is the alarm that goes off every time you make toast."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: QC errors are shifts measured in SD units, not a yes-or-no fire; false rejection grows with the number of controls; and the curves are computer simulations for one rule and one number of controls."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "The smoke alarm",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "No fire = Pfr",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Real fire = Ped",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Fire size = ΔSEcrit",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Errors are shifts in SD units",
+              "Pfr grows with more controls",
+              "Curves are simulations per rule and N"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Sigma = (TEa − |bias|) / CV · ΔSEcrit = sigma − 1.65 · aim for Ped ≥ 90%, Pfr ≤ 5%”, “1₂s = warning, about 9% false rejection with two controls · new control lot: own mean from ≥ 10 measurements on different days”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Compute sigma as allowable error minus bias over imprecision in matching units, use power curves to choose rules that catch the critical shift without many false rejections, treat 1-2s as a warning rather than a rejection rule, and set each new control target from at least ten measurements on different days."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "σ = (TEa − |bias|) / CV · ΔSEcrit = σ − 1.65 · Ped ≥ 90%, Pfr ≤ 5%",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "1₂s = warning (~9% false rejects, N = 2) · target: ≥ 10 days",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: the sigma metric says how much room a method has before its errors matter to patients; a power curve shows how often a QC rule raises a false alarm and how often it catches a real shift; and control targets must come from the lab’s own repeated measurements. Scientific terms: sigma metric (SM), allowable total error (TEa), bias, coefficient of variation (CV), standard deviation (SD), critical systematic error (ΔSEcrit), power function graph, probability of false rejection (Pfr), probability of error detection (Ped), Westgard rules (1₂s, 1₃s, 2₂s), fixed vs floating mean.",
+    "why": "Better methods (high sigma) tolerate larger shifts before results become medically wrong, so simple rules catch the critical error; worse methods need more rules, more controls and more frequent QC. A rule with high false rejection wastes runs and staff time, and with many tests and levels it flags almost every cycle.",
+    "measure": "SM = (TEa% − |bias%|) / CV%, or (TEa − |bias|) / SD in measurement units (Westgard 2018). ΔSEcrit = SM − 1.65 (Westgard 2019). Power function graph: probability of rejection (y) vs size of systematic error (x), sigma scale on top. Design goals: Ped > 90%, Pfr < 5% (Giannoli 2021). 1₂s Pfr: 4.6% (N = 1), 8.9% (N = 2), 13.0% (N = 3) (Gruber 2024). Targets: initial mean and SD from ≥ 20 points on different days with no prior data; new control lot: mean from 10 measurements on different days, SD from 20 measurements or the established SD; a few-day mean is provisional (Gruber 2024; Giannoli 2021).",
+    "differs": "Pfr (curve height at zero error) vs Ped (curve height at the critical shift); high vs low sigma; percent formula with CV vs unit formula with SD; manufacturer insert values (guide only) vs the laboratory’s own mean and SD.",
+    "examAngle": "Expect: compute sigma from TEa, bias and CV, choose stricter or simpler QC for a given sigma, identify what a power function graph shows, recognise 1₂s as a false-rejection problem, and pick the correct way to set a new control target."
+  },
+  "comparisons": [
+    {
+      "id": "pfr-vs-ped",
+      "title": "False rejection vs error detection",
+      "left": {
+        "label": "Pfr",
+        "points": [
+          "Rejections with no error",
+          "Read at zero error; goal ≤ 5%"
+        ]
+      },
+      "right": {
+        "label": "Ped",
+        "points": [
+          "Chance of catching a real shift",
+          "Read at ΔSEcrit; goal ≥ 90%"
+        ]
+      },
+      "distinguisher": "Where on the x-axis you read the power curve."
+    },
+    {
+      "id": "high-vs-low-sigma",
+      "title": "High vs low sigma",
+      "left": {
+        "label": "High sigma (about 6)",
+        "points": [
+          "Large critical shift",
+          "Simple rules, few controls"
+        ]
+      },
+      "right": {
+        "label": "Low sigma (about 3)",
+        "points": [
+          "Small critical shift",
+          "More rules, more controls, more often"
+        ]
+      },
+      "distinguisher": "How much room is left in TEa after bias and imprecision."
+    }
+  ],
+  "mnemonic": {
+    "text": "A QC rule is a smoke alarm: its power curve shows how often it rings with no fire (false rejection) and how often it catches a fire of a given size (error detection). 1₂s is the alarm that goes off whenever you make toast.",
+    "explanation": "Separates false rejection from error detection and ties the critical shift to “fire size”.",
+    "limitation": "QC errors are shifts measured in SD units, not a yes-or-no fire; false rejection grows with the number of control measurements; power curves are computer simulations for one rule and one number of controls."
+  },
+  "analogyLimitations": [
+    "Scenario and method numbers are invented.",
+    "The power function graph is described schematically, not plotted from simulation.",
+    "Design goals (Ped ≥ 90%, Pfr ≤ 5%) are common recommendations, not universal requirements."
+  ],
+  "takeaway": "Compute sigma as allowable error minus bias over imprecision in matching units, use power curves to choose rules that catch the critical shift without many false rejections, treat 1-2s as a warning rather than a rejection rule, and set each new control target from at least ten measurements on different days.",
+  "questions": [
+    {
+      "id": "ops-sig-q1",
+      "stem": "A method has an allowable total error of 12%, a bias of 3% and a CV of 2%. What is its sigma metric?",
+      "options": [
+        {
+          "id": "a",
+          "text": "4.5",
+          "rationale": "Correct. (12 − 3) / 2 = 4.5."
+        },
+        {
+          "id": "b",
+          "text": "6.0",
+          "rationale": "Incorrect. This is 12 / 2 and ignores the bias, which always shrinks the allowable error."
+        },
+        {
+          "id": "c",
+          "text": "7.5",
+          "rationale": "Incorrect. This adds the bias, (12 + 3) / 2; bias is subtracted."
+        },
+        {
+          "id": "d",
+          "text": "0.22",
+          "rationale": "Incorrect. This inverts the formula, 2 / (12 − 3); imprecision belongs in the denominator."
+        }
+      ],
+      "answer": "a",
+      "skill": "Sigma calculation",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-sig-q2",
+      "stem": "A laboratory runs two control levels per run and rejects the run whenever any control exceeds 2 SD. Many rejected runs show no fault on investigation. What best explains this?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The 1₂s rule has a high probability of false rejection, about 9% of good runs with two control measurements",
+          "rationale": "Correct. Gruber 2024 gives 4.6%, 8.9% and 13.0% for one, two and three control measurements, so 1₂s is not used as a rejection rule by default."
+        },
+        {
+          "id": "b",
+          "text": "Two control levels cancel each other out, so 1₂s cannot cause false rejections",
+          "rationale": "Incorrect. More control measurements raise the false-rejection rate."
+        },
+        {
+          "id": "c",
+          "text": "The 1₂s rule has a lower false-rejection rate than 1₃s",
+          "rationale": "Incorrect. Narrower 2 SD limits are crossed more often by chance than 3 SD limits."
+        },
+        {
+          "id": "d",
+          "text": "The method must have a sigma above 6",
+          "rationale": "Incorrect. False rejection from 1₂s occurs with no error present, whatever the method’s sigma."
+        }
+      ],
+      "answer": "a",
+      "skill": "Rule false rejection",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-sig-q3",
+      "stem": "A new lot of the same control material is introduced on an unchanged method. What is the best way to set its target mean?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Use the laboratory’s own mean from at least 10 measurements on different days, keeping the established SD and updating as data accrue",
+          "rationale": "Correct. Ten measurements on different days give a first-approximation mean; the SD usually stays the same with a new lot."
+        },
+        {
+          "id": "b",
+          "text": "Adopt the manufacturer’s insert mean as the final target",
+          "rationale": "Incorrect. Insert values are only a guide, not a substitute for the laboratory’s own mean and SD."
+        },
+        {
+          "id": "c",
+          "text": "Run 10 replicates in a single run and use their mean",
+          "rationale": "Incorrect. Measurements on different days are needed to capture day-to-day variability."
+        },
+        {
+          "id": "d",
+          "text": "Recalculate both mean and SD from the first 3 days and fix them",
+          "rationale": "Incorrect. A few-day mean is provisional only, and an SD needs about 20 measurements."
+        }
+      ],
+      "answer": "a",
+      "skill": "Target setting",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch11",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 11, Quality Control That Catches Errors (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 11,
+          "section": "High-Yield Hits",
+          "items": [
+            1,
+            4,
+            5
+          ]
+        },
+        {
+          "chapter": 11,
+          "section": "Exam Traps",
+          "items": [
+            4
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "westgard2018",
+      "kind": "external",
+      "citation": "Westgard S, Bayat H, Westgard JO. Analytical Sigma metrics: A review of Six Sigma implementation tools for medical laboratories. Biochem Med (Zagreb). 2018;28(2):020502. doi:10.11613/bm.2018.020502",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6039161/",
+      "consulted": true,
+      "usedFor": "SM = (TEa% − bias%) / CV with bias as an absolute value that always shrinks allowable error; unit version (TEa − bias) / SD; best methods need less QC effort, worse methods need more rules, more controls and more frequent QC."
+    },
+    {
+      "id": "westgard2019",
+      "kind": "external",
+      "citation": "Westgard S, Bayat H, Westgard JO. Mistaken assumptions drive new Six Sigma model off the road. Biochem Med (Zagreb). 2019;29(1):010903. doi:10.11613/bm.2019.010903",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6294151/",
+      "consulted": true,
+      "usedFor": "ΔSEcrit = [(pTE − |bias|)/SD] − 1.65 = SM − 1.65; power function graphs give Ped at the critical shift and Pfr under stable operation; axes (probability of rejection vs size of systematic error, sigma scale on top); curves per rule, N and R produced by a computer program."
+    },
+    {
+      "id": "gruber2024",
+      "kind": "external",
+      "citation": "Gruber L, Hausch A, Mueller T. Internal Quality Controls in the Medical Laboratory: A Narrative Review of the Basic Principles of an Appropriate Quality Control Plan. Diagnostics (Basel). 2024;14(19):2223. doi:10.3390/diagnostics14192223",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11475633/",
+      "consulted": true,
+      "usedFor": "1₂s Pfr 4.6% / 8.9% / 13.0% for one, two and three IQC levels; two levels on 20 parameters flag at least one parameter each cycle; 1₂s should not be a default rejection rule; insert values only a guide; ≥ 20 data points on different days for initial mean and SD; new lot: mean may shift, SD usually unchanged; 10 measurements on different days for a first-approximation mean (citing CLSI C24); few-day mean is transient and updated."
+    },
+    {
+      "id": "giannoli2021",
+      "kind": "external",
+      "citation": "Giannoli JM, Albarede S, Avellan T, et al. Recommendations for the application and follow-up of quality controls in medical laboratories. Biochem Med (Zagreb). 2021;31(2):020501. doi:10.11613/bm.2021.020501",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8047787/",
+      "consulted": true,
+      "usedFor": "QC design objectives Ped > 90% and Pfr < 5%; new IQC batch: target value by the laboratory from 10 measurements over 10 days, SD from 20 measurements (or the laboratory’s established SD), data updated after a few weeks."
+    },
+    {
+      "id": "ricos2022",
+      "kind": "external",
+      "citation": "Ricós C, Fernandez-Calle P, Perich C, Westgard JO. Internal quality control - past, present and future trends. Adv Lab Med. 2022;3(3):243-262. doi:10.1515/almed-2022-0029",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10197334/",
+      "consulted": true,
+      "usedFor": "2 SD control limits cause a high level of false rejections; multirules keep Pfr low while increasing Ped; 1₂s as the operative rule is inefficient because of its high Pfr; power function graphs show Ped and Pfr for a rule."
+    },
+    {
+      "id": "costapallaruelo2025",
+      "kind": "external",
+      "citation": "Costa-Pallaruelo M, García-Osuna Á, Canyelles M, et al. Refining quality control strategies in highly automated laboratories: experience in the integration of multistage statistical designs and risk management. Biochem Med (Zagreb). 2025;35(3):030704. doi:10.11613/bm.2025.030704",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12523598/",
+      "consulted": true,
+      "usedFor": "Practical QC design using Ped ≥ 0.9 for startup and Pfr ≤ 0.05 for monitoring; sigma-based rule selection."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-sigma",
+      "text": "Sigma metric formula, matching units (percent with CV, measurement units with SD), bias always shrinks allowable error; higher sigma needs less QC effort, lower sigma needs more rules, controls and frequency.",
+      "status": "checked",
+      "refs": [
+        "westgard2018"
+      ]
+    },
+    {
+      "id": "cl-power",
+      "text": "Power function graph axes; Pfr read at zero error and Ped at the critical shift; ΔSEcrit = sigma − 1.65; curves are simulations per rule and N.",
+      "status": "checked",
+      "refs": [
+        "westgard2019",
+        "ricos2022"
+      ]
+    },
+    {
+      "id": "cl-goals",
+      "text": "Common design goals Ped ≥ 90% and Pfr ≤ 5%.",
+      "status": "checked",
+      "refs": [
+        "giannoli2021",
+        "costapallaruelo2025"
+      ]
+    },
+    {
+      "id": "cl-12s",
+      "text": "1₂s Pfr 4.6%, 8.9%, 13.0% for one, two and three control measurements; two levels on 20 tests flag every cycle; 1₂s not a default rejection rule.",
+      "status": "checked",
+      "refs": [
+        "gruber2024",
+        "ricos2022"
+      ]
+    },
+    {
+      "id": "cl-target",
+      "text": "Laboratory’s own mean and SD; insert values a guide; ≥ 20 points for initial mean and SD; new lot mean from 10 measurements on different days, SD usually unchanged or from 20 measurements; a few-day mean is provisional.",
+      "status": "checked",
+      "refs": [
+        "gruber2024",
+        "giannoli2021"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "Reviewer’s power-function detection figures (1₂s ~35% at 1 SD; 1₃s ~50% at 2.5 SD; 1₃s/2₂s ~65% at 2.5 SD and ~90% at 3.2 SD) and long-term SD cumulative over 6–12 months, never the average of monthly SDs.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch11"
+      ],
+      "note": "Not found in the open sources read; not taught as facts in this lesson."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario and method numbers invented; power graph schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“The smoke alarm.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-12s-n",
+      "issue": "Ch. 11 Hit 2 and Exam Trap 4 give a single “~10% false alert rate” for 1₂s as a rejection rule. Gruber 2024 gives the probability of false rejection as 4.6% with one control measurement, 8.9% with two and 13.0% with three, so the figure depends on the number of control measurements per run; “~10%” fits about two (register flag rv-12s-false-rejection-n).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; formulas, graphs and rules shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 factual claims checked against Westgard 2018 and 2019, Gruber 2024, Giannoli 2021, Ricós 2022 and Costa-Pallaruelo 2025 (all read as Europe PMC full text); 1 pending (reviewer power-function figures and long-term SD rule). CLSI C24 itself was not read (paywalled); its target-setting guidance is taught as reported by Gruber 2024 and Giannoli 2021. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
