@@ -518,6 +518,8 @@ FLAG_RULES = [
      "sim-q150 (AHO child with low calcium, high phosphate, high PTH) still has the correct answer, pseudohypoparathyroidism. But the explanation says the blunted cAMP response 'confirms' it; the 2018 consensus says exogenous PTH testing is not necessary, confirms PHP by molecular genetic analysis, and notes PHP type 2 shows a cAMP rise with a deficient phosphaturic response."),
     ('rv-12s-false-rejection-n', '1_2s as a rejection rule produces ~10% false alerts',
      "sim-q15: the answer (1_2s is a warning, not a rejection rule) still stands. Gruber 2024 gives 1_2s false rejection as 4.6%, 8.9% and 13.0% with one, two and three control levels, so '~10%' holds only for about two control levels."),
+    ('rv-ch7-dipstick-validation-size', '10\\s*[-–]\\s*20 specimens',
+     'sim-q121 keys “Testing of 10 to 20 specimens with both normal and abnormal results” as the minimum dipstick validation. No source read states this number; under US CLIA non-automated dipsticks are waived and the federal requirement is to follow the manufacturer’s instructions (42 CFR 493.15(e)), so the keyed answer reflects local or accreditation practice rather than a regulatory minimum, and distractor (a) is closer to the CLIA text than the explanation implies.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
