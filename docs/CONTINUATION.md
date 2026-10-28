@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 299, teaching 1398 of 1,932 concepts (about 72.4%).** All 299 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 300, teaching 1402 of 1,932 concepts (about 72.6%).** All 300 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -67,7 +67,7 @@
   - Ch. 61 (16/21 concepts): `micro-lyme-two-tier-serology`, `micro-neurosyphilis-penicillin-jhr`, `micro-syphilis-serology-algorithms`.
   - Ch. 62 (12/19 concepts): `micro-chlamydia-mycoplasma-diagnosis`, `micro-chlamydia-treatment-lgv`.
   - Ch. 63 (14/19 concepts): `micro-rickettsial-rash-eschar-weil-felix`, `micro-rickettsial-tickborne-diagnosis`.
-  - Ch. 64 (16/24 concepts): `micro-ebv-cmv-serology`, `micro-hbv-perinatal-hcv-cure-rubella`, `micro-hiv-hcv-testing-algorithms`, `micro-respiratory-virus-naat-antigen-culture`, `micro-transplant-viral-loads`.
+  - Ch. 64 (20/24 concepts): `micro-ebv-cmv-serology`, `micro-hbv-perinatal-hcv-cure-rubella`, `micro-hiv-hcv-testing-algorithms`, `micro-hsv-encephalitis-mono-edge-cases`, `micro-respiratory-virus-naat-antigen-culture`, `micro-transplant-viral-loads`.
   - Ch. 65 (17/24 concepts): `micro-entamoeba-coccidia-stool-protozoa`, `micro-helminth-specimen-timing`, `micro-malaria-thick-thin-films`.
   - Ch. 66 (48/54 concepts): `micro-antigen-tests-negatives`, `micro-blood-culture-volume-contamination`, `micro-csf-meningitis-shunt-panel`, `micro-direct-smears-sterile-fluids-bal`, `micro-endocarditis-blood-cultures-duke`, `micro-respiratory-culture-clues-maldi`, `micro-result-reporting-critical-calls`, `micro-result-to-therapy-mssa-cdi-giardia-flu`, `micro-specimen-acceptability-transport`, `micro-specimen-id-transport-biosafety`, `micro-urine-culture-interpretation`.
   - Ch. 67 (18/20 concepts): `mdx-cpt-molecular-tiers-unlisted-bundling`, `mdx-molecular-context-fish-cftr-snp`, `mdx-pharmacogenomics`, `mdx-reimbursement-fda-status-disclaimer`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 515 flags (389 verified issues, 126 needing verification), plus scan results.
-- **Checks:** 1860 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 1866 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
