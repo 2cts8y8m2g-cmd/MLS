@@ -526,6 +526,8 @@ FLAG_RULES = [
      'sim-q550: option c is still the best answer among the choices. The 99.4% specificity is a 2015 clinical-trial figure (pooled 94% across 8 studies); the 1-3 CFU/mL and ~4 h vs >120 h figures were not confirmed from a source read (Tang 2019 states 1 CFU/mL secondhand), and T2Candida detects only five Candida species.'),
     ('rv-ch6-tat-targets-local', '90th-percentile RFP goals are chemistry 30 min',
      "sim-q104 states the 30/45/20/30 goals as if they were general 'RFP goals' while the stem does not give the lab's own goals. The answer (immunoassay) stands only if the lab adopted those goals; sources say TAT goals are set locally and negotiated with users, so the stem should state the lab's targets."),
+    ('rv-mac-prophylaxis-art', 'prophylaxis stops once the CD4 count stays above 100',
+     'sim-q540 says MAC prophylaxis stops once the CD4 count stays above 100/µL for at least 3 months on ART. Among the options given, answer (a) is still the best choice. Current sources (Dawood 2024; To 2020) say prophylaxis can stop once ART is fully suppressive, and that routine primary prophylaxis is not recommended when ART starts promptly, so the explanation should carry that qualification.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
