@@ -1,0 +1,1638 @@
+{
+  "schemaVersion": 1,
+  "id": "immuno-complement-triggers-anaphylatoxins",
+  "title": "Complement Triggers and Alarms: C1q, IgG Subclasses, MBL and Anaphylatoxins",
+  "summary": "Learn what starts the classical pathway (IgM, clustered IgG and antibody-independent C1q ligands), why IgG subclasses differ in complement activation, how MBL and MASP-2 start the lectin pathway and why “MBL deficiency” depends on the cut-off, and how carboxypeptidase N trims the C3a and C5a anaphylatoxins.",
+  "domain": "p6-immuno",
+  "topic": "ch48",
+  "conceptIds": [
+    "ch48.hit3",
+    "ch48.hit4",
+    "ch48.hit13",
+    "ch48.trap6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 48,
+        "section": "High-Yield Hits",
+        "items": [
+          3,
+          4,
+          13
+        ]
+      },
+      {
+        "chapter": 48,
+        "section": "Exam Traps",
+        "items": [
+          6
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 48 Hits 3 (anaphylatoxins and carboxypeptidase N), 4 (classical pathway triggers and the IgG4 exception), 13 (MBL level, deficiency, MASP-2) and Trap 6 (IgG subclasses), checked against Merle 2015, Vidarsson 2014, Thiel 2006, Dahl 2004 and Auriti 2017, all read as Europe PMC full text. Three qualifications are taught and flagged: C4a’s anaphylatoxin activity is debated and C5a desArg is weakened rather than inactive; IgG2 is a weak activator, not equal to IgG1 and IgG3; and the ~5% MBL-deficiency figure is a Caucasian genotype frequency, while level-based prevalence depends on the cut-off. Not verified, so not taught: the exact typical MBL level of 1.5 µg/mL and the printed range 0.002–10 µg/mL, and C4a-driven chemotaxis or vasodilation."
+  },
+  "prerequisites": [
+    "ch48.hit1"
+  ],
+  "objectives": [
+    "List the ligands that let C1q start the classical pathway, with and without antibody, and explain why one IgM but several clustered IgG are needed.",
+    "Rank IgG subclasses for C1q binding and describe the exceptions for IgG2 and IgG4.",
+    "Describe lectin-pathway start-up by MBL and MASP-2, interpret MBL levels and deficiency definitions, and explain the actions of C3a and C5a and their trimming by carboxypeptidase N."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three surfaces, one cascade",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three coated surfaces in a teaching experiment. (1) Red cells coated with an IgG4 antibody. (2) Bacteria coated with an IgM antibody. (3) Bacteria with mannose-containing sugars and no antibody at all. Question token: “Which one lights complement, and what alarm does it release?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Three coated surfaces meet fresh serum. Red cells coated with an IgG4 antibody, and bacteria coated with an IgM antibody."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "The third is a bacterium with mannose-containing sugars on its surface and no antibody at all."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which of these starts complement, by which fuse, and what alarm fragments come out?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "p1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Red cells",
+            "lines": [
+              "Coated with IgG4"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "2 Bacteria",
+            "lines": [
+              "Coated with IgM"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "3 Bacteria",
+            "lines": [
+              "Mannose sugars",
+              "No antibody"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 640,
+            "label": "Which fuse? Which alarm?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Two fuses, one convertase",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic: two recognition molecules. Card C1q (classical): binds immune complexes containing IgM or IgG; one surface-bound IgM is enough, but IgG must be several molecules close together (ordered hexamers on the surface). Card “No antibody needed”: C1q also binds surface-bound pentraxins (C-reactive protein, pentraxin 3) and molecules on dying cells, such as phosphatidylserine and double-stranded DNA. Card MBL (lectin): binds mannose-containing sugars on microbes and dying cells; MASP-1 activates MASP-2, MASP-2 cleaves C4 and both cleave C2. Token: both fuses build the same C3 convertase, C4b2a, and both need calcium (EDTA blocks assembly of C1 and MBL–MASP complexes).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "The classical fuse is C1q. It binds immune complexes containing IgM or IgG. One surface-bound IgM is enough, but IgG must cluster, several molecules close together, before C1q binds well."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "C1q does not always need antibody. It also binds surface-bound C-reactive protein and pentraxin 3, and molecules on dying cells, such as phosphatidylserine and double-stranded DNA."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "The lectin fuse is mannose-binding lectin, MBL, which binds mannose-containing sugars on microbes. Its protease MASP-1 activates MASP-2; MASP-2 cleaves C4, and both cleave C2."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Both fuses build the same C3 convertase, C4b2a. Both need calcium: in EDTA plasma, C1q and MBL cannot hold their proteases, so neither pathway can start."
+        }
+      ],
+      "objects": [
+        {
+          "id": "c1q",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 160,
+            "w": 440,
+            "h": 130,
+            "tone": "b",
+            "title": "C1q (classical)",
+            "lines": [
+              "IgM: one molecule",
+              "IgG: several, clustered"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "noab",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 340,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "No antibody needed",
+            "lines": [
+              "CRP · pentraxin 3",
+              "Dying cells: PS, dsDNA"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mbl",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 160,
+            "tone": "good",
+            "title": "MBL (lectin)",
+            "lines": [
+              "Mannose-containing sugars",
+              "MASP-1 → MASP-2 → C4, C2"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "conv",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "label": "Both → C4b2a · need Ca²⁺",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Not every IgG lights the fuse",
+      "start": 60,
+      "end": 104,
+      "altText": "Podium chart of C1q binding by IgG subclass (Vidarsson 2014, Table 1): IgG3 +++, IgG1 ++, IgG2 +, IgG4 −. Card IgG1/IgG3: efficient classical activation; the relatively long IgG3 hinge has been suggested to make the C1q site more accessible. Card IgG2: weak, but can activate at high epitope density, as on polysaccharides. Card IgG4: reduced or absent C1q binding (residue P331 is partly responsible); IgG4 forms small immune complexes and can even reduce complement activation by IgG1. Hook answers: (1) IgG4-coated cells, little or no classical activation; (2) IgM-coated bacteria, classical activation.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "IgG subclasses differ. In binding C1q, IgG3 ranks highest, then IgG1, then IgG2, while IgG4 binds little or not at all."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "IgG1 and IgG3 trigger the classical pathway efficiently. The unusually long hinge of IgG3 has been suggested to make its C1q site easier to reach."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "IgG2 is weak, but it can activate complement when antigen is dense, as on polysaccharides. IgG4 binds C1q poorly or not at all, forms small immune complexes, and can even dampen activation by IgG1."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "Back to the hook: the IgG4-coated cells barely start the classical pathway, while IgM-coated bacteria start it readily, because one bound IgM is enough for C1q."
+        }
+      ],
+      "objects": [
+        {
+          "id": "pod",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 190,
+            "tone": "b",
+            "title": "C1q binding by subclass",
+            "lines": [
+              "IgG3 +++  ·  IgG1 ++",
+              "IgG2 +",
+              "IgG4 −"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "g13",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 440,
+            "w": 440,
+            "label": "IgG1 · IgG3: efficient",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "g24",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "IgG2 · IgG4",
+            "lines": [
+              "IgG2: only on dense antigen",
+              "IgG4: little or none; can dampen IgG1"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 32,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Hook answers 1 and 2",
+            "lines": [
+              "1 IgG4: barely starts",
+              "2 IgM: one molecule is enough"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0
+            },
+            {
+              "t": 34,
+              "reveal": 0
+            },
+            {
+              "t": 34.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 40,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 41,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "MBL numbers and the alarm fragments",
+      "start": 104,
+      "end": 144,
+      "altText": "Left: MBL card. Serum MBL is genetically determined and stable through life, ranging from about 5 ng/mL to more than 10 µg/mL; healthy adults usually have more than 1000 ng/mL; levels can rise during inflammation (an acute-phase protein; one review reports 3–4-fold, another calls the rise small). Deficiency card: cut-offs differ between studies (for example 100, 500 or 1000 ng/mL); about 5% of Caucasians carry two variant alleles (B, C or D) with very low levels, and more than 10% may be called deficient depending on the definition; a Danish population study of 9,245 adults found no major excess of infection or death. Right: alarm fragments card. C3a and C5a (10–14 kDa) recruit immune cells, trigger oxidative bursts and induce histamine production by basophils and mast cells, causing vasodilatation; C4a’s activity is debated, with no cognate receptor identified. Carboxypeptidase N card: removes the C-terminal arginine, giving C3a desArg (cannot bind C3aR) and C5a desArg (about 90% weaker). Hook answer 3: lectin pathway via MBL.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Hook surface three uses the lectin fuse. Serum MBL is set by genes and stable through life, from about 5 nanograms to more than 10 micrograms per millilitre; healthy adults usually have more than 1000 nanograms per millilitre."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Deficiency depends on the cut-off chosen. About five percent of Caucasians carry two variant alleles with very low MBL, yet a large Danish population study found no major excess of infection or death."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Every fuse releases alarm fragments. C3a and C5a recruit immune cells, trigger oxidative bursts, and make basophils and mast cells produce histamine, which dilates vessels. Whether C4a acts this way is debated."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "In plasma, carboxypeptidase N quickly clips the last arginine. C3a desArg can no longer bind its receptor, and human C5a desArg is about ninety percent weaker."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lev",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 440,
+            "h": 160,
+            "tone": "good",
+            "title": "MBL level",
+            "lines": [
+              "~5 ng/mL to >10 µg/mL",
+              "Healthy adults: usually >1000 ng/mL"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "def",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "warn",
+            "title": "“Deficiency”",
+            "lines": [
+              "Cut-off dependent",
+              "~5% Caucasians: two variant alleles"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ana",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 160,
+            "tone": "b",
+            "title": "Alarm fragments",
+            "lines": [
+              "C3a · C5a: recruit, histamine",
+              "C4a: activity debated"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cpn",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "Carboxypeptidase N",
+            "lines": [
+              "C3a desArg: no C3aR binding",
+              "C5a desArg: ~90% weaker"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “All IgG subclasses activate complement equally” (✓ C1q binding IgG3 > IgG1 > IgG2, IgG4 little or none); “The classical pathway always needs antibody” (✓ C1q also binds C-reactive protein, pentraxin 3, and dying-cell molecules such as dsDNA); “C3a, C4a and C5a are equal alarms, and desArg forms are dead” (✓ C4a activity is debated; C3a desArg cannot bind C3aR, but C5a desArg keeps some activity).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: all IgG subclasses activate complement equally. No: IgG3 and IgG1 lead, IgG2 is weak, and IgG4 binds C1q little or not at all."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: the classical pathway always needs antibody. No: C1q also binds C-reactive protein and molecules on dying cells, such as DNA."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the three a-fragments are equal alarms that die once trimmed. No: C4a is debated, and trimmed C5a keeps a little activity."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “All IgG subclasses are equal.”",
+            "lines": [
+              "✓ IgG3 > IgG1 > IgG2; IgG4 little or none"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Classical always needs antibody.”",
+            "lines": [
+              "✓ C1q also binds CRP, dying cells, DNA"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “C3a = C4a = C5a; desArg is dead.”",
+            "lines": [
+              "✓ C4a debated; C5a desArg weaker, not zero"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "The IgG podium",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “The IgG podium is 3-1-2, and 4 never finishes: IgG3 gold, IgG1 silver, IgG2 bronze, IgG4 off the podium. Carboxypeptidase N Nips the tail arginine off the alarms.” Tokens: 3 gold · 1 silver · 2 bronze · 4 off. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: the IgG podium is three, one, two, and four never finishes. IgG3 takes gold, IgG1 silver, IgG2 bronze, and IgG4 is off the podium. And carboxypeptidase N nips the tail arginine off the alarms."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: IgG2 can still activate complement on dense antigen such as polysaccharides; IgG4 can actively dampen IgG1, not just sit out; and a nipped C5a still keeps some activity, while C4a may not be a true alarm at all."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "The IgG podium: 3 · 1 · 2",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 170,
+            "w": 200,
+            "label": "IgG3 gold",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 170,
+            "w": 200,
+            "label": "IgG1 silver",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "opacity": 0
+            },
+            {
+              "t": 3.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 170,
+            "w": 200,
+            "label": "IgG2 bronze",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 810,
+            "y": 170,
+            "w": 200,
+            "label": "IgG4 off",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 4.5,
+              "opacity": 0
+            },
+            {
+              "t": 5.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "IgG2 activates on dense antigen",
+              "IgG4 can dampen IgG1",
+              "C5a desArg keeps some activity; C4a debated"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “C1q: IgM or clustered IgG (IgG3 > IgG1 > IgG2, IgG4 little or none), CRP, dying cells · MBL: sugars, MASP-2”, “C3a/C5a alarms · carboxypeptidase N → desArg · C4a debated”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "C1q starts the classical pathway on IgM, clustered IgG (IgG3 and IgG1 best, IgG4 barely), C-reactive protein or dying cells, MBL starts the lectin pathway on microbial sugars through MASP-2, and carboxypeptidase N trims the C3a and C5a alarms."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "C1q: IgM · IgG3 > IgG1 > IgG2 · IgG4 barely · CRP · dying cells",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "MBL → MASP-2 → C4 · C3a/C5a trimmed by carboxypeptidase N",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: complement can be switched on by antibodies stuck to a target, by a few non-antibody signals such as C-reactive protein or dying cells, or by a sugar-sensing protein, MBL, that recognises microbes. Once on, it releases small alarm fragments that call in white cells and open up blood vessels, and the blood quickly trims those fragments to weaken them. Scientific terms: C1q, C1r, C1s, immune complex, IgM, IgG subclasses (IgG1–IgG4), IgG hexamer, epitope density, pentraxins (C-reactive protein, pentraxin 3), phosphatidylserine, double-stranded DNA, mannose-binding lectin (MBL), MBL-associated serine proteases (MASP-1, MASP-2), C3 convertase C4b2a, anaphylatoxins (C3a, C5a, C4a), C3aR, C5aR, carboxypeptidase N, C3a desArg, C5a desArg, MBL2 variant alleles B, C and D.",
+    "why": "C1q needs several of its heads engaged: an antigen-bound IgM exposes multiple C1q sites at once, whereas IgG is monomeric and binds well only when several molecules cluster, and the subclasses differ in hinge and CH2 structure, so IgG3 and IgG1 bind C1q best, IgG2 weakly and IgG4 little or not at all. MBL binds clustered sugars and its MASPs cleave C4 and C2 to give the same C4b2a. C3a and C5a act through receptors on immune cells, and removing their C-terminal arginine weakens that binding.",
+    "measure": "Calcium dependence matters in the lab: in EDTA plasma C1q and MBL cannot associate with their proteases, so classical and lectin activation is prevented. MBL is measured as a serum or plasma concentration (or as MBL-dependent C4 deposition); published deficiency cut-offs include 100, 500 and 1000 ng/mL, and levels can rise during inflammation (Auriti 2017 reports 3–4-fold, whereas Thiel 2006 describes only a small acute-phase increase), and Auriti 2017 notes that levels may rise under stress to sufficient levels in people who are usually deficient.",
+    "differs": "Classical (C1q; antibody or pentraxin or dying-cell ligands) vs lectin (MBL and ficolins; sugars and acetyl groups), both giving C4b2a; IgM (one molecule) vs IgG (clustered); IgG1/IgG3 (efficient) vs IgG2 (weak, dense antigen) vs IgG4 (little or none); C3a/C5a (established anaphylatoxins) vs C4a (debated); C3a desArg (no C3aR binding) vs C5a desArg (about 90% weaker).",
+    "examAngle": "Expect: pick IgG4 as the subclass that does not activate C1, rank IgG3 > IgG1 > IgG2, name C-reactive protein, apoptotic cells or DNA as antibody-independent classical triggers, name MASP-2 as the lectin protease that cleaves C4, and name carboxypeptidase N as the enzyme that converts C3a and C5a to their desArg forms."
+  },
+  "comparisons": [
+    {
+      "id": "classical-vs-lectin-trigger",
+      "title": "Classical vs lectin start-up",
+      "left": {
+        "label": "Classical (C1q)",
+        "points": [
+          "IgM or clustered IgG immune complexes",
+          "Also CRP, pentraxin 3, dying cells, dsDNA",
+          "C1r activates C1s"
+        ]
+      },
+      "right": {
+        "label": "Lectin (MBL)",
+        "points": [
+          "Mannose-containing sugars on microbes",
+          "MASP-1 activates MASP-2",
+          "MASP-2 cleaves C4"
+        ]
+      },
+      "distinguisher": "What is recognised, antibody-type ligands vs sugars; both build C4b2a and need calcium."
+    },
+    {
+      "id": "igg-subclass-c1q",
+      "title": "Strong vs weak IgG activators",
+      "left": {
+        "label": "IgG3 · IgG1",
+        "points": [
+          "Highest C1q binding (IgG3 > IgG1)",
+          "Efficient classical activation"
+        ]
+      },
+      "right": {
+        "label": "IgG2 · IgG4",
+        "points": [
+          "IgG2 weak, activates on dense antigen",
+          "IgG4 little or none; can dampen IgG1"
+        ]
+      },
+      "distinguisher": "C1q binding by subclass: IgG3 > IgG1 > IgG2, IgG4 little or none."
+    }
+  ],
+  "mnemonic": {
+    "text": "The IgG podium is 3-1-2, and 4 never finishes: IgG3 gold, IgG1 silver, IgG2 bronze, IgG4 off the podium. Carboxypeptidase N Nips the tail arginine off the alarms.",
+    "explanation": "Fixes the C1q-binding order of IgG subclasses and the enzyme that converts C3a and C5a to desArg forms.",
+    "limitation": "IgG2 can activate complement on dense antigen such as polysaccharides; IgG4 can actively dampen IgG1 activation rather than simply sitting out; a nipped C5a desArg keeps some activity (about 90% weaker, not zero), and C4a may not be a true anaphylatoxin."
+  },
+  "analogyLimitations": [
+    "Scenario and surfaces are invented.",
+    "Fuse and podium diagrams are schematic.",
+    "The podium ranks C1q binding only; real activation also depends on antigen density and downstream steps."
+  ],
+  "takeaway": "C1q starts the classical pathway on IgM, clustered IgG (IgG3 and IgG1 best, IgG4 barely), C-reactive protein or dying cells, MBL starts the lectin pathway on microbial sugars through MASP-2, and carboxypeptidase N trims the C3a and C5a alarms.",
+  "questions": [
+    {
+      "id": "immuno-cta-q1",
+      "stem": "Antibodies of the same specificity are made in each IgG subclass. Which one is least able to bind C1q and start the classical pathway?",
+      "options": [
+        {
+          "id": "a",
+          "text": "IgG4",
+          "rationale": "Correct. IgG4 shows reduced or absent C1q binding (residue P331 is partly responsible) and forms small immune complexes that can even reduce activation by IgG1."
+        },
+        {
+          "id": "b",
+          "text": "IgG3",
+          "rationale": "Incorrect. IgG3 has the highest C1q binding of the subclasses and activates the classical pathway efficiently."
+        },
+        {
+          "id": "c",
+          "text": "IgG1",
+          "rationale": "Incorrect. IgG1 binds C1q well and is an efficient classical-pathway activator, second only to IgG3."
+        },
+        {
+          "id": "d",
+          "text": "IgG2",
+          "rationale": "Incorrect. IgG2 is a weak activator, but it binds some C1q and can activate complement at high antigen density, as on polysaccharides; IgG4 binds less."
+        }
+      ],
+      "answer": "a",
+      "skill": "IgG subclasses",
+      "difficulty": "recall"
+    },
+    {
+      "id": "immuno-cta-q2",
+      "stem": "In blood collected into EDTA, neither the classical nor the lectin pathway can be activated. What is the reason?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Without calcium, C1q and MBL cannot associate with their proteases (C1r and C1s, or the MASPs)",
+          "rationale": "Correct. Assembly of C1q with C1r2C1s2 and of MBL with MASPs is calcium-dependent, so chelating calcium prevents classical and lectin activation."
+        },
+        {
+          "id": "b",
+          "text": "EDTA destroys antibodies, so immune complexes cannot form",
+          "rationale": "Incorrect. The block is at calcium-dependent assembly of the recognition complexes; it would also stop the antibody-independent lectin pathway, which has nothing to do with antibodies."
+        },
+        {
+          "id": "c",
+          "text": "EDTA activates carboxypeptidase N, which removes C4",
+          "rationale": "Incorrect. Carboxypeptidase N trims the C-terminal arginine of C3a and C5a; it does not remove C4."
+        },
+        {
+          "id": "d",
+          "text": "EDTA converts C4b2a into C3bBb",
+          "rationale": "Incorrect. These are different convertases built from different proteins; EDTA does not convert one into the other."
+        }
+      ],
+      "answer": "a",
+      "skill": "Specimen effects",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-cta-q3",
+      "stem": "C5a is released during complement activation and is quickly modified in human plasma. Which statement is accurate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Carboxypeptidase N removes the C-terminal arginine, giving C5a desArg with about 90% weaker pro-inflammatory activity",
+          "rationale": "Correct. Carboxypeptidase N converts C5a to C5a desArg, which in humans has about 90% weaker pro-inflammatory activity; it is weakened, not completely inactive."
+        },
+        {
+          "id": "b",
+          "text": "Factor I cleaves C5a into C5b, which forms the membrane attack complex",
+          "rationale": "Incorrect. C5b comes from cleavage of C5 by a C5 convertase, not from C5a; carboxypeptidase N, not factor I, trims C5a."
+        },
+        {
+          "id": "c",
+          "text": "C5a desArg is more potent than C5a in humans",
+          "rationale": "Incorrect. Human C5a desArg is about 90% weaker; equal potency of the desArg form has been reported in mice, a species difference."
+        },
+        {
+          "id": "d",
+          "text": "C5a acts mainly by binding C1q to start the classical pathway",
+          "rationale": "Incorrect. C5a is an anaphylatoxin acting through C5a receptors to recruit immune cells and induce histamine production by basophils and mast cells; it does not start the classical pathway."
+        }
+      ],
+      "answer": "a",
+      "skill": "Anaphylatoxins",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch48",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 48, Complement and Inflammation (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 48,
+          "section": "High-Yield Hits",
+          "items": [
+            3,
+            4,
+            13
+          ]
+        },
+        {
+          "chapter": 48,
+          "section": "Exam Traps",
+          "items": [
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "merle2015",
+      "kind": "external",
+      "citation": "Merle NS, Church SE, Fremeaux-Bacchi V, Roumenina LT. Complement System Part I - Molecular Mechanisms of Activation and Regulation. Front Immunol. 2015;6:262. doi:10.3389/fimmu.2015.00262",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4451739/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. C1q binds IgG- and IgM-containing immune complexes and surface-bound pentraxins (CRP, PTX3), so the classical pathway can be activated with or without immune complexes; C1q recognises dying-cell molecules including phosphatidylserine and double-stranded DNA; one surface-bound IgM or several IgG in close proximity (ordered hexamers) needed; MBL recognises mannose-containing sugars; MASP-1 activates MASP-2, both cleave C2, MASP-2 also cleaves C4; C4b2a is the C3 convertase of both pathways; calcium-dependent assembly prevented in EDTA plasma; C3a and C5a (10–14 kDa) recruit immune cells, induce oxidative bursts, induce histamine production by basophils and mast cells to provoke vasodilatation; C4a activity debated, no cognate receptor; carboxypeptidase N converts C3a and C5a to desArg forms; C3a desArg cannot bind C3aR; human C5a desArg 90% weaker, murine desArg as potent."
+    },
+    {
+      "id": "vidarsson2014",
+      "kind": "external",
+      "citation": "Vidarsson G, Dekkers G, Rispens T. IgG subclasses and allotypes: from structure to effector functions. Front Immunol. 2014;5:520. doi:10.3389/fimmu.2014.00520",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4202688/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. Table 1 C1q binding IgG1 ++, IgG2 +, IgG3 +++, IgG4 −; IgG1 and IgG3 efficiently trigger the classical route, IgG2 and IgG4 much less efficiently or only under certain conditions for IgG2; IgG4 reduced or absent C1q binding partly due to P331; IgG4 forms small immune complexes and can reduce activation by IgG1; IgG2 can activate at high epitope densities such as polysaccharides; relatively long IgG3 hinge suggested to make the C1q site more accessible (the hinge itself is a poly-proline helix of limited flexibility)."
+    },
+    {
+      "id": "thiel2006",
+      "kind": "external",
+      "citation": "Thiel S, Frederiksen PD, Jensenius JC. Clinical manifestations of mannan-binding lectin deficiency. Mol Immunol. 2006;43(1-2):86-96. doi:10.1016/j.molimm.2005.06.018",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7132399/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. Inter-individual MBL levels from about 5 ng/mL to more than 10 µg/mL, stable through life; genotype-level relationships (A/A usually above 1 µg/mL, 0/0 below 50 ng/mL); deficiency cut-offs used in studies include 100, 500 and 1000 ng/mL; a small increase in MBL in acute-phase responses; more than 10% of the general population may, depending on definition, be classified as MBL deficient."
+    },
+    {
+      "id": "dahl2004",
+      "kind": "external",
+      "citation": "Dahl M, Tybjaerg-Hansen A, Schnohr P, Nordestgaard BG. A population-based study of morbidity and mortality in mannose-binding lectin deficiency. J Exp Med. 2004;199(10):1391-1399. doi:10.1084/jem.20040111",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2211811/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. About 5% of Caucasians have an inherited MBL deficiency; three deficiency alleles B, C and D; 5% O/O deficiency homozygotes among 9,245 Danish adults; MBL is an acute-phase protein; no evidence for significant differences in infectious disease or mortality in MBL-deficient adults."
+    },
+    {
+      "id": "auriti2017",
+      "kind": "external",
+      "citation": "Auriti C, Prencipe G, Moriondo M, Bersani I, Bertaina C, Mondì V, Inglese R. Mannose-Binding Lectin: Biologic Characteristics and Role in the Susceptibility to Infections and Ischemia-Reperfusion Related Injury in Critically Ill Neonates. J Immunol Res. 2017;2017:7045630. doi:10.1155/2017/7045630",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5299167/",
+      "consulted": true,
+      "usedFor": "Read as Europe PMC full text. Healthy adults usually have MBL concentrations above 1000 ng/mL; levels rise 3–4-fold during inflammation; adult deficiency defined as below 500 ng/mL or by low MBL-dependent C4 deposition; MBL levels may rise under stress to sufficient levels in usually deficient individuals; MBL serum levels are genetically determined."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-c1q-ligands",
+      "text": "C1q binds IgM- and IgG-containing immune complexes, surface-bound pentraxins (CRP, PTX3) and dying-cell molecules such as phosphatidylserine and dsDNA; one bound IgM or several clustered IgG are needed.",
+      "status": "checked",
+      "refs": [
+        "merle2015",
+        "vidarsson2014"
+      ]
+    },
+    {
+      "id": "cl-lectin",
+      "text": "MBL binds mannose-containing sugars; MASP-1 activates MASP-2; MASP-2 cleaves C4 and both cleave C2; both pathways form C4b2a; assembly is calcium-dependent and blocked in EDTA plasma.",
+      "status": "checked",
+      "refs": [
+        "merle2015"
+      ]
+    },
+    {
+      "id": "cl-igg",
+      "text": "C1q binding IgG3 > IgG1 > IgG2, IgG4 reduced or absent; IgG2 can activate at high epitope density; IgG4 forms small complexes and can reduce IgG1 activation; IgG3 hinge suggested to aid C1q access.",
+      "status": "checked",
+      "refs": [
+        "vidarsson2014"
+      ]
+    },
+    {
+      "id": "cl-mbl-levels",
+      "text": "MBL levels are genetically determined and stable, about 5 ng/mL to more than 10 µg/mL; healthy adults usually above 1000 ng/mL; levels can rise in inflammation (3–4-fold per Auriti 2017, a small increase per Thiel 2006); deficiency cut-offs differ; about 5% of Caucasians carry two variant alleles; no major excess of infection or death in a Danish adult population study.",
+      "status": "checked",
+      "refs": [
+        "thiel2006",
+        "auriti2017",
+        "dahl2004"
+      ]
+    },
+    {
+      "id": "cl-anaphylatoxins",
+      "text": "C3a and C5a recruit immune cells, induce oxidative bursts and histamine production by basophils and mast cells causing vasodilatation; C4a activity is debated; carboxypeptidase N gives C3a desArg (no C3aR binding) and C5a desArg (about 90% weaker in humans).",
+      "status": "checked",
+      "refs": [
+        "merle2015"
+      ]
+    },
+    {
+      "id": "cl-pending",
+      "text": "Reviewer details not taught: a typical serum MBL concentration of exactly 1.5 µg/mL and the printed range 0.002–10 µg/mL; that C4a drives inflammation, chemotaxis or vasodilation like C3a and C5a; that all anaphylatoxins are fully inactivated by desArg conversion.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch48"
+      ],
+      "note": "No open source read in this session supported these specifics; the sources read give a usual adult level above 1000 ng/mL and a range of about 5 ng/mL to more than 10 µg/mL, call C4a activity debated, and report C5a desArg as weakened rather than inactive."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario and surfaces invented; fuse and podium diagrams schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“The IgG podium is 3-1-2, and 4 never finishes.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-c4a-desarg",
+      "issue": "Ch. 48 Hit 3 lists C3a, C4a and C5a together as drivers of inflammation, chemotaxis and vasodilation that are rapidly inactivated to desArg fragments. Merle 2015 reports that the functional activity of C4a is debated, with no cognate receptor identified and unreproducible data, and that carboxypeptidase N leaves C3a desArg unable to bind C3aR while human C5a desArg is about 90% weaker rather than inactive (register flag rv-c4a-anaphylatoxin-debated).",
+      "kind": "uncertain",
+      "status": "open"
+    },
+    {
+      "id": "f-igg2-weak",
+      "issue": "Ch. 48 Hit 4 and Trap 6 state that IgM and IgG bind C1 except IgG4, implying the other subclasses are equivalent. Vidarsson 2014 (Table 1) ranks C1q binding IgG3 +++, IgG1 ++, IgG2 +, IgG4 −, and describes IgG2 as activating much less efficiently, or only under certain conditions such as high epitope density (register flag rv-igg2-weak-c1q).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-mbl-deficiency-definition",
+      "issue": "Ch. 48 Hit 13 gives a typical MBL level of 1.5 µg/mL and MBL deficiency in ~5% of the population. Dahl 2004 reports ~5% for Caucasians with two variant alleles, while Thiel 2006 reports levels from about 5 ng/mL to more than 10 µg/mL, study cut-offs of 100, 500 or 1000 ng/mL, and that more than 10% may be classified deficient depending on the definition; Auriti 2017 gives usual adult levels above 1000 ng/mL. The prevalence figure is population- and definition-dependent (register flag rv-mbl-deficiency-definition).",
+      "kind": "method-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; complement triggers and fragments shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 factual claims checked against Merle 2015, Vidarsson 2014, Thiel 2006, Dahl 2004 and Auriti 2017 (all read as Europe PMC full text); 1 pending (exact typical MBL level and printed range; C4a as an equal anaphylatoxin; complete inactivation by desArg conversion), not taught. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
