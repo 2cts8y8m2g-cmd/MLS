@@ -1,0 +1,1601 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-reagent-water-ph-normality",
+  "title": "Reagent Water, pH and Normality: What the Numbers Really Mean",
+  "summary": "Learn how laboratory water is purified and graded, why resistivity alone can miss bacteria and organic contamination, how pH relates to the ion product of water and temperature, and how normality relates to molarity.",
+  "domain": "p1-ops",
+  "topic": "ch4",
+  "conceptIds": [
+    "ch4.hit19",
+    "ch4.hit20",
+    "ch4.hit23"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 4,
+        "section": "High-Yield Hits",
+        "items": [
+          19,
+          20,
+          23
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 4 High-Yield Hits 19 (reagent water), 20 (pure water [H⁺], Kw, pH) and 23 (normality). Checked against the CLSI GP40 product page (read via a page-fetch tool), Liang 2024, Penna 2002, Cao 2024, Steinegger 2020, Perlt 2017, Harvey’s Analytical Chemistry 2.1 (LibreTexts; read via a page-fetch tool) and NIST SP 811 (read via a page-fetch tool). Qualifications: current CLSI GP40 (2024) names grades such as CLRW and SRW rather than “Type I”, and the CLSI/CAP resistivity specification itself was not read (the guideline is not open), so > 10 MΩ·cm is taught as one laboratory’s acceptance limit (register flag rv-ch4-type-i-water-clrw); Penna 2002 gives 90–99% for RO removal, not the reviewer’s 95–99%; Kw = 10⁻¹⁴ and neutral pH 7 hold at 25 °C, and neutral water is pH 6.80 at 37 °C (rv-ch4-kw-neutral-ph-temperature); normality depends on the reaction, so 2 M H₂SO₄ = 4 N only when both protons react, and NIST calls normality obsolete (rv-ch4-normality-reaction-dependent). The IUPAC Gold Book page could not be read (HTTP 403). Not taught: the 0.22 μm final filter, HPLC pressures, other Number Vault rows."
+  },
+  "prerequisites": [
+    "ch4.hit22"
+  ],
+  "objectives": [
+    "Name the CLSI GP40 water grades and explain what resistivity does and does not detect.",
+    "Relate pH, [H⁺], [OH⁻] and Kw, including the effect of temperature on neutral pH.",
+    "Convert molarity to normality for an acid–base reaction and state why normality is reaction-dependent."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three bench decisions",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a new technologist prepares for a run. (1) The water system’s reverse-osmosis membrane was replaced this morning; resistivity reads 12 MΩ·cm, above the lab’s >10 MΩ·cm limit. (2) A method asks for 0.5 N sulfuric acid; the stock is 1 M H₂SO₄, used to neutralise a base. (3) A pH reading of freshly purified water at 37 °C shows 6.8, and she suspects acid contamination. Question token: “Pass, pass, pass?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "A new technologist has three decisions. The water system’s membrane was replaced this morning, and resistivity reads twelve megohm-centimetres, above the lab’s limit of ten."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "A method asks for half-normal sulfuric acid, and the stock bottle says one molar. And purified water measured at thirty-seven degrees reads pH six point eight."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Is the water safe to use, how should the acid be diluted, and is that water contaminated?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 New RO membrane",
+            "lines": [
+              "Resistivity 12 MΩ·cm",
+              "Limit > 10"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "2 Need 0.5 N H₂SO₄",
+            "lines": [
+              "Stock: 1 M",
+              "Used to neutralise a base"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "3 Water at 37 °C",
+            "lines": [
+              "pH 6.8",
+              "Contaminated?"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0
+            },
+            {
+              "t": 11.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12.5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 640,
+            "label": "Pass, pass, pass?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Grades of laboratory water",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic purification train: feed water → filters → reverse osmosis (RO) → deionisation → UV → storage. Grade card: CLSI GP40 (5th ed., 2024) names clinical laboratory reagent water (CLRW), special reagent water (SRW, including molecular biology water), instrument feed water, water supplied by a method manufacturer, autoclave and wash water, and commercially bottled purified water; older texts call the purest grade “Type I”. RO card: in one purification system, RO removed about 90–99% of particles, colloids, bacteria, pyrogens and dissolved substances above about 200–300 Da. Monitor card: resistivity tracks ionic purity; one clinical laboratory used > 10 MΩ·cm as its acceptance limit, alongside microbial culture.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Laboratory water is purified in steps: filters, reverse osmosis, deionisation and ultraviolet light, then storage."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Reverse osmosis pushes water through a semi-permeable membrane. In one system it removed roughly ninety to ninety-nine percent of particles, bacteria, pyrogens and larger dissolved molecules."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "The current CLSI guideline names grades by use: clinical laboratory reagent water, special reagent water such as molecular biology water, and instrument feed water. Older texts call the purest grade Type One."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Water quality is checked by resistivity, which tracks dissolved ions, and by culture for bacteria. One clinical laboratory accepted resistivity above ten megohm-centimetres."
+        }
+      ],
+      "objects": [
+        {
+          "id": "train",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Purification train (schematic)",
+            "lines": [
+              "Filters → RO → deionisation",
+              "UV → storage"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ro",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Reverse osmosis",
+            "lines": [
+              "Removes ~90–99% (one system)",
+              "Particles · bacteria · pyrogens"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "grade",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 190,
+            "tone": "good",
+            "title": "CLSI GP40 (2024) grades",
+            "lines": [
+              "CLRW: clinical reagent water",
+              "SRW: e.g. molecular biology",
+              "Instrument feed water"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mon",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 450,
+            "w": 420,
+            "label": "Resistivity = ions · culture = bacteria",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "When clean water is not clean",
+      "start": 60,
+      "end": 104,
+      "altText": "Bacteria card: in a monitored purification system, the isolates identified were gram-negative non-fermenting rods (Pseudomonas species, including P. pickettii, now Ralstonia, plus Flavobacterium and Acinetobacter), which adhere to surfaces and form biofilm; in hospital purified water, R2A isolates were mainly Pseudomonadaceae, Burkholderiaceae and Ralstonia. Organic card: after an RO membrane replacement, resistivity stayed > 10 MΩ·cm, yet triglyceride QC showed positive bias of 536% and 371% at two levels; blank and calibrator absorbance rose and returned to normal by 10.5 h; glycerol from the membrane’s storage fluid was the likely cause. Conclusion token: monitor water with resistivity AND quality control.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Purified water can still grow bacteria. In one monitored system, the isolates were gram-negative rods that do not ferment sugar, mostly Pseudomonas, which stick to surfaces and form biofilm."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 80,
+          "text": "In hospital purified water, the main groups were again gram-negative, including Ralstonia and Burkholderia relatives."
+        },
+        {
+          "id": "c3",
+          "start": 80,
+          "end": 94,
+          "text": "Resistivity can also miss organic contamination. After one membrane replacement, resistivity stayed above ten, yet triglyceride QC ran five times too high, likely from glycerol in the membrane’s storage fluid."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "The bias faded over about ten hours. So resistivity alone is not enough: watch quality control after any change to the water system."
+        }
+      ],
+      "objects": [
+        {
+          "id": "bug",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 230,
+            "w": 440,
+            "h": 230,
+            "tone": "bad",
+            "title": "Bacteria in purified water",
+            "lines": [
+              "Gram-negative non-fermenters",
+              "Pseudomonas · Ralstonia",
+              "Biofilm on surfaces"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "org",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 230,
+            "tone": "warn",
+            "title": "New RO membrane",
+            "lines": [
+              "Resistivity still > 10 MΩ·cm",
+              "TG QC bias +536% / +371%",
+              "Likely glycerol carryover"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "qc",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 490,
+            "w": 420,
+            "label": "Resistivity + QC after any change",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "pH, Kw and normality at the bench",
+      "start": 104,
+      "end": 144,
+      "altText": "pH card: pH = −log[H⁺] (Sørensen, 1909); in pure water at 25 °C, Kw = [H⁺][OH⁻] = 10⁻¹⁴, so at neutrality [H⁺] = [OH⁻] = 10⁻⁷ M and pH = pOH = 7 (sum 14); pH 6 has ten times the hydronium ions of pH 7. Temperature token: Kw is temperature-dependent; neutral water at 37 °C has pH 6.80. Normality card: N = n × M, where n (acid–base) is the number of H⁺ an acid donates or a base accepts in the reaction; H₂SO₄ donating both protons: 2 M = 4 N; normality depends on the reaction, and NIST calls normality and molarity obsolete (use mol/L). Hook answers card.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "pH is the negative logarithm of the hydrogen ion concentration. In pure water at twenty-five degrees, the ion product of water is ten to the minus fourteen, so hydrogen and hydroxide ions are each ten to the minus seven molar, and pH is seven."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 120,
+          "text": "Each pH unit is a tenfold change: pH six has ten times the hydrogen ions of pH seven. The ion product rises with temperature, so neutral water at thirty-seven degrees has pH six point eight."
+        },
+        {
+          "id": "l3",
+          "start": 120,
+          "end": 132,
+          "text": "Normality is molarity times the number of protons each molecule donates or accepts in the reaction. Sulfuric acid giving up both protons: two molar is four normal. NIST now calls both terms obsolete and prefers moles per litre."
+        },
+        {
+          "id": "l4",
+          "start": 132,
+          "end": 144,
+          "text": "Back to the hook. The water passes resistivity, but run QC first after a membrane change. One molar sulfuric acid is two normal here, so dilute it one in four. And pH six point eight at thirty-seven degrees is neutral water."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ph",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 440,
+            "h": 210,
+            "tone": "b",
+            "title": "pH and Kw (25 °C)",
+            "lines": [
+              "pH = −log[H⁺]",
+              "Kw = [H⁺][OH⁻] = 10⁻¹⁴",
+              "1 pH unit = 10× [H⁺]"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "temp",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 460,
+            "w": 440,
+            "label": "Neutral water at 37 °C: pH 6.80",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "norm",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 200,
+            "tone": "a",
+            "title": "Normality",
+            "lines": [
+              "N = n × M (n = H⁺ that react)",
+              "2 M H₂SO₄, both H⁺ → 4 N",
+              "Obsolete: use mol/L"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 16.5,
+              "opacity": 0
+            },
+            {
+              "t": 17,
+              "reveal": 0
+            },
+            {
+              "t": 17.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 420,
+            "w": 420,
+            "h": 190,
+            "tone": "good",
+            "title": "Hook answers",
+            "lines": [
+              "1 Resistivity OK: run QC too",
+              "2 1 M = 2 N: dilute 1 in 4",
+              "3 pH 6.8 at 37 °C: neutral"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28.5,
+              "opacity": 0
+            },
+            {
+              "t": 29,
+              "reveal": 0
+            },
+            {
+              "t": 29.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Resistivity above 10 MΩ·cm means the water is clean” (✓ resistivity tracks ions; bacteria and organics such as glycerol need culture and QC); “Neutral water is always pH 7” (✓ only at 25 °C; Kw rises with temperature, so neutral water at 37 °C is pH 6.80); “Normality of H₂SO₄ is always twice its molarity” (✓ only when both protons react; normality depends on the reaction).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: high resistivity means clean water. No: resistivity sees ions, not bacteria or organic molecules such as glycerol."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: neutral water is always pH seven. No: that holds at twenty-five degrees. At thirty-seven degrees, neutral water is pH six point eight."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: sulfuric acid is always twice as normal as it is molar. No: only when both protons react. Normality depends on the reaction."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “> 10 MΩ·cm = clean water.”",
+            "lines": [
+              "✓ Ions only; culture and QC for the rest"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Neutral is always pH 7.”",
+            "lines": [
+              "✓ At 25 °C; pH 6.80 at 37 °C"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “H₂SO₄: always N = 2 × M.”",
+            "lines": [
+              "✓ Only if both H⁺ react"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Ions, ladder, workers",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Resistivity counts the IONS, not the bugs or the grease. The pH scale is a LADDER where each rung is ten times more acid. Normality counts only the protons that go to WORK in the reaction.” Tokens: ions only · tenfold ladder · working protons. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: resistivity counts the ions, not the bugs or the grease. The pH scale is a ladder where each rung down is ten times more acid. And normality counts only the protons that go to work in the reaction."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: true pH reflects hydrogen ion activity, not just concentration; the seven-in-the-middle ladder is fixed only at twenty-five degrees; and normality is obsolete, so modern methods state moles per litre."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Ions, ladder, workers",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Resistivity = ions only",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "pH rung = 10×",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "N = working H⁺",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "pH is really H⁺ activity",
+              "pH 7 = neutral only at 25 °C",
+              "Normality obsolete: use mol/L"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Resistivity tracks ions only · culture for bacteria · QC after water-system changes”, “Kw = 10⁻¹⁴ and neutral pH 7 at 25 °C · N = n × M, n = protons that react”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Resistivity tracks only the ions in reagent water, neutral pH 7 and a water ion product of 10⁻¹⁴ hold at 25 °C, and normality is molarity times the protons that actually react, so 2 M sulfuric acid is 4 N only when both protons react."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Resistivity = ions only · culture for bacteria · QC after changes",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Kw = 10⁻¹⁴, pH 7 neutral at 25 °C · N = n × M (reacting H⁺)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: laboratory water is cleaned in steps and checked mainly by how well it resists electric current, which shows dissolved ions but not germs or dissolved organic molecules. pH counts hydrogen ions on a tenfold scale, and pure water sits at pH 7 only at room temperature. Normality is an older way to express concentration that counts how many protons each molecule actually donates in a reaction. Scientific terms: reverse osmosis (RO), deionisation, clinical laboratory reagent water (CLRW), special reagent water (SRW), resistivity (MΩ·cm), biofilm, gram-negative non-fermenting rods, pH = −log[H⁺], ion product of water (Kw), pOH, normality (N = n × M), equivalent, amount-of-substance concentration (mol/L).",
+    "why": "Water is used to dilute samples and reagents, rinse probes and cuvettes and prepare calibrators and controls, so contaminants can bias results. Because resistivity reflects ions, organic contaminants such as glycerol and bacteria in biofilm can be present while resistivity passes. Kw changes with temperature, so neutrality is not fixed at pH 7. An equivalent is defined by a reaction, so a solution has one molarity but its normality depends on how it reacts.",
+    "measure": "RO in one system: ~90–99% removal of particles, colloids, bacteria, pyrogens and dissolved substances above ~200–300 Da. One clinical laboratory’s acceptance limit: resistivity > 10 MΩ·cm, plus microbial culture. After RO membrane replacement: TG QC bias +536% and +371%, resolving by 10.5 h. pH = −log[H⁺]; Kw = 10⁻¹⁴ at 25 °C; [H⁺] = [OH⁻] = 10⁻⁷ M at neutrality; pH + pOH = 14 at 25 °C; neutral water at 37 °C: pH 6.80. N = n × M; H₂SO₄ donating 2 H⁺: 2 M = 4 N.",
+    "differs": "CLRW vs SRW vs instrument feed water; ionic vs organic vs microbial contamination; concentration-based pH vs activity-based pH; molarity (fixed for a solution) vs normality (reaction-dependent).",
+    "examAngle": "Expect: pick the purest grade or what resistivity measures, name the typical bacterial contaminant of purified water, compute the [H⁺] change for a pH change, or convert a diprotic acid’s molarity to normality."
+  },
+  "comparisons": [
+    {
+      "id": "resistivity-vs-qc",
+      "title": "Resistivity vs culture and QC",
+      "left": {
+        "label": "Resistivity",
+        "points": [
+          "Tracks dissolved ions",
+          "Can pass with glycerol present"
+        ]
+      },
+      "right": {
+        "label": "Culture and QC",
+        "points": [
+          "Culture finds bacteria such as Pseudomonas",
+          "QC shows assay bias from organics"
+        ]
+      },
+      "distinguisher": "Ions vs microbes and assay-level effects."
+    },
+    {
+      "id": "molarity-vs-normality",
+      "title": "Molarity vs normality",
+      "left": {
+        "label": "Molarity",
+        "points": [
+          "Moles of solute per litre",
+          "Fixed for a given solution"
+        ]
+      },
+      "right": {
+        "label": "Normality",
+        "points": [
+          "Equivalents per litre: N = n × M",
+          "Depends on the reaction; obsolete term"
+        ]
+      },
+      "distinguisher": "Whether the number counts molecules or reacting protons."
+    }
+  ],
+  "mnemonic": {
+    "text": "Resistivity counts the IONS, not the bugs or the grease. The pH scale is a LADDER where each rung is ten times more acid. Normality counts only the protons that go to WORK in the reaction.",
+    "explanation": "Ions = what resistivity sees; ladder = tenfold pH steps; workers = reacting protons in N = n × M.",
+    "limitation": "True pH reflects H⁺ activity, not just concentration; pH 7 is neutral only at 25 °C; normality is obsolete, so modern methods use mol/L."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Purification train is schematic; real systems differ in their steps and order.",
+    "The > 10 MΩ·cm limit is one laboratory’s criterion; the CLSI specification itself was not read."
+  ],
+  "takeaway": "Resistivity tracks only the ions in reagent water, neutral pH 7 and a water ion product of 10⁻¹⁴ hold at 25 °C, and normality is molarity times the protons that actually react, so 2 M sulfuric acid is 4 N only when both protons react.",
+  "questions": [
+    {
+      "id": "ops-rw-q1",
+      "stem": "After the reverse-osmosis membrane of a laboratory water system is replaced, resistivity remains above 10 MΩ·cm, but triglyceride QC is markedly high at both levels. What is the most likely explanation?",
+      "options": [
+        {
+          "id": "a",
+          "text": "An organic contaminant from the new membrane, such as glycerol, that resistivity does not detect",
+          "rationale": "Correct. Resistivity reflects ions; in a published case, glycerol carryover after membrane replacement biased triglyceride QC while resistivity passed."
+        },
+        {
+          "id": "b",
+          "text": "Too many dissolved ions in the water",
+          "rationale": "Incorrect. High ion content would lower resistivity, which stayed above the limit."
+        },
+        {
+          "id": "c",
+          "text": "The resistivity meter is reading too high, so the water is ionically contaminated",
+          "rationale": "Incorrect. Nothing points to meter error; the pattern fits an organic, non-ionic contaminant."
+        },
+        {
+          "id": "d",
+          "text": "Normal day-to-day QC variation that needs no action",
+          "rationale": "Incorrect. A large shift at both levels right after a water-system change needs investigation."
+        }
+      ],
+      "answer": "a",
+      "skill": "Water quality monitoring",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-rw-q2",
+      "stem": "At 25 °C, a solution’s pH falls from 7 to 5. By what factor has its hydrogen ion concentration changed?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Increased 100-fold",
+          "rationale": "Correct. pH is −log[H⁺], so 2 pH units = 10 × 10 = 100-fold more H⁺."
+        },
+        {
+          "id": "b",
+          "text": "Increased 2-fold",
+          "rationale": "Incorrect. The scale is logarithmic, not linear."
+        },
+        {
+          "id": "c",
+          "text": "Increased 20-fold",
+          "rationale": "Incorrect. Each unit is tenfold; the factors multiply, they do not add."
+        },
+        {
+          "id": "d",
+          "text": "Decreased 100-fold",
+          "rationale": "Incorrect. A lower pH means more H⁺, not less."
+        }
+      ],
+      "answer": "a",
+      "skill": "pH calculation",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-rw-q3",
+      "stem": "A 2 M sulfuric acid solution is used in a titration in which each molecule donates both of its protons. What is its normality?",
+      "options": [
+        {
+          "id": "a",
+          "text": "4 N",
+          "rationale": "Correct. N = n × M = 2 × 2 M = 4 N when both protons react."
+        },
+        {
+          "id": "b",
+          "text": "2 N",
+          "rationale": "Incorrect. That would apply only if one proton per molecule reacted."
+        },
+        {
+          "id": "c",
+          "text": "1 N",
+          "rationale": "Incorrect. Normality is never lower than molarity for an acid donating at least one proton."
+        },
+        {
+          "id": "d",
+          "text": "8 N",
+          "rationale": "Incorrect. Sulfuric acid has two acidic protons, not four."
+        }
+      ],
+      "answer": "a",
+      "skill": "Normality",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch4",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 4, How Analyzers Work (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 4,
+          "section": "High-Yield Hits",
+          "items": [
+            19,
+            20,
+            23
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "clsi-gp40",
+      "kind": "external",
+      "citation": "Clinical and Laboratory Standards Institute. GP40: Preparation and Testing of Reagent Water in the Clinical Laboratory. 5th ed. CLSI; 2024 (product description page).",
+      "url": "https://clsi.org/shop/standards/gp40/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (product page only; the guideline itself is not open). Water types specified: CLRW, SRW, molecular biology water (a type of SRW), instrument feed water, water supplied by a method manufacturer, autoclave and wash water, commercially bottled purified water; 5th edition 2024 replaces the 2012 4th edition; monitoring of ionic, organic and microbial contamination."
+    },
+    {
+      "id": "liang2024",
+      "kind": "external",
+      "citation": "Liang S, Wu H, Zhao J, Guo X, Qiang Y, Zhao X, Lan M, Zhao C, Zhang D. Effects of reverse osmosis membrane replacement of pure water system on clinical chemistry and immunoassay in clinical laboratory. Biochem Med (Zagreb). 2024;34(1):010705. doi:10.11613/BM.2024.010705",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10864026/",
+      "consulted": true,
+      "usedFor": "Uses of pure water in the laboratory; resistivity > 10 MΩ·cm as the laboratory’s acceptance limit; monitoring by resistivity and microbial culture; after RO membrane replacement, TG QC bias +536% and +371% with resistivity still passing, attributed to glycerol from membrane protection fluid; absorbance returned to normal by 10.5 h; resistivity alone is not enough."
+    },
+    {
+      "id": "penna2002",
+      "kind": "external",
+      "citation": "Penna VT, Martins SA, Mazzola PG. Identification of bacteria in drinking and purified water during the monitoring of a typical water purification system. BMC Public Health. 2002;2:13. doi:10.1186/1471-2458-2-13",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC122092/",
+      "consulted": true,
+      "usedFor": "Purification train (filters, RO, continuous deionisation, UV, storage); RO removes 90–99% of particles, colloids, bacteria, pyrogens and dissolved substances above ~200–300 MW; isolates were gram-negative non-fermenting rods (Pseudomonas, including P. pickettii/Ralstonia, Flavobacterium, Acinetobacter) that form biofilm. The study targeted gram-negative identification kits."
+    },
+    {
+      "id": "cao2024",
+      "kind": "external",
+      "citation": "Cao X, Xiong H, Fan Y, Xiong L. Comparing the Effects of Two Culture Methods to Determine the Total Heterotrophic Bacterial Colony Count in Hospital Purified Water. J Epidemiol Glob Health. 2024;14(1):184-192. doi:10.1007/s44197-023-00186-1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11043230/",
+      "consulted": true,
+      "usedFor": "Heterotrophic bacteria in hospital purified water on R2A were mainly Pseudomonadaceae, Burkholderiaceae, Ralstonia, Acetobacteraceae and Herbaspirillum (Corynebacterium also seen on PCA)."
+    },
+    {
+      "id": "steinegger2020",
+      "kind": "external",
+      "citation": "Steinegger A, Wolfbeis OS, Borisov SM. Optical Sensing and Imaging of pH Values: Spectroscopies, Materials, and Applications. Chem Rev. 2020;120(22):12357-12489. doi:10.1021/acs.chemrev.0c00451",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7705895/",
+      "consulted": true,
+      "usedFor": "Section 1.3–1.4: pH = −log[H⁺] (Sørensen 1909); Kw = 10⁻¹⁴ at 25 °C; [H⁺] = [OH⁻] = 10⁻⁷ at neutrality; pH + pOH = 14; pH 6 has 10 times the hydronium ions of pH 7; pH of water is strongly temperature-dependent, 6.80 at 37 °C; acidity is governed by activity, not concentration."
+    },
+    {
+      "id": "perlt2017",
+      "kind": "external",
+      "citation": "Perlt E, von Domaros M, Kirchner B, Ludwig R, Weinhold F. Predicting the Ionic Product of Water. Sci Rep. 2017;7(1):10244. doi:10.1038/s41598-017-10156-w",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5579052/",
+      "consulted": true,
+      "usedFor": "Kw = 1 × 10⁻¹⁴ mol² L⁻² at standard state conditions; Kw is temperature-dependent."
+    },
+    {
+      "id": "harvey-normality",
+      "kind": "external",
+      "citation": "Harvey D. Analytical Chemistry 2.1. Chemistry LibreTexts; Section 2.2, Concentration, and Section 16.1, Normality.",
+      "url": "https://chem.libretexts.org/Bookshelves/Analytical_Chemistry/Analytical_Chemistry_2.1_(Harvey)/16%3A_Appendix/16.01%3A_Normality",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. Normality = equivalents per litre; N = n × M; for acid–base reactions n is the number of H⁺ an acid donates or a base accepts; H₂SO₄ has a fixed molarity but its normality depends on the reaction; normality is no longer in common use."
+    },
+    {
+      "id": "nist-sp811",
+      "kind": "external",
+      "citation": "Thompson A, Taylor BN. Guide for the Use of the International System of Units (SI). NIST Special Publication 811, 2008 edition; Chapter 8, Section 8.6.5.",
+      "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-8",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool. The terms normality (N) and molarity (M) are obsolete and should no longer be used; amount-of-substance concentration in mol/L (or mol/dm³) is preferred."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-grades",
+      "text": "CLSI GP40 (2024) water types: CLRW, SRW, molecular biology water, instrument feed water and others.",
+      "status": "checked",
+      "refs": [
+        "clsi-gp40"
+      ]
+    },
+    {
+      "id": "cl-ro",
+      "text": "Purification train; RO removes ~90–99% of particles, bacteria, pyrogens and larger dissolved substances in one system.",
+      "status": "checked",
+      "refs": [
+        "penna2002"
+      ]
+    },
+    {
+      "id": "cl-resist",
+      "text": "Resistivity tracks ionic purity; one laboratory used > 10 MΩ·cm as its limit with microbial culture; resistivity can pass while glycerol from a new RO membrane biases TG QC.",
+      "status": "checked",
+      "refs": [
+        "liang2024",
+        "clsi-gp40"
+      ]
+    },
+    {
+      "id": "cl-bugs",
+      "text": "Bacteria isolated from purified water were mainly gram-negative non-fermenting rods (Pseudomonas, Ralstonia and relatives) that form biofilm.",
+      "status": "checked",
+      "refs": [
+        "penna2002",
+        "cao2024"
+      ]
+    },
+    {
+      "id": "cl-ph",
+      "text": "pH = −log[H⁺]; Kw = 10⁻¹⁴ at 25 °C; neutral [H⁺] = [OH⁻] = 10⁻⁷ M; pH + pOH = 14; tenfold per pH unit; neutral water pH 6.80 at 37 °C; activity vs concentration.",
+      "status": "checked",
+      "refs": [
+        "steinegger2020",
+        "perlt2017"
+      ]
+    },
+    {
+      "id": "cl-norm",
+      "text": "N = n × M; n = protons donated or accepted; 2 M H₂SO₄ = 4 N when both protons react; normality reaction-dependent and obsolete.",
+      "status": "checked",
+      "refs": [
+        "harvey-normality",
+        "nist-sp811"
+      ]
+    },
+    {
+      "id": "cl-hook-math",
+      "text": "Hook arithmetic: 1 M H₂SO₄ = 2 N, so 0.5 N needs a 1-in-4 dilution.",
+      "status": "checked",
+      "refs": [
+        "harvey-normality"
+      ],
+      "note": "Arithmetic from N = n × M."
+    },
+    {
+      "id": "cl-pend",
+      "text": "CLSI/CAP requirement of > 10 MΩ·cm for Type I water; the reviewer’s 95–99% RO figure; gram-negative rods as the single most common post-purification contaminant.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch4"
+      ],
+      "note": "The CLSI and CAP documents are not open; studies read support a laboratory limit of > 10 MΩ·cm, 90–99% RO removal and gram-negative predominance in the systems studied, which is what the lesson teaches."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; purification train schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Ions, ladder, workers.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-type-i-terminology",
+      "issue": "The reviewer calls the purest grade “Type I” and attributes > 10 MΩ·cm to CLSI/CAP. The current CLSI GP40 (5th ed., 2024) names grades such as CLRW and SRW; the specification itself was not read, so the lesson teaches > 10 MΩ·cm as one laboratory’s acceptance limit. Resistivity alone also misses organic contamination (Liang 2024).",
+      "kind": "outdated",
+      "status": "open"
+    },
+    {
+      "id": "f-ro-removal",
+      "issue": "The reviewer gives RO removal as 95–99%; the open source read (Penna 2002) gives 90–99% for one system. Performance varies by membrane and system.",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-kw-temperature",
+      "issue": "Kw = 10⁻¹⁴ and [H⁺] = [OH⁻] = 10⁻⁷ M (pH 7) are values at 25 °C; Kw rises with temperature, and neutral water at 37 °C is pH 6.80 (Steinegger 2020). The reviewer states them without the temperature.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-normality-reaction",
+      "issue": "Normality depends on the reaction: 2 M H₂SO₄ = 4 N only when both protons react (Harvey). NIST SP 811 calls normality and molarity obsolete and prefers mol/L.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-us-standards-water",
+      "issue": "Water-grade naming follows CLSI (a US-based standards body); Philippine laboratory water requirements are not covered; MTLE candidates should check local rules.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; purification steps and formulas shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "7 claims checked (CLSI GP40 product page, Harvey and NIST SP 811 read via a page-fetch tool; Liang 2024, Penna 2002, Cao 2024, Steinegger 2020 and Perlt 2017 read as full text); 1 pending (CLSI/CAP > 10 MΩ·cm specification, the reviewer’s 95–99% RO figure, and “most common” contaminant wording). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
