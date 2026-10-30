@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 314, teaching 1453 of 1,932 concepts (about 75.2%).** All 314 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 315, teaching 1456 of 1,932 concepts (about 75.4%).** All 315 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -35,7 +35,7 @@
   - Ch. 29 (19/27 concepts): `cm-urine-casts-localize`, `cm-urine-concentration-timed-collections`, `cm-urine-crystals-stones-yeast`, `cm-urine-strip-chemistry`.
   - Ch. 30 (21/25 concepts): `cm-alternative-specimens-saliva-meconium-b2tf`, `cm-csf-synovial-interpretation`, `cm-serous-fluid-traps-pericardial-peritonitis`, `cm-serous-fluids-transudate-exudate`.
   - Ch. 31 (21/28 concepts): `heme-esr-westergren-interpretation`, `heme-hemoglobin-hicn-interference`, `heme-marrow-sampling-iron-stain`, `heme-red-cell-indices-high-mchc`, `heme-spurious-cbc-corrections`.
-  - Ch. 32 (15/23 concepts): `heme-eosinophil-il5-tpo-megakaryocytes`, `heme-erythropoiesis-reticulocyte-index`, `heme-heme-synthesis-bilirubin-urobilinogen`.
+  - Ch. 32 (18/23 concepts): `heme-eosinophil-il5-tpo-megakaryocytes`, `heme-erythropoiesis-reticulocyte-index`, `heme-heme-synthesis-bilirubin-urobilinogen`, `heme-marrow-reserve-23dpg-neocytolysis`.
   - Ch. 33 (22/27 concepts): `heme-anemia-second-clues`, `heme-erythrocytosis-workup`, `heme-hemolytic-anemia-workup`, `heme-macrocytic-b12-folate-hydroxyurea`, `heme-microcytic-anemia-ferritin-mentzer`.
   - Ch. 34 (20/25 concepts): `heme-bcell-neoplasm-phenotypes`, `heme-bcell-translocations-cd10`, `heme-blast-count-aml-mds-apl`, `heme-cml-vs-leukemoid-reaction`, `heme-mpn-pv-et-pmf`, `heme-myeloma-wm-hodgkin-markers`.
   - Ch. 35 (16/23 concepts): `heme-b-cell-clonality-mbl-hematogones`, `heme-flow-compensation-tandem-fmo`, `heme-flow-cytometry-gating`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 556 flags (423 verified issues, 133 needing verification), plus scan results.
-- **Checks:** 1950 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 1956 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
