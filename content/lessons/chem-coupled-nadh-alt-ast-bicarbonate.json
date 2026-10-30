@@ -1,0 +1,1509 @@
+{
+  "schemaVersion": 1,
+  "id": "chem-coupled-nadh-alt-ast-bicarbonate",
+  "title": "Coupled NADH Assays: ALT, AST and Enzymatic Bicarbonate",
+  "summary": "Learn how ALT, AST and the enzymatic bicarbonate assay are all read as NADH consumed by a dehydrogenase partner, and the two traps that follow: very high LDH falsely raising some bicarbonate reagents, and transaminases under-read without added pyridoxal phosphate in vitamin B6 deficiency.",
+  "domain": "p2-chem",
+  "topic": "ch28",
+  "conceptIds": [
+    "ch28.hit7",
+    "ch28.hit8",
+    "ch28.trap5",
+    "ch28.trap6"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 28,
+        "section": "High-Yield Hits",
+        "items": [
+          7,
+          8
+        ]
+      },
+      {
+        "chapter": 28,
+        "section": "Exam Traps",
+        "items": [
+          5,
+          6
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 28 Hits 7 (ALT/AST coupled reactions, PLP) and 8 (enzymatic bicarbonate; LDH interference) and Traps 5 and 6. Checked against McGill 2016 and Wei 2025 (Europe PMC full text), the abstracts of Saleem 2013 and Chambliss 2025 (Europe PMC; full text not open), and two 2025 hospital laboratory notices on a bicarbonate reagent recall (read via a page-fetch tool). Qualified: the bicarbonate enzyme is phosphoenolpyruvate carboxylase (PEPC), not PEPCK (rv-ch28-bicarb-pepc-enzyme); LDH interference is reagent- and lot-specific (rv-ch28-bicarb-ldh-reagent); B6 deficiency matters for reagents without added PLP (rv-ch28-alt-ast-p5p-reagent). Not verified, so not taught: pyruvate ≥2.4 mg/dL interfering with AST, heparin interference with ALT/AST, the bicarbonate interference profile (Hb 500, bilirubin 40, Intralipid 1000 mg/dL), the detailed “cross-talk” mechanism of the LDH effect, and a 340 nm read for bicarbonate."
+  },
+  "prerequisites": [
+    "ch28.hit3"
+  ],
+  "objectives": [
+    "Write the coupled reactions used to measure ALT and AST and name each indicator enzyme.",
+    "Describe the PEPC/MDH enzymatic bicarbonate assay and why it shares a step with AST.",
+    "Recognise LDH-related bicarbonate interference and PLP-dependent under-reading of transaminases."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Two results that do not fit",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: two results on one bench. (1) A patient with a very high LDH has a chemistry-panel bicarbonate near normal, but the blood gas taken at the same time shows severe acidaemia with a much lower bicarbonate. (2) A patient with suspected vitamin B6 deficiency and a clinical picture of liver injury has an ALT reported within the reference interval. Question token: “Patient, or assay?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Invented case one: a patient with a very high LDH. The chemistry panel bicarbonate is near normal, but the blood gas shows severe acidaemia and a far lower bicarbonate."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "Invented case two: a patient with suspected vitamin B6 deficiency looks like liver injury, yet the ALT is reported as normal."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "In each case: is this the patient, or the assay?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "r1",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 440,
+            "h": 180,
+            "tone": "bad",
+            "title": "1 Very high LDH",
+            "lines": [
+              "Panel bicarbonate ≈ normal",
+              "Blood gas: acidaemia, low HCO₃⁻"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 220,
+            "w": 420,
+            "h": 180,
+            "tone": "warn",
+            "title": "2 Suspected B6 deficiency",
+            "lines": [
+              "Looks like liver injury",
+              "ALT reported normal"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 640,
+            "label": "Patient, or assay?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "ALT and AST: coupled to NADH",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic of two coupled reactions. ALT card: L-alanine + α-ketoglutarate → pyruvate + L-glutamate; indicator step: lactate dehydrogenase (LDH) reduces pyruvate to lactate, consuming NADH. AST card: L-aspartate + α-ketoglutarate → oxaloacetate + L-glutamate; indicator step: malate dehydrogenase (MDH) reduces oxaloacetate to malate, consuming NADH. A 340 nm card: NADH loss is followed as falling absorbance at 340 nm, and the rate gives enzyme activity. A cofactor card: pyridoxal 5′-phosphate (PLP, the active form of vitamin B6) is the coenzyme of both aminotransferases.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "ALT moves an amino group from alanine to alpha-ketoglutarate, making pyruvate. Lactate dehydrogenase then reduces that pyruvate to lactate, and uses up NADH."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "AST does the same with aspartate, making oxaloacetate. Here the partner is malate dehydrogenase, which reduces oxaloacetate to malate, again using up NADH."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "NADH absorbs at three hundred and forty nanometres. So in both assays the absorbance falls, and the rate of that fall gives the enzyme activity."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Both aminotransferases need a coenzyme: pyridoxal five-prime-phosphate, the active form of vitamin B6."
+        }
+      ],
+      "objects": [
+        {
+          "id": "alt",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "ALT",
+            "lines": [
+              "Alanine + α-KG → pyruvate",
+              "LDH: pyruvate → lactate, NADH used"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ast",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 150,
+            "tone": "a",
+            "title": "AST",
+            "lines": [
+              "Aspartate + α-KG → oxaloacetate",
+              "MDH: OAA → malate, NADH used"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "nm",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "warn",
+            "title": "Read: 340 nm",
+            "lines": [
+              "NADH absorbs here",
+              "Falling absorbance = activity"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "plp",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Coenzyme: PLP",
+            "lines": [
+              "Pyridoxal 5′-phosphate",
+              "Active vitamin B6, both enzymes"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Enzymatic bicarbonate: same last step",
+      "start": 60,
+      "end": 104,
+      "altText": "Schematic of the enzymatic total CO₂ (bicarbonate) assay. Step 1 card: phosphoenolpyruvate carboxylase (PEPC), with Mg²⁺, joins bicarbonate (HCO₃⁻) to phosphoenolpyruvate (PEP), giving oxaloacetate and phosphate. Step 2 card: malate dehydrogenase reduces oxaloacetate to malate and oxidises NADH (one evaluated kit uses an NADH analogue read at 405 nm); the fall in absorbance is proportional to total CO₂. A link token shows that the second step is the same MDH step as the AST assay. A note card: the enzyme is a carboxylase (PEPC); the reviewer calls it PEPCK.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "The routine panel bicarbonate is often enzymatic. Phosphoenolpyruvate carboxylase, with magnesium, joins bicarbonate to phosphoenolpyruvate, making oxaloacetate and phosphate."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 84,
+          "text": "Malate dehydrogenase then reduces the oxaloacetate to malate and oxidises NADH. The fall in absorbance is proportional to the total carbon dioxide in the sample."
+        },
+        {
+          "id": "c3",
+          "start": 84,
+          "end": 94,
+          "text": "Notice the last step: it is the same malate dehydrogenase reaction used in the AST assay. Bicarbonate is read as NADH that disappears."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "Two details. The enzyme is a carboxylase, P E P C. And at least one evaluated kit uses an NADH analogue read at four hundred and five nanometres, so the wavelength depends on the reagent."
+        }
+      ],
+      "objects": [
+        {
+          "id": "s1",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Step 1: PEPC (+ Mg²⁺)",
+            "lines": [
+              "HCO₃⁻ + PEP",
+              "→ oxaloacetate + phosphate"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "Step 2: MDH",
+            "lines": [
+              "Oxaloacetate → malate",
+              "NADH oxidised: fall ∝ total CO₂"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "link",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 410,
+            "w": 760,
+            "label": "Same MDH step as AST: read as NADH that disappears",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 24.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 25.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "note",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 500,
+            "w": 760,
+            "h": 90,
+            "tone": "good",
+            "title": "Details",
+            "lines": [
+              "Carboxylase (PEPC), not PEPCK",
+              "One kit: NADH analogue at 405 nm"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0
+            },
+            {
+              "t": 35,
+              "reveal": 0
+            },
+            {
+              "t": 35.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "What fools the coupled assays",
+      "start": 104,
+      "end": 144,
+      "altText": "Interference card 1, bicarbonate and LDH: a 2013 case study found that very high serum LDH (peak about 14,200 U/L) falsely raised an Olympus AU2700 enzymatic bicarbonate with certain reagent lots, later recalled; the change exceeded 10% once LDH passed 845 U/L, and a later lot was unaffected. 2025 laboratory notices about affected lots of another manufacturer’s reagent reported positive bias up to about 30% at high LDH (thresholds of 600 and 2000 U/L were quoted). Acid–base status should be confirmed by blood gas analysis, which is not subject to this interference. Card 2, PLP: ALT and AST reagents are sold with and without PLP supplementation; non-supplemented assays may miss ALT or AST rises in vitamin B6 deficiency; in a 2023 College of American Pathologists survey, 38% of responding laboratories used a supplemented reagent. Hook answers: (1) an assay effect is possible: check the LDH and rely on the blood gas; (2) ask whether the ALT reagent is PLP-supplemented.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 116,
+          "text": "Trap one. Very high LDH can falsely raise an enzymatic bicarbonate with some reagents. In a 2013 case, the bias passed ten percent once LDH exceeded about eight hundred and fifty units per litre, and the reagent lots were recalled."
+        },
+        {
+          "id": "l2",
+          "start": 116,
+          "end": 124,
+          "text": "In 2025, laboratories again warned of affected lots, with results up to about thirty percent too high. A blood gas is not subject to this interference, so it settles the acid-base status."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Trap two. ALT and AST reagents come with or without added pyridoxal phosphate. Without it, a patient short of vitamin B6 may show a falsely low activity, and a real rise can be missed. In one 2023 survey, only thirty-eight percent of laboratories used a supplemented reagent."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook. Case one: check the LDH and trust the blood gas. Case two: ask whether the ALT reagent contains added pyridoxal phosphate."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ldh",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 220,
+            "w": 440,
+            "h": 230,
+            "tone": "bad",
+            "title": "Bicarbonate + very high LDH",
+            "lines": [
+              "Falsely HIGH, lot-specific",
+              "2013: > 10% once LDH > 845 U/L",
+              "Confirm with blood gas"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "p5p",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 220,
+            "w": 420,
+            "h": 230,
+            "tone": "warn",
+            "title": "ALT/AST without added PLP",
+            "lines": [
+              "B6 deficiency → activity low",
+              "Real rise can be missed",
+              "2023 survey: 38% supplemented"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 760,
+            "h": 110,
+            "tone": "a",
+            "title": "Hook answers",
+            "lines": [
+              "1 Check LDH · trust the blood gas",
+              "2 Is the ALT reagent PLP-supplemented?"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “High panel bicarbonate = metabolic alkalosis” (✓ with very high LDH some enzymatic reagents read falsely high; confirm by blood gas); “A normal ALT rules out liver injury” (✓ a non-supplemented reagent can under-read in vitamin B6 deficiency); “ALT and AST use the same indicator enzyme” (✓ ALT uses LDH, AST uses MDH; both are read as NADH loss).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a high panel bicarbonate means metabolic alkalosis. Not always: with very high LDH, some enzymatic reagents read falsely high. Confirm with a blood gas."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a normal ALT rules out liver injury. Not if the reagent lacks added pyridoxal phosphate and the patient is short of vitamin B6."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: ALT and AST share an indicator enzyme. No: ALT uses lactate dehydrogenase, AST uses malate dehydrogenase. Both are read as NADH loss."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “High bicarbonate = alkalosis.”",
+            "lines": [
+              "✓ Very high LDH can fake it: check a blood gas"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Normal ALT rules out injury.”",
+            "lines": [
+              "✓ No added PLP + low B6 can under-read"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “ALT and AST share an indicator.”",
+            "lines": [
+              "✓ ALT → LDH · AST → MDH"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "L for alanine, M for oxaloacetate",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “ALanine makes pyruvate and goes to Lactate (LDH); anything that makes oxaloacetate (AST and bicarbonate) goes to Malate (MDH); every route ends at the same finish line: NADH disappearing.” Tokens: ALT → LDH · AST → MDH · bicarbonate → MDH. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: alanine makes pyruvate, which goes to lactate dehydrogenase. Anything that makes oxaloacetate, AST and bicarbonate, goes to malate dehydrogenase. Every route ends at the same finish line: NADH disappearing."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: some kits use an NADH analogue read at four hundred and five nanometres; the B6 problem applies only to reagents without added pyridoxal phosphate; and the LDH effect on bicarbonate is reagent-specific, not universal."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "L for alanine, M for oxaloacetate",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "ALT → LDH",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "AST → MDH",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "HCO₃⁻ → MDH",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Some kits: NADH analogue at 405 nm",
+              "B6 issue only without added PLP",
+              "LDH bias is reagent-specific"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “ALT → LDH · AST → MDH · bicarbonate (PEPC) → MDH: all read as NADH loss”, “Very high LDH → check bicarbonate by blood gas · no added PLP + low B6 → transaminases under-read”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "ALT, AST and enzymatic bicarbonate are all read as NADH lost through a dehydrogenase partner, so check the reagent before trusting a high bicarbonate with very high LDH or a normal transaminase in vitamin B6 deficiency."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "ALT → LDH · AST → MDH · HCO₃⁻ (PEPC) → MDH: NADH loss",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "High LDH → blood gas · no added PLP + low B6 → under-read",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: these three tests do not measure their target directly. Each one feeds a second enzyme that uses up NADH, and the machine watches NADH disappear. Anything else that changes that chain can change the answer. Scientific terms: alanine aminotransferase (ALT), aspartate aminotransferase (AST), α-ketoglutarate, lactate dehydrogenase (LDH), malate dehydrogenase (MDH), pyridoxal 5′-phosphate (PLP, P5P), phosphoenolpyruvate carboxylase (PEPC), total CO₂, coupled enzyme assay, reagent lot, positive interference.",
+    "why": "Coupled reactions made aminotransferase measurement fast and practical. Because the signal is NADH loss, the result depends on the whole chain: the cofactor the patient’s enzyme needs (PLP) and the reagent formulation, including how it copes with very high sample LDH.",
+    "measure": "ALT: alanine + α-ketoglutarate → pyruvate + glutamate; LDH reduces pyruvate, consuming NADH. AST: aspartate + α-ketoglutarate → oxaloacetate + glutamate; MDH reduces oxaloacetate, consuming NADH. Both read as falling absorbance at 340 nm. Bicarbonate: PEPC (Mg²⁺) + HCO₃⁻ + PEP → oxaloacetate + phosphate; MDH oxidises NADH (one kit: NADH analogue at 405 nm); fall in absorbance ∝ total CO₂. Saleem 2013: > 10% positive bias once LDH > 845 U/L with recalled Olympus AU2700 lots. CAP 2023 survey: 38% of laboratories used PLP-supplemented ALT/AST reagents.",
+    "differs": "ALT (LDH indicator) vs AST (MDH indicator); enzymatic panel bicarbonate (can be biased by very high LDH with some reagents) vs blood gas bicarbonate (not subject to this interference); PLP-supplemented vs non-supplemented transaminase reagents.",
+    "examAngle": "Expect: name the indicator enzyme of ALT or AST, identify the direction of absorbance change at 340 nm, explain an unexpectedly high bicarbonate in a patient with very high LDH, or explain a low ALT in vitamin B6 deficiency."
+  },
+  "comparisons": [
+    {
+      "id": "alt-vs-ast",
+      "title": "ALT vs AST assay",
+      "left": {
+        "label": "ALT",
+        "points": [
+          "Alanine + α-KG → pyruvate",
+          "Indicator: LDH, NADH consumed"
+        ]
+      },
+      "right": {
+        "label": "AST",
+        "points": [
+          "Aspartate + α-KG → oxaloacetate",
+          "Indicator: MDH, NADH consumed"
+        ]
+      },
+      "distinguisher": "Pyruvate goes to LDH; oxaloacetate goes to MDH."
+    },
+    {
+      "id": "panel-vs-gas",
+      "title": "Panel bicarbonate vs blood gas",
+      "left": {
+        "label": "Enzymatic panel",
+        "points": [
+          "PEPC then MDH, NADH loss",
+          "Some lots biased high by very high LDH"
+        ]
+      },
+      "right": {
+        "label": "Blood gas",
+        "points": [
+          "Dedicated acid–base analysis",
+          "Not subject to the LDH interference"
+        ]
+      },
+      "distinguisher": "When LDH is very high and the bicarbonate does not fit, the blood gas decides."
+    }
+  ],
+  "mnemonic": {
+    "text": "ALanine makes pyruvate and goes to Lactate (LDH); anything that makes oxaloacetate (AST and bicarbonate) goes to Malate (MDH); every route ends at the same finish line: NADH disappearing.",
+    "explanation": "Links each assay to its indicator enzyme and to the shared NADH read.",
+    "limitation": "Some kits use an NADH analogue read at 405 nm; the vitamin B6 problem applies only to reagents without added PLP; the LDH effect on bicarbonate is reagent- and lot-specific, not a property of every enzymatic method."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Reaction diagrams are schematic.",
+    "Interference thresholds come from specific reagents and lots; other reagents differ."
+  ],
+  "takeaway": "ALT, AST and enzymatic bicarbonate are all read as NADH lost through a dehydrogenase partner, so check the reagent before trusting a high bicarbonate with very high LDH or a normal transaminase in vitamin B6 deficiency.",
+  "questions": [
+    {
+      "id": "chem-cn-q1",
+      "stem": "In the coupled assay for AST, which enzyme serves as the indicator reaction that consumes NADH?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Malate dehydrogenase",
+          "rationale": "Correct. AST makes oxaloacetate, which malate dehydrogenase reduces to malate while oxidising NADH."
+        },
+        {
+          "id": "b",
+          "text": "Lactate dehydrogenase",
+          "rationale": "Incorrect. LDH is the indicator for ALT, which makes pyruvate."
+        },
+        {
+          "id": "c",
+          "text": "Glutamate dehydrogenase",
+          "rationale": "Incorrect. Glutamate is a product of the transamination, but it is not the indicator step of the AST assay."
+        },
+        {
+          "id": "d",
+          "text": "Phosphoenolpyruvate carboxylase",
+          "rationale": "Incorrect. PEPC is the first enzyme of the enzymatic bicarbonate assay, not the AST assay."
+        }
+      ],
+      "answer": "a",
+      "skill": "Assay chemistry",
+      "difficulty": "recall"
+    },
+    {
+      "id": "chem-cn-q2",
+      "stem": "A patient with an LDH of several thousand U/L has a chemistry-panel bicarbonate of 22 mmol/L, but a simultaneous blood gas shows marked acidaemia with a much lower bicarbonate. What is the best explanation and next step?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Possible positive interference of very high LDH in the enzymatic bicarbonate reagent; rely on the blood gas and alert the laboratory",
+          "rationale": "Correct. Very high LDH has falsely raised enzymatic bicarbonate with certain reagent lots, and blood gas analysis is not subject to this interference."
+        },
+        {
+          "id": "b",
+          "text": "Mixed metabolic alkalosis; report the panel bicarbonate as correct",
+          "rationale": "Incorrect. A large panel versus blood gas gap with very high LDH points to an assay problem before a new diagnosis."
+        },
+        {
+          "id": "c",
+          "text": "Haemolysis has lowered the blood gas bicarbonate; trust the panel",
+          "rationale": "Incorrect. The documented interference raises the enzymatic panel result, and the blood gas is the reference here."
+        },
+        {
+          "id": "d",
+          "text": "Repeat the panel bicarbonate on the same reagent lot to confirm",
+          "rationale": "Incorrect. Repeating with the same affected reagent would reproduce the same bias."
+        }
+      ],
+      "answer": "a",
+      "skill": "Interference recognition",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-cn-q3",
+      "stem": "A patient with vitamin B6 deficiency has suspected liver injury, but the ALT is within the reference interval. Which reagent feature could explain an under-read?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The ALT reagent is not supplemented with pyridoxal 5′-phosphate",
+          "rationale": "Correct. PLP is the coenzyme of ALT; non-supplemented assays may miss ALT elevations in vitamin B6 deficiency."
+        },
+        {
+          "id": "b",
+          "text": "The ALT reagent uses lactate dehydrogenase as the indicator enzyme",
+          "rationale": "Incorrect. LDH as indicator is the standard design and does not explain a B6-related under-read."
+        },
+        {
+          "id": "c",
+          "text": "The assay is read at 340 nm",
+          "rationale": "Incorrect. Reading NADH at 340 nm is normal for this assay."
+        },
+        {
+          "id": "d",
+          "text": "The assay measures a decrease rather than an increase in absorbance",
+          "rationale": "Incorrect. NADH consumption normally gives falling absorbance; that is the intended signal."
+        }
+      ],
+      "answer": "a",
+      "skill": "Cofactor dependence",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch28",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 28, How Tests Work and What Fools Them (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 28,
+          "section": "High-Yield Hits",
+          "items": [
+            7,
+            8
+          ]
+        },
+        {
+          "chapter": 28,
+          "section": "Exam Traps",
+          "items": [
+            5,
+            6
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "mcgill2016",
+      "kind": "external",
+      "citation": "McGill MR. The past and present of serum aminotransferases and the future of liver injury biomarkers. EXCLI J. 2016;15:817-828. doi:10.17179/excli2016-800",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5318690/",
+      "consulted": true,
+      "usedFor": "Europe PMC full text. ALT and AST transamination reactions (alanine or aspartate + α-ketoglutarate → pyruvate or oxaloacetate + glutamate); PLP as coenzyme of both; coupled assays: oxaloacetate reduced by MDH and pyruvate reduced by LDH, consuming NADH, followed as loss of absorbance at 340 nm."
+    },
+    {
+      "id": "wei2025",
+      "kind": "external",
+      "citation": "Wei S, Fang Z, Shi M, Zhang Q, Huang Q, Chen G, Wei Z, Sun C, Wei H, Li T, Lan C. Stability, accuracy, and clinical performance of enzymatic total CO₂ measurement: Evaluation of the Snibe and Roche assays. PLoS One. 2025;20(10):e0334228. doi:10.1371/journal.pone.0334228",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12513603/",
+      "consulted": true,
+      "usedFor": "Europe PMC full text. Enzymatic total CO₂ principle: PEPC with Mg²⁺ joins HCO₃⁻ and PEP to give oxaloacetate and phosphate; MDH reduces oxaloacetate to malate, oxidising NADH (Snibe: NADH analogue read at 405 nm); absorbance fall proportional to total CO₂; total CO₂ closely correlated with bicarbonate."
+    },
+    {
+      "id": "saleem2013",
+      "kind": "external",
+      "citation": "Saleem M, Dimeski G, Bourne L, Coates P. Artifactually elevated serum bicarbonate results caused by elevated serum lactate dehydrogenase concentrations. Ann Clin Biochem. 2013;50(Pt 4):365-367. doi:10.1177/0004563212474562",
+      "url": "https://europepmc.org/article/MED/23605134",
+      "consulted": true,
+      "usedFor": "Abstract only (Europe PMC; full text not open access), plus a case summary on acutecaretesting.org read via a page-fetch tool. Discrepancy between Olympus AU2700 HCO₃⁻ and blood gas TCO₂; recalled reagent lots; > 10% positive interference when LD > 845 U/L; later lot unaffected; case peak LD 14,200 U/L."
+    },
+    {
+      "id": "chambliss2025",
+      "kind": "external",
+      "citation": "Chambliss AB, Souers RJ, Genzen JR, Manthei DM. Reported Awareness and Use of Pyridoxal-5'-Phosphate Supplementation in Alanine Aminotransferase and Aspartate Aminotransferase Assay Reagents: A Survey by the College of American Pathologists Clinical Chemistry Committee. Arch Pathol Lab Med. 2025;149(5):400-404. doi:10.5858/arpa.2024-0097-cp",
+      "url": "https://europepmc.org/article/MED/39048110",
+      "consulted": true,
+      "usedFor": "Abstract only (Europe PMC; full text not open access). ALT/AST reagents exist with and without P5P supplementation; P5P is the required catalytic cofactor; non-supplemented assays may miss elevations in vitamin B6 deficiency; 38% (1651/4304) of responding laboratories used supplemented reagents (2023 survey)."
+    },
+    {
+      "id": "nm2025",
+      "kind": "external",
+      "citation": "Northwestern Medicine Laboratories. System Laboratory Update: LDH-Based Interference of Metabolic Panel Bicarbonate. October 7, 2025.",
+      "url": "https://physicianforum.nm.org/uploads/1/1/9/4/119404942/plu__ldh_interference_10-24-25_final.pdf",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (PDF). Manufacturer-reported LDH interference: with LDH > 2,000 U/L, positive bias of 15–30% or greater in bicarbonate; acid–base status should be determined by blood gas analysis, which is not subject to this interference."
+    },
+    {
+      "id": "muhc2025",
+      "kind": "external",
+      "citation": "McGill University Health Centre (OPTILAB-CUSM), Central Laboratory Glen Site. Memorandum: Bicarbonate – Assay Method Interference from LDH levels as of 600 U/L. October 15, 2025.",
+      "url": "https://cusm.ca/sites/default/files/docs/m-Labs/2025-10-15-bicarbonate-interference-analytique-taux-ldh-600-ul.pdf",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (PDF). Beckman Coulter recall of certain bicarbonate reagent lots: falsely elevated results up to 30% higher when sample LDH exceeded 600 U/L; interpret high bicarbonate with caution when LDH is high."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-altast",
+      "text": "ALT and AST coupled reactions (LDH and MDH indicators), NADH loss read at 340 nm, PLP coenzyme of both.",
+      "status": "checked",
+      "refs": [
+        "mcgill2016"
+      ]
+    },
+    {
+      "id": "cl-bicarb",
+      "text": "Enzymatic bicarbonate: PEPC + HCO₃⁻ + PEP → oxaloacetate + phosphate; MDH oxidises NADH; fall proportional to total CO₂; one kit uses an NADH analogue at 405 nm.",
+      "status": "checked",
+      "refs": [
+        "wei2025"
+      ]
+    },
+    {
+      "id": "cl-ldh",
+      "text": "Very high LDH can falsely raise enzymatic bicarbonate with certain reagent lots (Saleem 2013: > 10% when LD > 845 U/L; 2025 notices: up to about 30%); blood gas not subject to the interference.",
+      "status": "checked",
+      "refs": [
+        "saleem2013",
+        "nm2025",
+        "muhc2025"
+      ],
+      "note": "Saleem 2013 read as abstract only; notices read via a page-fetch tool."
+    },
+    {
+      "id": "cl-p5p",
+      "text": "Reagents with and without PLP supplementation; non-supplemented assays may miss ALT/AST rises in vitamin B6 deficiency; 38% of surveyed laboratories used supplemented reagents.",
+      "status": "checked",
+      "refs": [
+        "chambliss2025",
+        "mcgill2016"
+      ],
+      "note": "Chambliss 2025 read as abstract only."
+    },
+    {
+      "id": "cl-pend",
+      "text": "Pyruvate ≥2.4 mg/dL positively interfering with AST; heparin negatively interfering with ALT/AST; bicarbonate interference profile (Hb 500, bilirubin 40, Intralipid 1000 mg/dL); the detailed “enzymatic cross-talk” mechanism of LDH interference; a 340 nm read for the bicarbonate assay.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch28"
+      ],
+      "note": "Not taught as facts; no open source read in this session supported them."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; reaction diagrams schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“L for alanine, M for oxaloacetate.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-pepc-enzyme",
+      "issue": "Ch. 28 Hit 8 names the bicarbonate enzyme “PEPCK” (phosphoenolpyruvate carboxykinase). Wei 2025 describes the enzymatic total CO₂ assay as using phosphoenolpyruvate carboxylase (PEPC) with Mg²⁺, then MDH; the lesson teaches PEPC (register flag rv-ch28-bicarb-pepc-enzyme).",
+      "kind": "contradiction",
+      "status": "open"
+    },
+    {
+      "id": "f-ldh-reagent",
+      "issue": "Ch. 28 Hit 8 and Trap 5 present LDH interference as a property of the enzymatic bicarbonate assay. Saleem 2013 found it with specific recalled Olympus AU2700 reagent lots (a later lot was unaffected), and 2025 notices describe affected lots of one manufacturer’s reagent with different LDH thresholds (600 and 2000 U/L); the lesson teaches it as reagent- and lot-specific (register flag rv-ch28-bicarb-ldh-reagent).",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-p5p-reagent",
+      "issue": "Ch. 28 Hit 7 and Trap 6 say both assays need PLP and that B6 deficiency can blunt them. Chambliss 2025 shows reagents are sold with and without P5P supplementation and that the under-read risk applies to non-supplemented assays (only 38% of surveyed laboratories used supplemented reagents); the lesson adds this context (register flag rv-ch28-alt-ast-p5p-reagent).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; reactions shown as cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 factual claims checked against McGill 2016 and Wei 2025 (Europe PMC full text), Saleem 2013 and Chambliss 2025 (abstracts only) and two 2025 laboratory notices (read via a page-fetch tool); 1 pending (AST pyruvate and heparin interference, bicarbonate interference profile, LDH “cross-talk” mechanism, 340 nm bicarbonate read). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
