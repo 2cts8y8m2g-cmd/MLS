@@ -546,6 +546,10 @@ FLAG_RULES = [
      'sim-q729: among the options given, vascular wall disorder is still the best answer. Mehic 2023 notes that normal screens also occur with rare hyperfibrinolytic disorders, and 50-70% of mild-to-moderate bleeders remain unexplained.'),
     ('rv-ch36-hyperfibrinolysis-tests', 'Normal routine labs \\+ rapid clot lysis = hyperfibrinolysis',
      'sim-q730: tranexamic acid remains the best answer (first treatment step in all presumptive fibrinolytic disorders per Valke 2022). Diagnosis in practice relies on specialised, non-standardized assays such as the ECLT ratio after venous compression and PAI-1 antigen, not a single short ELT.'),
+    ('rv-ch34-myd88-supports-not-proves', 'MYD88 L265P is present in >90% of Waldenstr[öo]m macroglobulinemia.{0,40}essentially diagnostic',
+     'sim-q670: MYD88 L265P remains the best answer among the options (BRAF, JAK2, KIT), but the explanation calls it essentially diagnostic and the stem says it supports WM over IgM MGUS. Bibas 2024 reports MYD88 L265P in about 50-90% of IgM MGUS, so it does not separate WM from IgM MGUS; it does help separate WM from IgM myeloma, which lacks it.'),
+    ('rv-ch34-myeloma-biomarker-events', 'CRAB plus clonal M-protein = multiple myeloma',
+     'sim-q312: answer (multiple myeloma) stands for this all-four-CRAB case. The explanation simplifies the definition: IMWG myeloma also requires 10% or more clonal marrow plasma cells or a plasmacytoma, and the SLiM biomarkers can define myeloma without CRAB (Rajkumar 2024).'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
@@ -568,7 +572,8 @@ ANY_CHAPTER = {'rv-biotin-fda', 'rv-fvl-risk', 'rv-calcium-ref-albumin',
                'rv-crypto-induction-who2022', 'rv-ohl-fixed-candidiasis', 'rv-mucorales-pauciseptate',
                'rv-aspirin-recovery-time', 'rv-lipase-definitive-ch9', 'rv-alf-enzyme-definition-ch9',
                'rv-cdi-fidaxomicin-preferred', 'rv-ch66-oxa-s-os-mrsa',
-               'rv-siad-fena-salt-wasting', 'rv-atp7b-variant-count'}
+               'rv-siad-fena-salt-wasting', 'rv-atp7b-variant-count',
+               'rv-ch36-la-non-sle-share', 'rv-ch36-lahps-context'}
 
 
 def text(el):
