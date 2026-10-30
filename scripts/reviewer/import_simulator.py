@@ -528,6 +528,8 @@ FLAG_RULES = [
      "sim-q104 states the 30/45/20/30 goals as if they were general 'RFP goals' while the stem does not give the lab's own goals. The answer (immunoassay) stands only if the lab adopted those goals; sources say TAT goals are set locally and negotiated with users, so the stem should state the lab's targets."),
     ('rv-mac-prophylaxis-art', 'prophylaxis stops once the CD4 count stays above 100',
      'sim-q540 says MAC prophylaxis stops once the CD4 count stays above 100/µL for at least 3 months on ART. Among the options given, answer (a) is still the best choice. Current sources (Dawood 2024; To 2020) say prophylaxis can stop once ART is fully suppressive, and that routine primary prophylaxis is not recommended when ART starts promptly, so the explanation should carry that qualification.'),
+    ('rv-igg2-weak-c1q', 'IgG4 does not bind C1; IgM and IgG1/IgG2/IgG3 do activate',
+     'sim-q488: the answer (IgG4) still stands. The explanation lumps IgG2 with IgG1 and IgG3; Vidarsson 2014 ranks C1q binding IgG3 > IgG1 > IgG2 and describes IgG2 as a much less efficient activator that works mainly at high epitope density.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
