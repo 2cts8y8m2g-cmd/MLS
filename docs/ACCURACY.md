@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 562 flags: 428 verified issues and 134 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 564 flags: 429 verified issues and 135 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -568,6 +568,8 @@ Needs verification:
 - **Ch. 32 Hit 1:** Hit 1 states normal marrow can raise red cell production 6-8x normal under extreme stimulation, without stating the iron condition. (`rv-ch32-marrow-max-iron`, verified-issue).
 - **Ch. 32 Hit 11:** Hit 11 (and the Memory Hook 'Astronauts lose their neocytes', which says postflight) places neocytolysis in postflight astronauts. (`rv-ch32-neocytolysis-inflight`, verified-issue).
 - **Ch. 32 Hit 11:** Hit 11 presents neocytolysis after EPO withdrawal as established. (`rv-ch32-neocytolysis-uncertain`, verified-issue).
+- **Ch. 29 Hit 13:** Hit 13 says sterile pyuria with haematuria in acidic urine should make you think of renal tuberculosis. (`rv-sterile-pyuria-acid-urine-tb`, needs-verification).
+- **Ch. 29 Hit 15:** Hit 15 presents a positive reducing-sugar test with a negative glucose-oxidase result in a neonate as the galactosaemia clue, with no caveats. (`rv-reducing-substance-galactosemia`, verified-issue).
 - Ch. 40 Hit 7: enzymes said to destroy S/s (Manduzio 2024: variable).
 - Ch. 1 Hit 4: breath tests "not regulated by CLIA".
 - Ch. 40 Vault #2: ">62 Rh antigens".
@@ -589,7 +591,7 @@ Automated scan: **23** dated-guideline statements and **134** High-Yield Hits wi
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 237 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 239 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
@@ -846,8 +848,8 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **B Cells in Disguise: Myeloma-Defining Events, Waldenström MYD88 and the Hodgkin Cell (Ch. 34):** 2 pending claims (nodular sclerosis "young women" sex predominance; Reed-Sternberg owl-eye morphology), neither taught; 4 open lesson flags (myeloma biomarker events missing from CRAB-only definition, smoldering progression rates definition/risk-dependent, MYD88 L265P supportive not exclusive, HRS CD15 variable); 4 register flags (rv-ch34-myeloma-biomarker-events, rv-ch34-smm-progression-rates, rv-ch34-myd88-supports-not-proves, rv-ch34-hrs-cd15-variable). Checked against Rajkumar 2024 (IMWG criteria; read via a page-fetch tool, first part of the page only), Lakshman 2018, Bibas 2024, Satou 2022, Momotow 2021 and Gajzer & Fromm 2025 (Europe PMC full text); independently re-verified, with wording fixes (NLPHL CD30 'usually' absent, nodular sclerosis 'mainly adolescents', smoldering IgG/IgA qualifier).
 - **Macrocytic Anemia: B12, Folate and Hydroxyurea (Ch. 33):** 1 pending claim (folate cannot rescue the methionine/SAM myelin pathway; hydroxyurea macrocytosis lacks hypersegmented neutrophils; TSH before B12); lesson flags f-b12-borderline (contradiction), f-hu-morphology (contradiction), f-first-tests (missing-context); register flags rv-ch33-b12-borderline-range, rv-ch33-hydroxyurea-not-reliably-nonmegaloblastic, rv-ch33-macrocytosis-first-tests. Checked against Nagao 2017, Wolffenbuttel 2019, Hannibal 2016, Aslinia 2006 (read via a page-fetch tool), Green 2014 and Quinn 2025; independent fact-check softened folate-masking and high-folate wording, removed an unsupported treat-now hook answer and a 'rarely affects nerves' statement.
 - **Push, Unload, Trim: Marrow Reserve, 2,3-DPG and Neocytolysis (Ch. 32):** 1 pending claim (Hct 0.35/0.25 doubling/tripling of output within 1 week); lesson flags f-marrow-max-iron (missing-context), f-neocytolysis-inflight (contradiction), f-neocytolysis-uncertain (uncertain); register flags rv-ch32-marrow-max-iron, rv-ch32-neocytolysis-inflight, rv-ch32-neocytolysis-uncertain. Checked against Hillman & Henderson 1969 (abstract only; a page-fetch tool confirmed the article body is page images), Saito 2014, Mairbaurl 2018, Risso 2014, Collins 2015, Zoldakova 2025, Fenk 2022, Gangat 2021 and Mairbaurl 2013. Independent fact-check corrected the red cell lifespan to about 100-130 days (Mairbaurl 2018) and qualified BPG mutase deficiency as an uncommon cause of erythrocytosis (Gangat 2021). NCBI Bookshelf (StatPearls) was blocked by a captcha.
-- **Urine Clues That Need a Second Test: Sterile Pyuria, Darkening Urine and Non-Glucose Reducing Sugar (Ch. 29):** written and source-referenced, but the independent fact-check has NOT yet been completed; treat as unverified until this line is updated.
 - **Coupled NADH Assays: ALT, AST and Enzymatic Bicarbonate (Ch. 28):** written and source-referenced, but the independent fact-check has NOT yet been completed; treat as unverified until this line is updated.
+- **Urine Clues That Need a Second Test (Ch. 29):** 1 pending claim (acidic urine as a renal tuberculosis clue; not taught); lesson flags f-sterile-pyuria-tb (missing-context) and f-reducing-screen-galactosemia (missing-context); register flags rv-sterile-pyuria-acid-urine-tb and rv-reducing-substance-galactosemia. Checked against Glen 2016 (read via a page-fetch tool), Simerville 2005 (AAFP page, read via a page-fetch tool), Bilsen 2023, Kapoor 2008, Mantica 2021, Zatkova 2020, Milella 2024, Mishe'el 2016, Sacks 2011, Coelho 2017, Badiu Tișa 2022, Succoio 2022 and the Welling 2017 guideline. Fact-check pass: removed an unsupported claim that most sterile pyuria has ordinary causes and widened urine AFB smear sensitivity to about 20–30%.
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
