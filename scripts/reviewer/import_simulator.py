@@ -536,6 +536,8 @@ FLAG_RULES = [
      'sim-q763 (450 mL drawn in 16 minutes, answer: discard because >10 minutes). Under the one summary read, 16 minutes exceeds both the platelet (12 min) and FFP (15 min) limits for a 450 mL bag, but that source neither sets a single 10-minute rule nor says the whole unit (including red cells) must be discarded; the disposition depends on the standard in use.'),
     ('rv-vasovagal-pulse-clue', '(?i)hypovolemia is sympathetic \\(tachycardia\\)|vasovagal is parasympathetic \\(bradycardia',
      'sim-q439 (pale, sweaty, bradycardic, hypotensive donor: vasovagal). The answer stands: a slow pulse with hypotension fits vagal dominance. The explanation should add that presyncope can show sympathetic signs (tachycardia if standing) and the slow heart rate plays only a minor role in the faint, so the pulse is a clue; response to fluid also helps separate the two.'),
+    ('rv-ch4-normality-reaction-dependent', '2 M H₂SO₄.*4 N|normality of a 2 M H₂SO₄',
+     "sim-q688 (normality of 2 M H₂SO₄, answer 4 N) still stands for a reaction in which both protons react, the usual exam assumption. Harvey notes normality depends on the reaction, and NIST SP 811 calls the term obsolete; the explanation ('N = M × valence') could say 'equivalents (reacting H⁺) per mole, when both protons react'."),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
