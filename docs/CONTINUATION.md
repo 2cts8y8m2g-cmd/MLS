@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 309, teaching 1435 of 1,932 concepts (about 74.3%).** All 309 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 310, teaching 1440 of 1,932 concepts (about 74.5%).** All 310 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -45,7 +45,7 @@
   - Ch. 39 (16/23 concepts): `heme-anticoagulant-test-selection`, `heme-antiplatelet-guided-therapy`, `heme-hit-diagnosis-management`.
   - Ch. 40 (29/36 concepts): `bb-dat-aiha-workup`, `ih-abo-discrepancy-types-workup`, `ih-abo-forward-reverse`, `ih-antibody-id-dosage-kidd`, `ih-dtt-lectin-inhibition-tools`, `ih-hdfn-titers-rhig`, `ih-weak-d-partial-d-del`.
   - Ch. 41 (28/35 concepts): `bb-acute-hemolytic-reaction-abo-compatibility`, `bb-component-choice-thresholds`, `bb-component-storage-irradiation`, `bb-pbm-single-unit-iron-overload`, `bb-trali-vs-taco`, `ih-component-dating-processing`, `ih-dhtr-lookback-windows`.
-  - Ch. 42 (21/29 concepts): `bb-donor-eligibility-criteria`, `ih-apheresis-citrate-asfa-rce`, `ih-hpc-mobilization-ecp`, `ih-plasma-exchange-tpe`.
+  - Ch. 42 (26/29 concepts): `bb-donor-blood-volume-reactions-draw-time`, `bb-donor-eligibility-criteria`, `ih-apheresis-citrate-asfa-rce`, `ih-hpc-mobilization-ecp`, `ih-plasma-exchange-tpe`.
   - Ch. 43 (16/22 concepts): `ih-hpc-cd34-dose-cryopreservation`, `ih-hpc-graft-sources-abo`, `ih-tissue-allografts-valve-cornea`.
   - Ch. 44 (16/22 concepts): `immuno-checkpoint-cart-anti-c5-cd20`, `immuno-hypersensitivity-types-lab`, `immuno-immune-screens-trec-ch50-spep`, `immuno-lymphocyte-subsets-th-treg-nk`.
   - Ch. 45 (17/22 concepts): `immuno-affinity-precipitin-mab-hapten`, `immuno-competitive-sandwich-hook`, `immuno-homogeneous-emit-fpia`, `immuno-ria-chemiluminescence-eclia-hbsag`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 543 flags (413 verified issues, 130 needing verification), plus scan results.
-- **Checks:** 1920 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 1926 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
