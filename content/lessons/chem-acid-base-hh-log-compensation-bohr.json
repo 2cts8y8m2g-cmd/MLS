@@ -1,0 +1,1573 @@
+{
+  "schemaVersion": 1,
+  "id": "chem-acid-base-hh-log-compensation-bohr",
+  "title": "Acid-Base Core: Henderson-Hasselbalch, the pH Log Scale, Compensation Limits and the Bohr Effect",
+  "summary": "Use the Henderson-Hasselbalch ratio to find the primary disorder, convert pH to hydrogen ion on its log scale, judge how far compensation can go (including the metabolic alkalosis ceiling and chronic respiratory alkalosis), and separate the Bohr effect, Haldane effect and chloride shift.",
+  "domain": "p2-chem",
+  "topic": "ch15",
+  "conceptIds": [
+    "ch15.hit13",
+    "ch15.hit15",
+    "ch15.hit16",
+    "ch15.hit17"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 15,
+        "section": "High-Yield Hits",
+        "items": [
+          13,
+          15,
+          16,
+          17
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 15 Hits 13 (respiratory alkalosis compensation; metabolic alkalosis PaCO₂ ceiling), 15 (Henderson-Hasselbalch), 16 (pH log scale) and 17 (Bohr, Haldane, chloride shift). Checked against Sood 2010, Habib 2025, Tinawi 2021, Do 2022, Valsecchi 2025, Hsu 2018, Arora 2019 and Woyke 2021. Hit 13 qualified: Sood 2010 limits full pH normalisation to CHRONIC respiratory alkalosis (register flag rv-ch15-resp-alk-chronic-only), and the reviewer’s “metabolic alkalosis PaCO₂ rarely exceeds 60 mmHg” is not taught: Tinawi 2021 gives “rarely over 55 mmHg” while Sood 2010 says it “may rise higher than 55” (register flag rv-ch15-met-alk-pco2-ceiling). Not taught: base excess, Stewart approach, oxygenation indices."
+  },
+  "prerequisites": [
+    "ch15.hit6",
+    "ch32.hit6"
+  ],
+  "objectives": [
+    "Use the Henderson-Hasselbalch equation (pKa 6.1, CO₂ solubility 0.03) to identify which value drives an abnormal pH and to check a blood gas for internal consistency.",
+    "Convert pH to hydrogen-ion concentration and explain why a 0.3-unit fall roughly doubles [H⁺].",
+    "Apply expected-compensation rules, recognise that only chronic respiratory alkalosis can normalise pH, and spot a second disorder when PaCO₂ exceeds the expected value in metabolic alkalosis.",
+    "Distinguish the Bohr effect, the Haldane effect and the chloride shift."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three blood gases",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three arterial blood gas cards arrive on the bench — A: pH 7.30, PaCO₂ 60 mmHg, HCO₃⁻ 28 mEq/L; B: pH 7.10 with the question “how much more acid?”; C: HCO₃⁻ 40 mEq/L with PaCO₂ 70 mmHg and the question “compensation?”. Question token: “Ratio, log scale, or a second disorder?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Three blood gases land on the bench. A: pH 7.30, carbon dioxide 60, bicarbonate 28. B: pH 7.10. C: bicarbonate 40 with carbon dioxide 70."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 14,
+          "text": "Which number drives each pH, how much acid does a pH of 7.10 really mean, and is a carbon dioxide of 70 still compensation?"
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Ratio, log scale, or a second disorder?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "A",
+            "lines": [
+              "pH 7.30 · PaCO₂ 60",
+              "HCO₃⁻ 28"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "B",
+            "lines": [
+              "pH 7.10",
+              "How much more acid?"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "C",
+            "lines": [
+              "HCO₃⁻ 40 · PaCO₂ 70",
+              "Compensation?"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.5,
+              "opacity": 0
+            },
+            {
+              "t": 6.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6.8,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ask",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 420,
+            "w": 640,
+            "label": "Driver · acid load · second disorder?",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 9.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 490,
+            "w": 640,
+            "label": "Ratio, log scale, or a second disorder?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The ratio, the log, the red cell",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic cards. Henderson-Hasselbalch: pH = 6.1 + log[HCO₃⁻ / (0.03 × PaCO₂)]; 6.1 is the pKa of carbonic acid at body temperature and 0.03 the CO₂ solubility coefficient (mmol/L per mmHg). Normal 24 / (0.03 × 40) = 20 : 1 → pH 7.40; a calculated pH more than ±0.05 from the reported pH suggests an error. Log card: [H⁺] (nmol/L) = 10^(9 − pH): 7.40 = 40, 7.10 = 79, 7.00 = 100; normal pH 7.35–7.45 = 35–45 nmol/L. Red-cell card: Bohr effect (CO₂/H⁺ lower Hb O₂ affinity, right shift, tissue unloading); Haldane effect (deoxygenated Hb binds CO₂ better); chloride shift (HCO₃⁻/Cl⁻ exchange through band 3).",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "The Henderson-Hasselbalch equation links the three numbers: pH equals 6.1 plus the log of bicarbonate over 0.03 times the carbon dioxide. 6.1 is the pKa of carbonic acid at body temperature, and 0.03 turns carbon dioxide pressure into dissolved carbon dioxide."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Normal values, 24 over 0.03 times 40, give a ratio of 20 to 1 and a pH of 7.40. Bicarbonate pushes pH up; carbon dioxide pulls it down. If the calculated pH differs from the reported pH by more than 0.05, suspect an error."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "pH is a log scale. Hydrogen ion, in nanomoles per litre, is ten to the power of nine minus the pH: 40 at 7.40, 79 at 7.10, 100 at 7.00. A fall of 0.3 roughly doubles the hydrogen ion; a full unit is tenfold."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "In the red cell, carbon dioxide and acid lower haemoglobin’s oxygen affinity and shift the curve right, unloading oxygen in tissues: the Bohr effect. Deoxygenated haemoglobin binds carbon dioxide better: the Haldane effect. And bicarbonate leaves the cell in exchange for chloride through band 3: the chloride shift."
+        }
+      ],
+      "objects": [
+        {
+          "id": "hh",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 170,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Henderson-Hasselbalch",
+            "lines": [
+              "pH = 6.1 + log[HCO₃⁻ / (0.03 × PaCO₂)]",
+              "6.1 = pKa · 0.03 = CO₂ solubility"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ratio",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "good",
+            "title": "Normal: 24 / 1.2 = 20 : 1",
+            "lines": [
+              "→ pH 7.40",
+              "Calc vs reported > 0.05: error?"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "log",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "[H⁺] = 10^(9 − pH) nmol/L",
+            "lines": [
+              "7.40 → 40",
+              "7.10 → 79 (≈ double)",
+              "7.00 → 100 (1 unit = 10×)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rbc",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "Red cell",
+            "lines": [
+              "Bohr: CO₂/H⁺ → right shift, O₂ off",
+              "Haldane: deoxy-Hb carries more CO₂",
+              "Chloride shift: HCO₃⁻ ⇄ Cl⁻ (band 3)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38.5,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Compensation and its limits",
+      "start": 60,
+      "end": 104,
+      "altText": "Rules card (Sood 2010; Habib 2025): metabolic acidosis expected PaCO₂ = 1.5 × HCO₃⁻ + 8 ± 2; respiratory acidosis HCO₃⁻ +1 per 10 mmHg (acute), +3.5 to 4 per 10 (chronic); respiratory alkalosis HCO₃⁻ −2 per 10 (acute), −5 per 10 (chronic). Limits card: compensation usually returns pH only 50–75% toward normal; in chronic respiratory alkalosis pH may return fully to normal. Metabolic alkalosis card: compensation by hypoventilation; expected PaCO₂ ≈ 0.7 × HCO₃⁻ + 21 (±2) or 40 + 0.6 × ΔHCO₃⁻; one review: PaCO₂ rarely over 55 mmHg; PaCO₂ above expected = concomitant respiratory acidosis.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Compensation moves the other number in the same direction. In metabolic acidosis, expected carbon dioxide is 1.5 times bicarbonate plus 8, plus or minus 2. In respiratory acidosis, bicarbonate rises about 1 for every 10 millimetres of mercury acutely, and about 3.5 to 4 chronically."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "In respiratory alkalosis, bicarbonate falls about 2 per 10 acutely and about 5 per 10 chronically. The lungs respond quickly; the chronic kidney response takes days."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "Compensation usually brings the pH only 50 to 75 percent of the way back. The exception is chronic respiratory alkalosis, where the pH can return fully to normal: the most complete compensation of the four."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "Metabolic alkalosis is compensated by hypoventilation, and that has a limit: one review notes carbon dioxide is rarely over 55. A carbon dioxide well above the expected value means a second disorder, a respiratory acidosis."
+        }
+      ],
+      "objects": [
+        {
+          "id": "rules",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 230,
+            "w": 440,
+            "h": 260,
+            "tone": "b",
+            "title": "Expected compensation",
+            "lines": [
+              "Met acidosis: PaCO₂ = 1.5 × HCO₃⁻ + 8 ± 2",
+              "Resp acidosis: HCO₃⁻ +1 / +3.5–4 per 10",
+              "Resp alkalosis: HCO₃⁻ −2 / −5 per 10",
+              "Acute / chronic (kidneys take days)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lim",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 200,
+            "tone": "good",
+            "title": "How far back?",
+            "lines": [
+              "Usually 50–75% toward normal",
+              "Chronic resp alkalosis: can normalise"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 32,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "alk",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "h": 130,
+            "tone": "warn",
+            "title": "Met alkalosis: hypoventilation",
+            "lines": [
+              "PaCO₂ rarely > 55 (one review)",
+              "Above expected → + resp acidosis"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0
+            },
+            {
+              "t": 35.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Working the three gases",
+      "start": 104,
+      "end": 144,
+      "altText": "Worked cards. A: pH 7.30 ([H⁺] 50 nmol/L) = acidaemia; PaCO₂ 60 high and explains the pH → primary respiratory acidosis; expected HCO₃⁻ ≈ 26 acute, ≈ 31–32 chronic; 28 lies between → partial compensation (ΔH⁺/ΔPaCO₂ = 10/20 = 0.5, acute-on-chronic by one review’s rule). B: pH 7.10 → [H⁺] ≈ 79 nmol/L, about double normal. C: HCO₃⁻ 40 → expected PaCO₂ ≈ 49–50 mmHg; 70 is far above → coexisting respiratory acidosis.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Case A. A pH of 7.30 is acidaemia, a hydrogen ion of 50. Carbon dioxide 60 sits on the acid side of the ratio and explains the pH, so the primary disorder is respiratory acidosis."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "Expected bicarbonate is about 26 if acute and about 31 to 32 if chronic. A bicarbonate of 28 lies between them: partial kidney compensation, which one review’s hydrogen-ion ratio reads as acute-on-chronic."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "Case B. A pH of 7.10 means about 79 nanomoles per litre of hydrogen ion, roughly double normal. Not a small change."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Case C. With bicarbonate 40, expected carbon dioxide is about 49 to 50. Seventy is far above that, so a respiratory acidosis coexists with the metabolic alkalosis."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ca",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 240,
+            "w": 440,
+            "h": 260,
+            "tone": "b",
+            "title": "A: pH 7.30 · PaCO₂ 60 · HCO₃⁻ 28",
+            "lines": [
+              "[H⁺] 50 → acidaemia",
+              "PaCO₂ explains it → resp acidosis",
+              "HCO₃⁻ 28: between 26 and 31–32"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            },
+            {
+              "t": 18,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 0
+            }
+          ]
+        },
+        {
+          "id": "cb",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 170,
+            "w": 420,
+            "h": 140,
+            "tone": "warn",
+            "title": "B: pH 7.10",
+            "lines": [
+              "[H⁺] ≈ 79 nmol/L ≈ 2 × normal"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cc",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 170,
+            "tone": "bad",
+            "title": "C: HCO₃⁻ 40 · PaCO₂ 70",
+            "lines": [
+              "Expected PaCO₂ ≈ 49–50",
+              "70 ≫ expected → + resp acidosis"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “A 0.3 pH drop is a small change” (✓ [H⁺] roughly doubles, 40 → 79 nmol/L); “Compensation brings pH back to normal” (✓ usually only 50–75% of the way; only chronic respiratory alkalosis can fully normalise; a normal pH with abnormal PaCO₂ and HCO₃⁻ suggests a mixed disorder); “Haldane effect = CO₂ unloads O₂” (✓ that is the Bohr effect; Haldane = deoxygenated Hb carries more CO₂).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a pH drop of 0.3 is a small change. No: hydrogen ion roughly doubles, from 40 to 79."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: compensation brings the pH back to normal. No: usually only part of the way. Only chronic respiratory alkalosis can fully normalise, so a normal pH with abnormal carbon dioxide and bicarbonate suggests a mixed disorder."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the Haldane effect is carbon dioxide unloading oxygen. No: that is the Bohr effect. Haldane is deoxygenated haemoglobin carrying more carbon dioxide."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “0.3 pH units is a small change.”",
+            "lines": [
+              "✓ [H⁺] ≈ doubles (40 → 79)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Compensation normalises pH.”",
+            "lines": [
+              "✓ Usually partial; only chronic resp alkalosis can"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Haldane = CO₂ unloads O₂.”",
+            "lines": [
+              "✓ That is Bohr; Haldane = deoxy-Hb carries CO₂"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Twenty to one, point-three doubles",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Twenty-to-one makes seven-forty; point-three down doubles the acid; Bohr brings O₂ off, Haldane hauls CO₂ home.” Tokens: 20 : 1 → pH 7.40 · −0.3 pH → 2× H⁺ · Bohr unloads, Haldane hauls. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: twenty to one makes seven-forty. Point-three down doubles the acid. Bohr brings oxygen off in the tissues; Haldane hauls carbon dioxide home to the lungs."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: the doubling is approximate, 79 not 80; Bohr and Haldane are two sides of the same oxygen-linked binding, and carbon dioxide also binds haemoglobin directly as carbamino compounds; and compensation formulas differ slightly between sources."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Twenty to one, point-three doubles",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "20 : 1 → pH 7.40",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "−0.3 pH → 2× H⁺",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Bohr off · Haldane hauls",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Doubling is approximate (7.10 = 79)",
+              "Bohr/Haldane linked; CO₂ also binds as carbamino",
+              "Compensation formulas vary by source"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “pH = 6.1 + log(HCO₃⁻ / 0.03 × PaCO₂) · −0.3 pH doubles H⁺”, “Compensation is partial except chronic respiratory alkalosis · Bohr unloads O₂ in tissues”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Read acid-base status from the bicarbonate-to-carbon-dioxide ratio, remember that every three-tenths of a pH unit roughly doubles hydrogen ion, expect compensation to stop short of normal except in chronic respiratory alkalosis, and let carbon dioxide and acid unload oxygen in tissues through the Bohr effect."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "pH = 6.1 + log(HCO₃⁻ / 0.03 × PaCO₂) · −0.3 pH ≈ 2× H⁺",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Partial compensation (except chronic resp alkalosis) · Bohr unloads O₂",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: blood acidity depends on a balance between bicarbonate (a base the kidneys control) and carbon dioxide (an acid the lungs control). The pH number is a compressed, logarithmic scale, so small pH changes are big acid changes. When one side goes wrong, the other side shifts to limit the damage, but usually not all the way. In red cells, carbon dioxide and acid help haemoglobin let go of oxygen where tissues need it. Scientific terms: Henderson-Hasselbalch equation, pKa, CO₂ solubility coefficient, hydrogen-ion concentration (nmol/L), acidaemia/alkalaemia, primary disorder, compensation, mixed disorder, Bohr effect, Haldane effect, chloride (Hamburger) shift, band 3 (anion exchanger 1), carbonic anhydrase, P50.",
+    "why": "pH depends on the ratio of HCO₃⁻ to dissolved CO₂, not on either value alone, so compensation that moves the other value in the same direction pulls the ratio, and the pH, back toward normal. Compensation is limited by how far the lungs or kidneys can go; hypoventilation in metabolic alkalosis is restrained, which is why a very high PaCO₂ points to a second disorder. CO₂ and H⁺ lower haemoglobin’s O₂ affinity, while deoxygenated haemoglobin takes up CO₂ and H⁺ more readily, so loading and unloading support each other.",
+    "measure": "pH = 6.1 + log[HCO₃⁻/(0.03 × PaCO₂)]; normal 24/(0.03 × 40) = 20 : 1 → 7.40; calculated vs reported pH differing by > 0.05 suggests error. [H⁺] nmol/L = 10^(9 − pH): 7.40 = 40, 7.10 = 79, 7.00 = 100; pH 7.35–7.45 = 35–45 nmol/L. Metabolic acidosis: PaCO₂ = 1.5 × HCO₃⁻ + 8 ± 2. Respiratory acidosis: HCO₃⁻ +1 per 10 mmHg acute, +3.5 to 4 chronic. Respiratory alkalosis: −2 per 10 acute, −5 chronic. Metabolic alkalosis: PaCO₂ ≈ 0.7 × HCO₃⁻ + 21 (±2) or 40 + 0.6 × ΔHCO₃⁻; rarely over 55 mmHg (one review). Usually 50–75% return of pH; chronic respiratory alkalosis may normalise. P50 normally about 27 mmHg; CO₂, pH, temperature and 2,3-DPG shift the curve.",
+    "differs": "Primary disorder (explains the pH) vs compensation (moves the same direction, does not explain the pH) vs mixed disorder (PaCO₂ or HCO₃⁻ outside the expected range, or moving in opposite directions); acute vs chronic respiratory compensation; Bohr (O₂ affinity falls with CO₂/H⁺) vs Haldane (CO₂ carriage rises with deoxygenation) vs chloride shift (HCO₃⁻/Cl⁻ exchange).",
+    "examAngle": "Expect: identify the primary disorder from pH, PaCO₂ and HCO₃⁻; compute [H⁺] from pH; decide whether a PaCO₂ is appropriate compensation; name the disorder whose compensation can normalise pH; match Bohr, Haldane and chloride shift to their descriptions."
+  },
+  "comparisons": [
+    {
+      "id": "bohr-vs-haldane",
+      "title": "Bohr effect vs Haldane effect",
+      "left": {
+        "label": "Bohr",
+        "points": [
+          "CO₂ and H⁺ lower Hb O₂ affinity",
+          "Right shift: O₂ released in tissues"
+        ]
+      },
+      "right": {
+        "label": "Haldane",
+        "points": [
+          "Deoxygenated Hb binds CO₂ better",
+          "Helps carry CO₂ to the lungs"
+        ]
+      },
+      "distinguisher": "Which gas’s binding changes: O₂ affinity (Bohr) or CO₂ carriage (Haldane)."
+    },
+    {
+      "id": "comp-vs-mixed",
+      "title": "Expected compensation vs a second disorder",
+      "left": {
+        "label": "Compensation",
+        "points": [
+          "Other value moves the same direction",
+          "Within the expected range; pH partly corrected"
+        ]
+      },
+      "right": {
+        "label": "Second disorder",
+        "points": [
+          "Value outside the expected range",
+          "Normal pH with abnormal PaCO₂ and HCO₃⁻"
+        ]
+      },
+      "distinguisher": "Compare the measured value with the formula’s expected value."
+    }
+  ],
+  "mnemonic": {
+    "text": "Twenty-to-one makes seven-forty; point-three down doubles the acid; Bohr brings O₂ off, Haldane hauls CO₂ home.",
+    "explanation": "Anchors the normal ratio, the log-scale doubling and the direction of the two red-cell effects.",
+    "limitation": "The doubling is approximate (pH 7.10 = 79 nmol/L, not 80); Bohr and Haldane are linked aspects of the same oxygen-dependent binding, and CO₂ also binds haemoglobin directly as carbamino compounds; compensation formulas differ slightly between sources."
+  },
+  "analogyLimitations": [
+    "Blood gases are invented.",
+    "Red-cell effects are shown as text cards, not a measured curve.",
+    "Compensation formulas are approximations and vary between sources."
+  ],
+  "takeaway": "Read acid-base status from the bicarbonate-to-carbon-dioxide ratio, remember that every three-tenths of a pH unit roughly doubles hydrogen ion, expect compensation to stop short of normal except in chronic respiratory alkalosis, and let carbon dioxide and acid unload oxygen in tissues through the Bohr effect.",
+  "questions": [
+    {
+      "id": "chem-abc-q1",
+      "stem": "An arterial sample has pH 7.10. Using [H⁺] (nmol/L) = 10^(9 − pH), what is the approximate hydrogen-ion concentration compared with a normal pH of 7.40 (40 nmol/L)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "About 80 nmol/L, roughly double normal",
+          "rationale": "Correct. 10^(1.9) ≈ 79 nmol/L; a 0.3-unit fall roughly doubles [H⁺]."
+        },
+        {
+          "id": "b",
+          "text": "About 44 nmol/L, a 10% rise",
+          "rationale": "Incorrect. This treats pH as a linear scale; it is logarithmic."
+        },
+        {
+          "id": "c",
+          "text": "About 400 nmol/L, tenfold normal",
+          "rationale": "Incorrect. Tenfold requires a full 1.0-unit fall (pH 6.40)."
+        },
+        {
+          "id": "d",
+          "text": "About 20 nmol/L, half normal",
+          "rationale": "Incorrect. A lower pH means more hydrogen ion, not less; 20 nmol/L corresponds to pH 7.70."
+        }
+      ],
+      "answer": "a",
+      "skill": "pH log scale",
+      "difficulty": "application"
+    },
+    {
+      "id": "chem-abc-q2",
+      "stem": "In which primary acid-base disorder can compensation return the pH completely to normal?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Chronic respiratory alkalosis",
+          "rationale": "Correct. Compensation usually restores only 50–75% of the pH change, but in chronic respiratory alkalosis the pH may return fully to normal."
+        },
+        {
+          "id": "b",
+          "text": "Acute respiratory acidosis",
+          "rationale": "Incorrect. Acute renal compensation is small (HCO₃⁻ about +1 per 10 mmHg PaCO₂)."
+        },
+        {
+          "id": "c",
+          "text": "Metabolic alkalosis",
+          "rationale": "Incorrect. Compensatory hypoventilation is limited and usually does not normalise pH; PaCO₂ is rarely over 55 mmHg in one review."
+        },
+        {
+          "id": "d",
+          "text": "Acute respiratory alkalosis",
+          "rationale": "Incorrect. The acute fall in HCO₃⁻ is only about 2 per 10 mmHg; full normalisation needs the chronic renal response."
+        }
+      ],
+      "answer": "a",
+      "skill": "Compensation limits",
+      "difficulty": "recall"
+    },
+    {
+      "id": "chem-abc-q3",
+      "stem": "In exercising muscle, rising CO₂ and H⁺ lower haemoglobin’s oxygen affinity so that more oxygen is released. Which term describes this?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Bohr effect",
+          "rationale": "Correct. CO₂ and H⁺ reduce Hb O₂ affinity, shifting the dissociation curve right and promoting O₂ release in active tissues."
+        },
+        {
+          "id": "b",
+          "text": "Haldane effect",
+          "rationale": "Incorrect. The Haldane effect is the greater CO₂ binding of deoxygenated haemoglobin."
+        },
+        {
+          "id": "c",
+          "text": "Chloride shift",
+          "rationale": "Incorrect. The chloride shift is HCO₃⁻/Cl⁻ exchange across the red-cell membrane through band 3."
+        },
+        {
+          "id": "d",
+          "text": "Left shift of the dissociation curve",
+          "rationale": "Incorrect. A left shift raises O₂ affinity and reduces unloading; CO₂ and H⁺ shift the curve right."
+        }
+      ],
+      "answer": "a",
+      "skill": "Oxygen-CO₂ transport",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch15",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 15, Kidneys, Electrolytes, and Acid-Base (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 15,
+          "section": "High-Yield Hits",
+          "items": [
+            13,
+            15,
+            16,
+            17
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "sood2010",
+      "kind": "external",
+      "citation": "Sood P, Paul G, Puri S. Interpretation of arterial blood gas. Indian J Crit Care Med. 2010;14(2):57-64. doi:10.4103/0972-5229.68215",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2936733/",
+      "consulted": true,
+      "usedFor": "[H⁺] = 10^(9 − pH) and the pH–[H⁺] table (7.40 = 40, 7.10 = 79, 7.00 = 100, 7.30 = 50); primary-disorder logic; ΔH⁺/ΔPaCO₂ acute vs chronic rule; compensation rules (respiratory acidosis +1/+3.5 per 10; respiratory alkalosis −2/−5 per 10; Winter’s formula; metabolic alkalosis 0.7 × HCO₃⁻ + 21 ± 2); compensation usually 50–75% return of pH, chronic respiratory alkalosis may normalise; acute 6–24 h, chronic 1–4 days; metabolic alkalosis PaCO₂ “may rise higher than 55 mmHg”; PaCO₂ above expected = concomitant respiratory acidosis."
+    },
+    {
+      "id": "habib2025",
+      "kind": "external",
+      "citation": "Habib T, Nair A, Murphy S, Saeed H, Ishaya N. Mastering blood gas interpretation: A practical guide for primary care providers. S Afr Fam Pract (2004). 2025;67(1):e1-e7. doi:10.4102/safp.v67i1.6058",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12067511/",
+      "consulted": true,
+      "usedFor": "Henderson-Hasselbalch form with 6.1 = pKa of carbonic acid at body temperature and 0.03 = CO₂ solubility; consistency check (calculated vs reported pH > ±0.05 suggests error); pH 7.35–7.45 = H⁺ 35–45 nmol/L; compensation table (chronic respiratory acidosis +4 per 10; metabolic alkalosis 0.7 × HCO₃⁻ + 20 ± 5); normal pH with abnormal PaCO₂ and HCO₃⁻ = mixed disorder."
+    },
+    {
+      "id": "tinawi2021",
+      "kind": "external",
+      "citation": "Tinawi M. Pathophysiology, Evaluation, and Management of Metabolic Alkalosis. Cureus. 2021;13(1):e12841. doi:10.7759/cureus.12841",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7896805/",
+      "consulted": true,
+      "usedFor": "Metabolic alkalosis compensation: PaCO₂ = 40 + 0.6 × (HCO₃⁻ − 24); compensation by alveolar hypoventilation usually does not normalise pH; “PaCO₂ is rarely over 55 mmHg”; near-normal pH may indicate metabolic alkalosis plus respiratory acidosis."
+    },
+    {
+      "id": "do2022",
+      "kind": "external",
+      "citation": "Do C, Vasquez PC, Soleimani M. Metabolic Alkalosis Pathogenesis, Diagnosis, and Treatment: Core Curriculum 2022. Am J Kidney Dis. 2022;80(4):536-551. doi:10.1053/j.ajkd.2021.12.016",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10947768/",
+      "consulted": true,
+      "usedFor": "Compensatory alveolar hypoventilation in metabolic alkalosis produces hypercapnia that blunts the pH rise."
+    },
+    {
+      "id": "valsecchi2025",
+      "kind": "external",
+      "citation": "Valsecchi C, Carlesso E, Battistin M, Colombo SM, Cattaneo E, Gori F, Langer T, Grasselli G, Zanella A. In vitro characterization of hemoglobin oxygen dissociation curves and electrolyte shifts in human blood under varying PCO2. Front Med (Lausanne). 2025;12:1708274. doi:10.3389/fmed.2025.1708274",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12833093/",
+      "consulted": true,
+      "usedFor": "Bohr effect (rising PCO₂ and H⁺ reduce Hb O₂ affinity, right shift, O₂ release in metabolically active tissues); Haldane effect (deoxygenated Hb binds CO₂ more effectively); chloride shift via the Cl⁻/HCO₃⁻ antiport (band 3, anion exchanger 1) with carbonic anhydrase."
+    },
+    {
+      "id": "hsu2018",
+      "kind": "external",
+      "citation": "Hsu K. Exploring the Potential Roles of Band 3 and Aquaporin-1 in Blood CO2 Transport-Inspired by Comparative Studies of Glycophorin B-A-B Hybrid Protein GP.Mur. Front Physiol. 2018;9:733. doi:10.3389/fphys.2018.00733",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6018491/",
+      "consulted": true,
+      "usedFor": "In systemic capillaries carbonic anhydrase II converts CO₂ to HCO₃⁻, which leaves via band 3 in exchange for Cl⁻, while deoxygenated Hb takes up the proton; reverse in the lungs."
+    },
+    {
+      "id": "arora2019",
+      "kind": "external",
+      "citation": "Arora S, Tantia P. Physiology of Oxygen Transport and its Determinants in Intensive Care Unit. Indian J Crit Care Med. 2019;23(Suppl 3):S172-S177. doi:10.5005/jp-journals-10071-23246",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6785823/",
+      "consulted": true,
+      "usedFor": "PaCO₂, pH, temperature and 2,3-DPG shift the oxyhaemoglobin dissociation curve; P50 normally about 27 mmHg in adults."
+    },
+    {
+      "id": "woyke2021",
+      "kind": "external",
+      "citation": "Woyke S, Brugger H, Ströhle M, Haller T, Gatterer H, Dal Cappello T, Strapazzon G. Effects of Carbon Dioxide and Temperature on the Oxygen-Hemoglobin Dissociation Curve of Human Blood: Implications for Avalanche Victims. Front Med (Lausanne). 2021;8:808025. doi:10.3389/fmed.2021.808025",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8859098/",
+      "consulted": true,
+      "usedFor": "CO₂ lowers O₂ affinity both through pH (Bohr effect) and by direct carbamino binding; used for the memory aid’s limitation."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-hh",
+      "text": "Henderson-Hasselbalch form, 6.1 and 0.03 constants, 20 : 1 normal ratio giving pH 7.40, consistency check.",
+      "status": "checked",
+      "refs": [
+        "habib2025",
+        "sood2010"
+      ],
+      "note": "The 20 : 1 ratio and pH 7.40 are arithmetic from the stated equation and normal values."
+    },
+    {
+      "id": "cl-log",
+      "text": "[H⁺] = 10^(9 − pH); 7.40 = 40, 7.30 = 50, 7.10 = 79, 7.00 = 100 nmol/L; 0.3 fall ≈ doubling, 1 unit = tenfold.",
+      "status": "checked",
+      "refs": [
+        "sood2010",
+        "habib2025"
+      ]
+    },
+    {
+      "id": "cl-comp",
+      "text": "Expected compensation rules; usually 50–75% return of pH; chronic respiratory alkalosis may normalise pH; renal response takes days; primary disorder and acute-on-chronic reading in case A.",
+      "status": "checked",
+      "refs": [
+        "sood2010",
+        "habib2025"
+      ]
+    },
+    {
+      "id": "cl-metalk",
+      "text": "Metabolic alkalosis compensation by hypoventilation; expected PaCO₂ formulas; PaCO₂ rarely over 55 mmHg in one review; PaCO₂ above expected = coexisting respiratory acidosis.",
+      "status": "checked",
+      "refs": [
+        "tinawi2021",
+        "sood2010",
+        "do2022",
+        "habib2025"
+      ]
+    },
+    {
+      "id": "cl-rbc",
+      "text": "Bohr effect, Haldane effect, chloride shift through band 3; curve-shifting factors and P50; carbamino binding.",
+      "status": "checked",
+      "refs": [
+        "valsecchi2025",
+        "hsu2018",
+        "arora2019",
+        "woyke2021"
+      ]
+    },
+    {
+      "id": "cl-60",
+      "text": "Reviewer Hit 13: metabolic alkalosis PaCO₂ “rarely exceeds 60 mmHg”. Not taught; open sources give different figures (Tinawi: rarely over 55; Sood: may rise higher than 55).",
+      "status": "pending"
+    },
+    {
+      "id": "cl-vis",
+      "text": "Blood gases invented; red-cell effects shown schematically.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Twenty-to-one makes seven-forty; point-three down doubles the acid; Bohr brings O₂ off, Haldane hauls CO₂ home.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-met-alk-pco2-ceiling",
+      "issue": "Ch. 15 Hit 13 states metabolic alkalosis PaCO₂ rarely exceeds 60 mmHg. Tinawi 2021 gives “rarely over 55 mmHg”, while Sood 2010 says compensatory PaCO₂ “may rise higher than 55 mmHg”; the ceiling is source-dependent, so the lesson teaches comparison with the expected PaCO₂ formula instead of a fixed 60 (register flag rv-ch15-met-alk-pco2-ceiling).",
+      "kind": "uncertain",
+      "status": "open"
+    },
+    {
+      "id": "f-resp-alk-chronic-only",
+      "issue": "Ch. 15 Hit 13 says respiratory alkalosis has the most effective compensation without specifying chronicity. Sood 2010 limits possible full pH normalisation to CHRONIC respiratory alkalosis; the acute response is small (HCO₃⁻ about −2 per 10 mmHg) (register flag rv-ch15-resp-alk-chronic-only).",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; equations, blood gases and red-cell effects shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked against Sood 2010, Habib 2025, Tinawi 2021, Do 2022, Valsecchi 2025, Hsu 2018, Arora 2019 and Woyke 2021 (all read as Europe PMC full text); 1 pending (the reviewer’s 60 mmHg metabolic alkalosis ceiling, not taught). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
