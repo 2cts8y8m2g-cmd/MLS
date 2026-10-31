@@ -593,7 +593,7 @@ ANY_CHAPTER = {'rv-biotin-fda', 'rv-fvl-risk', 'rv-calcium-ref-albumin',
                'rv-aspirin-recovery-time', 'rv-lipase-definitive-ch9', 'rv-alf-enzyme-definition-ch9',
                'rv-cdi-fidaxomicin-preferred', 'rv-ch66-oxa-s-os-mrsa',
                'rv-siad-fena-salt-wasting', 'rv-atp7b-variant-count',
-               'rv-ch36-la-non-sle-share', 'rv-ch36-lahps-context'}
+               'rv-ch36-la-non-sle-share', 'rv-ch36-lahps-context', 'rv-acth-dependent-ch9'}
 
 
 def text(el):
