@@ -588,6 +588,8 @@ FLAG_RULES = [
      'sim-q370 picks chromogenic factor X as the test that best reflects true warfarin effect with a lupus anticoagulant. The answer can stand as an LA-independent measure, but sources describe it as not widely available, slow to result and without an established therapeutic range, and advise choosing a less LA-sensitive thromboplastin first.'),
     ('rv-ch39-brodifacoum-figures', 'brodifacoum',
      'sim-q366 says PT/INR monitors prolonged vitamin K1 therapy for brodifacoum. The answer stands, but Nosal 2021 recommends measuring plasma brodifacoum with the INR because the INR often normalises while drug levels stay far above the safe level.'),
+    ('rv-ch35-pnh-flaer-wbc-only', 'CD55/CD59',
+     'Matches only sim-q299 and sim-q487. The answers still stand (flow cytometry for loss of GPI-anchored proteins confirms PNH), but Lima 2020 states neither CD55 nor CD59 is recommended for white-cell analysis and FLAER is used only on white cells; red cells are tested with CD59, and white cells with FLAER plus CD24 (neutrophils) or CD14 (monocytes).'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
