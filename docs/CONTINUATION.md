@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 318, teaching 1467 of 1,932 concepts (about 75.9%).** All 318 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 319, teaching 1472 of 1,932 concepts (about 76.2%).** All 319 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -29,7 +29,7 @@
   - Ch. 23 (17/23 concepts): `chem-fecal-occult-blood-apt`, `chem-gi-hormone-tumors-vip-gastrin-5hiaa`, `chem-malabsorption-elastase-celiac`, `chem-pancreatic-enzymes-pancreatitis`, `chem-pancreatitis-cause-severity-ranson`.
   - Ch. 24 (21/26 concepts): `chem-drug-screen-confirmation-validity`, `chem-renal-tdm-lithium-aminoglycoside-mtx`, `chem-tdm-timing-kinetics`, `chem-toxic-alcohols-salicylate-gaps`.
   - Ch. 25 (14/21 concepts): `chem-endocrine-dynamic-testing`, `chem-low-renin-hypertension-aldo`, `chem-polyuria-copeptin-siad`, `chem-thyroid-patterns-graves-iodine`.
-  - Ch. 26 (14/22 concepts): `chem-amenorrhea-workup-ovarian-failure`, `chem-hcg-pregnancy-unknown-location`, `chem-prenatal-afp-down-screening`, `chem-semen-hypogonadism`.
+  - Ch. 26 (19/22 concepts): `chem-amenorrhea-workup-ovarian-failure`, `chem-fetal-lung-ffn-mca-doppler`, `chem-hcg-pregnancy-unknown-location`, `chem-prenatal-afp-down-screening`, `chem-semen-hypogonadism`.
   - Ch. 27 (16/22 concepts): `chem-fat-soluble-vitamins-d-k`, `chem-vitamin-deficiency-syndromes`, `chem-wilson-disease-copper`, `chem-zinc-copper-status-menkes`.
   - Ch. 28 (18/22 concepts): `chem-chelators-calcium-iron-ggt`, `chem-coupled-nadh-alt-ast-bicarbonate`, `chem-glucose-340nm-poct-pitfalls`, `chem-hil-bilirubin-ammonia`, `chem-pseudohyponatremia-jaffe`.
   - Ch. 29 (22/27 concepts): `cm-urine-casts-localize`, `cm-urine-concentration-timed-collections`, `cm-urine-crystals-stones-yeast`, `cm-urine-sterile-pyuria-dark-urine-galactosuria`, `cm-urine-strip-chemistry`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 567 flags (432 verified issues, 135 needing verification), plus scan results.
-- **Checks:** 1974 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 1980 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
