@@ -564,6 +564,8 @@ FLAG_RULES = [
      "sim-q249: renal tuberculosis is still the best answer for persistent sterile pyuria with haematuria and repeatedly negative routine cultures. However, Glen 2016 lists Chlamydia and drug-induced interstitial nephritis (two of the distractors) among causes of sterile pyuria, and no source read gives 'acidic urine' as a tuberculosis clue."),
     ('rv-reducing-substance-galactosemia', 'copper-reduction.*glucose-oxidase|nonglucose reducing sugar',
      'sim-q246: working up galactosaemia is still correct. However, Coelho 2017 lists lactosuria (from intestinal lactase deficiency) among false positives of the reducing-substance screen, and the Welling 2017 guideline confirms by GALT activity or gene analysis while starting a galactose-restricted diet at once.'),
+    ('rv-mca-psv-moderate-severe-only', 'MCA peak systolic velocity >1\\.5 MoM detects fetal anemia|MCA-PSV >1\\.5 MoM detects fetal anemia',
+     'Matches sim-q221 only (tested). The answer (fetal blood sampling at 1.7 MoM, 28 weeks) still stands, but the explanation should say >1.5 MoM detects moderate or severe anaemia; Mari 2000 (via Brennand 2009) found 100% sensitivity for moderate/severe anaemia with 12% false positives and no prediction of mild anaemia.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
