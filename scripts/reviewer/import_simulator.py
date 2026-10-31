@@ -594,6 +594,8 @@ FLAG_RULES = [
      "sim-q274 keys the newborn range 2.5–6.5% and a fall to adult values by the end of week two. Parodi 2020 confirms the count is higher at birth than at any later time, so 'normal for a newborn' plausibly stands, but it says the absolute count reaches the adult range only after about 3 months; the explanation's figures are unverified."),
     ('rv-stippling-differential', '[Cc]oarse basophilic stippling means lead poisoning or megaloblastic',
      "sim-q280's answer (obtain lead exposure history) still stands: coarse stippling is classically lead. The explanation overstates the differential: thalassaemia, sideroblastic anaemia and pyrimidine 5′-nucleotidase deficiency also stipple, and no source read grades megaloblastic stippling as coarse."),
+    ('rv-prolactin-hook-one-site', 'one-site assays',
+     'sim-q216 explanation says giant prolactinomas give falsely low results on one-site assays. The answer (repeat on dilution) still stands; sources describe the hook effect as antibody saturation in one-step sandwich (two-antibody) immunoassays, so the explanation should say sandwich assays.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
