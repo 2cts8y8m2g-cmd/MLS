@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 326, teaching 1499 of 1,932 concepts (about 77.6%).** All 326 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 327, teaching 1503 of 1,932 concepts (about 77.8%).** All 327 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -38,7 +38,7 @@
   - Ch. 32 (18/23 concepts): `heme-eosinophil-il5-tpo-megakaryocytes`, `heme-erythropoiesis-reticulocyte-index`, `heme-heme-synthesis-bilirubin-urobilinogen`, `heme-marrow-reserve-23dpg-neocytolysis`.
   - Ch. 33 (22/27 concepts): `heme-anemia-second-clues`, `heme-erythrocytosis-workup`, `heme-hemolytic-anemia-workup`, `heme-macrocytic-b12-folate-hydroxyurea`, `heme-microcytic-anemia-ferritin-mentzer`.
   - Ch. 34 (20/25 concepts): `heme-bcell-neoplasm-phenotypes`, `heme-bcell-translocations-cd10`, `heme-blast-count-aml-mds-apl`, `heme-cml-vs-leukemoid-reaction`, `heme-mpn-pv-et-pmf`, `heme-myeloma-wm-hodgkin-markers`.
-  - Ch. 35 (16/23 concepts): `heme-b-cell-clonality-mbl-hematogones`, `heme-flow-compensation-tandem-fmo`, `heme-flow-cytometry-gating`.
+  - Ch. 35 (20/23 concepts): `heme-b-cell-clonality-mbl-hematogones`, `heme-flow-compensation-tandem-fmo`, `heme-flow-cytometry-gating`, `heme-flow-myeloid-apl-mds-pnh`.
   - Ch. 36 (25/29 concepts): `heme-dic-liver-fibrinolysis`, `heme-hemophilia-factor-inhibitor-lab`, `heme-la-paradox-normal-screen-bleeding`, `heme-mixing-study-pt-aptt`, `heme-pt-specimen-fvii-vitamin-k`.
   - Ch. 37 (18/24 concepts): `heme-glanzmann-bernard-soulier`, `heme-thrombocytopenia-itp-ttp-ditp`, `heme-vwd-typing-ratios`.
   - Ch. 38 (19/22 concepts): `heme-lupus-anticoagulant-aps`, `heme-thrombophilia-testing-timing`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 589 flags (446 verified issues, 143 needing verification), plus scan results.
-- **Checks:** 2022 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 2028 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
