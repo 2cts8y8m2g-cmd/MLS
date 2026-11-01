@@ -634,7 +634,8 @@ ANY_CHAPTER = {'rv-biotin-fda', 'rv-fvl-risk', 'rv-calcium-ref-albumin',
                'rv-cdi-fidaxomicin-preferred', 'rv-ch66-oxa-s-os-mrsa',
                'rv-siad-fena-salt-wasting', 'rv-atp7b-variant-count',
                'rv-ch36-la-non-sle-share', 'rv-ch36-lahps-context', 'rv-acth-dependent-ch9',
-               'rv-ch35-pnh-flaer-wbc-only', 'rv-nonisotopic-replaced-radioactive'}
+               'rv-ch35-pnh-flaer-wbc-only', 'rv-nonisotopic-replaced-radioactive',
+               'rv-ecoli-cyst-nuclei', 'rv-hbv-immune-active-criteria'}
 
 
 def text(el):
