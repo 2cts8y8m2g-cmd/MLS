@@ -616,6 +616,8 @@ FLAG_RULES = [
      'sim-q789 (filed under ch61): answer (b) is still the best option (1:16 to 1:4 is a significant fourfold fall). CDC calls fourfold the threshold for a significant change rather than proof of cure, and says the majority, not all, of treponemal tests stay reactive for life.'),
     ('rv-ch58-rapid-test-controls', '(?i)internal control lines check flow only',
      "sim-q790 (filed under ch57): answer (a) is still the best option, but 'flow only' overstates it; CDC says built-in controls also show the test is working and sample amount is adequate, and external controls are also due with each new shipment and each new tester."),
+    ('rv-ch5-immunoassay-false-negatives', '(lean|err)s? toward false positives',
+     "sim-q7's answer (mass spectrometry confirms a positive amphetamine immunoassay) still stands. Its explanation says immunoassays 'lean toward false positives'; Argoff 2018 and Reschly-Krasowski 2018 also report false negatives, and definitive MS testing can be used as the first test."),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
