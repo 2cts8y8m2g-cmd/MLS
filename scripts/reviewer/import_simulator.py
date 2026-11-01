@@ -618,6 +618,8 @@ FLAG_RULES = [
      "sim-q790 (filed under ch57): answer (a) is still the best option, but 'flow only' overstates it; CDC says built-in controls also show the test is working and sample amount is adequate, and external controls are also due with each new shipment and each new tester."),
     ('rv-ch5-immunoassay-false-negatives', '(lean|err)s? toward false positives',
      "sim-q7's answer (mass spectrometry confirms a positive amphetamine immunoassay) still stands. Its explanation says immunoassays 'lean toward false positives'; Argoff 2018 and Reschly-Krasowski 2018 also report false negatives, and definitive MS testing can be used as the first test."),
+    ('rv-passive-immunization-context', 'Serum sickness 7-10 days after foreign protein',
+     "Matches sim-q472 only. The answer (type III hypersensitivity) still stands: the stem's day-10 reaction with immune complexes and low C3/C4 is serum sickness either way. But de Silva 2016 gives the onset of serum sickness after antivenom as 5 to 14 days, so the explanation's '7-10 days' window is narrower than the source supports."),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
