@@ -606,6 +606,10 @@ FLAG_RULES = [
      'sim-q134 asserts the AUTO14 three-placement requirement (the regex matches only sim-q134). The public CLSI summary neither confirms nor contradicts it and the standard is paywalled, so the answer cannot be verified from open sources; keep it marked as reviewer-sourced until checked against the AUTO14 text.'),
     ('rv-nonisotopic-replaced-radioactive', '[Nn]onisotopic labels replaced radioactive',
      'sim-q622 (reverse line-probe hybridization): the answer (d) still stands; only its trap aside says nonisotopic labels replaced radioactive ones long ago. Wu 2014 and Verbeek 1988 show that radioactive probes remain in use for their sensitivity, so the aside should say nonisotopic labels are now widely used.'),
+    ('rv-ecoli-cyst-nuclei', '(?i)cysts with four nuclei and no ingested red blood cells|Multinucleated \\(up to 8\\) cysts',
+     'sim-q809 shows cysts with FOUR nuclei and keys Entamoeba coli; the answer does not stand. CDC DPDx: E. coli mature cysts typically have 8 nuclei (up to 16 or more) and are the only human Entamoeba with more than four; four-nucleus cysts fit E. histolytica/E. dispar or Endolimax nana (both offered), so the stem and key need revision.'),
+    ('rv-hbv-immune-active-criteria', '(?i)HBeAg-positive chronic HBV with elevated ALT = immune-active',
+     'sim-q811: among the options given, immune-active is still the best answer. AASLD 2018 additionally requires HBsAg for at least 6 months, HBV DNA > 20,000 IU/mL and moderate or severe necroinflammation, so the explanation should add those criteria.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
@@ -630,7 +634,7 @@ ANY_CHAPTER = {'rv-biotin-fda', 'rv-fvl-risk', 'rv-calcium-ref-albumin',
                'rv-cdi-fidaxomicin-preferred', 'rv-ch66-oxa-s-os-mrsa',
                'rv-siad-fena-salt-wasting', 'rv-atp7b-variant-count',
                'rv-ch36-la-non-sle-share', 'rv-ch36-lahps-context', 'rv-acth-dependent-ch9',
-               'rv-ch35-pnh-flaer-wbc-only'}
+               'rv-ch35-pnh-flaer-wbc-only', 'rv-nonisotopic-replaced-radioactive'}
 
 
 def text(el):
