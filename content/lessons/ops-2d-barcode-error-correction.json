@@ -1,0 +1,1576 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-2d-barcode-error-correction",
+  "title": "Barcodes That Fix Themselves: Linear Checks vs 2D Error Correction",
+  "summary": "See why laboratories barcode instead of typing, how a worn linear barcode can produce a wrong patient number that its own check character misses, and how error-correcting 2D codes such as QR Code and Data Matrix rebuild a damaged symbol.",
+  "domain": "p1-ops",
+  "topic": "ch12",
+  "conceptIds": [
+    "ch12.hit5",
+    "ch12.hit6",
+    "ch12.trap2"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 12,
+        "section": "High-Yield Hits",
+        "items": [
+          5,
+          6
+        ]
+      },
+      {
+        "chapter": 12,
+        "section": "Exam Traps",
+        "items": [
+          2
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 12 Hit 5 (error-correcting 2D barcodes vs 1D symbologies), Trap 2 (1D error detection poorer than believed) and the verifiable part of Hit 6 (CLSI AUTO14 is the laboratory 2D-barcode standard aiming to replace linear codes). Not taught as fact, because no open source could be read: the <1 in 10.5 million 2D misread figure, the AUTO14 requirement to print the code at least three times at different vertical positions, and the unique laboratory identifier (ULI) eliminating relabelling (see register flags rv-auto14-label-layout-unverified and rv-2d-misread-rate-unverified). The CLSI AUTO14 document itself is paywalled; only its public product summary was read, via a page-fetch tool. The Snyder 2010 Clin Chem paper is not open access; only its abstract was read."
+  },
+  "prerequisites": [
+    "ch12.hit7"
+  ],
+  "objectives": [
+    "Explain why laboratories interface instruments and scan barcodes instead of entering results by hand.",
+    "Describe how a linear barcode check character works and why worn labels or mismatched scanners can still produce undetected misreads.",
+    "Explain how error-correction codewords let 2D symbologies such as QR Code and Data Matrix recover a damaged symbol, and name the CLSI standard for 2D laboratory barcodes."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "The scan that passed its own check",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a nurse scans a slightly worn linear (1D) wristband barcode on a point-of-care glucose meter. The scan is accepted, the check character passes, and the glucose result is filed under a different patient’s identifier. Question token: “Can a barcode scan be wrong?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "A nurse scans a slightly worn wristband barcode on a bedside glucose meter. The scan is accepted without any warning."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "But the result is filed under a different patient’s number, even though the barcode’s own check passed."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Can a barcode scan be wrong, and what kind of barcode resists it?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "band",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Worn 1D wristband",
+            "lines": [
+              "Scan accepted, no warning",
+              "Check character passed"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "res",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "bad",
+            "title": "Result filed",
+            "lines": [
+              "Glucose under another ID",
+              "Nobody alerted"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 640,
+            "label": "Can a barcode scan be wrong?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Why labs barcode at all",
+      "start": 20,
+      "end": 60,
+      "altText": "Left card (Mays and Mathias 2019): in a duplicated outpatient point-of-care glucose workflow, 260 of 6930 manually entered results (3.7%) differed from the interfaced result; 37 of the 260 were off by more than 20%; clinically significant discrepancies occurred at about 5 per 1000 results. Earlier studies mostly found manual entry error rates in the low single-digit percentages. Right card (Distler and Ashford 2019): Code 128, the linear symbology used with ISBT 128, ends each symbol with a check character just before the stop character, which detects many scanning errors; Codabar was criticised for susceptibility to substitution errors and no room for a check character.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 32,
+          "text": "Typing results by hand is error prone. In one outpatient study, 3.7 percent of hand-entered glucose results differed from the instrument’s interfaced value, and some were off by more than 20 percent."
+        },
+        {
+          "id": "n2",
+          "start": 32,
+          "end": 40,
+          "text": "Earlier studies mostly found manual entry errors in the low single-digit percentages, which is why labs interface instruments and scan barcodes instead."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 52,
+          "text": "A linear barcode protects itself with a check character. In Code 128, the symbology used with the blood-product standard ISBT 128, the last data character before the stop character is a check character."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "The older Codabar symbology was criticised for substitution errors and had no room for a check character."
+        }
+      ],
+      "objects": [
+        {
+          "id": "man",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 200,
+            "tone": "bad",
+            "title": "Manual entry (Mays 2019)",
+            "lines": [
+              "260 / 6930 discrepant = 3.7%",
+              "37 off by more than 20%",
+              "≈ 5 per 1000 clinically significant"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "low",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 450,
+            "w": 440,
+            "label": "Prior studies: low single-digit %",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "c128",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 220,
+            "tone": "good",
+            "title": "Code 128 (linear, 1D)",
+            "lines": [
+              "Used with ISBT 128",
+              "Check character before stop",
+              "Detects many misreads"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "coda",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 490,
+            "w": 420,
+            "label": "Codabar: no check character",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "When the linear check stays silent",
+      "start": 60,
+      "end": 104,
+      "altText": "Evidence card (Snyder et al 2010, Clin Chem; abstract read): misread wristband barcodes from point-of-care glucose testing were rescanned on 5 scanner models; as many as 3 incorrect patient identifiers came from a single barcode; causes were minor bar code imperfections, scanner resolution not matched to the barcode, and suboptimal print orientation; the internal data-integrity check did NOT detect these errors; one glucometer model had the highest error rate. Rate token (Mays and Mathias 2019, citing Snyder): estimated barcode substitution error rate greater than 1 in 84,000 scans, found disproportionately in point-of-care scanners. Conclusion card: control scanner and printer specifications; manufacturers should adopt more robust, higher-fidelity alternatives to linear symbologies.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "A study of misread wristbands from bedside glucose testing found that one worn barcode could produce as many as three different wrong patient numbers, depending on the scanner."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "The causes were small print imperfections, scanners whose resolution did not match the barcode, and poor print orientation. The barcode’s own integrity check did not catch these errors."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 92,
+          "text": "Another group, citing this work, put the barcode substitution error rate at more than one in 84,000 scans, mostly with point-of-care scanners."
+        },
+        {
+          "id": "c4",
+          "start": 92,
+          "end": 104,
+          "text": "The authors concluded that scanner and printer specifications must be controlled, and that device makers should move to more robust alternatives to linear barcodes."
+        }
+      ],
+      "objects": [
+        {
+          "id": "snyd",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 170,
+            "tone": "bad",
+            "title": "Snyder 2010 (wristbands)",
+            "lines": [
+              "One worn barcode",
+              "Up to 3 wrong patient IDs"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cause",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "h": 170,
+            "tone": "warn",
+            "title": "Why",
+            "lines": [
+              "Minor print flaws",
+              "Scanner resolution mismatch",
+              "Check did NOT detect it"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13,
+              "reveal": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "rate",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "label": "Substitution > 1 in 84,000 scans",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fix",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 380,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "Their conclusion",
+            "lines": [
+              "Control scanner + printer specs",
+              "Move beyond linear symbologies"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0
+            },
+            {
+              "t": 33,
+              "reveal": 0
+            },
+            {
+              "t": 33.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 41,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Codes that repair themselves: 2D symbologies",
+      "start": 104,
+      "end": 144,
+      "altText": "Schematic 2D code card: two-dimensional matrix symbols such as QR Code and Data Matrix carry extra error-correction codewords. QR Code has four error-correction levels, L, M, Q and H, correcting roughly 7%, 15%, 25% and 30% of the symbol (approximate values; Pan et al 2023). Data Matrix retains error correction, so data can be retrieved even if a cell is damaged or missing, and it works at very small sizes (Dellinger et al 2016). Example: a hospital 2D medication label used a 15% error-correction recovery level (Erdfelder et al 2023). Standard card: CLSI AUTO14, Use of 2-Dimensional Bar Coding in Clinical and Anatomic Pathology Laboratories (1st ed): a framework for 2D barcodes in laboratories, with the long-term goal of replacing linear barcodes, which the CLSI summary describes as having unacceptably high error rates. Hook answer card.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 116,
+          "text": "Two-dimensional codes such as QR Code and Data Matrix add error-correction codewords, so a damaged symbol can be rebuilt rather than just rejected."
+        },
+        {
+          "id": "l2",
+          "start": 116,
+          "end": 124,
+          "text": "A QR code can be printed at four correction levels, recovering roughly 7, 15, 25 or 30 percent of the symbol."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 132,
+          "text": "Data Matrix can still be read when a cell is damaged or missing, and it works at very small sizes. The lab standard CLSI AUTO14 sets a framework for 2D barcodes, aiming to replace linear ones."
+        },
+        {
+          "id": "l4",
+          "start": 132,
+          "end": 144,
+          "text": "Back to the hook: yes, a linear scan can be wrong while its check passes. Control printers and scanners, and move toward error-correcting 2D codes."
+        }
+      ],
+      "objects": [
+        {
+          "id": "qr",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 190,
+            "w": 270,
+            "h": 160,
+            "tone": "b",
+            "title": "2D matrix code",
+            "lines": [
+              "Extra correction codewords",
+              "Damage can be repaired"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lvl",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 270,
+            "h": 160,
+            "tone": "a",
+            "title": "QR levels",
+            "lines": [
+              "L ≈ 7% · M ≈ 15%",
+              "Q ≈ 25% · H ≈ 30%"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0
+            },
+            {
+              "t": 13.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dm",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 190,
+            "w": 270,
+            "h": 160,
+            "tone": "good",
+            "title": "Data Matrix · AUTO14",
+            "lines": [
+              "Reads with a missing cell",
+              "CLSI: 2D to replace 1D"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 430,
+            "w": 760,
+            "h": 150,
+            "tone": "warn",
+            "title": "Hook answer: yes, it can be wrong",
+            "lines": [
+              "A passed check is not proof",
+              "Control printers and scanners",
+              "Prefer error-correcting 2D codes"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 28.5,
+              "opacity": 0
+            },
+            {
+              "t": 29,
+              "reveal": 0
+            },
+            {
+              "t": 29.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “A Code 128 check character makes misreads impossible” (✓ the check detects many errors, but worn labels and mismatched scanners produced wrong IDs the check missed); “A 2D code is unreadable once part of it is damaged” (✓ error-correction codewords let QR Code and Data Matrix recover a damaged symbol, within limits); “Once labels are barcoded, identification risk is gone” (✓ substitution errors still occur, and scanning a stray label from another patient is a risk no symbology fixes).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: a Code 128 check character makes misreads impossible. No: worn labels and mismatched scanners have produced wrong patient numbers that the check missed."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a 2D code fails as soon as part of it is damaged. No: its error-correction codewords can rebuild a partly damaged symbol, within limits."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: barcoding removes identification risk. No: substitution errors still happen, and scanning a stray label from another patient defeats any barcode."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “The check digit makes misreads impossible.”",
+            "lines": [
+              "✓ Linear checks can miss misreads"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “A damaged 2D code is unreadable.”",
+            "lines": [
+              "✓ Error correction rebuilds it, within limits"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Barcoded means risk-free.”",
+            "lines": [
+              "✓ Wrong label scanned = wrong patient"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Smoke alarm vs spare tyre",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “A 1D check character is a SMOKE ALARM: it can only warn, and sometimes it stays silent. A 2D code carries a SPARE TYRE: error-correction codewords let it keep going after damage.” Tokens: 1D = alarm only · 2D = spare tyre · control printer + scanner. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: a linear check character is a smoke alarm. It can only warn, and sometimes it stays silent. A 2D code carries a spare tyre: its correction codewords keep it going after damage."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: a spare tyre has limits, so heavy damage still makes a 2D code unreadable; neither code can tell that the wrong patient’s label was scanned; and print and scanner quality matter for both."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Smoke alarm vs spare tyre",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "1D check = alarm only",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "2D = spare tyre",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Control printer + scanner",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Heavy damage still defeats 2D codes",
+              "No code detects a wrong-patient label",
+              "Print and scanner quality matter for both"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Manual entry errs in low single-digit percent; a linear check character can miss misreads from worn labels and mismatched scanners”, “2D codes (QR Code, Data Matrix) repair damage with error-correction codewords; CLSI AUTO14 frames 2D barcodes for labs”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Barcodes beat hand entry, but a linear check character can stay silent on a worn label or mismatched scanner, so laboratories control printing and scanning and move toward error-correcting two-dimensional codes that can rebuild a damaged symbol."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Hand entry errs · linear check can stay silent",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "2D codes repair damage · CLSI AUTO14 frames 2D for labs",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: typing results by hand causes mistakes, so labs scan barcodes. An ordinary striped barcode only has a check that can say “something is wrong”, and with a worn label or the wrong scanner even that check can stay silent. A square 2D code carries spare information that lets the scanner rebuild missing parts. Scientific terms: manual transcription error, interfaced result, linear (1D) symbology, Code 128, Codabar, check character, substitution error, scanner resolution, two-dimensional (2D) matrix symbology, QR Code, Data Matrix, error-correction codewords, error-correction level, CLSI AUTO14.",
+    "why": "A check character only detects some errors; it cannot correct them, and Snyder et al found misreads that the internal integrity check did not detect. Error-correction codewords add redundancy, so a 2D code can reconstruct data from a partly damaged symbol.",
+    "measure": "Manual POC entry: 260 of 6930 (3.7%) discrepant, about 5 per 1000 clinically significant (Mays 2019); earlier studies mostly low single-digit percent. Linear barcode substitution: estimated more than 1 in 84,000 scans, mostly POC scanners (Mays 2019 citing Snyder 2010); one worn wristband gave up to 3 wrong IDs. QR error-correction levels L, M, Q, H recover roughly 7%, 15%, 25%, 30%.",
+    "differs": "Detect (1D check character) vs correct (2D error-correction codewords); symbology failure (misread) vs workflow failure (stray label from another patient scanned); Code 128 (has a check character) vs Codabar (no room for one).",
+    "examAngle": "Expect: why a 1D barcode can misread despite a check character, what lets a 2D code survive damage, why interfacing beats manual entry, or which CLSI document addresses 2D laboratory barcodes."
+  },
+  "comparisons": [
+    {
+      "id": "linear-vs-2d",
+      "title": "Linear (1D) vs 2D barcode",
+      "left": {
+        "label": "Linear (Code 128)",
+        "points": [
+          "Check character detects some errors",
+          "Worn labels and mismatched scanners can give undetected misreads"
+        ]
+      },
+      "right": {
+        "label": "2D (QR Code, Data Matrix)",
+        "points": [
+          "Error-correction codewords repair damage",
+          "QR levels recover roughly 7% to 30%"
+        ]
+      },
+      "distinguisher": "Detect only vs detect and correct."
+    },
+    {
+      "id": "manual-vs-scan",
+      "title": "Manual entry vs barcode scan",
+      "left": {
+        "label": "Manual entry",
+        "points": [
+          "3.7% discrepant in one POC study",
+          "Low single-digit percent in earlier studies"
+        ]
+      },
+      "right": {
+        "label": "Barcode scan",
+        "points": [
+          "Far fewer errors, not zero",
+          "Substitution estimated > 1 in 84,000 scans"
+        ]
+      },
+      "distinguisher": "Both can fail; scanning fails far less often."
+    }
+  ],
+  "mnemonic": {
+    "text": "A 1D check character is a SMOKE ALARM: it can only warn, and sometimes it stays silent. A 2D code carries a SPARE TYRE: error-correction codewords let it keep going after damage.",
+    "explanation": "Smoke alarm = detection only (check character); spare tyre = built-in redundancy that repairs damage (error-correction codewords).",
+    "limitation": "Heavy damage still defeats a 2D code; no symbology detects that the wrong patient’s label was scanned; print and scanner quality matter for both."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Barcode drawings are schematic; real symbols follow their published specifications.",
+    "QR error-correction percentages are approximate, as the source states."
+  ],
+  "takeaway": "Barcodes beat hand entry, but a linear check character can stay silent on a worn label or mismatched scanner, so laboratories control printing and scanning and move toward error-correcting two-dimensional codes that can rebuild a damaged symbol.",
+  "questions": [
+    {
+      "id": "ops-2dbc-q1",
+      "stem": "A worn linear wristband barcode is scanned and returns a wrong patient identifier, yet the symbol’s internal check passes. Which explanation is best supported?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Print imperfections and a scanner resolution mismatch can produce misreads that a linear check character fails to detect",
+          "rationale": "Correct. Snyder et al found exactly these causes, and the internal data-integrity check did not detect the errors."
+        },
+        {
+          "id": "b",
+          "text": "This cannot happen, because a check character catches every misread",
+          "rationale": "Incorrect. A check character detects many but not all errors; undetected misreads were documented."
+        },
+        {
+          "id": "c",
+          "text": "The error must have come from manual entry, since barcodes never err",
+          "rationale": "Incorrect. Barcode substitution errors occur, estimated at more than 1 in 84,000 scans."
+        },
+        {
+          "id": "d",
+          "text": "Linear barcodes correct damage automatically, so the scanner was faulty",
+          "rationale": "Incorrect. Linear check characters only detect errors; correction of damaged symbols is a feature of 2D codes."
+        }
+      ],
+      "answer": "a",
+      "skill": "Linear barcode failure",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-2dbc-q2",
+      "stem": "What allows a QR Code or Data Matrix symbol to be read even when part of it is damaged?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Error-correction codewords that let the decoder reconstruct missing or damaged data",
+          "rationale": "Correct. 2D symbologies add error-correction codewords; QR levels recover roughly 7% to 30% of the symbol."
+        },
+        {
+          "id": "b",
+          "text": "A single check character at the end of the symbol",
+          "rationale": "Incorrect. That describes a linear code such as Code 128, which can detect but not correct errors."
+        },
+        {
+          "id": "c",
+          "text": "Printing the patient name in larger letters",
+          "rationale": "Incorrect. Human-readable text does not help a scanner decode the symbol."
+        },
+        {
+          "id": "d",
+          "text": "Nothing; any damage makes a 2D code unreadable",
+          "rationale": "Incorrect. Within its correction capacity, a damaged 2D code can still be decoded."
+        }
+      ],
+      "answer": "a",
+      "skill": "2D error correction",
+      "difficulty": "recall"
+    },
+    {
+      "id": "ops-2dbc-q3",
+      "stem": "In one outpatient study, 260 of 6930 hand-entered point-of-care glucose results differed from the interfaced instrument result. What is the main lesson?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Manual transcription errs at a few percent, so instruments should be interfaced or barcoded when feasible",
+          "rationale": "Correct. That is 3.7%, with clinically significant discrepancies at about 5 per 1000 results; the authors stress interfacing."
+        },
+        {
+          "id": "b",
+          "text": "Manual entry is as reliable as interfacing",
+          "rationale": "Incorrect. Hand entry produced discrepancies, some greater than 20%."
+        },
+        {
+          "id": "c",
+          "text": "The discrepancies prove the glucose meters were inaccurate",
+          "rationale": "Incorrect. The paired design compared the same measurement entered by hand vs by interface; the errors were in transcription."
+        },
+        {
+          "id": "d",
+          "text": "Barcodes eliminate all identification errors",
+          "rationale": "Incorrect. Barcodes reduce errors but substitution misreads and stray-label scanning still occur."
+        }
+      ],
+      "answer": "a",
+      "skill": "Transcription error",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch12",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 12, Lab Computers and Data (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 12,
+          "section": "High-Yield Hits",
+          "items": [
+            5,
+            6
+          ]
+        },
+        {
+          "chapter": 12,
+          "section": "Exam Traps",
+          "items": [
+            2
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing (1D vs error-correcting 2D barcodes; AUTO14). Not used as verification."
+    },
+    {
+      "id": "mays2019",
+      "kind": "external",
+      "citation": "Mays JA, Mathias PC. Measuring the rate of manual transcription error in outpatient point-of-care testing. J Am Med Inform Assoc. 2019;26(3):269-272. doi:10.1093/jamia/ocy170",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6351970/",
+      "consulted": true,
+      "usedFor": "260 of 6930 (3.7%) manual POC glucose entries discrepant; 37 off by more than 20%; about 5 per 1000 clinically significant; prior studies mostly low single-digit percent; Snyder et al estimated barcode substitution error rate greater than 1 in 84,000 scans, disproportionately in POC scanners; risk of scanning a stray label from another patient."
+    },
+    {
+      "id": "snyder2010",
+      "kind": "external",
+      "citation": "Snyder ML, Carter A, Jenkins K, Fantz CR. Patient misidentifications caused by errors in standard bar code technology. Clin Chem. 2010;56(10):1554-1560. doi:10.1373/clinchem.2010.150094",
+      "url": "https://europepmc.org/article/MED/20702784",
+      "consulted": true,
+      "usedFor": "Abstract only (full text not open access): up to 3 incorrect patient identifiers from a single linear wristband barcode; causes were minor imperfections, scanner resolution, print orientation; internal data-integrity check did not detect the errors; recommends higher-fidelity alternatives to linear symbologies."
+    },
+    {
+      "id": "distler2019",
+      "kind": "external",
+      "citation": "Distler P, Ashford P. Twenty-five years later: has ISBT 128 fulfilled its promise? Transfusion. 2019;59(12):3776-3782. doi:10.1111/trf.15519",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6916302/",
+      "consulted": true,
+      "usedFor": "Code 128 is the linear symbology used with ISBT 128; the final data character before the stop character is a check character; Codabar criticised for substitution errors and lack of space for a check character; ISBT 128 can also use Data Matrix (2D)."
+    },
+    {
+      "id": "pan2023",
+      "kind": "external",
+      "citation": "Pan JS, Liu T, Yan B, Yang HM, Chu SC. A Lossless-Recovery Secret Distribution Scheme Based on QR Codes. Entropy (Basel). 2023;25(4):653. doi:10.3390/e25040653",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10137899/",
+      "consulted": true,
+      "usedFor": "QR codes carry error-correction codewords in blocks; levels L, M, Q, H correct about 7%, 15%, 25%, 30% (approximations)."
+    },
+    {
+      "id": "dellinger2016",
+      "kind": "external",
+      "citation": "Dellinger TA, Wong V, Marek PE. Makelabels: a Bash script for generating data matrix codes for collection management. Biodivers Data J. 2016;4:e9583. doi:10.3897/bdj.4.e9583",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12076210/",
+      "consulted": true,
+      "usedFor": "Data Matrix works at a much smaller size and retains error correction: data can be retrieved even if a cell is damaged or missing."
+    },
+    {
+      "id": "erdfelder2023",
+      "kind": "external",
+      "citation": "Erdfelder F, Ebach F, Zoller R, et al. Implementation of 2D Barcode Medication Labels and Smart Pumps in Pediatric Acute Care: Lessons Learned. Appl Clin Inform. 2023;14(3):503-512. doi:10.1055/a-2077-2457",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10322227/",
+      "consulted": true,
+      "usedFor": "Clinical 2D medication label example printed with an error-correction recovery level of 15%."
+    },
+    {
+      "id": "clsi-auto14",
+      "kind": "external",
+      "citation": "Clinical and Laboratory Standards Institute. AUTO14: Use of 2-Dimensional Bar Coding in Clinical and Anatomic Pathology Laboratories. 1st ed. CLSI; public product page.",
+      "url": "https://clsi.org/shop/standards/auto14/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (product summary only; the standard itself is paywalled and was not read): framework for 2D bar codes in clinical and anatomic pathology laboratories, long-term goal of replacing linear bar codes, which the summary describes as having unacceptably high error rates; specifies a 2D symbology, data content, printing and decoding. The summary does not state the label layout or a unique laboratory identifier."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-manual",
+      "text": "Manual transcription error rates in POC testing and earlier studies.",
+      "status": "checked",
+      "refs": [
+        "mays2019"
+      ]
+    },
+    {
+      "id": "cl-1d",
+      "text": "Code 128 check character; Codabar limitation; linear misreads undetected by the integrity check; causes; substitution rate estimate.",
+      "status": "checked",
+      "refs": [
+        "distler2019",
+        "snyder2010",
+        "mays2019"
+      ]
+    },
+    {
+      "id": "cl-2d",
+      "text": "2D error-correction codewords; QR levels; Data Matrix readability with damaged cells and small size; clinical 2D label example.",
+      "status": "checked",
+      "refs": [
+        "pan2023",
+        "dellinger2016",
+        "erdfelder2023"
+      ]
+    },
+    {
+      "id": "cl-auto14",
+      "text": "CLSI AUTO14 is a framework for 2D barcodes in laboratories aiming to replace linear codes.",
+      "status": "checked",
+      "refs": [
+        "clsi-auto14"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "2D misread rate below 1 in 10.5 million; AUTO14 printing the code at least three times at different vertical positions; ULI prefix eliminating relabelling; reviewer’s 1.5–3% minimum manual transcription figure; Code 128 alphabet.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch12"
+      ],
+      "note": "No open source could be read; not taught as facts."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; barcode visuals schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Smoke alarm vs spare tyre.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-2d-misread-rate",
+      "issue": "The reviewer’s figure of fewer than 1 misread in 10.5 million for error-correcting 2D barcodes could not be traced to a readable open source; it is not taught.",
+      "kind": "uncertain",
+      "status": "open"
+    },
+    {
+      "id": "f-auto14-layout",
+      "issue": "The reviewer states that CLSI AUTO14 prints the 2D code at least three times at different vertical positions and that a ULI prefix eliminates relabelling between labs. The public CLSI summary does not describe these; the standard is paywalled, so they are not taught.",
+      "kind": "uncertain",
+      "status": "open"
+    },
+    {
+      "id": "f-1d-context",
+      "issue": "Linear-barcode misread risk depends on print quality, label wear, orientation and scanner resolution (Snyder 2010); a standards body review describes the Code 128 check character as greatly improving reliability. The trap is best read as “a check character is not failsafe”, not that every linear scan is unreliable.",
+      "kind": "missing-context",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; barcodes and labels shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked (Mays 2019 and Distler 2019 full text; Snyder 2010 abstract only; Pan 2023, Dellinger 2016 and Erdfelder 2023 full text; CLSI AUTO14 public product summary read via a page-fetch tool); 1 pending (2D misread rate, AUTO14 label layout, ULI, reviewer’s manual-error minimum). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
