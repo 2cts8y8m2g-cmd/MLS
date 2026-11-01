@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 333, teaching 1525 of 1,932 concepts (about 78.9%).** All 333 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 334, teaching 1528 of 1,932 concepts (about 79.1%).** All 334 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -71,7 +71,7 @@
   - Ch. 65 (21/24 concepts): `micro-entamoeba-coccidia-stool-protozoa`, `micro-helminth-host-damage-treatment`, `micro-helminth-specimen-timing`, `micro-malaria-thick-thin-films`.
   - Ch. 66 (48/54 concepts): `micro-antigen-tests-negatives`, `micro-blood-culture-volume-contamination`, `micro-csf-meningitis-shunt-panel`, `micro-direct-smears-sterile-fluids-bal`, `micro-endocarditis-blood-cultures-duke`, `micro-respiratory-culture-clues-maldi`, `micro-result-reporting-critical-calls`, `micro-result-to-therapy-mssa-cdi-giardia-flu`, `micro-specimen-acceptability-transport`, `micro-specimen-id-transport-biosafety`, `micro-urine-culture-interpretation`.
   - Ch. 67 (18/20 concepts): `mdx-cpt-molecular-tiers-unlisted-bundling`, `mdx-molecular-context-fish-cftr-snp`, `mdx-pharmacogenomics`, `mdx-reimbursement-fda-status-disclaimer`.
-  - Ch. 68 (19/25 concepts): `mdx-hybridization-stringency-blots`, `mdx-mutation-types-reading-frame-repair`, `mdx-sanger-pyrosequencing`, `mdx-sirna-mirna-epigenetics`.
+  - Ch. 68 (22/25 concepts): `mdx-hybridization-stringency-blots`, `mdx-mutation-types-reading-frame-repair`, `mdx-probe-labels-annealing-gel`, `mdx-sanger-pyrosequencing`, `mdx-sirna-mirna-epigenetics`.
   - Ch. 69 (19/24 concepts): `mdx-isothermal-tma-lamp-near-bdna`, `mdx-nested-competitive-arms-multiplex-pcr`, `mdx-qpcr-quantification`.
   - Ch. 70 (21/23 concepts): `mdx-array-clinic-patents-exosomes`, `mdx-array-normalization-dasl`, `mdx-array-probe-chemistry`, `mdx-array-substrates-density-patents`, `mdx-hybridization-arrays`.
   - Ch. 71 (15/23 concepts): `mdx-cytogenetic-test-choice`, `mdx-imprinting-microdeletion-syndromes`, `mdx-monosomy-x-robertsonian`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 611 flags (460 verified issues, 151 needing verification), plus scan results.
-- **Checks:** 2064 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 2070 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
