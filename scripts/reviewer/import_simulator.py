@@ -602,6 +602,8 @@ FLAG_RULES = [
      "sim-q696: the answer (gluconeogenesis after ~24 h of fasting, liver and kidney) still stands. Gerich 2010 shows gluconeogenesis already supplies about half of glucose after an overnight fast and virtually all by 48 h, so the explanation's sequential framing should be softened."),
     ('rv-lactic-acidosis-cutoff', '(?i)lactate\\s*>\\s*5\\.0 ?mmol/L with acidemia',
      "sim-q160: the answer (type B, metformin) still stands; lactate 6.2 mmol/L exceeds both the >4 and >5 mmol/L cut-offs. The explanation's 'defines lactic acidosis' at >5.0 should note that definitions vary (Zanza 2022 uses >4 mmol/L)."),
+    ('rv-auto14-label-layout-unverified', 'Auto-?14 requires the 2D barcode printed at least three times',
+     'sim-q134 asserts the AUTO14 three-placement requirement (the regex matches only sim-q134). The public CLSI summary neither confirms nor contradicts it and the standard is paywalled, so the answer cannot be verified from open sources; keep it marked as reviewer-sourced until checked against the AUTO14 text.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',

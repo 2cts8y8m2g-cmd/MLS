@@ -2,12 +2,11 @@
   "schemaVersion": 1,
   "id": "ops-2d-barcode-error-correction",
   "title": "Barcodes That Fix Themselves: Linear Checks vs 2D Error Correction",
-  "summary": "See why laboratories barcode instead of typing, how a worn linear barcode can produce a wrong patient number that its own check character misses, and how error-correcting 2D codes such as QR Code and Data Matrix rebuild a damaged symbol.",
+  "summary": "See why laboratories barcode instead of typing, how an imperfectly printed linear barcode can produce a wrong patient number that its own check character misses, and how error-correcting 2D codes such as QR Code and Data Matrix rebuild a damaged symbol.",
   "domain": "p1-ops",
   "topic": "ch12",
   "conceptIds": [
     "ch12.hit5",
-    "ch12.hit6",
     "ch12.trap2"
   ],
   "tracks": [
@@ -21,8 +20,7 @@
         "chapter": 12,
         "section": "High-Yield Hits",
         "items": [
-          5,
-          6
+          5
         ]
       },
       {
@@ -33,14 +31,14 @@
         ]
       }
     ],
-    "note": "Teaches Ch. 12 Hit 5 (error-correcting 2D barcodes vs 1D symbologies), Trap 2 (1D error detection poorer than believed) and the verifiable part of Hit 6 (CLSI AUTO14 is the laboratory 2D-barcode standard aiming to replace linear codes). Not taught as fact, because no open source could be read: the <1 in 10.5 million 2D misread figure, the AUTO14 requirement to print the code at least three times at different vertical positions, and the unique laboratory identifier (ULI) eliminating relabelling (see register flags rv-auto14-label-layout-unverified and rv-2d-misread-rate-unverified). The CLSI AUTO14 document itself is paywalled; only its public product summary was read, via a page-fetch tool. The Snyder 2010 Clin Chem paper is not open access; only its abstract was read."
+    "note": "Teaches Ch. 12 Hit 5 (error-correcting 2D barcodes vs 1D symbologies) and Trap 2 (1D error detection poorer than believed). Hit 6 is NOT mapped: only background context from it is taught (CLSI AUTO14 is a laboratory 2D-barcode framework aiming to replace linear codes); its core points remain pending. Not taught as fact, because no open source could be read: the <1 in 10.5 million 2D misread figure, the AUTO14 requirement to print the code at least three times at different vertical positions, and the unique laboratory identifier (ULI) eliminating relabelling (see register flags rv-auto14-label-layout-unverified and rv-2d-misread-rate-unverified). The CLSI AUTO14 document itself is paywalled; only its public product summary was read, via a page-fetch tool. The Snyder 2010 Clin Chem paper is not open access; only its abstract was read."
   },
   "prerequisites": [
     "ch12.hit7"
   ],
   "objectives": [
     "Explain why laboratories interface instruments and scan barcodes instead of entering results by hand.",
-    "Describe how a linear barcode check character works and why worn labels or mismatched scanners can still produce undetected misreads.",
+    "Describe how a linear barcode check character works and why print imperfections or mismatched scanners can still produce undetected misreads.",
     "Explain how error-correction codewords let 2D symbologies such as QR Code and Data Matrix recover a damaged symbol, and name the CLSI standard for 2D laboratory barcodes."
   ],
   "duration": 210,
@@ -194,7 +192,7 @@
       "title": "Why labs barcode at all",
       "start": 20,
       "end": 60,
-      "altText": "Left card (Mays and Mathias 2019): in a duplicated outpatient point-of-care glucose workflow, 260 of 6930 manually entered results (3.7%) differed from the interfaced result; 37 of the 260 were off by more than 20%; clinically significant discrepancies occurred at about 5 per 1000 results. Earlier studies mostly found manual entry error rates in the low single-digit percentages. Right card (Distler and Ashford 2019): Code 128, the linear symbology used with ISBT 128, ends each symbol with a check character just before the stop character, which detects many scanning errors; Codabar was criticised for susceptibility to substitution errors and no room for a check character.",
+      "altText": "Left card (Mays and Mathias 2019): in a duplicated outpatient point-of-care glucose workflow, 260 of 6930 manually entered results (3.7%) differed from the interfaced result; 37 of the 260 were off by more than 20%; clinically significant discrepancies occurred at about 5 per 1000 results. Earlier studies mostly found manual entry error rates in the low single-digit percentages. Right card (Distler and Ashford 2019): Code 128, the linear symbology used with ISBT 128, ends each symbol with a check character just before the stop character, which detects many scanning errors; ABC Codabar (a Codabar variant for blood labels) was criticised at a 1997 FDA advisory meeting for susceptibility to substitution errors and lack of space for a check character.",
       "cues": [
         {
           "id": "n1",
@@ -218,7 +216,7 @@
           "id": "n4",
           "start": 52,
           "end": 60,
-          "text": "The older Codabar symbology was criticised for substitution errors and had no room for a check character."
+          "text": "The older ABC Codabar blood-label system was criticised for substitution errors and for lacking space for a check character."
         }
       ],
       "objects": [
@@ -349,7 +347,7 @@
             "x": 710,
             "y": 490,
             "w": 420,
-            "label": "Codabar: no check character",
+            "label": "ABC Codabar: no room for a check",
             "tone": "warn",
             "highlight": 0,
             "opacity": 0
@@ -386,7 +384,7 @@
           "id": "c1",
           "start": 60,
           "end": 72,
-          "text": "A study of misread wristbands from bedside glucose testing found that one worn barcode could produce as many as three different wrong patient numbers, depending on the scanner."
+          "text": "A study rescanned misread wristband barcodes from bedside glucose testing on five scanner models. A single barcode produced as many as three different wrong patient numbers."
         },
         {
           "id": "c2",
@@ -419,7 +417,7 @@
             "tone": "bad",
             "title": "Snyder 2010 (wristbands)",
             "lines": [
-              "One worn barcode",
+              "One misread barcode",
               "Up to 3 wrong patient IDs"
             ],
             "highlight": 0,
@@ -762,13 +760,13 @@
       "title": "Three classic traps",
       "start": 144,
       "end": 174,
-      "altText": "Three trap cards: “A Code 128 check character makes misreads impossible” (✓ the check detects many errors, but worn labels and mismatched scanners produced wrong IDs the check missed); “A 2D code is unreadable once part of it is damaged” (✓ error-correction codewords let QR Code and Data Matrix recover a damaged symbol, within limits); “Once labels are barcoded, identification risk is gone” (✓ substitution errors still occur, and scanning a stray label from another patient is a risk no symbology fixes).",
+      "altText": "Three trap cards: “A Code 128 check character makes misreads impossible” (✓ the check detects many errors, but minor print flaws and mismatched scanners produced wrong IDs the check missed); “A 2D code is unreadable once part of it is damaged” (✓ error-correction codewords let QR Code and Data Matrix recover a damaged symbol, within limits); “Once labels are barcoded, identification risk is gone” (✓ substitution errors still occur, and scanning a stray label from another patient is a risk no symbology fixes).",
       "cues": [
         {
           "id": "e1",
           "start": 144,
           "end": 154,
-          "text": "Trap one: a Code 128 check character makes misreads impossible. No: worn labels and mismatched scanners have produced wrong patient numbers that the check missed."
+          "text": "Trap one: a Code 128 check character makes misreads impossible. No: minor print flaws and mismatched scanners have produced wrong patient numbers that the check missed."
         },
         {
           "id": "e2",
@@ -780,7 +778,7 @@
           "id": "e3",
           "start": 164,
           "end": 174,
-          "text": "Trap three: barcoding removes identification risk. No: substitution errors still happen, and scanning a stray label from another patient defeats any barcode."
+          "text": "Trap three: barcoding removes identification risk. No: substitution errors still happen, and scanning a stray label from another patient remains a risk with any barcode."
         }
       ],
       "objects": [
@@ -1196,13 +1194,13 @@
       "title": "Takeaway",
       "start": 204,
       "end": 210,
-      "altText": "Two tokens: “Manual entry errs in low single-digit percent; a linear check character can miss misreads from worn labels and mismatched scanners”, “2D codes (QR Code, Data Matrix) repair damage with error-correction codewords; CLSI AUTO14 frames 2D barcodes for labs”.",
+      "altText": "Two tokens: “Manual entry errs in low single-digit percent; a linear check character can miss misreads from imperfect labels and mismatched scanners”, “2D codes (QR Code, Data Matrix) repair damage with error-correction codewords; CLSI AUTO14 frames 2D barcodes for labs”.",
       "cues": [
         {
           "id": "t1",
           "start": 204,
           "end": 210,
-          "text": "Barcodes beat hand entry, but a linear check character can stay silent on a worn label or mismatched scanner, so laboratories control printing and scanning and move toward error-correcting two-dimensional codes that can rebuild a damaged symbol."
+          "text": "Barcodes beat hand entry, but a linear check character can stay silent on an imperfect label or mismatched scanner, so laboratories control printing and scanning and move toward error-correcting two-dimensional codes that can rebuild a damaged symbol."
         }
       ],
       "objects": [
@@ -1256,9 +1254,9 @@
     }
   ],
   "explanation": {
-    "what": "Plain language: typing results by hand causes mistakes, so labs scan barcodes. An ordinary striped barcode only has a check that can say “something is wrong”, and with a worn label or the wrong scanner even that check can stay silent. A square 2D code carries spare information that lets the scanner rebuild missing parts. Scientific terms: manual transcription error, interfaced result, linear (1D) symbology, Code 128, Codabar, check character, substitution error, scanner resolution, two-dimensional (2D) matrix symbology, QR Code, Data Matrix, error-correction codewords, error-correction level, CLSI AUTO14.",
+    "what": "Plain language: typing results by hand causes mistakes, so labs scan barcodes. An ordinary striped barcode only has a check that can say “something is wrong”, and with a flawed label or the wrong scanner even that check can stay silent. A square 2D code carries spare information that lets the scanner rebuild missing parts. Scientific terms: manual transcription error, interfaced result, linear (1D) symbology, Code 128, Codabar, check character, substitution error, scanner resolution, two-dimensional (2D) matrix symbology, QR Code, Data Matrix, error-correction codewords, error-correction level, CLSI AUTO14.",
     "why": "A check character only detects some errors; it cannot correct them, and Snyder et al found misreads that the internal integrity check did not detect. Error-correction codewords add redundancy, so a 2D code can reconstruct data from a partly damaged symbol.",
-    "measure": "Manual POC entry: 260 of 6930 (3.7%) discrepant, about 5 per 1000 clinically significant (Mays 2019); earlier studies mostly low single-digit percent. Linear barcode substitution: estimated more than 1 in 84,000 scans, mostly POC scanners (Mays 2019 citing Snyder 2010); one worn wristband gave up to 3 wrong IDs. QR error-correction levels L, M, Q, H recover roughly 7%, 15%, 25%, 30%.",
+    "measure": "Manual POC entry: 260 of 6930 (3.7%) discrepant, about 5 per 1000 clinically significant (Mays 2019); earlier studies mostly low single-digit percent. Linear barcode substitution: estimated more than 1 in 84,000 scans, mostly POC scanners (Mays 2019 citing Snyder 2010); one misread wristband barcode gave up to 3 wrong IDs. QR error-correction levels L, M, Q, H recover roughly 7%, 15%, 25%, 30%.",
     "differs": "Detect (1D check character) vs correct (2D error-correction codewords); symbology failure (misread) vs workflow failure (stray label from another patient scanned); Code 128 (has a check character) vs Codabar (no room for one).",
     "examAngle": "Expect: why a 1D barcode can misread despite a check character, what lets a 2D code survive damage, why interfacing beats manual entry, or which CLSI document addresses 2D laboratory barcodes."
   },
@@ -1270,7 +1268,7 @@
         "label": "Linear (Code 128)",
         "points": [
           "Check character detects some errors",
-          "Worn labels and mismatched scanners can give undetected misreads"
+          "Print flaws, mismatched scanners: undetected misreads"
         ]
       },
       "right": {
@@ -1312,11 +1310,11 @@
     "Barcode drawings are schematic; real symbols follow their published specifications.",
     "QR error-correction percentages are approximate, as the source states."
   ],
-  "takeaway": "Barcodes beat hand entry, but a linear check character can stay silent on a worn label or mismatched scanner, so laboratories control printing and scanning and move toward error-correcting two-dimensional codes that can rebuild a damaged symbol.",
+  "takeaway": "Barcodes beat hand entry, but a linear check character can stay silent on an imperfect label or mismatched scanner, so laboratories control printing and scanning and move toward error-correcting two-dimensional codes that can rebuild a damaged symbol.",
   "questions": [
     {
       "id": "ops-2dbc-q1",
-      "stem": "A worn linear wristband barcode is scanned and returns a wrong patient identifier, yet the symbol’s internal check passes. Which explanation is best supported?",
+      "stem": "A slightly damaged linear wristband barcode is scanned and returns a wrong patient identifier, yet the symbol’s internal check passes. Which explanation is best supported?",
       "options": [
         {
           "id": "a",
@@ -1413,8 +1411,7 @@
           "chapter": 12,
           "section": "High-Yield Hits",
           "items": [
-            5,
-            6
+            5
           ]
         },
         {
@@ -1481,7 +1478,7 @@
       "citation": "Clinical and Laboratory Standards Institute. AUTO14: Use of 2-Dimensional Bar Coding in Clinical and Anatomic Pathology Laboratories. 1st ed. CLSI; public product page.",
       "url": "https://clsi.org/shop/standards/auto14/",
       "consulted": true,
-      "usedFor": "Read via a page-fetch tool (product summary only; the standard itself is paywalled and was not read): framework for 2D bar codes in clinical and anatomic pathology laboratories, long-term goal of replacing linear bar codes, which the summary describes as having unacceptably high error rates; specifies a 2D symbology, data content, printing and decoding. The summary does not state the label layout or a unique laboratory identifier."
+      "usedFor": "Public product page fetched and read (product summary only; the standard itself is paywalled and was not read): framework for 2D bar codes in clinical and anatomic pathology laboratories, long-term goal of replacing linear bar codes, which the summary describes as having unacceptably high error rates; specifies a 2D symbology and covers data content, how codes are printed and decoded, and use of the content. The summary does not state the label layout or a unique laboratory identifier."
     }
   ],
   "claims": [
@@ -1556,7 +1553,7 @@
     },
     {
       "id": "f-1d-context",
-      "issue": "Linear-barcode misread risk depends on print quality, label wear, orientation and scanner resolution (Snyder 2010); a standards body review describes the Code 128 check character as greatly improving reliability. The trap is best read as “a check character is not failsafe”, not that every linear scan is unreliable.",
+      "issue": "Linear-barcode misread risk depends on print quality, label wear, orientation and scanner resolution (Snyder 2010); an ICCBBA-authored review (Distler 2019) says the Code 128 check character contributes greatly to reliability, virtually eliminating errors. The trap is best read as “a check character is not failsafe”, not that every linear scan is unreliable.",
       "kind": "missing-context",
       "status": "open"
     }
@@ -1570,7 +1567,7 @@
     "status": "partially-checked",
     "humanExpertReview": false,
     "reviewer": null,
-    "notes": "4 claims checked (Mays 2019 and Distler 2019 full text; Snyder 2010 abstract only; Pan 2023, Dellinger 2016 and Erdfelder 2023 full text; CLSI AUTO14 public product summary read via a page-fetch tool); 1 pending (2D misread rate, AUTO14 label layout, ULI, reviewer’s manual-error minimum). No human expert has reviewed this lesson."
+    "notes": "4 claims checked (Mays 2019 and Distler 2019 full text; Snyder 2010 abstract only; Pan 2023, Dellinger 2016 and Erdfelder 2023 full text; CLSI AUTO14 public product summary only); 1 pending (2D misread rate, AUTO14 label layout, ULI, reviewer’s manual-error minimum). No human expert has reviewed this lesson."
   },
   "revisedAt": "2026-10-11"
 }
