@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 339, teaching 1549 of 1,932 concepts (about 80.2%).** All 339 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 340, teaching 1552 of 1,932 concepts (about 80.3%).** All 340 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -50,7 +50,7 @@
   - Ch. 44 (16/22 concepts): `immuno-checkpoint-cart-anti-c5-cd20`, `immuno-hypersensitivity-types-lab`, `immuno-immune-screens-trec-ch50-spep`, `immuno-lymphocyte-subsets-th-treg-nk`.
   - Ch. 45 (17/22 concepts): `immuno-affinity-precipitin-mab-hapten`, `immuno-competitive-sandwich-hook`, `immuno-homogeneous-emit-fpia`, `immuno-ria-chemiluminescence-eclia-hbsag`.
   - Ch. 46 (16/20 concepts): `immuno-cellular-specimen-gating-asr`, `immuno-igra-t-cell-memory`, `immuno-nk-burst-cytokine-types-age-ranges`, `immuno-t-cell-activation-proliferation`.
-  - Ch. 47 (22/28 concepts): `immuno-csf-oligoclonal-band-patterns`, `immuno-immunoglobulin-classes`, `immuno-mgus-smoldering-myeloma`, `immuno-mspike-impostors`, `immuno-mspike-math-oligoclonal-bands`.
+  - Ch. 47 (25/28 concepts): `immuno-csf-oligoclonal-band-patterns`, `immuno-immunoglobulin-classes`, `immuno-mgus-smoldering-myeloma`, `immuno-mspike-impostors`, `immuno-mspike-math-oligoclonal-bands`, `immuno-passive-ivig-humanization`.
   - Ch. 48 (18/22 concepts): `immuno-complement-ch50-ah50`, `immuno-complement-consumption-patterns`, `immuno-complement-triggers-anaphylatoxins`.
   - Ch. 49 (18/22 concepts): `immuno-biologics-safety-labs`, `immuno-chemokine-names-cytokine-assays`, `immuno-leukocyte-trafficking-chemokines`.
   - Ch. 50 (17/22 concepts): `immuno-hla-crossmatch-pra`, `immuno-hla-genes-expression-minor-antigens`, `immuno-hla-typing-resolution-matching`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 630 flags (473 verified issues, 157 needing verification), plus scan results.
-- **Checks:** 2106 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 2112 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
