@@ -641,7 +641,8 @@ ANY_CHAPTER = {'rv-biotin-fda', 'rv-fvl-risk', 'rv-calcium-ref-albumin',
                'rv-siad-fena-salt-wasting', 'rv-atp7b-variant-count',
                'rv-ch36-la-non-sle-share', 'rv-ch36-lahps-context', 'rv-acth-dependent-ch9',
                'rv-ch35-pnh-flaer-wbc-only', 'rv-nonisotopic-replaced-radioactive',
-               'rv-ecoli-cyst-nuclei', 'rv-hbv-immune-active-criteria'}
+               'rv-ecoli-cyst-nuclei', 'rv-hbv-immune-active-criteria',
+               'rv-ch58-hbs-vaccine-context', 'rv-ch58-rpr-fourfold-context', 'rv-ch58-rapid-test-controls'}
 
 
 def text(el):

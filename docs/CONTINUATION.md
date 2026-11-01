@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 336, teaching 1537 of 1,932 concepts (about 79.6%).** All 336 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 337, teaching 1540 of 1,932 concepts (about 79.7%).** All 337 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -60,7 +60,7 @@
   - Ch. 54 (19/23 concepts): `immuno-anca-cryoglobulin-testing`, `immuno-anti-gbm-dual-anca-egpa`, `immuno-large-vessel-gca-takayasu`, `immuno-medium-vessel-pan-kawasaki`.
   - Ch. 55 (18/23 concepts): `immuno-autoimmune-liver-aih-pbc-psc`, `immuno-celiac-serology-pbc-ama`, `immuno-glomerular-if-pla2r`, `immuno-organ-signature-tshr-gastric-iaa-mg`.
   - Ch. 56 (18/24 concepts): `immuno-allergy-sige-tryptase`, `immuno-ige-switch-mast-cell-mediators`, `immuno-skin-tests-panels-penicillin`.
-  - Ch. 57 (51/57 concepts): `micro-biosafety-sharps-hbv-sentinel`, `micro-c-difficile-testing-algorithm`, `micro-crypto-ohl-aspergillus-mucorales`, `micro-enteric-pathogens-stec`, `micro-food-poisoning-shigella-hpylori`, `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-gram-stain-cons-novobiocin`, `micro-listeria-nocardia-gpr`, `micro-pseudomonas-ampc-wound-culture`, `micro-rapid-id-maldi-panels-16s`, `micro-strep-enterococcus-id`.
+  - Ch. 57 (54/57 concepts): `micro-biosafety-sharps-hbv-sentinel`, `micro-c-difficile-testing-algorithm`, `micro-crypto-ohl-aspergillus-mucorales`, `micro-enteric-pathogens-stec`, `micro-food-poisoning-shigella-hpylori`, `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-gram-stain-cons-novobiocin`, `micro-listeria-nocardia-gpr`, `micro-pseudomonas-ampc-wound-culture`, `micro-rapid-id-maldi-panels-16s`, `micro-specimen-label-throat-flora-hacek`, `micro-strep-enterococcus-id`.
   - Ch. 58 (28/30 concepts): `micro-antibiotic-targets-synergy-sepsis-clock`, `micro-ast-mic-breakpoints-dtest`, `micro-ast-reference-methods-antibiogram`, `micro-beta-lactamases-esbl-cpe`, `micro-gram-positive-resistance-mec-van-hlar`, `micro-hbv-rpr-chlamydia-rapid-controls`.
   - Ch. 59 (21/26 concepts): `micro-afb-smear-decontamination`, `micro-ntm-runyon-identification`, `micro-tb-airborne-control-hiv-mac`, `micro-tb-xpert-dst-ripe`, `micro-tst-igra-bcg`.
   - Ch. 60 (21/25 concepts): `micro-candida-germ-tube-chromagar-resistance`, `micro-crypto-antigen-t2candida-fungal-pcr`, `micro-dimorphic-fungi`, `micro-invasive-mold-markers`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 621 flags (468 verified issues, 153 needing verification), plus scan results.
-- **Checks:** 2082 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 2088 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
