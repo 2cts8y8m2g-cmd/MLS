@@ -604,6 +604,8 @@ FLAG_RULES = [
      "sim-q160: the answer (type B, metformin) still stands; lactate 6.2 mmol/L exceeds both the >4 and >5 mmol/L cut-offs. The explanation's 'defines lactic acidosis' at >5.0 should note that definitions vary (Zanza 2022 uses >4 mmol/L)."),
     ('rv-auto14-label-layout-unverified', 'Auto-?14 requires the 2D barcode printed at least three times',
      'sim-q134 asserts the AUTO14 three-placement requirement (the regex matches only sim-q134). The public CLSI summary neither confirms nor contradicts it and the standard is paywalled, so the answer cannot be verified from open sources; keep it marked as reviewer-sourced until checked against the AUTO14 text.'),
+    ('rv-nonisotopic-replaced-radioactive', '[Nn]onisotopic labels replaced radioactive',
+     'sim-q622 (reverse line-probe hybridization): the answer (d) still stands; only its trap aside says nonisotopic labels replaced radioactive ones long ago. Wu 2014 and Verbeek 1988 show that radioactive probes remain in use for their sensitivity, so the aside should say nonisotopic labels are now widely used.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
