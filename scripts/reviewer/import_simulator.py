@@ -632,6 +632,8 @@ FLAG_RULES = [
      "Matches sim-q346. For light transmission aggregometry the answer stands: EDTA irreversibly abolishes aggregability and citrated PRP is required. Whole-blood impedance aggregometry often uses hirudin instead, so 'use citrate' applies to LTA rather than every aggregometry method."),
     ('rv-sweat-cl-bands-2017', '[Ss]weat chloride\\s*>\\s*60 mmol/L on two occasions',
      "sim-q203 (symptomatic infant, sweat chloride 78 mmol/L on two occasions): the answer, cystic fibrosis, still stands because 78 is at least 60 and the infant has symptoms. The explanation's 'on two occasions' rule is not in the sources read. They give 60 or more as consistent with CF and 30–59 as intermediate, and require clinical suspicion."),
+    ('rv-biotin-washout-direction-ch27', 'hold biotin and retest',
+     'sim-q175 (falsely low troponin on high-dose biotin) still stands: excess biotin falsely lowers sandwich assays. Luong 2020 adds that the hold must match the dose (8-10 h up to 10 mg/day, up to 73 h or longer at 300 mg/day, longer with poor renal function), and the capture step uses streptavidin rather than avidin.'),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
