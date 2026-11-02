@@ -1,4 +1,4 @@
-"""Generate a Tesla Toybox custom wrap (1024x1024 PNG) with the FitRise logo.
+"""Generate a Tesla Model Y (2020-2024) Toybox custom wrap (1024x1024 PNG) with the FitRise logo.
 
 Usage:  python3 wraps/fitrise/generate.py
 Reads logo.png (FitRise logo on a white background) and template.png
@@ -70,18 +70,25 @@ def main():
                 pts = [(x0, y), (x1, y + 60), (x1, y + h + 60), (x0, y + h)]
             d.polygon(pts, fill=col)
 
+    # Panel map (Model Y, 2020-2024 template): front of the car is the top of
+    # the image. Front bumper y~5-150, hood y~150-390, glass roof in the
+    # middle (not wrapped), liftgate below it, rear bumper at the bottom.
+    # Side panels: the roof edge faces the middle of the template.
+
     # White plates break the stripes so the logos sit on clean ground
-    d.ellipse([512 - 138, 560 - 138, 512 + 138, 560 + 138], fill=BODY, outline=BLUE, width=6)
+    d.ellipse([512 - 102, 280 - 102, 512 + 102, 280 + 102], fill=BODY, outline=BLUE, width=6)
     d.rectangle([330, 40, 694, 108], fill=BODY)
     d.rectangle([395, 866, 629, 920], fill=BODY)
 
-    # Emblem on the roof/hood, wordmark on bumpers and both sides
-    paste(c, fit(emblem, width=230), 512, 560)
+    # Emblem on the hood, wordmark on front bumper, liftgate and both sides
+    paste(c, fit(emblem, width=172), 512, 280)
     paste(c, fit(wordmark, width=330), 512, 74)
     paste(c, fit(wordmark, width=210), 512, 893)
-    side = fit(wordmark, width=300)
-    paste(c, side.rotate(90, expand=True), 118, 445)
-    paste(c, side.rotate(-90, expand=True), 906, 445)
+    side = fit(wordmark, width=320)
+    # Letter tops toward the roof edge: left side reads front-to-rear,
+    # right side reads rear-to-front (both read left-to-right from outside).
+    paste(c, side.rotate(-90, expand=True), 112, 445)
+    paste(c, side.rotate(90, expand=True), 912, 445)
 
     out = c.convert("RGB")
     out.save(HERE / "FitRise.png", optimize=True)

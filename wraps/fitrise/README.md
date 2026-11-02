@@ -1,6 +1,6 @@
 # FitRise Tesla wrap
 
-`FitRise.png` is a Tesla Toybox custom wrap (1024×1024 PNG, under 1 MB).
+`FitRise.png` is a Tesla Toybox custom wrap for the **Model Y (2020–2024)**, built on Tesla's official `modely` template (1024×1024 PNG, under 1 MB). The 2025+ Model Y uses a different panel layout and needs its own version.
 
 ## Install on the car
 1. Format a USB drive as exFAT, FAT32 or MS-DOS FAT.
