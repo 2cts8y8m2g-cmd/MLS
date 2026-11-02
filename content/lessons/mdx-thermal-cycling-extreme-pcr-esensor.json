@@ -1,0 +1,1650 @@
+{
+  "schemaVersion": 1,
+  "id": "mdx-thermal-cycling-extreme-pcr-esensor",
+  "title": "Thermal Cycling, Extreme PCR, Fold-Change Math and the eSensor Readout",
+  "summary": "Follow one PCR cycle to the Ct, calculate fold change from efficiency and the Ct difference, see how rapid-cycle and extreme PCR cut run time, and read the GenMark eSensor electrochemical cutoff.",
+  "domain": "p8-mdx",
+  "topic": "ch69",
+  "conceptIds": [
+    "ch69.figure",
+    "ch69.special1",
+    "ch69.hit14",
+    "ch69.hit15"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 69,
+        "section": "High-Yield Hits",
+        "items": [
+          14,
+          15
+        ]
+      },
+      {
+        "chapter": 69,
+        "section": "Calculation Check: Ct and Fold Change"
+      },
+      {
+        "chapter": 69,
+        "section": "Figure"
+      }
+    ],
+    "note": "Teaches Ch. 69 Hits 14 and 15, the Calculation Check (Ct and fold change) and the Figure (thermal cycling to amplified product; Ct anchor). Checked against Kralik 2017, Bustin 2020, Svec 2015, Millington 2019, Farrar 2015 (abstract only), Ruijter 2009 and Pfaffl 2001 (both read via a page-fetch tool; equations were images, so only their text was used), Muller 2026, Bustin 2026 and Pierce 2012 (read via a page-fetch tool). Hit 14 calls extreme PCR “rapid-cycle” PCR; the sources treat rapid cycle (1991, 10–30 min for 30 cycles) and extreme PCR (2015, 15–60 s) as separate speed classes, and the reviewer’s “40 cycles in ≤30 minutes in thin-walled capillaries” was not found in the sources read, so it is not taught. Hit 15’s 3 nA cutoff is taught as the eSensor respiratory viral panel rule from Pierce 2012. The worked fold-change numbers are arithmetic applying the source formula. Not taught: the Number Vault table, Taq processivity, other eSensor panels."
+  },
+  "prerequisites": [
+    "ch69.hit1",
+    "ch69.hit2"
+  ],
+  "objectives": [
+    "Describe the steps of a PCR cycle and why more starting template gives a lower Ct.",
+    "Calculate fold change from the amplification efficiency and the Ct difference.",
+    "Distinguish rapid-cycle PCR from extreme PCR and state what makes extreme PCR fast.",
+    "State how the GenMark eSensor respiratory viral panel detects targets and its positivity cutoff."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three numbers on one bench",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a molecular bench shows three readouts. Card 1: a real-time PCR sample crosses threshold at Ct 22 while the calibrator crosses at Ct 25, efficiency (E) 1.96. Card 2: a research protocol claims 35 PCR cycles in under a minute. Card 3: an electrochemical respiratory panel reports 4.5 nA for one target and 1.2 nA for another. Question token: “How much more template? How so fast? Which target is positive?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 7,
+          "text": "Invented scenario. A real-time PCR sample crosses the threshold at cycle twenty-two; the calibrator crosses at cycle twenty-five."
+        },
+        {
+          "id": "h2",
+          "start": 7,
+          "end": 13,
+          "text": "A research protocol claims thirty-five PCR cycles in under a minute. And an electrochemical respiratory panel reports one target at four point five nanoamps and another at one point two."
+        },
+        {
+          "id": "h3",
+          "start": 13,
+          "end": 20,
+          "text": "How much more template is in the sample? How can PCR run that fast? And which target is positive?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "c1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 220,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Real-time PCR",
+            "lines": [
+              "Sample Ct 22",
+              "Calibrator Ct 25 · E 1.96"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 220,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "2 Speed claim",
+            "lines": [
+              "35 cycles",
+              "in under a minute"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 7.4,
+              "opacity": 0
+            },
+            {
+              "t": 8.200000000000001,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 220,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "3 Electrochemical panel",
+            "lines": [
+              "Target A 4.5 nA",
+              "Target B 1.2 nA"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10,
+              "opacity": 0
+            },
+            {
+              "t": 10.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 460,
+            "w": 760,
+            "label": "How much more? How so fast? Which is positive?",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 17,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "One cycle, then forty",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic of a thermal cycler run. Three step cards in a row: Denature (heat; the two DNA strands separate), Anneal (cool; primers and probe bind the single strands), Extend (the polymerase copies each strand). A counter card: at 100% efficiency the copies double every cycle, Nn = N0 × (1 + E)^n; a typical real-time run repeats the cycle about 40 times. A Ct card: the more template at the start, the fewer cycles to reach the threshold; Ct plotted against log starting amount is a straight line with a negative slope, about −3.33 per 10-fold at 100% efficiency.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Each PCR cycle has the same steps. Heat denatures the template, separating the two strands. Cooling lets the primers, and any probe, anneal to the single strands."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "Then the polymerase extends the primers, copying each strand. Many protocols combine annealing and extension into one step."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "At one hundred percent efficiency the number of copies doubles every cycle, and a typical real-time run repeats the cycle about forty times."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "The more template at the start, the fewer cycles it takes to cross the threshold. Plot Ct against the log of the starting amount and you get a straight line with a negative slope."
+        }
+      ],
+      "objects": [
+        {
+          "id": "den",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 170,
+            "w": 280,
+            "h": 140,
+            "tone": "bad",
+            "title": "Denature",
+            "lines": [
+              "Heat: strands separate"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ann",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 280,
+            "h": 140,
+            "tone": "b",
+            "title": "Anneal",
+            "lines": [
+              "Cool: primers bind"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5,
+              "opacity": 0
+            },
+            {
+              "t": 5.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 7,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ext",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 170,
+            "w": 280,
+            "h": 140,
+            "tone": "good",
+            "title": "Extend",
+            "lines": [
+              "Polymerase copies"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dbl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 400,
+            "w": 440,
+            "h": 150,
+            "tone": "a",
+            "title": "Doubling (E = 100%)",
+            "lines": [
+              "Nn = N0 × (1 + E)^n",
+              "About 40 cycles per run"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 25,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ct",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 400,
+            "w": 420,
+            "h": 150,
+            "tone": "warn",
+            "title": "Ct and starting amount",
+            "lines": [
+              "More template → lower Ct",
+              "Ct vs log amount: negative slope"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "From hours to seconds",
+      "start": 60,
+      "end": 104,
+      "altText": "Speed ladder of PCR classes (Millington 2019, Table 1), time for 30 cycles: Legacy (1988) about 2.25 hours, with about 90% of the time spent ramping between temperatures; Rapid cycle (1991), in capillaries, 10–30 minutes; Fast (2000s) 30–60 minutes; Ultra-fast (2010s) 2–10 minutes; Extreme (2015) 15–60 seconds with 0.5–2-second cycles. A second card: how extreme PCR gets there (Farrar 2015 abstract): primer and polymerase concentrations raised 10- to 20-fold, 0.4–2.0-second cycles, efficiency above 90%, specific single products; PCR time is inversely related to the concentration of critical reactants.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 71,
+          "text": "Speed is measured as the time for thirty cycles. Legacy PCR in 1988 took about two and a quarter hours, and about ninety percent of that time was spent ramping between temperatures."
+        },
+        {
+          "id": "c2",
+          "start": 71,
+          "end": 82,
+          "text": "Rapid cycle PCR, introduced in 1991 and run in capillaries, cut thirty cycles to ten to thirty minutes. Extreme PCR, reported in 2015, runs thirty cycles in fifteen to sixty seconds, with cycles of half a second to two seconds."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "Faster heating alone is not enough. Extreme PCR raised primer and polymerase concentrations ten- to twenty-fold, so annealing and extension keep pace with the faster cycles."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "The result was efficient, specific amplification of short targets: efficiencies above ninety percent and single products. PCR time is inversely related to the concentration of the critical reactants."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ladder",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 270,
+            "w": 440,
+            "h": 300,
+            "tone": "b",
+            "title": "Time for 30 cycles",
+            "lines": [
+              "Legacy 1988: ~2.25 h",
+              "Rapid cycle 1991: 10–30 min",
+              "Ultra-fast 2010s: 2–10 min",
+              "Extreme 2015: 15–60 s"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 21,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 21,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "how",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 210,
+            "w": 420,
+            "h": 180,
+            "tone": "good",
+            "title": "How extreme PCR is fast",
+            "lines": [
+              "Primers + polymerase 10–20×",
+              "Cycles of 0.4–2.0 s"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "highlight": 1
+            },
+            {
+              "t": 33,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "res",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 440,
+            "w": 420,
+            "label": "Efficiency > 90% · specific",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 34.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Fold change and the eSensor readout",
+      "start": 104,
+      "end": 144,
+      "altText": "Left card, efficiency scale: E runs from 1 to 2, where 2 means 100% (doubling); E = 10^(−1/slope); relative quantity = E^−Cq, so a sample that crosses ΔCt cycles earlier holds E^ΔCt times more template. Worked: Ct 22 vs 25 at E 1.96 → 1.96³ ≈ 7.5× more; 4 cycles earlier at E 2.0 → 2⁴ = 16× more; 2 cycles later at E 1.9 → 1.9² ≈ 3.6× less. Right card, GenMark eSensor respiratory viral panel (Pierce 2012): endpoint PCR, exonuclease digestion to single-stranded DNA, ferrocene-labelled signal probes, capture probes on gold electrodes, voltammetry; a signal of 3 nA or greater for a target is interpreted as positive. Hook answers: about 7.5× more; extreme PCR with high primer and polymerase; target A positive (4.5 nA), target B not (1.2 nA).",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 114,
+          "text": "Now the math. On this scale efficiency runs from one to two, where two means perfect doubling. It comes from the standard-curve slope, and each sample’s relative quantity is the efficiency raised to minus its Ct."
+        },
+        {
+          "id": "l2",
+          "start": 114,
+          "end": 124,
+          "text": "So a sample that crosses three cycles earlier at an efficiency of one point nine six has one point nine six cubed, about seven and a half times more template. At perfect efficiency, four cycles earlier is sixteen-fold; two cycles later at one point nine is about three point six times less."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 134,
+          "text": "The GenMark eSensor respiratory panel reads amplified DNA electrically. After PCR, an exonuclease makes the product single-stranded; it binds ferrocene-labelled signal probes and is captured on gold electrodes, and voltammetry measures the current."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "In that panel, a signal of three nanoamps or more for a target is interpreted as positive. So target A at four point five nanoamps is positive, and target B at one point two is not."
+        }
+      ],
+      "objects": [
+        {
+          "id": "eff",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 150,
+            "tone": "b",
+            "title": "Efficiency scale",
+            "lines": [
+              "E from 1 to 2 (2 = 100%)",
+              "Relative quantity = E^−Ct"
+            ],
+            "highlight": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "calc",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 180,
+            "tone": "a",
+            "title": "Fold change = E^ΔCt",
+            "lines": [
+              "3 earlier, E 1.96: ≈ 7.5× more",
+              "4 earlier, E 2.0: 16× more",
+              "2 later, E 1.9: ≈ 3.6× less"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11,
+              "reveal": 0
+            },
+            {
+              "t": 11.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "es",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 200,
+            "tone": "warn",
+            "title": "eSensor RVP",
+            "lines": [
+              "PCR → exonuclease → single strand",
+              "Ferrocene probe + gold electrode",
+              "Voltammetry (current)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cut",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 460,
+            "w": 420,
+            "label": "≥ 3 nA = positive · A + · B −",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 35,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Rapid-cycle PCR and extreme PCR are the same thing” (✓ rapid cycle: 10–30 min for 30 cycles in capillaries; extreme: 15–60 s with 10–20× primer and polymerase); “Fold change is always 2^ΔCt” (✓ use the measured efficiency: 1.96³ ≈ 7.5, not 8; efficiency errors distort fold change); “The eSensor reads fluorescence” (✓ it measures an electrochemical current by voltammetry; ≥3 nA is positive in the respiratory viral panel).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: rapid-cycle PCR and extreme PCR are the same thing. No: rapid cycle takes ten to thirty minutes for thirty cycles; extreme PCR takes fifteen to sixty seconds and needs much higher primer and polymerase concentrations."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: fold change is always two to the power of the Ct difference. No: use the measured efficiency. Three cycles at one point nine six is about seven and a half, not eight, and a wrong efficiency distorts the result."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the eSensor reads fluorescence. No: it measures an electrical current by voltammetry, and three nanoamps or more is positive in its respiratory panel."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Rapid-cycle = extreme PCR.”",
+            "lines": [
+              "✓ 10–30 min vs 15–60 s for 30 cycles"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Fold change is always 2^ΔCt.”",
+            "lines": [
+              "✓ Use measured E: 1.96³ ≈ 7.5"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “The eSensor reads fluorescence.”",
+            "lines": [
+              "✓ Current by voltammetry; ≥ 3 nA positive"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "The copier race",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “PCR is a copier race. Every lap through the copier doubles the pile, so the bigger the starting pile, the sooner it hits the ceiling (low Ct). To run laps in seconds you must stack far more paper and toner (primers and polymerase). The eSensor weighs the finished pile by electric current: 3 nA tips the scale.” Tokens: lap = cycle · ceiling = threshold · paper and toner = primers and polymerase · scale = current. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: PCR is a copier race. Every lap doubles the pile, so a bigger starting pile hits the ceiling sooner, which is a low Ct. To run laps in seconds you must stack far more paper and toner, the primers and polymerase. The eSensor weighs the pile by current, and three nanoamps tips the scale."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: real efficiency is usually a little below perfect doubling; extreme speed also needs accurate temperature control and short products; and the three-nanoamp cutoff comes from one panel’s rule, so check the assay’s own instructions."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "The copier race",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 170,
+            "w": 200,
+            "label": "Lap = cycle",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 170,
+            "w": 200,
+            "label": "Ceiling = Ct",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 170,
+            "w": 200,
+            "label": "Toner = primers",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 810,
+            "y": 170,
+            "w": 200,
+            "label": "Scale = nA",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.1,
+              "opacity": 0
+            },
+            {
+              "t": 5.8999999999999995,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Real E is often below 2",
+              "Speed also needs precise temperatures, short products",
+              "3 nA is one panel’s rule"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Lower Ct = more template · fold change = E^ΔCt (E 2 = 100%)”, “Rapid cycle 10–30 min · extreme 15–60 s with 10–20× primer and polymerase · eSensor RVP ≥3 nA = positive”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "A lower Ct means more starting template and the fold difference is the efficiency raised to the Ct difference, extreme PCR reaches fifteen to sixty seconds only by raising primer and polymerase concentrations, and the eSensor respiratory panel calls a target positive at three nanoamps or more."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Lower Ct = more template · fold change = E^ΔCt (E 2 = 100%)",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Extreme PCR 15–60 s needs 10–20× reactants · eSensor ≥ 3 nA",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: PCR copies DNA by heating and cooling it over and over; each round roughly doubles the copies, so a sample with more DNA reaches a visible signal in fewer rounds. Faster machines and richer reaction mixes shrink the run from hours to seconds, and one panel reads its result as an electric current instead of light. Scientific terms: denaturation, annealing, extension, amplification efficiency (E), quantification cycle (Ct or Cq), standard curve slope, relative quantity, fold change, rapid cycle PCR, extreme PCR, exonuclease, ferrocene label, gold electrode, voltammetry, nanoampere (nA).",
+    "why": "PCR is exponential, so the starting amount sets how many cycles are needed to cross a threshold, and the efficiency sets how much each cycle multiplies the product. Cycle speed is limited by temperature changes and by how fast primers anneal and polymerase extends; raising primer and polymerase concentrations speeds those reactions.",
+    "measure": "Nn = N0 × (1 + E)^n with E as a fraction (100% = doubling); on the 1–2 scale, E = 10^(−1/slope) and relative quantity = E^−Ct, so fold change = E^ΔCt. Slope about −3.33 per 10-fold dilution at 100%. Time for 30 cycles: legacy about 2.25 h; rapid cycle 10–30 min; extreme 15–60 s (primers and polymerase 10–20× higher, cycles 0.4–2.0 s). eSensor respiratory viral panel: signal ≥3 nA for a target = positive.",
+    "differs": "Rapid cycle PCR (1991, capillaries, minutes) vs extreme PCR (2015, seconds, high reactant concentrations); 2^ΔCt (assumes perfect doubling) vs efficiency-corrected E^ΔCt; fluorescence real-time detection vs eSensor electrochemical detection after endpoint PCR.",
+    "examAngle": "Expect: compute fold change from a Ct difference and efficiency, recognise that a lower Ct means more template, identify what makes extreme PCR fast, or recognise the eSensor’s electrochemical readout and 3 nA cutoff."
+  },
+  "comparisons": [
+    {
+      "id": "rapid-vs-extreme",
+      "title": "Rapid cycle vs extreme PCR",
+      "left": {
+        "label": "Rapid cycle (1991)",
+        "points": [
+          "Capillaries",
+          "10–30 min for 30 cycles"
+        ]
+      },
+      "right": {
+        "label": "Extreme (2015)",
+        "points": [
+          "15–60 s for 30 cycles",
+          "Primers and polymerase 10–20× higher"
+        ]
+      },
+      "distinguisher": "Minutes vs seconds, and whether reactant concentrations are raised to keep pace."
+    },
+    {
+      "id": "fluor-vs-esensor",
+      "title": "Real-time fluorescence vs eSensor readout",
+      "left": {
+        "label": "Real-time PCR",
+        "points": [
+          "Fluorescence read each cycle",
+          "Ct reflects starting amount"
+        ]
+      },
+      "right": {
+        "label": "eSensor RVP",
+        "points": [
+          "Endpoint PCR, then electrode capture",
+          "Voltammetric current; ≥3 nA positive"
+        ]
+      },
+      "distinguisher": "Light measured during cycling vs current measured after amplification."
+    }
+  ],
+  "mnemonic": {
+    "text": "PCR is a copier race: every lap doubles the pile, so a bigger starting pile hits the ceiling sooner (low Ct). To run laps in seconds, stack far more paper and toner (primers and polymerase). The eSensor weighs the pile by current: 3 nA tips the scale.",
+    "explanation": "Links cycles, Ct, extreme PCR reactant concentrations and the eSensor cutoff.",
+    "limitation": "Real efficiency is usually below perfect doubling; extreme speed also needs precise temperature control and short products; the 3 nA cutoff is the respiratory viral panel’s rule, not a universal one."
+  },
+  "analogyLimitations": [
+    "Scenario is invented.",
+    "Cycler, curves and electrode are drawn as schematic cards.",
+    "Worked fold-change numbers are arithmetic applying the source formula."
+  ],
+  "takeaway": "A lower Ct means more starting template and the fold difference is the efficiency raised to the Ct difference, extreme PCR reaches fifteen to sixty seconds only by raising primer and polymerase concentrations, and the eSensor respiratory panel calls a target positive at three nanoamps or more.",
+  "questions": [
+    {
+      "id": "mdx-tc-q1",
+      "stem": "A sample crosses the threshold at Ct 22 and the calibrator at Ct 25. Amplification efficiency is 1.96 (on a scale where 2 means perfect doubling). How much template does the sample have relative to the calibrator?",
+      "options": [
+        {
+          "id": "a",
+          "text": "About 7.5 times more",
+          "rationale": "Correct. Fold change = E^ΔCt = 1.96³ ≈ 7.5, and the lower Ct means more template."
+        },
+        {
+          "id": "b",
+          "text": "About 7.5 times less",
+          "rationale": "Incorrect. A lower Ct means the threshold was reached sooner because there was more starting template."
+        },
+        {
+          "id": "c",
+          "text": "About 5.9 times more",
+          "rationale": "Incorrect. That multiplies efficiency by the Ct difference; PCR is exponential, so the efficiency is raised to the power of the difference."
+        },
+        {
+          "id": "d",
+          "text": "Exactly 8 times more",
+          "rationale": "Incorrect. Eight-fold assumes perfect doubling (E = 2); with the measured E of 1.96 the answer is about 7.5."
+        }
+      ],
+      "answer": "a",
+      "skill": "Fold-change calculation",
+      "difficulty": "application"
+    },
+    {
+      "id": "mdx-tc-q2",
+      "stem": "Extreme PCR amplifies short targets in 15–60 seconds. Besides very short temperature cycles, what change made this possible?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Primer and polymerase concentrations raised 10- to 20-fold",
+          "rationale": "Correct. Higher primer and polymerase concentrations let annealing and extension keep pace with 0.4–2.0-second cycles."
+        },
+        {
+          "id": "b",
+          "text": "Running the reaction at a single constant temperature",
+          "rationale": "Incorrect. Extreme PCR still cycles between denaturation and annealing/extension temperatures."
+        },
+        {
+          "id": "c",
+          "text": "Omitting the denaturation step",
+          "rationale": "Incorrect. Extreme PCR still uses denaturation temperatures in every cycle."
+        },
+        {
+          "id": "d",
+          "text": "Using fewer than 10 cycles",
+          "rationale": "Incorrect. A 60-bp target was amplified in 14.7 s using 35 cycles; speed came from short cycles, not few cycles."
+        }
+      ],
+      "answer": "a",
+      "skill": "Extreme PCR",
+      "difficulty": "recall"
+    },
+    {
+      "id": "mdx-tc-q3",
+      "stem": "On the GenMark eSensor respiratory viral panel, which result is interpreted as positive for a target?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A voltammetric signal of 3 nA or greater for that target",
+          "rationale": "Correct. The panel interprets a signal of 3 nA or more for an analyte as positive."
+        },
+        {
+          "id": "b",
+          "text": "A fluorescence curve crossing the threshold during cycling",
+          "rationale": "Incorrect. That describes real-time fluorescence PCR; the eSensor measures current at gold electrodes."
+        },
+        {
+          "id": "c",
+          "text": "A signal of 0.3 nA or greater",
+          "rationale": "Incorrect. The cutoff in the panel is 3 nA, ten times higher."
+        },
+        {
+          "id": "d",
+          "text": "Any detectable current, however small",
+          "rationale": "Incorrect. A defined cutoff (3 nA) separates positive from negative signals."
+        }
+      ],
+      "answer": "a",
+      "skill": "Electrochemical detection",
+      "difficulty": "recall"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch69",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 69, PCR and Amplification Methods (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 69,
+          "section": "High-Yield Hits",
+          "items": [
+            14,
+            15
+          ]
+        },
+        {
+          "chapter": 69,
+          "section": "Calculation Check: Ct and Fold Change"
+        },
+        {
+          "chapter": 69,
+          "section": "Figure"
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "kralik2017",
+      "kind": "external",
+      "citation": "Kralik P, Ricchi M. A Basic Guide to Real Time PCR in Microbial Diagnostics: Definitions, Parameters, and Everything. Front Microbiol. 2017;8:108. doi:10.3389/fmicb.2017.00108",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5288344/",
+      "consulted": true,
+      "usedFor": "PCR cycles of denaturation, primer annealing and extension; copies theoretically double each cycle at 100% efficiency; Nn = N0 × (1 + E)^n; Cq point proportional to initial template."
+    },
+    {
+      "id": "bustin2020",
+      "kind": "external",
+      "citation": "Bustin SA, Nolan T. RT-qPCR Testing of SARS-CoV-2: A Primer. Int J Mol Sci. 2020;21(8):3004. doi:10.3390/ijms21083004",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7215906/",
+      "consulted": true,
+      "usedFor": "Denaturation separates strands; combined annealing/polymerisation step where primers and probes hybridise and the polymerase copies; cycle repeated usually about 40 times; the more template at the start, the fewer cycles to a significant signal."
+    },
+    {
+      "id": "svec2015",
+      "kind": "external",
+      "citation": "Svec D, Tichopad A, Novosadova V, Pfaffl MW, Kubista M. How good is a PCR efficiency estimate: Recommendations for precise and robust qPCR efficiency assessments. Biomol Detect Quantif. 2015;3:9-16. doi:10.1016/j.bdq.2015.01.005",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4822216/",
+      "consulted": true,
+      "usedFor": "Cq vs log concentration is linear with a negative slope, −3.33 for 10-fold dilutions at 100%; inaccurate efficiency estimates cause substantial under- or overestimation of fold change."
+    },
+    {
+      "id": "millington2019",
+      "kind": "external",
+      "citation": "Millington AL, Houskeeper JA, Quackenbush JF, Trauba JM, Wittwer CT. The kinetic requirements of extreme qPCR. Biomol Detect Quantif. 2019;17:100081. doi:10.1016/j.bdq.2019.100081",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6591793/",
+      "consulted": true,
+      "usedFor": "PCR speed classes (Table 1): legacy 1988 2.25 h per 30 cycles with ~90% of time ramping; rapid cycle 1991 in capillaries 10–30 min; ultra-fast 2–10 min; extreme 2015 15–60 s with 0.5–2 s cycles; extreme speed from increased primer and rapid polymerase concentrations."
+    },
+    {
+      "id": "farrar2015",
+      "kind": "external",
+      "citation": "Farrar JS, Wittwer CT. Extreme PCR: efficient and specific DNA amplification in 15-60 seconds. Clin Chem. 2015;61(1):145-153. doi:10.1373/clinchem.2014.228304",
+      "url": "https://europepmc.org/article/MED/25320377",
+      "consulted": true,
+      "usedFor": "Abstract only (Europe PMC). Primer and polymerase concentrations increased 10- to 20-fold; 0.4–2.0 s cycles; 45–102 bp targets in 15–60 s; efficiencies 91.7–95.8%; single products; 60-bp target in 14.7 s with 35 cycles; PCR time inversely related to concentration of critical reactants."
+    },
+    {
+      "id": "ruijter2009",
+      "kind": "external",
+      "citation": "Ruijter JM, Ramakers C, Hoogaars WM, Karlen Y, Bakker O, van den Hoff MJ, Moorman AF. Amplification efficiency: linking baseline and bias in the analysis of quantitative PCR data. Nucleic Acids Res. 2009;37(6):e45. doi:10.1093/nar/gkp045",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2665230/",
+      "consulted": true,
+      "usedFor": "Text of Box 1 (equations themselves are images, also checked via a page-fetch tool): Nc = N0 × E^c with E between 1 and 2 (2 = 100%); N0 calculated from threshold, efficiency and Ct; ratios by dividing starting concentrations require equal efficiencies."
+    },
+    {
+      "id": "pfaffl2001",
+      "kind": "external",
+      "citation": "Pfaffl MW. A new mathematical model for relative quantification in real-time RT-PCR. Nucleic Acids Res. 2001;29(9):e45. doi:10.1093/nar/29.9.e45",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC55695/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (text only; ratio equation is an image). E = 10^(−1/slope); optimal efficiency E = 2; delta-delta method assumes E target = E reference = 2."
+    },
+    {
+      "id": "muller2026",
+      "kind": "external",
+      "citation": "Müller LA, Tiret L. Efficiency-Corrected Relative Quantification of qPCR Data Using LinRegPCR and a Spreadsheet-Based Workflow. Bio Protoc. 2026;16(13):e5729. doi:10.21769/bioprotoc.5729",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13347129/",
+      "consulted": true,
+      "usedFor": "Relative quantity = Efficiency^−Cq (efficiency on the 1–2 scale, acceptable mean around 1.7–1.9); 2^−ΔΔCq assumes identical, optimal efficiencies."
+    },
+    {
+      "id": "bustin2026",
+      "kind": "external",
+      "citation": "Bustin SA, van den Hoff MJB, Pfaffl MW, Kubista M, Ruijter JM. Quantification Revisited: What qPCR Efficiency Models Reveal About Data Analysis Integrity. Int J Mol Sci. 2026;27(5):2337. doi:10.3390/ijms27052337",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12985538/",
+      "consulted": true,
+      "usedFor": "The Pfaffl method replaces the fixed base of 2 (100% efficiency) in the 2^ΔΔCq equation with the measured efficiency; the ΔΔCq method assumes 100% and identical efficiencies."
+    },
+    {
+      "id": "pierce2012",
+      "kind": "external",
+      "citation": "Pierce VM, Hodinka RL. Comparison of the GenMark Diagnostics eSensor respiratory viral panel to real-time PCR for detection of respiratory viruses in children. J Clin Microbiol. 2012;50(11):3458-3465. doi:10.1128/jcm.01384-12",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3486226/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (methods). eSensor XT-8 respiratory viral panel: endpoint PCR; exonuclease digestion to single-stranded DNA; ferrocene-labelled signal probes; capture probes on gold-plated electrodes; electrochemical detection by voltammetry; a signal of 3 nA or greater for an analyte is interpreted as positive."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-cycle",
+      "text": "PCR cycle steps (denature, anneal, extend; often combined anneal/extend); doubling at 100% efficiency; Nn = N0 × (1 + E)^n; about 40 cycles per real-time run.",
+      "status": "checked",
+      "refs": [
+        "kralik2017",
+        "bustin2020"
+      ]
+    },
+    {
+      "id": "cl-ct",
+      "text": "More starting template gives a lower Ct; Ct vs log amount is linear with a negative slope (−3.33 per 10-fold at 100%).",
+      "status": "checked",
+      "refs": [
+        "bustin2020",
+        "kralik2017",
+        "svec2015"
+      ]
+    },
+    {
+      "id": "cl-eff",
+      "text": "E on a 1–2 scale (2 = 100%); E = 10^(−1/slope); relative quantity = E^−Ct; base 2 replaced by measured efficiency; inaccurate efficiency distorts fold change.",
+      "status": "checked",
+      "refs": [
+        "ruijter2009",
+        "pfaffl2001",
+        "muller2026",
+        "bustin2026",
+        "svec2015"
+      ]
+    },
+    {
+      "id": "cl-fold",
+      "text": "Worked fold changes: 1.96³ ≈ 7.5×; 2⁴ = 16×; 1.9² ≈ 3.6× less.",
+      "status": "checked",
+      "refs": [
+        "muller2026",
+        "ruijter2009"
+      ],
+      "note": "The numbers are arithmetic applying the source relation (relative quantity = E^−Ct); they are not quoted from a source."
+    },
+    {
+      "id": "cl-speed",
+      "text": "Speed classes: legacy about 2.25 h, rapid cycle 10–30 min in capillaries, ultra-fast 2–10 min, extreme 15–60 s per 30 cycles; legacy time mostly ramping.",
+      "status": "checked",
+      "refs": [
+        "millington2019"
+      ]
+    },
+    {
+      "id": "cl-extreme",
+      "text": "Extreme PCR: primer and polymerase 10–20× higher, 0.4–2.0 s cycles, efficiency above 90%, single products, 35 cycles in 14.7 s; time inversely related to reactant concentration.",
+      "status": "checked",
+      "refs": [
+        "farrar2015",
+        "millington2019"
+      ],
+      "note": "Farrar 2015 read as abstract only."
+    },
+    {
+      "id": "cl-esensor",
+      "text": "eSensor respiratory viral panel: endpoint PCR, exonuclease to single strand, ferrocene signal probes, gold-electrode capture, voltammetry; ≥3 nA = positive.",
+      "status": "checked",
+      "refs": [
+        "pierce2012"
+      ]
+    },
+    {
+      "id": "cl-40cycles",
+      "text": "Reviewer: rapid-cycle PCR runs 40 cycles in ≤30 minutes in thin-walled capillaries.",
+      "status": "pending",
+      "note": "Not found in the sources read (Millington 2019 gives 10–30 min for 30 cycles); not taught."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario invented; cycler, curves and electrode schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“The copier race.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-rapid-vs-extreme",
+      "issue": "Hit 14 labels extreme PCR as “rapid-cycle” PCR and gives “40 cycles in ≤30 minutes in thin-walled capillaries”. Millington 2019 lists rapid cycle PCR (1991, capillaries, 10–30 min for 30 cycles) and extreme PCR (2015, 15–60 s) as separate speed classes; the 40-cycle figure and “thin-walled” were not found in the sources read. The lesson teaches the two classes separately.",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-esensor-panel",
+      "issue": "Hit 15 states the 3 nA cutoff for “GenMark eSensor” generally. Pierce 2012 gives it for the eSensor respiratory viral panel on the XT-8 system; whether other eSensor panels use the same cutoff was not verified, so the lesson ties the cutoff to that panel.",
+      "kind": "method-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No instrument photographs or curves from sources; cycler steps, speed ladder and electrode readout are schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "7 factual claims checked against ten open sources (Pierce 2012, Pfaffl 2001 and Ruijter 2009 read via a page-fetch tool; Farrar 2015 abstract only); 1 pending (reviewer’s 40 cycles in ≤30 minutes in thin-walled capillaries). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
