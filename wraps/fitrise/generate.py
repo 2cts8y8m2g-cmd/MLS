@@ -69,33 +69,50 @@ def paste(canvas, img, cx, cy):
     canvas.alpha_composite(img, (round(cx - img.width / 2), round(cy - img.height / 2)))
 
 
-def main():
+def recolor_dark(img: Image.Image, color) -> Image.Image:
+    """Swap the logo's black ink for another color (keeps blue and edges)."""
+    a = np.asarray(img).copy()
+    dark = a[..., :3].max(axis=2) < 90
+    a[dark, :3] = color
+    return Image.fromarray(a, "RGBA")
+
+
+# Colorways: body color, center stripe color, the logo's "black" ink, plate ring
+STYLES = {
+    "FitRise": dict(body=(14, 14, 16), stripe=(245, 246, 248), ink=(255, 255, 255)),
+    "FitRise_White": dict(body=(246, 247, 249), stripe=BLACK, ink=None),
+}
+
+
+def render(name, body, stripe, ink):
     emblem, wordmark, _tagline = logo_parts()
-    c = Image.new("RGBA", (SIZE, SIZE), BODY + (255,))
+    if ink:
+        emblem, wordmark = recolor_dark(emblem, ink), recolor_dark(wordmark, ink)
+    c = Image.new("RGBA", (SIZE, SIZE), body + (255,))
     d = ImageDraw.Draw(c)
-
-    # Center stripes over front bumper / hood / roof / trunk / rear bumper
-    d.rectangle([452, 0, 476, SIZE], fill=BLUE)
-    d.rectangle([548, 0, 572, SIZE], fill=BLUE)
-    d.rectangle([484, 0, 540, SIZE], fill=BLACK)
-
-    # Side panels: blue slash graphic sweeping toward the rear, echoing the logo
-    for x0, x1, flip in ((20, 215, False), (810, 1004, True)):
-        for i, (y, h, col) in enumerate([(610, 70, BLUE), (690, 22, BLACK), (722, 10, BLUE)]):
-            pts = [(x0, y + 60), (x1, y), (x1, y + h), (x0, y + h + 60)]
-            if flip:
-                pts = [(x0, y), (x1, y + 60), (x1, y + h + 60), (x0, y + h)]
-            d.polygon(pts, fill=col)
 
     # Panel map (Model Y, 2020-2024 template): front of the car is the top of
     # the image. Front bumper y~5-150, hood y~150-390, glass roof in the
     # middle (not wrapped), liftgate below it, rear bumper at the bottom.
     # Side panels: the roof edge faces the middle of the template.
 
-    # White plates break the stripes so the logos sit on clean ground
-    d.ellipse([512 - 102, 280 - 102, 512 + 102, 280 + 102], fill=BODY, outline=BLUE, width=6)
-    d.rectangle([330, 40, 694, 108], fill=BODY)
-    d.rectangle([395, 866, 629, 920], fill=BODY)
+    # Center stripes over front bumper / hood / liftgate / rear bumper
+    d.rectangle([452, 0, 476, SIZE], fill=BLUE)
+    d.rectangle([548, 0, 572, SIZE], fill=BLUE)
+    d.rectangle([484, 0, 540, SIZE], fill=stripe)
+
+    # Side panels: blue slash graphic sweeping toward the rear, echoing the logo
+    for x0, x1, flip in ((20, 215, False), (810, 1004, True)):
+        for y, h, col in [(610, 70, BLUE), (690, 22, stripe), (722, 10, BLUE)]:
+            pts = [(x0, y + 60), (x1, y), (x1, y + h), (x0, y + h + 60)]
+            if flip:
+                pts = [(x0, y), (x1, y + 60), (x1, y + h + 60), (x0, y + h)]
+            d.polygon(pts, fill=col)
+
+    # Plates in the body color break the stripes so the logos sit on clean ground
+    d.ellipse([512 - 102, 280 - 102, 512 + 102, 280 + 102], fill=body, outline=BLUE, width=6)
+    d.rectangle([330, 40, 694, 108], fill=body)
+    d.rectangle([395, 866, 629, 920], fill=body)
 
     # Emblem on the hood, wordmark on front bumper, liftgate and both sides
     paste(c, fit(emblem, width=172), 512, 280)
@@ -109,14 +126,19 @@ def main():
 
     # Keep the design on the body panels only: blank out glass and gaps
     lines = template_lines()
-    c.paste(BODY + (255,), mask=not_painted_mask(lines))
+    c.paste(body + (255,), mask=not_painted_mask(lines))
 
     out = c.convert("RGB")
-    out.save(HERE / "FitRise.png", optimize=True)
+    out.save(HERE / f"{name}.png", optimize=True)
 
     prev = out.copy()
     prev.paste((230, 0, 80), mask=lines)
-    prev.save(HERE / "preview_with_outlines.png")
+    prev.save(HERE / f"preview_{name}.png")
+
+
+def main():
+    for name, style in STYLES.items():
+        render(name, **style)
 
 
 if __name__ == "__main__":
