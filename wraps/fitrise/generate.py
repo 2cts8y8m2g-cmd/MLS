@@ -43,6 +43,23 @@ def logo_parts():
     return parts  # [emblem, wordmark, tagline]
 
 
+def template_lines() -> Image.Image:
+    """Panel outlines as a 0/255 mask (template has a transparent background)."""
+    raw = Image.open(HERE / "template.png").convert("RGBA")
+    flat = Image.new("RGBA", raw.size, (255, 255, 255, 255))
+    flat.alpha_composite(raw)
+    return ImageOps.invert(flat.convert("L")).point(lambda v: 255 if v > 80 else 0)
+
+
+def not_painted_mask(lines: Image.Image) -> Image.Image:
+    """255 where nothing gets wrapped: the glass roof and the space between panels."""
+    m = lines.convert("RGB")
+    for seed in ((2, 2), (512, 560)):            # outside area, glass roof
+        ImageDraw.floodfill(m, seed, (255, 0, 0), thresh=10)
+    a = np.asarray(m)
+    return Image.fromarray(((a[..., 0] == 255) & (a[..., 1] == 0)).astype(np.uint8) * 255)
+
+
 def fit(img, width=None, height=None):
     s = width / img.width if width else height / img.height
     return img.resize((max(1, round(img.width * s)), max(1, round(img.height * s))), Image.LANCZOS)
@@ -90,13 +107,13 @@ def main():
     paste(c, side.rotate(-90, expand=True), 112, 445)
     paste(c, side.rotate(90, expand=True), 912, 445)
 
+    # Keep the design on the body panels only: blank out glass and gaps
+    lines = template_lines()
+    c.paste(BODY + (255,), mask=not_painted_mask(lines))
+
     out = c.convert("RGB")
     out.save(HERE / "FitRise.png", optimize=True)
 
-    raw = Image.open(HERE / "template.png").convert("RGBA")
-    flat = Image.new("RGBA", raw.size, (255, 255, 255, 255))
-    flat.alpha_composite(raw)
-    lines = ImageOps.invert(flat.convert("L")).point(lambda v: 255 if v > 80 else 0)
     prev = out.copy()
     prev.paste((230, 0, 80), mask=lines)
     prev.save(HERE / "preview_with_outlines.png")
