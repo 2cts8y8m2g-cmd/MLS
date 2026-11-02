@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 636 flags: 478 verified issues and 158 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 639 flags: 480 verified issues and 159 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -642,6 +642,9 @@ Needs verification:
 - **Ch. 47 Hit 17:** Hit 17 calls passive immunization short-lived without a time frame and lists anaphylaxis, serum sickness and Arthus reactions for heterologous antisera. (`rv-passive-immunization-context`, verified-issue).
 - **Ch. 47 Hit 16:** Hit 16 says immunofixation after immunoglobulin infusions shows polyclonal IgG with NO IgA or IgM. Two problems. (`rv-ivig-ife-iga-traces`, needs-verification).
 - **Ch. 47 Hit 18:** Hit 18 says humanization cuts immunogenicity while keeping specificity. (`rv-humanization-residual-immunogenicity`, verified-issue).
+- **Ch. 43 Hit 8:** Hit 8 gives a bone marrow harvest target of 2–3 × 10⁸ viable nucleated cells/kg (~700 mL for a 70-kg adult). (`rv-marrow-harvest-dose`, needs-verification).
+- **Ch. 43 Hit 8:** Hit 8 gives 3–5 mL per aspiration as the standard. (`rv-marrow-pull-volume`, verified-issue).
+- **Ch. 43 Hit 13:** Hit 13's August/October 2017 anti-CD19 CAR T approvals are US FDA rulings; Philippine registration is not covered. (`rv-cart-2017-us-approval`, verified-issue).
 - Ch. 40 Hit 7: enzymes said to destroy S/s (Manduzio 2024: variable).
 - Ch. 1 Hit 4: breath tests "not regulated by CLIA".
 - Ch. 40 Vault #2: ">62 Rh antigens".
@@ -663,7 +666,7 @@ Automated scan: **23** dated-guideline statements and **134** High-Yield Hits wi
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 268 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 271 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
@@ -946,8 +949,8 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Mass Spec in Practice: Drug Confirmation, 2-HG and Ambient MS in Surgery (Ch. 5):** 1 pending claim (USS Nimitz history, Number Vault device figures such as the iKnife 1.8 s and 94.4%); lesson flags f-screen-false-negatives, f-2hg-beyond-glioma, f-ambient-research (missing-context, open); register flags rv-ch5-immunoassay-false-negatives, rv-ch5-2hg-beyond-glioma, rv-ch5-ambient-ms-research-stage. Checked against Reschly-Krasowski 2018, Argoff 2018, Chou 2021, Phelps 2018, Van Hese 2022 and Garza 2024 (Europe PMC full text), Zhang 2017 (full text via NCBI E-utilities), Li 2014 (read via a page-fetch tool), and the Santagata 2014 and Balog 2013 abstracts (Santagata full text blocked by a PMC browser check and a PNAS 403).
 - **HLA-B27, CD21, the Reverse Syphilis Algorithm and Assay Limits (Ch. 44):** written and source-referenced, but the independent fact-check has NOT yet been completed; treat as unverified until this line is updated.
 - **Borrowed Antibodies: Passive Immunization, Humanized Monoclonals and IVIG After Myeloma (Ch. 47):** 2 pending claims (the Arthus reaction with heterologous antisera, and the Hit 16 immunofixation appearance itself, which no source read describes); lesson flags f-passive-duration (missing-context), f-ivig-iga-traces (missing-context), f-humanization-immunogenicity (missing-context); register flags rv-passive-immunization-context, rv-ivig-ife-iga-traces, rv-humanization-residual-immunogenicity. Checked against Casadevall 2002, Tharmalingam 2022, Barahona Afonso 2016, Dhar 2019, Patel 2019, O'Donnell 2025, Ye 2021, Lu 2020, Gordon 2024, Baker 2020, Zhang 2022 and Tan 2021 (full text via Europe PMC) and de Silva 2016 (read via a page-fetch tool because its Europe PMC full text is empty); Keller 2000 and Graham 2015 were read via a page-fetch tool but did not cover the points. All 11 original citations re-verified against Europe PMC metadata with no mismatches.
-- **Cell Products: Marrow Harvest Dose, CFU Potency and CAR T Cells (Ch. 43):** written and source-referenced, but the independent fact-check has NOT yet been completed; treat as unverified until this line is updated.
 - **Aggregometry Pre-analytics, Granule Disorders and Scott Syndrome (Ch. 37):** written and source-referenced, but the independent fact-check has NOT yet been completed; treat as unverified until this line is updated.
+- **Cell Products: Marrow Harvest Dose, CFU Potency and CAR T Cells (Ch. 43):** 1 pending claim (marrow HPC frequency ~1%, ~700 mL for 70 kg, 2 × 10⁸/kg lower bound, 3–5 mL pull standard, peripheral blood as the named diluent, general 10–14 day CFU turnaround, 1–2 h ALDH turnaround); 3 open lesson flags (marrow dose, pull volume, US-only CAR T approvals); register flags rv-marrow-harvest-dose, rv-marrow-pull-volume, rv-cart-2017-us-approval. Checked against Murakami 2024 (NMDP white paper; read via a page-fetch tool), Tiwari 2023, Yusoff 2025, Gençer 2017, Fujiwara 2020, Ahmad 2020, Graff 2015 and Sutherland 2021.
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.
