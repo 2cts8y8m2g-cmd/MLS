@@ -95,6 +95,9 @@ def render(name, body, stripe, ink):
     # the image. Front bumper y~5-150, hood y~150-390, glass roof in the
     # middle (not wrapped), liftgate below it, rear bumper at the bottom.
     # Side panels: the roof edge faces the middle of the template.
+    # Front bumper + hood are mapped upside down (their top edge, toward the
+    # windshield, points down in the image), so front art is rotated 180.
+    # Liftgate + rear bumper are upright as drawn.
 
     # Center stripes over front bumper / hood / liftgate / rear bumper
     d.rectangle([452, 0, 476, SIZE], fill=BLUE)
@@ -115,8 +118,8 @@ def render(name, body, stripe, ink):
     d.rectangle([395, 866, 629, 920], fill=body)
 
     # Emblem on the hood, wordmark on front bumper, liftgate and both sides
-    paste(c, fit(emblem, width=172), 512, 280)
-    paste(c, fit(wordmark, width=330), 512, 74)
+    paste(c, fit(emblem, width=172).rotate(180), 512, 280)
+    paste(c, fit(wordmark, width=330).rotate(180), 512, 74)
     paste(c, fit(wordmark, width=210), 512, 893)
     side = fit(wordmark, width=320)
     # Letter tops toward the roof edge: left side reads front-to-rear,
