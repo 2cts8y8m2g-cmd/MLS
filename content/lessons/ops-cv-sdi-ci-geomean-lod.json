@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "ops-cv-sdi-ci-geomean-lod",
   "title": "Precision in Numbers: CV, SDI, Confidence Intervals, Geometric Mean and Detection Limits",
-  "summary": "Learn to compare precision with the coefficient of variation, score proficiency results with the SDI, build and shrink a 95% confidence interval, summarize skewed lognormal data with the geometric mean, and tell the limit of blank, limit of detection, analytical sensitivity and analytical specificity apart.",
+  "summary": "Learn to compare precision with the coefficient of variation, score proficiency results with the SDI, build and shrink a 95% confidence interval, summarize skewed lognormal data with the geometric mean, tell the limit of blank, limit of detection and limit of quantitation apart, and name the common interferences behind analytical specificity.",
   "domain": "p1-ops",
   "topic": "ch10",
   "conceptIds": [
@@ -29,7 +29,7 @@
         ]
       }
     ],
-    "note": "Teaches Ch. 10 Hits 9, 10, 11 and 14. Checked against Mishra 2019 (CV, mode, SEM), Kim 2021 and Kumar 2018 (SDI/z-score in EQA), Andreasson 2015 (SD and %CV per level; selectivity/specificity), Lee 2016 and Fay 2013 (confidence intervals, 1.96 and 2.575, quadrupling n halves the SEM), Motulsky 2025 (geometric mean of lognormal data), Armbruster 2008 (LoB/LoD/LoQ, analytical-sensitivity terminology; read via a page-fetch tool), Dimeski 2008 (interferents; read via a page-fetch tool) and 42 CFR 493.1253. Qualifications: Hit 11’s detection limit (“~3–4 × SD of ~10 zero-standard replicates”) differs from Armbruster 2008, which describes the traditional approach as about 20 blank replicates with mean + 2 SD (sometimes 3, 4 or 10 SD), notes it shows only the ability to measure nothing, and gives the LoB/LoD approach; Armbruster also advises against using “analytical sensitivity” (calibration slope) as a synonym for LoD (register flag rv-lod-traditional-vs-lob). Hit 10 applies the geometric mean to “log-normal/skewed” data; Motulsky 2025 notes it can be a poor estimate of the median for skewed data that are not lognormal or contain outliers (register flag rv-geomean-lognormal-only). Not taught: the 25-OH vitamin D example figures (arithmetic 25.55 vs geometric 20.56 ng/mL, n = 12,434), the reviewer’s SDI worked numbers, the Gaussian table and figure."
+    "note": "Teaches Ch. 10 Hits 9, 10, 11 and 14. Checked against Mishra 2019 (CV, mode, SEM), Kim 2021 and Kumar 2018 (SDI/z-score in EQA), Andreasson 2015 (SD and %CV per level; selectivity/specificity), Lee 2016 and Fay 2013 (confidence intervals, 1.96 and 2.575, quadrupling n halves the SEM), Motulsky 2025 (geometric mean of lognormal data), Armbruster 2008 (LoB/LoD/LoQ; abstract only), Dimeski 2008 (interferents; abstract only; both article bodies could not be retrieved: PMC captcha, Europe PMC 403) and 42 CFR 493.1253. Qualifications: Hit 11’s detection limit (“~3–4 × SD of ~10 zero-standard replicates”) is a blank-only rule, whereas Armbruster 2008 defines the LoD from the LoB plus replicates of a low-concentration sample (register flag rv-lod-traditional-vs-lob); Hit 11’s “response per unit analyte” meaning of analytic sensitivity is not taught. Hit 10 applies the geometric mean to “log-normal/skewed” data; Motulsky 2025 notes it can be a poor estimate of the median for skewed data that are not lognormal or contain outliers (register flag rv-geomean-lognormal-only). Not taught: the 25-OH vitamin D example figures (arithmetic 25.55 vs geometric 20.56 ng/mL, n = 12,434), the reviewer’s SDI worked numbers, the Gaussian table and figure."
   },
   "prerequisites": [
     "ch10.hit2"
@@ -38,7 +38,7 @@
     "Calculate a coefficient of variation and a standard deviation index, and say what each is used for.",
     "Calculate a 95% confidence interval for a mean and predict how it changes with sample size.",
     "Explain when and how to use the geometric mean, and define the mode.",
-    "Distinguish limit of blank, limit of detection, limit of quantitation, analytical sensitivity and analytical specificity."
+    "Distinguish limit of blank, limit of detection and limit of quantitation, and name common interferences relevant to analytical specificity."
   ],
   "duration": 210,
   "scenes": [
@@ -391,7 +391,7 @@
       "title": "Uncertainty and skew",
       "start": 60,
       "end": 104,
-      "altText": "CI card: standard error of the mean = SD ÷ √n; a 95% confidence interval for a mean = mean ± 1.96 × SEM (z = 1.96 for 95%, 2.575 for 99%); for samples above about ten, the 95% CI spans about 2 SEM either side. Sample-size card: because n sits under a square root, quadrupling n is needed to halve the SEM; SEM and CI shrink with larger n, but the SD does not. Skew card: lognormal data have a long right tail that pulls the arithmetic mean upward; the geometric mean = antilog of the mean of the logarithms and equals the median of an ideal lognormal distribution. Mode token: the mode is the most frequent value; a data set can have more than one mode or none.",
+      "altText": "CI card: standard error of the mean = SD ÷ √n; a 95% confidence interval for a mean = mean ± 1.96 × SEM (z = 1.96 for 95%, 2.575 for 99%); for samples above about ten, the 95% CI spans about 2 SEM either side. Sample-size card: because n sits under a square root, quadrupling n is needed to halve the SEM; SEM and CI shrink with larger n, but the SD does not. Skew card: lognormal data have a long right tail; the arithmetic mean is the balance point of the whole distribution, tail included, and differs from the median; the geometric mean = antilog of the mean of the logarithms and equals the median of an ideal lognormal distribution. Mode token: the mode is the most frequent value; a data set can have more than one mode or none.",
       "cues": [
         {
           "id": "c1",
@@ -409,7 +409,7 @@
           "id": "c3",
           "start": 82,
           "end": 94,
-          "text": "Skewed data need another centre. Lognormal values have a long right tail that drags the ordinary mean upward. The geometric mean, the antilog of the mean of the logarithms, equals the median of an ideal lognormal distribution."
+          "text": "Skewed data need another centre. Lognormal values have a long right tail, and the ordinary mean, the balance point of the whole distribution, no longer sits at the median. The geometric mean, the antilog of the mean of the logarithms, equals the median of an ideal lognormal distribution."
         },
         {
           "id": "c4",
@@ -505,7 +505,7 @@
             "tone": "a",
             "title": "Lognormal data",
             "lines": [
-              "Long right tail lifts the mean",
+              "Long right tail: mean ≠ median",
               "Geomean = antilog(mean of logs)",
               "Geomean = median (ideal)"
             ],
@@ -577,7 +577,7 @@
       "title": "Detecting a little, measuring the right thing",
       "start": 104,
       "end": 144,
-      "altText": "Schematic ladder of low-end limits. Limit of blank (LoB) = mean of blank + 1.645 × SD of blank: the highest apparent result expected from a sample with no analyte. Limit of detection (LoD) = LoB + 1.645 × SD of a low-concentration sample: the lowest concentration reliably told apart from the LoB. Limit of quantitation (LoQ) ≥ LoD: the lowest level meeting set bias and imprecision goals. The older approach (about 20 blank replicates, mean + 2 SD, or 3, 4 or even 10 SD) only shows the ability to measure nothing. “Analytical sensitivity” is sometimes used for the slope of the calibration curve; it should not be treated as a synonym for LoD. Analytical specificity: US CLIA requires labs establishing performance to include interfering substances; interferents include haemolysis, bilirubin, lipids, cross-reacting substances and drugs. Hook answer card.",
+      "altText": "Schematic ladder of low-end limits. Limit of blank (LoB) = mean of blank + 1.645 × SD of blank: the highest apparent result expected from a sample with no analyte. Limit of detection (LoD) = LoB + 1.645 × SD of a low-concentration sample: the lowest concentration reliably told apart from the LoB. Limit of quantitation (LoQ): the lowest level reliably detected and meeting predefined bias and imprecision goals; it may equal the LoD or be much higher. LoB uses blank replicates only; LoD also needs replicates of a low-concentration sample. Analytical specificity: US CLIA requires laboratories that modify or develop a test system to establish analytical specificity, to include interfering substances; haemolysis, icterus and lipaemia are the most frequently studied interferences, and drugs and antibodies can also interfere. Hook answer card.",
       "cues": [
         {
           "id": "l1",
@@ -589,13 +589,13 @@
           "id": "l2",
           "start": 118,
           "end": 126,
-          "text": "The old shortcut, blank mean plus two or three SD, only shows that you can measure nothing. And analytical sensitivity sometimes means the calibration slope, which is not the same as the detection limit."
+          "text": "Notice the difference. The limit of blank comes from blank replicates alone; the limit of detection also needs replicates of a sample known to hold a low concentration. The limit of quantitation may equal it or sit much higher."
         },
         {
           "id": "l3",
           "start": 126,
           "end": 134,
-          "text": "Analytical specificity is about measuring only the analyte. US CLIA requires it to include interfering substances, and known interferents include haemolysis, bilirubin, lipids, cross-reactants and drugs."
+          "text": "Analytical specificity is about interference. US CLIA requires labs that modify or develop a test to establish it, including interfering substances. Haemolysis, icterus and lipaemia are the most studied; drugs and antibodies can interfere too."
         },
         {
           "id": "l4",
@@ -718,7 +718,7 @@
             "x": 480,
             "y": 320,
             "w": 760,
-            "label": "Specificity: haemolysis · bilirubin · lipaemia · cross-reactants · drugs",
+            "label": "Specificity: haemolysis · icterus · lipaemia · drugs · antibodies",
             "tone": "warn",
             "highlight": 0,
             "opacity": 0
@@ -794,7 +794,7 @@
       "title": "Three classic traps",
       "start": 144,
       "end": 174,
-      "altText": "Three trap cards: “The control with the larger SD is less precise” (✓ compare CVs; SD must be read against the mean); “Double n to halve the confidence interval” (✓ quadruple n, because SEM = SD ÷ √n); “Detection limit = blank mean + 2 SD” (✓ that only shows the ability to measure nothing; LoD = LoB + 1.645 SD of a low-level sample).",
+      "altText": "Three trap cards: “The control with the larger SD is less precise” (✓ compare CVs; SD must be read against the mean); “Double n to halve the confidence interval” (✓ quadruple n, because SEM = SD ÷ √n); “Detection limit = blank mean + 2 SD” (✓ in the LoB/LoD approach, LoD = LoB + 1.645 SD of a low-concentration sample, so a low-level sample is needed).",
       "cues": [
         {
           "id": "e1",
@@ -812,7 +812,7 @@
           "id": "e3",
           "start": 164,
           "end": 174,
-          "text": "Trap three: the detection limit is the blank mean plus two SD. No: that only shows you can measure nothing; the limit of detection also uses a low-level sample."
+          "text": "Trap three: the detection limit is just the blank mean plus two SD. No: in the blank and low-sample approach, the limit of detection is the limit of blank plus one point six four five SD of a low-level sample."
         }
       ],
       "objects": [
@@ -1312,9 +1312,9 @@
   ],
   "explanation": {
     "what": "Plain language: a spread number means little until you set it against the size of the result; a proficiency score says how many spreads you sit from your peers; a confidence interval says how precisely you know an average, and it narrows only slowly as you add samples; long-tailed data are better summarized on a log scale; and “detected” has to be defined against blank and low-level samples, with interferences checked separately. Scientific terms: standard deviation (SD), coefficient of variation (CV), standard deviation index (SDI), z-score, external quality assessment (EQA) / proficiency testing (PT), standard error of the mean (SEM), confidence interval (CI), lognormal distribution, geometric mean, median, mode, limit of blank (LoB), limit of detection (LoD), limit of quantitation (LoQ), analytical sensitivity, analytical specificity, selectivity, interference.",
-    "why": "The CV removes the scale of the mean so imprecision can be compared across levels. The SDI standardizes bias against the peer group so it can be compared across analytes. The SEM divides the SD by √n, so precision of the mean improves with the square root of the sample size. A long right tail pulls the arithmetic mean (the balance point) upward, whereas the geometric mean of lognormal data sits at the median. A blank-only limit says nothing about whether a low concentration can be distinguished from a blank, which is why LoD uses a low-concentration sample.",
-    "measure": "CV = 100 × SD ÷ mean (%). SDI = (lab result − peer mean) ÷ peer SD; one scheme (KEQAS) treats SDI > 3 as unacceptable. SEM = SD ÷ √n; 95% CI = mean ± 1.96 × SEM (99%: z = 2.575); quadrupling n halves the SEM. Geometric mean = antilog of the mean of the logs (equivalently the n-th root of the product). LoB = mean(blank) + 1.645 SD(blank); LoD = LoB + 1.645 SD(low sample); LoQ ≥ LoD. Manufacturers use about 60 replicates; a lab verifying a claimed LoD uses about 20.",
-    "differs": "SD (absolute spread) vs CV (relative spread); SDI (bias against peers) vs CV (imprecision); SD (does not shrink with n) vs SEM/CI (shrink with n); arithmetic vs geometric mean; mean vs median vs mode; LoB vs LoD vs LoQ; analytical sensitivity (detection limit or calibration slope) vs diagnostic sensitivity; analytical specificity (interference, cross-reactivity) vs diagnostic specificity.",
+    "why": "The CV removes the scale of the mean so imprecision can be compared across levels. The SDI divides the difference from the peer mean by the peer SD, so bias reads as a multiple of the SD. The SEM divides the SD by √n, so precision of the mean improves with the square root of the sample size. A long right tail pulls the arithmetic mean (the balance point) upward, whereas the geometric mean of lognormal data sits at the median. The LoB describes only what blanks produce; the LoD is the lowest concentration reliably distinguished from the LoB, so it is determined with replicates of a low-concentration sample as well.",
+    "measure": "CV = 100 × SD ÷ mean (%). SDI = (lab result − peer mean) ÷ peer SD; one scheme (KEQAS) treats SDI > 3 as unacceptable. SEM = SD ÷ √n; 95% CI = mean ± 1.96 × SEM (99%: z = 2.575); quadrupling n halves the SEM. Geometric mean = antilog of the mean of the logs (equivalently the n-th root of the product). LoB = mean(blank) + 1.645 SD(blank); LoD = LoB + 1.645 SD(low sample); LoQ ≥ LoD (it may equal the LoD or be much higher).",
+    "differs": "SD (absolute spread) vs CV (relative spread); SDI (bias against peers) vs CV (imprecision); SD (does not shrink with n) vs SEM/CI (shrink with n); arithmetic vs geometric mean; mean vs median vs mode; LoB vs LoD vs LoQ; selectivity (a graded property, the recommended term) vs specificity (an absolute one), terms often used interchangeably.",
     "examAngle": "Expect: calculate a CV or SDI, pick the sample size that halves a CI, recall z = 1.96 for a 95% CI, choose the geometric mean for lognormal data, define the mode, or order LoB, LoD and LoQ."
   },
   "comparisons": [
@@ -1365,7 +1365,7 @@
   "analogyLimitations": [
     "Scenario and QC numbers are invented.",
     "Limit ladder and distributions are schematic.",
-    "The LoB/LoD formulas are the classical parametric forms; actual protocols (sample numbers, nonparametric options) follow the current CLSI guidance."
+    "The LoB/LoD formulas are the parametric forms given by Armbruster and Pry; replicate numbers and protocol details are not taught here."
   ],
   "takeaway": "Compare precision with the coefficient of variation, score proficiency results with the standard deviation index, quadruple the sample size to halve a confidence interval, summarize lognormal data with the geometric mean, and set detection limits from blank and low-level samples rather than from the blank alone.",
   "questions": [
@@ -1434,12 +1434,12 @@
         {
           "id": "a",
           "text": "The geometric mean, the antilog of the mean of the logged values, estimates the median",
-          "rationale": "Correct. For an ideal lognormal distribution the geometric mean equals the median, and it is the standard way to give the centre of lognormal data."
+          "rationale": "Correct. For an ideal lognormal distribution the geometric mean equals the median, and it is the standard way to quantify the centre of a lognormal distribution."
         },
         {
           "id": "b",
           "text": "The arithmetic mean is best because it uses every value equally",
-          "rationale": "Incorrect. The long right tail pulls the arithmetic mean upward, away from the bulk of the data."
+          "rationale": "Incorrect. The arithmetic mean is the balance point of the whole distribution, long right tail included, so for lognormal data it does not sit at the median."
         },
         {
           "id": "c",
@@ -1449,7 +1449,7 @@
         {
           "id": "d",
           "text": "Mean ± 1.96 SD of the raw values",
-          "rationale": "Incorrect. That describes spread, not centre, and on skewed raw data the symmetric limits misrepresent the distribution."
+          "rationale": "Incorrect. That describes a spread around the arithmetic mean, not the centre of the data."
         }
       ],
       "answer": "a",
@@ -1507,7 +1507,7 @@
       "citation": "Andreasson U, Perret-Liaudet A, van Waalwijk van Doorn LJ, et al. A Practical Guide to Immunoassay Method Validation. Front Neurol. 2015;6:179. doi:10.3389/fneur.2015.00179",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4541289/",
       "consulted": true,
-      "usedFor": "Imprecision is reported as both SD and %CV at each level; selectivity = ability to measure and differentiate the analyte in the presence of other components expected to be present; selectivity and specificity are often used interchangeably, selectivity being the recommended term."
+      "usedFor": "Full text via Europe PMC. Imprecision is reported as both SD and %CV at each level; selectivity = ability to measure and differentiate the analyte in the presence of components that may be expected to be present; selectivity and specificity are often used interchangeably, selectivity (graded) being the recommended term over specificity (absolute); its LLOQ procedure uses 16 blanks and a signal 10 SD above the blank mean (used for register flag rv-lod-traditional-vs-lob as evidence that blank-based limits are method-dependent)."
     },
     {
       "id": "lee2016",
@@ -1539,7 +1539,7 @@
       "citation": "Armbruster DA, Pry T. Limit of blank, limit of detection and limit of quantitation. Clin Biochem Rev. 2008;29(Suppl 1):S49-S52.",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2556583/",
       "consulted": true,
-      "usedFor": "Read via a page-fetch tool (Europe PMC full text unavailable). LoB = mean(blank) + 1.645 SD(blank); LoD = LoB + 1.645 SD(low-concentration sample); LoQ ≥ LoD where bias and imprecision goals are met; traditional approach of about 20 blank/zero-calibrator replicates with mean + 2 SD (sometimes 3, 4 or 10 SD) defines only the ability to measure nothing; “analytical sensitivity” (calibration slope) should not be used as a synonym for LoD; about 60 replicates for manufacturers, 20 for laboratories verifying a claimed LoD."
+      "usedFor": "Abstract (Summary) only: the article body is a PDF behind a captcha (PMC) / HTTP 403 (Europe PMC), and NCBI efetch returns only the Summary; an earlier page-fetch tool summary was not relied on. From the Summary: LoB = highest apparent concentration expected from blank replicates = mean blank + 1.645 SD(blank); LoD = lowest concentration likely to be reliably distinguished from the LoB, determined from the LoB and replicates of a low-concentration sample, LoD = LoB + 1.645 SD(low-concentration sample); LoQ = lowest concentration reliably detected and meeting predefined bias and imprecision goals, equal to the LoD or much higher."
     },
     {
       "id": "dimeski2008",
@@ -1547,7 +1547,7 @@
       "citation": "Dimeski G. Interference testing. Clin Biochem Rev. 2008;29(Suppl 1):S43-S48.",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2556582/",
       "consulted": true,
-      "usedFor": "Read via a page-fetch tool (Europe PMC full text unavailable). Interference = a substance or process that falsely alters an assay result; endogenous interferents include haemolysis, bilirubin, lipids and cross-reacting substances; exogenous interferents include drugs and their metabolites."
+      "usedFor": "Abstract (Summary) only: the article body is a PDF not retrievable here (PMC captcha, Europe PMC 403); NCBI efetch returns only the Summary. From the Summary: interference occurs when a substance or process falsely alters an assay result; endogenous or exogenous; haemolysis, icterus and lipaemia are the most frequently studied; drug interference (parent drug, metabolites or additives); immunoassay interference most commonly from antibodies."
     },
     {
       "id": "cfr493-1253",
@@ -1555,7 +1555,7 @@
       "citation": "42 CFR § 493.1253 — Standard: Establishment and verification of performance specifications (eCFR, version current to 2026-10-01).",
       "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493/subpart-K/section-493.1253",
       "consulted": true,
-      "usedFor": "Laboratories that modify or develop test systems must establish accuracy, precision, analytical sensitivity, analytical specificity to include interfering substances, reportable range and reference intervals."
+      "usedFor": "Regulation text via the eCFR API (2026-10-01). Laboratories that modify an FDA-cleared or approved test system, introduce one not subject to FDA clearance, or use one without manufacturer specifications must establish accuracy, precision, analytical sensitivity, analytical specificity to include interfering substances, reportable range and reference intervals."
     }
   ],
   "claims": [
@@ -1591,7 +1591,7 @@
     },
     {
       "id": "cl-lod",
-      "text": "LoB, LoD and LoQ definitions and formulas; weakness of the blank-only approach; analytical-sensitivity terminology; replicate numbers.",
+      "text": "LoB, LoD and LoQ definitions and formulas; LoD needs a low-concentration sample as well as blanks; LoQ may equal or exceed the LoD.",
       "status": "checked",
       "refs": [
         "armbruster2008"
@@ -1599,7 +1599,7 @@
     },
     {
       "id": "cl-spec",
-      "text": "Analytical specificity includes interfering substances (CLIA); interferents include haemolysis, bilirubin, lipids, cross-reactants and drugs; selectivity terminology.",
+      "text": "Analytical specificity to include interfering substances (CLIA, for labs that modify or develop test systems); haemolysis, icterus and lipaemia are the most studied interferences, with drugs and antibodies also interfering; selectivity vs specificity terminology.",
       "status": "checked",
       "refs": [
         "cfr493-1253",
@@ -1609,12 +1609,12 @@
     },
     {
       "id": "cl-pend",
-      "text": "25-OH vitamin D arithmetic vs geometric mean figures (25.55 vs 20.56 ng/mL, n = 12,434); the reviewer’s “~3–4 × SD of ~10 zero-standard replicates” rule.",
+      "text": "25-OH vitamin D arithmetic vs geometric mean figures (25.55 vs 20.56 ng/mL, n = 12,434); the reviewer’s “~3–4 × SD of ~10 zero-standard replicates” rule; the claim that a blank-only limit (mean + 2 SD of about 20 blanks) shows only the ability to measure nothing; use of “analytical sensitivity” for the calibration slope and whether it is a synonym for LoD; replicate numbers for establishing or verifying an LoD; cross-reacting substances as interferents.",
       "status": "pending",
       "refs": [
         "reviewer-ch10"
       ],
-      "note": "Not taught as facts; the vitamin D dataset was not located in an open source, and the replicate rule differs from Armbruster 2008."
+      "note": "Not taught. The vitamin D dataset was not located in an open source; the remaining points appear only in the body of Armbruster 2008 and Dimeski 2008, whose own text could not be retrieved (abstracts only)."
     },
     {
       "id": "cl-vis",
@@ -1630,8 +1630,8 @@
   "accuracyFlags": [
     {
       "id": "f-lod-traditional",
-      "issue": "Ch. 10 Hit 11 gives the detection limit as “~3–4 × SD of ~10 zero-standard replicates” and equates analytic sensitivity with both detection limit and response per unit analyte. Armbruster 2008 describes the traditional blank-only approach as about 20 replicates with mean + 2 SD (sometimes 3, 4 or 10 SD), notes it defines only the ability to measure nothing, and gives LoB = mean(blank) + 1.645 SD and LoD = LoB + 1.645 SD of a low-concentration sample; it also advises against using “analytical sensitivity” (calibration slope) as a synonym for LoD. The lesson teaches the source (register flag rv-lod-traditional-vs-lob).",
-      "kind": "outdated",
+      "issue": "Ch. 10 Hit 11 gives the detection limit as “~3–4 × SD of ~10 zero-standard replicates”, a blank-only rule. Armbruster 2008 (Summary) defines LoB = mean(blank) + 1.645 SD(blank) and the LoD as the lowest concentration reliably distinguished from the LoB, determined with a low-concentration sample: LoD = LoB + 1.645 SD(low sample). Blank-based multipliers vary by method (Andreasson 2015 uses 16 blanks and 10 SD for an LLOQ). The lesson teaches the LoB/LoD/LoQ definitions and not the reviewer’s replicate rule (register flag rv-lod-traditional-vs-lob).",
+      "kind": "method-dependent",
       "status": "open"
     },
     {
@@ -1656,7 +1656,7 @@
     "status": "partially-checked",
     "humanExpertReview": false,
     "reviewer": null,
-    "notes": "5 claims checked (Mishra 2019, Kim 2021, Kumar 2018, Andreasson 2015, Lee 2016, Fay 2013 and Motulsky 2025 full texts via Europe PMC; Armbruster 2008 and Dimeski 2008 read via a page-fetch tool; 42 CFR 493.1253 via the eCFR API); 1 pending (vitamin D example figures and the reviewer’s replicate rule, not taught). No human expert has reviewed this lesson."
+    "notes": "5 claims checked (Mishra 2019, Kim 2021, Kumar 2018, Andreasson 2015, Lee 2016, Fay 2013 and Motulsky 2025 full texts via Europe PMC; Armbruster 2008 and Dimeski 2008 abstracts only, the article bodies being unretrievable; 42 CFR 493.1253 via the eCFR API); 1 pending (vitamin D example figures, the reviewer’s replicate rule, the blank-only and analytical-sensitivity terminology points, replicate numbers and cross-reactants, not taught). No human expert has reviewed this lesson."
   },
   "revisedAt": "2026-10-11"
 }
