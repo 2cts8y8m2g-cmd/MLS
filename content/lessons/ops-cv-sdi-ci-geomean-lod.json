@@ -1,0 +1,1662 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-cv-sdi-ci-geomean-lod",
+  "title": "Precision in Numbers: CV, SDI, Confidence Intervals, Geometric Mean and Detection Limits",
+  "summary": "Learn to compare precision with the coefficient of variation, score proficiency results with the SDI, build and shrink a 95% confidence interval, summarize skewed lognormal data with the geometric mean, and tell the limit of blank, limit of detection, analytical sensitivity and analytical specificity apart.",
+  "domain": "p1-ops",
+  "topic": "ch10",
+  "conceptIds": [
+    "ch10.hit9",
+    "ch10.hit10",
+    "ch10.hit11",
+    "ch10.hit14"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 10,
+        "section": "High-Yield Hits",
+        "items": [
+          9,
+          10,
+          11,
+          14
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 10 Hits 9, 10, 11 and 14. Checked against Mishra 2019 (CV, mode, SEM), Kim 2021 and Kumar 2018 (SDI/z-score in EQA), Andreasson 2015 (SD and %CV per level; selectivity/specificity), Lee 2016 and Fay 2013 (confidence intervals, 1.96 and 2.575, quadrupling n halves the SEM), Motulsky 2025 (geometric mean of lognormal data), Armbruster 2008 (LoB/LoD/LoQ, analytical-sensitivity terminology; read via a page-fetch tool), Dimeski 2008 (interferents; read via a page-fetch tool) and 42 CFR 493.1253. Qualifications: Hit 11’s detection limit (“~3–4 × SD of ~10 zero-standard replicates”) differs from Armbruster 2008, which describes the traditional approach as about 20 blank replicates with mean + 2 SD (sometimes 3, 4 or 10 SD), notes it shows only the ability to measure nothing, and gives the LoB/LoD approach; Armbruster also advises against using “analytical sensitivity” (calibration slope) as a synonym for LoD (register flag rv-lod-traditional-vs-lob). Hit 10 applies the geometric mean to “log-normal/skewed” data; Motulsky 2025 notes it can be a poor estimate of the median for skewed data that are not lognormal or contain outliers (register flag rv-geomean-lognormal-only). Not taught: the 25-OH vitamin D example figures (arithmetic 25.55 vs geometric 20.56 ng/mL, n = 12,434), the reviewer’s SDI worked numbers, the Gaussian table and figure."
+  },
+  "prerequisites": [
+    "ch10.hit2"
+  ],
+  "objectives": [
+    "Calculate a coefficient of variation and a standard deviation index, and say what each is used for.",
+    "Calculate a 95% confidence interval for a mean and predict how it changes with sample size.",
+    "Explain when and how to use the geometric mean, and define the mode.",
+    "Distinguish limit of blank, limit of detection, limit of quantitation, analytical sensitivity and analytical specificity."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three lines on a validation report",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a validation report for a new assay makes three claims. (1) QC level 1 has SD 2 at a mean of 100; level 2 has SD 4 at a mean of 300, “so level 2 is less precise”. (2) “To halve the width of our 95% confidence interval we will double the number of replicates.” (3) “Anything that reads above the mean of the blank counts as detected.” Question token: “Which claims survive?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "A validation report for a new assay makes three claims. First: the high control has twice the standard deviation of the low one, so it must be less precise."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "Second: doubling the number of replicates will halve the confidence interval. Third: anything that reads above the blank average counts as detected."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which of these claims survive?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "c1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Precision",
+            "lines": [
+              "SD 2 at 100 · SD 4 at 300",
+              "“Level 2 is worse”"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "2 Confidence interval",
+            "lines": [
+              "Double n",
+              "“Halves the width”"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "3 Detection",
+            "lines": [
+              "Above blank mean",
+              "“Detected”"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11,
+              "opacity": 0
+            },
+            {
+              "t": 11.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 640,
+            "label": "Which claims survive?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "Spread and standing: CV and SDI",
+      "start": 20,
+      "end": 60,
+      "altText": "CV card: coefficient of variation = 100 × SD ÷ mean, expressed as a percentage; an SD read without its mean can mislead. Worked example: SD 2 at mean 100 = CV 2%; SD 4 at mean 300 ≈ CV 1.3%. Method validations report imprecision as both SD and %CV at each level. SDI card: standard deviation index = (lab result − peer-group mean) ÷ peer-group SD, so it expresses bias as a multiple of the SD; external quality assessment results are scored by SDI or z-score. One scheme (KEQAS) treats SDI above 3 as unacceptable; schemes differ in their limits.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "A standard deviation means little without the mean beside it. The coefficient of variation fixes that: one hundred times the standard deviation divided by the mean, as a percentage."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "So an SD of two at a mean of one hundred is a CV of two percent, while an SD of four at three hundred is only about one point three percent. Validation reports give both SD and CV at each level."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 52,
+          "text": "The standard deviation index scores a proficiency result: your result minus the peer-group mean, divided by the peer-group standard deviation. It states your bias as a number of standard deviations."
+        },
+        {
+          "id": "n4",
+          "start": 52,
+          "end": 60,
+          "text": "One Korean scheme counts an index above three as unacceptable, but external quality schemes set their limits differently."
+        }
+      ],
+      "objects": [
+        {
+          "id": "cv",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 200,
+            "tone": "b",
+            "title": "CV = 100 × SD ÷ mean",
+            "lines": [
+              "SD 2 at 100 → 2%",
+              "SD 4 at 300 → ≈1.3%",
+              "Report SD and %CV per level"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "cvt",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 450,
+            "w": 440,
+            "label": "Divide by the mean to compare levels",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sdi",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 220,
+            "tone": "a",
+            "title": "SDI = (lab − peer mean) ÷ peer SD",
+            "lines": [
+              "Bias as a multiple of SD",
+              "Used to score EQA / PT",
+              "Same idea as a z-score"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 30,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lim",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 480,
+            "w": 420,
+            "label": "Limits differ by scheme (e.g. > 3 fails)",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 32.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 33.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "Uncertainty and skew",
+      "start": 60,
+      "end": 104,
+      "altText": "CI card: standard error of the mean = SD ÷ √n; a 95% confidence interval for a mean = mean ± 1.96 × SEM (z = 1.96 for 95%, 2.575 for 99%); for samples above about ten, the 95% CI spans about 2 SEM either side. Sample-size card: because n sits under a square root, quadrupling n is needed to halve the SEM; SEM and CI shrink with larger n, but the SD does not. Skew card: lognormal data have a long right tail that pulls the arithmetic mean upward; the geometric mean = antilog of the mean of the logarithms and equals the median of an ideal lognormal distribution. Mode token: the mode is the most frequent value; a data set can have more than one mode or none.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "The standard error of the mean is the standard deviation divided by the square root of n. A ninety-five percent confidence interval is the mean plus or minus one point nine six standard errors; for ninety-nine percent the multiplier is about two point five eight."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "Because n sits under a square root, you need four times the sample to halve the standard error and the interval. The interval shrinks as n grows; the standard deviation does not."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "Skewed data need another centre. Lognormal values have a long right tail that drags the ordinary mean upward. The geometric mean, the antilog of the mean of the logarithms, equals the median of an ideal lognormal distribution."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "And the mode is simply the most frequent value; a data set can have several modes or none at all."
+        }
+      ],
+      "objects": [
+        {
+          "id": "ci",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 200,
+            "tone": "b",
+            "title": "95% CI of a mean",
+            "lines": [
+              "SEM = SD ÷ √n",
+              "Mean ± 1.96 × SEM",
+              "99%: z ≈ 2.575"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "n4",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 450,
+            "w": 440,
+            "label": "4 × n → ½ SEM · SD does not shrink",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "geo",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 220,
+            "tone": "a",
+            "title": "Lognormal data",
+            "lines": [
+              "Long right tail lifts the mean",
+              "Geomean = antilog(mean of logs)",
+              "Geomean = median (ideal)"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 33,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 33,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "mode",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 480,
+            "w": 420,
+            "label": "Mode = most frequent value",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 35.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Detecting a little, measuring the right thing",
+      "start": 104,
+      "end": 144,
+      "altText": "Schematic ladder of low-end limits. Limit of blank (LoB) = mean of blank + 1.645 × SD of blank: the highest apparent result expected from a sample with no analyte. Limit of detection (LoD) = LoB + 1.645 × SD of a low-concentration sample: the lowest concentration reliably told apart from the LoB. Limit of quantitation (LoQ) ≥ LoD: the lowest level meeting set bias and imprecision goals. The older approach (about 20 blank replicates, mean + 2 SD, or 3, 4 or even 10 SD) only shows the ability to measure nothing. “Analytical sensitivity” is sometimes used for the slope of the calibration curve; it should not be treated as a synonym for LoD. Analytical specificity: US CLIA requires labs establishing performance to include interfering substances; interferents include haemolysis, bilirubin, lipids, cross-reacting substances and drugs. Hook answer card.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 118,
+          "text": "At the low end there is a ladder. The limit of blank is the blank mean plus one point six four five blank standard deviations. The limit of detection adds one point six four five standard deviations of a low-level sample. The limit of quantitation sits at or above it, where bias and imprecision goals are met."
+        },
+        {
+          "id": "l2",
+          "start": 118,
+          "end": 126,
+          "text": "The old shortcut, blank mean plus two or three SD, only shows that you can measure nothing. And analytical sensitivity sometimes means the calibration slope, which is not the same as the detection limit."
+        },
+        {
+          "id": "l3",
+          "start": 126,
+          "end": 134,
+          "text": "Analytical specificity is about measuring only the analyte. US CLIA requires it to include interfering substances, and known interferents include haemolysis, bilirubin, lipids, cross-reactants and drugs."
+        },
+        {
+          "id": "l4",
+          "start": 134,
+          "end": 144,
+          "text": "Back to the hook: compare precision by CV, so level two is actually better; quadruple n to halve the interval; and set detection from the blank plus a low-level sample."
+        }
+      ],
+      "objects": [
+        {
+          "id": "lob",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 190,
+            "w": 270,
+            "h": 160,
+            "tone": "b",
+            "title": "LoB",
+            "lines": [
+              "Blank mean + 1.645 SD",
+              "Blank only"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lod",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 270,
+            "h": 160,
+            "tone": "a",
+            "title": "LoD",
+            "lines": [
+              "LoB + 1.645 SD (low sample)",
+              "Reliably above LoB"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5,
+              "opacity": 0
+            },
+            {
+              "t": 5.8,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 8,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "loq",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 190,
+            "w": 270,
+            "h": 160,
+            "tone": "good",
+            "title": "LoQ ≥ LoD",
+            "lines": [
+              "Bias + imprecision goals met",
+              "Lowest quantified level"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 12,
+              "highlight": 1
+            },
+            {
+              "t": 18,
+              "highlight": 0
+            }
+          ]
+        },
+        {
+          "id": "spec",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 320,
+            "w": 760,
+            "label": "Specificity: haemolysis · bilirubin · lipaemia · cross-reactants · drugs",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 23.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 27,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 440,
+            "w": 760,
+            "h": 150,
+            "tone": "warn",
+            "title": "Hook answer: none survive",
+            "lines": [
+              "CV 2% vs 1.3%: level 2 is more precise",
+              "Quadruple n to halve the CI",
+              "Detection needs LoB + low sample"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 39,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 39,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “The control with the larger SD is less precise” (✓ compare CVs; SD must be read against the mean); “Double n to halve the confidence interval” (✓ quadruple n, because SEM = SD ÷ √n); “Detection limit = blank mean + 2 SD” (✓ that only shows the ability to measure nothing; LoD = LoB + 1.645 SD of a low-level sample).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: the bigger standard deviation means worse precision. No: compare coefficients of variation, because the SD has to be read against its mean."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: double the sample to halve the confidence interval. No: the standard error divides by the square root of n, so you need four times the sample."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the detection limit is the blank mean plus two SD. No: that only shows you can measure nothing; the limit of detection also uses a low-level sample."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Bigger SD = worse precision.”",
+            "lines": [
+              "✓ Compare CV = 100 × SD ÷ mean"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Double n, halve the CI.”",
+            "lines": [
+              "✓ Quadruple n (SEM = SD ÷ √n)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “LoD = blank mean + 2 SD.”",
+            "lines": [
+              "✓ LoB, then LoD = LoB + 1.645 SD (low sample)"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Divide, quadruple, log, climb",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “Divide by the MEAN to compare, by the SD to score. FOUR times the people for HALF the doubt. LOG the long tail. Climb Blank → Low → Quantify.” Tokens: CV compares · SDI scores; 4 × n = ½ CI; log the tail; LoB → LoD → LoQ. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: divide by the mean to compare, by the SD to score. Four times the people for half the doubt. Log the long tail. And climb from blank, to low, to quantify."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: proficiency schemes set different pass limits; the two standard error shortcut needs more than about ten values; and the geometric mean misleads when data are skewed but not lognormal, or contain outliers."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Divide, quadruple, log, climb",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 150,
+            "y": 170,
+            "w": 200,
+            "label": "CV compares · SDI scores",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 370,
+            "y": 170,
+            "w": 200,
+            "label": "4 × n = ½ CI",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 590,
+            "y": 170,
+            "w": 200,
+            "label": "Log the long tail",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "token",
+          "props": {
+            "x": 810,
+            "y": 170,
+            "w": 200,
+            "label": "LoB → LoD → LoQ",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.1,
+              "opacity": 0
+            },
+            {
+              "t": 5.8999999999999995,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 150,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "PT schemes set different SDI limits",
+              "“≈2 SEM” needs n above about ten",
+              "Geomean misleads if not lognormal or with outliers"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “CV = 100 × SD ÷ mean · SDI = (lab − peer mean) ÷ peer SD”, “95% CI = mean ± 1.96 SEM (4 × n halves it) · geomean for lognormal · LoB → LoD → LoQ”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Compare precision with the coefficient of variation, score proficiency results with the standard deviation index, quadruple the sample size to halve a confidence interval, summarize lognormal data with the geometric mean, and set detection limits from blank and low-level samples rather than from the blank alone."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "CV = 100 × SD ÷ mean · SDI = (lab − peer mean) ÷ peer SD",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "CI = mean ± 1.96 SEM (4 × n halves it) · geomean · LoB → LoD → LoQ",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a spread number means little until you set it against the size of the result; a proficiency score says how many spreads you sit from your peers; a confidence interval says how precisely you know an average, and it narrows only slowly as you add samples; long-tailed data are better summarized on a log scale; and “detected” has to be defined against blank and low-level samples, with interferences checked separately. Scientific terms: standard deviation (SD), coefficient of variation (CV), standard deviation index (SDI), z-score, external quality assessment (EQA) / proficiency testing (PT), standard error of the mean (SEM), confidence interval (CI), lognormal distribution, geometric mean, median, mode, limit of blank (LoB), limit of detection (LoD), limit of quantitation (LoQ), analytical sensitivity, analytical specificity, selectivity, interference.",
+    "why": "The CV removes the scale of the mean so imprecision can be compared across levels. The SDI standardizes bias against the peer group so it can be compared across analytes. The SEM divides the SD by √n, so precision of the mean improves with the square root of the sample size. A long right tail pulls the arithmetic mean (the balance point) upward, whereas the geometric mean of lognormal data sits at the median. A blank-only limit says nothing about whether a low concentration can be distinguished from a blank, which is why LoD uses a low-concentration sample.",
+    "measure": "CV = 100 × SD ÷ mean (%). SDI = (lab result − peer mean) ÷ peer SD; one scheme (KEQAS) treats SDI > 3 as unacceptable. SEM = SD ÷ √n; 95% CI = mean ± 1.96 × SEM (99%: z = 2.575); quadrupling n halves the SEM. Geometric mean = antilog of the mean of the logs (equivalently the n-th root of the product). LoB = mean(blank) + 1.645 SD(blank); LoD = LoB + 1.645 SD(low sample); LoQ ≥ LoD. Manufacturers use about 60 replicates; a lab verifying a claimed LoD uses about 20.",
+    "differs": "SD (absolute spread) vs CV (relative spread); SDI (bias against peers) vs CV (imprecision); SD (does not shrink with n) vs SEM/CI (shrink with n); arithmetic vs geometric mean; mean vs median vs mode; LoB vs LoD vs LoQ; analytical sensitivity (detection limit or calibration slope) vs diagnostic sensitivity; analytical specificity (interference, cross-reactivity) vs diagnostic specificity.",
+    "examAngle": "Expect: calculate a CV or SDI, pick the sample size that halves a CI, recall z = 1.96 for a 95% CI, choose the geometric mean for lognormal data, define the mode, or order LoB, LoD and LoQ."
+  },
+  "comparisons": [
+    {
+      "id": "cv-vs-sdi",
+      "title": "CV vs SDI",
+      "left": {
+        "label": "CV",
+        "points": [
+          "100 × SD ÷ mean",
+          "Imprecision, comparable across levels"
+        ]
+      },
+      "right": {
+        "label": "SDI",
+        "points": [
+          "(Lab − peer mean) ÷ peer SD",
+          "Bias against peers, used to score EQA/PT"
+        ]
+      },
+      "distinguisher": "What you divide by: the mean (CV) or the SD (SDI)."
+    },
+    {
+      "id": "lob-lod-loq",
+      "title": "LoB vs LoD vs LoQ",
+      "left": {
+        "label": "LoB / LoD",
+        "points": [
+          "LoB: highest apparent result from a blank",
+          "LoD: lowest level reliably distinguished from LoB"
+        ]
+      },
+      "right": {
+        "label": "LoQ",
+        "points": [
+          "At or above the LoD",
+          "Lowest level meeting bias and imprecision goals"
+        ]
+      },
+      "distinguisher": "Seeing something (LoD) vs measuring it well enough to report a number (LoQ)."
+    }
+  ],
+  "mnemonic": {
+    "text": "Divide by the MEAN to compare, by the SD to score. FOUR times the people for HALF the doubt. LOG the long tail. Climb Blank → Low → Quantify.",
+    "explanation": "CV divides by the mean; SDI divides by the SD; SEM = SD ÷ √n so 4 × n halves the CI; geometric mean for lognormal data; LoB → LoD → LoQ.",
+    "limitation": "PT schemes set different SDI limits; the “about 2 SEM” shortcut needs more than about ten values; the geometric mean can mislead when skewed data are not lognormal or contain outliers."
+  },
+  "analogyLimitations": [
+    "Scenario and QC numbers are invented.",
+    "Limit ladder and distributions are schematic.",
+    "The LoB/LoD formulas are the classical parametric forms; actual protocols (sample numbers, nonparametric options) follow the current CLSI guidance."
+  ],
+  "takeaway": "Compare precision with the coefficient of variation, score proficiency results with the standard deviation index, quadruple the sample size to halve a confidence interval, summarize lognormal data with the geometric mean, and set detection limits from blank and low-level samples rather than from the blank alone.",
+  "questions": [
+    {
+      "id": "ops-cvsdi-q1",
+      "stem": "In a proficiency-testing event, your laboratory reports 96 mg/dL. The peer-group mean is 100 mg/dL with a peer-group SD of 2 mg/dL. What is your standard deviation index?",
+      "options": [
+        {
+          "id": "a",
+          "text": "−2.0",
+          "rationale": "Correct. SDI = (96 − 100) ÷ 2 = −2.0: the result sits two peer SDs below the peer mean."
+        },
+        {
+          "id": "b",
+          "text": "+2.0",
+          "rationale": "Incorrect. The result is below the peer mean, so the SDI is negative."
+        },
+        {
+          "id": "c",
+          "text": "−4.0",
+          "rationale": "Incorrect. That is the raw difference in mg/dL; it must be divided by the peer SD."
+        },
+        {
+          "id": "d",
+          "text": "2%",
+          "rationale": "Incorrect. That is a CV-style ratio (SD ÷ mean × 100), not an SDI; the SDI has no units."
+        }
+      ],
+      "answer": "a",
+      "skill": "SDI calculation",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-cvsdi-q2",
+      "stem": "A 95% confidence interval for a mean was calculated from 25 replicates. With the SD unchanged, how many replicates are needed to make the interval half as wide?",
+      "options": [
+        {
+          "id": "a",
+          "text": "100",
+          "rationale": "Correct. The width depends on SD ÷ √n, so quadrupling n (25 → 100) doubles √n and halves the interval."
+        },
+        {
+          "id": "b",
+          "text": "50",
+          "rationale": "Incorrect. Doubling n does not double √n, so the interval narrows by less than half."
+        },
+        {
+          "id": "c",
+          "text": "625",
+          "rationale": "Incorrect. That is 25 squared, far more replicates than needed to halve the width."
+        },
+        {
+          "id": "d",
+          "text": "No number, because the SD does not change with n",
+          "rationale": "Incorrect. The SD does not shrink with n, but the SEM and the confidence interval do."
+        }
+      ],
+      "answer": "a",
+      "skill": "Confidence interval and sample size",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-cvsdi-q3",
+      "stem": "An analyte’s results in healthy people are right-skewed and lognormal. Which statement about summarizing their centre is correct?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The geometric mean, the antilog of the mean of the logged values, estimates the median",
+          "rationale": "Correct. For an ideal lognormal distribution the geometric mean equals the median, and it is the standard way to give the centre of lognormal data."
+        },
+        {
+          "id": "b",
+          "text": "The arithmetic mean is best because it uses every value equally",
+          "rationale": "Incorrect. The long right tail pulls the arithmetic mean upward, away from the bulk of the data."
+        },
+        {
+          "id": "c",
+          "text": "The mode, because it is always unique",
+          "rationale": "Incorrect. The mode is the most frequent value, and a data set can have several modes or none."
+        },
+        {
+          "id": "d",
+          "text": "Mean ± 1.96 SD of the raw values",
+          "rationale": "Incorrect. That describes spread, not centre, and on skewed raw data the symmetric limits misrepresent the distribution."
+        }
+      ],
+      "answer": "a",
+      "skill": "Geometric mean",
+      "difficulty": "recognition"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch10",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 10, Statistics for the Lab (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 10,
+          "section": "High-Yield Hits",
+          "items": [
+            9,
+            10,
+            11,
+            14
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "mishra2019",
+      "kind": "external",
+      "citation": "Mishra P, Pandey CM, Singh U, Gupta A, Sahu C, Keshri A. Descriptive statistics and normality tests for statistical data. Ann Card Anaesth. 2019;22(1):67-72. doi:10.4103/aca.aca_157_18",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6350423/",
+      "consulted": true,
+      "usedFor": "CV = 100 × (SD ÷ mean), expressed as %, because SD read without the mean can mislead; mode = most frequent value, with possibly several or no modes; standard error = sample SD ÷ √n."
+    },
+    {
+      "id": "kim2021",
+      "kind": "external",
+      "citation": "Kim S, Lee K, Park HD, Lee YW, Chun S, Min WK. Schemes and Performance Evaluation Criteria of Korean Association of External Quality Assessment (KEQAS) for Improving Laboratory Testing. Ann Lab Med. 2021;41(2):230-239. doi:10.3343/alm.2021.41.2.230",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7591290/",
+      "consulted": true,
+      "usedFor": "SDI = (laboratory result − peer-group mean) ÷ peer-group SD, reflecting bias as a multiple of the SD; SDI > 3 unacceptable in KEQAS; EQA schemes use different performance criteria (SDI/z-score limits or fixed limits)."
+    },
+    {
+      "id": "kumar2018",
+      "kind": "external",
+      "citation": "Kumar BV, Mohan T. Sigma metrics as a tool for evaluating the performance of internal quality control in a clinical chemistry laboratory. J Lab Physicians. 2018;10(2):194-199. doi:10.4103/jlp.jlp_102_17",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5896188/",
+      "consulted": true,
+      "usedFor": "External quality control is interpreted by Z-score or standard deviation index; a Z-score states how many SDs a result lies from the expected mean."
+    },
+    {
+      "id": "andreasson2015",
+      "kind": "external",
+      "citation": "Andreasson U, Perret-Liaudet A, van Waalwijk van Doorn LJ, et al. A Practical Guide to Immunoassay Method Validation. Front Neurol. 2015;6:179. doi:10.3389/fneur.2015.00179",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4541289/",
+      "consulted": true,
+      "usedFor": "Imprecision is reported as both SD and %CV at each level; selectivity = ability to measure and differentiate the analyte in the presence of other components expected to be present; selectivity and specificity are often used interchangeably, selectivity being the recommended term."
+    },
+    {
+      "id": "lee2016",
+      "kind": "external",
+      "citation": "Lee DK. Alternatives to P value: confidence interval and effect size. Korean J Anesthesiol. 2016;69(6):555-562. doi:10.4097/kjae.2016.69.6.555",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5133225/",
+      "consulted": true,
+      "usedFor": "CI for a population mean = mean ± z × SEM for normally distributed data; correct interpretation (95% of intervals from repeated samples include the population mean); CIs narrow as sample size increases."
+    },
+    {
+      "id": "fay2013",
+      "kind": "external",
+      "citation": "Fay DS, Gerow K. A biologist's guide to statistical thinking and analysis. WormBook. 2013:1-54. doi:10.1895/wormbook.1.159.1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3880567/",
+      "consulted": true,
+      "usedFor": "z = 1.96 for a 95% CI and 2.575 for 99%; for samples above about ten a 95% CI spans about two SEMs either side of the mean; a quadrupling of sample size is required to halve the SEM; SE and CI shrink with larger samples, the SD does not."
+    },
+    {
+      "id": "motulsky2025",
+      "kind": "external",
+      "citation": "Motulsky HJ, Head T, Clarke PBS. Analyzing lognormal data: A nonmathematical practical guide. Pharmacol Rev. 2025;77(3):100049. doi:10.1016/j.pharmr.2025.100049",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12163497/",
+      "consulted": true,
+      "usedFor": "Lognormal data have a positive skew (long right tail); the arithmetic mean is the balance point and differs from the median; geometric mean = antilog of the mean of the logs (or n-th root of the product), equal to the median of an ideal lognormal distribution and the standard way to give its centre; it can be a poor estimate of the median when skewed data are not lognormal or contain outliers."
+    },
+    {
+      "id": "armbruster2008",
+      "kind": "external",
+      "citation": "Armbruster DA, Pry T. Limit of blank, limit of detection and limit of quantitation. Clin Biochem Rev. 2008;29(Suppl 1):S49-S52.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2556583/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (Europe PMC full text unavailable). LoB = mean(blank) + 1.645 SD(blank); LoD = LoB + 1.645 SD(low-concentration sample); LoQ ≥ LoD where bias and imprecision goals are met; traditional approach of about 20 blank/zero-calibrator replicates with mean + 2 SD (sometimes 3, 4 or 10 SD) defines only the ability to measure nothing; “analytical sensitivity” (calibration slope) should not be used as a synonym for LoD; about 60 replicates for manufacturers, 20 for laboratories verifying a claimed LoD."
+    },
+    {
+      "id": "dimeski2008",
+      "kind": "external",
+      "citation": "Dimeski G. Interference testing. Clin Biochem Rev. 2008;29(Suppl 1):S43-S48.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2556582/",
+      "consulted": true,
+      "usedFor": "Read via a page-fetch tool (Europe PMC full text unavailable). Interference = a substance or process that falsely alters an assay result; endogenous interferents include haemolysis, bilirubin, lipids and cross-reacting substances; exogenous interferents include drugs and their metabolites."
+    },
+    {
+      "id": "cfr493-1253",
+      "kind": "external",
+      "citation": "42 CFR § 493.1253 — Standard: Establishment and verification of performance specifications (eCFR, version current to 2026-10-01).",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493/subpart-K/section-493.1253",
+      "consulted": true,
+      "usedFor": "Laboratories that modify or develop test systems must establish accuracy, precision, analytical sensitivity, analytical specificity to include interfering substances, reportable range and reference intervals."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-cv-sdi",
+      "text": "CV formula and purpose; SD and %CV reported per level; SDI formula, meaning and use in EQA/PT; scheme-dependent limits.",
+      "status": "checked",
+      "refs": [
+        "mishra2019",
+        "andreasson2015",
+        "kim2021",
+        "kumar2018"
+      ]
+    },
+    {
+      "id": "cl-ci",
+      "text": "SEM = SD ÷ √n; 95% CI = mean ± 1.96 SEM (99%: 2.575); about 2 SEM for n above about ten; quadrupling n halves the SEM; SD does not shrink with n; CI interpretation.",
+      "status": "checked",
+      "refs": [
+        "mishra2019",
+        "lee2016",
+        "fay2013"
+      ]
+    },
+    {
+      "id": "cl-geo-mode",
+      "text": "Lognormal right skew; geometric mean as antilog of mean of logs and median of lognormal data; its limits for non-lognormal or outlier-laden data; mode definition.",
+      "status": "checked",
+      "refs": [
+        "motulsky2025",
+        "mishra2019"
+      ]
+    },
+    {
+      "id": "cl-lod",
+      "text": "LoB, LoD and LoQ definitions and formulas; weakness of the blank-only approach; analytical-sensitivity terminology; replicate numbers.",
+      "status": "checked",
+      "refs": [
+        "armbruster2008"
+      ]
+    },
+    {
+      "id": "cl-spec",
+      "text": "Analytical specificity includes interfering substances (CLIA); interferents include haemolysis, bilirubin, lipids, cross-reactants and drugs; selectivity terminology.",
+      "status": "checked",
+      "refs": [
+        "cfr493-1253",
+        "dimeski2008",
+        "andreasson2015"
+      ]
+    },
+    {
+      "id": "cl-pend",
+      "text": "25-OH vitamin D arithmetic vs geometric mean figures (25.55 vs 20.56 ng/mL, n = 12,434); the reviewer’s “~3–4 × SD of ~10 zero-standard replicates” rule.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch10"
+      ],
+      "note": "Not taught as facts; the vitamin D dataset was not located in an open source, and the replicate rule differs from Armbruster 2008."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Scenario and QC numbers invented; limit ladder and distributions schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "“Divide, quadruple, log, climb.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-lod-traditional",
+      "issue": "Ch. 10 Hit 11 gives the detection limit as “~3–4 × SD of ~10 zero-standard replicates” and equates analytic sensitivity with both detection limit and response per unit analyte. Armbruster 2008 describes the traditional blank-only approach as about 20 replicates with mean + 2 SD (sometimes 3, 4 or 10 SD), notes it defines only the ability to measure nothing, and gives LoB = mean(blank) + 1.645 SD and LoD = LoB + 1.645 SD of a low-concentration sample; it also advises against using “analytical sensitivity” (calibration slope) as a synonym for LoD. The lesson teaches the source (register flag rv-lod-traditional-vs-lob).",
+      "kind": "outdated",
+      "status": "open"
+    },
+    {
+      "id": "f-geomean-lognormal",
+      "issue": "Ch. 10 Hit 10 recommends the geometric mean for “log-normal/skewed” data. Motulsky 2025 supports it for lognormal data but notes it can be a poor estimate of the median for skewed data that are not lognormal or contain outliers (register flag rv-geomean-lognormal-only).",
+      "kind": "missing-context",
+      "status": "open"
+    },
+    {
+      "id": "f-us-only-clia-1253",
+      "issue": "The performance-specification list (analytical sensitivity, analytical specificity including interfering substances) is quoted from US CLIA (42 CFR 493.1253). Philippine laboratory requirements are not covered; MTLE candidates should check local rules.",
+      "kind": "guideline-dependent",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; distributions and limits shown as schematic cards.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "5 claims checked (Mishra 2019, Kim 2021, Kumar 2018, Andreasson 2015, Lee 2016, Fay 2013 and Motulsky 2025 full texts via Europe PMC; Armbruster 2008 and Dimeski 2008 read via a page-fetch tool; 42 CFR 493.1253 via the eCFR API); 1 pending (vitamin D example figures and the reviewer’s replicate rule, not taught). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}

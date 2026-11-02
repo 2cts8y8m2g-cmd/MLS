@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 346, teaching 1574 of 1,932 concepts (about 81.5%).** All 346 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 347, teaching 1578 of 1,932 concepts (about 81.7%).** All 347 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -13,7 +13,7 @@
   - Ch. 7 (17/20 concepts): `ops-poct-clia-waived-pt`, `ops-poct-limits-hcg-creatinine-cardiac`, `ops-poct-lockouts-traceability-connectivity`, `ops-poct-waived-molecular-flu-strep`.
   - Ch. 8 (20/23 concepts): `ops-bayes-pretest-posttest-odds`, `ops-reference-interval-delta-check-individuality`, `ops-roc-curve-cutoff-selection`, `ops-sensitivity-specificity-predictive-values`.
   - Ch. 9 (18/21 concepts): `ops-detective-coag-patterns`, `ops-detective-ida-vs-acd-iron-stores`, `ops-detective-low-anion-gap-proteins`, `ops-detective-paired-clues-bun-acth-oxygen`, `ops-detective-pancreatitis-liver-failure`.
-  - Ch. 10 (16/22 concepts): `ops-p-values-errors-multiple-testing`, `ops-paired-chi-square-rank-tests`, `ops-reference-intervals-method-comparison`.
+  - Ch. 10 (20/22 concepts): `ops-cv-sdi-ci-geomean-lod`, `ops-p-values-errors-multiple-testing`, `ops-paired-chi-square-rank-tests`, `ops-reference-intervals-method-comparison`.
   - Ch. 11 (15/20 concepts): `ops-qc-levey-jennings-rules`, `ops-qc-lot-change-commutability-pt`, `ops-qc-sigma-power-function-targets`.
   - Ch. 12 (15/20 concepts): `ops-2d-barcode-error-correction`, `ops-lis-audit-trail-ngs-files`, `ops-single-source-truth-lis-schema`, `ops-wbit-positive-id-lis-selection`.
   - Ch. 13 (22/25 concepts): `ops-capitation-leases-zero-based-budget`, `ops-coding-panels-medical-necessity-abn`, `ops-payment-window-opps-clfs`, `ops-test-cost-breakeven-npv`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 652 flags (490 verified issues, 162 needing verification), plus scan results.
-- **Checks:** 2148 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 2154 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
