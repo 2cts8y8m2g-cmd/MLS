@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 642 flags: 482 verified issues and 160 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 644 flags: 483 verified issues and 161 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -648,6 +648,8 @@ Needs verification:
 - **Ch. 37 Hit 8:** Hit 8 (repeated in Exam Trap 4, the Number Vault and a Memory Hook) says aspirin must be stopped 5–7 days before aggregation studies. (`rv-aspirin-washout-platelet-testing`, verified-issue).
 - **Ch. 37 Hit 14:** Hit 14 (and Exam Trap 4) says aggregometry requires citrated plasma because EDTA dissociates GPIIb-IIIa. (`rv-aggregometry-anticoagulant-method`, verified-issue).
 - **Ch. 37 Hit 13:** Hit 13 (and a Memory Hook) says Scott syndrome produces a prolonged serum PT. The sources read describe low prothrombin consumption with elevated residual prothrombin in serum as the diagnostic clue; none states that the serum prothrombin time is prolonged. (`rv-scott-serum-pt-direction`, needs-verification).
+- **Ch. 23 Hit 10:** Hit 10 says a sweat chloride above 60 mmol/L 'on two occasions' is diagnostic of cystic fibrosis, and the Number Vault gives 50-60 mmol/L as suggestive. (`rv-sweat-cl-bands-2017`, needs-verification).
+- **Ch. 23 Hit 12:** Hit 12 (and Trap 4, 'physically cannot produce') says Lewis-antigen-negative patients (5-10%) 'cannot produce it at all'. (`rv-ca199-lewis-not-absolute`, verified-issue).
 - Ch. 40 Hit 7: enzymes said to destroy S/s (Manduzio 2024: variable).
 - Ch. 1 Hit 4: breath tests "not regulated by CLIA".
 - Ch. 40 Vault #2: ">62 Rh antigens".
@@ -669,7 +671,7 @@ Automated scan: **23** dated-guideline statements and **134** High-Yield Hits wi
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 271 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 272 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
@@ -955,7 +957,7 @@ The reviewer's Exam Simulator (828 questions, answer key and explanations) is im
 - **Cell Products: Marrow Harvest Dose, CFU Potency and CAR T Cells (Ch. 43):** 1 pending claim (marrow HPC frequency ~1%, ~700 mL for 70 kg, 2 × 10⁸/kg lower bound, 3–5 mL pull standard, peripheral blood as the named diluent, general 10–14 day CFU turnaround, 1–2 h ALDH turnaround); 3 open lesson flags (marrow dose, pull volume, US-only CAR T approvals); register flags rv-marrow-harvest-dose, rv-marrow-pull-volume, rv-cart-2017-us-approval. Checked against Murakami 2024 (NMDP white paper; read via a page-fetch tool), Tiwari 2023, Yusoff 2025, Gençer 2017, Fujiwara 2020, Ahmad 2020, Graff 2015 and Sutherland 2021.
 - **Aggregometry Pre-analytics, Granule Disorders and Scott Syndrome (Ch. 37):** 3 pending claims (5–7-day aspirin washout; prolonged serum PT in Scott syndrome; α-SPD as a separate category); lesson flags f-aspirin-washout (guideline-dependent), f-anticoagulant-method (method-dependent), f-scott-serum-pt (uncertain); register flags rv-aspirin-washout-platelet-testing, rv-aggregometry-anticoagulant-method, rv-scott-serum-pt-direction. Checked against Magnette 2016, Boknäs 2019, Alessi 2020, Dupuis 2020, Szanto 2022, Gachet 1993 (abstract only), Lee 2014, Jourdi 2022, Gunay-Aygun 2011, Glembotsky 2021, Palma-Barqueros 2021, Nurden 2021, Toti 1996 (abstract only) and Weiss 2009 (abstract only); the ISTH 2013 LTA recommendations were blocked (HTTP 403). Independent fact-check corrected the δ-SPD normal-aggregation wording (about 25%, not 'many'), added a Glanzmann reference, and noted that 5–7 days is a published recovery time rather than the 10-day withdrawal guidance.
 - **Selenium, Toxic Metals and Megadose Vitamins: Keshan, Chromium VI, Manganism, Hip Cobalt, Biotin, B6 and Vitamin A (Ch. 27):** written and source-referenced, but the independent fact-check has NOT yet been completed; treat as unverified until this line is updated.
-- **Sweat Chloride and CA 19-9: Cut-offs That Do Not Rule Out (Ch. 23):** written and source-referenced, but the independent fact-check has NOT yet been completed; treat as unverified until this line is updated.
+- **Sweat Chloride and CA 19-9: Cut-offs That Do Not Rule Out (Ch. 23):** 1 pending claim (the reviewer's 'two occasions' rule, its 50–60 mmol/L 'suggestive' band and its claim that IRT has 'high sensitivity'; none taught as stated). Lesson flags: f-sweat-cl-bands-2017 (outdated) and f-ca199-lewis-not-absolute (missing-context). Register flags: rv-sweat-cl-bands-2017 and rv-ca199-lewis-not-absolute. Checked against Pagaduan 2018, Leniček Krleža 2022 (Croatian sweat test guidelines), McGarry 2025 (CF Foundation newborn screening guideline), Farrell 2020, Guo 2017 and Liu 2025 (Europe PMC full text), and Ballehaninna 2012 (read via a page-fetch tool). The CF Foundation 2017 diagnostic guideline is not open access and was not read. An independent check corrected the sensitivity wording, the absolute 'cannot make' and 'make none' wording, the description of the sequencing tier and the FUT3 linkage label.
 - **Whole-Blood Donor Eligibility:** 1 pending claim (age, 10-minute collection, directed donors; not taught); 1 register flag (Hits 15–16). US FDA rules only; Philippine donor criteria not checked.
 - **β-Lactamases (ESBL, AmpC, CPE):** no pending claims; 2 register flags (Trap 5 aztreonam; Hit 5 nitrocefin, needs verification). Nitrocefin colour/timing and the temocillin OXA-48 screen are not taught.
 - **Troponin and Myocardial Injury:** 1 pending claim (sepsis as a cause; not taught); 1 register flag (Fifth UDMI). Numeric ng/L thresholds and type 4a/5 multiples are not taught.

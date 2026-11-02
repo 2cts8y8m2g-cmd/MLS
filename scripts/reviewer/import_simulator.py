@@ -630,6 +630,8 @@ FLAG_RULES = [
      'Matches sim-q346. The answer (recollect in citrate and reschedule after an aspirin washout) still stands, but Magnette 2016 advises stopping aspirin at least 10 days before platelet function sampling when safe; 5–7 days is a published recovery time (Jourdi 2022), not the laboratory withdrawal guidance.'),
     ('rv-aggregometry-anticoagulant-method', '(?i)EDTA kills aggregometry \\(use citrate\\)',
      "Matches sim-q346. For light transmission aggregometry the answer stands: EDTA irreversibly abolishes aggregability and citrated PRP is required. Whole-blood impedance aggregometry often uses hirudin instead, so 'use citrate' applies to LTA rather than every aggregometry method."),
+    ('rv-sweat-cl-bands-2017', '[Ss]weat chloride\\s*>\\s*60 mmol/L on two occasions',
+     "sim-q203 (symptomatic infant, sweat chloride 78 mmol/L on two occasions): the answer, cystic fibrosis, still stands because 78 is at least 60 and the infant has symptoms. The explanation's 'on two occasions' rule is not in the sources read. They give 60 or more as consistent with CF and 30–59 as intermediate, and require clinical suspicion."),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
