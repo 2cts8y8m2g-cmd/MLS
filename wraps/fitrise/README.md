@@ -7,8 +7,8 @@
 2. Create a folder named `Wraps` at the root and copy `FitRise.png` into it.
 3. Plug it into the car → **Toybox → Paint Shop → Wraps**.
 
-## Use the real logo
-Drop your logo at `wraps/fitrise/logo.png` (transparent PNG), then run:
+## Regenerate
+The logo lives at `wraps/fitrise/logo.png` (any logo on a white background works). After changing it, run:
 
 ```
 python3 wraps/fitrise/generate.py
