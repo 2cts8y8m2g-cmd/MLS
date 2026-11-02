@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 343, teaching 1564 of 1,932 concepts (about 81.0%).** All 343 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 345, teaching 1570 of 1,932 concepts (about 81.3%).** All 345 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -26,11 +26,11 @@
   - Ch. 20 (17/22 concepts): `chem-plasma-protein-patterns`, `chem-serum-protein-electrophoresis-m-spike`, `chem-transferrin-saturation-cdt-b2-wilson`.
   - Ch. 21 (18/23 concepts): `chem-enzyme-dibucaine-ace-acid-phosphatase`, `chem-enzyme-kinetics-inhibition`, `chem-enzyme-results-macroenzymes-artifacts`, `chem-enzyme-units-nadh-ld-direction`.
   - Ch. 22 (21/26 concepts): `chem-cirrhosis-scores-meld-child-pugh-afp`, `chem-hav-hcv-wilson-misleading-markers`, `chem-hepatitis-b-serology-window`, `chem-hyperbilirubinemia-pre-post-conjugation`, `chem-liver-panel-patterns`.
-  - Ch. 23 (17/23 concepts): `chem-fecal-occult-blood-apt`, `chem-gi-hormone-tumors-vip-gastrin-5hiaa`, `chem-malabsorption-elastase-celiac`, `chem-pancreatic-enzymes-pancreatitis`, `chem-pancreatitis-cause-severity-ranson`.
+  - Ch. 23 (20/23 concepts): `chem-fecal-occult-blood-apt`, `chem-gi-hormone-tumors-vip-gastrin-5hiaa`, `chem-malabsorption-elastase-celiac`, `chem-pancreatic-enzymes-pancreatitis`, `chem-pancreatitis-cause-severity-ranson`, `chem-sweat-chloride-ca19-9-lewis`.
   - Ch. 24 (21/26 concepts): `chem-drug-screen-confirmation-validity`, `chem-renal-tdm-lithium-aminoglycoside-mtx`, `chem-tdm-timing-kinetics`, `chem-toxic-alcohols-salicylate-gaps`.
   - Ch. 25 (18/21 concepts): `chem-endocrine-dynamic-testing`, `chem-endocrine-tumor-markers-pheo-mtc-prolactin`, `chem-low-renin-hypertension-aldo`, `chem-polyuria-copeptin-siad`, `chem-thyroid-patterns-graves-iodine`.
   - Ch. 26 (19/22 concepts): `chem-amenorrhea-workup-ovarian-failure`, `chem-fetal-lung-ffn-mca-doppler`, `chem-hcg-pregnancy-unknown-location`, `chem-prenatal-afp-down-screening`, `chem-semen-hypogonadism`.
-  - Ch. 27 (16/22 concepts): `chem-fat-soluble-vitamins-d-k`, `chem-vitamin-deficiency-syndromes`, `chem-wilson-disease-copper`, `chem-zinc-copper-status-menkes`.
+  - Ch. 27 (19/22 concepts): `chem-fat-soluble-vitamins-d-k`, `chem-selenium-toxic-metals-megadose-vitamins`, `chem-vitamin-deficiency-syndromes`, `chem-wilson-disease-copper`, `chem-zinc-copper-status-menkes`.
   - Ch. 28 (18/22 concepts): `chem-chelators-calcium-iron-ggt`, `chem-coupled-nadh-alt-ast-bicarbonate`, `chem-glucose-340nm-poct-pitfalls`, `chem-hil-bilirubin-ammonia`, `chem-pseudohyponatremia-jaffe`.
   - Ch. 29 (22/27 concepts): `cm-urine-casts-localize`, `cm-urine-concentration-timed-collections`, `cm-urine-crystals-stones-yeast`, `cm-urine-sterile-pyuria-dark-urine-galactosuria`, `cm-urine-strip-chemistry`.
   - Ch. 30 (21/25 concepts): `cm-alternative-specimens-saliva-meconium-b2tf`, `cm-csf-synovial-interpretation`, `cm-serous-fluid-traps-pericardial-peritonitis`, `cm-serous-fluids-transudate-exudate`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 642 flags (482 verified issues, 160 needing verification), plus scan results.
-- **Checks:** 2130 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 2142 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
