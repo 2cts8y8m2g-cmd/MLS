@@ -3,13 +3,13 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 350, teaching 1588 of 1,932 concepts (about 82.2%).** All 350 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 352, teaching 1594 of 1,932 concepts (about 82.5%).** All 352 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
   - Ch. 4 (27/32 concepts): `ops-electrochem-ise-coulter-coulometry`, `ops-fluorescence-trf-chemiluminescence`, `ops-photometry-beer-scatter-luminescence`, `ops-protein-separation-sec-sds-ief`, `ops-reagent-water-ph-normality`, `ops-spectrophotometer-sources-cuvettes-qa`.
   - Ch. 5 (18/20 concepts): `ops-mass-spectrometry-mrm-internal-standard`, `ops-ms-analyzers-scan-modes-resolution`, `ops-ms-confirmation-2hg-ambient-ms`.
-  - Ch. 6 (16/21 concepts): `ops-analyzer-carryover-immunoassay-maldi`, `ops-open-reagents-middleware-tat`, `ops-tla-planning-tat-master-curve`, `ops-total-testing-process-automation`.
+  - Ch. 6 (19/21 concepts): `ops-analyzer-carryover-immunoassay-maldi`, `ops-automation-continuum-workcells`, `ops-open-reagents-middleware-tat`, `ops-tla-planning-tat-master-curve`, `ops-total-testing-process-automation`.
   - Ch. 7 (17/20 concepts): `ops-poct-clia-waived-pt`, `ops-poct-limits-hcg-creatinine-cardiac`, `ops-poct-lockouts-traceability-connectivity`, `ops-poct-waived-molecular-flu-strep`.
   - Ch. 8 (20/23 concepts): `ops-bayes-pretest-posttest-odds`, `ops-reference-interval-delta-check-individuality`, `ops-roc-curve-cutoff-selection`, `ops-sensitivity-specificity-predictive-values`.
   - Ch. 9 (18/21 concepts): `ops-detective-coag-patterns`, `ops-detective-ida-vs-acd-iron-stores`, `ops-detective-low-anion-gap-proteins`, `ops-detective-paired-clues-bun-acth-oxygen`, `ops-detective-pancreatitis-liver-failure`.
@@ -58,7 +58,7 @@
   - Ch. 52 (18/23 concepts): `immuno-phagocyte-lad-chediak-dhr`, `immuno-pid-trec-dhr-cvid`, `immuno-tcell-defects-digeorge-bls-was`, `immuno-xla-hyper-igm-vaccine-titers`.
   - Ch. 53 (19/23 concepts): `immuno-ana-hep2-patterns`, `immuno-ena-ssc-sjogren-mctd`, `immuno-lupus-ra-serology`, `immuno-myositis-autoantibodies`.
   - Ch. 54 (19/23 concepts): `immuno-anca-cryoglobulin-testing`, `immuno-anti-gbm-dual-anca-egpa`, `immuno-large-vessel-gca-takayasu`, `immuno-medium-vessel-pan-kawasaki`.
-  - Ch. 55 (18/23 concepts): `immuno-autoimmune-liver-aih-pbc-psc`, `immuno-celiac-serology-pbc-ama`, `immuno-glomerular-if-pla2r`, `immuno-organ-signature-tshr-gastric-iaa-mg`.
+  - Ch. 55 (21/23 concepts): `immuno-autoimmune-liver-aih-pbc-psc`, `immuno-blistering-skin-dif-salt-split`, `immuno-celiac-serology-pbc-ama`, `immuno-glomerular-if-pla2r`, `immuno-organ-signature-tshr-gastric-iaa-mg`.
   - Ch. 56 (23/24 concepts): `immuno-allergy-sige-tryptase`, `immuno-ige-switch-mast-cell-mediators`, `immuno-ige-units-omalizumab-alpha-gal`, `immuno-skin-tests-panels-penicillin`.
   - Ch. 57 (54/57 concepts): `micro-biosafety-sharps-hbv-sentinel`, `micro-c-difficile-testing-algorithm`, `micro-crypto-ohl-aspergillus-mucorales`, `micro-enteric-pathogens-stec`, `micro-food-poisoning-shigella-hpylori`, `micro-gn-oxidase-fastidious`, `micro-gpc-catalase-coagulase-mrsa`, `micro-gram-stain-cons-novobiocin`, `micro-listeria-nocardia-gpr`, `micro-pseudomonas-ampc-wound-culture`, `micro-rapid-id-maldi-panels-16s`, `micro-specimen-label-throat-flora-hacek`, `micro-strep-enterococcus-id`.
   - Ch. 58 (28/30 concepts): `micro-antibiotic-targets-synergy-sepsis-clock`, `micro-ast-mic-breakpoints-dtest`, `micro-ast-reference-methods-antibiogram`, `micro-beta-lactamases-esbl-cpe`, `micro-gram-positive-resistance-mec-van-hlar`, `micro-hbv-rpr-chlamydia-rapid-controls`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 658 flags (494 verified issues, 164 needing verification), plus scan results.
-- **Checks:** 2166 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 2172 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
