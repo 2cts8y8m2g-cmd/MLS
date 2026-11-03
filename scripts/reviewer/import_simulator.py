@@ -656,6 +656,10 @@ FLAG_RULES = [
      'CDC (2025): about 90% of infected infants, 30% of children infected at 1–5 years and about 5% of adults develop chronic hepatitis B.'),
     ('rv-leukemia-blasts', r'blasts?[^.]{0,60}(20|30) ?%|(20|30) ?%[^.]{0,60}blasts?',
      'Blast thresholds differ between WHO-HAEM5 and ICC 2022 classifications; check which system the question assumes.'),
+    ('rv-mchc-only-spherocytosis', r'MCHC',
+     'High MCHC is a short differential, not a one-to-one rule: exclude lipemia, free hemoglobin and cold agglutinins first, then hereditary spherocytosis, then HbC and HbSC disease, where red cells are reported to carry a higher MCHC than normal (Ragab 2025).'),
+    ('rv-granulocyte-xm-2ml', r'granulocyte',
+     'Granulocyte products carry enough red cells that ABO/RhD compatibility and a crossmatch are the practical rule rather than a volume-triggered extra, and all granulocyte products should also be irradiated to prevent TA-GVHD (Bahar 2020).'),
 ]
 
 

@@ -35,7 +35,7 @@ What was checked, how, and what is still open. Lesson-level detail (claims, refe
 
 ## Reviewer accuracy register (summary)
 
-There are 666 flags: 502 verified issues and 164 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
+There are 668 flags: 504 verified issues and 164 that still need verification. The full text, with evidence links, is in `content/reviewer-review.json`.
 
 Verified:
 - **Ch. 1 Trap 2:** exempt states given as "New York, D.C."; CMS lists Washington and New York.
@@ -672,6 +672,8 @@ Needs verification:
 - **Ch. 59 Hit 12:** Hit 12 gives the cardinal signs of leprosy as 'skin lesions + cutaneous anesthesia + enlarged peripheral nerves'. (`rv-leprosy-cardinal-signs-smear`, verified-issue).
 - **Ch. 59 Hit 15:** Hit 15 states flatly that superficial swabs of decubitus ulcers are 'unacceptable for anaerobic culture'. (`rv-decubitus-swab-second-choice`, verified-issue).
 - **Ch. 59 Hit 16:** Hit 16 presents 'toxin-gene NAAT' as an acceptable stand-alone alternative to the GDH-plus-toxin algorithm without conditions. (`rv-cdiff-naat-alone-criteria`, verified-issue).
+- **Ch. 31 Hit 14:** Hit 14, the Ch. 31 trap, number table and mnemonic all say MCHC is raised only in hereditary spherocytosis; the reviewer's own Exam Simulator Q42 concedes spurious causes, and a retrospective study of hemoglobin C disease states that CC homozygous red cells carry a higher MCHC than normal. (`rv-mchc-only-spherocytosis`, verified-issue).
+- **Ch. 42 Number Vault:** The granulocyte serologic crossmatch is presented as conditional on red-cell content above 2 mL; the source read describes granulocyte products as containing a significant number of red cells, requiring ABO/RhD compatibility and no reactivity with the recipient's alloantibodies without a volume threshold, and requiring irradiation as well. (`rv-granulocyte-xm-2ml`, verified-issue).
 - Ch. 40 Hit 7: enzymes said to destroy S/s (Manduzio 2024: variable).
 - Ch. 1 Hit 4: breath tests "not regulated by CLIA".
 - Ch. 40 Vault #2: ">62 Rh antigens".
@@ -693,7 +695,7 @@ Automated scan: **23** dated-guideline statements and **134** High-Yield Hits wi
 
 ## Imported question bank
 
-The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 273 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
+The reviewer's Exam Simulator (828 questions, answer key and explanations) is imported as-is at the rights holder's request. This app has **not** verified its questions or answers. A keyword pass links questions to open flags in the accuracy register and shows a note on those questions; 274 questions carry notes so far. A question without a note is not thereby verified. Where a lesson and a simulator explanation disagree, the lesson's checked claims and the register take precedence.
 
 ## Open lesson issues
 
