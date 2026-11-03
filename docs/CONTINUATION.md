@@ -3,7 +3,7 @@
 ## State at hand-off (2026-10-08)
 
 - **Reviewer received and fully inventoried:** 79 chapters → 1,932 concepts. That breaks down as 79 core, 1,196 High-Yield Hits, 95 tables, 79 figures, 464 Exam Traps, 8 special sections, and 11 gap concepts the reviewer doesn't cover.
-- **Lessons complete: 348, teaching 1582 of 1,932 concepts (about 81.9%).** All 348 still require review: none has had human expert review, and most have pending claims.
+- **Lessons complete: 350, teaching 1588 of 1,932 concepts (about 82.2%).** All 350 still require review: none has had human expert review, and most have pending claims.
   - Ch. 1 (23/23 concepts): `ops-clia-complexity-accreditation`, `ops-lab-design-hazcom-numbers`, `ops-lab-safety-precautions-osha`, `ops-prion-decontamination`, `ops-record-specimen-retention`, `ops-reimbursement-drg-payment-window`.
   - Ch. 2 (23/23 concepts): `ops-consolidation-utilization-autoverification`, `ops-instrument-selection-uptime-batch`, `ops-six-sigma-vs-lean`, `ops-workflow-before-technology`.
   - Ch. 3 (24/24 concepts): `pre-allen-test-urine-timing`, `pre-biotin-daratumumab-interference`, `pre-citrate-ratio-heparin`, `pre-csf-tubes-synovial-crystals`, `pre-order-of-draw-edta`, `pre-patient-id-wbit`, `pre-specimen-numbers-rcf-24h-urine`, `pre-tube-additives-fluoride-gel`.
@@ -64,9 +64,9 @@
   - Ch. 58 (28/30 concepts): `micro-antibiotic-targets-synergy-sepsis-clock`, `micro-ast-mic-breakpoints-dtest`, `micro-ast-reference-methods-antibiogram`, `micro-beta-lactamases-esbl-cpe`, `micro-gram-positive-resistance-mec-van-hlar`, `micro-hbv-rpr-chlamydia-rapid-controls`.
   - Ch. 59 (21/26 concepts): `micro-afb-smear-decontamination`, `micro-ntm-runyon-identification`, `micro-tb-airborne-control-hiv-mac`, `micro-tb-xpert-dst-ripe`, `micro-tst-igra-bcg`.
   - Ch. 60 (21/25 concepts): `micro-candida-germ-tube-chromagar-resistance`, `micro-crypto-antigen-t2candida-fungal-pcr`, `micro-dimorphic-fungi`, `micro-invasive-mold-markers`.
-  - Ch. 61 (16/21 concepts): `micro-lyme-two-tier-serology`, `micro-neurosyphilis-penicillin-jhr`, `micro-syphilis-serology-algorithms`.
+  - Ch. 61 (19/21 concepts): `micro-lyme-two-tier-serology`, `micro-neurosyphilis-penicillin-jhr`, `micro-relapsing-fever-leptospirosis-timing`, `micro-syphilis-serology-algorithms`.
   - Ch. 62 (15/19 concepts): `micro-chlamydia-mycoplasma-diagnosis`, `micro-chlamydia-treatment-lgv`, `micro-genital-mycoplasmas-resistance`.
-  - Ch. 63 (14/19 concepts): `micro-rickettsial-rash-eschar-weil-felix`, `micro-rickettsial-tickborne-diagnosis`.
+  - Ch. 63 (17/19 concepts): `micro-bartonella-coxiella-select-agents`, `micro-rickettsial-rash-eschar-weil-felix`, `micro-rickettsial-tickborne-diagnosis`.
   - Ch. 64 (20/24 concepts): `micro-ebv-cmv-serology`, `micro-hbv-perinatal-hcv-cure-rubella`, `micro-hiv-hcv-testing-algorithms`, `micro-hsv-encephalitis-mono-edge-cases`, `micro-respiratory-virus-naat-antigen-culture`, `micro-transplant-viral-loads`.
   - Ch. 65 (21/24 concepts): `micro-entamoeba-coccidia-stool-protozoa`, `micro-helminth-host-damage-treatment`, `micro-helminth-specimen-timing`, `micro-malaria-thick-thin-films`.
   - Ch. 66 (53/54 concepts): `micro-antigen-tests-negatives`, `micro-blood-culture-volume-contamination`, `micro-bv-uropathogens-ecoli-cyst-hbv-igm`, `micro-csf-meningitis-shunt-panel`, `micro-direct-smears-sterile-fluids-bal`, `micro-endocarditis-blood-cultures-duke`, `micro-respiratory-culture-clues-maldi`, `micro-result-reporting-critical-calls`, `micro-result-to-therapy-mssa-cdi-giardia-flu`, `micro-specimen-acceptability-transport`, `micro-specimen-id-transport-biosafety`, `micro-urine-culture-interpretation`.
@@ -84,7 +84,7 @@
   - Ch. 78 (11/21 concepts): `mdx-glioma-1p19q-mgmt`, `mdx-her2-ish-groups`, `mdx-hereditary-lynch-men2-brca`, `mdx-solid-tumor-drivers-egfr-ras-braf`.
   - Ch. 79 (9/20 concepts): `mdx-expression-profiling-overfitting`, `mdx-proteomic-patterns-seldi-maldi`.
 - **Reviewer accuracy register:** 656 flags (493 verified issues, 163 needing verification), plus scan results.
-- **Checks:** 2160 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
+- **Checks:** 2166 unit tests and 99 browser checks pass (`npm test`, `npm run build && npm run e2e`).
 
 ## Regenerating the inventory
 
