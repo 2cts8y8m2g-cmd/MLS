@@ -1,0 +1,1674 @@
+{
+  "schemaVersion": 1,
+  "id": "ops-bandpass-reflectance-hplc-limits",
+  "title": "Where the Straight Line Ends: Bandpass, Reflectance and HPLC",
+  "summary": "See why a photometer needs a narrow wavelength band near the absorption peak, what actually bends Beer’s law at high absorbance, how percent reflectance on a dry pad is linearised by the reader, and where high performance liquid chromatography fits, including its pressure range and haemoglobin A1c run times.",
+  "domain": "p1-ops",
+  "topic": "ch4",
+  "conceptIds": [
+    "ch4.hit4",
+    "ch4.hit8",
+    "ch4.hit18",
+    "ch4.trap3"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 4,
+        "section": "High-Yield Hits",
+        "items": [
+          4,
+          8,
+          18
+        ]
+      },
+      {
+        "chapter": 4,
+        "section": "Exam Traps",
+        "items": [
+          3
+        ]
+      }
+    ],
+    "note": "Teaches Ch. 4 Hits 4, 8 and 18 and Trap 3. Checked against Oshina 2021 (Beer–Lambert limitations), Sasagawa 2018 (interference vs absorption filters), Costa 2021 (thin-film bandpass filter design), Oyaert 2019a and 2019b (reflectometry and automated strip analysis), Dai 2018 (Kubelka–Munk linear region), Yabré 2018 (conventional vs ultra-high-pressure LC), Park 2019 (ion-exchange HPLC HbA1c turnaround) and Douzi 2026 (NGSP reference method). Not taught as fact: the reviewer’s interference-filter bandwidth of about 1.5% of the peak wavelength and the 30–50 nm figure for colored-glass absorption filters, the fixed A < 2.0 linearity ceiling, the ~6000 PSI figure as an HPLC maximum, and the “HbA1c within 5 min” figure; see accuracy flags and register flags rv-ch4-filter-bandwidth-figures, rv-ch4-beer-fixed-ceiling and rv-ch4-hplc-pressure-ceiling. Chapter 4 Number Vault (table1) is not taught: this lesson covers only a few of its rows."
+  },
+  "prerequisites": [
+    "ch4.hit1",
+    "ch4.hit2"
+  ],
+  "objectives": [
+    "Explain why a photometer’s wavelength band must be narrow and placed near the absorption maximum, and how an interference filter differs in mechanism from a dye absorption filter.",
+    "Name the optical and chemical reasons a measured absorbance stops tracking concentration at the top of the range, and state the correct laboratory response.",
+    "Describe percent reflectance as used by strip and dry-slide readers, and why the reading must be transformed before it becomes a concentration.",
+    "State the working pressure range of conventional versus ultra-high-pressure liquid chromatography and how haemoglobin A1c is measured by ion-exchange chromatography."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Off the end of the line",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: a glucose assay on a filter photometer returns an absorbance of 2.6, well past the top calibrator, and a trainee argues that because Beer’s law is a straight line the concentration can simply be read further along it. On the next bench a urine strip reader has reported protein 2+ from a percent reflectance reading, and the same trainee assumes reflectance is just absorbance upside down. Question token: “Where does the straight line end?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "A glucose assay comes back with an absorbance of two point six, far above the top calibrator."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "A trainee says Beer’s law is a straight line, so just read the concentration further along it. On the next bench, a strip reader has turned a reflectance reading into protein two plus."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "So where does the straight line end, and what do you use once it has?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "abs",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "bad",
+            "title": "Absorbance 2.6",
+            "lines": [
+              "Above the top calibrator",
+              "Filter photometer, one band"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "claim",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 170,
+            "tone": "warn",
+            "title": "Two assumptions",
+            "lines": [
+              "“A straight line never ends”",
+              "“Reflectance = absorbance flipped”"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9,
+              "reveal": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 450,
+            "w": 640,
+            "label": "Where does the straight line end?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "A narrow band near the peak",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic optics diagram. The Beer–Lambert law assumes radiation that is monochromatic, collimated and normal to the sample, in a homogeneous non-scattering medium whose absorbers act independently; in practice the incident band must at least be narrower than the medium’s absorption band, and the band is chosen near the absorption maximum where absorptivity changes little with wavelength. Two wavelength selectors are drawn as schematic cards. Interference filter: alternating dielectric layers of high and low refractive index, built as a Fabry–Perot structure with two mirrors around a resonance cavity; it reflects rather than absorbs the rejected band, can form a very steep band edge, and its transmission spectrum shifts with the angle of incidence. One published eight-filter set for a reflectance device was designed for a full width at half maximum near 10 nanometres at centre wavelengths of 585 to 746 nanometres, with eleven layers per filter. Absorption (dye or pigment) filter: angle independent, absorbs the light instead of reflecting it, transmittance falling exponentially with filter thickness, and it can emit its own autofluorescence.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 31,
+          "text": "Beer’s law assumes the light is monochromatic and collimated and that the sample is homogeneous and does not scatter. Real instruments cannot deliver one single wavelength, so the rule is that the band of light must be narrower than the absorption band being measured."
+        },
+        {
+          "id": "n2",
+          "start": 31,
+          "end": 38,
+          "text": "The band is also placed near the absorption maximum, where the absorptivity hardly changes across the band."
+        },
+        {
+          "id": "n3",
+          "start": 38,
+          "end": 50,
+          "text": "An interference filter stacks dielectric layers of alternating refractive index into a Fabry–Perot cavity. It reflects the wavelengths it rejects instead of absorbing them, so it can give a very steep band edge. One published eight-filter set for a reflectance analyser was designed for a width at half maximum near ten nanometres, at centre wavelengths from five hundred eighty-five to seven hundred forty-six nanometres."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "A dye or pigment absorption filter is simpler and does not care about the angle of the light, but it absorbs that energy, its transmittance falls exponentially with thickness, and it can glow with its own faint fluorescence."
+        }
+      ],
+      "objects": [
+        {
+          "id": "assume",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 210,
+            "tone": "b",
+            "title": "Beer’s law assumes",
+            "lines": [
+              "Monochromatic, collimated beam",
+              "Homogeneous, non-scattering sample",
+              "Absorbers act independently",
+              "Band narrower than the absorption band"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 10,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "peak",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 450,
+            "w": 440,
+            "label": "Sit the band near the absorption peak",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 12.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 16,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "intf",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 200,
+            "w": 420,
+            "h": 210,
+            "tone": "good",
+            "title": "Interference filter",
+            "lines": [
+              "Dielectric multilayer, Fabry–Perot",
+              "Reflects the rejected band",
+              "Very steep band edge",
+              "Designed near 10 nm at 585–746 nm"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 18.5,
+              "opacity": 0
+            },
+            {
+              "t": 19,
+              "reveal": 0
+            },
+            {
+              "t": 19.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "reveal": 4,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dye",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 460,
+            "w": 420,
+            "h": 130,
+            "tone": "warn",
+            "title": "Absorption (dye) filter",
+            "lines": [
+              "Angle independent",
+              "Absorbs; exponential with thickness",
+              "Can autofluoresce"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0
+            },
+            {
+              "t": 31,
+              "reveal": 0
+            },
+            {
+              "t": 31.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 37,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "What bends the line at the top",
+      "start": 60,
+      "end": 104,
+      "altText": "Schematic deviation diagram. Stray radiation is light at wavelengths outside the selected band that reaches the detector after scattering or reflecting off lenses, mirrors, filters or gratings; it is not absorbed by the sample, so measured transmittance looks higher and measured absorbance reads LOWER than the true absorbance, and the absorption peak looks flattened. As concentration rises the effect grows, until transmittance can be mostly determined by the stray light rather than by the sample. Chemical causes are separate: nonlinearity appears when the absorbing species associates, dissociates or reacts with the solvent to give products with different absorption, and deviations appear in concentrated solutions and once dilute-solution ion concentration passes about 0.01 molar, where neighbouring ions are close enough to perturb one another. Instrumental causes include finite spectral resolution and an inappropriate spectral slit width, which flattens sharp absorption peaks. Conclusion card: the usable top of the curve belongs to the method, not to a universal number, and the practical move is to dilute into the validated range and multiply back by the dilution factor.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Stray radiation is light outside the chosen band that reaches the detector after bouncing off lenses, mirrors, filters or gratings. The sample never absorbs it, so transmittance looks higher than it is and the absorbance reads lower than the truth, flattening the peak."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "And the higher the concentration, the worse it gets: eventually the transmitted signal is mostly stray light, not sample."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 94,
+          "text": "Chemistry bends the line too. If the coloured species associates, dissociates or reacts with the solvent, the products absorb differently; concentrated solutions deviate, and in dilute solution the ions crowd one another once the concentration passes about one hundredth molar."
+        },
+        {
+          "id": "c4",
+          "start": 94,
+          "end": 104,
+          "text": "So the top of the usable range belongs to the method, not to one universal absorbance number: establish it by a linearity study, then dilute into that range and multiply back by the dilution factor."
+        }
+      ],
+      "objects": [
+        {
+          "id": "stray",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 190,
+            "tone": "bad",
+            "title": "Stray radiation",
+            "lines": [
+              "Light outside the chosen band",
+              "Transmittance reads too high",
+              "Absorbance reads too low; peak flattens"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "grow",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 440,
+            "w": 440,
+            "label": "Worse as concentration rises",
+            "tone": "warn",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "chem",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 190,
+            "tone": "b",
+            "title": "Chemical deviation",
+            "lines": [
+              "Association, dissociation, solvolysis",
+              "Concentrated solutions deviate",
+              "Ions crowd above about 0.01 M"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 32,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "fix",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 440,
+            "w": 420,
+            "h": 140,
+            "tone": "good",
+            "title": "So what do you do",
+            "lines": [
+              "Linearity study sets the ceiling",
+              "Dilute in, multiply back"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 34.5,
+              "opacity": 0
+            },
+            {
+              "t": 35,
+              "reveal": 0
+            },
+            {
+              "t": 35.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 42,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 42,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "Reflect it, or separate it first",
+      "start": 104,
+      "end": 144,
+      "altText": "Schematic two-route diagram. Route one, reflectometry: automated urine strip readers and dry-slide chemistry read percent reflectance from the reagent pad, expressed as a percentage from 100 percent (white) to 0 percent (black) and inversely related to analyte concentration; by the Kubelka–Munk reflectance theory the reciprocal of the reflectance reading is proportional to the analyte concentration, with the Kubelka–Munk function equal to the absorption coefficient divided by the scattering coefficient, so the reading has to be transformed rather than read off directly. On one fully automated analyser the fitted relations were the reciprocal of reflectance against the logarithm of urine glucose and of urine protein, and two overlapping reflectance ranges were installed for pH, protein, glucose, bilirubin and ketones to hold linearity across the whole measuring range; because the scattering coefficient depends on particle size, diffuse reflectance is linear only within a region. Route two, chromatography: conventional liquid chromatography systems run to about 400 bar, roughly six thousand pounds per square inch, while ultra-high-pressure systems support above 1000 bar; cation-exchange high performance liquid chromatography is the reference method recognised by the National Glycohemoglobin Standardization Program for haemoglobin A1c, and on evaluated ion-exchange analysers one sample took about one to one point six minutes once the two-minute sample preparation was excluded. Hook answer card.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 116,
+          "text": "Route one: stop fighting the cuvette and read reflected light instead. A strip reader reports percent reflectance, one hundred percent for white down to zero for black, falling as the analyte rises. By Kubelka–Munk theory it is the reciprocal of reflectance, not reflectance itself, that tracks concentration."
+        },
+        {
+          "id": "l2",
+          "start": 116,
+          "end": 124,
+          "text": "So the reader linearises: on one automated analyser the reciprocal of reflectance was fitted against the logarithm of the urine glucose and protein concentration, and two overlapping reflectance ranges were installed to hold linearity across the range."
+        },
+        {
+          "id": "l3",
+          "start": 124,
+          "end": 135,
+          "text": "Route two: separate the analytes first. Conventional liquid chromatography pumps work to about four hundred bar, roughly six thousand pounds per square inch, and ultra-high-pressure systems go above a thousand bar. Cation-exchange chromatography is the recognised reference method for haemoglobin A1c, and evaluated ion-exchange analysers reported one sample in about one to one and a half minutes."
+        },
+        {
+          "id": "l4",
+          "start": 135,
+          "end": 144,
+          "text": "Back to the hook: the absorbance of two point six is outside the validated range, so dilute, re-run and multiply back; and reflectance is not absorbance flipped, it is a reciprocal relation the reader has to transform."
+        }
+      ],
+      "objects": [
+        {
+          "id": "refl",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 180,
+            "tone": "b",
+            "title": "Percent reflectance",
+            "lines": [
+              "100% white → 0% black",
+              "Falls as analyte rises",
+              "Kubelka–Munk: 1/R tracks concentration"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "lin",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 420,
+            "w": 440,
+            "label": "Reader linearises: 1/R vs log concentration",
+            "tone": "a",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 12.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 13.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hplc",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 190,
+            "tone": "good",
+            "title": "Separate first",
+            "lines": [
+              "Conventional LC ≈ 400 bar (≈6000 psi)",
+              "Ultra-high pressure above 1000 bar",
+              "Cation-exchange: HbA1c reference method"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 430,
+            "w": 420,
+            "h": 140,
+            "tone": "warn",
+            "title": "Hook answer",
+            "lines": [
+              "Dilute, re-run, multiply back",
+              "Reflectance is reciprocal, not flipped"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32,
+              "reveal": 0
+            },
+            {
+              "t": 32.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “Beer’s law holds at any absorbance as long as you know the concentration” (✓ stray light and chemical effects bend it, and stray light dominates as concentration rises, so dilute into the validated range); “An interference filter is just a tinted glass filter” (✓ it is a dielectric multilayer that reflects the rejected band with a steep edge, and its passband shifts with the angle of incidence, while a dye filter absorbs and is angle independent); “Reflectance is proportional to concentration” (✓ percent reflectance falls from 100 to 0 and it is the reciprocal of reflectance that tracks concentration, so the reader must linearise).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: Beer’s law holds at any absorbance if you know the concentration. No. Stray light and chemical effects bend the relation, and stray light takes over as concentration climbs, so dilute into the validated range."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: an interference filter is just tinted glass. No. It is a dielectric multilayer that reflects what it rejects, with a steep band edge, and its passband moves with the angle of the light."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: reflectance is proportional to concentration. No. Percent reflectance runs from one hundred down to zero, and it is the reciprocal of reflectance that tracks concentration."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Beer’s law holds at any absorbance.”",
+            "lines": [
+              "✓ Stray light and chemistry bend it — dilute in"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “An interference filter is tinted glass.”",
+            "lines": [
+              "✓ Dielectric multilayer; passband shifts with angle"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Reflectance ∝ concentration.”",
+            "lines": [
+              "✓ 1/R tracks concentration; reader linearises"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "The three Rs",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: when a photometric signal leaves its straight-line range, use the three Rs — REDUCE it (dilute into the validated range and multiply back), REFLECT it (percent reflectance on a dry pad, which the reader linearises), or RESOLVE it (separate it on a column first). The filter rule rides along: narrow band, near the peak. Tokens: Reduce, Reflect, Resolve. A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: when the signal leaves its straight-line range, use the three Rs. Reduce it by diluting into the validated range, reflect it as percent reflectance on a dry pad, or resolve it by separating it on a column first. And the filter rule rides along: narrow band, near the peak."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: the three Rs are a menu, not a ranking. Diluting adds imprecision and changes the matrix, reflectance carries its own interferences and is linear only where scattering stays constant, haemoglobin variants distort chromatograms, and a filter label does not guarantee the band, because an interference filter’s passband moves with the angle of the light."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Reduce · Reflect · Resolve",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Reduce: dilute, multiply back",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Reflect: 1/R, reader linearises",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Resolve: separate, then detect",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 160,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Dilution adds imprecision and changes matrix",
+              "Reflectance linear only where scattering is constant",
+              "Haemoglobin variants distort chromatograms",
+              "A filter’s passband moves with the angle"
+            ],
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 4,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Narrow band near the peak; the usable range ends where stray light and chemistry bend the line”, “Reduce (dilute, multiply back) · Reflect (1/R, reader linearises) · Resolve (separate first)”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "A photometric reading is trustworthy only inside its validated straight-line range, because a narrow wavelength band near the absorption peak keeps the relation linear while stray light and crowded molecules bend it at high concentration, so when the signal leaves that range the laboratory dilutes it back in, switches to percent reflectance with instrument linearisation, or separates it first by high performance liquid chromatography."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Narrow band near the peak · the line ends where stray light and chemistry bend it",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "Reduce · Reflect (1/R) · Resolve (separate first)",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: a photometer only tells the truth over a limited stretch of its scale. It needs a narrow slice of colour, placed where the sample absorbs most strongly; past a certain concentration the reading flattens out and no longer follows the sample. Two escapes exist: read light bounced off a dry pad instead, or separate the mixture on a column before detecting it. Scientific terms: spectral bandpass, full width at half maximum, interference (dielectric multilayer, Fabry–Perot) filter, absorption filter, stray radiation, chemical deviation from the Beer–Lambert law, percent reflectance, Kubelka–Munk function, ion-exchange high performance liquid chromatography, ultra-high-pressure liquid chromatography.",
+    "why": "The Beer–Lambert law is derived for monochromatic, collimated light through a homogeneous, non-scattering sample whose absorbers act independently; every real instrument breaks those assumptions a little. A wide band spans wavelengths with different absorptivities, stray light adds unabsorbed photons that matter more and more as the sample darkens, and concentrated or associating solutes change their own absorption. Reflected light obeys a different, non-proportional relation, so the instrument has to transform it. Chromatography removes the problem of overlapping absorbers altogether by separating them in time.",
+    "measure": "Band: narrower than the analyte’s absorption band, placed near the absorption maximum; one published eight-filter interference set was designed for a full width at half maximum near 10 nm at centre wavelengths 585–746 nm, using 11 dielectric layers per filter. Stray light: A = log((P0+Ps)/(P+Ps)), so measured absorbance reads low and the error grows with concentration. Chemical deviation: association, dissociation or reaction with solvent; concentrated solutions, and dilute-solution ion concentrations above about 0.01 M. Reflectance: percent reflectance from 100% (white) to 0% (black), inversely related to concentration, with 1/R proportional to concentration by Kubelka–Munk, f(R) = (1−R)²/2R = k/s. Chromatography: conventional LC to about 400 bar (≈6000 psi), ultra-high-pressure systems above 1000 bar; cation-exchange HPLC is the NGSP-recognised reference method for HbA1c, and one evaluated ion-exchange analyser reported one sample in 1 minute versus 1.6 minutes for its predecessor, excluding 2 minutes of sample preparation.",
+    "differs": "Interference filter (dielectric multilayer, reflects the rejected band, steep edge, angle-sensitive passband) vs absorption filter (dye or pigment, absorbs, angle-independent, exponential with thickness, can autofluoresce); transmitted absorbance (proportional to concentration within range) vs percent reflectance (reciprocal relation requiring transformation); conventional LC (about 400 bar) vs ultra-high-pressure LC (above 1000 bar).",
+    "examAngle": "Expect: a high absorbance with “what do you do” (dilute into range, multiply by the dilution factor, never extrapolate), a “both filters are the same” distractor, a “reflectance is proportional to concentration” distractor, or a question pairing HbA1c with ion-exchange chromatography."
+  },
+  "comparisons": [
+    {
+      "id": "filter-types",
+      "title": "Interference vs absorption filter",
+      "left": {
+        "label": "Interference filter",
+        "points": [
+          "Alternating dielectric layers forming a Fabry–Perot structure",
+          "Reflects the rejected band, so almost no autofluorescence",
+          "Very steep band edge, but the passband shifts with the angle of incidence"
+        ]
+      },
+      "right": {
+        "label": "Absorption (dye) filter",
+        "points": [
+          "Dyes or pigments absorb the unwanted light",
+          "Transmission spectrum independent of the incident angle",
+          "Transmittance falls exponentially with thickness; can emit autofluorescence"
+        ]
+      },
+      "distinguisher": "Whether the unwanted light is reflected by interference or absorbed by a dye."
+    },
+    {
+      "id": "absorbance-vs-reflectance",
+      "title": "Transmitted absorbance vs percent reflectance",
+      "left": {
+        "label": "Absorbance",
+        "points": [
+          "Proportional to concentration inside the validated range",
+          "Bends at the top: stray light and chemical deviation"
+        ]
+      },
+      "right": {
+        "label": "Percent reflectance",
+        "points": [
+          "Runs from 100% (white) to 0% (black), inversely related to concentration",
+          "Reciprocal of reflectance tracks concentration, so the reader must transform it"
+        ]
+      },
+      "distinguisher": "Absorbance is read directly; reflectance has to be linearised before it is a concentration."
+    },
+    {
+      "id": "lc-pressure",
+      "title": "Conventional LC vs ultra-high-pressure LC",
+      "left": {
+        "label": "Conventional LC",
+        "points": [
+          "Works to about 400 bar, roughly 6000 psi",
+          "Limits the use of viscous mobile phases and very small particles"
+        ]
+      },
+      "right": {
+        "label": "Ultra-high-pressure LC",
+        "points": [
+          "Supports pressures above 1000 bar",
+          "Tolerates the backpressure of sub-2 micrometre particles"
+        ]
+      },
+      "distinguisher": "The pressure the pump and system can sustain."
+    }
+  ],
+  "mnemonic": {
+    "text": "When a photometric signal leaves its straight line, use the three Rs: REDUCE it (dilute into the validated range and multiply back), REFLECT it (percent reflectance on a dry pad, which the reader linearises), or RESOLVE it (separate it on a column first) — and the filter rule rides along: narrow band, near the peak.",
+    "explanation": "Reduce = dilution into range; Reflect = reflectometry with a Kubelka–Munk style transform; Resolve = chromatographic separation before detection; “narrow band, near the peak” is the bandpass requirement that keeps the relation linear in the first place.",
+    "limitation": "The three Rs are a menu, not a ranking: dilution adds imprecision and changes the matrix, reflectance carries its own interferences and is linear only where the scattering coefficient stays constant, haemoglobin variants distort ion-exchange chromatograms, and a filter label does not guarantee the band because an interference filter’s passband moves with the angle of incidence."
+  },
+  "analogyLimitations": [
+    "Scenario is invented; the absorbance of 2.6 and the strip result are illustrative, not from a real run.",
+    "Optics and chromatography are drawn as schematic cards, not as real light paths or chromatograms.",
+    "The filter and pressure figures quoted are from the specific published devices and systems read, not universal instrument specifications."
+  ],
+  "takeaway": "A photometric reading is trustworthy only inside its validated straight-line range, because a narrow wavelength band near the absorption peak keeps the relation linear while stray light and crowded molecules bend it at high concentration, so when the signal leaves that range the laboratory dilutes it back in, switches to percent reflectance with instrument linearisation, or separates it first by high performance liquid chromatography.",
+  "questions": [
+    {
+      "id": "ops-bandpass-q1",
+      "stem": "A colorimetric assay returns an absorbance well above the top calibrator. Which statement best explains why the reading cannot simply be extrapolated?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Stray radiation that the sample does not absorb makes the measured absorbance read low, and this error grows as concentration rises",
+          "rationale": "Correct. Stray light raises apparent transmittance so measured absorbance falls below the true value, and as concentration increases the transmitted signal can be mostly stray light rather than sample."
+        },
+        {
+          "id": "b",
+          "text": "The path length of the cuvette shortens at high concentration",
+          "rationale": "Incorrect. Path length is a fixed geometric property of the cuvette and does not change with the concentration of the sample."
+        },
+        {
+          "id": "c",
+          "text": "Absorptivity is a universal constant, so the curve can always be extended",
+          "rationale": "Incorrect. Absorptivity is wavelength and chemistry dependent, and the point of the question is that the relation stops being linear, so extrapolation is exactly what must not be done."
+        },
+        {
+          "id": "d",
+          "text": "The detector becomes more sensitive at high absorbance",
+          "rationale": "Incorrect. Detector response is not improved by a darker sample; limited spectral resolution and non-linear detector response are listed among the instrumental sources of error, not benefits."
+        }
+      ],
+      "answer": "a",
+      "skill": "Linearity limits",
+      "difficulty": "application"
+    },
+    {
+      "id": "ops-bandpass-q2",
+      "stem": "How does an interference filter differ in mechanism from a colored-glass absorption filter?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It is a stack of dielectric layers of alternating refractive index that reflects the rejected band, and its passband shifts with the angle of incidence",
+          "rationale": "Correct. Interference filters are built from alternating dielectric multilayers, reflect rather than absorb the rejected wavelengths so they emit almost no autofluorescence, and their transmission spectrum shifts with the incident angle."
+        },
+        {
+          "id": "b",
+          "text": "It uses a dye that absorbs unwanted wavelengths, and its transmission is independent of the incident angle",
+          "rationale": "Incorrect. That describes an absorption filter, whose dyes or pigments absorb the light and whose transmission spectrum is angle independent."
+        },
+        {
+          "id": "c",
+          "text": "It disperses light by refraction, like a prism, so the band is selected by moving a slit",
+          "rationale": "Incorrect. That is a dispersing monochromator, not a filter; the filter selects a band by thin-film interference rather than by angular dispersion."
+        },
+        {
+          "id": "d",
+          "text": "It converts light to an electrical signal, replacing the photodetector",
+          "rationale": "Incorrect. A filter is a wavelength selector in the light path; detection is a separate step performed by a photodiode or photomultiplier."
+        }
+      ],
+      "answer": "a",
+      "skill": "Wavelength selection",
+      "difficulty": "recognition"
+    },
+    {
+      "id": "ops-bandpass-q3",
+      "stem": "An automated urine strip reader reports results from percent reflectance readings. Which statement about that measurement is correct?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Reflectance runs from 100% for white to 0% for black and is inversely related to concentration, with the reciprocal of reflectance proportional to analyte concentration",
+          "rationale": "Correct. Readers express reflectance as a percentage from 100% (white) to 0% (black) that falls as analyte rises, and by Kubelka–Munk reflectance theory the reciprocal of the reflectance reading is proportional to the concentration."
+        },
+        {
+          "id": "b",
+          "text": "Reflectance is directly proportional to concentration, so it can be reported without transformation",
+          "rationale": "Incorrect. The relation is inverse and non-proportional; instruments fit the reciprocal of reflectance against the logarithm of concentration and may install overlapping reflectance ranges to hold linearity."
+        },
+        {
+          "id": "c",
+          "text": "Reflectance measurements obey the Beer–Lambert law directly because the light passes through the pad",
+          "rationale": "Incorrect. The measurement is of light returned from a scattering pad, described by reflectance theory in which the scattering coefficient matters, not by simple transmission through a clear solution."
+        },
+        {
+          "id": "d",
+          "text": "Reflectance readings are independent of the scattering properties of the pad",
+          "rationale": "Incorrect. In the Kubelka–Munk function the measured quantity equals the absorption coefficient divided by the scattering coefficient, and the scattering coefficient varies with particle size, so scattering matters a great deal."
+        }
+      ],
+      "answer": "a",
+      "skill": "Reflectometry",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch4",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 4, How Analyzers Work (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 4,
+          "section": "High-Yield Hits",
+          "items": [
+            4,
+            8,
+            18
+          ]
+        },
+        {
+          "chapter": 4,
+          "section": "Exam Traps",
+          "items": [
+            3
+          ]
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing for interference filters, reflectometry, HPLC pressure and the Beer’s law linearity trap. Not used as verification."
+    },
+    {
+      "id": "oshina2021",
+      "kind": "external",
+      "citation": "Oshina I, Spigulis J. Beer-Lambert law for optical tissue diagnostics: current state of the art and the main limitations. J Biomed Opt. 2021;26(10):100901. doi:10.1117/1.jbo.26.10.100901",
+      "url": "https://europepmc.org/article/MED/34623799",
+      "consulted": true,
+      "usedFor": "Full text read. Beer–Lambert assumptions (monochromatic, collimated, homogeneous, non-scattering, independent absorbers); requirement that the incident bandwidth be narrower than the absorption band and placed near the absorption maximum; stray radiation formula and its growing effect as concentration rises; chemical-equilibrium nonlinearity; deviations in concentrated solutions and above about 0.01 M in dilute solution; instrumental effects including inappropriate spectral slit width."
+    },
+    {
+      "id": "sasagawa2018",
+      "kind": "external",
+      "citation": "Sasagawa K, Kimura A, Haruta M, Noda T, Tokuda T, Ohta J. Highly sensitive lens-free fluorescence imaging device enabled by a complementary combination of interference and absorption filters. Biomed Opt Express. 2018;9(9):4329-4344. doi:10.1364/boe.9.004329",
+      "url": "https://europepmc.org/article/MED/30615749",
+      "consulted": true,
+      "usedFor": "Full text read. Interference filters are alternating dielectric multilayers that form a rejection band, reflect rather than absorb that band (so almost no autofluorescence), can form a very steep band edge, and have a transmission spectrum that shifts with the incident angle; absorption filters use dyes or pigments, are angle independent, follow an exponential transmittance with thickness, and can emit autofluorescence."
+    },
+    {
+      "id": "costa2021",
+      "kind": "external",
+      "citation": "Costa MS, Baptista V, Ferreira GM, Lima D, Minas G, Veiga MI, Catarino SO. Multilayer Thin-Film Optical Filters for Reflectance-Based Malaria Diagnostics. Micromachines (Basel). 2021;12(8):890. doi:10.3390/mi12080890",
+      "url": "https://europepmc.org/article/MED/34442510",
+      "consulted": true,
+      "usedFor": "Full text read. Bandpass thin-film filters built as Fabry–Perot structures with dielectric mirrors around a resonance cavity; 11 layers per filter; design target of a full width at half maximum around 10 nm for centre wavelengths of 585–746 nm, with the fabricated filters measuring above 10 nm; layer count is a compromise between low width at half maximum, high transmittance and fabrication limits."
+    },
+    {
+      "id": "oyaert2019a",
+      "kind": "external",
+      "citation": "Oyaert M, Delanghe J. Progress in Automated Urinalysis. Ann Lab Med. 2019;39(1):15-22. doi:10.3343/alm.2019.39.1.15",
+      "url": "https://europepmc.org/article/MED/30215226",
+      "consulted": true,
+      "usedFor": "Full text read. Quantitative reading of urinary test strips by reflectometry; by the reflectance theory of Kubelka and Munk the reciprocal of the reflectance reading is proportional to the concentration of the measured analyte."
+    },
+    {
+      "id": "oyaert2019b",
+      "kind": "external",
+      "citation": "Oyaert M, Delanghe JR. Semiquantitative, fully automated urine test strip analysis. J Clin Lab Anal. 2019;33(5):e22870. doi:10.1002/jcla.22870",
+      "url": "https://europepmc.org/article/MED/30908730",
+      "consulted": true,
+      "usedFor": "Full text read. A reflective photometry unit with a colour CMOS detector takes reflectance readings from the reagent pad; reflectance expressed as a percentage from 100% (white) to 0% (black) is inversely related to analyte concentration; two overlapping reflectance ranges are installed for pH, protein, glucose, bilirubin and ketones to cover the whole measuring range with good linearity; fitted relations use the reciprocal of reflectance against the logarithm of the urine glucose and protein concentration."
+    },
+    {
+      "id": "dai2018",
+      "kind": "external",
+      "citation": "Dai S, Pan X, Ma L, Huang X, Du C, Qiao Y, Wu Z. Discovery of the Linear Region of Near Infrared Diffuse Reflectance Spectra Using the Kubelka-Munk Theory. Front Chem. 2018;6:154. doi:10.3389/fchem.2018.00154",
+      "url": "https://europepmc.org/article/MED/29869631",
+      "consulted": true,
+      "usedFor": "Full text read. The Kubelka–Munk function f(R) = (1−R)²/(2R) = k/s, with the absorption coefficient k concentration dependent and the scattering coefficient s particle-size dependent, so diffuse reflectance is linear only over a region in which the scattering coefficient stays effectively constant."
+    },
+    {
+      "id": "yabre2018",
+      "kind": "external",
+      "citation": "Yabré M, Ferey L, Somé IT, Gaudin K. Greening Reversed-Phase Liquid Chromatography Methods Using Alternative Solvents for Pharmaceutical Analysis. Molecules. 2018;23(5):E1065. doi:10.3390/molecules23051065",
+      "url": "https://europepmc.org/article/MED/29751546",
+      "consulted": true,
+      "usedFor": "Full text read. Conventional liquid chromatography systems are limited to about 400 bar, while ultra-high-pressure liquid chromatography systems can support pressures above 1000 bar, which is what makes viscous mobile phases and very small particles workable."
+    },
+    {
+      "id": "park2019",
+      "kind": "external",
+      "citation": "Park MS, Lee K, Lee K, Song J, Park HD. Accurate and Rapid Measurement of Glycated Hemoglobin Using HLC-723 G11 Variant Mode. Ann Lab Med. 2019;39(3):237-244. doi:10.3343/alm.2019.39.3.237",
+      "url": "https://europepmc.org/article/MED/30623615",
+      "consulted": true,
+      "usedFor": "Full text read. Ion-exchange HPLC analysers for haemoglobin A1c; turnaround time for a single sample of 1 minute versus 1.6 minutes for the predecessor analyser, excluding two minutes of sample preparation; advantages of HPLC include precision and a visually identifiable chromatogram, while haemoglobin variants can shift peaks and bias results."
+    },
+    {
+      "id": "douzi2026",
+      "kind": "external",
+      "citation": "Douzi N, Grari O, El Khamlichi IE, Beyyoudh S, El Moujtahide D, Sebbar EH, Choukri M. Comparison of two analytical methods for HbA1c determination: HPLC ADAMS (ARKRAY A1c HA-8180T) versus CAPILLARYS 3 OCTA (Sebia) capillary electrophoresis system. EJIFCC. 2026;37(2):319-325.",
+      "url": "https://europepmc.org/article/MED/41366420",
+      "consulted": true,
+      "usedFor": "Full text read. The National Glycohemoglobin Standardization Program recognises cation-exchange high performance liquid chromatography as the reference method for haemoglobin A1c, while the IFCC reference procedure uses reverse-phase HPLC with mass spectrometry or capillary electrophoresis."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-band",
+      "text": "A photometer’s wavelength band must be narrower than the analyte’s absorption band and placed near the absorption maximum; interference filters are dielectric multilayer Fabry–Perot structures that reflect the rejected band with a steep edge but shift their passband with the angle of incidence, while dye absorption filters absorb, are angle independent and can autofluoresce; one published interference-filter set targeted a full width at half maximum near 10 nm at centre wavelengths 585–746 nm.",
+      "status": "checked",
+      "refs": [
+        "oshina2021",
+        "sasagawa2018",
+        "costa2021"
+      ]
+    },
+    {
+      "id": "cl-stray",
+      "text": "Stray radiation makes measured transmittance read high and absorbance read low, flattening the peak, and the effect grows with concentration until transmittance is mostly stray light; chemical equilibria, concentrated solutions, ion concentrations above about 0.01 M and inappropriate spectral slit width also bend the Beer–Lambert relation.",
+      "status": "checked",
+      "refs": [
+        "oshina2021"
+      ]
+    },
+    {
+      "id": "cl-refl",
+      "text": "Strip and dry-pad readers measure percent reflectance from 100% (white) to 0% (black), inversely related to concentration; the reciprocal of reflectance is proportional to concentration by Kubelka–Munk theory, with f(R) = (1−R)²/(2R) = k/s, so readers linearise the signal and may install overlapping reflectance ranges, and linearity holds only where the scattering coefficient is effectively constant.",
+      "status": "checked",
+      "refs": [
+        "oyaert2019a",
+        "oyaert2019b",
+        "dai2018"
+      ]
+    },
+    {
+      "id": "cl-hplc",
+      "text": "Conventional liquid chromatography systems work to about 400 bar (roughly 6000 psi) while ultra-high-pressure systems support above 1000 bar; cation-exchange HPLC is the NGSP-recognised reference method for haemoglobin A1c, and evaluated ion-exchange analysers reported one sample in about 1 to 1.6 minutes excluding sample preparation.",
+      "status": "checked",
+      "refs": [
+        "yabre2018",
+        "park2019",
+        "douzi2026"
+      ]
+    },
+    {
+      "id": "cl-filter-figures",
+      "text": "The reviewer’s specific figures that an interference filter’s bandwidth is about 1.5% of the peak wavelength and that colored-glass absorption filters pass 30–50 nm.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch4"
+      ],
+      "note": "Not taught as fact. The published filter set read here was designed for about 10 nm at 585–746 nm centre wavelengths, which is of the same order as 1.5% of the peak wavelength, but no open source read in this session states either figure as a general specification, and no source read states a bandwidth for colored-glass absorption filters."
+    },
+    {
+      "id": "cl-fixed-ceiling",
+      "text": "The reviewer’s fixed numbers: Beer’s law linearity ends above an absorbance of about 2.0; HPLC pumps reach ~6000 PSI as a maximum; HbA1c analysis completes within 5 minutes.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch4"
+      ],
+      "note": "Not taught as fact. The sources read describe the deviation as instrument and chemistry dependent rather than fixed at 2.0, give about 400 bar (≈6000 psi) as the conventional ceiling with ultra-high-pressure systems above 1000 bar, and report single-sample HbA1c turnaround of about 1 to 1.6 minutes rather than a 5-minute limit."
+    },
+    {
+      "id": "cl-pend-other",
+      "text": "Other Chapter 4 figures touching this lesson: photovoltaic cell peak sensitivity, photodiode spectral range, GC column dimensions, the Faraday constant, didymium and holmium wavelength checks, and the rest of the Number Vault table.",
+      "status": "pending",
+      "refs": [
+        "reviewer-ch4"
+      ],
+      "note": "Not taught in this lesson; the Chapter 4 Number Vault is therefore not claimed as covered."
+    },
+    {
+      "id": "cl-vis",
+      "text": "Hook scenario invented; optics and chromatography shown as schematic cards.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mn",
+      "text": "The three Rs memory aid: Reduce, Reflect, Resolve.",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-filter-bandwidth-figures",
+      "issue": "The reviewer states an interference-filter bandwidth of about 1.5% of the peak wavelength and 30–50 nm for colored-glass absorption filters. No open source read in this session states either as a general specification; the published eight-filter interference set read here was designed for a full width at half maximum near 10 nm at centre wavelengths of 585–746 nm and measured above 10 nm after fabrication. The figures are taught here only as the order of magnitude of a narrow bandpass, not as specifications.",
+      "kind": "uncertain",
+      "status": "open"
+    },
+    {
+      "id": "f-beer-fixed-ceiling",
+      "issue": "The reviewer presents absorbance 2.0 as the point where Beer’s law linearity fails. The source read describes deviation as the sum of instrument-specific and chemistry-specific effects — stray radiation (which grows with concentration), spectral bandwidth and slit width, chemical equilibria, refractive index and high solute concentration — so the usable ceiling is method dependent and established by a linearity study rather than fixed at 2.0.",
+      "kind": "method-dependent",
+      "status": "open"
+    },
+    {
+      "id": "f-hplc-figures-dated",
+      "issue": "The reviewer gives ~6000 PSI as the HPLC pump maximum and “HbA1c within 5 min”. The sources read put about 400 bar (≈6000 psi) as the conventional liquid chromatography limit, with ultra-high-pressure systems supporting above 1000 bar, and report single-sample HbA1c turnaround on ion-exchange analysers of 1 minute versus 1.6 minutes for an older model, excluding two minutes of sample preparation. Both reviewer figures are therefore ceilings of an older generation rather than current maxima.",
+      "kind": "outdated",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No images; optics, reflectance pads and chromatography are drawn as schematic cards and tokens.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "4 claims checked against eight open-access full texts (Beer–Lambert limitations review; interference versus absorption filter study; thin-film bandpass filter design; two automated urinalysis papers; Kubelka–Munk linear-region study; greener reversed-phase LC review; ion-exchange HPLC HbA1c evaluation; HbA1c method comparison naming the NGSP reference method). 3 claims pending: the reviewer’s filter-bandwidth figures, its fixed absorbance 2.0 ceiling with the ~6000 PSI and 5-minute HbA1c figures, and other Chapter 4 numbers not taught here. No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
