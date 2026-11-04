@@ -1,0 +1,1638 @@
+{
+  "schemaVersion": 1,
+  "id": "immuno-signal-direction-igm-carryover",
+  "title": "Reading an Immunoassay Result: Signal Direction, IgM Agglutination and Analyzer Carryover",
+  "summary": "Learn why a sandwich signal rises with analyte while a competitive signal falls, why pentameric IgM agglutinates without an antiglobulin reagent when IgG does not, and how carryover on automated systems is measured and why a weak reactive after a strong positive must be recollected.",
+  "domain": "p6-immuno",
+  "topic": "ch45",
+  "conceptIds": [
+    "ch45.figure",
+    "ch45.hit11",
+    "ch45.hit12"
+  ],
+  "tracks": [
+    "ascp",
+    "mtle"
+  ],
+  "reviewer": {
+    "status": "mapped",
+    "locations": [
+      {
+        "chapter": 45,
+        "section": "High-Yield Hits",
+        "items": [
+          11,
+          12
+        ]
+      },
+      {
+        "chapter": 45,
+        "section": "Figure 45"
+      }
+    ],
+    "note": "Teaches Ch. 45 Hits 11 (IgM is the far more efficient agglutinator) and 12 (analyzer carryover and retesting of weak reactives), plus the Figure 45 memory anchor that competitive signal is inverse and sandwich signal is direct, as a schematic. Checked against Darwish 2006, Ross 2020, Keyt 2020, Tasaki 2025, Pruksaphon 2025, Hsiao 2026, Visseaux 2024 and Linström 2021 (all full text via Europe PMC). Qualifications: the reviewer’s “~750×” IgM-versus-IgG agglutination ratio and the “carryover <10⁻⁷ with fixed probes, software retesting a weak positive that follows a strong positive” figures were not found in any source read; the sources read support IgM’s 10 binding sites, its direct room-temperature agglutination and IgG’s need for antihuman globulin, and they define carryover acceptability against low-level imprecision rather than a universal 10⁻⁷ index (flags f-igm-750-fold-unverified and f-carryover-1e-7-unverified; register flags rv-ch45-igm-750-fold and rv-ch45-carryover-1e-7). Not taught: Hit 10 (scope pointer), the Number Vault table, and the hook effect itself, which is taught in immuno-competitive-sandwich-hook."
+  },
+  "prerequisites": [
+    "ch45.hit1",
+    "ch47.hit1"
+  ],
+  "objectives": [
+    "Predict the direction of the signal for competitive and sandwich immunoassay designs.",
+    "Explain why pentameric IgM agglutinates directly while IgG needs an antihuman globulin reagent, and what DTT does to an IgM titre.",
+    "Describe how carryover is measured on automated immunoassay systems and what to do with a weak reactive result that follows a strong positive."
+  ],
+  "duration": 210,
+  "scenes": [
+    {
+      "id": "hook",
+      "kind": "hook",
+      "title": "Three numbers, one morning run",
+      "start": 0,
+      "end": 20,
+      "altText": "Invented scenario: three results from one morning immunoassay run. (1) A competitive digoxin assay returns an almost flat signal. (2) An anti-A titre read at room temperature is four tubes higher than the titre read after anti-human globulin. (3) An HIV screening result is weakly reactive on a sample tested straight after a strongly reactive specimen. Question token: “Which number can you believe?”",
+      "cues": [
+        {
+          "id": "h1",
+          "start": 0,
+          "end": 8,
+          "text": "Three results come off one morning run. A competitive digoxin assay gives an almost flat signal."
+        },
+        {
+          "id": "h2",
+          "start": 8,
+          "end": 14,
+          "text": "An anti-A titre read at room temperature is four tubes higher than the titre read after antihuman globulin. And an HIV screen is weakly reactive, on a sample run straight after a strongly reactive one."
+        },
+        {
+          "id": "h3",
+          "start": 14,
+          "end": 20,
+          "text": "Which of these numbers can you believe?"
+        }
+      ],
+      "objects": [
+        {
+          "id": "r1",
+          "type": "card",
+          "props": {
+            "x": 170,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "b",
+            "title": "1 Digoxin, competitive",
+            "lines": [
+              "Signal almost flat"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.4,
+              "opacity": 0
+            },
+            {
+              "t": 1.2000000000000002,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 3,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "a",
+            "title": "2 Anti-A titre",
+            "lines": [
+              "Room temperature: 1:64",
+              "After antiglobulin: 1:4"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.5,
+              "opacity": 0
+            },
+            {
+              "t": 4.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 6,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "r3",
+          "type": "card",
+          "props": {
+            "x": 790,
+            "y": 210,
+            "w": 290,
+            "h": 170,
+            "tone": "warn",
+            "title": "3 HIV screen",
+            "lines": [
+              "Weakly reactive",
+              "Ran after a strong positive"
+            ],
+            "highlight": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 8.5,
+              "opacity": 0
+            },
+            {
+              "t": 9.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "q",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "w": 680,
+            "label": "Which number can you believe?",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 14.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 15.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "kind": "normal",
+      "title": "The format sets the direction",
+      "start": 20,
+      "end": 60,
+      "altText": "Schematic of two assay designs. Competitive design: sample analyte and labelled analyte compete for a limited amount of antibody on a solid support; after separation the label measured on the solid phase is inversely correlated with the analyte concentration. Non-competitive, two-site or sandwich design: a capture antibody on the solid phase binds the analyte, and a second labelled antibody binds a non-overlapping epitope, so within the working range the signal rises as the analyte concentration rises. Sandwich designs need an analyte with more than one epitope.",
+      "cues": [
+        {
+          "id": "n1",
+          "start": 20,
+          "end": 30,
+          "text": "Start with the design. In a competitive assay, the analyte in the sample and a labelled version of the analyte compete for a limited amount of antibody."
+        },
+        {
+          "id": "n2",
+          "start": 30,
+          "end": 40,
+          "text": "More analyte in the sample means less labelled analyte captured, so the measured signal is inversely correlated with the concentration. Low signal can mean a high result."
+        },
+        {
+          "id": "n3",
+          "start": 40,
+          "end": 50,
+          "text": "In a non-competitive, two-site or sandwich design, a capture antibody holds the analyte and a second labelled antibody binds a different epitope on the same molecule."
+        },
+        {
+          "id": "n4",
+          "start": 50,
+          "end": 60,
+          "text": "Within the working range of a sandwich assay the signal rises as the analyte rises. Two antibodies against non-overlapping epitopes are needed, so the analyte must be big enough to carry both."
+        }
+      ],
+      "objects": [
+        {
+          "id": "comp",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 190,
+            "w": 440,
+            "h": 170,
+            "tone": "bad",
+            "title": "Competitive",
+            "lines": [
+              "Analyte vs labelled analyte",
+              "Limited antibody"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 13,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 15,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "compd",
+          "type": "token",
+          "props": {
+            "x": 250,
+            "y": 330,
+            "w": 420,
+            "label": "Signal ↓ as analyte ↑",
+            "tone": "bad",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 13.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 14.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 18,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "sand",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 190,
+            "w": 420,
+            "h": 170,
+            "tone": "good",
+            "title": "Sandwich (two-site)",
+            "lines": [
+              "Capture + labelled antibody",
+              "Two non-overlapping epitopes"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21,
+              "reveal": 0
+            },
+            {
+              "t": 21.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 28,
+              "highlight": 1
+            },
+            {
+              "t": 29,
+              "reveal": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "id": "sandd",
+          "type": "token",
+          "props": {
+            "x": 710,
+            "y": 330,
+            "w": 400,
+            "label": "Signal ↑ as analyte ↑ (working range)",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 30.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 31.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 36,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "note",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 470,
+            "text": "Read the format before you read the number",
+            "size": 18,
+            "weight": 700,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33,
+              "opacity": 0
+            },
+            {
+              "t": 33.8,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "kind": "change",
+      "title": "The antibody sets the clumping",
+      "start": 60,
+      "end": 104,
+      "altText": "Schematic of immunoglobulin M and immunoglobulin G as agglutinating reagents. Secreted immunoglobulin M is mostly a pentamer with 10 antigen-binding sites (a hexamer carries 12) and a mass of about 900 kilodaltons for the pentamer and 1050 for the hexamer; its polyvalency gives high avidity, so it agglutinates red cells directly at room temperature without an antiglobulin reagent. Immunoglobulin G is bivalent, has lower avidity and usually needs 37 degrees Celsius incubation and an anti-human globulin (Coombs) reagent before agglutination is visible. Dithiothreitol or 2-mercaptoethanol reduce the disulfide bonds that hold the pentamer together and abolish immunoglobulin M agglutinating activity, which is how laboratories read an immunoglobulin G only titre. A pending card notes the reviewer figure of about 750-fold.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 60,
+          "end": 72,
+          "text": "Now the reagent. Secreted immunoglobulin M is mostly a pentamer carrying ten antigen-binding sites; the hexamer carries twelve. The pentamer weighs about nine hundred kilodaltons."
+        },
+        {
+          "id": "c2",
+          "start": 72,
+          "end": 82,
+          "text": "That polyvalency buys avidity. Pentameric immunoglobulin M has a strong agglutinating capacity at room temperature and can clump red cells directly, with no antiglobulin reagent."
+        },
+        {
+          "id": "c3",
+          "start": 82,
+          "end": 93,
+          "text": "Immunoglobulin G is bivalent, binds with lower avidity, and usually needs incubation at thirty-seven degrees and an antihuman globulin reagent before you can see agglutination."
+        },
+        {
+          "id": "c4",
+          "start": 93,
+          "end": 104,
+          "text": "That is why dithiothreitol or 2-mercaptoethanol are used before an immunoglobulin G titre: they reduce the disulfide bonds of the pentamer and abolish its agglutinating activity. The reviewer’s exact seven-hundred-and-fifty-fold figure is not taught here, because no open source read in this lesson gives it."
+        }
+      ],
+      "objects": [
+        {
+          "id": "igm",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 200,
+            "tone": "a",
+            "title": "IgM pentamer",
+            "lines": [
+              "10 binding sites (hexamer 12)",
+              "≈ 900 kDa pentamer",
+              "Agglutinates directly at room temp"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 11,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 13,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "igg",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 200,
+            "tone": "b",
+            "title": "IgG bivalent",
+            "lines": [
+              "Lower avidity",
+              "37 °C + antihuman globulin"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 22.5,
+              "opacity": 0
+            },
+            {
+              "t": 23,
+              "reveal": 0
+            },
+            {
+              "t": 23.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 31,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 31,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "dtt",
+          "type": "token",
+          "props": {
+            "x": 350,
+            "y": 430,
+            "w": 520,
+            "label": "DTT / 2-ME break the pentamer → IgG-only titre",
+            "tone": "good",
+            "highlight": 0,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 33.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 34.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "pend",
+          "type": "token",
+          "props": {
+            "x": 890,
+            "y": 430,
+            "w": 320,
+            "label": "“750×” not verified here",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 39.5,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 40.5,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "kind": "lab",
+      "title": "The probe sets the doubt",
+      "start": 104,
+      "end": 144,
+      "altText": "Carryover on automated immunoassay systems. Laboratories measure carryover with alternating high and low sample sequences; in one evaluation carryover was accepted only if it stayed below three times the standard deviation of the low-low replicates, and the measured values were 0.032 mIU/mL for beta human chorionic gonadotropin against a 0.215 limit and 0.00022 pg/mL for high-sensitivity troponin I against a 0.00082 limit. A hepatitis B surface antigen evaluation ran five cycles of a 0.5 mg/mL high-positive specimen followed by a nonreactive specimen and found a maximum bias of 0.13 signal-to-cutoff units. In practice, microscopic droplet carry-over on a shared high-throughput platform produced false low-reactive HIV screening results: 411 of 485 initially low-positive or equivocal samples were negative when an independently collected sample was retested. Hook answers for the three morning results.",
+      "cues": [
+        {
+          "id": "l1",
+          "start": 104,
+          "end": 115,
+          "text": "Finally the instrument. Carryover is measured, not assumed: alternating high and low samples, with a limit set from the imprecision of the low samples. In one evaluation carryover had to stay under three standard deviations of the low replicates, and it did."
+        },
+        {
+          "id": "l2",
+          "start": 115,
+          "end": 125,
+          "text": "A hepatitis B surface antigen evaluation ran five cycles of a very strong positive followed by a nonreactive sample; the largest shift was about a tenth of a signal-to-cutoff unit."
+        },
+        {
+          "id": "l3",
+          "start": 125,
+          "end": 135,
+          "text": "But real droplets do move. On one shared high-throughput platform, microscopic carry-over produced false weak-reactive HIV screens: of four hundred and eighty-five low-positive or equivocal samples, four hundred and eleven were negative when a freshly collected sample was retested."
+        },
+        {
+          "id": "l4",
+          "start": 135,
+          "end": 144,
+          "text": "So, the morning run: the flat competitive signal fits a high digoxin result, the room-temperature titre is the immunoglobulin M titre, and the weak HIV reactive needs a newly collected sample before anyone is told anything."
+        }
+      ],
+      "objects": [
+        {
+          "id": "meas",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 180,
+            "w": 440,
+            "h": 170,
+            "tone": "b",
+            "title": "Carryover is measured",
+            "lines": [
+              "Alternating high / low runs",
+              "Limit = 3 × SD of low replicates"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1,
+              "reveal": 0
+            },
+            {
+              "t": 1.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 9,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 9,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hbs",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 180,
+            "w": 420,
+            "h": 170,
+            "tone": "a",
+            "title": "HBsAg carryover study",
+            "lines": [
+              "5 cycles after 0.5 mg/mL positive",
+              "Max bias 0.13 S/CO"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 11.5,
+              "opacity": 0
+            },
+            {
+              "t": 12,
+              "reveal": 0
+            },
+            {
+              "t": 12.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 19,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 19,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "hiv",
+          "type": "card",
+          "props": {
+            "x": 250,
+            "y": 390,
+            "w": 440,
+            "h": 150,
+            "tone": "bad",
+            "title": "Droplets still happen",
+            "lines": [
+              "411 / 485 weak positives negative",
+              "on a fresh, separate sample"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 13,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 21.5,
+              "opacity": 0
+            },
+            {
+              "t": 22,
+              "reveal": 0
+            },
+            {
+              "t": 22.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 29,
+              "reveal": 2,
+              "ease": "linear"
+            },
+            {
+              "t": 29,
+              "highlight": 1
+            }
+          ]
+        },
+        {
+          "id": "ans",
+          "type": "card",
+          "props": {
+            "x": 710,
+            "y": 390,
+            "w": 420,
+            "h": 150,
+            "tone": "good",
+            "title": "Hook answers",
+            "lines": [
+              "1 Flat signal = high digoxin",
+              "2 Room temp titre = IgM",
+              "3 Weak HIV: recollect, retest"
+            ],
+            "highlight": 0,
+            "reveal": 0,
+            "size": 12,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 31.5,
+              "opacity": 0
+            },
+            {
+              "t": 32,
+              "reveal": 0
+            },
+            {
+              "t": 32.3,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 38,
+              "reveal": 3,
+              "ease": "linear"
+            },
+            {
+              "t": 38,
+              "highlight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "kind": "exam",
+      "title": "Three classic traps",
+      "start": 144,
+      "end": 174,
+      "altText": "Three trap cards: “High signal means high analyte” (✓ true only for sandwich designs; competitive signal is inversely correlated); “A weak reactive after a strong positive is a true positive” (✓ droplet carry-over gives false low-reactive results; retest an independently collected sample); “Room-temperature and antiglobulin titres measure the same antibody” (✓ the room-temperature agglutination is immunoglobulin M; immunoglobulin G needs antihuman globulin, and immunoglobulin M must be reduced first for an immunoglobulin G titre).",
+      "cues": [
+        {
+          "id": "e1",
+          "start": 144,
+          "end": 154,
+          "text": "Trap one: high signal means high analyte. Only in a sandwich design. In a competitive assay, the signal runs the other way."
+        },
+        {
+          "id": "e2",
+          "start": 154,
+          "end": 164,
+          "text": "Trap two: a weak reactive straight after a strong positive must be real. Not until a freshly collected sample says so; droplet carry-over makes false weak positives."
+        },
+        {
+          "id": "e3",
+          "start": 164,
+          "end": 174,
+          "text": "Trap three: the room-temperature titre and the antiglobulin titre measure the same antibody. They do not: room temperature reads immunoglobulin M, and an immunoglobulin G titre needs the pentamer reduced first."
+        }
+      ],
+      "objects": [
+        {
+          "id": "t1",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 90,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “High signal = high analyte.”",
+            "lines": [
+              "✓ Sandwich only; competitive runs inverse"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.5,
+              "opacity": 0
+            },
+            {
+              "t": 1.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 4,
+              "reveal": 0
+            },
+            {
+              "t": 5,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t2",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 230,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Weak reactive after a strong positive is real.”",
+            "lines": [
+              "✓ Carry-over: recollect and retest first"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 10.5,
+              "opacity": 0
+            },
+            {
+              "t": 11.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 14,
+              "reveal": 0
+            },
+            {
+              "t": 15,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        },
+        {
+          "id": "t3",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 840,
+            "h": 110,
+            "tone": "warn",
+            "title": "✗ “Both titres measure the same antibody.”",
+            "lines": [
+              "✓ Room temp = IgM; IgG needs antiglobulin"
+            ],
+            "reveal": 0,
+            "size": 16,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 20.5,
+              "opacity": 0
+            },
+            {
+              "t": 21.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 24,
+              "reveal": 0
+            },
+            {
+              "t": 25,
+              "reveal": 1,
+              "ease": "inOut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "kind": "memory",
+      "title": "Format, hands, droplet",
+      "start": 174,
+      "end": 194,
+      "altText": "Memory aid: “FORMAT, HANDS, DROPLET. The FORMAT decides which way the signal points — two slices of bread stack the signal up, musical chairs pull it down. The HANDS decide the clumping — ten-handed immunoglobulin M grabs cells on its own, two-handed immunoglobulin G needs a helper. The DROPLET decides the doubt — a weak positive behind a strong one may be the last sample talking.” A card lists where the aid breaks.",
+      "cues": [
+        {
+          "id": "m1",
+          "start": 174,
+          "end": 183,
+          "text": "Memory aid: format, hands, droplet. The format decides which way the signal points: two slices of bread stack it up, musical chairs pull it down. The hands decide the clumping: ten-handed immunoglobulin M grabs cells on its own, two-handed immunoglobulin G needs a helper. The droplet decides the doubt."
+        },
+        {
+          "id": "m2",
+          "start": 183,
+          "end": 194,
+          "text": "Where it breaks: the signal direction holds only inside the working range, because very high analyte can bend a sandwich signal back down; valency is not the whole story, since temperature, incubation and antigen density also change agglutination; and modern systems measure carryover against a statistical limit rather than promising none at all."
+        }
+      ],
+      "objects": [
+        {
+          "id": "title",
+          "type": "label",
+          "props": {
+            "x": 480,
+            "y": 60,
+            "text": "Format, hands, droplet",
+            "size": 28,
+            "weight": 900,
+            "color": "accent",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 1.2,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m0",
+          "type": "token",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "w": 260,
+            "label": "Format = direction",
+            "tone": "b",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1.5,
+              "opacity": 0
+            },
+            {
+              "t": 2.3,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m1",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 170,
+            "w": 260,
+            "label": "Hands = clumping",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 2.7,
+              "opacity": 0
+            },
+            {
+              "t": 3.5,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "token",
+          "props": {
+            "x": 760,
+            "y": 170,
+            "w": 260,
+            "label": "Droplet = doubt",
+            "tone": "bad",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 3.9,
+              "opacity": 0
+            },
+            {
+              "t": 4.7,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "limits",
+          "type": "card",
+          "props": {
+            "x": 480,
+            "y": 370,
+            "w": 860,
+            "h": 160,
+            "tone": "warn",
+            "title": "Where it breaks",
+            "lines": [
+              "Direction holds inside the working range only",
+              "Temperature and antigen density also drive agglutination",
+              "Carryover is judged against a statistical limit"
+            ],
+            "reveal": 0,
+            "size": 14,
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 9.5,
+              "opacity": 0
+            },
+            {
+              "t": 10.5,
+              "opacity": 1,
+              "ease": "out"
+            },
+            {
+              "t": 10.5,
+              "reveal": 0
+            },
+            {
+              "t": 18.5,
+              "reveal": 3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "kind": "check",
+      "title": "Your turn",
+      "start": 194,
+      "end": 204,
+      "altText": "The cartoon scientist points down toward three practice questions; a speech bubble explains that each answer includes why it is right and why the other choices are wrong.",
+      "cues": [
+        {
+          "id": "c1",
+          "start": 194,
+          "end": 199,
+          "text": "Your turn. Answer the three questions below the player."
+        },
+        {
+          "id": "c2",
+          "start": 199,
+          "end": 204,
+          "text": "Each answer explains why it is right — and why every other choice is wrong."
+        }
+      ],
+      "objects": [
+        {
+          "id": "memo",
+          "type": "mascot",
+          "props": {
+            "x": 300,
+            "y": 260,
+            "expression": "happy",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0,
+              "y": 290
+            },
+            {
+              "t": 1,
+              "opacity": 1,
+              "ease": "out",
+              "y": 260
+            },
+            {
+              "t": 5,
+              "expression": "thinking"
+            }
+          ]
+        },
+        {
+          "id": "say",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 380,
+            "text": "3 questions • answers with full rationales",
+            "tone": "good",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 1,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 2.0,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            },
+            {
+              "t": 5,
+              "opacity": 1
+            },
+            {
+              "t": 5.6,
+              "opacity": 0
+            }
+          ]
+        },
+        {
+          "id": "say2",
+          "type": "bubble",
+          "props": {
+            "x": 600,
+            "y": 170,
+            "w": 400,
+            "text": "✓ why the answer is right  ✗ why each other choice is wrong",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 5.6,
+              "opacity": 0,
+              "scale": 0.7
+            },
+            {
+              "t": 6.3999999999999995,
+              "opacity": 1,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "down",
+          "type": "arrow",
+          "props": {
+            "x": 600,
+            "y": 300,
+            "dx": 0,
+            "dy": 170,
+            "draw": 0,
+            "label": "Scroll to the questions"
+          },
+          "keys": [
+            {
+              "t": 2.5,
+              "draw": 0
+            },
+            {
+              "t": 4.0,
+              "draw": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "kind": "takeaway",
+      "title": "Takeaway",
+      "start": 204,
+      "end": 210,
+      "altText": "Two tokens: “Sandwich: signal ↑ with analyte · Competitive: signal ↓ with analyte”, “Pentameric IgM agglutinates alone · IgG needs antiglobulin · weak reactive after a strong positive → recollect”.",
+      "cues": [
+        {
+          "id": "t1",
+          "start": 204,
+          "end": 210,
+          "text": "Read the format before the number, because a sandwich signal rises with analyte while a competitive signal falls, pentameric immunoglobulin M agglutinates on its own where immunoglobulin G needs antihuman globulin, and a weak reactive result behind a strongly positive sample must be repeated on a freshly collected specimen."
+        }
+      ],
+      "objects": [
+        {
+          "id": "a",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 190,
+            "w": 820,
+            "label": "Sandwich: signal ↑ with analyte · Competitive: signal ↓",
+            "tone": "a",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0,
+              "opacity": 0
+            },
+            {
+              "t": 0.6,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "type": "token",
+          "props": {
+            "x": 480,
+            "y": 260,
+            "w": 820,
+            "label": "IgM clumps alone · IgG needs antiglobulin · weak after strong → recollect",
+            "tone": "warn",
+            "opacity": 0
+          },
+          "keys": [
+            {
+              "t": 0.8,
+              "opacity": 0
+            },
+            {
+              "t": 1.4,
+              "opacity": 1,
+              "ease": "out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": {
+    "what": "Plain language: before you trust an immunoassay number, ask three questions — which way does this format push the signal, which antibody is doing the clumping, and could the last sample have splashed into this one? Scientific terms: competitive (antigen-capture and antibody-capture) design, non-competitive two-site or sandwich design, capture and labelled detection antibody, non-overlapping epitopes, working range, pentameric and hexameric IgM, valency and avidity, antihuman globulin (Coombs) reagent, dithiothreitol (DTT) and 2-mercaptoethanol, sample carryover, signal-to-cutoff (S/CO) ratio, retest in duplicate.",
+    "why": "The same raw signal means opposite things in the two designs; the same titre means different antibodies depending on temperature and whether antiglobulin was added; and a sensitive assay that can detect tiny amounts of analyte can also detect a tiny droplet of the previous sample, which is why weak reactives are retested and, when contamination is suspected, recollected.",
+    "measure": "Competitive: label measured on the solid phase is inversely correlated with analyte. Sandwich: within the working range the signal rises with analyte. IgM: pentamer with 10 binding sites (hexamer 12), about 900 kDa, agglutinates at room temperature without antiglobulin; IgG: bivalent, lower avidity, usually needs 37 °C and antihuman globulin. Carryover in one evaluation: accepted below 3 × SD of the low-low replicates; measured 0.032 mIU/mL for beta-hCG (limit 0.215) and 0.00022 pg/mL for high-sensitivity troponin I (limit 0.00082). HBsAg evaluation: 5 cycles of a 0.5 mg/mL positive followed by a nonreactive sample, maximum bias 0.13 S/CO; in that assay S/CO ≥ 1.00 and < 100.00 requires retest in duplicate and confirmatory neutralisation, while S/CO ≥ 100.00 was reported positive without repeat.",
+    "differs": "Competitive vs sandwich signal direction; IgM vs IgG as the agglutinating reagent; a true weak positive vs a false low-reactive from droplet carry-over, separated by retesting an independently collected sample.",
+    "examAngle": "Expect: a near-zero signal on a competitive assay, a titre that collapses after antiglobulin or after DTT treatment, or a weak reactive infectious-disease screen that followed a strongly reactive specimen on a shared analyzer."
+  },
+  "comparisons": [
+    {
+      "id": "competitive-vs-sandwich",
+      "title": "Competitive vs sandwich design",
+      "left": {
+        "label": "Competitive",
+        "points": [
+          "Analyte competes with labelled analyte for limited antibody",
+          "Signal inversely correlated with analyte"
+        ]
+      },
+      "right": {
+        "label": "Sandwich (two-site)",
+        "points": [
+          "Capture plus labelled antibody on non-overlapping epitopes",
+          "Signal rises with analyte inside the working range"
+        ]
+      },
+      "distinguisher": "Which way the signal moves when analyte rises."
+    },
+    {
+      "id": "igm-vs-igg-agglutination",
+      "title": "IgM vs IgG as an agglutinating reagent",
+      "left": {
+        "label": "IgM",
+        "points": [
+          "Pentamer, 10 binding sites, about 900 kDa",
+          "Agglutinates red cells directly at room temperature"
+        ]
+      },
+      "right": {
+        "label": "IgG",
+        "points": [
+          "Bivalent, lower avidity",
+          "Usually needs 37 °C and antihuman globulin"
+        ]
+      },
+      "distinguisher": "Valency and avidity: IgM clumps alone, IgG needs a bridging reagent, and reducing agents abolish the IgM reaction."
+    }
+  ],
+  "mnemonic": {
+    "text": "FORMAT, HANDS, DROPLET. The FORMAT decides which way the signal points — two slices of bread stack it up, musical chairs pull it down. The HANDS decide the clumping — ten-handed IgM grabs cells on its own, two-handed IgG needs a helper. The DROPLET decides the doubt — a weak positive behind a strong one may be the last sample talking.",
+    "explanation": "Separates assay design, reagent antibody and instrument contamination as three independent reasons a number can mislead.",
+    "limitation": "Signal direction holds only inside the working range, because very high analyte can bend a sandwich signal back down; valency is not the whole story, since temperature, incubation and antigen density also change agglutination; and carryover is judged against a statistical limit on a given system, not abolished."
+  },
+  "analogyLimitations": [
+    "The three morning results are an invented scenario.",
+    "Assay designs and immunoglobulin shapes are drawn as schematics, not as real images.",
+    "Carryover values quoted come from single published system evaluations and do not transfer to other analyzers."
+  ],
+  "takeaway": "Read the format before the number, because a sandwich signal rises with analyte while a competitive signal falls, pentameric immunoglobulin M agglutinates on its own where immunoglobulin G needs antihuman globulin, and a weak reactive result behind a strongly positive sample must be repeated on a freshly collected specimen.",
+  "questions": [
+    {
+      "id": "immuno-sdic-q1",
+      "stem": "A competitive immunoassay for a small drug returns a signal close to zero, reproduced on repeat. Assuming the assay is working, what does this indicate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A high concentration of the drug in the sample",
+          "rationale": "Correct. In a competitive design the measured label on the solid phase is inversely correlated with analyte, so very little captured label fits a high analyte concentration."
+        },
+        {
+          "id": "b",
+          "text": "A very low concentration of the drug",
+          "rationale": "Incorrect. A low analyte concentration leaves the limited antibody free to bind labelled analyte, which gives a high signal."
+        },
+        {
+          "id": "c",
+          "text": "Failure of the second, labelled detection antibody",
+          "rationale": "Incorrect. A second labelled antibody against a non-overlapping epitope belongs to the sandwich design, not to a competitive assay."
+        },
+        {
+          "id": "d",
+          "text": "The result is uninterpretable because competitive assays are qualitative",
+          "rationale": "Incorrect. Competitive designs are quantitative; the signal simply runs in the opposite direction to the analyte."
+        }
+      ],
+      "answer": "a",
+      "skill": "Assay format reasoning",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-sdic-q2",
+      "stem": "An anti-A titre read after room-temperature incubation is much higher than the titre read after 37 °C incubation with antihuman globulin, and the first titre disappears after the serum is treated with dithiothreitol. What explains these findings?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The room-temperature reaction is pentameric IgM, whose disulfide-linked structure DTT destroys",
+          "rationale": "Correct. Pentameric IgM agglutinates directly at room temperature, and DTT reduces the disulfide bonds holding the pentamer together, abolishing its agglutinating activity so an IgG-only titre can be read."
+        },
+        {
+          "id": "b",
+          "text": "The room-temperature reaction is IgG, which binds best in the cold",
+          "rationale": "Incorrect. IgG is bivalent with lower avidity and usually requires 37 °C incubation plus antihuman globulin for visible agglutination."
+        },
+        {
+          "id": "c",
+          "text": "Antihuman globulin blocks IgM binding sites",
+          "rationale": "Incorrect. Antihuman globulin is added to make IgG-sensitised cells agglutinate; it does not block IgM, which already agglutinates on its own."
+        },
+        {
+          "id": "d",
+          "text": "DTT denatures the red-cell A antigen",
+          "rationale": "Incorrect. The purpose of DTT or 2-mercaptoethanol in titration is to reduce the IgM pentamer while leaving IgG measurable."
+        }
+      ],
+      "answer": "a",
+      "skill": "Antibody class and agglutination",
+      "difficulty": "application"
+    },
+    {
+      "id": "immuno-sdic-q3",
+      "stem": "On a high-throughput shared analyzer, an HIV screening sample tested immediately after a strongly reactive specimen returns a weak reactive result. What is the most appropriate next step?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Retest on an independently collected sample before reporting a positive screen",
+          "rationale": "Correct. Microscopic droplet carry-over produces false low-reactive results; in one published investigation 411 of 485 initially low-positive or equivocal samples were negative on an independently collected sample."
+        },
+        {
+          "id": "b",
+          "text": "Report it as reactive, since weak reactivity still indicates antibody",
+          "rationale": "Incorrect. Weak reactivity immediately after a strong positive is exactly the pattern produced by sample cross-contamination, so reporting it without repeat risks a false positive."
+        },
+        {
+          "id": "c",
+          "text": "Report it as negative, since weak signals are always contamination",
+          "rationale": "Incorrect. Carry-over is one explanation among several, including early seroconversion; the result must be resolved by retesting, not dismissed."
+        },
+        {
+          "id": "d",
+          "text": "Dilute the original sample and retest it to unmask a hook effect",
+          "rationale": "Incorrect. Dilution addresses falsely low results from very high analyte, not a falsely weak-reactive result caused by contamination of a negative sample."
+        }
+      ],
+      "answer": "a",
+      "skill": "Carryover recognition",
+      "difficulty": "application"
+    }
+  ],
+  "references": [
+    {
+      "id": "reviewer-ch45",
+      "kind": "reviewer",
+      "citation": "Almoradie A. MEMORY LAB: The Memory-First Medical Laboratory Science Reviewer. 1st ed., v2.0. 2026. Chapter 45, Immunoassays: Antibodies as Tools (EPUB; no fixed page numbers).",
+      "consulted": true,
+      "locations": [
+        {
+          "chapter": 45,
+          "section": "High-Yield Hits",
+          "items": [
+            11,
+            12
+          ]
+        },
+        {
+          "chapter": 45,
+          "section": "Figure 45"
+        }
+      ],
+      "usedFor": "Curriculum source: scope and exam framing. Not used as verification."
+    },
+    {
+      "id": "darwish2006",
+      "kind": "external",
+      "citation": "Darwish IA. Immunoassay Methods and their Applications in Pharmaceutical Analysis: Basic Methodology and Recent Advances. Int J Biomed Sci. 2006;2(3):217-235. doi:10.59566/ijbs.2006.2217",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3614608/",
+      "consulted": true,
+      "usedFor": "Full text via Europe PMC. Heterogeneous versus homogeneous classification by separation step; competitive antigen-capture and antibody-capture formats in which analyte competes with labelled analyte for a limited amount of antibody and the measured signal is inversely correlated with analyte; non-competitive two-site (sandwich) design requiring two antibodies against non-overlapping epitopes on a large analyte."
+    },
+    {
+      "id": "ross2020",
+      "kind": "external",
+      "citation": "Ross GMS, Filippini D, Nielen MWF, Salentijn GI. Unraveling the Hook Effect: A Comprehensive Study of High Antigen Concentration Effects in Sandwich Lateral Flow Immunoassays. Anal Chem. 2020;92(23):15587-15595. doi:10.1021/acs.analchem.0c03740",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7711776/",
+      "consulted": true,
+      "usedFor": "Full text via Europe PMC. Sandwich format uses a capture antibody and a labelled detection antibody binding a different epitope; within the working range the test-line signal increases as antigen concentration increases, while excess antigen saturates binding sites and paradoxically reduces the signal (hook effect)."
+    },
+    {
+      "id": "keyt2020",
+      "kind": "external",
+      "citation": "Keyt BA, Baliga R, Sinclair AM, Carroll SF, Peterson MS. Structure, Function, and Therapeutic Use of IgM Antibodies. Antibodies (Basel). 2020;9(4):53. doi:10.3390/antib9040053",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7709107/",
+      "consulted": true,
+      "usedFor": "Full text via Europe PMC. Secreted IgM as a pentamer with 10 antigen-binding sites and a J chain, or a hexamer with 12 and no J chain; molecular weight about 900 kDa (pentamer) and 1050 kDa (hexamer); polyvalency gives higher avidity than bivalent IgG despite lower intrinsic affinity."
+    },
+    {
+      "id": "tasaki2025",
+      "kind": "external",
+      "citation": "Tasaki M, Saito K, Takahashi K. Advancing Antibody Titer Assessment in ABO-Incompatible Transplantation. Antibodies (Basel). 2025;14(3):78. doi:10.3390/antib14030078",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12452615/",
+      "consulted": true,
+      "usedFor": "Full text via Europe PMC. Pentameric IgM has strong agglutinating capacity at room temperature and causes red-cell agglutination directly, independent of antiglobulin reagents, whereas IgG has lower avidity and typically requires 37 °C enhancement and anti-human globulin (Coombs) reagent for visible agglutination; DTT (and 2-mercaptoethanol) reduce the disulfide bonds of the IgM pentamer and abolish its agglutinating activity, which is the standard way to read an IgG-specific titre; room-temperature incubation of 15-30 minutes for IgM detection versus 37 °C with antiglobulin columns for IgG."
+    },
+    {
+      "id": "pruksaphon2025",
+      "kind": "external",
+      "citation": "Pruksaphon K, Khamto N, Amsri A, Wagatsuma M, Nosanchuk JD, Higuchi Y, Youngchim S. Exploring the structural basis and functional immunodynamics of immunoglobulin M in host defense against fungal pathogens. Front Immunol. 2025;16:1666690. doi:10.3389/fimmu.2025.1666690",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12611827/",
+      "consulted": true,
+      "usedFor": "Full text via Europe PMC. Secreted pentameric IgM has high avidity for repetitive antigens, enabling potent agglutination, neutralisation and classical complement activation; a single antigen-bound IgM can initiate complement whereas the equivalent IgG effect needs many IgG molecules."
+    },
+    {
+      "id": "hsiao2026",
+      "kind": "external",
+      "citation": "Hsiao CT, Liao CC, Chang YC, Chang HJ, Huang TY, Lin JS, Hsueh PR. Analytical and Workflow Performance of a High-Throughput Chemiluminescent Immunoassay System in a Clinical Laboratory. J Clin Lab Anal. 2026;40(13):e70270. doi:10.1002/jcla.70270",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13371277/",
+      "consulted": true,
+      "usedFor": "Full text via Europe PMC. Carryover assessed with alternating low and high sample sequences, calculated as the difference between high-to-low and low-to-low means, with acceptability defined as not exceeding three times the SD of the low-low replicates; measured carryover 0.032 mIU/mL for beta-hCG (criterion 0.215) and 0.00022 pg/mL for high-sensitivity troponin I (criterion 0.00082); carryover reported as negligible."
+    },
+    {
+      "id": "visseaux2024",
+      "kind": "external",
+      "citation": "Visseaux B, Gautier J, Le Boulaire F, et al. Performance evaluation of the Access HBsAg and Access HBsAg confirmatory assays on the DxI 9000 Access Immunoassay Analyzer. Pract Lab Med. 2024;39:e00390. doi:10.1016/j.plabm.2024.e00390",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11075052/",
+      "consulted": true,
+      "usedFor": "Full text via Europe PMC. Sample carryover assessed over five cycles of a high HBsAg positive sample (0.5 mg/mL) followed by a nonreactive sample, with a maximum bias of 0.13 S/CO and no significant trend; result algorithm in which S/CO < 1.00 is negative, S/CO ≥ 1.00 and < 100.00 requires retest in duplicate with confirmatory neutralisation of repeatedly reactive samples, and S/CO ≥ 100.00 was reported positive without repeat or confirmation."
+    },
+    {
+      "id": "linstrom2021",
+      "kind": "external",
+      "citation": "Linström MA, Preiser W, Nkosi NN, Vreede HW, Korsman SNJ, Zemlin AE, van Zyl GU. HIV false positive screening serology due to sample contamination reduced by a dedicated sample and platform in a high prevalence environment. PLoS One. 2021;16(1):e0245189. doi:10.1371/journal.pone.0245189",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7799780/",
+      "consulted": true,
+      "usedFor": "Full text via Europe PMC. Cross-contamination by microscopic droplet carry-over from seropositive to seronegative samples on shared high-throughput platforms produces false positive low-reactive HIV screening results; 411 of 485 initially low-positive or equivocal samples were negative on an independently collected sample; odds ratio 4.1 (95% CI 1.69-9.97) for a false positive when chemistry testing preceded serology on the same sample; false positive rate fell from 1.71% to 0.68% after dedicated samples and a dedicated instrument were introduced."
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-direction",
+      "text": "Competitive signal is inversely correlated with analyte; sandwich signal rises with analyte inside the working range.",
+      "status": "checked",
+      "refs": [
+        "darwish2006",
+        "ross2020"
+      ]
+    },
+    {
+      "id": "cl-igm-structure",
+      "text": "Secreted IgM is a pentamer with 10 binding sites (hexamer 12), about 900 kDa, and its polyvalency gives higher avidity than bivalent IgG.",
+      "status": "checked",
+      "refs": [
+        "keyt2020",
+        "pruksaphon2025"
+      ]
+    },
+    {
+      "id": "cl-igm-agglutination",
+      "text": "Pentameric IgM agglutinates red cells directly at room temperature without antiglobulin, whereas IgG needs 37 °C and antihuman globulin; DTT or 2-mercaptoethanol abolish the IgM reaction so an IgG titre can be read.",
+      "status": "checked",
+      "refs": [
+        "tasaki2025",
+        "pruksaphon2025"
+      ]
+    },
+    {
+      "id": "cl-carryover-measured",
+      "text": "Carryover is measured with alternating high and low sequences and accepted against a limit derived from low-level imprecision; published values on two systems were small, including a maximum 0.13 S/CO bias after a 0.5 mg/mL HBsAg positive sample.",
+      "status": "checked",
+      "refs": [
+        "hsiao2026",
+        "visseaux2024"
+      ]
+    },
+    {
+      "id": "cl-carryover-clinical",
+      "text": "Droplet carry-over on shared high-throughput platforms causes false low-reactive infectious-disease screens, resolved by retesting an independently collected sample.",
+      "status": "checked",
+      "refs": [
+        "linstrom2021"
+      ]
+    },
+    {
+      "id": "cl-retest-rule",
+      "text": "Weak reactive results below a high-positive threshold are retested in duplicate and confirmed, while very high S/CO results were reported positive without repeat in one evaluated HBsAg assay.",
+      "status": "checked",
+      "refs": [
+        "visseaux2024"
+      ]
+    },
+    {
+      "id": "cl-750",
+      "text": "Reviewer claim that IgM is about 750 times more efficient than IgG at agglutination.",
+      "status": "pending",
+      "note": "Not taught as fact. No open-access source read gives this ratio; the primary hemagglutination work it is usually traced to (Immunology 1963) is not open access. Sources read support IgM’s 10 binding sites, higher avidity and direct room-temperature agglutination only."
+    },
+    {
+      "id": "cl-1e7",
+      "text": "Reviewer claim that fixed-probe analyzers limit carryover to less than 10⁻⁷ and that software automatically retests a weak positive that follows a strong positive.",
+      "status": "pending",
+      "note": "Not taught as fact. No source read states a 10⁻⁷ carryover index or probe-design-specific figure; the evaluations read define carryover acceptability against low-level imprecision, and the retest rules read are manufacturer result-interpretation algorithms based on the signal-to-cutoff value rather than on the preceding sample."
+    },
+    {
+      "id": "cl-scenario",
+      "text": "The three morning results are an invented teaching scenario; assay and antibody drawings are schematic.",
+      "status": "analogy"
+    },
+    {
+      "id": "cl-mnemonic",
+      "text": "“Format, hands, droplet.”",
+      "status": "analogy"
+    }
+  ],
+  "accuracyFlags": [
+    {
+      "id": "f-igm-750-fold-unverified",
+      "issue": "Ch. 45 Hit 11 states IgM is about 750 times more efficient than IgG at agglutination. No open-access source read for this lesson gives that ratio, and the classic hemagglutination study it is usually traced to (Immunology 1963) is not open access. The sources read support pentameric IgM with 10 binding sites and strong direct agglutination at room temperature where IgG needs antihuman globulin, but not a fixed 750-fold factor (register flag rv-ch45-igm-750-fold).",
+      "kind": "uncertain",
+      "status": "open"
+    },
+    {
+      "id": "f-carryover-1e-7-unverified",
+      "issue": "Ch. 45 Hit 12 states that fixed-probe analyzers limit carryover to less than 10⁻⁷ and that software retests a weak positive following a strong positive. No source read states a 10⁻⁷ carryover index or ties the limit to probe design; published evaluations define carryover acceptability against low-level imprecision (for example, not exceeding three times the SD of low-low replicates) and report absolute biases, while the retest-in-duplicate rules read are signal-to-cutoff result algorithms, not sequence-triggered software rules. Real droplet carry-over on shared platforms still produces false weak reactives (register flag rv-ch45-carryover-1e-7).",
+      "kind": "uncertain",
+      "status": "open"
+    }
+  ],
+  "morphology": {
+    "schematicOnly": true,
+    "note": "No real images; assay formats, immunoglobulin valency and analyzer carryover are shown as cards and tokens.",
+    "images": []
+  },
+  "verification": {
+    "status": "partially-checked",
+    "humanExpertReview": false,
+    "reviewer": null,
+    "notes": "6 factual claims checked against Darwish 2006, Ross 2020, Keyt 2020, Tasaki 2025, Pruksaphon 2025, Hsiao 2026, Visseaux 2024 and Linström 2021 (all full text via Europe PMC); 2 pending (the reviewer’s ~750× IgM agglutination ratio and the <10⁻⁷ fixed-probe carryover figure with sequence-triggered software retesting). No human expert has reviewed this lesson."
+  },
+  "revisedAt": "2026-10-11"
+}
