@@ -644,6 +644,10 @@ FLAG_RULES = [
      "Matches sim-q793 only, whose explanation carries the reviewer's unconditional 'or toxin-gene NAAT'. The keyed answer (b, GDH plus toxin A/B EIA or a toxin-gene NAAT, rather than culture alone, stool Gram stain or repeated toxin EIA) still stands. The explanation should note that NAAT alone is acceptable only where preagreed institutional stool-submission criteria exist; otherwise a stool toxin test within a multistep algorithm is recommended (Lee 2021, reporting the IDSA/SHEA guidance as updated in 2018)."),
     ('rv-scid-household-live-vaccines', 'household contacts should stay current including live MMR/varicella per ACIP',
      'sim-q501 repeats Trap 1 and its answer (b) still stands: CDC/ACIP guidance withholds live vaccines from the child with severe cell-mediated immunodeficiency while household contacts receive all age- and exposure-appropriate vaccines, including live MMR and varicella. The source adds qualifiers this item omits: smallpox vaccine is the single exception for contacts, and precautions apply if a varicella vaccinee develops a rash or after nappy changes following rotavirus vaccine. The guidance is United States-specific.'),
+    ('rv-hla-b5701-npv-limits', 'HLA-B\\*57:01 screening has a 100% negative predictive value',
+     "sim-q96's keyed answer (a positive HLA-B*57:01 means do not use abacavir) still stands, and the FDA-recommended screening statement is correct. The unqualified '100% negative predictive value' is the problem: that figure is from PREDICT-1 and applies to immunologically (patch-test) confirmed hypersensitivity, while pooled data against clinically diagnosed hypersensitivity give NPV 85% (95% CI 81-88%) and PPV 82%, with sensitivity only 46-78%. The explanation should say the negative predictive value is 100% for patch-test-confirmed reactions and about 85% for clinically diagnosed ones."),
+    ('rv-hla-b5801-residual-risk', 'HLA-B\\*58:01 testing before allopurinol is recommended for high-risk groups',
+     "sim-q496's answer and its list of high-risk groups match the 2020 ACR gout guideline (conditional recommendation to test patients of Southeast Asian descent - Han Chinese, Korean, Thai - and African American patients, and a conditional recommendation against universal testing in other ethnic or racial backgrounds), so the keyed answer stands. The explanation should add that a negative HLA-B*58:01 is not a clearance: in a US mixed-ancestry case-control study the allele was absent in more than a third of allopurinol severe-reaction cases and in 45% of self-identified Black patients."),
     ('rv-fever-restart', r'(rise|rises|increase)[^.]{0,30}(≥|>=)? ?1(\.\d)? ?°?C|(≥|>=) ?1 ?°?C',
      'The ≥ 1 °C trigger was not found in the sources checked; WHO 2001 allows a slow restart with a new unit if the patient improves. Stopping and ruling out hemolysis and bacterial contamination is supported.'),
     ('rv-mchc-only', r'MCHC[^.]{0,80}(spherocyt|only)|spherocyt[^.]{0,80}MCHC',
@@ -666,7 +670,7 @@ FLAG_RULES = [
 
 
 # Rules whose issue is not specific to the chapter the flag was found in.
-ANY_CHAPTER = {'rv-biotin-fda', 'rv-fvl-risk', 'rv-calcium-ref-albumin',
+ANY_CHAPTER = {'rv-hla-b5701-npv-limits', 'rv-biotin-fda', 'rv-fvl-risk', 'rv-calcium-ref-albumin',
                'rv-crypto-induction-who2022', 'rv-ohl-fixed-candidiasis', 'rv-mucorales-pauciseptate',
                'rv-aspirin-recovery-time', 'rv-lipase-definitive-ch9', 'rv-alf-enzyme-definition-ch9',
                'rv-cdi-fidaxomicin-preferred', 'rv-ch66-oxa-s-os-mrsa',
